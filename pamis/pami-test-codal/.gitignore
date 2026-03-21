@@ -1,0 +1,17 @@
+build
+libraries
+*.hex
+*.bin
+*.uf2
+__pycache__
+*.pyc
+.yotta.json
+yotta_modules
+yotta_targets
+*.swp
+*~
+Makefile
+*.DS_Store
+.vscode
+pxtapp
+buildcache.json
