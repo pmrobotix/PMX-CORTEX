@@ -1,0 +1,29 @@
+{
+	"folders": [
+		{
+			"name": "PMX-CORTEX",
+			"path": "."
+		},
+		{
+			"name": "brain",
+			"path": "brain"
+		},
+		{
+			"name": "teensy/test-t41",
+			"path": "teensy/test-t41"
+		},
+		{
+			"name": "teensy/test-t40",
+			"path": "teensy/test-t40"
+		},
+		{
+			"name": "teensy/IO_t41_ToF_DetectionBeacon",
+			"path": "teensy/IO_t41_ToF_DetectionBeacon"
+		},
+		{
+			"name": "pamis/pami-01",
+			"path": "pamis/pami-01"
+		}
+	],
+	"settings": {}
+}
