@@ -25,5 +25,8 @@
 			"path": "pamis/pami-01"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"platformio-ide.projectsDir": "",
+		"platformio-ide.autoPreloadEnvTasks": true
+	}
 }
