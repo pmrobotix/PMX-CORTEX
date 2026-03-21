@@ -23,6 +23,18 @@
 		{
 			"name": "pamis/pami-01",
 			"path": "pamis/pami-01"
+		},
+		{
+			"name": "pamis/pami-test-pio",
+			"path": "pamis/pami-test-pio"
+		},
+		{
+			"name": "pamis/pami-test-codal",
+			"path": "pamis/pami-test-codal"
+		},
+		{
+			"name": "microbitv2",
+			"path": "microbitv2"
 		}
 	],
 	"settings": {
