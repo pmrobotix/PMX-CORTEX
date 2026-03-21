@@ -25,16 +25,20 @@
 			"path": "pamis/pami-01"
 		},
 		{
-			"name": "pamis/pami-test-pio",
-			"path": "pamis/pami-test-pio"
+			"name": "ubitv2/ubit-test-pio",
+			"path": "ubitv2/ubit-test-pio"
 		},
 		{
-			"name": "pamis/pami-test-codal",
-			"path": "pamis/pami-test-codal"
+			"name": "ubitv2/ubit-test-codal",
+			"path": "ubitv2/ubit-test-codal"
 		},
 		{
 			"name": "microbitv2",
 			"path": "microbitv2"
+		},
+		{
+			"name": "ubitv2/ubit-test-pxt",
+			"path": "ubitv2/ubit-test-pxt"
 		}
 	],
 	"settings": {

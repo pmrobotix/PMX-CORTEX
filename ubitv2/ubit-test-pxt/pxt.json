@@ -1,0 +1,21 @@
+{
+    "name": "ubit-test-pxt",
+    "version": "0.0.1",
+    "description": "Test MakeCode project for micro:bit V2 - PMX PAMI",
+    "dependencies": {
+        "core": "*",
+        "microphone": "*",
+        "radio": "*"
+    },
+    "files": [
+        "main.ts",
+        "README.md"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "supportedTargets": [
+        "microbit"
+    ],
+    "preferredEditor": "tsprj"
+}
