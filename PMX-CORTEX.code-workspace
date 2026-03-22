@@ -42,10 +42,17 @@
 		}
 	],
 	"settings": {
+		"platformio-ide.toolbar": [],
+		"platformio-ide.showEditorTitleActions": false,
+		"platformio-ide.autoOpenPlatformIOIniFile": false,
+		"platformio-ide.disablePIOHomeStartup": true,
+		"platformio-ide.activateOnlyOnPlatformIOProject": true,
 		"platformio-ide.autoPreloadEnvTasks": true,
 		"cmake.sourceDirectory": "${workspaceFolder:brain}",
 		"cmake.automaticReconfigure": true,
-		"cmake.options.statusBarVisibility": "visible"
+
+		// PIO : switch auto quand tu changes de fichier
+        "platformio-ide.autoProjectEnvActivation": true,
 	},
 	"extensions": {
 		"recommendations": [

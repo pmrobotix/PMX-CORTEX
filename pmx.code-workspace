@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"name": "brain",
+			"path": "brain"
+		}
+	],
+	"settings": {
+		"cmake.sourceDirectory": "${workspaceFolder:brain}",
+		"cmake.automaticReconfigure": true
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-vscode.cpptools",
+			"ms-vscode.cmake-tools"
+		]
+	}
+}

@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"name": "microbitv2",
+			"path": "microbitv2"
+		},
+		{
+			"name": "ubitv2/ubit-test-codal",
+			"path": "ubitv2/ubit-test-codal"
+		},
+		{
+			"name": "ubitv2/ubit-test-pxt",
+			"path": "ubitv2/ubit-test-pxt"
+		}
+	],
+	"settings": {},
+	"extensions": {
+		"recommendations": [
+			"ms-vscode.cpptools"
+		]
+	}
+}
