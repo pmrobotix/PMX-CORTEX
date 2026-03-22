@@ -1,0 +1,74 @@
+{
+    "version": 3,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 21,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "simu-debug",
+            "displayName": "SIMU Debug",
+            "description": "Compilation native Linux (simulation) en mode debug",
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/build-simu-debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "TARGET_PLATFORM": "SIMU"
+            }
+        },
+        {
+            "name": "simu-release",
+            "displayName": "SIMU Release",
+            "description": "Compilation native Linux (simulation) en mode release",
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/build-simu-release",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "TARGET_PLATFORM": "SIMU"
+            }
+        },
+        {
+            "name": "arm-release",
+            "displayName": "ARM OPOS6UL Release",
+            "description": "Cross-compilation ARM pour OPOS6UL",
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/build-arm-release",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/cmake/toolchain-arm-opos6ul.cmake",
+                "TARGET_PLATFORM": "ARM"
+            }
+        },
+        {
+            "name": "arm-debug",
+            "displayName": "ARM OPOS6UL Debug",
+            "description": "Cross-compilation ARM pour OPOS6UL en mode debug",
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/build-arm-debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/cmake/toolchain-arm-opos6ul.cmake",
+                "TARGET_PLATFORM": "ARM"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "simu-debug",
+            "configurePreset": "simu-debug"
+        },
+        {
+            "name": "simu-release",
+            "configurePreset": "simu-release"
+        },
+        {
+            "name": "arm-release",
+            "configurePreset": "arm-release"
+        },
+        {
+            "name": "arm-debug",
+            "configurePreset": "arm-debug"
+        }
+    ]
+}

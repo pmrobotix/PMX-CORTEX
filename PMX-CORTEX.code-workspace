@@ -42,7 +42,16 @@
 		}
 	],
 	"settings": {
-		"platformio-ide.projectsDir": "",
-		"platformio-ide.autoPreloadEnvTasks": true
+		"platformio-ide.autoPreloadEnvTasks": true,
+		"cmake.sourceDirectory": "${workspaceFolder:brain}",
+		"cmake.automaticReconfigure": true,
+		"cmake.options.statusBarVisibility": "visible"
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-vscode.cpptools",
+			"ms-vscode.cmake-tools",
+			"platformio.platformio-ide"
+		]
 	}
 }

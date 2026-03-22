@@ -1,0 +1,88 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build SIMU Debug",
+            "type": "shell",
+            "command": "cmake --build --preset simu-debug",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": "$gcc"
+        },
+        {
+            "label": "Build SIMU Release",
+            "type": "shell",
+            "command": "cmake --build --preset simu-release",
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": "$gcc"
+        },
+        {
+            "label": "Build ARM Release",
+            "type": "shell",
+            "command": "cmake --build --preset arm-release",
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": "$gcc"
+        },
+        {
+            "label": "Build ARM Debug",
+            "type": "shell",
+            "command": "cmake --build --preset arm-debug",
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": "$gcc"
+        },
+        {
+            "label": "Configure SIMU Debug",
+            "type": "shell",
+            "command": "cmake --preset simu-debug",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Configure ARM Release",
+            "type": "shell",
+            "command": "cmake --preset arm-release",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Clean SIMU",
+            "type": "shell",
+            "command": "rm -rf build-simu-debug build-simu-release",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Clean ARM",
+            "type": "shell",
+            "command": "rm -rf build-arm-debug build-arm-release",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        }
+    ]
+}

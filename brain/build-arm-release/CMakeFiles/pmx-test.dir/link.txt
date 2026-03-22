@@ -1,0 +1,1 @@
+/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot -O3 -DNDEBUG CMakeFiles/pmx-test.dir/test/main_test.cpp.o -o pmx-test  -lpthread 
