@@ -1,0 +1,12 @@
+<map id="test::ThreadTest::testState" name="test::ThreadTest::testState">
+<area shape="rect" id="node1" title="Vérifie les transitions d&#39;état CREATED → STARTED → STOPPED." alt="" coords="5,31,199,57"/>
+<area shape="rect" id="node2" href="$classutils_1_1Thread.html#a430ee2b8962147b587157fac97932219" title="Lance le thread." alt="" coords="267,31,409,57"/>
+<area shape="rect" id="node7" href="$classutils_1_1Thread.html#ada9233f3e669c925e9ed518201ad31cd" title="Retourne l&#39;état courant du thread." alt="" coords="917,13,1061,40"/>
+<area shape="rect" id="node10" href="$classutils_1_1Thread.html#a29b8cb62f6b5f80ffe5b050167780f97" title="Attend la fin du thread (appelle pthread_join)." alt="" coords="247,81,429,108"/>
+<area shape="rect" id="node3" href="$classutils_1_1Thread.html#a61b6c3d0b87570254646120b323b89f7" title="Cette méthode sert de point d&#39;entrée pour l&#39;appel à pcreate_thread." alt="" coords="477,89,656,116"/>
+<area shape="rect" id="node9" href="$namespaceutils.html#ac714339512d6dc1ee14c5b5a92d535be" title="Définit la priorité temps&#45;réel (SCHED_FIFO) du thread spécifié." alt="" coords="497,23,637,65"/>
+<area shape="rect" id="node4" href="$classutils_1_1Thread.html#a202b3fabad41b3be6d996043b262a43a" title="Méthode virtuelle pure à implémenter dans les sous&#45;classes." alt="" coords="705,39,868,65"/>
+<area shape="rect" id="node5" href="$classutils_1_1Thread.html#a46589324e8fc0735c20268db70d34aa5" title="Modifie l&#39;état du thread (thread&#45;safe)." alt="" coords="704,89,869,116"/>
+<area shape="rect" id="node6" href="$classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32" title="Verrouille le mutex. Cette méthode doit être appelée avant d&#39;utiliser la ressource associée...." alt="" coords="1117,89,1252,116"/>
+<area shape="rect" id="node8" href="$classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3" title="Déverrouille le mutex. Cette méthode doit être appelée après avoir utiliser la ressource associée." alt="" coords="1109,27,1260,53"/>
+</map>

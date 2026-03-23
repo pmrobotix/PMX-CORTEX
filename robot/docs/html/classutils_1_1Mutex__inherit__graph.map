@@ -1,0 +1,10 @@
+<map id="utils::Mutex" name="utils::Mutex">
+<area shape="rect" id="node1" title="Implémentation d&#39;une gestion de mutex." alt="" coords="259,5,357,32"/>
+<area shape="rect" id="node2" href="$classlogs_1_1Logger_1_1LoggerBuffer.html" title="Classe de délégation pour faciliter la création des traces." alt="" coords="5,80,197,107"/>
+<area shape="rect" id="node3" href="$classlogs_1_1MemoryAppender.html" title="Implémentation de Appender stockant les messages en mémoire." alt="" coords="221,80,395,107"/>
+<area shape="rect" id="node6" href="$classutils_1_1Thread.html" title="Classe de base pour les threads (wrapper POSIX pthread)." alt="" coords="441,80,543,107"/>
+<area shape="rect" id="node4" href="$classUnitTestAppender.html" title="Implémente un appender spécifique à l&#39;execution et au suivi des tests unitaires." alt="" coords="61,155,198,181"/>
+<area shape="rect" id="node5" href="$classlogs_1_1ConsoleAppender.html" title="Implémentation de Appender pour une écriture des traces sur un flux de sortie de type std::ostream." alt="" coords="223,155,393,181"/>
+<area shape="rect" id="node7" href="$classlogs_1_1LoggerFactory.html" title="Cette classe assure l&#39;initialisation du système de trace et son utilisation." alt="" coords="418,155,566,181"/>
+<area shape="rect" id="node8" href="$classtest_1_1SimpleThread.html" title="Thread de test simple qui incrémente un compteur." alt="" coords="590,155,735,181"/>
+</map>

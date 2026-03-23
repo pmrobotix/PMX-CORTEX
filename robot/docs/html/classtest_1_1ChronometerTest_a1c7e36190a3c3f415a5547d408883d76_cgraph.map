@@ -1,0 +1,12 @@
+<map id="test::ChronometerTest::suite" name="test::ChronometerTest::suite">
+<area shape="rect" id="node1" title="Execute les tests associés à la classe." alt="" coords="5,136,172,177"/>
+<area shape="rect" id="node2" href="$classtest_1_1ChronometerTest.html#a23da1b885637b6bcebc73325fca0684a" title="Vérifie la mesure du temps écoulé après un sleep." alt="" coords="221,71,387,112"/>
+<area shape="rect" id="node6" href="$classtest_1_1ChronometerTest.html#a7acfac7912eba425f6cc7c80faa017af" title="Vérifie le fonctionnement de setTimer/waitTimer." alt="" coords="220,267,388,308"/>
+<area shape="rect" id="node9" href="$classtest_1_1ChronometerTest.html#a415d1e31bcf8129824fcb03e304021c7" title="Vérifie les transitions start/stop et le flag started()." alt="" coords="221,136,387,177"/>
+<area shape="rect" id="node3" href="$classutils_1_1Chronometer.html#aecf9f2e3ced9629be0a03b3ecf0ee01a" title="Retourne le temps écoulé en millisecondes." alt="" coords="436,5,635,47"/>
+<area shape="rect" id="node4" href="$classutils_1_1Chronometer.html#a174c35f7b276290813fe913ed5c82bd3" title="Lance ou réinitialise le chronomètre." alt="" coords="464,71,607,112"/>
+<area shape="rect" id="node5" href="$classutils_1_1Chronometer.html#ab5884be726059e187292392b76ba63e3" title="Arrête le chronomètre." alt="" coords="464,136,607,177"/>
+<area shape="rect" id="node7" href="$classutils_1_1Chronometer.html#a1dbc0872c71691197c8b4791c6ef3077" title="Configure le timer avec une période donnée et lance le chronomètre." alt="" coords="464,267,607,308"/>
+<area shape="rect" id="node8" href="$classutils_1_1Chronometer.html#a821bfe0e70f7b50199557667c08dbb67" title="Attend la fin de la période en cours." alt="" coords="464,332,607,373"/>
+<area shape="rect" id="node10" href="$classutils_1_1Chronometer.html#af09b58a8ae28db72b09bca32efa3f95b" title="Indique si le chronomètre est en cours." alt="" coords="464,201,607,243"/>
+</map>

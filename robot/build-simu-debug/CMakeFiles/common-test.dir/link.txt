@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/common-test.dir/test/common/Main.cpp.o CMakeFiles/common-test.dir/test/common/LoggerInitialize.cpp.o CMakeFiles/common-test.dir/test/common/MutexTest.cpp.o CMakeFiles/common-test.dir/test/common/ThreadTest.cpp.o CMakeFiles/common-test.dir/test/common/ChronometerTest.cpp.o -o common-test  libpmx-suite.a libpmx-common.a -lpthread -lrt 

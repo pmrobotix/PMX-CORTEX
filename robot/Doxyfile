@@ -1,0 +1,52 @@
+# Doxyfile PMX-CORTEX / robot
+
+PROJECT_NAME           = "PMX-CORTEX Robot"
+PROJECT_BRIEF          = "Robot PM-ROBOTIX — Coupe de France de Robotique 2026"
+PROJECT_NUMBER         = 0.1
+
+OUTPUT_DIRECTORY       = docs
+OUTPUT_LANGUAGE        = French
+
+# Sources
+INPUT                  = src/ test/
+RECURSIVE              = YES
+FILE_PATTERNS          = *.hpp *.cpp *.h
+
+# Extraction
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+
+# Diagrammes (nécessite graphviz)
+HAVE_DOT               = YES
+CLASS_GRAPH            = YES
+COLLABORATION_GRAPH    = YES
+CALL_GRAPH             = YES
+CALLER_GRAPH           = YES
+DOT_IMAGE_FORMAT       = svg
+INTERACTIVE_SVG        = YES
+
+# Format de sortie
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+GENERATE_LATEX         = NO
+
+# Style
+HTML_COLORSTYLE_HUE    = 220
+HTML_TIMESTAMP         = YES
+SORT_BRIEF_DOCS        = YES
+SORT_MEMBERS_CTORS_1ST = YES
+
+# Lisibilité
+INLINE_INHERITED_MEMB  = YES
+SHOW_USED_FILES        = YES
+SHOW_FILES             = YES
+SHOW_NAMESPACES        = YES
+
+# Exclure les builds et json.hpp (trop gros)
+EXCLUDE                = src/common/utils/json.hpp
+EXCLUDE_PATTERNS       = */build-*/*
+
+# Warnings
+WARN_IF_UNDOCUMENTED   = YES
+WARN_NO_PARAMDOC       = NO

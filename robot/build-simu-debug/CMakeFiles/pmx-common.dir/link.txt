@@ -1,0 +1,2 @@
+/usr/bin/ar qc libpmx-common.a CMakeFiles/pmx-common.dir/src/common/thread/Thread.cpp.o CMakeFiles/pmx-common.dir/src/common/thread/Mutex.cpp.o CMakeFiles/pmx-common.dir/src/common/utils/Chronometer.cpp.o CMakeFiles/pmx-common.dir/src/common/log/Level.cpp.o CMakeFiles/pmx-common.dir/src/common/log/Logger.cpp.o CMakeFiles/pmx-common.dir/src/common/log/LoggerFactory.cpp.o CMakeFiles/pmx-common.dir/src/common/log/appender/MemoryAppender.cpp.o CMakeFiles/pmx-common.dir/src/common/log/appender/ConsoleAppender.cpp.o
+/usr/bin/ranlib libpmx-common.a

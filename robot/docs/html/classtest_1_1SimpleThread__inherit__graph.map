@@ -1,0 +1,5 @@
+<map id="test::SimpleThread" name="test::SimpleThread">
+<area shape="rect" id="node1" title="Thread de test simple qui incrémente un compteur." alt="" coords="5,155,151,181"/>
+<area shape="rect" id="node2" href="$classutils_1_1Thread.html" title="Classe de base pour les threads (wrapper POSIX pthread)." alt="" coords="27,80,129,107"/>
+<area shape="rect" id="node3" href="$classutils_1_1Mutex.html" title="Implémentation d&#39;une gestion de mutex." alt="" coords="29,5,127,32"/>
+</map>

@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot:  Fichier source de src/common/thread/Thread.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_fdedb0aba14d44ce9d99bc100e026e6a.html">common</a></li><li class="navelem"><a class="el" href="dir_a3079d7d8c69055ccbbdaceb37971046.html">thread</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Thread.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="Thread_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef UTILS_THREAD_HPP</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define UTILS_THREAD_HPP</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;pthread.h&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;thread&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Mutex_8hpp.html">Mutex.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;chrono&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceutils.html">utils</a> {</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="namespaceutils.html#a504e3834817aefe4aa5d0403791dd269">   19</a></span>&#160;<span class="keyword">enum</span> <a class="code" href="namespaceutils.html#a504e3834817aefe4aa5d0403791dd269">ThreadState</a> {</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="namespaceutils.html#a504e3834817aefe4aa5d0403791dd269a8d459cadc59075506c6f41a2945fefd0">   20</a></span>&#160;    <a class="code" href="namespaceutils.html#a504e3834817aefe4aa5d0403791dd269a8d459cadc59075506c6f41a2945fefd0">CREATED</a>, <a class="code" href="namespaceutils.html#a504e3834817aefe4aa5d0403791dd269aac5d7a3b0fe659ee4900adcaa94081cf">STARTING</a>, <a class="code" href="namespaceutils.html#a504e3834817aefe4aa5d0403791dd269aa25ce0d0ad47b263d52e3a174d497a1a">STARTED</a>, <a class="code" href="namespaceutils.html#a504e3834817aefe4aa5d0403791dd269ac7bde8ed0850f19d27dc13318ce524a6">STOPPED</a></div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="namespaceutils.html#a504e3834817aefe4aa5d0403791dd269ac7bde8ed0850f19d27dc13318ce524a6">   21</a></span>&#160;};</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="namespaceutils.html#a4073afd616cd53cb7c5608976177c53e">   23</a></span>&#160;<span class="keyword">typedef</span> pthread_t <a class="code" href="namespaceutils.html#a4073afd616cd53cb7c5608976177c53e">ThreadId</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keywordtype">int</span> <a class="code" href="namespaceutils.html#ac714339512d6dc1ee14c5b5a92d535be">set_realtime_priority</a>(<span class="keywordtype">int</span> p = 0, std::string name = <span class="stringliteral">&quot;&quot;</span>, <a class="code" href="namespaceutils.html#a4073afd616cd53cb7c5608976177c53e">ThreadId</a> this_thread = pthread_self());</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespaceutils.html#a4f86fc4c334661a6995538cc080a40c9">sleep_for_micros</a>(int64_t usec);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespaceutils.html#a1ade70582e50278926921bba958d53b6">sleep_for_millis</a>(int64_t msec);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespaceutils.html#a94517b51f04480fb5c8c082d04283fa0">sleep_for_secs</a>(int64_t sec);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classutils_1_1Thread.html">   55</a></span>&#160;<span class="keyword">class </span><a class="code" href="classutils_1_1Thread.html">Thread</a>: <span class="keyword">public</span> <a class="code" href="classutils_1_1Mutex.html">utils::Mutex</a> {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span>* <a class="code" href="classutils_1_1Thread.html#a61b6c3d0b87570254646120b323b89f7">entryPoint</a>(<span class="keywordtype">void</span> *<span class="keywordtype">object</span>);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="classutils_1_1Thread.html#adfb28a1987d672466c439a3e87fc8113">   72</a></span>&#160;    <a class="code" href="namespaceutils.html#a4073afd616cd53cb7c5608976177c53e">ThreadId</a> <a class="code" href="classutils_1_1Thread.html#adfb28a1987d672466c439a3e87fc8113">threadId_</a>;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="classutils_1_1Thread.html#a8ac202cdf0f0fc7dde60b9e0802bb43c">   77</a></span>&#160;    <a class="code" href="namespaceutils.html#a504e3834817aefe4aa5d0403791dd269">ThreadState</a> <a class="code" href="classutils_1_1Thread.html#a8ac202cdf0f0fc7dde60b9e0802bb43c">state_</a>;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="classutils_1_1Thread.html#ae22ec84724bbc0c68ff99ce95c5eab79">   79</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classutils_1_1Thread.html#ae22ec84724bbc0c68ff99ce95c5eab79">priority_</a>;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="classutils_1_1Thread.html#ac0e1f46eadc1329621caa5a20b8bb189">   81</a></span>&#160;    std::string <a class="code" href="classutils_1_1Thread.html#ac0e1f46eadc1329621caa5a20b8bb189">name_</a>;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <a class="code" href="classutils_1_1Thread.html#a37ac9e17f8e0f6e29541278ede555465">Thread</a>();</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classutils_1_1Thread.html#a2535cf3474384aad6621c0556813097f">yield</a>();</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classutils_1_1Thread.html#a540314edf56707d4f8732af3be6d7044">sched_yield</a>();</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classutils_1_1Thread.html#ad5bc89ff373a37499d1bf12d9624f964">sleep_for_micros</a>(int64_t usec);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classutils_1_1Thread.html#abf0fce52d68ec9df1bd813c8b9e50da6">sleep_for_millis</a>(int64_t msec);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classutils_1_1Thread.html#ae98681ec5fca60939f1a5daff44bcc67">sleep_for_secs</a>(int64_t sec);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="classutils_1_1Thread.html#a202b3fabad41b3be6d996043b262a43a">  120</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classutils_1_1Thread.html#a202b3fabad41b3be6d996043b262a43a">execute</a>() = 0;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
+<div class="line"><a name="l00127"></a><span class="lineno"><a class="line" href="classutils_1_1Thread.html#aea8daf2decfe3206f7ce6f89e7eb0569">  127</a></span>&#160;    <span class="keyword">virtual</span> <span class="keyword">inline</span> <a class="code" href="classutils_1_1Thread.html#aea8daf2decfe3206f7ce6f89e7eb0569">~Thread</a>() {</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    }</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classutils_1_1Thread.html#a430ee2b8962147b587157fac97932219">start</a>(std::string <a class="code" href="classutils_1_1Thread.html#a48b51d705e5e07f19f4acc17c6fc5411">name</a>, <span class="keywordtype">int</span> priority = 0);</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
+<div class="line"><a name="l00145"></a><span class="lineno"><a class="line" href="classutils_1_1Thread.html#ada9233f3e669c925e9ed518201ad31cd">  145</a></span>&#160;    <span class="keyword">inline</span> <a class="code" href="namespaceutils.html#a504e3834817aefe4aa5d0403791dd269">ThreadState</a> <a class="code" href="classutils_1_1Thread.html#ada9233f3e669c925e9ed518201ad31cd">state</a>() {</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        <a class="code" href="classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32">lock</a>();</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        <a class="code" href="namespaceutils.html#a504e3834817aefe4aa5d0403791dd269">ThreadState</a> s = <a class="code" href="classutils_1_1Thread.html#a8ac202cdf0f0fc7dde60b9e0802bb43c">state_</a>;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        <a class="code" href="classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3">unlock</a>();</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        <span class="keywordflow">return</span> s;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    }</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160; </div>
+<div class="line"><a name="l00156"></a><span class="lineno"><a class="line" href="classutils_1_1Thread.html#a46589324e8fc0735c20268db70d34aa5">  156</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classutils_1_1Thread.html#a46589324e8fc0735c20268db70d34aa5">setState</a>(<a class="code" href="namespaceutils.html#a504e3834817aefe4aa5d0403791dd269">ThreadState</a> <a class="code" href="classutils_1_1Thread.html#ada9233f3e669c925e9ed518201ad31cd">state</a>) {</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        <a class="code" href="classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32">lock</a>();</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        <a class="code" href="classutils_1_1Thread.html#a8ac202cdf0f0fc7dde60b9e0802bb43c">state_</a> = <a class="code" href="classutils_1_1Thread.html#ada9233f3e669c925e9ed518201ad31cd">state</a>;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        <a class="code" href="classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3">unlock</a>();</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    }</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160; </div>
+<div class="line"><a name="l00166"></a><span class="lineno"><a class="line" href="classutils_1_1Thread.html#acc5214a88eab5c3bd421e7ee06f66b1a">  166</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="classutils_1_1Thread.html#acc5214a88eab5c3bd421e7ee06f66b1a">isFinished</a>() {</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        <span class="keywordflow">return</span> (<a class="code" href="classutils_1_1Thread.html#ada9233f3e669c925e9ed518201ad31cd">state</a>() == <a class="code" href="namespaceutils.html#a504e3834817aefe4aa5d0403791dd269ac7bde8ed0850f19d27dc13318ce524a6">utils::STOPPED</a> || <a class="code" href="classutils_1_1Thread.html#ada9233f3e669c925e9ed518201ad31cd">state</a>() == <a class="code" href="namespaceutils.html#a504e3834817aefe4aa5d0403791dd269a8d459cadc59075506c6f41a2945fefd0">utils::CREATED</a>);</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    }</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160; </div>
+<div class="line"><a name="l00173"></a><span class="lineno"><a class="line" href="classutils_1_1Thread.html#a29b8cb62f6b5f80ffe5b050167780f97">  173</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classutils_1_1Thread.html#a29b8cb62f6b5f80ffe5b050167780f97">waitForEnd</a>() {</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        std::this_thread::yield();</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        pthread_join(<a class="code" href="classutils_1_1Thread.html#adfb28a1987d672466c439a3e87fc8113">threadId_</a>, NULL);</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    }</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160; </div>
+<div class="line"><a name="l00181"></a><span class="lineno"><a class="line" href="classutils_1_1Thread.html#ac7174393a61b12f962bfacef078bf43e">  181</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classutils_1_1Thread.html#ac7174393a61b12f962bfacef078bf43e">cancel</a>() {</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        pthread_cancel(<a class="code" href="classutils_1_1Thread.html#adfb28a1987d672466c439a3e87fc8113">threadId_</a>);</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    }</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160; </div>
+<div class="line"><a name="l00188"></a><span class="lineno"><a class="line" href="classutils_1_1Thread.html#a48b51d705e5e07f19f4acc17c6fc5411">  188</a></span>&#160;    std::string <a class="code" href="classutils_1_1Thread.html#a48b51d705e5e07f19f4acc17c6fc5411">name</a>() {</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classutils_1_1Thread.html#ac0e1f46eadc1329621caa5a20b8bb189">name_</a>;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    }</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160; </div>
+<div class="line"><a name="l00195"></a><span class="lineno"><a class="line" href="classutils_1_1Thread.html#ab3ecfb3efec3bb3d24d82de3fa5d1645">  195</a></span>&#160;    <a class="code" href="namespaceutils.html#a4073afd616cd53cb7c5608976177c53e">ThreadId</a> <a class="code" href="classutils_1_1Thread.html#ab3ecfb3efec3bb3d24d82de3fa5d1645">id</a>() {</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classutils_1_1Thread.html#adfb28a1987d672466c439a3e87fc8113">threadId_</a>;</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    }</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160; </div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;};</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160; </div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;}</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160; </div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aMutex_8hpp_html"><div class="ttname"><a href="Mutex_8hpp.html">Mutex.hpp</a></div><div class="ttdoc">Définition de la classe Mutex.</div></div>
+<div class="ttc" id="aclassutils_1_1Mutex_html"><div class="ttname"><a href="classutils_1_1Mutex.html">utils::Mutex</a></div><div class="ttdoc">Implémentation d'une gestion de mutex.</div><div class="ttdef"><b>Definition:</b> Mutex.hpp:17</div></div>
+<div class="ttc" id="aclassutils_1_1Mutex_html_a59b2079dc7f803d49f78ac9c04406cd3"><div class="ttname"><a href="classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3">utils::Mutex::unlock</a></div><div class="ttdeci">void unlock()</div><div class="ttdoc">Déverrouille le mutex. Cette méthode doit être appelée après avoir utiliser la ressource associée.</div><div class="ttdef"><b>Definition:</b> Mutex.cpp:13</div></div>
+<div class="ttc" id="aclassutils_1_1Mutex_html_aa584b418a5ef484f76b93e361a1d7e32"><div class="ttname"><a href="classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32">utils::Mutex::lock</a></div><div class="ttdeci">void lock()</div><div class="ttdoc">Verrouille le mutex. Cette méthode doit être appelée avant d'utiliser la ressource associée....</div><div class="ttdef"><b>Definition:</b> Mutex.cpp:9</div></div>
+<div class="ttc" id="aclassutils_1_1Thread_html"><div class="ttname"><a href="classutils_1_1Thread.html">utils::Thread</a></div><div class="ttdoc">Classe de base pour les threads (wrapper POSIX pthread).</div><div class="ttdef"><b>Definition:</b> Thread.hpp:55</div></div>
+<div class="ttc" id="aclassutils_1_1Thread_html_a202b3fabad41b3be6d996043b262a43a"><div class="ttname"><a href="classutils_1_1Thread.html#a202b3fabad41b3be6d996043b262a43a">utils::Thread::execute</a></div><div class="ttdeci">virtual void execute()=0</div><div class="ttdoc">Méthode virtuelle pure à implémenter dans les sous-classes.</div></div>
+<div class="ttc" id="aclassutils_1_1Thread_html_a2535cf3474384aad6621c0556813097f"><div class="ttname"><a href="classutils_1_1Thread.html#a2535cf3474384aad6621c0556813097f">utils::Thread::yield</a></div><div class="ttdeci">void yield()</div><div class="ttdoc">Donne la main à un autre thread (appelle pthread_yield).</div><div class="ttdef"><b>Definition:</b> Thread.cpp:28</div></div>
+<div class="ttc" id="aclassutils_1_1Thread_html_a29b8cb62f6b5f80ffe5b050167780f97"><div class="ttname"><a href="classutils_1_1Thread.html#a29b8cb62f6b5f80ffe5b050167780f97">utils::Thread::waitForEnd</a></div><div class="ttdeci">void waitForEnd()</div><div class="ttdoc">Attend la fin du thread (appelle pthread_join).</div><div class="ttdef"><b>Definition:</b> Thread.hpp:173</div></div>
+<div class="ttc" id="aclassutils_1_1Thread_html_a37ac9e17f8e0f6e29541278ede555465"><div class="ttname"><a href="classutils_1_1Thread.html#a37ac9e17f8e0f6e29541278ede555465">utils::Thread::Thread</a></div><div class="ttdeci">Thread()</div><div class="ttdoc">Constructeur de la classe.</div><div class="ttdef"><b>Definition:</b> Thread.cpp:23</div></div>
+<div class="ttc" id="aclassutils_1_1Thread_html_a430ee2b8962147b587157fac97932219"><div class="ttname"><a href="classutils_1_1Thread.html#a430ee2b8962147b587157fac97932219">utils::Thread::start</a></div><div class="ttdeci">bool start(std::string name, int priority=0)</div><div class="ttdoc">Lance le thread.</div><div class="ttdef"><b>Definition:</b> Thread.cpp:48</div></div>
+<div class="ttc" id="aclassutils_1_1Thread_html_a46589324e8fc0735c20268db70d34aa5"><div class="ttname"><a href="classutils_1_1Thread.html#a46589324e8fc0735c20268db70d34aa5">utils::Thread::setState</a></div><div class="ttdeci">void setState(ThreadState state)</div><div class="ttdoc">Modifie l'état du thread (thread-safe).</div><div class="ttdef"><b>Definition:</b> Thread.hpp:156</div></div>
+<div class="ttc" id="aclassutils_1_1Thread_html_a48b51d705e5e07f19f4acc17c6fc5411"><div class="ttname"><a href="classutils_1_1Thread.html#a48b51d705e5e07f19f4acc17c6fc5411">utils::Thread::name</a></div><div class="ttdeci">std::string name()</div><div class="ttdoc">Retourne le nom du thread.</div><div class="ttdef"><b>Definition:</b> Thread.hpp:188</div></div>
+<div class="ttc" id="aclassutils_1_1Thread_html_a540314edf56707d4f8732af3be6d7044"><div class="ttname"><a href="classutils_1_1Thread.html#a540314edf56707d4f8732af3be6d7044">utils::Thread::sched_yield</a></div><div class="ttdeci">void sched_yield()</div><div class="ttdoc">Donne la main à un autre thread de même priorité (appelle ::sched_yield).</div><div class="ttdef"><b>Definition:</b> Thread.cpp:32</div></div>
+<div class="ttc" id="aclassutils_1_1Thread_html_a61b6c3d0b87570254646120b323b89f7"><div class="ttname"><a href="classutils_1_1Thread.html#a61b6c3d0b87570254646120b323b89f7">utils::Thread::entryPoint</a></div><div class="ttdeci">static void * entryPoint(void *object)</div><div class="ttdoc">Cette méthode sert de point d'entrée pour l'appel à pcreate_thread.</div><div class="ttdef"><b>Definition:</b> Thread.cpp:14</div></div>
+<div class="ttc" id="aclassutils_1_1Thread_html_a8ac202cdf0f0fc7dde60b9e0802bb43c"><div class="ttname"><a href="classutils_1_1Thread.html#a8ac202cdf0f0fc7dde60b9e0802bb43c">utils::Thread::state_</a></div><div class="ttdeci">ThreadState state_</div><div class="ttdoc">l'état du thread.</div><div class="ttdef"><b>Definition:</b> Thread.hpp:77</div></div>
+<div class="ttc" id="aclassutils_1_1Thread_html_ab3ecfb3efec3bb3d24d82de3fa5d1645"><div class="ttname"><a href="classutils_1_1Thread.html#ab3ecfb3efec3bb3d24d82de3fa5d1645">utils::Thread::id</a></div><div class="ttdeci">ThreadId id()</div><div class="ttdoc">Retourne l'identifiant POSIX du thread.</div><div class="ttdef"><b>Definition:</b> Thread.hpp:195</div></div>
+<div class="ttc" id="aclassutils_1_1Thread_html_abf0fce52d68ec9df1bd813c8b9e50da6"><div class="ttname"><a href="classutils_1_1Thread.html#abf0fce52d68ec9df1bd813c8b9e50da6">utils::Thread::sleep_for_millis</a></div><div class="ttdeci">void sleep_for_millis(int64_t msec)</div><div class="ttdoc">Met en pause le thread pendant msec millisecondes.</div><div class="ttdef"><b>Definition:</b> Thread.cpp:40</div></div>
+<div class="ttc" id="aclassutils_1_1Thread_html_ac0e1f46eadc1329621caa5a20b8bb189"><div class="ttname"><a href="classutils_1_1Thread.html#ac0e1f46eadc1329621caa5a20b8bb189">utils::Thread::name_</a></div><div class="ttdeci">std::string name_</div><div class="ttdef"><b>Definition:</b> Thread.hpp:81</div></div>
+<div class="ttc" id="aclassutils_1_1Thread_html_ac7174393a61b12f962bfacef078bf43e"><div class="ttname"><a href="classutils_1_1Thread.html#ac7174393a61b12f962bfacef078bf43e">utils::Thread::cancel</a></div><div class="ttdeci">void cancel()</div><div class="ttdoc">Annule le thread (appelle pthread_cancel).</div><div class="ttdef"><b>Definition:</b> Thread.hpp:181</div></div>
+<div class="ttc" id="aclassutils_1_1Thread_html_acc5214a88eab5c3bd421e7ee06f66b1a"><div class="ttname"><a href="classutils_1_1Thread.html#acc5214a88eab5c3bd421e7ee06f66b1a">utils::Thread::isFinished</a></div><div class="ttdeci">bool isFinished()</div><div class="ttdoc">Indique si le thread est terminé ou pas encore démarré.</div><div class="ttdef"><b>Definition:</b> Thread.hpp:166</div></div>
+<div class="ttc" id="aclassutils_1_1Thread_html_ad5bc89ff373a37499d1bf12d9624f964"><div class="ttname"><a href="classutils_1_1Thread.html#ad5bc89ff373a37499d1bf12d9624f964">utils::Thread::sleep_for_micros</a></div><div class="ttdeci">void sleep_for_micros(int64_t usec)</div><div class="ttdoc">Met en pause le thread pendant usec microsecondes.</div><div class="ttdef"><b>Definition:</b> Thread.cpp:36</div></div>
+<div class="ttc" id="aclassutils_1_1Thread_html_ada9233f3e669c925e9ed518201ad31cd"><div class="ttname"><a href="classutils_1_1Thread.html#ada9233f3e669c925e9ed518201ad31cd">utils::Thread::state</a></div><div class="ttdeci">ThreadState state()</div><div class="ttdoc">Retourne l'état courant du thread.</div><div class="ttdef"><b>Definition:</b> Thread.hpp:145</div></div>
+<div class="ttc" id="aclassutils_1_1Thread_html_adfb28a1987d672466c439a3e87fc8113"><div class="ttname"><a href="classutils_1_1Thread.html#adfb28a1987d672466c439a3e87fc8113">utils::Thread::threadId_</a></div><div class="ttdeci">ThreadId threadId_</div><div class="ttdoc">Identifiant du thread lié.</div><div class="ttdef"><b>Definition:</b> Thread.hpp:72</div></div>
+<div class="ttc" id="aclassutils_1_1Thread_html_ae22ec84724bbc0c68ff99ce95c5eab79"><div class="ttname"><a href="classutils_1_1Thread.html#ae22ec84724bbc0c68ff99ce95c5eab79">utils::Thread::priority_</a></div><div class="ttdeci">int priority_</div><div class="ttdef"><b>Definition:</b> Thread.hpp:79</div></div>
+<div class="ttc" id="aclassutils_1_1Thread_html_ae98681ec5fca60939f1a5daff44bcc67"><div class="ttname"><a href="classutils_1_1Thread.html#ae98681ec5fca60939f1a5daff44bcc67">utils::Thread::sleep_for_secs</a></div><div class="ttdeci">void sleep_for_secs(int64_t sec)</div><div class="ttdoc">Met en pause le thread pendant sec secondes.</div><div class="ttdef"><b>Definition:</b> Thread.cpp:44</div></div>
+<div class="ttc" id="aclassutils_1_1Thread_html_aea8daf2decfe3206f7ce6f89e7eb0569"><div class="ttname"><a href="classutils_1_1Thread.html#aea8daf2decfe3206f7ce6f89e7eb0569">utils::Thread::~Thread</a></div><div class="ttdeci">virtual ~Thread()</div><div class="ttdoc">Destructeur de la classe.</div><div class="ttdef"><b>Definition:</b> Thread.hpp:127</div></div>
+<div class="ttc" id="anamespaceutils_html"><div class="ttname"><a href="namespaceutils.html">utils</a></div><div class="ttdef"><b>Definition:</b> Mutex.hpp:12</div></div>
+<div class="ttc" id="anamespaceutils_html_a1ade70582e50278926921bba958d53b6"><div class="ttname"><a href="namespaceutils.html#a1ade70582e50278926921bba958d53b6">utils::sleep_for_millis</a></div><div class="ttdeci">void sleep_for_millis(int64_t msec)</div><div class="ttdoc">Met en pause le thread courant pendant msec millisecondes.</div><div class="ttdef"><b>Definition:</b> Thread.cpp:112</div></div>
+<div class="ttc" id="anamespaceutils_html_a4073afd616cd53cb7c5608976177c53e"><div class="ttname"><a href="namespaceutils.html#a4073afd616cd53cb7c5608976177c53e">utils::ThreadId</a></div><div class="ttdeci">pthread_t ThreadId</div><div class="ttdef"><b>Definition:</b> Thread.hpp:23</div></div>
+<div class="ttc" id="anamespaceutils_html_a4f86fc4c334661a6995538cc080a40c9"><div class="ttname"><a href="namespaceutils.html#a4f86fc4c334661a6995538cc080a40c9">utils::sleep_for_micros</a></div><div class="ttdeci">void sleep_for_micros(int64_t usec)</div><div class="ttdoc">Met en pause le thread courant pendant usec microsecondes.</div><div class="ttdef"><b>Definition:</b> Thread.cpp:108</div></div>
+<div class="ttc" id="anamespaceutils_html_a504e3834817aefe4aa5d0403791dd269"><div class="ttname"><a href="namespaceutils.html#a504e3834817aefe4aa5d0403791dd269">utils::ThreadState</a></div><div class="ttdeci">ThreadState</div><div class="ttdoc">Enumération des états des threads.</div><div class="ttdef"><b>Definition:</b> Thread.hpp:19</div></div>
+<div class="ttc" id="anamespaceutils_html_a504e3834817aefe4aa5d0403791dd269a8d459cadc59075506c6f41a2945fefd0"><div class="ttname"><a href="namespaceutils.html#a504e3834817aefe4aa5d0403791dd269a8d459cadc59075506c6f41a2945fefd0">utils::CREATED</a></div><div class="ttdeci">@ CREATED</div><div class="ttdef"><b>Definition:</b> Thread.hpp:20</div></div>
+<div class="ttc" id="anamespaceutils_html_a504e3834817aefe4aa5d0403791dd269aa25ce0d0ad47b263d52e3a174d497a1a"><div class="ttname"><a href="namespaceutils.html#a504e3834817aefe4aa5d0403791dd269aa25ce0d0ad47b263d52e3a174d497a1a">utils::STARTED</a></div><div class="ttdeci">@ STARTED</div><div class="ttdef"><b>Definition:</b> Thread.hpp:20</div></div>
+<div class="ttc" id="anamespaceutils_html_a504e3834817aefe4aa5d0403791dd269aac5d7a3b0fe659ee4900adcaa94081cf"><div class="ttname"><a href="namespaceutils.html#a504e3834817aefe4aa5d0403791dd269aac5d7a3b0fe659ee4900adcaa94081cf">utils::STARTING</a></div><div class="ttdeci">@ STARTING</div><div class="ttdef"><b>Definition:</b> Thread.hpp:20</div></div>
+<div class="ttc" id="anamespaceutils_html_a504e3834817aefe4aa5d0403791dd269ac7bde8ed0850f19d27dc13318ce524a6"><div class="ttname"><a href="namespaceutils.html#a504e3834817aefe4aa5d0403791dd269ac7bde8ed0850f19d27dc13318ce524a6">utils::STOPPED</a></div><div class="ttdeci">@ STOPPED</div><div class="ttdef"><b>Definition:</b> Thread.hpp:20</div></div>
+<div class="ttc" id="anamespaceutils_html_a94517b51f04480fb5c8c082d04283fa0"><div class="ttname"><a href="namespaceutils.html#a94517b51f04480fb5c8c082d04283fa0">utils::sleep_for_secs</a></div><div class="ttdeci">void sleep_for_secs(int64_t sec)</div><div class="ttdoc">Met en pause le thread courant pendant sec secondes.</div><div class="ttdef"><b>Definition:</b> Thread.cpp:116</div></div>
+<div class="ttc" id="anamespaceutils_html_ac714339512d6dc1ee14c5b5a92d535be"><div class="ttname"><a href="namespaceutils.html#ac714339512d6dc1ee14c5b5a92d535be">utils::set_realtime_priority</a></div><div class="ttdeci">int set_realtime_priority(int p=0, std::string name=&quot;&quot;, ThreadId this_thread=pthread_self())</div><div class="ttdoc">Définit la priorité temps-réel (SCHED_FIFO) du thread spécifié.</div><div class="ttdef"><b>Definition:</b> Thread.cpp:78</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Lundi 23 Mars 2026 01:32:20 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

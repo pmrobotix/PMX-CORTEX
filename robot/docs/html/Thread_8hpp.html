@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot: Référence du fichier src/common/thread/Thread.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_fdedb0aba14d44ce9d99bc100e026e6a.html">common</a></li><li class="navelem"><a class="el" href="dir_a3079d7d8c69055ccbbdaceb37971046.html">thread</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#namespaces">Espaces de nommage</a> &#124;
+<a href="#typedef-members">Définitions de type</a> &#124;
+<a href="#enum-members">Énumérations</a> &#124;
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier Thread.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Définition de la classe Thread.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &lt;pthread.h&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &lt;thread&gt;</code><br />
+<code>#include &quot;<a class="el" href="Mutex_8hpp_source.html">Mutex.hpp</a>&quot;</code><br />
+<code>#include &lt;chrono&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Graphe des dépendances par inclusion de Thread.hpp:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="Thread_8hpp__incl.svg" width="380" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div><div class="textblock"><div class="dynheader">
+Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier :</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="Thread_8hpp__dep__incl.svg" width="100%" height="552"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+</div>
+<p><a href="Thread_8hpp_source.html">Aller au code source de ce fichier.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1Thread.html">utils::Thread</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Classe de base pour les threads (wrapper POSIX pthread).  <a href="classutils_1_1Thread.html#details">Plus de détails...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Espaces de nommage</h2></td></tr>
+<tr class="memitem:namespaceutils"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html">utils</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Définitions de type</h2></td></tr>
+<tr class="memitem:a4073afd616cd53cb7c5608976177c53e"><td class="memItemLeft" align="right" valign="top">typedef pthread_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a4073afd616cd53cb7c5608976177c53e">utils::ThreadId</a></td></tr>
+<tr class="separator:a4073afd616cd53cb7c5608976177c53e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Énumérations</h2></td></tr>
+<tr class="memitem:a504e3834817aefe4aa5d0403791dd269"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a504e3834817aefe4aa5d0403791dd269">utils::ThreadState</a> { <a class="el" href="namespaceutils.html#a504e3834817aefe4aa5d0403791dd269a8d459cadc59075506c6f41a2945fefd0">utils::CREATED</a>
+, <a class="el" href="namespaceutils.html#a504e3834817aefe4aa5d0403791dd269aac5d7a3b0fe659ee4900adcaa94081cf">utils::STARTING</a>
+, <a class="el" href="namespaceutils.html#a504e3834817aefe4aa5d0403791dd269aa25ce0d0ad47b263d52e3a174d497a1a">utils::STARTED</a>
+, <a class="el" href="namespaceutils.html#a504e3834817aefe4aa5d0403791dd269ac7bde8ed0850f19d27dc13318ce524a6">utils::STOPPED</a>
+ }</td></tr>
+<tr class="memdesc:a504e3834817aefe4aa5d0403791dd269"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumération des états des threads.  <a href="namespaceutils.html#a504e3834817aefe4aa5d0403791dd269">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a504e3834817aefe4aa5d0403791dd269"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:ac714339512d6dc1ee14c5b5a92d535be"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#ac714339512d6dc1ee14c5b5a92d535be">utils::set_realtime_priority</a> (int p=0, std::string name=&quot;&quot;, ThreadId this_thread=pthread_self())</td></tr>
+<tr class="memdesc:ac714339512d6dc1ee14c5b5a92d535be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Définit la priorité temps-réel (SCHED_FIFO) du thread spécifié.  <a href="namespaceutils.html#ac714339512d6dc1ee14c5b5a92d535be">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ac714339512d6dc1ee14c5b5a92d535be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f86fc4c334661a6995538cc080a40c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a4f86fc4c334661a6995538cc080a40c9">utils::sleep_for_micros</a> (int64_t usec)</td></tr>
+<tr class="memdesc:a4f86fc4c334661a6995538cc080a40c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Met en pause le thread courant pendant <em>usec</em> microsecondes.  <a href="namespaceutils.html#a4f86fc4c334661a6995538cc080a40c9">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a4f86fc4c334661a6995538cc080a40c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ade70582e50278926921bba958d53b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a1ade70582e50278926921bba958d53b6">utils::sleep_for_millis</a> (int64_t msec)</td></tr>
+<tr class="memdesc:a1ade70582e50278926921bba958d53b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Met en pause le thread courant pendant <em>msec</em> millisecondes.  <a href="namespaceutils.html#a1ade70582e50278926921bba958d53b6">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a1ade70582e50278926921bba958d53b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94517b51f04480fb5c8c082d04283fa0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceutils.html#a94517b51f04480fb5c8c082d04283fa0">utils::sleep_for_secs</a> (int64_t sec)</td></tr>
+<tr class="memdesc:a94517b51f04480fb5c8c082d04283fa0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Met en pause le thread courant pendant <em>sec</em> secondes.  <a href="namespaceutils.html#a94517b51f04480fb5c8c082d04283fa0">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a94517b51f04480fb5c8c082d04283fa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Définition de la classe Thread. </p>
+</div></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Lundi 23 Mars 2026 01:32:20 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

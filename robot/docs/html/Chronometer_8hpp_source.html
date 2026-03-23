@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot:  Fichier source de src/common/utils/Chronometer.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_fdedb0aba14d44ce9d99bc100e026e6a.html">common</a></li><li class="navelem"><a class="el" href="dir_c3d33904e581c7b40f74ea903e639ce2.html">utils</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Chronometer.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="Chronometer_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef COMMON_CHRONOMETER_HPP_</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define COMMON_CHRONOMETER_HPP_</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;sys/time.h&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceutils.html">utils</a> {</div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="classutils_1_1Chronometer.html">   27</a></span>&#160;<span class="keyword">class </span><a class="code" href="classutils_1_1Chronometer.html">Chronometer</a></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;{</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">static</span> timeval <a class="code" href="classutils_1_1Chronometer.html#a4f4e58c494682a60b6cc7163ab9206b7">getTime</a>();</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classutils_1_1Chronometer.html#ab865389d8e51a816c08233dbaab9671b">   38</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classutils_1_1Chronometer.html#ab865389d8e51a816c08233dbaab9671b">stopped_</a>;               </div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classutils_1_1Chronometer.html#ae36cb7281a0c16f5dbf5cfdc5e4e1c8f">   39</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classutils_1_1Chronometer.html#ae36cb7281a0c16f5dbf5cfdc5e4e1c8f">timerPeriod_us_</a>;        </div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classutils_1_1Chronometer.html#a8c656e9b13249bd2291c1438b8b209bb">   40</a></span>&#160;    std::string <a class="code" href="classutils_1_1Chronometer.html#a8c656e9b13249bd2291c1438b8b209bb">name_</a>;          </div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classutils_1_1Chronometer.html#a74a893740c5f1c56713cc3db26ad2c39">   41</a></span>&#160;    timeval <a class="code" href="classutils_1_1Chronometer.html#a74a893740c5f1c56713cc3db26ad2c39">startCount_</a>;        </div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classutils_1_1Chronometer.html#a1fc7ad386b6a973ac0449bd35258b628">   42</a></span>&#160;    timeval <a class="code" href="classutils_1_1Chronometer.html#a1fc7ad386b6a973ac0449bd35258b628">endCount_</a>;          </div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classutils_1_1Chronometer.html#aefcfa94d63908439fbd957552df1aad3">   43</a></span>&#160;    timeval <a class="code" href="classutils_1_1Chronometer.html#aefcfa94d63908439fbd957552df1aad3">endSet_</a>;            </div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classutils_1_1Chronometer.html#a40b06156c3581914fa84129b0032c293">   44</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> <a class="code" href="classutils_1_1Chronometer.html#a40b06156c3581914fa84129b0032c293">periodNb_</a>;       </div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classutils_1_1Chronometer.html#a5049fef91fb4c1175dcc4ed100c92420">   45</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="classutils_1_1Chronometer.html#a5049fef91fb4c1175dcc4ed100c92420">endSetTime_us</a>;         </div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classutils_1_1Chronometer.html#a66f96ba527ed358f313bc59331081c91">   46</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> <a class="code" href="classutils_1_1Chronometer.html#a66f96ba527ed358f313bc59331081c91">timerStartTime_us_</a>; </div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classutils_1_1Chronometer.html#a7f14c6a3b688cba690fb64c23b85cff0">   47</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> <a class="code" href="classutils_1_1Chronometer.html#a7f14c6a3b688cba690fb64c23b85cff0">lastTime_</a>;       </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="classutils_1_1Chronometer.html#a96be54a4bf5045e1b6f65ad092c23ded">Chronometer</a>(std::string name);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="classutils_1_1Chronometer.html#a2aada8266c5f506f4000dd43ec403d60">   60</a></span>&#160;    <span class="keyword">virtual</span> <span class="keyword">inline</span> <a class="code" href="classutils_1_1Chronometer.html#a2aada8266c5f506f4000dd43ec403d60">~Chronometer</a>() {}</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="classutils_1_1Chronometer.html#af09b58a8ae28db72b09bca32efa3f95b">   66</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="classutils_1_1Chronometer.html#af09b58a8ae28db72b09bca32efa3f95b">started</a>()</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    {</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordflow">return</span> !<a class="code" href="classutils_1_1Chronometer.html#ab865389d8e51a816c08233dbaab9671b">stopped_</a>;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    }</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classutils_1_1Chronometer.html#a174c35f7b276290813fe913ed5c82bd3">start</a>();</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classutils_1_1Chronometer.html#ab5884be726059e187292392b76ba63e3">stop</a>();</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classutils_1_1Chronometer.html#a1dbc0872c71691197c8b4791c6ef3077">setTimer</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> usec);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classutils_1_1Chronometer.html#a821bfe0e70f7b50199557667c08dbb67">waitTimer</a>(<span class="keywordtype">int</span> delay_us = 0, <span class="keywordtype">bool</span> debug = <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classutils_1_1Chronometer.html#acf0f4b7283770941a7d3e134160790de">getElapsedTime</a>();</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classutils_1_1Chronometer.html#a935aa20dd1791cfc8aec203a8838598d">getElapsedTimeInSec</a>();</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classutils_1_1Chronometer.html#aecf9f2e3ced9629be0a03b3ecf0ee01a">getElapsedTimeInMilliSec</a>();</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> <a class="code" href="classutils_1_1Chronometer.html#a8c641a39ccca4bf655bb09d9c1cd8d9b">getElapsedTimeInMicroSec</a>();</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;};</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;}</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassutils_1_1Chronometer_html"><div class="ttname"><a href="classutils_1_1Chronometer.html">utils::Chronometer</a></div><div class="ttdoc">Gestion d'un chronomètre.</div><div class="ttdef"><b>Definition:</b> Chronometer.hpp:28</div></div>
+<div class="ttc" id="aclassutils_1_1Chronometer_html_a174c35f7b276290813fe913ed5c82bd3"><div class="ttname"><a href="classutils_1_1Chronometer.html#a174c35f7b276290813fe913ed5c82bd3">utils::Chronometer::start</a></div><div class="ttdeci">void start()</div><div class="ttdoc">Lance ou réinitialise le chronomètre.</div><div class="ttdef"><b>Definition:</b> Chronometer.cpp:23</div></div>
+<div class="ttc" id="aclassutils_1_1Chronometer_html_a1dbc0872c71691197c8b4791c6ef3077"><div class="ttname"><a href="classutils_1_1Chronometer.html#a1dbc0872c71691197c8b4791c6ef3077">utils::Chronometer::setTimer</a></div><div class="ttdeci">void setTimer(unsigned int usec)</div><div class="ttdoc">Configure le timer avec une période donnée et lance le chronomètre.</div><div class="ttdef"><b>Definition:</b> Chronometer.cpp:84</div></div>
+<div class="ttc" id="aclassutils_1_1Chronometer_html_a1fc7ad386b6a973ac0449bd35258b628"><div class="ttname"><a href="classutils_1_1Chronometer.html#a1fc7ad386b6a973ac0449bd35258b628">utils::Chronometer::endCount_</a></div><div class="ttdeci">timeval endCount_</div><div class="ttdoc">Temps d'arrêt.</div><div class="ttdef"><b>Definition:</b> Chronometer.hpp:42</div></div>
+<div class="ttc" id="aclassutils_1_1Chronometer_html_a2aada8266c5f506f4000dd43ec403d60"><div class="ttname"><a href="classutils_1_1Chronometer.html#a2aada8266c5f506f4000dd43ec403d60">utils::Chronometer::~Chronometer</a></div><div class="ttdeci">virtual ~Chronometer()</div><div class="ttdoc">Destructeur.</div><div class="ttdef"><b>Definition:</b> Chronometer.hpp:60</div></div>
+<div class="ttc" id="aclassutils_1_1Chronometer_html_a40b06156c3581914fa84129b0032c293"><div class="ttname"><a href="classutils_1_1Chronometer.html#a40b06156c3581914fa84129b0032c293">utils::Chronometer::periodNb_</a></div><div class="ttdeci">unsigned long long periodNb_</div><div class="ttdoc">Compteur de périodes.</div><div class="ttdef"><b>Definition:</b> Chronometer.hpp:44</div></div>
+<div class="ttc" id="aclassutils_1_1Chronometer_html_a4f4e58c494682a60b6cc7163ab9206b7"><div class="ttname"><a href="classutils_1_1Chronometer.html#a4f4e58c494682a60b6cc7163ab9206b7">utils::Chronometer::getTime</a></div><div class="ttdeci">static timeval getTime()</div><div class="ttdoc">Retourne l'heure système courante.</div><div class="ttdef"><b>Definition:</b> Chronometer.cpp:60</div></div>
+<div class="ttc" id="aclassutils_1_1Chronometer_html_a5049fef91fb4c1175dcc4ed100c92420"><div class="ttname"><a href="classutils_1_1Chronometer.html#a5049fef91fb4c1175dcc4ed100c92420">utils::Chronometer::endSetTime_us</a></div><div class="ttdeci">unsigned int endSetTime_us</div><div class="ttdoc">(deprecated)</div><div class="ttdef"><b>Definition:</b> Chronometer.hpp:45</div></div>
+<div class="ttc" id="aclassutils_1_1Chronometer_html_a66f96ba527ed358f313bc59331081c91"><div class="ttname"><a href="classutils_1_1Chronometer.html#a66f96ba527ed358f313bc59331081c91">utils::Chronometer::timerStartTime_us_</a></div><div class="ttdeci">unsigned long long timerStartTime_us_</div><div class="ttdoc">(deprecated)</div><div class="ttdef"><b>Definition:</b> Chronometer.hpp:46</div></div>
+<div class="ttc" id="aclassutils_1_1Chronometer_html_a74a893740c5f1c56713cc3db26ad2c39"><div class="ttname"><a href="classutils_1_1Chronometer.html#a74a893740c5f1c56713cc3db26ad2c39">utils::Chronometer::startCount_</a></div><div class="ttdeci">timeval startCount_</div><div class="ttdoc">Temps de départ.</div><div class="ttdef"><b>Definition:</b> Chronometer.hpp:41</div></div>
+<div class="ttc" id="aclassutils_1_1Chronometer_html_a7f14c6a3b688cba690fb64c23b85cff0"><div class="ttname"><a href="classutils_1_1Chronometer.html#a7f14c6a3b688cba690fb64c23b85cff0">utils::Chronometer::lastTime_</a></div><div class="ttdeci">unsigned long long lastTime_</div><div class="ttdoc">Dernier temps mesuré (pour waitTimer).</div><div class="ttdef"><b>Definition:</b> Chronometer.hpp:47</div></div>
+<div class="ttc" id="aclassutils_1_1Chronometer_html_a821bfe0e70f7b50199557667c08dbb67"><div class="ttname"><a href="classutils_1_1Chronometer.html#a821bfe0e70f7b50199557667c08dbb67">utils::Chronometer::waitTimer</a></div><div class="ttdeci">int waitTimer(int delay_us=0, bool debug=false)</div><div class="ttdoc">Attend la fin de la période en cours.</div><div class="ttdef"><b>Definition:</b> Chronometer.cpp:67</div></div>
+<div class="ttc" id="aclassutils_1_1Chronometer_html_a8c641a39ccca4bf655bb09d9c1cd8d9b"><div class="ttname"><a href="classutils_1_1Chronometer.html#a8c641a39ccca4bf655bb09d9c1cd8d9b">utils::Chronometer::getElapsedTimeInMicroSec</a></div><div class="ttdeci">unsigned long long getElapsedTimeInMicroSec()</div><div class="ttdoc">Retourne le temps écoulé en microsecondes.</div><div class="ttdef"><b>Definition:</b> Chronometer.cpp:36</div></div>
+<div class="ttc" id="aclassutils_1_1Chronometer_html_a8c656e9b13249bd2291c1438b8b209bb"><div class="ttname"><a href="classutils_1_1Chronometer.html#a8c656e9b13249bd2291c1438b8b209bb">utils::Chronometer::name_</a></div><div class="ttdeci">std::string name_</div><div class="ttdoc">Nom du chronomètre (pour les logs).</div><div class="ttdef"><b>Definition:</b> Chronometer.hpp:40</div></div>
+<div class="ttc" id="aclassutils_1_1Chronometer_html_a935aa20dd1791cfc8aec203a8838598d"><div class="ttname"><a href="classutils_1_1Chronometer.html#a935aa20dd1791cfc8aec203a8838598d">utils::Chronometer::getElapsedTimeInSec</a></div><div class="ttdeci">float getElapsedTimeInSec()</div><div class="ttdoc">Retourne le temps écoulé en secondes.</div><div class="ttdef"><b>Definition:</b> Chronometer.cpp:50</div></div>
+<div class="ttc" id="aclassutils_1_1Chronometer_html_a96be54a4bf5045e1b6f65ad092c23ded"><div class="ttname"><a href="classutils_1_1Chronometer.html#a96be54a4bf5045e1b6f65ad092c23ded">utils::Chronometer::Chronometer</a></div><div class="ttdeci">Chronometer(std::string name)</div><div class="ttdoc">Constructeur. Le chronomètre n'est pas lancé.</div><div class="ttdef"><b>Definition:</b> Chronometer.cpp:12</div></div>
+<div class="ttc" id="aclassutils_1_1Chronometer_html_ab5884be726059e187292392b76ba63e3"><div class="ttname"><a href="classutils_1_1Chronometer.html#ab5884be726059e187292392b76ba63e3">utils::Chronometer::stop</a></div><div class="ttdeci">void stop()</div><div class="ttdoc">Arrête le chronomètre.</div><div class="ttdef"><b>Definition:</b> Chronometer.cpp:30</div></div>
+<div class="ttc" id="aclassutils_1_1Chronometer_html_ab865389d8e51a816c08233dbaab9671b"><div class="ttname"><a href="classutils_1_1Chronometer.html#ab865389d8e51a816c08233dbaab9671b">utils::Chronometer::stopped_</a></div><div class="ttdeci">int stopped_</div><div class="ttdoc">Flag d'arrêt (1 = stoppé).</div><div class="ttdef"><b>Definition:</b> Chronometer.hpp:38</div></div>
+<div class="ttc" id="aclassutils_1_1Chronometer_html_acf0f4b7283770941a7d3e134160790de"><div class="ttname"><a href="classutils_1_1Chronometer.html#acf0f4b7283770941a7d3e134160790de">utils::Chronometer::getElapsedTime</a></div><div class="ttdeci">float getElapsedTime()</div><div class="ttdoc">Alias pour getElapsedTimeInSec().</div><div class="ttdef"><b>Definition:</b> Chronometer.cpp:55</div></div>
+<div class="ttc" id="aclassutils_1_1Chronometer_html_ae36cb7281a0c16f5dbf5cfdc5e4e1c8f"><div class="ttname"><a href="classutils_1_1Chronometer.html#ae36cb7281a0c16f5dbf5cfdc5e4e1c8f">utils::Chronometer::timerPeriod_us_</a></div><div class="ttdeci">int timerPeriod_us_</div><div class="ttdoc">Période du timer en microsecondes.</div><div class="ttdef"><b>Definition:</b> Chronometer.hpp:39</div></div>
+<div class="ttc" id="aclassutils_1_1Chronometer_html_aecf9f2e3ced9629be0a03b3ecf0ee01a"><div class="ttname"><a href="classutils_1_1Chronometer.html#aecf9f2e3ced9629be0a03b3ecf0ee01a">utils::Chronometer::getElapsedTimeInMilliSec</a></div><div class="ttdeci">float getElapsedTimeInMilliSec()</div><div class="ttdoc">Retourne le temps écoulé en millisecondes.</div><div class="ttdef"><b>Definition:</b> Chronometer.cpp:45</div></div>
+<div class="ttc" id="aclassutils_1_1Chronometer_html_aefcfa94d63908439fbd957552df1aad3"><div class="ttname"><a href="classutils_1_1Chronometer.html#aefcfa94d63908439fbd957552df1aad3">utils::Chronometer::endSet_</a></div><div class="ttdeci">timeval endSet_</div><div class="ttdoc">Consigne de fin (deprecated).</div><div class="ttdef"><b>Definition:</b> Chronometer.hpp:43</div></div>
+<div class="ttc" id="aclassutils_1_1Chronometer_html_af09b58a8ae28db72b09bca32efa3f95b"><div class="ttname"><a href="classutils_1_1Chronometer.html#af09b58a8ae28db72b09bca32efa3f95b">utils::Chronometer::started</a></div><div class="ttdeci">bool started()</div><div class="ttdoc">Indique si le chronomètre est en cours.</div><div class="ttdef"><b>Definition:</b> Chronometer.hpp:66</div></div>
+<div class="ttc" id="anamespaceutils_html"><div class="ttname"><a href="namespaceutils.html">utils</a></div><div class="ttdef"><b>Definition:</b> Mutex.hpp:12</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Lundi 23 Mars 2026 01:32:20 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

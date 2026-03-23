@@ -1,0 +1,221 @@
+The target system is: Linux -  - arm
+The host system is: Linux - 5.15.0-173-generic - x86_64
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: /install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+
+The CXX compiler identification is GNU, found in "/home/pmx/git/PMX-CORTEX/robot/build-arm-release/CMakeFiles/3.22.1/CompilerIdCXX/a.out"
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: /home/pmx/git/PMX-CORTEX/robot/build-arm-release/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_8e924/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_8e924.dir/build.make CMakeFiles/cmTC_8e924.dir/build
+gmake[1]: Entering directory '/home/pmx/git/PMX-CORTEX/robot/build-arm-release/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_8e924.dir/CMakeCXXCompilerABI.cpp.o
+/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot   -v -o CMakeFiles/cmTC_8e924.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp
+Using built-in specs.
+COLLECT_GCC=/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/arm-none-linux-gnueabihf-g++
+Target: arm-none-linux-gnueabihf
+Configured with: /data/jenkins/workspace/GNU-toolchain/arm-10/src/gcc/configure --target=arm-none-linux-gnueabihf --prefix= --with-sysroot=/arm-none-linux-gnueabihf/libc --with-build-sysroot=/data/jenkins/workspace/GNU-toolchain/arm-10/build-arm-none-linux-gnueabihf/install//arm-none-linux-gnueabihf/libc --with-bugurl=https://bugs.linaro.org/ --enable-gnu-indirect-function --enable-shared --disable-libssp --disable-libmudflap --enable-checking=release --enable-languages=c,c++,fortran --with-gmp=/data/jenkins/workspace/GNU-toolchain/arm-10/build-arm-none-linux-gnueabihf/host-tools --with-mpfr=/data/jenkins/workspace/GNU-toolchain/arm-10/build-arm-none-linux-gnueabihf/host-tools --with-mpc=/data/jenkins/workspace/GNU-toolchain/arm-10/build-arm-none-linux-gnueabihf/host-tools --with-isl=/data/jenkins/workspace/GNU-toolchain/arm-10/build-arm-none-linux-gnueabihf/host-tools --with-arch=armv7-a --with-fpu=neon --with-float=hard --with-mode=thumb --with-arch=armv7-a --with-pkgversion='GNU Toolchain for the A-profile Architecture 10.3-2021.07 (arm-10.29)'
+Thread model: posix
+Supported LTO compression algorithms: zlib
+gcc version 10.3.1 20210621 (GNU Toolchain for the A-profile Architecture 10.3-2021.07 (arm-10.29)) 
+COLLECT_GCC_OPTIONS='-mabi=aapcs-linux' '-mfpu=neon-vfpv4' '-marm' '-fstack-protector-strong' '-mfloat-abi=hard' '-mcpu=cortex-a7' '-fPIE' '-v' '-pie' '-c' '-o' 'CMakeFiles/cmTC_ba01c.dir/CMakeCXXCompilerABI.cpp.o' '-shared-libgcc' '-mtls-dialect=gnu' '-mlibarch=armv7ve+simd' '-march=armv7ve+simd'
+ /install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../libexec/gcc/arm-none-linux-gnueabihf/10.3.1/cc1plus -quiet -v -iprefix /install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/ -isysroot ../../../../../../../../install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot -D_GNU_SOURCE /usr/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpbase CMakeCXXCompilerABI.cpp -mabi=aapcs-linux -mfpu=neon-vfpv4 -marm -mfloat-abi=hard -mcpu=cortex-a7 -mtls-dialect=gnu -mlibarch=armv7ve+simd -march=armv7ve+simd -auxbase-strip CMakeFiles/cmTC_ba01c.dir/CMakeCXXCompilerABI.cpp.o -version -fstack-protector-strong -fPIE -o /tmp/ccKTtp15.s
+GNU C++14 (GNU Toolchain for the A-profile Architecture 10.3-2021.07 (arm-10.29)) version 10.3.1 20210621 (arm-none-linux-gnueabihf)
+	compiled by GNU C version 4.8.5 20150623 (Red Hat 4.8.5-44), GMP version 4.3.2, MPFR version 3.1.6, MPC version 1.0.3, isl version isl-0.15-1-g835ea3a-GMP
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring duplicate directory "/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/../../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/include/c++/10.3.1"
+ignoring duplicate directory "/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/../../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/include/c++/10.3.1/arm-none-linux-gnueabihf"
+ignoring duplicate directory "/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/../../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/include/c++/10.3.1/backward"
+ignoring duplicate directory "/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/../../lib/gcc/arm-none-linux-gnueabihf/10.3.1/include"
+ignoring nonexistent directory "../../../../../../../../install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/usr/local/include"
+ignoring duplicate directory "/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/../../lib/gcc/arm-none-linux-gnueabihf/10.3.1/include-fixed"
+ignoring duplicate directory "/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/../../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ /install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/include/c++/10.3.1
+ /install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/include/c++/10.3.1/arm-none-linux-gnueabihf
+ /install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/include/c++/10.3.1/backward
+ /install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/include
+ /install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/include-fixed
+ /install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/include
+ ../../../../../../../../install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/usr/include
+End of search list.
+GNU C++14 (GNU Toolchain for the A-profile Architecture 10.3-2021.07 (arm-10.29)) version 10.3.1 20210621 (arm-none-linux-gnueabihf)
+	compiled by GNU C version 4.8.5 20150623 (Red Hat 4.8.5-44), GMP version 4.3.2, MPFR version 3.1.6, MPC version 1.0.3, isl version isl-0.15-1-g835ea3a-GMP
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+Compiler executable checksum: acde3046520adec790856e396a7bd44e
+COLLECT_GCC_OPTIONS='-mabi=aapcs-linux' '-mfpu=neon-vfpv4' '-marm' '-fstack-protector-strong' '-mfloat-abi=hard' '-mcpu=cortex-a7' '-fPIE' '-v' '-pie' '-c' '-o' 'CMakeFiles/cmTC_ba01c.dir/CMakeCXXCompilerABI.cpp.o' '-shared-libgcc' '-mtls-dialect=gnu' '-mlibarch=armv7ve+simd' '-march=armv7ve+simd'
+ /install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/bin/as -v -march=armv7ve -mfloat-abi=hard -mfpu=neon-vfpv4 -meabi=5 -o CMakeFiles/cmTC_ba01c.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccKTtp15.s
+GNU assembler version 2.36.1 (arm-none-linux-gnueabihf) using BFD version (GNU Toolchain for the A-profile Architecture 10.3-2021.07 (arm-10.29)) 2.36.1.20210621
+COMPILER_PATH=/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../libexec/gcc/arm-none-linux-gnueabihf/10.3.1/:/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../libexec/gcc/:/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/bin/
+LIBRARY_PATH=/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/:/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/:/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/lib/:../../../../../../../../install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/lib/:../../../../../../../../install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/
+COLLECT_GCC_OPTIONS='-mabi=aapcs-linux' '-mfpu=neon-vfpv4' '-marm' '-fstack-protector-strong' '-mfloat-abi=hard' '-mcpu=cortex-a7' '-fPIE' '-v' '-pie' '-c' '-o' 'CMakeFiles/cmTC_ba01c.dir/CMakeCXXCompilerABI.cpp.o' '-shared-libgcc' '-mtls-dialect=gnu' '-mlibarch=armv7ve+simd' '-march=armv7ve+simd'
+Linking CXX executable cmTC_8e924
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8e924.dir/link.txt --verbose=1
+/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot  -v CMakeFiles/cmTC_8e924.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_8e924 
+Using built-in specs.
+COLLECT_GCC=/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/arm-none-linux-gnueabihf-g++
+COLLECT_LTO_WRAPPER=/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../libexec/gcc/arm-none-linux-gnueabihf/10.3.1/lto-wrapper
+Target: arm-none-linux-gnueabihf
+Configured with: /data/jenkins/workspace/GNU-toolchain/arm-10/src/gcc/configure --target=arm-none-linux-gnueabihf --prefix= --with-sysroot=/arm-none-linux-gnueabihf/libc --with-build-sysroot=/data/jenkins/workspace/GNU-toolchain/arm-10/build-arm-none-linux-gnueabihf/install//arm-none-linux-gnueabihf/libc --with-bugurl=https://bugs.linaro.org/ --enable-gnu-indirect-function --enable-shared --disable-libssp --disable-libmudflap --enable-checking=release --enable-languages=c,c++,fortran --with-gmp=/data/jenkins/workspace/GNU-toolchain/arm-10/build-arm-none-linux-gnueabihf/host-tools --with-mpfr=/data/jenkins/workspace/GNU-toolchain/arm-10/build-arm-none-linux-gnueabihf/host-tools --with-mpc=/data/jenkins/workspace/GNU-toolchain/arm-10/build-arm-none-linux-gnueabihf/host-tools --with-isl=/data/jenkins/workspace/GNU-toolchain/arm-10/build-arm-none-linux-gnueabihf/host-tools --with-arch=armv7-a --with-fpu=neon --with-float=hard --with-mode=thumb --with-arch=armv7-a --with-pkgversion='GNU Toolchain for the A-profile Architecture 10.3-2021.07 (arm-10.29)'
+Thread model: posix
+Supported LTO compression algorithms: zlib
+gcc version 10.3.1 20210621 (GNU Toolchain for the A-profile Architecture 10.3-2021.07 (arm-10.29)) 
+COMPILER_PATH=/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../libexec/gcc/arm-none-linux-gnueabihf/10.3.1/:/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../libexec/gcc/:/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/bin/
+LIBRARY_PATH=/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/:/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/:/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/lib/:/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/lib/:/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/
+COLLECT_GCC_OPTIONS='-mabi=aapcs-linux' '-mfpu=neon-vfpv4' '-marm' '-fstack-protector-strong' '-mfloat-abi=hard' '-mcpu=cortex-a7' '-fPIE' '-pie' '-v' '-o' 'cmTC_8e924' '-shared-libgcc' '-mtls-dialect=gnu' '-mlibarch=armv7ve+simd' '-march=armv7ve+simd'
+ /install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../libexec/gcc/arm-none-linux-gnueabihf/10.3.1/collect2 -plugin /install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../libexec/gcc/arm-none-linux-gnueabihf/10.3.1/liblto_plugin.so -plugin-opt=/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../libexec/gcc/arm-none-linux-gnueabihf/10.3.1/lto-wrapper -plugin-opt=-fresolution=/tmp/cchnPdKS.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot --eh-frame-hdr -dynamic-linker /lib/ld-linux-armhf.so.3 -X -m armelf_linux_eabi -pie -o cmTC_8e924 /install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/Scrt1.o /install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/crti.o /install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/crtbeginS.o -L/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1 -L/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc -L/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/lib -L/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/lib -L/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib -z now -z relro CMakeFiles/cmTC_8e924.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/crtendS.o /install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/crtn.o
+COLLECT_GCC_OPTIONS='-mabi=aapcs-linux' '-mfpu=neon-vfpv4' '-marm' '-fstack-protector-strong' '-mfloat-abi=hard' '-mcpu=cortex-a7' '-fPIE' '-pie' '-v' '-o' 'cmTC_8e924' '-shared-libgcc' '-mtls-dialect=gnu' '-mlibarch=armv7ve+simd' '-march=armv7ve+simd'
+gmake[1]: Leaving directory '/home/pmx/git/PMX-CORTEX/robot/build-arm-release/CMakeFiles/CMakeTmp'
+
+
+
+Parsed CXX implicit include dir info from above output: rv=done
+  found start of include info
+  found start of implicit include info
+    add: [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/include/c++/10.3.1]
+    add: [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/include/c++/10.3.1/arm-none-linux-gnueabihf]
+    add: [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/include/c++/10.3.1/backward]
+    add: [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/include]
+    add: [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/include-fixed]
+    add: [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/include]
+    add: [../../../../../../../../install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/usr/include]
+  end of search list found
+  collapse include dir [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/include/c++/10.3.1] ==> [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/arm-none-linux-gnueabihf/include/c++/10.3.1]
+  collapse include dir [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/include/c++/10.3.1/arm-none-linux-gnueabihf] ==> [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/arm-none-linux-gnueabihf/include/c++/10.3.1/arm-none-linux-gnueabihf]
+  collapse include dir [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/include/c++/10.3.1/backward] ==> [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/arm-none-linux-gnueabihf/include/c++/10.3.1/backward]
+  collapse include dir [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/include] ==> [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/lib/gcc/arm-none-linux-gnueabihf/10.3.1/include]
+  collapse include dir [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/include-fixed] ==> [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/lib/gcc/arm-none-linux-gnueabihf/10.3.1/include-fixed]
+  collapse include dir [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/include] ==> [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/arm-none-linux-gnueabihf/include]
+  collapse relative include dir [../../../../../../../../install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/usr/include] ==> [/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/usr/include]
+  implicit include dirs: [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/arm-none-linux-gnueabihf/include/c++/10.3.1;/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/arm-none-linux-gnueabihf/include/c++/10.3.1/arm-none-linux-gnueabihf;/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/arm-none-linux-gnueabihf/include/c++/10.3.1/backward;/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/lib/gcc/arm-none-linux-gnueabihf/10.3.1/include;/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/lib/gcc/arm-none-linux-gnueabihf/10.3.1/include-fixed;/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/arm-none-linux-gnueabihf/include;/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/usr/include]
+
+
+Parsed CXX implicit link information from above output:
+  link line regex: [^( *|.*[/\])(arm-none-linux-gnueabihf-ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /home/pmx/git/PMX-CORTEX/robot/build-arm-release/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_8e924/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_8e924.dir/build.make CMakeFiles/cmTC_8e924.dir/build]
+  ignore line: [gmake[1]: Entering directory '/home/pmx/git/PMX-CORTEX/robot/build-arm-release/CMakeFiles/CMakeTmp']
+  ignore line: [Building CXX object CMakeFiles/cmTC_8e924.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot   -v -o CMakeFiles/cmTC_8e924.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/arm-none-linux-gnueabihf-g++]
+  ignore line: [Target: arm-none-linux-gnueabihf]
+  ignore line: [Configured with: /data/jenkins/workspace/GNU-toolchain/arm-10/src/gcc/configure --target=arm-none-linux-gnueabihf --prefix= --with-sysroot=/arm-none-linux-gnueabihf/libc --with-build-sysroot=/data/jenkins/workspace/GNU-toolchain/arm-10/build-arm-none-linux-gnueabihf/install//arm-none-linux-gnueabihf/libc --with-bugurl=https://bugs.linaro.org/ --enable-gnu-indirect-function --enable-shared --disable-libssp --disable-libmudflap --enable-checking=release --enable-languages=c c++ fortran --with-gmp=/data/jenkins/workspace/GNU-toolchain/arm-10/build-arm-none-linux-gnueabihf/host-tools --with-mpfr=/data/jenkins/workspace/GNU-toolchain/arm-10/build-arm-none-linux-gnueabihf/host-tools --with-mpc=/data/jenkins/workspace/GNU-toolchain/arm-10/build-arm-none-linux-gnueabihf/host-tools --with-isl=/data/jenkins/workspace/GNU-toolchain/arm-10/build-arm-none-linux-gnueabihf/host-tools --with-arch=armv7-a --with-fpu=neon --with-float=hard --with-mode=thumb --with-arch=armv7-a --with-pkgversion='GNU Toolchain for the A-profile Architecture 10.3-2021.07 (arm-10.29)']
+  ignore line: [Thread model: posix]
+  ignore line: [Supported LTO compression algorithms: zlib]
+  ignore line: [gcc version 10.3.1 20210621 (GNU Toolchain for the A-profile Architecture 10.3-2021.07 (arm-10.29)) ]
+  ignore line: [COLLECT_GCC_OPTIONS='-mabi=aapcs-linux' '-mfpu=neon-vfpv4' '-marm' '-fstack-protector-strong' '-mfloat-abi=hard' '-mcpu=cortex-a7' '-fPIE' '-v' '-pie' '-c' '-o' 'CMakeFiles/cmTC_ba01c.dir/CMakeCXXCompilerABI.cpp.o' '-shared-libgcc' '-mtls-dialect=gnu' '-mlibarch=armv7ve+simd' '-march=armv7ve+simd']
+  ignore line: [ /install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../libexec/gcc/arm-none-linux-gnueabihf/10.3.1/cc1plus -quiet -v -iprefix /install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/ -isysroot ../../../../../../../../install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot -D_GNU_SOURCE /usr/share/cmake-3.22/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpbase CMakeCXXCompilerABI.cpp -mabi=aapcs-linux -mfpu=neon-vfpv4 -marm -mfloat-abi=hard -mcpu=cortex-a7 -mtls-dialect=gnu -mlibarch=armv7ve+simd -march=armv7ve+simd -auxbase-strip CMakeFiles/cmTC_ba01c.dir/CMakeCXXCompilerABI.cpp.o -version -fstack-protector-strong -fPIE -o /tmp/ccKTtp15.s]
+  ignore line: [GNU C++14 (GNU Toolchain for the A-profile Architecture 10.3-2021.07 (arm-10.29)) version 10.3.1 20210621 (arm-none-linux-gnueabihf)]
+  ignore line: [	compiled by GNU C version 4.8.5 20150623 (Red Hat 4.8.5-44)  GMP version 4.3.2  MPFR version 3.1.6  MPC version 1.0.3  isl version isl-0.15-1-g835ea3a-GMP]
+  ignore line: []
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [ignoring duplicate directory "/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/../../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/include/c++/10.3.1"]
+  ignore line: [ignoring duplicate directory "/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/../../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/include/c++/10.3.1/arm-none-linux-gnueabihf"]
+  ignore line: [ignoring duplicate directory "/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/../../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/include/c++/10.3.1/backward"]
+  ignore line: [ignoring duplicate directory "/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/../../lib/gcc/arm-none-linux-gnueabihf/10.3.1/include"]
+  ignore line: [ignoring nonexistent directory "../../../../../../../../install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/usr/local/include"]
+  ignore line: [ignoring duplicate directory "/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/../../lib/gcc/arm-none-linux-gnueabihf/10.3.1/include-fixed"]
+  ignore line: [ignoring duplicate directory "/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/../../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/include"]
+  ignore line: [#include "..." search starts here:]
+  ignore line: [#include <...> search starts here:]
+  ignore line: [ /install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/include/c++/10.3.1]
+  ignore line: [ /install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/include/c++/10.3.1/arm-none-linux-gnueabihf]
+  ignore line: [ /install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/include/c++/10.3.1/backward]
+  ignore line: [ /install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/include]
+  ignore line: [ /install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/include-fixed]
+  ignore line: [ /install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/include]
+  ignore line: [ ../../../../../../../../install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/usr/include]
+  ignore line: [End of search list.]
+  ignore line: [GNU C++14 (GNU Toolchain for the A-profile Architecture 10.3-2021.07 (arm-10.29)) version 10.3.1 20210621 (arm-none-linux-gnueabihf)]
+  ignore line: [	compiled by GNU C version 4.8.5 20150623 (Red Hat 4.8.5-44)  GMP version 4.3.2  MPFR version 3.1.6  MPC version 1.0.3  isl version isl-0.15-1-g835ea3a-GMP]
+  ignore line: []
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [Compiler executable checksum: acde3046520adec790856e396a7bd44e]
+  ignore line: [COLLECT_GCC_OPTIONS='-mabi=aapcs-linux' '-mfpu=neon-vfpv4' '-marm' '-fstack-protector-strong' '-mfloat-abi=hard' '-mcpu=cortex-a7' '-fPIE' '-v' '-pie' '-c' '-o' 'CMakeFiles/cmTC_ba01c.dir/CMakeCXXCompilerABI.cpp.o' '-shared-libgcc' '-mtls-dialect=gnu' '-mlibarch=armv7ve+simd' '-march=armv7ve+simd']
+  ignore line: [ /install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/bin/as -v -march=armv7ve -mfloat-abi=hard -mfpu=neon-vfpv4 -meabi=5 -o CMakeFiles/cmTC_ba01c.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccKTtp15.s]
+  ignore line: [GNU assembler version 2.36.1 (arm-none-linux-gnueabihf) using BFD version (GNU Toolchain for the A-profile Architecture 10.3-2021.07 (arm-10.29)) 2.36.1.20210621]
+  ignore line: [COMPILER_PATH=/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../libexec/gcc/arm-none-linux-gnueabihf/10.3.1/:/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../libexec/gcc/:/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/bin/]
+  ignore line: [LIBRARY_PATH=/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/:/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/:/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/lib/:../../../../../../../../install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/lib/:../../../../../../../../install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-mabi=aapcs-linux' '-mfpu=neon-vfpv4' '-marm' '-fstack-protector-strong' '-mfloat-abi=hard' '-mcpu=cortex-a7' '-fPIE' '-v' '-pie' '-c' '-o' 'CMakeFiles/cmTC_ba01c.dir/CMakeCXXCompilerABI.cpp.o' '-shared-libgcc' '-mtls-dialect=gnu' '-mlibarch=armv7ve+simd' '-march=armv7ve+simd']
+  ignore line: [Linking CXX executable cmTC_8e924]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8e924.dir/link.txt --verbose=1]
+  ignore line: [/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot  -v CMakeFiles/cmTC_8e924.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_8e924 ]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/arm-none-linux-gnueabihf-g++]
+  ignore line: [COLLECT_LTO_WRAPPER=/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../libexec/gcc/arm-none-linux-gnueabihf/10.3.1/lto-wrapper]
+  ignore line: [Target: arm-none-linux-gnueabihf]
+  ignore line: [Configured with: /data/jenkins/workspace/GNU-toolchain/arm-10/src/gcc/configure --target=arm-none-linux-gnueabihf --prefix= --with-sysroot=/arm-none-linux-gnueabihf/libc --with-build-sysroot=/data/jenkins/workspace/GNU-toolchain/arm-10/build-arm-none-linux-gnueabihf/install//arm-none-linux-gnueabihf/libc --with-bugurl=https://bugs.linaro.org/ --enable-gnu-indirect-function --enable-shared --disable-libssp --disable-libmudflap --enable-checking=release --enable-languages=c c++ fortran --with-gmp=/data/jenkins/workspace/GNU-toolchain/arm-10/build-arm-none-linux-gnueabihf/host-tools --with-mpfr=/data/jenkins/workspace/GNU-toolchain/arm-10/build-arm-none-linux-gnueabihf/host-tools --with-mpc=/data/jenkins/workspace/GNU-toolchain/arm-10/build-arm-none-linux-gnueabihf/host-tools --with-isl=/data/jenkins/workspace/GNU-toolchain/arm-10/build-arm-none-linux-gnueabihf/host-tools --with-arch=armv7-a --with-fpu=neon --with-float=hard --with-mode=thumb --with-arch=armv7-a --with-pkgversion='GNU Toolchain for the A-profile Architecture 10.3-2021.07 (arm-10.29)']
+  ignore line: [Thread model: posix]
+  ignore line: [Supported LTO compression algorithms: zlib]
+  ignore line: [gcc version 10.3.1 20210621 (GNU Toolchain for the A-profile Architecture 10.3-2021.07 (arm-10.29)) ]
+  ignore line: [COMPILER_PATH=/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../libexec/gcc/arm-none-linux-gnueabihf/10.3.1/:/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../libexec/gcc/:/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/bin/]
+  ignore line: [LIBRARY_PATH=/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/:/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/:/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/lib/:/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/lib/:/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-mabi=aapcs-linux' '-mfpu=neon-vfpv4' '-marm' '-fstack-protector-strong' '-mfloat-abi=hard' '-mcpu=cortex-a7' '-fPIE' '-pie' '-v' '-o' 'cmTC_8e924' '-shared-libgcc' '-mtls-dialect=gnu' '-mlibarch=armv7ve+simd' '-march=armv7ve+simd']
+  link line: [ /install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../libexec/gcc/arm-none-linux-gnueabihf/10.3.1/collect2 -plugin /install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../libexec/gcc/arm-none-linux-gnueabihf/10.3.1/liblto_plugin.so -plugin-opt=/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../libexec/gcc/arm-none-linux-gnueabihf/10.3.1/lto-wrapper -plugin-opt=-fresolution=/tmp/cchnPdKS.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot --eh-frame-hdr -dynamic-linker /lib/ld-linux-armhf.so.3 -X -m armelf_linux_eabi -pie -o cmTC_8e924 /install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/Scrt1.o /install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/crti.o /install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/crtbeginS.o -L/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1 -L/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc -L/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/lib -L/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/lib -L/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib -z now -z relro CMakeFiles/cmTC_8e924.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/crtendS.o /install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/crtn.o]
+    arg [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../libexec/gcc/arm-none-linux-gnueabihf/10.3.1/collect2] ==> ignore
+    arg [-plugin] ==> ignore
+    arg [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../libexec/gcc/arm-none-linux-gnueabihf/10.3.1/liblto_plugin.so] ==> ignore
+    arg [-plugin-opt=/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../libexec/gcc/arm-none-linux-gnueabihf/10.3.1/lto-wrapper] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/cchnPdKS.res] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [--sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib/ld-linux-armhf.so.3] ==> ignore
+    arg [-X] ==> ignore
+    arg [-m] ==> ignore
+    arg [armelf_linux_eabi] ==> ignore
+    arg [-pie] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_8e924] ==> ignore
+    arg [/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/Scrt1.o] ==> obj [/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/Scrt1.o]
+    arg [/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/crti.o] ==> obj [/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/crti.o]
+    arg [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/crtbeginS.o] ==> obj [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/crtbeginS.o]
+    arg [-L/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1] ==> dir [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1]
+    arg [-L/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc] ==> dir [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc]
+    arg [-L/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/lib] ==> dir [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/lib]
+    arg [-L/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/lib] ==> dir [/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/lib]
+    arg [-L/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib] ==> dir [/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib]
+    arg [-znow] ==> ignore
+    arg [-zrelro] ==> ignore
+    arg [CMakeFiles/cmTC_8e924.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [-lstdc++] ==> lib [stdc++]
+    arg [-lm] ==> lib [m]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [-lc] ==> lib [c]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/crtendS.o] ==> obj [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/crtendS.o]
+    arg [/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/crtn.o] ==> obj [/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/crtn.o]
+  collapse obj [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/crtbeginS.o] ==> [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/lib/gcc/arm-none-linux-gnueabihf/10.3.1/crtbeginS.o]
+  collapse obj [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/crtendS.o] ==> [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/lib/gcc/arm-none-linux-gnueabihf/10.3.1/crtendS.o]
+  collapse library dir [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1] ==> [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/lib/gcc/arm-none-linux-gnueabihf/10.3.1]
+  collapse library dir [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc] ==> [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/lib/gcc]
+  collapse library dir [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/bin/../lib/gcc/arm-none-linux-gnueabihf/10.3.1/../../../../arm-none-linux-gnueabihf/lib] ==> [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/arm-none-linux-gnueabihf/lib]
+  collapse library dir [/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/lib] ==> [/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/lib]
+  collapse library dir [/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib] ==> [/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib]
+  implicit libs: [stdc++;m;gcc_s;gcc;c;gcc_s;gcc]
+  implicit objs: [/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/Scrt1.o;/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/crti.o;/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/lib/gcc/arm-none-linux-gnueabihf/10.3.1/crtbeginS.o;/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/lib/gcc/arm-none-linux-gnueabihf/10.3.1/crtendS.o;/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/crtn.o]
+  implicit dirs: [/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/lib/gcc/arm-none-linux-gnueabihf/10.3.1;/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/lib/gcc;/install/opos6ul-git/buildroot/output/host/opt/ext-toolchain/arm-none-linux-gnueabihf/lib;/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/lib;/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib]
+  implicit fwks: []
+
+

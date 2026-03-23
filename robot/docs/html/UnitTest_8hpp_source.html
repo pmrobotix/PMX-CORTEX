@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot:  Fichier source de test/suite/UnitTest.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_13e138d54eb8818da29c3992edef070a.html">test</a></li><li class="navelem"><a class="el" href="dir_1f2fddc4948991851d4e92597e981672.html">suite</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">UnitTest.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="UnitTest_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef SUITE_UNITTEST_HPP</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define SUITE_UNITTEST_HPP</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;../../src/common/log/LoggerFactory.hpp&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classUnitTest.html">   32</a></span>&#160;<span class="keyword">class </span><a class="code" href="classUnitTest.html">UnitTest</a></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classUnitTest.html#a04ac91fa9017d4c8ee88419ab365ebe1">   40</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a> &amp; <a class="code" href="classUnitTest.html#a04ac91fa9017d4c8ee88419ab365ebe1">logger</a>()</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a> &amp; instance = <a class="code" href="classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e">logs::LoggerFactory::logger</a>(<span class="stringliteral">&quot;UnitTest&quot;</span>);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordflow">return</span> instance;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    }</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classUnitTest.html#a278e7fd28e7b849928d545818e3b7032">   49</a></span>&#160;    std::string <a class="code" href="classUnitTest.html#a278e7fd28e7b849928d545818e3b7032">name_</a>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="classUnitTest.html#aefa94b0ad902a2e8ccff1f0441cafbff">UnitTest</a>(<span class="keyword">const</span> std::string &amp; <a class="code" href="classUnitTest.html#a6582f12faa929906359112ac916263ea">name</a>);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="classUnitTest.html#a5a57054084ce200e1e92ff3eecc8420a">   62</a></span>&#160;    <span class="keyword">virtual</span> <span class="keyword">inline</span> <a class="code" href="classUnitTest.html#a5a57054084ce200e1e92ff3eecc8420a">~UnitTest</a>()</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    {</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    }</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="classUnitTest.html#a6582f12faa929906359112ac916263ea">   70</a></span>&#160;    <span class="keyword">inline</span> <span class="keyword">const</span> std::string &amp; <a class="code" href="classUnitTest.html#a6582f12faa929906359112ac916263ea">name</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classUnitTest.html#a278e7fd28e7b849928d545818e3b7032">name_</a>;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    }</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classUnitTest.html#a94aab90579073ba6e2068bbc05c47c4a">assert</a>(<span class="keywordtype">bool</span> <a class="code" href="namespacetest.html">test</a>, <span class="keyword">const</span> std::string &amp; message);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classUnitTest.html#aae657d6d8bdc56cb2a9d4e4e9f5f8929">fail</a>(<span class="keyword">const</span> std::string &amp; message);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classUnitTest.html#a734b8df5cd0686245f9ce9ccbb73c5ee">expectedError</a>(<span class="keyword">const</span> std::string &amp; expected);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classUnitTest.html#a734b8df5cd0686245f9ce9ccbb73c5ee">expectedError</a>(<span class="keyword">const</span> std::string &amp; expected, <span class="keyword">const</span> std::string &amp; message);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="classUnitTest.html#a15eae3e23414a5877c8652655dd88c3f">  111</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classUnitTest.html#a15eae3e23414a5877c8652655dd88c3f">suite</a>() = 0;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;};</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassUnitTest_html"><div class="ttname"><a href="classUnitTest.html">UnitTest</a></div><div class="ttdoc">Cette classe permet de créer des tests unitaires.</div><div class="ttdef"><b>Definition:</b> UnitTest.hpp:33</div></div>
+<div class="ttc" id="aclassUnitTest_html_a04ac91fa9017d4c8ee88419ab365ebe1"><div class="ttname"><a href="classUnitTest.html#a04ac91fa9017d4c8ee88419ab365ebe1">UnitTest::logger</a></div><div class="ttdeci">static const logs::Logger &amp; logger()</div><div class="ttdoc">Cette méthode retourne le logger associé à cette classe.</div><div class="ttdef"><b>Definition:</b> UnitTest.hpp:40</div></div>
+<div class="ttc" id="aclassUnitTest_html_a15eae3e23414a5877c8652655dd88c3f"><div class="ttname"><a href="classUnitTest.html#a15eae3e23414a5877c8652655dd88c3f">UnitTest::suite</a></div><div class="ttdeci">virtual void suite()=0</div><div class="ttdoc">Execute les tests associés à la classe.</div></div>
+<div class="ttc" id="aclassUnitTest_html_a278e7fd28e7b849928d545818e3b7032"><div class="ttname"><a href="classUnitTest.html#a278e7fd28e7b849928d545818e3b7032">UnitTest::name_</a></div><div class="ttdeci">std::string name_</div><div class="ttdoc">Nom associé au test.</div><div class="ttdef"><b>Definition:</b> UnitTest.hpp:49</div></div>
+<div class="ttc" id="aclassUnitTest_html_a5a57054084ce200e1e92ff3eecc8420a"><div class="ttname"><a href="classUnitTest.html#a5a57054084ce200e1e92ff3eecc8420a">UnitTest::~UnitTest</a></div><div class="ttdeci">virtual ~UnitTest()</div><div class="ttdoc">Destructeur.</div><div class="ttdef"><b>Definition:</b> UnitTest.hpp:62</div></div>
+<div class="ttc" id="aclassUnitTest_html_a6582f12faa929906359112ac916263ea"><div class="ttname"><a href="classUnitTest.html#a6582f12faa929906359112ac916263ea">UnitTest::name</a></div><div class="ttdeci">const std::string &amp; name() const</div><div class="ttdoc">Retourne le nom du test.</div><div class="ttdef"><b>Definition:</b> UnitTest.hpp:70</div></div>
+<div class="ttc" id="aclassUnitTest_html_a734b8df5cd0686245f9ce9ccbb73c5ee"><div class="ttname"><a href="classUnitTest.html#a734b8df5cd0686245f9ce9ccbb73c5ee">UnitTest::expectedError</a></div><div class="ttdeci">void expectedError(const std::string &amp;expected)</div><div class="ttdoc">Vérifie si un message d'erreur à bien été émis.</div><div class="ttdef"><b>Definition:</b> UnitTest.cpp:29</div></div>
+<div class="ttc" id="aclassUnitTest_html_a94aab90579073ba6e2068bbc05c47c4a"><div class="ttname"><a href="classUnitTest.html#a94aab90579073ba6e2068bbc05c47c4a">UnitTest::assert</a></div><div class="ttdeci">void assert(bool test, const std::string &amp;message)</div><div class="ttdoc">Valide un test dans le cadre des tests unitaires.</div><div class="ttdef"><b>Definition:</b> UnitTest.cpp:16</div></div>
+<div class="ttc" id="aclassUnitTest_html_aae657d6d8bdc56cb2a9d4e4e9f5f8929"><div class="ttname"><a href="classUnitTest.html#aae657d6d8bdc56cb2a9d4e4e9f5f8929">UnitTest::fail</a></div><div class="ttdeci">void fail(const std::string &amp;message)</div><div class="ttdoc">Cette méthode fait échouer un test.</div><div class="ttdef"><b>Definition:</b> UnitTest.cpp:24</div></div>
+<div class="ttc" id="aclassUnitTest_html_aefa94b0ad902a2e8ccff1f0441cafbff"><div class="ttname"><a href="classUnitTest.html#aefa94b0ad902a2e8ccff1f0441cafbff">UnitTest::UnitTest</a></div><div class="ttdeci">UnitTest(const std::string &amp;name)</div><div class="ttdoc">Constructeur de la classe.</div><div class="ttdef"><b>Definition:</b> UnitTest.cpp:11</div></div>
+<div class="ttc" id="aclasslogs_1_1LoggerFactory_html_a82585b5de73e471e06cafdccc3b3721e"><div class="ttname"><a href="classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e">logs::LoggerFactory::logger</a></div><div class="ttdeci">static const Logger &amp; logger(const std::string &amp;name)</div><div class="ttdoc">Cette méthode statique retourne un Logger en fonction de son nom.</div><div class="ttdef"><b>Definition:</b> LoggerFactory.cpp:54</div></div>
+<div class="ttc" id="aclasslogs_1_1Logger_html"><div class="ttname"><a href="classlogs_1_1Logger.html">logs::Logger</a></div><div class="ttdoc">Classe de gestion des traces de l'application.</div><div class="ttdef"><b>Definition:</b> Logger.hpp:63</div></div>
+<div class="ttc" id="anamespacetest_html"><div class="ttname"><a href="namespacetest.html">test</a></div><div class="ttdef"><b>Definition:</b> ChronometerTest.hpp:11</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Lundi 23 Mars 2026 01:32:20 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

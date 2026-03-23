@@ -1,0 +1,29 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Doxygen: Générer la doc",
+            "type": "shell",
+            "command": "doxygen",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": "build",
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Doxygen: Ouvrir la doc",
+            "type": "shell",
+            "command": "xdg-open docs/html/index.html",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "dependsOn": "Doxygen: Générer la doc",
+            "problemMatcher": []
+        }
+    ]
+}

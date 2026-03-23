@@ -1,0 +1,6 @@
+<map id="logs::Appender" name="logs::Appender">
+<area shape="rect" id="node1" title="Classe de gestion des flux de sortie pour les logs." alt="" coords="104,5,223,32"/>
+<area shape="rect" id="node2" href="$classlogs_1_1MemoryAppender.html" title="Implémentation de Appender stockant les messages en mémoire." alt="" coords="77,80,250,107"/>
+<area shape="rect" id="node3" href="$classUnitTestAppender.html" title="Implémente un appender spécifique à l&#39;execution et au suivi des tests unitaires." alt="" coords="5,155,143,181"/>
+<area shape="rect" id="node4" href="$classlogs_1_1ConsoleAppender.html" title="Implémentation de Appender pour une écriture des traces sur un flux de sortie de type std::ostream." alt="" coords="167,155,338,181"/>
+</map>

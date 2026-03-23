@@ -1,0 +1,8 @@
+<map id="logs::LoggerFactory" name="logs::LoggerFactory">
+<area shape="rect" id="node1" title="Cette classe assure l&#39;initialisation du système de trace et son utilisation." alt="" coords="45,260,193,287"/>
+<area shape="rect" id="node2" href="$classutils_1_1Thread.html" title="Classe de base pour les threads (wrapper POSIX pthread)." alt="" coords="5,171,108,197"/>
+<area shape="rect" id="node3" href="$classutils_1_1Mutex.html" title="Implémentation d&#39;une gestion de mutex." alt="" coords="7,43,106,70"/>
+<area shape="rect" id="node4" href="$classlogs_1_1Logger.html" title="Classe de gestion des traces de l&#39;application." alt="" coords="133,171,234,197"/>
+<area shape="rect" id="node5" href="$classlogs_1_1Level.html" title="Cette classe représente un niveau de trace." alt="" coords="133,43,225,70"/>
+<area shape="rect" id="node6" href="$classlogs_1_1Appender.html" title="Classe de gestion des flux de sortie pour les logs." alt="" coords="321,43,440,70"/>
+</map>

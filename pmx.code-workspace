@@ -3,10 +3,13 @@
 		{
 			"name": "brain",
 			"path": "brain"
+		},
+		{
+			"name": "robot",
+			"path": "robot"
 		}
 	],
 	"settings": {
-		"cmake.sourceDirectory": "${workspaceFolder:brain}",
 		"cmake.automaticReconfigure": true
 	},
 	"extensions": {

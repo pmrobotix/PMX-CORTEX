@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot:  Fichier source de test/suite/UnitTestSuite.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_13e138d54eb8818da29c3992edef070a.html">test</a></li><li class="navelem"><a class="el" href="dir_1f2fddc4948991851d4e92597e981672.html">suite</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">UnitTestSuite.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="UnitTestSuite_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef SUITE_UNITTESTSUITE_HPP</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define SUITE_UNITTESTSUITE_HPP</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;list&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;../../src/common/utils/PointerList.hpp&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;../../src/common/log/LoggerFactory.hpp&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="UnitTest_8hpp.html">UnitTest.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="classUnitTestSuite.html">   18</a></span>&#160;<span class="keyword">class </span><a class="code" href="classUnitTestSuite.html">UnitTestSuite</a></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classUnitTestSuite.html#a9f4352aea6a472a2635fd222a4035658">   26</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a>&amp; <a class="code" href="classUnitTestSuite.html#a9f4352aea6a472a2635fd222a4035658">logger</a>()</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a> &amp;instance = <a class="code" href="classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e">logs::LoggerFactory::logger</a>(<span class="stringliteral">&quot;UnitTestSuite&quot;</span>);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordflow">return</span> instance;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    }</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classUnitTestSuite.html#a0f6a8084b943ece6d9a32a4ed87d7c53">   35</a></span>&#160;    <a class="code" href="classutils_1_1PointerList.html">utils::PointerList&lt;UnitTest*&gt;</a> <a class="code" href="classUnitTestSuite.html#a0f6a8084b943ece6d9a32a4ed87d7c53">tests_</a>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="classUnitTestSuite.html#a3f61dce247738e49da55b9c38ca4ca52">UnitTestSuite</a>();</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classUnitTestSuite.html#aa24710540a1d16d4ae096723c097a92e">   46</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classUnitTestSuite.html#aa24710540a1d16d4ae096723c097a92e">~UnitTestSuite</a>()</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="comment">//Tue le log s&#39;il existe (core dump sinon)</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <a class="code" href="classlogs_1_1LoggerFactory.html#a90478b91d7af2ef8841ded21e3521f69">logs::LoggerFactory::instance</a>().<a class="code" href="classlogs_1_1LoggerFactory.html#a4d89f093ecfe432ecb4fb8775dc4141f">stopLog</a>();</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    }</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classUnitTestSuite.html#aa2dda6bd93f28e28eb8fe333ba5ac16a">   59</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classUnitTestSuite.html#aa2dda6bd93f28e28eb8fe333ba5ac16a">addTest</a>(<a class="code" href="classUnitTest.html">UnitTest</a> *unitTest)</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    {</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <a class="code" href="classUnitTestSuite.html#a0f6a8084b943ece6d9a32a4ed87d7c53">tests_</a>.push_back(unitTest);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    }</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classUnitTestSuite.html#af7b586b2771e5b876628be90e33aba5e">run</a>();</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;};</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aUnitTest_8hpp_html"><div class="ttname"><a href="UnitTest_8hpp.html">UnitTest.hpp</a></div><div class="ttdoc">Définition de la classe DevUnitTest.</div></div>
+<div class="ttc" id="aclassUnitTestSuite_html"><div class="ttname"><a href="classUnitTestSuite.html">UnitTestSuite</a></div><div class="ttdoc">Cette classe assure la gestion d'une suite de tests unitaires.</div><div class="ttdef"><b>Definition:</b> UnitTestSuite.hpp:19</div></div>
+<div class="ttc" id="aclassUnitTestSuite_html_a0f6a8084b943ece6d9a32a4ed87d7c53"><div class="ttname"><a href="classUnitTestSuite.html#a0f6a8084b943ece6d9a32a4ed87d7c53">UnitTestSuite::tests_</a></div><div class="ttdeci">utils::PointerList&lt; UnitTest * &gt; tests_</div><div class="ttdoc">Ensemble des tests associés à cette suite.</div><div class="ttdef"><b>Definition:</b> UnitTestSuite.hpp:35</div></div>
+<div class="ttc" id="aclassUnitTestSuite_html_a3f61dce247738e49da55b9c38ca4ca52"><div class="ttname"><a href="classUnitTestSuite.html#a3f61dce247738e49da55b9c38ca4ca52">UnitTestSuite::UnitTestSuite</a></div><div class="ttdeci">UnitTestSuite()</div><div class="ttdoc">Constructeur de la classe.</div><div class="ttdef"><b>Definition:</b> UnitTestSuite.cpp:17</div></div>
+<div class="ttc" id="aclassUnitTestSuite_html_a9f4352aea6a472a2635fd222a4035658"><div class="ttname"><a href="classUnitTestSuite.html#a9f4352aea6a472a2635fd222a4035658">UnitTestSuite::logger</a></div><div class="ttdeci">static const logs::Logger &amp; logger()</div><div class="ttdoc">Cette méthode retourne le logger associé à cette classe.</div><div class="ttdef"><b>Definition:</b> UnitTestSuite.hpp:26</div></div>
+<div class="ttc" id="aclassUnitTestSuite_html_aa24710540a1d16d4ae096723c097a92e"><div class="ttname"><a href="classUnitTestSuite.html#aa24710540a1d16d4ae096723c097a92e">UnitTestSuite::~UnitTestSuite</a></div><div class="ttdeci">virtual ~UnitTestSuite()</div><div class="ttdoc">Destructeur de la classe.</div><div class="ttdef"><b>Definition:</b> UnitTestSuite.hpp:46</div></div>
+<div class="ttc" id="aclassUnitTestSuite_html_aa2dda6bd93f28e28eb8fe333ba5ac16a"><div class="ttname"><a href="classUnitTestSuite.html#aa2dda6bd93f28e28eb8fe333ba5ac16a">UnitTestSuite::addTest</a></div><div class="ttdeci">void addTest(UnitTest *unitTest)</div><div class="ttdoc">Ajoute un objet de test à cette suite sous la forme d'un pointeur qui sera détruit en même temps que ...</div><div class="ttdef"><b>Definition:</b> UnitTestSuite.hpp:59</div></div>
+<div class="ttc" id="aclassUnitTestSuite_html_af7b586b2771e5b876628be90e33aba5e"><div class="ttname"><a href="classUnitTestSuite.html#af7b586b2771e5b876628be90e33aba5e">UnitTestSuite::run</a></div><div class="ttdeci">void run()</div><div class="ttdoc">Execution de tous les tests.</div><div class="ttdef"><b>Definition:</b> UnitTestSuite.cpp:22</div></div>
+<div class="ttc" id="aclassUnitTest_html"><div class="ttname"><a href="classUnitTest.html">UnitTest</a></div><div class="ttdoc">Cette classe permet de créer des tests unitaires.</div><div class="ttdef"><b>Definition:</b> UnitTest.hpp:33</div></div>
+<div class="ttc" id="aclasslogs_1_1LoggerFactory_html_a4d89f093ecfe432ecb4fb8775dc4141f"><div class="ttname"><a href="classlogs_1_1LoggerFactory.html#a4d89f093ecfe432ecb4fb8775dc4141f">logs::LoggerFactory::stopLog</a></div><div class="ttdeci">void stopLog()</div><div class="ttdef"><b>Definition:</b> LoggerFactory.cpp:31</div></div>
+<div class="ttc" id="aclasslogs_1_1LoggerFactory_html_a82585b5de73e471e06cafdccc3b3721e"><div class="ttname"><a href="classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e">logs::LoggerFactory::logger</a></div><div class="ttdeci">static const Logger &amp; logger(const std::string &amp;name)</div><div class="ttdoc">Cette méthode statique retourne un Logger en fonction de son nom.</div><div class="ttdef"><b>Definition:</b> LoggerFactory.cpp:54</div></div>
+<div class="ttc" id="aclasslogs_1_1LoggerFactory_html_a90478b91d7af2ef8841ded21e3521f69"><div class="ttname"><a href="classlogs_1_1LoggerFactory.html#a90478b91d7af2ef8841ded21e3521f69">logs::LoggerFactory::instance</a></div><div class="ttdeci">static LoggerFactory &amp; instance()</div><div class="ttdoc">Cette méthode statique retourne l'instance unique de la classe LoggerFactory.</div><div class="ttdef"><b>Definition:</b> LoggerFactory.hpp:39</div></div>
+<div class="ttc" id="aclasslogs_1_1Logger_html"><div class="ttname"><a href="classlogs_1_1Logger.html">logs::Logger</a></div><div class="ttdoc">Classe de gestion des traces de l'application.</div><div class="ttdef"><b>Definition:</b> Logger.hpp:63</div></div>
+<div class="ttc" id="aclassutils_1_1PointerList_html"><div class="ttname"><a href="classutils_1_1PointerList.html">utils::PointerList&lt; UnitTest * &gt;</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Lundi 23 Mars 2026 01:32:20 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

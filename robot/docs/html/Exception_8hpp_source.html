@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot:  Fichier source de src/common/log/Exception.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_fdedb0aba14d44ce9d99bc100e026e6a.html">common</a></li><li class="navelem"><a class="el" href="dir_596f6805a163adddd97111db7833cf93.html">log</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Exception.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="Exception_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef LOGS_EXCEPTION_HPP</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define LOGS_EXCEPTION_HPP</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;exception&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacelogs.html">logs</a> {</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classlogs_1_1Exception.html">   16</a></span>&#160;<span class="keyword">class </span><a class="code" href="classlogs_1_1Exception.html">Exception</a>: <span class="keyword">public</span> std::exception</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classlogs_1_1Exception.html#a4e2f1a63b6eb2298f70e0143730670c5">   23</a></span>&#160;    std::string <a class="code" href="classlogs_1_1Exception.html#a4e2f1a63b6eb2298f70e0143730670c5">message_</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="classlogs_1_1Exception.html#a0870a395ac3d8d26214b3fa12ed162dc">   33</a></span>&#160;    <a class="code" href="classlogs_1_1Exception.html#a0870a395ac3d8d26214b3fa12ed162dc">Exception</a>(<span class="keyword">const</span> std::string &amp;<a class="code" href="classlogs_1_1Exception.html#a22795e1ee457539f33c3cec8d22cf890">message</a>) :</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            std::exception(), <a class="code" href="classlogs_1_1Exception.html#a4e2f1a63b6eb2298f70e0143730670c5">message_</a>(<a class="code" href="classlogs_1_1Exception.html#a22795e1ee457539f33c3cec8d22cf890">message</a>)</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    {</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    }</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classlogs_1_1Exception.html#a73cde7dbec834f929c4c18a58fa011c4">   41</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classlogs_1_1Exception.html#a73cde7dbec834f929c4c18a58fa011c4">~ Exception</a>() throw ()</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    }</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classlogs_1_1Exception.html#a22795e1ee457539f33c3cec8d22cf890">   45</a></span>&#160;    <span class="keyword">inline</span> <span class="keyword">const</span> std::string&amp; <a class="code" href="classlogs_1_1Exception.html#a22795e1ee457539f33c3cec8d22cf890">message</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classlogs_1_1Exception.html#a4e2f1a63b6eb2298f70e0143730670c5">message_</a>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    }</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="classlogs_1_1Exception.html#a20eeb08301fc02866e2ab24ddd4735f1">   50</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classlogs_1_1Exception.html#a20eeb08301fc02866e2ab24ddd4735f1">message</a>(<span class="keyword">const</span> std::string &amp;<a class="code" href="classlogs_1_1Exception.html#a22795e1ee457539f33c3cec8d22cf890">message</a>)</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    {</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        this-&gt;message_ = <a class="code" href="classlogs_1_1Exception.html#a22795e1ee457539f33c3cec8d22cf890">message</a>;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classlogs_1_1Exception.html#a5469d6aa72cc6fe019eae6448880e423">   55</a></span>&#160;    <span class="keyword">virtual</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="classlogs_1_1Exception.html#a5469d6aa72cc6fe019eae6448880e423">what</a>()</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordflow">return</span> this-&gt;<a class="code" href="classlogs_1_1Exception.html#a22795e1ee457539f33c3cec8d22cf890">message</a>().c_str();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    }</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;};</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;}</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">#endif  </span><span class="comment">/* UTILS_EXCEPTION_HPP */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="aclasslogs_1_1Exception_html"><div class="ttname"><a href="classlogs_1_1Exception.html">logs::Exception</a></div><div class="ttdoc">Implémentation d'une gestion des exceptions.</div><div class="ttdef"><b>Definition:</b> Exception.hpp:17</div></div>
+<div class="ttc" id="aclasslogs_1_1Exception_html_a0870a395ac3d8d26214b3fa12ed162dc"><div class="ttname"><a href="classlogs_1_1Exception.html#a0870a395ac3d8d26214b3fa12ed162dc">logs::Exception::Exception</a></div><div class="ttdeci">Exception(const std::string &amp;message)</div><div class="ttdoc">Initialise l'exception avec un message.</div><div class="ttdef"><b>Definition:</b> Exception.hpp:33</div></div>
+<div class="ttc" id="aclasslogs_1_1Exception_html_a20eeb08301fc02866e2ab24ddd4735f1"><div class="ttname"><a href="classlogs_1_1Exception.html#a20eeb08301fc02866e2ab24ddd4735f1">logs::Exception::message</a></div><div class="ttdeci">void message(const std::string &amp;message)</div><div class="ttdef"><b>Definition:</b> Exception.hpp:50</div></div>
+<div class="ttc" id="aclasslogs_1_1Exception_html_a22795e1ee457539f33c3cec8d22cf890"><div class="ttname"><a href="classlogs_1_1Exception.html#a22795e1ee457539f33c3cec8d22cf890">logs::Exception::message</a></div><div class="ttdeci">const std::string &amp; message() const</div><div class="ttdef"><b>Definition:</b> Exception.hpp:45</div></div>
+<div class="ttc" id="aclasslogs_1_1Exception_html_a4e2f1a63b6eb2298f70e0143730670c5"><div class="ttname"><a href="classlogs_1_1Exception.html#a4e2f1a63b6eb2298f70e0143730670c5">logs::Exception::message_</a></div><div class="ttdeci">std::string message_</div><div class="ttdoc">Message associé à l'exception.</div><div class="ttdef"><b>Definition:</b> Exception.hpp:23</div></div>
+<div class="ttc" id="aclasslogs_1_1Exception_html_a5469d6aa72cc6fe019eae6448880e423"><div class="ttname"><a href="classlogs_1_1Exception.html#a5469d6aa72cc6fe019eae6448880e423">logs::Exception::what</a></div><div class="ttdeci">virtual const char * what()</div><div class="ttdef"><b>Definition:</b> Exception.hpp:55</div></div>
+<div class="ttc" id="aclasslogs_1_1Exception_html_a73cde7dbec834f929c4c18a58fa011c4"><div class="ttname"><a href="classlogs_1_1Exception.html#a73cde7dbec834f929c4c18a58fa011c4">logs::Exception::~ Exception</a></div><div class="ttdeci">virtual ~ Exception()</div><div class="ttdoc">Destructeur de la classe.</div><div class="ttdef"><b>Definition:</b> Exception.hpp:41</div></div>
+<div class="ttc" id="anamespacelogs_html"><div class="ttname"><a href="namespacelogs.html">logs</a></div><div class="ttdef"><b>Definition:</b> ConsoleAppender.hpp:13</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Lundi 23 Mars 2026 01:32:20 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>
