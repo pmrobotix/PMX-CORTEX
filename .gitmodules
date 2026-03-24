@@ -1,0 +1,6 @@
+[submodule "libs/simple-svg"]
+	path = libs/simple-svg
+	url = git@github.com:pmrobotix/simple-svg.git
+[submodule "libs/PathFinding"]
+	path = libs/PathFinding
+	url = git@github.com:pmrobotix/PathFinding.git
