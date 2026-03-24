@@ -9,6 +9,25 @@
 | Doxygen | `sudo apt install doxygen graphviz` | Génération de doc (optionnel) |
 | Toolchain ARM | BSP Armadeus 7.0 | Cross-compilation OPOS6UL (optionnel) |
 
+## Cloner le projet
+
+Le projet utilise des **git submodules** pour les bibliothèques externes (`libs/`).
+
+```bash
+# Premier clone (récupère tout, y compris les libs)
+git clone --recursive git@github.com:pmrobotix/PMX-CORTEX.git
+
+# Si déjà cloné sans --recursive
+git submodule update --init --recursive
+```
+
+Les submodules sont :
+
+| Submodule | Chemin | Description |
+|---|---|---|
+| `simple-svg` | `libs/simple-svg/` | Génération de fichiers SVG |
+| `PathFinding` | `libs/PathFinding/` | Algorithme de pathfinding (pmr-pathfinding) |
+
 ## Commandes rapides
 
 ```bash
@@ -50,6 +69,8 @@ cmake --build build-simu-debug --target pmx-common
 |---|---|---|
 | `pmx-common` | Bibliothèque (STATIC) | Briques de base : thread, utils, timer, log |
 | `pmx-suite` | Bibliothèque (STATIC) | Framework de test unitaire maison |
+| `simple-svg` | Bibliothèque (STATIC) | Génération de fichiers SVG (submodule) |
+| `pmr-pathfinding` | Bibliothèque (STATIC) | Algorithme de pathfinding (submodule) |
 | `common-test` | Exécutable | Tests unitaires du code commun |
 
 Futures targets (à venir) :
@@ -123,20 +144,37 @@ scp build-arm-debug/common-test root@<ip-opos6ul>:/root/
 ## Structure du projet
 
 ```
-robot/
-├── CMakeLists.txt          # Build unique
-├── CMakePresets.json        # 4 presets (simu/arm × debug/release)
-├── Doxyfile                 # Config Doxygen
-├── cmake/
-│   └── toolchain-arm-opos6ul.cmake
-├── src/
-│   └── common/              # Code source (pmx-common)
-│       ├── thread/          #   Thread, Mutex
-│       ├── utils/           #   Chronometer, PointerList, json.hpp
-│       ├── timer/           #   ITimerPosixListener, ITimerListener
-│       └── log/             #   Logger, LoggerFactory, Appenders
-├── test/
-│   ├── suite/               # Framework de test (pmx-suite)
-│   └── common/              # Tests unitaires (common-test)
-└── docs/                    # Doc générée par Doxygen (gitignored)
+PMX-CORTEX/
+├── libs/                        # Bibliothèques externes (git submodules)
+│   ├── simple-svg/              #   Génération SVG
+│   └── PathFinding/             #   Algorithme de pathfinding
+├── robot/
+│   ├── CMakeLists.txt           # Build unique (inclut les libs via add_subdirectory)
+│   ├── CMakePresets.json        # 4 presets (simu/arm × debug/release)
+│   ├── Doxyfile                 # Config Doxygen
+│   ├── cmake/
+│   │   └── toolchain-arm-opos6ul.cmake
+│   ├── src/
+│   │   └── common/              # Code source (pmx-common)
+│   │       ├── thread/          #   Thread, Mutex
+│   │       ├── utils/           #   Chronometer, PointerList, json.hpp
+│   │       ├── timer/           #   ITimerPosixListener, ITimerListener
+│   │       └── log/             #   Logger, LoggerFactory, Appenders
+│   ├── test/
+│   │   ├── suite/               # Framework de test (pmx-suite)
+│   │   └── common/              # Tests unitaires (common-test)
+│   └── docs/                    # Doc générée par Doxygen (gitignored)
+└── pmx.code-workspace           # Workspace VSCode
 ```
+
+## Lier les libs dans votre code
+
+Pour utiliser `simple-svg` ou `pmr-pathfinding` dans une target :
+
+```cmake
+target_link_libraries(ma-cible PRIVATE simple-svg pmr-pathfinding)
+```
+
+Les headers sont automatiquement accessibles grâce aux `target_include_directories PUBLIC` des libs :
+- `#include "simple_svg_1.0.0.hpp"`
+- `#include "pmr_pathfinding.h"`
