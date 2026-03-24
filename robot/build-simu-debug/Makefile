@@ -371,6 +371,54 @@ test/common/ChronometerTest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/common-test.dir/build.make CMakeFiles/common-test.dir/test/common/ChronometerTest.cpp.s
 .PHONY : test/common/ChronometerTest.cpp.s
 
+test/common/ExceptionTest.o: test/common/ExceptionTest.cpp.o
+.PHONY : test/common/ExceptionTest.o
+
+# target to build an object file
+test/common/ExceptionTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common-test.dir/build.make CMakeFiles/common-test.dir/test/common/ExceptionTest.cpp.o
+.PHONY : test/common/ExceptionTest.cpp.o
+
+test/common/ExceptionTest.i: test/common/ExceptionTest.cpp.i
+.PHONY : test/common/ExceptionTest.i
+
+# target to preprocess a source file
+test/common/ExceptionTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common-test.dir/build.make CMakeFiles/common-test.dir/test/common/ExceptionTest.cpp.i
+.PHONY : test/common/ExceptionTest.cpp.i
+
+test/common/ExceptionTest.s: test/common/ExceptionTest.cpp.s
+.PHONY : test/common/ExceptionTest.s
+
+# target to generate assembly for a file
+test/common/ExceptionTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common-test.dir/build.make CMakeFiles/common-test.dir/test/common/ExceptionTest.cpp.s
+.PHONY : test/common/ExceptionTest.cpp.s
+
+test/common/LevelTest.o: test/common/LevelTest.cpp.o
+.PHONY : test/common/LevelTest.o
+
+# target to build an object file
+test/common/LevelTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common-test.dir/build.make CMakeFiles/common-test.dir/test/common/LevelTest.cpp.o
+.PHONY : test/common/LevelTest.cpp.o
+
+test/common/LevelTest.i: test/common/LevelTest.cpp.i
+.PHONY : test/common/LevelTest.i
+
+# target to preprocess a source file
+test/common/LevelTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common-test.dir/build.make CMakeFiles/common-test.dir/test/common/LevelTest.cpp.i
+.PHONY : test/common/LevelTest.cpp.i
+
+test/common/LevelTest.s: test/common/LevelTest.cpp.s
+.PHONY : test/common/LevelTest.s
+
+# target to generate assembly for a file
+test/common/LevelTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common-test.dir/build.make CMakeFiles/common-test.dir/test/common/LevelTest.cpp.s
+.PHONY : test/common/LevelTest.cpp.s
+
 test/common/LoggerInitialize.o: test/common/LoggerInitialize.cpp.o
 .PHONY : test/common/LoggerInitialize.o
 
@@ -394,6 +442,30 @@ test/common/LoggerInitialize.s: test/common/LoggerInitialize.cpp.s
 test/common/LoggerInitialize.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/common-test.dir/build.make CMakeFiles/common-test.dir/test/common/LoggerInitialize.cpp.s
 .PHONY : test/common/LoggerInitialize.cpp.s
+
+test/common/LoggerTest.o: test/common/LoggerTest.cpp.o
+.PHONY : test/common/LoggerTest.o
+
+# target to build an object file
+test/common/LoggerTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common-test.dir/build.make CMakeFiles/common-test.dir/test/common/LoggerTest.cpp.o
+.PHONY : test/common/LoggerTest.cpp.o
+
+test/common/LoggerTest.i: test/common/LoggerTest.cpp.i
+.PHONY : test/common/LoggerTest.i
+
+# target to preprocess a source file
+test/common/LoggerTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common-test.dir/build.make CMakeFiles/common-test.dir/test/common/LoggerTest.cpp.i
+.PHONY : test/common/LoggerTest.cpp.i
+
+test/common/LoggerTest.s: test/common/LoggerTest.cpp.s
+.PHONY : test/common/LoggerTest.s
+
+# target to generate assembly for a file
+test/common/LoggerTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common-test.dir/build.make CMakeFiles/common-test.dir/test/common/LoggerTest.cpp.s
+.PHONY : test/common/LoggerTest.cpp.s
 
 test/common/Main.o: test/common/Main.cpp.o
 .PHONY : test/common/Main.o
@@ -442,6 +514,30 @@ test/common/MutexTest.s: test/common/MutexTest.cpp.s
 test/common/MutexTest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/common-test.dir/build.make CMakeFiles/common-test.dir/test/common/MutexTest.cpp.s
 .PHONY : test/common/MutexTest.cpp.s
+
+test/common/PointerListTest.o: test/common/PointerListTest.cpp.o
+.PHONY : test/common/PointerListTest.o
+
+# target to build an object file
+test/common/PointerListTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common-test.dir/build.make CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.o
+.PHONY : test/common/PointerListTest.cpp.o
+
+test/common/PointerListTest.i: test/common/PointerListTest.cpp.i
+.PHONY : test/common/PointerListTest.i
+
+# target to preprocess a source file
+test/common/PointerListTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common-test.dir/build.make CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.i
+.PHONY : test/common/PointerListTest.cpp.i
+
+test/common/PointerListTest.s: test/common/PointerListTest.cpp.s
+.PHONY : test/common/PointerListTest.s
+
+# target to generate assembly for a file
+test/common/PointerListTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common-test.dir/build.make CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.s
+.PHONY : test/common/PointerListTest.cpp.s
 
 test/common/ThreadTest.o: test/common/ThreadTest.cpp.o
 .PHONY : test/common/ThreadTest.o
@@ -577,15 +673,27 @@ help:
 	@echo "... test/common/ChronometerTest.o"
 	@echo "... test/common/ChronometerTest.i"
 	@echo "... test/common/ChronometerTest.s"
+	@echo "... test/common/ExceptionTest.o"
+	@echo "... test/common/ExceptionTest.i"
+	@echo "... test/common/ExceptionTest.s"
+	@echo "... test/common/LevelTest.o"
+	@echo "... test/common/LevelTest.i"
+	@echo "... test/common/LevelTest.s"
 	@echo "... test/common/LoggerInitialize.o"
 	@echo "... test/common/LoggerInitialize.i"
 	@echo "... test/common/LoggerInitialize.s"
+	@echo "... test/common/LoggerTest.o"
+	@echo "... test/common/LoggerTest.i"
+	@echo "... test/common/LoggerTest.s"
 	@echo "... test/common/Main.o"
 	@echo "... test/common/Main.i"
 	@echo "... test/common/Main.s"
 	@echo "... test/common/MutexTest.o"
 	@echo "... test/common/MutexTest.i"
 	@echo "... test/common/MutexTest.s"
+	@echo "... test/common/PointerListTest.o"
+	@echo "... test/common/PointerListTest.i"
+	@echo "... test/common/PointerListTest.s"
 	@echo "... test/common/ThreadTest.o"
 	@echo "... test/common/ThreadTest.i"
 	@echo "... test/common/ThreadTest.s"

@@ -33,6 +33,37 @@ public:
 };
 
 /*!
+ * \brief Thread qui incrémente un compteur partagé protégé par un Mutex.
+ */
+class MutexCounterThread : public utils::Thread {
+private:
+    utils::Mutex & mutex_;
+    int & sharedCounter_;
+    int iterations_;
+public:
+    MutexCounterThread(utils::Mutex & mutex, int & counter, int iterations)
+        : mutex_(mutex), sharedCounter_(counter), iterations_(iterations) {}
+    virtual ~MutexCounterThread() {}
+
+    virtual void execute();
+};
+
+/*!
+ * \brief Thread qui dort longtemps (pour tester cancel).
+ */
+class SleepyThread : public utils::Thread {
+private:
+    bool executed_;
+public:
+    SleepyThread() : executed_(false) {}
+    virtual ~SleepyThread() {}
+
+    virtual void execute();
+
+    bool wasExecuted() { return executed_; }
+};
+
+/*!
  * \brief Teste la classe utils::Thread.
  */
 class ThreadTest : public UnitTest {
@@ -56,6 +87,27 @@ public:
      * \brief Vérifie la précision de sleep_for_millis.
      */
     void testSleepFunctions();
+
+    /*!
+     * \brief Vérifie que le nom et l'ID du thread sont correctement assignés.
+     */
+    void testNameAndId();
+
+    /*!
+     * \brief Vérifie que plusieurs threads concurrents avec Mutex
+     * produisent un résultat cohérent.
+     */
+    void testConcurrentMutex();
+
+    /*!
+     * \brief Vérifie que cancel() arrête un thread en cours.
+     */
+    void testCancel();
+
+    /*!
+     * \brief Vérifie la précision de sleep_for_micros.
+     */
+    void testSleepMicros();
 };
 
 }

@@ -15,7 +15,9 @@
 					"source" : ".",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1,
+						2
 					]
 				}
 			],
@@ -30,7 +32,9 @@
 					"name" : "PMX-CORTEX",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1,
+						2
 					]
 				}
 			],
@@ -38,9 +42,23 @@
 			[
 				{
 					"directoryIndex" : 0,
+					"id" : "common-test::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-common-test-Release-4ac754df86ed00b20237.json",
+					"name" : "common-test",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
 					"id" : "pmx-common::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-pmx-common-Release-e014d8619f90f558b8eb.json",
+					"jsonFile" : "target-pmx-common-Release-ac7deecb1a9e85dbafc3.json",
 					"name" : "pmx-common",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "pmx-suite::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-pmx-suite-Release-90c710daf88f6107f478.json",
+					"name" : "pmx-suite",
 					"projectIndex" : 0
 				}
 			]

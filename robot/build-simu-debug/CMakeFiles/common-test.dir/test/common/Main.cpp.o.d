@@ -183,4 +183,8 @@ CMakeFiles/common-test.dir/test/common/Main.cpp.o: \
  /home/pmx/git/PMX-CORTEX/robot/test/common/MutexTest.hpp \
  /home/pmx/git/PMX-CORTEX/robot/test/common/../suite/UnitTest.hpp \
  /home/pmx/git/PMX-CORTEX/robot/test/common/ThreadTest.hpp \
- /home/pmx/git/PMX-CORTEX/robot/test/common/ChronometerTest.hpp
+ /home/pmx/git/PMX-CORTEX/robot/test/common/ChronometerTest.hpp \
+ /home/pmx/git/PMX-CORTEX/robot/test/common/LevelTest.hpp \
+ /home/pmx/git/PMX-CORTEX/robot/test/common/LoggerTest.hpp \
+ /home/pmx/git/PMX-CORTEX/robot/test/common/ExceptionTest.hpp \
+ /home/pmx/git/PMX-CORTEX/robot/test/common/PointerListTest.hpp

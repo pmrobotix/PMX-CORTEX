@@ -139,13 +139,73 @@ CMakeFiles/common-test.dir/test/common/ChronometerTest.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/common-test.dir/test/common/ChronometerTest.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/test/common/ChronometerTest.cpp -o CMakeFiles/common-test.dir/test/common/ChronometerTest.cpp.s
 
+CMakeFiles/common-test.dir/test/common/LevelTest.cpp.o: CMakeFiles/common-test.dir/flags.make
+CMakeFiles/common-test.dir/test/common/LevelTest.cpp.o: ../test/common/LevelTest.cpp
+CMakeFiles/common-test.dir/test/common/LevelTest.cpp.o: CMakeFiles/common-test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/common-test.dir/test/common/LevelTest.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/common-test.dir/test/common/LevelTest.cpp.o -MF CMakeFiles/common-test.dir/test/common/LevelTest.cpp.o.d -o CMakeFiles/common-test.dir/test/common/LevelTest.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/test/common/LevelTest.cpp
+
+CMakeFiles/common-test.dir/test/common/LevelTest.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/common-test.dir/test/common/LevelTest.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/test/common/LevelTest.cpp > CMakeFiles/common-test.dir/test/common/LevelTest.cpp.i
+
+CMakeFiles/common-test.dir/test/common/LevelTest.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/common-test.dir/test/common/LevelTest.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/test/common/LevelTest.cpp -o CMakeFiles/common-test.dir/test/common/LevelTest.cpp.s
+
+CMakeFiles/common-test.dir/test/common/LoggerTest.cpp.o: CMakeFiles/common-test.dir/flags.make
+CMakeFiles/common-test.dir/test/common/LoggerTest.cpp.o: ../test/common/LoggerTest.cpp
+CMakeFiles/common-test.dir/test/common/LoggerTest.cpp.o: CMakeFiles/common-test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/common-test.dir/test/common/LoggerTest.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/common-test.dir/test/common/LoggerTest.cpp.o -MF CMakeFiles/common-test.dir/test/common/LoggerTest.cpp.o.d -o CMakeFiles/common-test.dir/test/common/LoggerTest.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/test/common/LoggerTest.cpp
+
+CMakeFiles/common-test.dir/test/common/LoggerTest.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/common-test.dir/test/common/LoggerTest.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/test/common/LoggerTest.cpp > CMakeFiles/common-test.dir/test/common/LoggerTest.cpp.i
+
+CMakeFiles/common-test.dir/test/common/LoggerTest.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/common-test.dir/test/common/LoggerTest.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/test/common/LoggerTest.cpp -o CMakeFiles/common-test.dir/test/common/LoggerTest.cpp.s
+
+CMakeFiles/common-test.dir/test/common/ExceptionTest.cpp.o: CMakeFiles/common-test.dir/flags.make
+CMakeFiles/common-test.dir/test/common/ExceptionTest.cpp.o: ../test/common/ExceptionTest.cpp
+CMakeFiles/common-test.dir/test/common/ExceptionTest.cpp.o: CMakeFiles/common-test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/common-test.dir/test/common/ExceptionTest.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/common-test.dir/test/common/ExceptionTest.cpp.o -MF CMakeFiles/common-test.dir/test/common/ExceptionTest.cpp.o.d -o CMakeFiles/common-test.dir/test/common/ExceptionTest.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/test/common/ExceptionTest.cpp
+
+CMakeFiles/common-test.dir/test/common/ExceptionTest.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/common-test.dir/test/common/ExceptionTest.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/test/common/ExceptionTest.cpp > CMakeFiles/common-test.dir/test/common/ExceptionTest.cpp.i
+
+CMakeFiles/common-test.dir/test/common/ExceptionTest.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/common-test.dir/test/common/ExceptionTest.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/test/common/ExceptionTest.cpp -o CMakeFiles/common-test.dir/test/common/ExceptionTest.cpp.s
+
+CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.o: CMakeFiles/common-test.dir/flags.make
+CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.o: ../test/common/PointerListTest.cpp
+CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.o: CMakeFiles/common-test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.o -MF CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.o.d -o CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/test/common/PointerListTest.cpp
+
+CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/test/common/PointerListTest.cpp > CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.i
+
+CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/test/common/PointerListTest.cpp -o CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.s
+
 # Object files for target common-test
 common__test_OBJECTS = \
 "CMakeFiles/common-test.dir/test/common/Main.cpp.o" \
 "CMakeFiles/common-test.dir/test/common/LoggerInitialize.cpp.o" \
 "CMakeFiles/common-test.dir/test/common/MutexTest.cpp.o" \
 "CMakeFiles/common-test.dir/test/common/ThreadTest.cpp.o" \
-"CMakeFiles/common-test.dir/test/common/ChronometerTest.cpp.o"
+"CMakeFiles/common-test.dir/test/common/ChronometerTest.cpp.o" \
+"CMakeFiles/common-test.dir/test/common/LevelTest.cpp.o" \
+"CMakeFiles/common-test.dir/test/common/LoggerTest.cpp.o" \
+"CMakeFiles/common-test.dir/test/common/ExceptionTest.cpp.o" \
+"CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.o"
 
 # External object files for target common-test
 common__test_EXTERNAL_OBJECTS =
@@ -155,11 +215,15 @@ common-test: CMakeFiles/common-test.dir/test/common/LoggerInitialize.cpp.o
 common-test: CMakeFiles/common-test.dir/test/common/MutexTest.cpp.o
 common-test: CMakeFiles/common-test.dir/test/common/ThreadTest.cpp.o
 common-test: CMakeFiles/common-test.dir/test/common/ChronometerTest.cpp.o
+common-test: CMakeFiles/common-test.dir/test/common/LevelTest.cpp.o
+common-test: CMakeFiles/common-test.dir/test/common/LoggerTest.cpp.o
+common-test: CMakeFiles/common-test.dir/test/common/ExceptionTest.cpp.o
+common-test: CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.o
 common-test: CMakeFiles/common-test.dir/build.make
 common-test: libpmx-suite.a
 common-test: libpmx-common.a
 common-test: CMakeFiles/common-test.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable common-test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable common-test"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/common-test.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

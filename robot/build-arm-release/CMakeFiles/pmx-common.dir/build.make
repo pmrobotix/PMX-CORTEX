@@ -111,26 +111,86 @@ CMakeFiles/pmx-common.dir/src/common/utils/Chronometer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pmx-common.dir/src/common/utils/Chronometer.cpp.s"
 	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/common/utils/Chronometer.cpp -o CMakeFiles/pmx-common.dir/src/common/utils/Chronometer.cpp.s
 
-CMakeFiles/pmx-common.dir/src/common/timer/TimerPosix.cpp.o: CMakeFiles/pmx-common.dir/flags.make
-CMakeFiles/pmx-common.dir/src/common/timer/TimerPosix.cpp.o: ../src/common/timer/TimerPosix.cpp
-CMakeFiles/pmx-common.dir/src/common/timer/TimerPosix.cpp.o: CMakeFiles/pmx-common.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-arm-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/pmx-common.dir/src/common/timer/TimerPosix.cpp.o"
-	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pmx-common.dir/src/common/timer/TimerPosix.cpp.o -MF CMakeFiles/pmx-common.dir/src/common/timer/TimerPosix.cpp.o.d -o CMakeFiles/pmx-common.dir/src/common/timer/TimerPosix.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/common/timer/TimerPosix.cpp
+CMakeFiles/pmx-common.dir/src/common/log/Level.cpp.o: CMakeFiles/pmx-common.dir/flags.make
+CMakeFiles/pmx-common.dir/src/common/log/Level.cpp.o: ../src/common/log/Level.cpp
+CMakeFiles/pmx-common.dir/src/common/log/Level.cpp.o: CMakeFiles/pmx-common.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-arm-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/pmx-common.dir/src/common/log/Level.cpp.o"
+	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pmx-common.dir/src/common/log/Level.cpp.o -MF CMakeFiles/pmx-common.dir/src/common/log/Level.cpp.o.d -o CMakeFiles/pmx-common.dir/src/common/log/Level.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/common/log/Level.cpp
 
-CMakeFiles/pmx-common.dir/src/common/timer/TimerPosix.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pmx-common.dir/src/common/timer/TimerPosix.cpp.i"
-	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/src/common/timer/TimerPosix.cpp > CMakeFiles/pmx-common.dir/src/common/timer/TimerPosix.cpp.i
+CMakeFiles/pmx-common.dir/src/common/log/Level.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pmx-common.dir/src/common/log/Level.cpp.i"
+	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/src/common/log/Level.cpp > CMakeFiles/pmx-common.dir/src/common/log/Level.cpp.i
 
-CMakeFiles/pmx-common.dir/src/common/timer/TimerPosix.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pmx-common.dir/src/common/timer/TimerPosix.cpp.s"
-	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/common/timer/TimerPosix.cpp -o CMakeFiles/pmx-common.dir/src/common/timer/TimerPosix.cpp.s
+CMakeFiles/pmx-common.dir/src/common/log/Level.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pmx-common.dir/src/common/log/Level.cpp.s"
+	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/common/log/Level.cpp -o CMakeFiles/pmx-common.dir/src/common/log/Level.cpp.s
+
+CMakeFiles/pmx-common.dir/src/common/log/Logger.cpp.o: CMakeFiles/pmx-common.dir/flags.make
+CMakeFiles/pmx-common.dir/src/common/log/Logger.cpp.o: ../src/common/log/Logger.cpp
+CMakeFiles/pmx-common.dir/src/common/log/Logger.cpp.o: CMakeFiles/pmx-common.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-arm-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/pmx-common.dir/src/common/log/Logger.cpp.o"
+	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pmx-common.dir/src/common/log/Logger.cpp.o -MF CMakeFiles/pmx-common.dir/src/common/log/Logger.cpp.o.d -o CMakeFiles/pmx-common.dir/src/common/log/Logger.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/common/log/Logger.cpp
+
+CMakeFiles/pmx-common.dir/src/common/log/Logger.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pmx-common.dir/src/common/log/Logger.cpp.i"
+	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/src/common/log/Logger.cpp > CMakeFiles/pmx-common.dir/src/common/log/Logger.cpp.i
+
+CMakeFiles/pmx-common.dir/src/common/log/Logger.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pmx-common.dir/src/common/log/Logger.cpp.s"
+	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/common/log/Logger.cpp -o CMakeFiles/pmx-common.dir/src/common/log/Logger.cpp.s
+
+CMakeFiles/pmx-common.dir/src/common/log/LoggerFactory.cpp.o: CMakeFiles/pmx-common.dir/flags.make
+CMakeFiles/pmx-common.dir/src/common/log/LoggerFactory.cpp.o: ../src/common/log/LoggerFactory.cpp
+CMakeFiles/pmx-common.dir/src/common/log/LoggerFactory.cpp.o: CMakeFiles/pmx-common.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-arm-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/pmx-common.dir/src/common/log/LoggerFactory.cpp.o"
+	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pmx-common.dir/src/common/log/LoggerFactory.cpp.o -MF CMakeFiles/pmx-common.dir/src/common/log/LoggerFactory.cpp.o.d -o CMakeFiles/pmx-common.dir/src/common/log/LoggerFactory.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/common/log/LoggerFactory.cpp
+
+CMakeFiles/pmx-common.dir/src/common/log/LoggerFactory.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pmx-common.dir/src/common/log/LoggerFactory.cpp.i"
+	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/src/common/log/LoggerFactory.cpp > CMakeFiles/pmx-common.dir/src/common/log/LoggerFactory.cpp.i
+
+CMakeFiles/pmx-common.dir/src/common/log/LoggerFactory.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pmx-common.dir/src/common/log/LoggerFactory.cpp.s"
+	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/common/log/LoggerFactory.cpp -o CMakeFiles/pmx-common.dir/src/common/log/LoggerFactory.cpp.s
+
+CMakeFiles/pmx-common.dir/src/common/log/appender/MemoryAppender.cpp.o: CMakeFiles/pmx-common.dir/flags.make
+CMakeFiles/pmx-common.dir/src/common/log/appender/MemoryAppender.cpp.o: ../src/common/log/appender/MemoryAppender.cpp
+CMakeFiles/pmx-common.dir/src/common/log/appender/MemoryAppender.cpp.o: CMakeFiles/pmx-common.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-arm-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/pmx-common.dir/src/common/log/appender/MemoryAppender.cpp.o"
+	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pmx-common.dir/src/common/log/appender/MemoryAppender.cpp.o -MF CMakeFiles/pmx-common.dir/src/common/log/appender/MemoryAppender.cpp.o.d -o CMakeFiles/pmx-common.dir/src/common/log/appender/MemoryAppender.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/common/log/appender/MemoryAppender.cpp
+
+CMakeFiles/pmx-common.dir/src/common/log/appender/MemoryAppender.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pmx-common.dir/src/common/log/appender/MemoryAppender.cpp.i"
+	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/src/common/log/appender/MemoryAppender.cpp > CMakeFiles/pmx-common.dir/src/common/log/appender/MemoryAppender.cpp.i
+
+CMakeFiles/pmx-common.dir/src/common/log/appender/MemoryAppender.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pmx-common.dir/src/common/log/appender/MemoryAppender.cpp.s"
+	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/common/log/appender/MemoryAppender.cpp -o CMakeFiles/pmx-common.dir/src/common/log/appender/MemoryAppender.cpp.s
+
+CMakeFiles/pmx-common.dir/src/common/log/appender/ConsoleAppender.cpp.o: CMakeFiles/pmx-common.dir/flags.make
+CMakeFiles/pmx-common.dir/src/common/log/appender/ConsoleAppender.cpp.o: ../src/common/log/appender/ConsoleAppender.cpp
+CMakeFiles/pmx-common.dir/src/common/log/appender/ConsoleAppender.cpp.o: CMakeFiles/pmx-common.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-arm-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/pmx-common.dir/src/common/log/appender/ConsoleAppender.cpp.o"
+	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pmx-common.dir/src/common/log/appender/ConsoleAppender.cpp.o -MF CMakeFiles/pmx-common.dir/src/common/log/appender/ConsoleAppender.cpp.o.d -o CMakeFiles/pmx-common.dir/src/common/log/appender/ConsoleAppender.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/common/log/appender/ConsoleAppender.cpp
+
+CMakeFiles/pmx-common.dir/src/common/log/appender/ConsoleAppender.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pmx-common.dir/src/common/log/appender/ConsoleAppender.cpp.i"
+	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/src/common/log/appender/ConsoleAppender.cpp > CMakeFiles/pmx-common.dir/src/common/log/appender/ConsoleAppender.cpp.i
+
+CMakeFiles/pmx-common.dir/src/common/log/appender/ConsoleAppender.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pmx-common.dir/src/common/log/appender/ConsoleAppender.cpp.s"
+	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/common/log/appender/ConsoleAppender.cpp -o CMakeFiles/pmx-common.dir/src/common/log/appender/ConsoleAppender.cpp.s
 
 # Object files for target pmx-common
 pmx__common_OBJECTS = \
 "CMakeFiles/pmx-common.dir/src/common/thread/Thread.cpp.o" \
 "CMakeFiles/pmx-common.dir/src/common/thread/Mutex.cpp.o" \
 "CMakeFiles/pmx-common.dir/src/common/utils/Chronometer.cpp.o" \
-"CMakeFiles/pmx-common.dir/src/common/timer/TimerPosix.cpp.o"
+"CMakeFiles/pmx-common.dir/src/common/log/Level.cpp.o" \
+"CMakeFiles/pmx-common.dir/src/common/log/Logger.cpp.o" \
+"CMakeFiles/pmx-common.dir/src/common/log/LoggerFactory.cpp.o" \
+"CMakeFiles/pmx-common.dir/src/common/log/appender/MemoryAppender.cpp.o" \
+"CMakeFiles/pmx-common.dir/src/common/log/appender/ConsoleAppender.cpp.o"
 
 # External object files for target pmx-common
 pmx__common_EXTERNAL_OBJECTS =
@@ -138,10 +198,14 @@ pmx__common_EXTERNAL_OBJECTS =
 libpmx-common.a: CMakeFiles/pmx-common.dir/src/common/thread/Thread.cpp.o
 libpmx-common.a: CMakeFiles/pmx-common.dir/src/common/thread/Mutex.cpp.o
 libpmx-common.a: CMakeFiles/pmx-common.dir/src/common/utils/Chronometer.cpp.o
-libpmx-common.a: CMakeFiles/pmx-common.dir/src/common/timer/TimerPosix.cpp.o
+libpmx-common.a: CMakeFiles/pmx-common.dir/src/common/log/Level.cpp.o
+libpmx-common.a: CMakeFiles/pmx-common.dir/src/common/log/Logger.cpp.o
+libpmx-common.a: CMakeFiles/pmx-common.dir/src/common/log/LoggerFactory.cpp.o
+libpmx-common.a: CMakeFiles/pmx-common.dir/src/common/log/appender/MemoryAppender.cpp.o
+libpmx-common.a: CMakeFiles/pmx-common.dir/src/common/log/appender/ConsoleAppender.cpp.o
 libpmx-common.a: CMakeFiles/pmx-common.dir/build.make
 libpmx-common.a: CMakeFiles/pmx-common.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-arm-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX static library libpmx-common.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-arm-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX static library libpmx-common.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/pmx-common.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/pmx-common.dir/link.txt --verbose=$(VERBOSE)
 

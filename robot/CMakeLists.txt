@@ -72,6 +72,10 @@ add_executable(common-test
     test/common/MutexTest.cpp
     test/common/ThreadTest.cpp
     test/common/ChronometerTest.cpp
+    test/common/LevelTest.cpp
+    test/common/LoggerTest.cpp
+    test/common/ExceptionTest.cpp
+    test/common/PointerListTest.cpp
 )
 
 target_link_libraries(common-test PRIVATE pmx-suite)
