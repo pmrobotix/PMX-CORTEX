@@ -3,20 +3,22 @@
 # deploy.sh — Build, strip, deploy et run sur l'OPOS6UL
 #
 # Usage:
-#   ./deploy.sh <ip> <target> [run]
+#   ./deploy.sh [ip] <target> [run]
+#
+# Si l'IP n'est pas specifiee, utilise 192.168.3.103 (5GHz) par defaut.
 #
 # Exemples:
-#   ./deploy.sh 192.168.2.105 driver-test        # deploy seulement
-#   ./deploy.sh 192.168.2.105 driver-test run     # deploy + execute
-#   ./deploy.sh 192.168.3.103 opos6ul run         # deploy + execute
+#   ./deploy.sh driver-test                       # deploy sur 5g (defaut)
+#   ./deploy.sh driver-test run                   # deploy + execute sur 5g
+#   ./deploy.sh 192.168.2.105 driver-test run     # deploy + execute sur eth0
 #
 # Targets disponibles : opos6ul, driver-test, common-test, manual-test, bench
 # ============================================================
 
 set -e
 
-ROBOT_IP="${1:?Usage: $0 <ip> <target> [run]}"
-TARGET="${2:?Usage: $0 <ip> <target> [run]}"
+ROBOT_IP="${1:-192.168.3.103}"
+TARGET="${2:?Usage: $0 [ip] <target> [run]}"
 RUN="${3:-}"
 
 ROBOT_USER="root"
