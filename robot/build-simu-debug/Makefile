@@ -155,6 +155,32 @@ common-test/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/common-test.dir/build.make CMakeFiles/common-test.dir/build
 .PHONY : common-test/fast
 
+#=============================================================================
+# Target rules for targets named simple-svg
+
+# Build rule for target.
+simple-svg: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 simple-svg
+.PHONY : simple-svg
+
+# fast build rule for target.
+simple-svg/fast:
+	$(MAKE) $(MAKESILENT) -f libs/simple-svg/CMakeFiles/simple-svg.dir/build.make libs/simple-svg/CMakeFiles/simple-svg.dir/build
+.PHONY : simple-svg/fast
+
+#=============================================================================
+# Target rules for targets named pmr-pathfinding
+
+# Build rule for target.
+pmr-pathfinding: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 pmr-pathfinding
+.PHONY : pmr-pathfinding
+
+# fast build rule for target.
+pmr-pathfinding/fast:
+	$(MAKE) $(MAKESILENT) -f libs/PathFinding/CMakeFiles/pmr-pathfinding.dir/build.make libs/PathFinding/CMakeFiles/pmr-pathfinding.dir/build
+.PHONY : pmr-pathfinding/fast
+
 src/common/log/Level.o: src/common/log/Level.cpp.o
 .PHONY : src/common/log/Level.o
 
@@ -644,8 +670,10 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... common-test"
+	@echo "... pmr-pathfinding"
 	@echo "... pmx-common"
 	@echo "... pmx-suite"
+	@echo "... simple-svg"
 	@echo "... src/common/log/Level.o"
 	@echo "... src/common/log/Level.i"
 	@echo "... src/common/log/Level.s"

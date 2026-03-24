@@ -26,6 +26,15 @@ elseif(TARGET_PLATFORM STREQUAL "ARM")
 endif()
 
 # =============================================
+# Bibliothèques externes (git submodules)
+# =============================================
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../libs/simple-svg
+    ${CMAKE_CURRENT_BINARY_DIR}/libs/simple-svg)
+
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../libs/PathFinding
+    ${CMAKE_CURRENT_BINARY_DIR}/libs/PathFinding)
+
+# =============================================
 # Bibliothèque : pmx-common (briques de base)
 # =============================================
 add_library(pmx-common STATIC

@@ -195,6 +195,24 @@ PMX-CORTEX_SOURCE_DIR:STATIC=/home/pmx/git/PMX-CORTEX/robot
 //No help, variable specified on the command line.
 TARGET_PLATFORM:UNINITIALIZED=SIMU
 
+//Value Computed by CMake
+pmr-pathfinding_BINARY_DIR:STATIC=/home/pmx/git/PMX-CORTEX/robot/build-simu-debug/libs/PathFinding
+
+//Value Computed by CMake
+pmr-pathfinding_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+pmr-pathfinding_SOURCE_DIR:STATIC=/home/pmx/git/PMX-CORTEX/libs/PathFinding
+
+//Value Computed by CMake
+simple-svg_BINARY_DIR:STATIC=/home/pmx/git/PMX-CORTEX/robot/build-simu-debug/libs/simple-svg
+
+//Value Computed by CMake
+simple-svg_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+simple-svg_SOURCE_DIR:STATIC=/home/pmx/git/PMX-CORTEX/libs/simple-svg
+
 
 ########################
 # INTERNAL cache entries
@@ -284,7 +302,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=1
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=3
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

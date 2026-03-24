@@ -66,17 +66,52 @@ CMAKE_BINARY_DIR = /home/pmx/git/PMX-CORTEX/robot/build-simu-debug
 all: CMakeFiles/pmx-common.dir/all
 all: CMakeFiles/pmx-suite.dir/all
 all: CMakeFiles/common-test.dir/all
+all: libs/simple-svg/all
+all: libs/PathFinding/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
-preinstall:
+preinstall: libs/simple-svg/preinstall
+preinstall: libs/PathFinding/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
 clean: CMakeFiles/pmx-common.dir/clean
 clean: CMakeFiles/pmx-suite.dir/clean
 clean: CMakeFiles/common-test.dir/clean
+clean: libs/simple-svg/clean
+clean: libs/PathFinding/clean
 .PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory libs/PathFinding
+
+# Recursive "all" directory target.
+libs/PathFinding/all: libs/PathFinding/CMakeFiles/pmr-pathfinding.dir/all
+.PHONY : libs/PathFinding/all
+
+# Recursive "preinstall" directory target.
+libs/PathFinding/preinstall:
+.PHONY : libs/PathFinding/preinstall
+
+# Recursive "clean" directory target.
+libs/PathFinding/clean: libs/PathFinding/CMakeFiles/pmr-pathfinding.dir/clean
+.PHONY : libs/PathFinding/clean
+
+#=============================================================================
+# Directory level rules for directory libs/simple-svg
+
+# Recursive "all" directory target.
+libs/simple-svg/all: libs/simple-svg/CMakeFiles/simple-svg.dir/all
+.PHONY : libs/simple-svg/all
+
+# Recursive "preinstall" directory target.
+libs/simple-svg/preinstall:
+.PHONY : libs/simple-svg/preinstall
+
+# Recursive "clean" directory target.
+libs/simple-svg/clean: libs/simple-svg/CMakeFiles/simple-svg.dir/clean
+.PHONY : libs/simple-svg/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/pmx-common.dir
@@ -85,7 +120,7 @@ clean: CMakeFiles/common-test.dir/clean
 CMakeFiles/pmx-common.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-common.dir/build.make CMakeFiles/pmx-common.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-common.dir/build.make CMakeFiles/pmx-common.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles --progress-num=11,12,13,14,15,16,17,18,19 "Built target pmx-common"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles --progress-num=20,21,22,23,24,25,26,27,28 "Built target pmx-common"
 .PHONY : CMakeFiles/pmx-common.dir/all
 
 # Build rule for subdir invocation for target.
@@ -111,7 +146,7 @@ CMakeFiles/pmx-common.dir/clean:
 CMakeFiles/pmx-suite.dir/all: CMakeFiles/pmx-common.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-suite.dir/build.make CMakeFiles/pmx-suite.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-suite.dir/build.make CMakeFiles/pmx-suite.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles --progress-num=20,21,22,23 "Built target pmx-suite"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles --progress-num=29,30,31,32 "Built target pmx-suite"
 .PHONY : CMakeFiles/pmx-suite.dir/all
 
 # Build rule for subdir invocation for target.
@@ -156,6 +191,58 @@ common-test: CMakeFiles/common-test.dir/rule
 CMakeFiles/common-test.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/common-test.dir/build.make CMakeFiles/common-test.dir/clean
 .PHONY : CMakeFiles/common-test.dir/clean
+
+#=============================================================================
+# Target rules for target libs/simple-svg/CMakeFiles/simple-svg.dir
+
+# All Build rule for target.
+libs/simple-svg/CMakeFiles/simple-svg.dir/all:
+	$(MAKE) $(MAKESILENT) -f libs/simple-svg/CMakeFiles/simple-svg.dir/build.make libs/simple-svg/CMakeFiles/simple-svg.dir/depend
+	$(MAKE) $(MAKESILENT) -f libs/simple-svg/CMakeFiles/simple-svg.dir/build.make libs/simple-svg/CMakeFiles/simple-svg.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles --progress-num=33,34 "Built target simple-svg"
+.PHONY : libs/simple-svg/CMakeFiles/simple-svg.dir/all
+
+# Build rule for subdir invocation for target.
+libs/simple-svg/CMakeFiles/simple-svg.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libs/simple-svg/CMakeFiles/simple-svg.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles 0
+.PHONY : libs/simple-svg/CMakeFiles/simple-svg.dir/rule
+
+# Convenience name for target.
+simple-svg: libs/simple-svg/CMakeFiles/simple-svg.dir/rule
+.PHONY : simple-svg
+
+# clean rule for target.
+libs/simple-svg/CMakeFiles/simple-svg.dir/clean:
+	$(MAKE) $(MAKESILENT) -f libs/simple-svg/CMakeFiles/simple-svg.dir/build.make libs/simple-svg/CMakeFiles/simple-svg.dir/clean
+.PHONY : libs/simple-svg/CMakeFiles/simple-svg.dir/clean
+
+#=============================================================================
+# Target rules for target libs/PathFinding/CMakeFiles/pmr-pathfinding.dir
+
+# All Build rule for target.
+libs/PathFinding/CMakeFiles/pmr-pathfinding.dir/all:
+	$(MAKE) $(MAKESILENT) -f libs/PathFinding/CMakeFiles/pmr-pathfinding.dir/build.make libs/PathFinding/CMakeFiles/pmr-pathfinding.dir/depend
+	$(MAKE) $(MAKESILENT) -f libs/PathFinding/CMakeFiles/pmr-pathfinding.dir/build.make libs/PathFinding/CMakeFiles/pmr-pathfinding.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles --progress-num=11,12,13,14,15,16,17,18,19 "Built target pmr-pathfinding"
+.PHONY : libs/PathFinding/CMakeFiles/pmr-pathfinding.dir/all
+
+# Build rule for subdir invocation for target.
+libs/PathFinding/CMakeFiles/pmr-pathfinding.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles 9
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libs/PathFinding/CMakeFiles/pmr-pathfinding.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles 0
+.PHONY : libs/PathFinding/CMakeFiles/pmr-pathfinding.dir/rule
+
+# Convenience name for target.
+pmr-pathfinding: libs/PathFinding/CMakeFiles/pmr-pathfinding.dir/rule
+.PHONY : pmr-pathfinding
+
+# clean rule for target.
+libs/PathFinding/CMakeFiles/pmr-pathfinding.dir/clean:
+	$(MAKE) $(MAKESILENT) -f libs/PathFinding/CMakeFiles/pmr-pathfinding.dir/build.make libs/PathFinding/CMakeFiles/pmr-pathfinding.dir/clean
+.PHONY : libs/PathFinding/CMakeFiles/pmr-pathfinding.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

@@ -7,6 +7,14 @@
 		{
 			"name": "robot",
 			"path": "robot"
+		},
+		{
+			"name": "libs/simple-svg",
+			"path": "libs/simple-svg"
+		},
+		{
+			"name": "libs/PathFinding",
+			"path": "libs/PathFinding"
 		}
 	],
 	"settings": {
