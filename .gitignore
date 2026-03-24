@@ -1,2 +1,15 @@
 __pycache__/
 *.pyc
+
+# Répertoires de build CMake
+build-*/
+
+# Fichiers objets et binaires
+*.o
+*.a
+*.d
+*.bin
+*.hex
+
+# Backup json
+*_3.11.2.hpp
