@@ -253,6 +253,30 @@ src/common/log/LoggerFactory.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-common.dir/build.make CMakeFiles/pmx-common.dir/src/common/log/LoggerFactory.cpp.s
 .PHONY : src/common/log/LoggerFactory.cpp.s
 
+src/common/log/SvgWriter.o: src/common/log/SvgWriter.cpp.o
+.PHONY : src/common/log/SvgWriter.o
+
+# target to build an object file
+src/common/log/SvgWriter.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-common.dir/build.make CMakeFiles/pmx-common.dir/src/common/log/SvgWriter.cpp.o
+.PHONY : src/common/log/SvgWriter.cpp.o
+
+src/common/log/SvgWriter.i: src/common/log/SvgWriter.cpp.i
+.PHONY : src/common/log/SvgWriter.i
+
+# target to preprocess a source file
+src/common/log/SvgWriter.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-common.dir/build.make CMakeFiles/pmx-common.dir/src/common/log/SvgWriter.cpp.i
+.PHONY : src/common/log/SvgWriter.cpp.i
+
+src/common/log/SvgWriter.s: src/common/log/SvgWriter.cpp.s
+.PHONY : src/common/log/SvgWriter.s
+
+# target to generate assembly for a file
+src/common/log/SvgWriter.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-common.dir/build.make CMakeFiles/pmx-common.dir/src/common/log/SvgWriter.cpp.s
+.PHONY : src/common/log/SvgWriter.cpp.s
+
 src/common/log/appender/ConsoleAppender.o: src/common/log/appender/ConsoleAppender.cpp.o
 .PHONY : src/common/log/appender/ConsoleAppender.o
 
@@ -277,6 +301,30 @@ src/common/log/appender/ConsoleAppender.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-common.dir/build.make CMakeFiles/pmx-common.dir/src/common/log/appender/ConsoleAppender.cpp.s
 .PHONY : src/common/log/appender/ConsoleAppender.cpp.s
 
+src/common/log/appender/FileAppender.o: src/common/log/appender/FileAppender.cpp.o
+.PHONY : src/common/log/appender/FileAppender.o
+
+# target to build an object file
+src/common/log/appender/FileAppender.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-common.dir/build.make CMakeFiles/pmx-common.dir/src/common/log/appender/FileAppender.cpp.o
+.PHONY : src/common/log/appender/FileAppender.cpp.o
+
+src/common/log/appender/FileAppender.i: src/common/log/appender/FileAppender.cpp.i
+.PHONY : src/common/log/appender/FileAppender.i
+
+# target to preprocess a source file
+src/common/log/appender/FileAppender.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-common.dir/build.make CMakeFiles/pmx-common.dir/src/common/log/appender/FileAppender.cpp.i
+.PHONY : src/common/log/appender/FileAppender.cpp.i
+
+src/common/log/appender/FileAppender.s: src/common/log/appender/FileAppender.cpp.s
+.PHONY : src/common/log/appender/FileAppender.s
+
+# target to generate assembly for a file
+src/common/log/appender/FileAppender.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-common.dir/build.make CMakeFiles/pmx-common.dir/src/common/log/appender/FileAppender.cpp.s
+.PHONY : src/common/log/appender/FileAppender.cpp.s
+
 src/common/log/appender/MemoryAppender.o: src/common/log/appender/MemoryAppender.cpp.o
 .PHONY : src/common/log/appender/MemoryAppender.o
 
@@ -300,6 +348,78 @@ src/common/log/appender/MemoryAppender.s: src/common/log/appender/MemoryAppender
 src/common/log/appender/MemoryAppender.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-common.dir/build.make CMakeFiles/pmx-common.dir/src/common/log/appender/MemoryAppender.cpp.s
 .PHONY : src/common/log/appender/MemoryAppender.cpp.s
+
+src/common/log/appender/SvgAppender.o: src/common/log/appender/SvgAppender.cpp.o
+.PHONY : src/common/log/appender/SvgAppender.o
+
+# target to build an object file
+src/common/log/appender/SvgAppender.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-common.dir/build.make CMakeFiles/pmx-common.dir/src/common/log/appender/SvgAppender.cpp.o
+.PHONY : src/common/log/appender/SvgAppender.cpp.o
+
+src/common/log/appender/SvgAppender.i: src/common/log/appender/SvgAppender.cpp.i
+.PHONY : src/common/log/appender/SvgAppender.i
+
+# target to preprocess a source file
+src/common/log/appender/SvgAppender.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-common.dir/build.make CMakeFiles/pmx-common.dir/src/common/log/appender/SvgAppender.cpp.i
+.PHONY : src/common/log/appender/SvgAppender.cpp.i
+
+src/common/log/appender/SvgAppender.s: src/common/log/appender/SvgAppender.cpp.s
+.PHONY : src/common/log/appender/SvgAppender.s
+
+# target to generate assembly for a file
+src/common/log/appender/SvgAppender.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-common.dir/build.make CMakeFiles/pmx-common.dir/src/common/log/appender/SvgAppender.cpp.s
+.PHONY : src/common/log/appender/SvgAppender.cpp.s
+
+src/common/log/appender/TelemetryAppender.o: src/common/log/appender/TelemetryAppender.cpp.o
+.PHONY : src/common/log/appender/TelemetryAppender.o
+
+# target to build an object file
+src/common/log/appender/TelemetryAppender.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-common.dir/build.make CMakeFiles/pmx-common.dir/src/common/log/appender/TelemetryAppender.cpp.o
+.PHONY : src/common/log/appender/TelemetryAppender.cpp.o
+
+src/common/log/appender/TelemetryAppender.i: src/common/log/appender/TelemetryAppender.cpp.i
+.PHONY : src/common/log/appender/TelemetryAppender.i
+
+# target to preprocess a source file
+src/common/log/appender/TelemetryAppender.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-common.dir/build.make CMakeFiles/pmx-common.dir/src/common/log/appender/TelemetryAppender.cpp.i
+.PHONY : src/common/log/appender/TelemetryAppender.cpp.i
+
+src/common/log/appender/TelemetryAppender.s: src/common/log/appender/TelemetryAppender.cpp.s
+.PHONY : src/common/log/appender/TelemetryAppender.s
+
+# target to generate assembly for a file
+src/common/log/appender/TelemetryAppender.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-common.dir/build.make CMakeFiles/pmx-common.dir/src/common/log/appender/TelemetryAppender.cpp.s
+.PHONY : src/common/log/appender/TelemetryAppender.cpp.s
+
+src/common/log/backward.o: src/common/log/backward.cpp.o
+.PHONY : src/common/log/backward.o
+
+# target to build an object file
+src/common/log/backward.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-common.dir/build.make CMakeFiles/pmx-common.dir/src/common/log/backward.cpp.o
+.PHONY : src/common/log/backward.cpp.o
+
+src/common/log/backward.i: src/common/log/backward.cpp.i
+.PHONY : src/common/log/backward.i
+
+# target to preprocess a source file
+src/common/log/backward.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-common.dir/build.make CMakeFiles/pmx-common.dir/src/common/log/backward.cpp.i
+.PHONY : src/common/log/backward.cpp.i
+
+src/common/log/backward.s: src/common/log/backward.cpp.s
+.PHONY : src/common/log/backward.s
+
+# target to generate assembly for a file
+src/common/log/backward.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-common.dir/build.make CMakeFiles/pmx-common.dir/src/common/log/backward.cpp.s
+.PHONY : src/common/log/backward.cpp.s
 
 src/common/thread/Mutex.o: src/common/thread/Mutex.cpp.o
 .PHONY : src/common/thread/Mutex.o
@@ -373,6 +493,54 @@ src/common/utils/Chronometer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-common.dir/build.make CMakeFiles/pmx-common.dir/src/common/utils/Chronometer.cpp.s
 .PHONY : src/common/utils/Chronometer.cpp.s
 
+src/common/utils/WString.o: src/common/utils/WString.cpp.o
+.PHONY : src/common/utils/WString.o
+
+# target to build an object file
+src/common/utils/WString.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-common.dir/build.make CMakeFiles/pmx-common.dir/src/common/utils/WString.cpp.o
+.PHONY : src/common/utils/WString.cpp.o
+
+src/common/utils/WString.i: src/common/utils/WString.cpp.i
+.PHONY : src/common/utils/WString.i
+
+# target to preprocess a source file
+src/common/utils/WString.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-common.dir/build.make CMakeFiles/pmx-common.dir/src/common/utils/WString.cpp.i
+.PHONY : src/common/utils/WString.cpp.i
+
+src/common/utils/WString.s: src/common/utils/WString.cpp.s
+.PHONY : src/common/utils/WString.s
+
+# target to generate assembly for a file
+src/common/utils/WString.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-common.dir/build.make CMakeFiles/pmx-common.dir/src/common/utils/WString.cpp.s
+.PHONY : src/common/utils/WString.cpp.s
+
+src/common/utils/itoa.o: src/common/utils/itoa.cpp.o
+.PHONY : src/common/utils/itoa.o
+
+# target to build an object file
+src/common/utils/itoa.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-common.dir/build.make CMakeFiles/pmx-common.dir/src/common/utils/itoa.cpp.o
+.PHONY : src/common/utils/itoa.cpp.o
+
+src/common/utils/itoa.i: src/common/utils/itoa.cpp.i
+.PHONY : src/common/utils/itoa.i
+
+# target to preprocess a source file
+src/common/utils/itoa.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-common.dir/build.make CMakeFiles/pmx-common.dir/src/common/utils/itoa.cpp.i
+.PHONY : src/common/utils/itoa.cpp.i
+
+src/common/utils/itoa.s: src/common/utils/itoa.cpp.s
+.PHONY : src/common/utils/itoa.s
+
+# target to generate assembly for a file
+src/common/utils/itoa.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-common.dir/build.make CMakeFiles/pmx-common.dir/src/common/utils/itoa.cpp.s
+.PHONY : src/common/utils/itoa.cpp.s
+
 test/common/ChronometerTest.o: test/common/ChronometerTest.cpp.o
 .PHONY : test/common/ChronometerTest.o
 
@@ -420,6 +588,30 @@ test/common/ExceptionTest.s: test/common/ExceptionTest.cpp.s
 test/common/ExceptionTest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/common-test.dir/build.make CMakeFiles/common-test.dir/test/common/ExceptionTest.cpp.s
 .PHONY : test/common/ExceptionTest.cpp.s
+
+test/common/FileAppenderTest.o: test/common/FileAppenderTest.cpp.o
+.PHONY : test/common/FileAppenderTest.o
+
+# target to build an object file
+test/common/FileAppenderTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common-test.dir/build.make CMakeFiles/common-test.dir/test/common/FileAppenderTest.cpp.o
+.PHONY : test/common/FileAppenderTest.cpp.o
+
+test/common/FileAppenderTest.i: test/common/FileAppenderTest.cpp.i
+.PHONY : test/common/FileAppenderTest.i
+
+# target to preprocess a source file
+test/common/FileAppenderTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common-test.dir/build.make CMakeFiles/common-test.dir/test/common/FileAppenderTest.cpp.i
+.PHONY : test/common/FileAppenderTest.cpp.i
+
+test/common/FileAppenderTest.s: test/common/FileAppenderTest.cpp.s
+.PHONY : test/common/FileAppenderTest.s
+
+# target to generate assembly for a file
+test/common/FileAppenderTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common-test.dir/build.make CMakeFiles/common-test.dir/test/common/FileAppenderTest.cpp.s
+.PHONY : test/common/FileAppenderTest.cpp.s
 
 test/common/LevelTest.o: test/common/LevelTest.cpp.o
 .PHONY : test/common/LevelTest.o
@@ -565,6 +757,30 @@ test/common/PointerListTest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/common-test.dir/build.make CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.s
 .PHONY : test/common/PointerListTest.cpp.s
 
+test/common/SvgAppenderTest.o: test/common/SvgAppenderTest.cpp.o
+.PHONY : test/common/SvgAppenderTest.o
+
+# target to build an object file
+test/common/SvgAppenderTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common-test.dir/build.make CMakeFiles/common-test.dir/test/common/SvgAppenderTest.cpp.o
+.PHONY : test/common/SvgAppenderTest.cpp.o
+
+test/common/SvgAppenderTest.i: test/common/SvgAppenderTest.cpp.i
+.PHONY : test/common/SvgAppenderTest.i
+
+# target to preprocess a source file
+test/common/SvgAppenderTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common-test.dir/build.make CMakeFiles/common-test.dir/test/common/SvgAppenderTest.cpp.i
+.PHONY : test/common/SvgAppenderTest.cpp.i
+
+test/common/SvgAppenderTest.s: test/common/SvgAppenderTest.cpp.s
+.PHONY : test/common/SvgAppenderTest.s
+
+# target to generate assembly for a file
+test/common/SvgAppenderTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/common-test.dir/build.make CMakeFiles/common-test.dir/test/common/SvgAppenderTest.cpp.s
+.PHONY : test/common/SvgAppenderTest.cpp.s
+
 test/common/ThreadTest.o: test/common/ThreadTest.cpp.o
 .PHONY : test/common/ThreadTest.o
 
@@ -683,12 +899,27 @@ help:
 	@echo "... src/common/log/LoggerFactory.o"
 	@echo "... src/common/log/LoggerFactory.i"
 	@echo "... src/common/log/LoggerFactory.s"
+	@echo "... src/common/log/SvgWriter.o"
+	@echo "... src/common/log/SvgWriter.i"
+	@echo "... src/common/log/SvgWriter.s"
 	@echo "... src/common/log/appender/ConsoleAppender.o"
 	@echo "... src/common/log/appender/ConsoleAppender.i"
 	@echo "... src/common/log/appender/ConsoleAppender.s"
+	@echo "... src/common/log/appender/FileAppender.o"
+	@echo "... src/common/log/appender/FileAppender.i"
+	@echo "... src/common/log/appender/FileAppender.s"
 	@echo "... src/common/log/appender/MemoryAppender.o"
 	@echo "... src/common/log/appender/MemoryAppender.i"
 	@echo "... src/common/log/appender/MemoryAppender.s"
+	@echo "... src/common/log/appender/SvgAppender.o"
+	@echo "... src/common/log/appender/SvgAppender.i"
+	@echo "... src/common/log/appender/SvgAppender.s"
+	@echo "... src/common/log/appender/TelemetryAppender.o"
+	@echo "... src/common/log/appender/TelemetryAppender.i"
+	@echo "... src/common/log/appender/TelemetryAppender.s"
+	@echo "... src/common/log/backward.o"
+	@echo "... src/common/log/backward.i"
+	@echo "... src/common/log/backward.s"
 	@echo "... src/common/thread/Mutex.o"
 	@echo "... src/common/thread/Mutex.i"
 	@echo "... src/common/thread/Mutex.s"
@@ -698,12 +929,21 @@ help:
 	@echo "... src/common/utils/Chronometer.o"
 	@echo "... src/common/utils/Chronometer.i"
 	@echo "... src/common/utils/Chronometer.s"
+	@echo "... src/common/utils/WString.o"
+	@echo "... src/common/utils/WString.i"
+	@echo "... src/common/utils/WString.s"
+	@echo "... src/common/utils/itoa.o"
+	@echo "... src/common/utils/itoa.i"
+	@echo "... src/common/utils/itoa.s"
 	@echo "... test/common/ChronometerTest.o"
 	@echo "... test/common/ChronometerTest.i"
 	@echo "... test/common/ChronometerTest.s"
 	@echo "... test/common/ExceptionTest.o"
 	@echo "... test/common/ExceptionTest.i"
 	@echo "... test/common/ExceptionTest.s"
+	@echo "... test/common/FileAppenderTest.o"
+	@echo "... test/common/FileAppenderTest.i"
+	@echo "... test/common/FileAppenderTest.s"
 	@echo "... test/common/LevelTest.o"
 	@echo "... test/common/LevelTest.i"
 	@echo "... test/common/LevelTest.s"
@@ -722,6 +962,9 @@ help:
 	@echo "... test/common/PointerListTest.o"
 	@echo "... test/common/PointerListTest.i"
 	@echo "... test/common/PointerListTest.s"
+	@echo "... test/common/SvgAppenderTest.o"
+	@echo "... test/common/SvgAppenderTest.i"
+	@echo "... test/common/SvgAppenderTest.s"
 	@echo "... test/common/ThreadTest.o"
 	@echo "... test/common/ThreadTest.i"
 	@echo "... test/common/ThreadTest.s"

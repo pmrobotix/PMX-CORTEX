@@ -1,5 +1,8 @@
 <map id="utils::Thread::start" name="utils::Thread::start">
-<area shape="rect" id="node1" title="Lance le thread." alt="" coords="247,42,388,69"/>
-<area shape="rect" id="node2" href="$classtest_1_1ThreadTest.html#ab50f7c14a8011c9e19f2631835bbbe46" title="Vérifie le démarrage, l&#39;exécution et l&#39;attente de fin d&#39;un thread." alt="" coords="7,5,197,47"/>
-<area shape="rect" id="node3" href="$classtest_1_1ThreadTest.html#a6c8d29fa04a545a3c602c220804e8fb5" title="Vérifie les transitions d&#39;état CREATED → STARTED → STOPPED." alt="" coords="5,71,199,98"/>
+<area shape="rect" id="node1" title="Lance le thread." alt="" coords="284,129,425,156"/>
+<area shape="rect" id="node2" href="$classtest_1_1ThreadTest.html#a3ab4926fa019981bd51a7464be5cf4be" title="Vérifie que cancel() arrête un thread en cours." alt="" coords="19,5,222,32"/>
+<area shape="rect" id="node3" href="$classtest_1_1ThreadTest.html#a73ccd5f8b000f4af46063730ebe33bc1" title="Vérifie que plusieurs threads concurrents avec Mutex produisent un résultat cohérent." alt="" coords="5,57,236,98"/>
+<area shape="rect" id="node4" href="$classtest_1_1ThreadTest.html#ac1c7afb471f89d1d6bd338a270e05912" title="Vérifie que le nom et l&#39;ID du thread sont correctement assignés." alt="" coords="21,122,220,163"/>
+<area shape="rect" id="node5" href="$classtest_1_1ThreadTest.html#ab50f7c14a8011c9e19f2631835bbbe46" title="Vérifie le démarrage, l&#39;exécution et l&#39;attente de fin d&#39;un thread." alt="" coords="25,187,216,229"/>
+<area shape="rect" id="node6" href="$classtest_1_1ThreadTest.html#a6c8d29fa04a545a3c602c220804e8fb5" title="Vérifie les transitions d&#39;état CREATED → STARTED → STOPPED." alt="" coords="24,253,217,280"/>
 </map>

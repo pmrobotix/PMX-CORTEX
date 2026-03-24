@@ -116,9 +116,21 @@ Fonctions membres publiques</h2></td></tr>
 <tr class="memitem:a093bd2c8777b2758815bd6e7d5023f65"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtest_1_1ThreadTest.html#a093bd2c8777b2758815bd6e7d5023f65">suite</a> ()</td></tr>
 <tr class="memdesc:a093bd2c8777b2758815bd6e7d5023f65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute les tests associés à la classe.  <a href="classtest_1_1ThreadTest.html#a093bd2c8777b2758815bd6e7d5023f65">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a093bd2c8777b2758815bd6e7d5023f65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ab4926fa019981bd51a7464be5cf4be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtest_1_1ThreadTest.html#a3ab4926fa019981bd51a7464be5cf4be">testCancel</a> ()</td></tr>
+<tr class="memdesc:a3ab4926fa019981bd51a7464be5cf4be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vérifie que cancel() arrête un thread en cours.  <a href="classtest_1_1ThreadTest.html#a3ab4926fa019981bd51a7464be5cf4be">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a3ab4926fa019981bd51a7464be5cf4be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73ccd5f8b000f4af46063730ebe33bc1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtest_1_1ThreadTest.html#a73ccd5f8b000f4af46063730ebe33bc1">testConcurrentMutex</a> ()</td></tr>
+<tr class="memdesc:a73ccd5f8b000f4af46063730ebe33bc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vérifie que plusieurs threads concurrents avec Mutex produisent un résultat cohérent.  <a href="classtest_1_1ThreadTest.html#a73ccd5f8b000f4af46063730ebe33bc1">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a73ccd5f8b000f4af46063730ebe33bc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1c7afb471f89d1d6bd338a270e05912"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtest_1_1ThreadTest.html#ac1c7afb471f89d1d6bd338a270e05912">testNameAndId</a> ()</td></tr>
+<tr class="memdesc:ac1c7afb471f89d1d6bd338a270e05912"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vérifie que le nom et l'ID du thread sont correctement assignés.  <a href="classtest_1_1ThreadTest.html#ac1c7afb471f89d1d6bd338a270e05912">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ac1c7afb471f89d1d6bd338a270e05912"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a313e3f9f588d83d238893bd58923ed21"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtest_1_1ThreadTest.html#a313e3f9f588d83d238893bd58923ed21">testSleepFunctions</a> ()</td></tr>
 <tr class="memdesc:a313e3f9f588d83d238893bd58923ed21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vérifie la précision de sleep_for_millis.  <a href="classtest_1_1ThreadTest.html#a313e3f9f588d83d238893bd58923ed21">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a313e3f9f588d83d238893bd58923ed21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1262fce3aca48dc17dab2ee10a7d5999"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtest_1_1ThreadTest.html#a1262fce3aca48dc17dab2ee10a7d5999">testSleepMicros</a> ()</td></tr>
+<tr class="memdesc:a1262fce3aca48dc17dab2ee10a7d5999"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vérifie la précision de sleep_for_micros.  <a href="classtest_1_1ThreadTest.html#a1262fce3aca48dc17dab2ee10a7d5999">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a1262fce3aca48dc17dab2ee10a7d5999"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab50f7c14a8011c9e19f2631835bbbe46"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtest_1_1ThreadTest.html#ab50f7c14a8011c9e19f2631835bbbe46">testStartAndWait</a> ()</td></tr>
 <tr class="memdesc:ab50f7c14a8011c9e19f2631835bbbe46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vérifie le démarrage, l'exécution et l'attente de fin d'un thread.  <a href="classtest_1_1ThreadTest.html#ab50f7c14a8011c9e19f2631835bbbe46">Plus de détails...</a><br /></td></tr>
 <tr class="separator:ab50f7c14a8011c9e19f2631835bbbe46"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -470,6 +482,78 @@ Voici le graphe des appelants de cette fonction :</div>
 
 </div>
 </div>
+<a id="a3ab4926fa019981bd51a7464be5cf4be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ab4926fa019981bd51a7464be5cf4be">&#9670;&nbsp;</a></span>testCancel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void test::ThreadTest::testCancel </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Vérifie que cancel() arrête un thread en cours. </p>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classtest_1_1ThreadTest_a3ab4926fa019981bd51a7464be5cf4be_cgraph.svg" width="100%" height="492"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="a73ccd5f8b000f4af46063730ebe33bc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73ccd5f8b000f4af46063730ebe33bc1">&#9670;&nbsp;</a></span>testConcurrentMutex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void test::ThreadTest::testConcurrentMutex </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Vérifie que plusieurs threads concurrents avec Mutex produisent un résultat cohérent. </p>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classtest_1_1ThreadTest_a73ccd5f8b000f4af46063730ebe33bc1_cgraph.svg" width="100%" height="407"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="ac1c7afb471f89d1d6bd338a270e05912"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1c7afb471f89d1d6bd338a270e05912">&#9670;&nbsp;</a></span>testNameAndId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void test::ThreadTest::testNameAndId </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Vérifie que le nom et l'ID du thread sont correctement assignés. </p>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classtest_1_1ThreadTest_ac1c7afb471f89d1d6bd338a270e05912_cgraph.svg" width="100%" height="442"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
 <a id="a313e3f9f588d83d238893bd58923ed21"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a313e3f9f588d83d238893bd58923ed21">&#9670;&nbsp;</a></span>testSleepFunctions()</h2>
 
@@ -490,6 +574,30 @@ Voici le graphe des appelants de cette fonction :</div>
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classtest_1_1ThreadTest_a313e3f9f588d83d238893bd58923ed21_cgraph.svg" width="452" height="235"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a1262fce3aca48dc17dab2ee10a7d5999"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1262fce3aca48dc17dab2ee10a7d5999">&#9670;&nbsp;</a></span>testSleepMicros()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void test::ThreadTest::testSleepMicros </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Vérifie la précision de sleep_for_micros. </p>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classtest_1_1ThreadTest_a1262fce3aca48dc17dab2ee10a7d5999_cgraph.svg" width="452" height="235"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -574,7 +682,7 @@ Voici le graphe d'appel pour cette fonction :</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Généré le Lundi 23 Mars 2026 01:32:20 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Généré le Mardi 24 Mars 2026 17:17:19 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

@@ -139,13 +139,103 @@ CMakeFiles/common-test.dir/test/common/ChronometerTest.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/common-test.dir/test/common/ChronometerTest.cpp.s"
 	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/test/common/ChronometerTest.cpp -o CMakeFiles/common-test.dir/test/common/ChronometerTest.cpp.s
 
+CMakeFiles/common-test.dir/test/common/LevelTest.cpp.o: CMakeFiles/common-test.dir/flags.make
+CMakeFiles/common-test.dir/test/common/LevelTest.cpp.o: ../test/common/LevelTest.cpp
+CMakeFiles/common-test.dir/test/common/LevelTest.cpp.o: CMakeFiles/common-test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-arm-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/common-test.dir/test/common/LevelTest.cpp.o"
+	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/common-test.dir/test/common/LevelTest.cpp.o -MF CMakeFiles/common-test.dir/test/common/LevelTest.cpp.o.d -o CMakeFiles/common-test.dir/test/common/LevelTest.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/test/common/LevelTest.cpp
+
+CMakeFiles/common-test.dir/test/common/LevelTest.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/common-test.dir/test/common/LevelTest.cpp.i"
+	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/test/common/LevelTest.cpp > CMakeFiles/common-test.dir/test/common/LevelTest.cpp.i
+
+CMakeFiles/common-test.dir/test/common/LevelTest.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/common-test.dir/test/common/LevelTest.cpp.s"
+	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/test/common/LevelTest.cpp -o CMakeFiles/common-test.dir/test/common/LevelTest.cpp.s
+
+CMakeFiles/common-test.dir/test/common/LoggerTest.cpp.o: CMakeFiles/common-test.dir/flags.make
+CMakeFiles/common-test.dir/test/common/LoggerTest.cpp.o: ../test/common/LoggerTest.cpp
+CMakeFiles/common-test.dir/test/common/LoggerTest.cpp.o: CMakeFiles/common-test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-arm-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/common-test.dir/test/common/LoggerTest.cpp.o"
+	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/common-test.dir/test/common/LoggerTest.cpp.o -MF CMakeFiles/common-test.dir/test/common/LoggerTest.cpp.o.d -o CMakeFiles/common-test.dir/test/common/LoggerTest.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/test/common/LoggerTest.cpp
+
+CMakeFiles/common-test.dir/test/common/LoggerTest.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/common-test.dir/test/common/LoggerTest.cpp.i"
+	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/test/common/LoggerTest.cpp > CMakeFiles/common-test.dir/test/common/LoggerTest.cpp.i
+
+CMakeFiles/common-test.dir/test/common/LoggerTest.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/common-test.dir/test/common/LoggerTest.cpp.s"
+	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/test/common/LoggerTest.cpp -o CMakeFiles/common-test.dir/test/common/LoggerTest.cpp.s
+
+CMakeFiles/common-test.dir/test/common/ExceptionTest.cpp.o: CMakeFiles/common-test.dir/flags.make
+CMakeFiles/common-test.dir/test/common/ExceptionTest.cpp.o: ../test/common/ExceptionTest.cpp
+CMakeFiles/common-test.dir/test/common/ExceptionTest.cpp.o: CMakeFiles/common-test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-arm-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/common-test.dir/test/common/ExceptionTest.cpp.o"
+	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/common-test.dir/test/common/ExceptionTest.cpp.o -MF CMakeFiles/common-test.dir/test/common/ExceptionTest.cpp.o.d -o CMakeFiles/common-test.dir/test/common/ExceptionTest.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/test/common/ExceptionTest.cpp
+
+CMakeFiles/common-test.dir/test/common/ExceptionTest.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/common-test.dir/test/common/ExceptionTest.cpp.i"
+	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/test/common/ExceptionTest.cpp > CMakeFiles/common-test.dir/test/common/ExceptionTest.cpp.i
+
+CMakeFiles/common-test.dir/test/common/ExceptionTest.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/common-test.dir/test/common/ExceptionTest.cpp.s"
+	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/test/common/ExceptionTest.cpp -o CMakeFiles/common-test.dir/test/common/ExceptionTest.cpp.s
+
+CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.o: CMakeFiles/common-test.dir/flags.make
+CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.o: ../test/common/PointerListTest.cpp
+CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.o: CMakeFiles/common-test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-arm-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.o"
+	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.o -MF CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.o.d -o CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/test/common/PointerListTest.cpp
+
+CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.i"
+	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/test/common/PointerListTest.cpp > CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.i
+
+CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.s"
+	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/test/common/PointerListTest.cpp -o CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.s
+
+CMakeFiles/common-test.dir/test/common/FileAppenderTest.cpp.o: CMakeFiles/common-test.dir/flags.make
+CMakeFiles/common-test.dir/test/common/FileAppenderTest.cpp.o: ../test/common/FileAppenderTest.cpp
+CMakeFiles/common-test.dir/test/common/FileAppenderTest.cpp.o: CMakeFiles/common-test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-arm-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/common-test.dir/test/common/FileAppenderTest.cpp.o"
+	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/common-test.dir/test/common/FileAppenderTest.cpp.o -MF CMakeFiles/common-test.dir/test/common/FileAppenderTest.cpp.o.d -o CMakeFiles/common-test.dir/test/common/FileAppenderTest.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/test/common/FileAppenderTest.cpp
+
+CMakeFiles/common-test.dir/test/common/FileAppenderTest.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/common-test.dir/test/common/FileAppenderTest.cpp.i"
+	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/test/common/FileAppenderTest.cpp > CMakeFiles/common-test.dir/test/common/FileAppenderTest.cpp.i
+
+CMakeFiles/common-test.dir/test/common/FileAppenderTest.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/common-test.dir/test/common/FileAppenderTest.cpp.s"
+	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/test/common/FileAppenderTest.cpp -o CMakeFiles/common-test.dir/test/common/FileAppenderTest.cpp.s
+
+CMakeFiles/common-test.dir/test/common/SvgAppenderTest.cpp.o: CMakeFiles/common-test.dir/flags.make
+CMakeFiles/common-test.dir/test/common/SvgAppenderTest.cpp.o: ../test/common/SvgAppenderTest.cpp
+CMakeFiles/common-test.dir/test/common/SvgAppenderTest.cpp.o: CMakeFiles/common-test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-arm-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/common-test.dir/test/common/SvgAppenderTest.cpp.o"
+	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/common-test.dir/test/common/SvgAppenderTest.cpp.o -MF CMakeFiles/common-test.dir/test/common/SvgAppenderTest.cpp.o.d -o CMakeFiles/common-test.dir/test/common/SvgAppenderTest.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/test/common/SvgAppenderTest.cpp
+
+CMakeFiles/common-test.dir/test/common/SvgAppenderTest.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/common-test.dir/test/common/SvgAppenderTest.cpp.i"
+	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/test/common/SvgAppenderTest.cpp > CMakeFiles/common-test.dir/test/common/SvgAppenderTest.cpp.i
+
+CMakeFiles/common-test.dir/test/common/SvgAppenderTest.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/common-test.dir/test/common/SvgAppenderTest.cpp.s"
+	/install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++ --sysroot=/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/test/common/SvgAppenderTest.cpp -o CMakeFiles/common-test.dir/test/common/SvgAppenderTest.cpp.s
+
 # Object files for target common-test
 common__test_OBJECTS = \
 "CMakeFiles/common-test.dir/test/common/Main.cpp.o" \
 "CMakeFiles/common-test.dir/test/common/LoggerInitialize.cpp.o" \
 "CMakeFiles/common-test.dir/test/common/MutexTest.cpp.o" \
 "CMakeFiles/common-test.dir/test/common/ThreadTest.cpp.o" \
-"CMakeFiles/common-test.dir/test/common/ChronometerTest.cpp.o"
+"CMakeFiles/common-test.dir/test/common/ChronometerTest.cpp.o" \
+"CMakeFiles/common-test.dir/test/common/LevelTest.cpp.o" \
+"CMakeFiles/common-test.dir/test/common/LoggerTest.cpp.o" \
+"CMakeFiles/common-test.dir/test/common/ExceptionTest.cpp.o" \
+"CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.o" \
+"CMakeFiles/common-test.dir/test/common/FileAppenderTest.cpp.o" \
+"CMakeFiles/common-test.dir/test/common/SvgAppenderTest.cpp.o"
 
 # External object files for target common-test
 common__test_EXTERNAL_OBJECTS =
@@ -155,11 +245,18 @@ common-test: CMakeFiles/common-test.dir/test/common/LoggerInitialize.cpp.o
 common-test: CMakeFiles/common-test.dir/test/common/MutexTest.cpp.o
 common-test: CMakeFiles/common-test.dir/test/common/ThreadTest.cpp.o
 common-test: CMakeFiles/common-test.dir/test/common/ChronometerTest.cpp.o
+common-test: CMakeFiles/common-test.dir/test/common/LevelTest.cpp.o
+common-test: CMakeFiles/common-test.dir/test/common/LoggerTest.cpp.o
+common-test: CMakeFiles/common-test.dir/test/common/ExceptionTest.cpp.o
+common-test: CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.o
+common-test: CMakeFiles/common-test.dir/test/common/FileAppenderTest.cpp.o
+common-test: CMakeFiles/common-test.dir/test/common/SvgAppenderTest.cpp.o
 common-test: CMakeFiles/common-test.dir/build.make
 common-test: libpmx-suite.a
 common-test: libpmx-common.a
+common-test: libs/simple-svg/libsimple-svg.a
 common-test: CMakeFiles/common-test.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-arm-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable common-test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-arm-release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable common-test"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/common-test.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

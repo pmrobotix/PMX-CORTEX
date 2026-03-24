@@ -1,7 +1,12 @@
 <map id="logs::Exception::message" name="logs::Exception::message">
-<area shape="rect" id="node1" title=" " alt="" coords="529,31,717,57"/>
-<area shape="rect" id="node2" href="$classlogs_1_1Exception.html#a20eeb08301fc02866e2ab24ddd4735f1" title=" " alt="" coords="293,5,481,32"/>
-<area shape="rect" id="node3" href="$classlogs_1_1Exception.html#a5469d6aa72cc6fe019eae6448880e423" title=" " alt="" coords="307,56,468,83"/>
-<area shape="rect" id="node4" href="$classUnitTestSuite.html#af7b586b2771e5b876628be90e33aba5e" title="Execution de tous les tests." alt="" coords="108,56,245,83"/>
-<area shape="rect" id="node5" href="$Main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,56,60,83"/>
+<area shape="rect" id="node1" title=" " alt="" coords="676,107,864,133"/>
+<area shape="rect" id="node2" href="$classlogs_1_1Exception.html#a20eeb08301fc02866e2ab24ddd4735f1" title=" " alt="" coords="440,5,628,32"/>
+<area shape="rect" id="node3" href="$classtest_1_1ExceptionTest.html#a3f0afef54182039a5395c26f9cf3c0f5" title="Vérifie la construction et l&#39;accès au message." alt="" coords="216,34,375,75"/>
+<area shape="rect" id="node5" href="$classtest_1_1ExceptionTest.html#acc60b0b80f2693be115f8a8673136974" title="Vérifie la modification du message." alt="" coords="199,99,392,141"/>
+<area shape="rect" id="node6" href="$classtest_1_1ExceptionTest.html#a55352d8aebb9ae852225016aa07dfd22" title="Vérifie le throw/catch via std::exception." alt="" coords="461,158,607,199"/>
+<area shape="rect" id="node7" href="$classlogs_1_1Exception.html#a5469d6aa72cc6fe019eae6448880e423" title=" " alt="" coords="453,224,615,251"/>
+<area shape="rect" id="node4" href="$classtest_1_1ExceptionTest.html#aa48d63f407b2901f8b3a160cfbb1bfcd" title="Execute les tests associés à la classe." alt="" coords="5,129,151,170"/>
+<area shape="rect" id="node8" href="$classUnitTestSuite.html#af7b586b2771e5b876628be90e33aba5e" title="Execution de tous les tests." alt="" coords="227,283,364,309"/>
+<area shape="rect" id="node10" href="$classtest_1_1ExceptionTest.html#a6bd64d944b696827c44569abf466023c" title="Vérifie what() retourne le bon message." alt="" coords="223,217,368,258"/>
+<area shape="rect" id="node9" href="$Main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="51,283,105,309"/>
 </map>

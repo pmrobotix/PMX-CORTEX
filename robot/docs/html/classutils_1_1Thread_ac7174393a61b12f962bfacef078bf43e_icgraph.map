@@ -1,0 +1,4 @@
+<map id="utils::Thread::cancel" name="utils::Thread::cancel">
+<area shape="rect" id="node1" title="Annule le thread (appelle pthread_cancel)." alt="" coords="256,5,409,32"/>
+<area shape="rect" id="node2" href="$classtest_1_1ThreadTest.html#a3ab4926fa019981bd51a7464be5cf4be" title="Vérifie que cancel() arrête un thread en cours." alt="" coords="5,5,208,32"/>
+</map>

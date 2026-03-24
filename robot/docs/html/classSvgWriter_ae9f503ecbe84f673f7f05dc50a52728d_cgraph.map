@@ -1,0 +1,12 @@
+<map id="SvgWriter::~SvgWriter" name="SvgWriter::~SvgWriter">
+<area shape="rect" id="node1" title="Destructeur de la classe." alt="" coords="5,134,175,160"/>
+<area shape="rect" id="node2" href="$classSvgWriter.html#a18e6747b544e14bc12f184bce594ec63" title="Ferme le document SVG (balises de fin)." alt="" coords="223,134,388,160"/>
+<area shape="rect" id="node3" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="497,58,578,84"/>
+<area shape="rect" id="node5" href="$classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32" title="Verrouille le mutex. Cette méthode doit être appelée avant d&#39;utiliser la ressource associée...." alt="" coords="991,32,1126,59"/>
+<area shape="rect" id="node6" href="$classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3" title="Déverrouille le mutex. Cette méthode doit être appelée après avoir utiliser la ressource associée." alt="" coords="983,108,1134,135"/>
+<area shape="rect" id="node8" href="$classlogs_1_1Logger.html#aa381165771d00a6a1e3aa9664bf6467f" title="Trace un message de niveau INFO." alt="" coords="731,159,866,186"/>
+<area shape="rect" id="node9" href="$classSvgWriter.html#a0a4640b661160b29d991116a197f7aaf" title="Retourne le logger principal du SVG." alt="" coords="470,210,605,236"/>
+<area shape="rect" id="node10" href="$classSvgWriter.html#ab74e6447bcb7ce52ecba9f9f0c5907b7" title="Retourne le logger dédié aux capteurs SVG." alt="" coords="436,260,639,287"/>
+<area shape="rect" id="node4" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#a0e4fd77693fd899ec1b0670354f93a02" title="Cette méthode valide le message en cours de construction et le transmet au Logger de référence." alt="" coords="687,58,911,84"/>
+<area shape="rect" id="node7" href="$classlogs_1_1Logger.html#afa535aaf4891e02c4ff7f84d372b5b1b" title="Méthode générique de trace d&#39;un message." alt="" coords="959,159,1159,186"/>
+</map>

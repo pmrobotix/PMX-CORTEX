@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['id_5f_444',['id_',['../classTimerPosix.html#acc7146e8d22986242f777b57627a558d',1,'TimerPosix']]],
-  ['indent_5f_445',['indent_',['../classUnitTestAppender.html#aa236f8e8539dd9f8e94b624fb735abe2',1,'UnitTestAppender']]],
-  ['info_446',['INFO',['../classlogs_1_1Level.html#a2b2d69562b730d64f0ad733cc1551da4',1,'logs::Level']]]
+  ['debug_1019',['DEBUG',['../classlogs_1_1Level.html#a139c20d5b628600369c9420688be574f',1,'logs::Level']]],
+  ['docsensor_5f_1020',['docSensor_',['../classSvgWriter.html#a931fd35f5b8196b16dc15f92053995cc',1,'SvgWriter']]],
+  ['done_5f_1021',['done_',['../classSvgWriter.html#a13da502348d120472ef4b6032a98dd8a',1,'SvgWriter']]]
 ];

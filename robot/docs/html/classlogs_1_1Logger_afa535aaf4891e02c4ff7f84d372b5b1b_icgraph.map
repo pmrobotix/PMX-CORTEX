@@ -1,18 +1,31 @@
 <map id="logs::Logger::writeMessage" name="logs::Logger::writeMessage">
-<area shape="rect" id="node1" title="Méthode générique de trace d&#39;un message." alt="" coords="909,157,1109,184"/>
-<area shape="rect" id="node2" href="$classlogs_1_1Logger.html#a7dffc8f610014ec59b63392da16140e4" title="Trace un message de niveau DEBUG." alt="" coords="675,5,824,32"/>
-<area shape="rect" id="node3" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#a0e4fd77693fd899ec1b0670354f93a02" title="Cette méthode valide le message en cours de construction et le transmet au Logger de référence." alt="" coords="637,107,861,133"/>
-<area shape="rect" id="node10" href="$classlogs_1_1Logger.html#a8b6a2019233bc44b3c3c86c653910831" title="Trace un message de niveau ERROR." alt="" coords="449,56,589,83"/>
-<area shape="rect" id="node11" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#aee16dd078779a8154f1b3d7238748a6f" title=" " alt="" coords="653,209,845,250"/>
-<area shape="rect" id="node14" href="$classlogs_1_1Logger.html#aa381165771d00a6a1e3aa9664bf6467f" title="Trace un message de niveau INFO." alt="" coords="452,157,587,184"/>
-<area shape="rect" id="node15" href="$classlogs_1_1Logger.html#ae55afdeeb1bc9acb6dc02a3e2d06062f" title="Trace un message de niveau TELEM." alt="" coords="663,275,836,301"/>
-<area shape="rect" id="node16" href="$classlogs_1_1Logger.html#a240e8d7b58195c85bd7b4e4a3417d955" title="Trace un message de niveau WARN." alt="" coords="679,325,820,352"/>
-<area shape="rect" id="node4" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="479,107,560,133"/>
-<area shape="rect" id="node5" href="$classUnitTest.html#aae657d6d8bdc56cb2a9d4e4e9f5f8929" title="Cette méthode fait échouer un test." alt="" coords="263,69,367,96"/>
-<area shape="rect" id="node8" href="$classUnitTestSuite.html#af7b586b2771e5b876628be90e33aba5e" title="Execution de tous les tests." alt="" coords="246,132,383,159"/>
-<area shape="rect" id="node6" href="$classUnitTest.html#a94aab90579073ba6e2068bbc05c47c4a" title="Valide un test dans le cadre des tests unitaires." alt="" coords="31,76,154,103"/>
-<area shape="rect" id="node7" href="$classUnitTest.html#a00a74363b89994348f5025b42f7ea96f" title="Vérifie si un message d&#39;erreur à bien été émis." alt="" coords="5,25,180,52"/>
-<area shape="rect" id="node9" href="$Main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="65,132,120,159"/>
-<area shape="rect" id="node12" href="$namespacelogs.html#ab465ba9cc0c8042ca19d9c1aeb008578" title=" " alt="" coords="475,216,563,243"/>
-<area shape="rect" id="node13" href="$classlogs_1_1MemoryAppender.html#aad5cff73a112f433a5766cc0c8da3ef6" title="Destructeur de la classe." alt="" coords="228,209,401,250"/>
+<area shape="rect" id="node1" title="Méthode générique de trace d&#39;un message." alt="" coords="951,260,1151,287"/>
+<area shape="rect" id="node2" href="$classlogs_1_1Logger.html#a7dffc8f610014ec59b63392da16140e4" title="Trace un message de niveau DEBUG." alt="" coords="481,201,631,228"/>
+<area shape="rect" id="node6" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#a0e4fd77693fd899ec1b0670354f93a02" title="Cette méthode valide le message en cours de construction et le transmet au Logger de référence." alt="" coords="679,311,903,337"/>
+<area shape="rect" id="node21" href="$classlogs_1_1Logger.html#a8b6a2019233bc44b3c3c86c653910831" title="Trace un message de niveau ERROR." alt="" coords="486,89,626,116"/>
+<area shape="rect" id="node22" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#aee16dd078779a8154f1b3d7238748a6f" title=" " alt="" coords="695,362,887,403"/>
+<area shape="rect" id="node27" href="$classlogs_1_1Logger.html#aa381165771d00a6a1e3aa9664bf6467f" title="Trace un message de niveau INFO." alt="" coords="489,264,623,291"/>
+<area shape="rect" id="node28" href="$classlogs_1_1Logger.html#ae55afdeeb1bc9acb6dc02a3e2d06062f" title="Trace un message de niveau TELEM." alt="" coords="704,428,877,455"/>
+<area shape="rect" id="node29" href="$classlogs_1_1Logger.html#a240e8d7b58195c85bd7b4e4a3417d955" title="Trace un message de niveau WARN." alt="" coords="485,151,627,177"/>
+<area shape="rect" id="node3" href="$classtest_1_1LoggerTest.html#a3b9ae6dbc586a91732890bbebc8f49ad" title="Vérifie les messages simples (debug, info, warn, error)." alt="" coords="229,82,432,123"/>
+<area shape="rect" id="node5" href="$classtest_1_1LoggerTest.html#a49ceaa16cfc816d22253860fad8ad59e" title="Vérifie les messages via l&#39;API stream (&lt;&lt;)." alt="" coords="228,147,433,189"/>
+<area shape="rect" id="node4" href="$classtest_1_1LoggerTest.html#af4c75dbd29735b88c4aaf349bc9d4caf" title="Execute les tests associés à la classe." alt="" coords="10,144,175,171"/>
+<area shape="rect" id="node7" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="515,315,597,341"/>
+<area shape="rect" id="node8" href="$classSvgWriter.html#a30059a7d7289c57d3bf1bf623713dc0a" title="Constructeur de la classe." alt="" coords="251,213,410,240"/>
+<area shape="rect" id="node9" href="$classSvgWriter.html#ac6b52164bb48debc2aa814b2e96ec233" title="Écrit l&#39;en&#45;tête SVG (grille, defs, symboles)." alt="" coords="242,264,419,291"/>
+<area shape="rect" id="node10" href="$classSvgWriter.html#a18e6747b544e14bc12f184bce594ec63" title="Ferme le document SVG (balises de fin)." alt="" coords="248,315,413,341"/>
+<area shape="rect" id="node12" href="$classUnitTest.html#aae657d6d8bdc56cb2a9d4e4e9f5f8929" title="Cette méthode fait échouer un test." alt="" coords="279,31,383,57"/>
+<area shape="rect" id="node15" href="$classbackward_1_1Printer.html#a0c3901fa5647c29b72f92376f32a631c" title=" " alt="" coords="259,518,403,559"/>
+<area shape="rect" id="node16" href="$classbackward_1_1Printer.html#a2250517ae18d9d168b2e83c96b223b76" title=" " alt="" coords="259,583,403,625"/>
+<area shape="rect" id="node17" href="$classUnitTestSuite.html#af7b586b2771e5b876628be90e33aba5e" title="Execution de tous les tests." alt="" coords="262,365,399,392"/>
+<area shape="rect" id="node19" href="$classSvgWriter.html#a1860768b0bf4858dae8577f2b7653cac" title="Écrit un texte à une position donnée dans le SVG." alt="" coords="253,467,408,493"/>
+<area shape="rect" id="node20" href="$classSvgWriter.html#ae4246028907242734cc14db98d492eb5" title="Écrit un texte avec couleur et taille personnalisées." alt="" coords="229,416,433,443"/>
+<area shape="rect" id="node11" href="$classSvgWriter.html#ae9f503ecbe84f673f7f05dc50a52728d" title="Destructeur de la classe." alt="" coords="8,315,177,341"/>
+<area shape="rect" id="node13" href="$classUnitTest.html#a94aab90579073ba6e2068bbc05c47c4a" title="Valide un test dans le cadre des tests unitaires." alt="" coords="31,5,154,32"/>
+<area shape="rect" id="node14" href="$classUnitTest.html#a00a74363b89994348f5025b42f7ea96f" title="Vérifie si un message d&#39;erreur à bien été émis." alt="" coords="5,56,180,83"/>
+<area shape="rect" id="node18" href="$Main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="65,365,120,392"/>
+<area shape="rect" id="node23" href="$namespacelogs.html#ab465ba9cc0c8042ca19d9c1aeb008578" title=" " alt="" coords="512,688,600,715"/>
+<area shape="rect" id="node24" href="$classlogs_1_1MemoryAppender.html#aad5cff73a112f433a5766cc0c8da3ef6" title="Destructeur de la classe." alt="" coords="244,649,417,690"/>
+<area shape="rect" id="node25" href="$classlogs_1_1SvgAppender.html#a2a4fe7712072add61d1b773d355e629e" title="Destructeur de la classe." alt="" coords="255,714,406,755"/>
+<area shape="rect" id="node26" href="$classlogs_1_1TelemetryAppender.html#a0f37f1968d5db9221fb33631729fbb0a" title="Destructeur de la classe." alt="" coords="239,779,423,821"/>
 </map>

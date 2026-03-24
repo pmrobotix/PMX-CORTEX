@@ -1,0 +1,2 @@
+/usr/bin/ar qc libsimple-svg.a CMakeFiles/simple-svg.dir/simple_svg_1.0.0.cpp.o
+/usr/bin/ranlib libsimple-svg.a

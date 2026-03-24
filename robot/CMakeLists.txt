@@ -8,6 +8,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # --- Options communes ---
 add_compile_options(-Wall -pthread)
 
+# --- Optimisation Release ---
+# SIMU : -O2 (perfs réalistes pour la simulation)
+# ARM  : -Os (optimisation taille, comme dans PMX — mieux pour le cache L1 du Cortex-A7)
+set(CMAKE_CXX_FLAGS_RELEASE "-O2 -DNDEBUG" CACHE STRING "" FORCE)
+set(CMAKE_C_FLAGS_RELEASE "-O2 -DNDEBUG" CACHE STRING "" FORCE)
+
 # --- Plateforme : ARM ou SIMU ---
 if(NOT TARGET_PLATFORM)
     set(TARGET_PLATFORM "SIMU")
@@ -19,10 +25,13 @@ if(TARGET_PLATFORM STREQUAL "SIMU")
     add_compile_definitions(SIMU)
     message(STATUS "Mode SIMU - compilation native")
 elseif(TARGET_PLATFORM STREQUAL "ARM")
+    set(CMAKE_CXX_FLAGS_RELEASE "-Os -DNDEBUG" CACHE STRING "" FORCE)
+    set(CMAKE_C_FLAGS_RELEASE "-Os -DNDEBUG" CACHE STRING "" FORCE)
+    add_compile_options(-Wno-psabi)  # masquer les notes ABI GCC 7.1 sur ARM
     set(AS_DEVICES_INCLUDE
         "/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/usr/include/as_devices")
     include_directories(${AS_DEVICES_INCLUDE})
-    message(STATUS "Mode ARM - cross-compilation OPOS6UL")
+    message(STATUS "Mode ARM - cross-compilation OPOS6UL (-Os)")
 endif()
 
 # =============================================
@@ -43,19 +52,26 @@ add_library(pmx-common STATIC
     src/common/thread/Mutex.cpp
     # utils
     src/common/utils/Chronometer.cpp
+    src/common/utils/itoa.cpp
+    src/common/utils/WString.cpp
     # log
     src/common/log/Level.cpp
     src/common/log/Logger.cpp
     src/common/log/LoggerFactory.cpp
+    src/common/log/SvgWriter.cpp
+    src/common/log/backward.cpp
     src/common/log/appender/MemoryAppender.cpp
     src/common/log/appender/ConsoleAppender.cpp
+    src/common/log/appender/FileAppender.cpp
+    src/common/log/appender/SvgAppender.cpp
+    src/common/log/appender/TelemetryAppender.cpp
 )
 
 target_include_directories(pmx-common PUBLIC
     src/common
 )
 
-target_link_libraries(pmx-common PUBLIC pthread rt)
+target_link_libraries(pmx-common PUBLIC pthread rt simple-svg)
 
 # =============================================
 # Bibliothèque : pmx-suite (framework de test)
@@ -85,6 +101,8 @@ add_executable(common-test
     test/common/LoggerTest.cpp
     test/common/ExceptionTest.cpp
     test/common/PointerListTest.cpp
+    test/common/FileAppenderTest.cpp
+    test/common/SvgAppenderTest.cpp
 )
 
 target_link_libraries(common-test PRIVATE pmx-suite)

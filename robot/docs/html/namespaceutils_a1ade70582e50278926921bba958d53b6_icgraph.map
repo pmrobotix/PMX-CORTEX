@@ -1,4 +1,5 @@
 <map id="utils::sleep_for_millis" name="utils::sleep_for_millis">
-<area shape="rect" id="node1" title="Met en pause le thread courant pendant msec millisecondes." alt="" coords="248,13,409,39"/>
-<area shape="rect" id="node2" href="$classtest_1_1ThreadTest.html#a313e3f9f588d83d238893bd58923ed21" title="Vérifie la précision de sleep_for_millis." alt="" coords="5,5,200,47"/>
+<area shape="rect" id="node1" title="Met en pause le thread courant pendant msec millisecondes." alt="" coords="256,35,417,61"/>
+<area shape="rect" id="node2" href="$classtest_1_1ThreadTest.html#a3ab4926fa019981bd51a7464be5cf4be" title="Vérifie que cancel() arrête un thread en cours." alt="" coords="5,5,208,32"/>
+<area shape="rect" id="node3" href="$classtest_1_1ThreadTest.html#a313e3f9f588d83d238893bd58923ed21" title="Vérifie la précision de sleep_for_millis." alt="" coords="9,57,204,98"/>
 </map>

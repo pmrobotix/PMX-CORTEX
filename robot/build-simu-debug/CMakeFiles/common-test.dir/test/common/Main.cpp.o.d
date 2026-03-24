@@ -187,4 +187,6 @@ CMakeFiles/common-test.dir/test/common/Main.cpp.o: \
  /home/pmx/git/PMX-CORTEX/robot/test/common/LevelTest.hpp \
  /home/pmx/git/PMX-CORTEX/robot/test/common/LoggerTest.hpp \
  /home/pmx/git/PMX-CORTEX/robot/test/common/ExceptionTest.hpp \
- /home/pmx/git/PMX-CORTEX/robot/test/common/PointerListTest.hpp
+ /home/pmx/git/PMX-CORTEX/robot/test/common/PointerListTest.hpp \
+ /home/pmx/git/PMX-CORTEX/robot/test/common/FileAppenderTest.hpp \
+ /home/pmx/git/PMX-CORTEX/robot/test/common/SvgAppenderTest.hpp

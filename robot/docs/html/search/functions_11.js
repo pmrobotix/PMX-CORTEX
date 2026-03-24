@@ -1,9 +1,13 @@
 var searchData=
 [
-  ['waitforend_406',['waitForEnd',['../classutils_1_1Thread.html#a29b8cb62f6b5f80ffe5b050167780f97',1,'utils::Thread']]],
-  ['waittimer_407',['waitTimer',['../classutils_1_1Chronometer.html#a821bfe0e70f7b50199557667c08dbb67',1,'utils::Chronometer']]],
-  ['warn_408',['warn',['../classlogs_1_1Logger.html#a240e8d7b58195c85bd7b4e4a3417d955',1,'logs::Logger::warn(const std::string &amp;message) const'],['../classlogs_1_1Logger.html#a2741020406e22491e124f646c6cf39a7',1,'logs::Logger::warn() const']]],
-  ['what_409',['what',['../classlogs_1_1Exception.html#a5469d6aa72cc6fe019eae6448880e423',1,'logs::Exception']]],
-  ['writemessage_410',['writeMessage',['../classlogs_1_1ConsoleAppender.html#a8bc998ae5666863d846b6909207b2fc7',1,'logs::ConsoleAppender::writeMessage()'],['../classlogs_1_1MemoryAppender.html#a478c866b07f63f1f89c347b4465834bc',1,'logs::MemoryAppender::writeMessage()'],['../classlogs_1_1Appender.html#a940a63ebc17c8e29c1922948903c60e1',1,'logs::Appender::writeMessage()'],['../classlogs_1_1Logger.html#afa535aaf4891e02c4ff7f84d372b5b1b',1,'logs::Logger::writeMessage()'],['../classUnitTestAppender.html#a2b69943419d6fe74a7f8a9c6cdcd0c98',1,'UnitTestAppender::writeMessage()']]],
-  ['writemessageonly_411',['writeMessageOnly',['../classlogs_1_1MemoryAppender.html#a6456fc6c33dd29be1964a2c39b5d329f',1,'logs::MemoryAppender']]]
+  ['ultoa_920',['ultoa',['../itoa_8cpp.html#ae4e9aa18492211b179961bd8a64ed6e7',1,'ultoa(unsigned long value, char *string, int radix):&#160;itoa.cpp'],['../itoa_8hpp.html#ae4e9aa18492211b179961bd8a64ed6e7',1,'ultoa(unsigned long value, char *string, int radix):&#160;itoa.cpp']]],
+  ['underflow_921',['underflow',['../classbackward_1_1cfile__streambuf.html#a67f3b98cf16576290f422a3ef22ee22e',1,'backward::cfile_streambuf']]],
+  ['unittest_922',['UnitTest',['../classUnitTest.html#aefa94b0ad902a2e8ccff1f0441cafbff',1,'UnitTest']]],
+  ['unittestappender_923',['UnitTestAppender',['../classUnitTestAppender.html#a1c7d981379814dd2f678d766644fe047',1,'UnitTestAppender']]],
+  ['unittestsuite_924',['UnitTestSuite',['../classUnitTestSuite.html#a3f61dce247738e49da55b9c38ca4ca52',1,'UnitTestSuite']]],
+  ['unlock_925',['unlock',['../classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3',1,'utils::Mutex']]],
+  ['unlockmessages_926',['unlockMessages',['../classlogs_1_1MemoryAppender.html#a60a0ea41d72e493005e1e7256920dd97',1,'logs::MemoryAppender']]],
+  ['unwind_927',['unwind',['../namespacebackward_1_1details.html#a21ee163d21ebb1cd11fe3101cea99b08',1,'backward::details']]],
+  ['update_928',['update',['../classbackward_1_1details_1_1handle.html#acb0c16caba4ff1ba8a6cce5ca3745071',1,'backward::details::handle']]],
+  ['utoa_929',['utoa',['../itoa_8cpp.html#a522659d75127be5466f8b0b04488ef67',1,'utoa(unsigned long value, char *string, int radix):&#160;itoa.cpp'],['../itoa_8hpp.html#a522659d75127be5466f8b0b04488ef67',1,'utoa(unsigned long value, char *string, int radix):&#160;itoa.cpp']]]
 ];

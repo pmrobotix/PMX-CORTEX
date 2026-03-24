@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DSIMU
 
-CXX_INCLUDES = -I/home/pmx/git/PMX-CORTEX/robot/src/common
+CXX_INCLUDES = -I/home/pmx/git/PMX-CORTEX/robot/src/common -I/home/pmx/git/PMX-CORTEX/libs/simple-svg
 
 CXX_FLAGS = -g -Wall -pthread -std=gnu++17
 

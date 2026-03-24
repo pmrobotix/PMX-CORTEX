@@ -1,0 +1,399 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot: Référence du fichier src/common/log/backward.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_fdedb0aba14d44ce9d99bc100e026e6a.html">common</a></li><li class="navelem"><a class="el" href="dir_596f6805a163adddd97111db7833cf93.html">log</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#namespaces">Espaces de nommage</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Définitions de type</a> &#124;
+<a href="#enum-members">Énumérations</a> &#124;
+<a href="#func-members">Fonctions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier backward.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;algorithm&gt;</code><br />
+<code>#include &lt;cctype&gt;</code><br />
+<code>#include &lt;cstdio&gt;</code><br />
+<code>#include &lt;cstdlib&gt;</code><br />
+<code>#include &lt;cstring&gt;</code><br />
+<code>#include &lt;fstream&gt;</code><br />
+<code>#include &lt;iomanip&gt;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;limits&gt;</code><br />
+<code>#include &lt;new&gt;</code><br />
+<code>#include &lt;sstream&gt;</code><br />
+<code>#include &lt;streambuf&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+<code>#include &lt;exception&gt;</code><br />
+<code>#include &lt;iterator&gt;</code><br />
+<code>#include &lt;cxxabi.h&gt;</code><br />
+<code>#include &lt;fcntl.h&gt;</code><br />
+<code>#include &lt;link.h&gt;</code><br />
+<code>#include &lt;signal.h&gt;</code><br />
+<code>#include &lt;sys/stat.h&gt;</code><br />
+<code>#include &lt;syscall.h&gt;</code><br />
+<code>#include &lt;unistd.h&gt;</code><br />
+<code>#include &lt;dlfcn.h&gt;</code><br />
+<code>#include &lt;execinfo.h&gt;</code><br />
+<code>#include &lt;unwind.h&gt;</code><br />
+<code>#include &lt;map&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Graphe des dépendances par inclusion de backward.hpp:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="backward_8hpp__incl.svg" width="100%" height="384"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+</div><div class="textblock"><div class="dynheader">
+Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier :</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="backward_8hpp__dep__incl.svg" width="232" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+<p><a href="backward_8hpp_source.html">Aller au code source de ce fichier.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbackward_1_1StackTraceImpl_3_01system__tag_1_1current__tag_01_4_1_1callback.html">backward::StackTraceImpl&lt; system_tag::current_tag &gt;::callback</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbackward_1_1cfile__streambuf.html">backward::cfile_streambuf</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbackward_1_1Colorize.html">backward::Colorize</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbackward_1_1details_1_1default__delete.html">backward::details::default_delete&lt; T &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbackward_1_1details_1_1deleter.html">backward::details::deleter&lt; R, T, F &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbackward_1_1details_1_1demangler.html">backward::details::demangler</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbackward_1_1details_1_1demangler__impl.html">backward::details::demangler_impl&lt; TAG &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbackward_1_1details_1_1demangler__impl_3_01system__tag_1_1current__tag_01_4.html">backward::details::demangler_impl&lt; system_tag::current_tag &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbackward_1_1details_1_1handle.html">backward::details::handle&lt; T, Deleter &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbackward_1_1details_1_1hashtable.html">backward::details::hashtable&lt; K, V &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbackward_1_1SourceFile_1_1not__isempty.html">backward::SourceFile::not_isempty</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbackward_1_1SourceFile_1_1not__isspace.html">backward::SourceFile::not_isspace</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbackward_1_1Printer.html">backward::Printer</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbackward_1_1ResolvedTrace.html">backward::ResolvedTrace</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbackward_1_1details_1_1rm__ptr.html">backward::details::rm_ptr&lt; T &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbackward_1_1details_1_1rm__ptr_3_01const_01T_01_5_01_4.html">backward::details::rm_ptr&lt; const T * &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbackward_1_1details_1_1rm__ptr_3_01T_01_5_01_4.html">backward::details::rm_ptr&lt; T * &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbackward_1_1SignalHandling.html">backward::SignalHandling</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbackward_1_1SnippetFactory.html">backward::SnippetFactory</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbackward_1_1SourceFile.html">backward::SourceFile</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbackward_1_1ResolvedTrace_1_1SourceLoc.html">backward::ResolvedTrace::SourceLoc</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbackward_1_1StackTrace.html">backward::StackTrace</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbackward_1_1StackTraceImpl.html">backward::StackTraceImpl&lt; TAG &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbackward_1_1StackTraceImpl_3_01system__tag_1_1current__tag_01_4.html">backward::StackTraceImpl&lt; system_tag::current_tag &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbackward_1_1StackTraceImplBase.html">backward::StackTraceImplBase</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbackward_1_1StackTraceImplHolder.html">backward::StackTraceImplHolder</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbackward_1_1Trace.html">backward::Trace</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbackward_1_1TraceResolver.html">backward::TraceResolver</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbackward_1_1TraceResolverImpl_3_01system__tag_1_1linux__tag_01_4.html">backward::TraceResolverImpl&lt; system_tag::linux_tag &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbackward_1_1TraceResolverImplBase.html">backward::TraceResolverImplBase</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbackward_1_1TraceResolverLinuxBase.html">backward::TraceResolverLinuxBase</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbackward_1_1TraceResolverLinuxImpl_3_01trace__resolver__tag_1_1backtrace__symbol_01_4.html">backward::TraceResolverLinuxImpl&lt; trace_resolver_tag::backtrace_symbol &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbackward_1_1details_1_1Unwinder.html">backward::details::Unwinder&lt; F &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Espaces de nommage</h2></td></tr>
+<tr class="memitem:namespacebackward"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebackward.html">backward</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespacebackward_1_1Color"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebackward_1_1Color.html">backward::Color</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespacebackward_1_1ColorMode"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebackward_1_1ColorMode.html">backward::ColorMode</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespacebackward_1_1details"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebackward_1_1details.html">backward::details</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespacebackward_1_1system__tag"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebackward_1_1system__tag.html">backward::system_tag</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespacebackward_1_1trace__resolver__tag"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebackward_1_1trace__resolver__tag.html">backward::trace_resolver_tag</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a369266c24eacffb87046522897a570d5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="backward_8hpp.html#a369266c24eacffb87046522897a570d5">_GNU_SOURCE</a></td></tr>
+<tr class="separator:a369266c24eacffb87046522897a570d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf7db9f321c0520a0e7f901eec032d6f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="backward_8hpp.html#aaf7db9f321c0520a0e7f901eec032d6f">BACKWARD_ATLEAST_CXX98</a></td></tr>
+<tr class="separator:aaf7db9f321c0520a0e7f901eec032d6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf3b44e8f938981812f1a8b796b9dbd6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="backward_8hpp.html#abf3b44e8f938981812f1a8b796b9dbd6">BACKWARD_CXX98</a></td></tr>
+<tr class="separator:abf3b44e8f938981812f1a8b796b9dbd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a5d83bd05a4d569fe7bf686782cd58f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="backward_8hpp.html#a6a5d83bd05a4d569fe7bf686782cd58f">BACKWARD_HAS_BACKTRACE_SYMBOL</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:a6a5d83bd05a4d569fe7bf686782cd58f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b83d5fb01b2176508eac51157f0b88a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="backward_8hpp.html#a3b83d5fb01b2176508eac51157f0b88a">BACKWARD_HAS_UNWIND</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:a3b83d5fb01b2176508eac51157f0b88a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ec5b7d64d0f14a96eae0c35f9b2f8ea"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="backward_8hpp.html#a3ec5b7d64d0f14a96eae0c35f9b2f8ea">BACKWARD_SYSTEM_LINUX</a></td></tr>
+<tr class="separator:a3ec5b7d64d0f14a96eae0c35f9b2f8ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b173d22e57d9395897acbd8de62d505"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="backward_8hpp.html#a1b173d22e57d9395897acbd8de62d505">NOINLINE</a>&#160;&#160;&#160;__attribute__((noinline))</td></tr>
+<tr class="separator:a1b173d22e57d9395897acbd8de62d505"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab979d9d4b4923f7c54d6caa6e1a61936"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="backward_8hpp.html#ab979d9d4b4923f7c54d6caa6e1a61936">nullptr</a>&#160;&#160;&#160;NULL</td></tr>
+<tr class="separator:ab979d9d4b4923f7c54d6caa6e1a61936"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a421c2a84099be332814e021bcf72c6cf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="backward_8hpp.html#a421c2a84099be332814e021bcf72c6cf">override</a></td></tr>
+<tr class="separator:a421c2a84099be332814e021bcf72c6cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Définitions de type</h2></td></tr>
+<tr class="memitem:af00341287d363ce2ef1e9a4a848c8952"><td class="memItemLeft" align="right" valign="top">typedef backtrace_symbol&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebackward_1_1trace__resolver__tag.html#af00341287d363ce2ef1e9a4a848c8952">backward::trace_resolver_tag::current</a></td></tr>
+<tr class="separator:af00341287d363ce2ef1e9a4a848c8952"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b2892da6463eac5fb85c252c7d784ce"><td class="memItemLeft" align="right" valign="top">typedef linux_tag&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebackward_1_1system__tag.html#a2b2892da6463eac5fb85c252c7d784ce">backward::system_tag::current_tag</a></td></tr>
+<tr class="separator:a2b2892da6463eac5fb85c252c7d784ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Énumérations</h2></td></tr>
+<tr class="memitem:aec82452ed7333b210e205aaf6da2d090"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebackward_1_1ColorMode.html#aec82452ed7333b210e205aaf6da2d090">backward::ColorMode::type</a> { <a class="el" href="namespacebackward_1_1ColorMode.html#aec82452ed7333b210e205aaf6da2d090ab3b137eb64307b81fef0ff09f93ee622">backward::ColorMode::automatic</a>
+, <a class="el" href="namespacebackward_1_1ColorMode.html#aec82452ed7333b210e205aaf6da2d090af0469cd8b4e78a7dbbb315e69b8a441b">backward::ColorMode::never</a>
+, <a class="el" href="namespacebackward_1_1ColorMode.html#aec82452ed7333b210e205aaf6da2d090af66d65034994cb34507cf038a93b1c78">backward::ColorMode::always</a>
+ }</td></tr>
+<tr class="separator:aec82452ed7333b210e205aaf6da2d090"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6292269f4da43517b3fe825563efee5c"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebackward_1_1Color.html#a6292269f4da43517b3fe825563efee5c">backward::Color::type</a> { <a class="el" href="namespacebackward_1_1Color.html#a6292269f4da43517b3fe825563efee5ca8f7946cb6e3cd72b9624130f4d6b3053">backward::Color::yellow</a> = 33
+, <a class="el" href="namespacebackward_1_1Color.html#a6292269f4da43517b3fe825563efee5ca83495492b6ede5f3b14a20d42204b8e2">backward::Color::purple</a> = 35
+, <a class="el" href="namespacebackward_1_1Color.html#a6292269f4da43517b3fe825563efee5ca40f024dfd446488cdd59a1e4438b2fcc">backward::Color::reset</a> = 39
+ }</td></tr>
+<tr class="separator:a6292269f4da43517b3fe825563efee5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:ad24f2f88d54f9427acdf56cc736374b0"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ad24f2f88d54f9427acdf56cc736374b0"><td class="memTemplItemLeft" align="right" valign="top">const T &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacebackward_1_1details.html#ad24f2f88d54f9427acdf56cc736374b0">backward::details::move</a> (const T &amp;v)</td></tr>
+<tr class="separator:ad24f2f88d54f9427acdf56cc736374b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04154532c87d76958feb878627e30b64"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a04154532c87d76958feb878627e30b64"><td class="memTemplItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacebackward_1_1details.html#a04154532c87d76958feb878627e30b64">backward::details::move</a> (T &amp;v)</td></tr>
+<tr class="separator:a04154532c87d76958feb878627e30b64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca80b0f0335015da9cf5f8bcc6778e0e"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebackward_1_1details.html#aca80b0f0335015da9cf5f8bcc6778e0e">backward::details::split_source_prefixes</a> (const std::string &amp;s)</td></tr>
+<tr class="separator:aca80b0f0335015da9cf5f8bcc6778e0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21ee163d21ebb1cd11fe3101cea99b08"><td class="memTemplParams" colspan="2">template&lt;typename F &gt; </td></tr>
+<tr class="memitem:a21ee163d21ebb1cd11fe3101cea99b08"><td class="memTemplItemLeft" align="right" valign="top">size_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacebackward_1_1details.html#a21ee163d21ebb1cd11fe3101cea99b08">backward::details::unwind</a> (F f, size_t depth)</td></tr>
+<tr class="separator:a21ee163d21ebb1cd11fe3101cea99b08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a63a2b5c559f334ede442eaac25058d12"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacebackward_1_1details.html#a63a2b5c559f334ede442eaac25058d12">backward::details::kBackwardPathDelimiter</a> [] = &quot;:&quot;</td></tr>
+<tr class="separator:a63a2b5c559f334ede442eaac25058d12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentation des macros</h2>
+<a id="a369266c24eacffb87046522897a570d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a369266c24eacffb87046522897a570d5">&#9670;&nbsp;</a></span>_GNU_SOURCE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _GNU_SOURCE</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaf7db9f321c0520a0e7f901eec032d6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf7db9f321c0520a0e7f901eec032d6f">&#9670;&nbsp;</a></span>BACKWARD_ATLEAST_CXX98</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BACKWARD_ATLEAST_CXX98</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abf3b44e8f938981812f1a8b796b9dbd6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf3b44e8f938981812f1a8b796b9dbd6">&#9670;&nbsp;</a></span>BACKWARD_CXX98</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BACKWARD_CXX98</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6a5d83bd05a4d569fe7bf686782cd58f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a5d83bd05a4d569fe7bf686782cd58f">&#9670;&nbsp;</a></span>BACKWARD_HAS_BACKTRACE_SYMBOL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BACKWARD_HAS_BACKTRACE_SYMBOL&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3b83d5fb01b2176508eac51157f0b88a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b83d5fb01b2176508eac51157f0b88a">&#9670;&nbsp;</a></span>BACKWARD_HAS_UNWIND</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BACKWARD_HAS_UNWIND&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3ec5b7d64d0f14a96eae0c35f9b2f8ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ec5b7d64d0f14a96eae0c35f9b2f8ea">&#9670;&nbsp;</a></span>BACKWARD_SYSTEM_LINUX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BACKWARD_SYSTEM_LINUX</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1b173d22e57d9395897acbd8de62d505"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b173d22e57d9395897acbd8de62d505">&#9670;&nbsp;</a></span>NOINLINE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NOINLINE&#160;&#160;&#160;__attribute__((noinline))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab979d9d4b4923f7c54d6caa6e1a61936"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab979d9d4b4923f7c54d6caa6e1a61936">&#9670;&nbsp;</a></span>nullptr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define nullptr&#160;&#160;&#160;NULL</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a421c2a84099be332814e021bcf72c6cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a421c2a84099be332814e021bcf72c6cf">&#9670;&nbsp;</a></span>override</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define override</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Mardi 24 Mars 2026 17:17:18 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

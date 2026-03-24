@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['size_5ftype_489',['size_type',['../classutils_1_1PointerList.html#a8d7b485e236a01cc14b41694ae0b3456',1,'utils::PointerList']]]
+  ['lines_5ft_1102',['lines_t',['../classbackward_1_1SourceFile.html#a249ad26d824e683f42d1b93f3eafb973',1,'backward::SourceFile::lines_t()'],['../classbackward_1_1SnippetFactory.html#a2bfbaa900acb0d4fdea885cf9c2ef93c',1,'backward::SnippetFactory::lines_t()']]]
 ];

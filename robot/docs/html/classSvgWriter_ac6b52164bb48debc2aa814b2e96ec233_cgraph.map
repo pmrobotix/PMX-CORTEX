@@ -1,0 +1,13 @@
+<map id="SvgWriter::beginHeader" name="SvgWriter::beginHeader">
+<area shape="rect" id="node1" title="Écrit l&#39;en&#45;tête SVG (grille, defs, symboles)." alt="" coords="5,198,183,225"/>
+<area shape="rect" id="node2" href="$classutils_1_1PointerList.html#a501664b90309db885554d35e89739681" title="Returns a read/write iterator that points to the first element in the list. Iteration is done in ordi..." alt="" coords="269,5,395,47"/>
+<area shape="rect" id="node3" href="$classutils_1_1PointerList.html#a9607cdd93b715a838e015452a49f61d5" title="Returns a read/write iterator that points one past the last element in the list. Iteration is done in..." alt="" coords="253,71,411,98"/>
+<area shape="rect" id="node4" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="291,173,373,199"/>
+<area shape="rect" id="node6" href="$classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32" title="Verrouille le mutex. Cette méthode doit être appelée avant d&#39;utiliser la ressource associée...." alt="" coords="786,129,921,155"/>
+<area shape="rect" id="node7" href="$classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3" title="Déverrouille le mutex. Cette méthode doit être appelée après avoir utiliser la ressource associée." alt="" coords="778,186,929,213"/>
+<area shape="rect" id="node9" href="$classlogs_1_1Logger.html#aa381165771d00a6a1e3aa9664bf6467f" title="Trace un message de niveau INFO." alt="" coords="526,274,661,301"/>
+<area shape="rect" id="node10" href="$classSvgWriter.html#a0a4640b661160b29d991116a197f7aaf" title="Retourne le logger principal du SVG." alt="" coords="265,325,399,351"/>
+<area shape="rect" id="node11" href="$classSvgWriter.html#ab74e6447bcb7ce52ecba9f9f0c5907b7" title="Retourne le logger dédié aux capteurs SVG." alt="" coords="231,375,433,402"/>
+<area shape="rect" id="node5" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#a0e4fd77693fd899ec1b0670354f93a02" title="Cette méthode valide le message en cours de construction et le transmet au Logger de référence." alt="" coords="481,173,705,199"/>
+<area shape="rect" id="node8" href="$classlogs_1_1Logger.html#afa535aaf4891e02c4ff7f84d372b5b1b" title="Méthode générique de trace d&#39;un message." alt="" coords="753,249,953,275"/>
+</map>

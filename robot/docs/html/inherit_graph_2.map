@@ -1,11 +1,3 @@
 <map id="Graphe hiérarchique des classes" name="Graphe hiérarchique des classes">
-<area shape="rect" id="node1" href="$classlogs_1_1Appender.html" title="Classe de gestion des flux de sortie pour les logs." alt="" coords="5,43,124,69"/>
-<area shape="rect" id="node2" href="$classlogs_1_1MemoryAppender.html" title="Implémentation de Appender stockant les messages en mémoire." alt="" coords="181,43,355,69"/>
-<area shape="rect" id="node3" href="$classUnitTestAppender.html" title="Implémente un appender spécifique à l&#39;execution et au suivi des tests unitaires." alt="" coords="429,5,566,32"/>
-<area shape="rect" id="node4" href="$classlogs_1_1ConsoleAppender.html" title="Implémentation de Appender pour une écriture des traces sur un flux de sortie de type std::ostream." alt="" coords="412,56,583,83"/>
-<area shape="rect" id="node5" href="$classutils_1_1Mutex.html" title="Implémentation d&#39;une gestion de mutex." alt="" coords="15,93,114,120"/>
-<area shape="rect" id="node6" href="$classlogs_1_1Logger_1_1LoggerBuffer.html" title="Classe de délégation pour faciliter la création des traces." alt="" coords="172,93,364,120"/>
-<area shape="rect" id="node7" href="$classutils_1_1Thread.html" title="Classe de base pour les threads (wrapper POSIX pthread)." alt="" coords="217,144,319,171"/>
-<area shape="rect" id="node8" href="$classlogs_1_1LoggerFactory.html" title="Cette classe assure l&#39;initialisation du système de trace et son utilisation." alt="" coords="423,119,571,145"/>
-<area shape="rect" id="node9" href="$classtest_1_1SimpleThread.html" title="Thread de test simple qui incrémente un compteur." alt="" coords="425,169,570,196"/>
+<area shape="rect" id="node1" href="$structbackward_1_1details_1_1default__delete.html" title=" " alt="" coords="5,5,160,47"/>
 </map>

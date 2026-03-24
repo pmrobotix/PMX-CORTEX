@@ -1,0 +1,10 @@
+<map id="test::LoggerTest::testLoggerCopyFromParent" name="test::LoggerTest::testLoggerCopyFromParent">
+<area shape="rect" id="node1" title="Vérifie la construction par copie d&#39;un logger parent." alt="" coords="5,78,208,119"/>
+<area shape="rect" id="node2" href="$classlogs_1_1Logger.html#a13e5a43ff9ecfe978afcd4443be1b32b" title="Cette méthode vérifie si le logger est actif pour un niveau donné." alt="" coords="256,5,417,32"/>
+<area shape="rect" id="node3" href="$classlogs_1_1Logger.html#a94c013a945cf805fbbc8aa763f73f107" title="Cette méthode retourne le niveau associé au Logger." alt="" coords="484,5,625,32"/>
+<area shape="rect" id="node4" href="$classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e" title="Cette méthode statique retourne un Logger en fonction de son nom." alt="" coords="263,107,411,149"/>
+<area shape="rect" id="node8" href="$classlogs_1_1Logger.html#a6706ac94e219fd82c6049e376805202e" title="Cette méthode retourne le nom associé au Logger." alt="" coords="263,173,410,200"/>
+<area shape="rect" id="node5" href="$classlogs_1_1LoggerFactory.html#ac89f19c0ffd71aa8cdc1c2d44c03809e" title="Cette méthode ajoute un appender au système." alt="" coords="465,56,644,83"/>
+<area shape="rect" id="node6" href="$classlogs_1_1LoggerFactory.html#a90478b91d7af2ef8841ded21e3521f69" title="Cette méthode statique retourne l&#39;instance unique de la classe LoggerFactory." alt="" coords="481,107,629,149"/>
+<area shape="rect" id="node7" href="$classlogs_1_1LoggerFactory.html#a212aa623f4b6bee12cb39e8017dde670" title="Cette méthode retourne le Logger principal qui définit le niveau de trace par défaut." alt="" coords="481,173,629,214"/>
+</map>

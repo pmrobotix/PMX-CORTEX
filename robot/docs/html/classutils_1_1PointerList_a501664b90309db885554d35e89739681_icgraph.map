@@ -1,6 +1,11 @@
 <map id="utils::PointerList::begin" name="utils::PointerList::begin">
-<area shape="rect" id="node1" title="Returns a read/write iterator that points to the first element in the list. Iteration is done in ordi..." alt="" coords="293,35,420,76"/>
-<area shape="rect" id="node2" href="$classutils_1_1PointerList.html#a134b56062d58f09feb8a2fcdb1f013d6" title="List copy constructor." alt="" coords="113,5,240,47"/>
-<area shape="rect" id="node3" href="$classUnitTestSuite.html#af7b586b2771e5b876628be90e33aba5e" title="Execution de tous les tests." alt="" coords="108,71,245,98"/>
-<area shape="rect" id="node4" href="$Main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,71,60,98"/>
+<area shape="rect" id="node1" title="Returns a read/write iterator that points to the first element in the list. Iteration is done in ordi..." alt="" coords="443,144,569,185"/>
+<area shape="rect" id="node2" href="$classutils_1_1PointerList.html#a134b56062d58f09feb8a2fcdb1f013d6" title="List copy constructor." alt="" coords="236,5,363,47"/>
+<area shape="rect" id="node3" href="$classSvgWriter.html#ac6b52164bb48debc2aa814b2e96ec233" title="Écrit l&#39;en&#45;tête SVG (grille, defs, symboles)." alt="" coords="211,71,388,98"/>
+<area shape="rect" id="node4" href="$classUnitTestSuite.html#af7b586b2771e5b876628be90e33aba5e" title="Execution de tous les tests." alt="" coords="231,122,368,149"/>
+<area shape="rect" id="node6" href="$classtest_1_1PointerListTest.html#a2b1072de5ca2cd8569177084cc856213" title="Vérifie l&#39;ajout et l&#39;itération sur des éléments." alt="" coords="224,173,375,215"/>
+<area shape="rect" id="node8" href="$classtest_1_1PointerListTest.html#ae1b5c90fa05734d0413a4450d07f12a5" title="Vérifie la construction avec N copies." alt="" coords="204,239,395,280"/>
+<area shape="rect" id="node9" href="$classtest_1_1PointerListTest.html#afef17bf0c448b25e4560a41969a47df2" title="Vérifie qu&#39;une liste vide a une taille de 0." alt="" coords="224,304,375,345"/>
+<area shape="rect" id="node5" href="$Main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="53,122,108,149"/>
+<area shape="rect" id="node7" href="$classtest_1_1PointerListTest.html#a7bedcc8d6f2ad93c6f77ca7afb5f1ca8" title="Execute les tests associés à la classe." alt="" coords="5,239,156,280"/>
 </map>

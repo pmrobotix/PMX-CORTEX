@@ -1,0 +1,156 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.21"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						2,
+						3
+					]
+				},
+				{
+					"build" : "libs/simple-svg",
+					"jsonFile" : "directory-libs.simple-svg-Debug-2621d5c83af18ed7d046.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.21"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "/home/pmx/git/PMX-CORTEX/libs/simple-svg",
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"build" : "libs/PathFinding",
+					"jsonFile" : "directory-libs.PathFinding-Debug-68121dc0a61ad8c2d4ec.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.21"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 2,
+					"source" : "/home/pmx/git/PMX-CORTEX/libs/PathFinding",
+					"targetIndexes" : 
+					[
+						1
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "PMX-CORTEX",
+					"targetIndexes" : 
+					[
+						0,
+						2,
+						3
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "simple-svg",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "pmr-pathfinding",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "common-test::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-common-test-Debug-b8ada9f0bcdeaea16f6d.json",
+					"name" : "common-test",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "pmr-pathfinding::@16eeef6552ff743fd55b",
+					"jsonFile" : "target-pmr-pathfinding-Debug-dc53d9b5616624e039c7.json",
+					"name" : "pmr-pathfinding",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "pmx-common::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-pmx-common-Debug-212810fdda39cc8fff8d.json",
+					"name" : "pmx-common",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "pmx-suite::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-pmx-suite-Debug-bfbc32cd2302f44a5550.json",
+					"name" : "pmx-suite",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "simple-svg::@dcf43566c6152ffc5650",
+					"jsonFile" : "target-simple-svg-Debug-9d8e276639d5b124571a.json",
+					"name" : "simple-svg",
+					"projectIndex" : 1
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/pmx/git/PMX-CORTEX/robot/build-arm-debug",
+		"source" : "/home/pmx/git/PMX-CORTEX/robot"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

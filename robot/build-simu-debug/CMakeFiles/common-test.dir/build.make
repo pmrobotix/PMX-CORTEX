@@ -195,6 +195,34 @@ CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/test/common/PointerListTest.cpp -o CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.s
 
+CMakeFiles/common-test.dir/test/common/FileAppenderTest.cpp.o: CMakeFiles/common-test.dir/flags.make
+CMakeFiles/common-test.dir/test/common/FileAppenderTest.cpp.o: ../test/common/FileAppenderTest.cpp
+CMakeFiles/common-test.dir/test/common/FileAppenderTest.cpp.o: CMakeFiles/common-test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/common-test.dir/test/common/FileAppenderTest.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/common-test.dir/test/common/FileAppenderTest.cpp.o -MF CMakeFiles/common-test.dir/test/common/FileAppenderTest.cpp.o.d -o CMakeFiles/common-test.dir/test/common/FileAppenderTest.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/test/common/FileAppenderTest.cpp
+
+CMakeFiles/common-test.dir/test/common/FileAppenderTest.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/common-test.dir/test/common/FileAppenderTest.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/test/common/FileAppenderTest.cpp > CMakeFiles/common-test.dir/test/common/FileAppenderTest.cpp.i
+
+CMakeFiles/common-test.dir/test/common/FileAppenderTest.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/common-test.dir/test/common/FileAppenderTest.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/test/common/FileAppenderTest.cpp -o CMakeFiles/common-test.dir/test/common/FileAppenderTest.cpp.s
+
+CMakeFiles/common-test.dir/test/common/SvgAppenderTest.cpp.o: CMakeFiles/common-test.dir/flags.make
+CMakeFiles/common-test.dir/test/common/SvgAppenderTest.cpp.o: ../test/common/SvgAppenderTest.cpp
+CMakeFiles/common-test.dir/test/common/SvgAppenderTest.cpp.o: CMakeFiles/common-test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/common-test.dir/test/common/SvgAppenderTest.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/common-test.dir/test/common/SvgAppenderTest.cpp.o -MF CMakeFiles/common-test.dir/test/common/SvgAppenderTest.cpp.o.d -o CMakeFiles/common-test.dir/test/common/SvgAppenderTest.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/test/common/SvgAppenderTest.cpp
+
+CMakeFiles/common-test.dir/test/common/SvgAppenderTest.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/common-test.dir/test/common/SvgAppenderTest.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/test/common/SvgAppenderTest.cpp > CMakeFiles/common-test.dir/test/common/SvgAppenderTest.cpp.i
+
+CMakeFiles/common-test.dir/test/common/SvgAppenderTest.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/common-test.dir/test/common/SvgAppenderTest.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/test/common/SvgAppenderTest.cpp -o CMakeFiles/common-test.dir/test/common/SvgAppenderTest.cpp.s
+
 # Object files for target common-test
 common__test_OBJECTS = \
 "CMakeFiles/common-test.dir/test/common/Main.cpp.o" \
@@ -205,7 +233,9 @@ common__test_OBJECTS = \
 "CMakeFiles/common-test.dir/test/common/LevelTest.cpp.o" \
 "CMakeFiles/common-test.dir/test/common/LoggerTest.cpp.o" \
 "CMakeFiles/common-test.dir/test/common/ExceptionTest.cpp.o" \
-"CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.o"
+"CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.o" \
+"CMakeFiles/common-test.dir/test/common/FileAppenderTest.cpp.o" \
+"CMakeFiles/common-test.dir/test/common/SvgAppenderTest.cpp.o"
 
 # External object files for target common-test
 common__test_EXTERNAL_OBJECTS =
@@ -219,11 +249,14 @@ common-test: CMakeFiles/common-test.dir/test/common/LevelTest.cpp.o
 common-test: CMakeFiles/common-test.dir/test/common/LoggerTest.cpp.o
 common-test: CMakeFiles/common-test.dir/test/common/ExceptionTest.cpp.o
 common-test: CMakeFiles/common-test.dir/test/common/PointerListTest.cpp.o
+common-test: CMakeFiles/common-test.dir/test/common/FileAppenderTest.cpp.o
+common-test: CMakeFiles/common-test.dir/test/common/SvgAppenderTest.cpp.o
 common-test: CMakeFiles/common-test.dir/build.make
 common-test: libpmx-suite.a
 common-test: libpmx-common.a
+common-test: libs/simple-svg/libsimple-svg.a
 common-test: CMakeFiles/common-test.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable common-test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable common-test"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/common-test.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

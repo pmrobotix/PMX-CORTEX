@@ -1,0 +1,13 @@
+<map id="logs::MemoryAppender::writeMessageOnly" name="logs::MemoryAppender::writeMessageOnly">
+<area shape="rect" id="node1" title="Méthode générique de trace d&#39;un message sans le nom du log devant chaque entrée." alt="" coords="640,185,813,227"/>
+<area shape="rect" id="node2" href="$classlogs_1_1SvgAppender.html#a9ec86931329330e976a213510d4d82e6" title="Méthode générique de trace d&#39;un message." alt="" coords="441,120,592,161"/>
+<area shape="rect" id="node7" href="$classlogs_1_1FileAppender.html#ab0dad2dab0f7d659321a574bdfa769c7" title="Méthode générique de trace d&#39;un message." alt="" coords="445,217,588,259"/>
+<area shape="rect" id="node3" href="$classtest_1_1SvgAppenderTest.html#aee81cfbf43a7ca0f227fdf112aaeb94c" title="Vérifie que le destructeur flush automatiquement." alt="" coords="220,5,393,47"/>
+<area shape="rect" id="node5" href="$classtest_1_1SvgAppenderTest.html#a855b9d39568bbe557279a635cebdeb86" title="Vérifie que plusieurs éléments SVG sont écrits dans l&#39;ordre." alt="" coords="222,71,391,112"/>
+<area shape="rect" id="node6" href="$classtest_1_1SvgAppenderTest.html#ab8ecdbbe67097178151f6145f4e9c5a8" title="Vérifie qu&#39;un élément SVG est écrit dans le fichier après flush." alt="" coords="223,136,390,177"/>
+<area shape="rect" id="node4" href="$classtest_1_1SvgAppenderTest.html#ad368c503a768fb7fc9e154e7a18002cf" title="Execute les tests associés à la classe." alt="" coords="5,71,172,112"/>
+<area shape="rect" id="node8" href="$classtest_1_1FileAppenderTest.html#ab47460a0731606c51db2ca317fc6ef0c" title="Vérifie que le destructeur flush automatiquement." alt="" coords="220,201,393,243"/>
+<area shape="rect" id="node10" href="$classtest_1_1FileAppenderTest.html#a5c23aeaba819e2d022e35d75b8737350" title="Vérifie que plusieurs messages sont écrits dans l&#39;ordre." alt="" coords="220,267,393,308"/>
+<area shape="rect" id="node11" href="$classtest_1_1FileAppenderTest.html#a5f573c45406190ce597a59dca19e5ec9" title="Vérifie qu&#39;un message écrit est bien présent dans le fichier après flush." alt="" coords="223,332,390,373"/>
+<area shape="rect" id="node9" href="$classtest_1_1FileAppenderTest.html#a34d4f99eb29a3710953a9bdb277481c1" title="Execute les tests associés à la classe." alt="" coords="5,267,172,308"/>
+</map>

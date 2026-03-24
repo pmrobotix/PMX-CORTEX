@@ -13,6 +13,8 @@
 #include "LoggerTest.hpp"
 #include "ExceptionTest.hpp"
 #include "PointerListTest.hpp"
+#include "FileAppenderTest.hpp"
+#include "SvgAppenderTest.hpp"
 
 int main(int argc, char** argv)
 {
@@ -27,6 +29,8 @@ int main(int argc, char** argv)
     suite.addTest(new test::LoggerTest());
     suite.addTest(new test::ExceptionTest());
     suite.addTest(new test::PointerListTest());
+    suite.addTest(new test::FileAppenderTest());
+    suite.addTest(new test::SvgAppenderTest());
 
     suite.run();
 

@@ -1,5 +1,10 @@
 <map id="logs::Logger::level" name="logs::Logger::level">
-<area shape="rect" id="node1" title="Cette méthode retourne le niveau associé au Logger." alt="" coords="455,13,596,39"/>
-<area shape="rect" id="node2" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#af0693b3b740e8d5c8d09bea5ef0c8695" title="Constructeur de la classe." alt="" coords="5,5,197,47"/>
-<area shape="rect" id="node3" href="$classlogs_1_1Logger.html#a13e5a43ff9ecfe978afcd4443be1b32b" title="Cette méthode vérifie si le logger est actif pour un niveau donné." alt="" coords="245,38,407,65"/>
+<area shape="rect" id="node1" title="Cette méthode retourne le niveau associé au Logger." alt="" coords="679,143,820,170"/>
+<area shape="rect" id="node2" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#af0693b3b740e8d5c8d09bea5ef0c8695" title="Constructeur de la classe." alt="" coords="224,5,416,47"/>
+<area shape="rect" id="node3" href="$classlogs_1_1Logger.html#a13e5a43ff9ecfe978afcd4443be1b32b" title="Cette méthode vérifie si le logger est actif pour un niveau donné." alt="" coords="469,143,631,170"/>
+<area shape="rect" id="node6" href="$classtest_1_1LoggerTest.html#a76ceb62a27076dd62490d377b09861ab" title="Vérifie la construction par copie d&#39;un logger parent." alt="" coords="219,267,421,308"/>
+<area shape="rect" id="node4" href="$classtest_1_1LoggerTest.html#afc684e7e3ae6843c44f18f21b037ce28" title="Vérifie que les messages sous le niveau du logger sont filtrés." alt="" coords="223,71,417,112"/>
+<area shape="rect" id="node7" href="$classtest_1_1LoggerTest.html#a25080abab28188bb60904dbfac123252" title="Vérifie le nom et le niveau du logger." alt="" coords="219,136,421,177"/>
+<area shape="rect" id="node8" href="$classtest_1_1LoggerTest.html#a3b9ae6dbc586a91732890bbebc8f49ad" title="Vérifie les messages simples (debug, info, warn, error)." alt="" coords="219,201,421,243"/>
+<area shape="rect" id="node5" href="$classtest_1_1LoggerTest.html#af4c75dbd29735b88c4aaf349bc9d4caf" title="Execute les tests associés à la classe." alt="" coords="5,177,171,203"/>
 </map>

@@ -1,9 +1,12 @@
 var searchData=
 [
-  ['add_301',['add',['../classlogs_1_1LoggerFactory.html#ac89f19c0ffd71aa8cdc1c2d44c03809e',1,'logs::LoggerFactory::add(const std::string &amp;name, Appender *appender)'],['../classlogs_1_1LoggerFactory.html#a4a5dc780d448355be6eb117ed9a42a8b',1,'logs::LoggerFactory::add(Logger *logger)'],['../classlogs_1_1LoggerFactory.html#a030b1b4309b60b662340faa0dad2ca1e',1,'logs::LoggerFactory::add(const Level &amp;level, const std::string &amp;loggerName, const std::string &amp;appenderName)']]],
-  ['addtest_302',['addTest',['../classUnitTestSuite.html#aa2dda6bd93f28e28eb8fe333ba5ac16a',1,'UnitTestSuite']]],
-  ['alarmfunction_303',['alarmFunction',['../classITimerPosixListener.html#af06fbcdd0f34a17d4341f896002860af',1,'ITimerPosixListener::alarmFunction()'],['../classTimerPosix.html#af7cfc4df52fb786aac3ceb435e32c0bf',1,'TimerPosix::alarmFunction()']]],
-  ['appender_304',['Appender',['../classlogs_1_1Appender.html#a6c2acb37a497bad50ecb8bb13f906569',1,'logs::Appender']]],
-  ['appender_305',['appender',['../classlogs_1_1Logger.html#a48d911418afc6c935cae1e71ed771dee',1,'logs::Logger::appender()'],['../classlogs_1_1LoggerFactory.html#a75823b27a156f58a8d4061453a632c66',1,'logs::LoggerFactory::appender()']]],
-  ['assert_306',['assert',['../classUnitTest.html#a94aab90579073ba6e2068bbc05c47c4a',1,'UnitTest']]]
+  ['activate_695',['activate',['../classbackward_1_1Colorize.html#af78252a2212e266b65adbfd10c7cd709',1,'backward::Colorize::activate(ColorMode::type mode)'],['../classbackward_1_1Colorize.html#a893f89d9fa4b3e2c60af43269d13ac0e',1,'backward::Colorize::activate(ColorMode::type mode, FILE *fp)'],['../classbackward_1_1Colorize.html#ae232b5d82dcf74688685d40c010ae7a2',1,'backward::Colorize::activate(ColorMode::type mode, int fd)']]],
+  ['add_696',['add',['../classlogs_1_1LoggerFactory.html#ac89f19c0ffd71aa8cdc1c2d44c03809e',1,'logs::LoggerFactory::add(const std::string &amp;name, Appender *appender)'],['../classlogs_1_1LoggerFactory.html#a4a5dc780d448355be6eb117ed9a42a8b',1,'logs::LoggerFactory::add(Logger *logger)'],['../classlogs_1_1LoggerFactory.html#a030b1b4309b60b662340faa0dad2ca1e',1,'logs::LoggerFactory::add(const Level &amp;level, const std::string &amp;loggerName, const std::string &amp;appenderName)']]],
+  ['add_5fpaths_5fto_5fenv_5fvariable_5fimpl_697',['add_paths_to_env_variable_impl',['../classbackward_1_1SourceFile.html#aa69379eb8de5d0c5df94a8d423f77afc',1,'backward::SourceFile']]],
+  ['adddefssymbol_698',['addDefsSymbol',['../classSvgWriter.html#a9fbe18d7bc202481f93b87a1b3a9077e',1,'SvgWriter']]],
+  ['addtest_699',['addTest',['../classUnitTestSuite.html#aa2dda6bd93f28e28eb8fe333ba5ac16a',1,'UnitTestSuite']]],
+  ['alarmfunction_700',['alarmFunction',['../classITimerPosixListener.html#af06fbcdd0f34a17d4341f896002860af',1,'ITimerPosixListener::alarmFunction()'],['../classTimerPosix.html#af7cfc4df52fb786aac3ceb435e32c0bf',1,'TimerPosix::alarmFunction()']]],
+  ['appender_701',['Appender',['../classlogs_1_1Appender.html#a6c2acb37a497bad50ecb8bb13f906569',1,'logs::Appender']]],
+  ['appender_702',['appender',['../classlogs_1_1Logger.html#a48d911418afc6c935cae1e71ed771dee',1,'logs::Logger::appender()'],['../classlogs_1_1LoggerFactory.html#a75823b27a156f58a8d4061453a632c66',1,'logs::LoggerFactory::appender()']]],
+  ['assert_703',['assert',['../classUnitTest.html#a94aab90579073ba6e2068bbc05c47c4a',1,'UnitTest']]]
 ];

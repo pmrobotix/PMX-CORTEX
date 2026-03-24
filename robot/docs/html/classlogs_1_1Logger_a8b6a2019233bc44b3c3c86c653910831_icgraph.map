@@ -1,6 +1,8 @@
 <map id="logs::Logger::error" name="logs::Logger::error">
-<area shape="rect" id="node1" title="Trace un message de niveau ERROR." alt="" coords="380,31,520,57"/>
-<area shape="rect" id="node2" href="$classUnitTest.html#aae657d6d8bdc56cb2a9d4e4e9f5f8929" title="Cette méthode fait échouer un test." alt="" coords="228,31,332,57"/>
+<area shape="rect" id="node1" title="Trace un message de niveau ERROR." alt="" coords="479,81,619,108"/>
+<area shape="rect" id="node2" href="$classUnitTest.html#aae657d6d8bdc56cb2a9d4e4e9f5f8929" title="Cette méthode fait échouer un test." alt="" coords="277,52,381,79"/>
+<area shape="rect" id="node5" href="$classtest_1_1LoggerTest.html#a3b9ae6dbc586a91732890bbebc8f49ad" title="Vérifie les messages simples (debug, info, warn, error)." alt="" coords="228,103,431,145"/>
 <area shape="rect" id="node3" href="$classUnitTest.html#a94aab90579073ba6e2068bbc05c47c4a" title="Valide un test dans le cadre des tests unitaires." alt="" coords="31,5,154,32"/>
 <area shape="rect" id="node4" href="$classUnitTest.html#a00a74363b89994348f5025b42f7ea96f" title="Vérifie si un message d&#39;erreur à bien été émis." alt="" coords="5,56,180,83"/>
+<area shape="rect" id="node6" href="$classtest_1_1LoggerTest.html#af4c75dbd29735b88c4aaf349bc9d4caf" title="Execute les tests associés à la classe." alt="" coords="10,111,175,137"/>
 </map>

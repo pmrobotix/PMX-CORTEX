@@ -1,6 +1,26 @@
 var searchData=
 [
-  ['all_434',['ALL',['../classlogs_1_1Level.html#adf67967616f2c99c2e53866598a8b058',1,'logs::Level']]],
-  ['appender_5f_435',['appender_',['../classlogs_1_1Logger.html#a1675b8ac0766c2ca687e9847263bd12a',1,'logs::Logger']]],
-  ['appenders_5f_436',['appenders_',['../classlogs_1_1LoggerFactory.html#aa98593b119af2722af42ed78a73b166d',1,'logs::LoggerFactory']]]
+  ['_5fcontext_983',['_context',['../classbackward_1_1StackTraceImplBase.html#a7aa62c90724bbf29ff4918feddfce506',1,'backward::StackTraceImplBase']]],
+  ['_5fdemangle_5fbuffer_984',['_demangle_buffer',['../structbackward_1_1details_1_1demangler__impl_3_01system__tag_1_1current__tag_01_4.html#a2fc07579b2768051a80f68503f8bce43',1,'backward::details::demangler_impl&lt; system_tag::current_tag &gt;']]],
+  ['_5fdemangle_5fbuffer_5flength_985',['_demangle_buffer_length',['../structbackward_1_1details_1_1demangler__impl_3_01system__tag_1_1current__tag_01_4.html#aa68ec0a85c602cee250ba457e2ea5072',1,'backward::details::demangler_impl&lt; system_tag::current_tag &gt;']]],
+  ['_5fdemangler_986',['_demangler',['../classbackward_1_1TraceResolverImplBase.html#acd2336631d0ce112a3d60c6a7a8cbbc0',1,'backward::TraceResolverImplBase']]],
+  ['_5fdepth_987',['_depth',['../classbackward_1_1details_1_1Unwinder.html#aca4025ed41068d83215fc4188213f6f5',1,'backward::details::Unwinder']]],
+  ['_5fempty_988',['_empty',['../classbackward_1_1details_1_1handle.html#a4a0a24a127c7ce01429f63dcb488e098',1,'backward::details::handle']]],
+  ['_5fenabled_989',['_enabled',['../classbackward_1_1Colorize.html#afe06c82d117f5978dbf8280c01a86f0e',1,'backward::Colorize']]],
+  ['_5ferror_5faddr_990',['_error_addr',['../classbackward_1_1StackTraceImplBase.html#a2e2c2d4593672248abff1075780d0930',1,'backward::StackTraceImplBase']]],
+  ['_5ff_991',['_f',['../classbackward_1_1details_1_1Unwinder.html#a68b6e88aa75ad73387b0baa4657855d3',1,'backward::details::Unwinder']]],
+  ['_5ffile_992',['_file',['../classbackward_1_1SourceFile.html#a51983659f9007727423542f3eb1fa231',1,'backward::SourceFile']]],
+  ['_5findex_993',['_index',['../classbackward_1_1details_1_1Unwinder.html#af0b7d1087117714cf3d3cd9a446e4ce9',1,'backward::details::Unwinder']]],
+  ['_5floaded_994',['_loaded',['../classbackward_1_1SignalHandling.html#a9c176d51a9845237fdd5a8daa6404834',1,'backward::SignalHandling']]],
+  ['_5fos_995',['_os',['../classbackward_1_1Colorize.html#a892fa06cd57fa63079a2192901ec811f',1,'backward::Colorize']]],
+  ['_5freset_996',['_reset',['../classbackward_1_1Colorize.html#a09d13fdf6dd5581126eeec617c728dd5',1,'backward::Colorize']]],
+  ['_5fresolver_997',['_resolver',['../classbackward_1_1Printer.html#a5093972ea2f35088385edccc881b4c56',1,'backward::Printer']]],
+  ['_5fskip_998',['_skip',['../classbackward_1_1StackTraceImplBase.html#ab818a9dc2ec44e79bcb8b07c760272f2',1,'backward::StackTraceImplBase']]],
+  ['_5fsnippets_999',['_snippets',['../classbackward_1_1Printer.html#ac0ea80d2f8de213d2b96f35e30f70d0d',1,'backward::Printer']]],
+  ['_5fsrc_5ffiles_1000',['_src_files',['../classbackward_1_1SnippetFactory.html#a64a38fe8ea446660b774be38b48ae178',1,'backward::SnippetFactory']]],
+  ['_5fstack_5fcontent_1001',['_stack_content',['../classbackward_1_1SignalHandling.html#a6b0def9b86f0b42d14c408b6f3365f10',1,'backward::SignalHandling']]],
+  ['_5fstacktrace_1002',['_stacktrace',['../classbackward_1_1StackTraceImplHolder.html#a4417a111a7e8f4a74fe5d76bd7bf815d',1,'backward::StackTraceImplHolder']]],
+  ['_5fsymbols_1003',['_symbols',['../classbackward_1_1TraceResolverLinuxImpl_3_01trace__resolver__tag_1_1backtrace__symbol_01_4.html#a97e1d31b759b6754877b5856a5c81907',1,'backward::TraceResolverLinuxImpl&lt; trace_resolver_tag::backtrace_symbol &gt;']]],
+  ['_5fthread_5fid_1004',['_thread_id',['../classbackward_1_1StackTraceImplBase.html#a02519c0d3ef7fc1e2a0019a83861e153',1,'backward::StackTraceImplBase']]],
+  ['_5fval_1005',['_val',['../classbackward_1_1details_1_1handle.html#a1d523299d15b726db3988da92e783096',1,'backward::details::handle']]]
 ];

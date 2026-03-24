@@ -1,0 +1,8 @@
+<map id="logs::FileAppender::flush" name="logs::FileAppender::flush">
+<area shape="rect" id="node1" title="Écrit tous les messages en attente dans le fichier." alt="" coords="441,104,584,145"/>
+<area shape="rect" id="node2" href="$classlogs_1_1FileAppender.html#adf591d230e1d1fe87ea57c4d9ac978e3" title="Destructeur de la classe." alt="" coords="235,5,378,47"/>
+<area shape="rect" id="node3" href="$classtest_1_1FileAppenderTest.html#a633d4f7c55e2b9bd2bcfbf25ffbfface" title="Vérifie que le fichier est vide si aucun message n&#39;est écrit." alt="" coords="223,71,390,112"/>
+<area shape="rect" id="node5" href="$classtest_1_1FileAppenderTest.html#a5c23aeaba819e2d022e35d75b8737350" title="Vérifie que plusieurs messages sont écrits dans l&#39;ordre." alt="" coords="220,136,393,177"/>
+<area shape="rect" id="node6" href="$classtest_1_1FileAppenderTest.html#a5f573c45406190ce597a59dca19e5ec9" title="Vérifie qu&#39;un message écrit est bien présent dans le fichier après flush." alt="" coords="223,201,390,243"/>
+<area shape="rect" id="node4" href="$classtest_1_1FileAppenderTest.html#a34d4f99eb29a3710953a9bdb277481c1" title="Execute les tests associés à la classe." alt="" coords="5,136,172,177"/>
+</map>

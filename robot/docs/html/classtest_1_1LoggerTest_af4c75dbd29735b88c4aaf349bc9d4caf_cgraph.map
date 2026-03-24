@@ -1,0 +1,25 @@
+<map id="test::LoggerTest::suite" name="test::LoggerTest::suite">
+<area shape="rect" id="node1" title="Execute les tests associés à la classe." alt="" coords="5,292,171,319"/>
+<area shape="rect" id="node2" href="$classtest_1_1LoggerTest.html#afc684e7e3ae6843c44f18f21b037ce28" title="Vérifie que les messages sous le niveau du logger sont filtrés." alt="" coords="225,99,418,141"/>
+<area shape="rect" id="node8" href="$classtest_1_1LoggerTest.html#a76ceb62a27076dd62490d377b09861ab" title="Vérifie la construction par copie d&#39;un logger parent." alt="" coords="220,219,423,261"/>
+<area shape="rect" id="node12" href="$classtest_1_1LoggerTest.html#a25080abab28188bb60904dbfac123252" title="Vérifie le nom et le niveau du logger." alt="" coords="220,285,423,326"/>
+<area shape="rect" id="node13" href="$classtest_1_1LoggerTest.html#a3b9ae6dbc586a91732890bbebc8f49ad" title="Vérifie les messages simples (debug, info, warn, error)." alt="" coords="220,369,423,410"/>
+<area shape="rect" id="node19" href="$classtest_1_1LoggerTest.html#a49ceaa16cfc816d22253860fad8ad59e" title="Vérifie les messages via l&#39;API stream (&lt;&lt;)." alt="" coords="219,451,424,493"/>
+<area shape="rect" id="node3" href="$classlogs_1_1Logger.html#a48d911418afc6c935cae1e71ed771dee" title="Cette méthode retourne l&#39;appender au Logger." alt="" coords="472,5,643,32"/>
+<area shape="rect" id="node4" href="$classlogs_1_1LoggerFactory.html#a90478b91d7af2ef8841ded21e3521f69" title="Cette méthode statique retourne l&#39;instance unique de la classe LoggerFactory." alt="" coords="729,194,877,235"/>
+<area shape="rect" id="node5" href="$classlogs_1_1Logger.html#a13e5a43ff9ecfe978afcd4443be1b32b" title="Cette méthode vérifie si le logger est actif pour un niveau donné." alt="" coords="477,259,638,285"/>
+<area shape="rect" id="node7" href="$classlogs_1_1LoggerFactory.html#a212aa623f4b6bee12cb39e8017dde670" title="Cette méthode retourne le Logger principal qui définit le niveau de trace par défaut." alt="" coords="729,259,877,301"/>
+<area shape="rect" id="node6" href="$classlogs_1_1Logger.html#a94c013a945cf805fbbc8aa763f73f107" title="Cette méthode retourne le niveau associé au Logger." alt="" coords="732,143,873,169"/>
+<area shape="rect" id="node9" href="$classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e" title="Cette méthode statique retourne un Logger en fonction de son nom." alt="" coords="483,310,631,351"/>
+<area shape="rect" id="node11" href="$classlogs_1_1Logger.html#a6706ac94e219fd82c6049e376805202e" title="Cette méthode retourne le nom associé au Logger." alt="" coords="484,208,631,235"/>
+<area shape="rect" id="node10" href="$classlogs_1_1LoggerFactory.html#ac89f19c0ffd71aa8cdc1c2d44c03809e" title="Cette méthode ajoute un appender au système." alt="" coords="713,325,892,352"/>
+<area shape="rect" id="node14" href="$classlogs_1_1Logger.html#a7dffc8f610014ec59b63392da16140e4" title="Trace un message de niveau DEBUG." alt="" coords="483,528,632,555"/>
+<area shape="rect" id="node16" href="$classlogs_1_1Logger.html#a8b6a2019233bc44b3c3c86c653910831" title="Trace un message de niveau ERROR." alt="" coords="733,376,873,403"/>
+<area shape="rect" id="node17" href="$classlogs_1_1Logger.html#aa381165771d00a6a1e3aa9664bf6467f" title="Trace un message de niveau INFO." alt="" coords="490,477,625,504"/>
+<area shape="rect" id="node18" href="$classlogs_1_1Logger.html#a240e8d7b58195c85bd7b4e4a3417d955" title="Trace un message de niveau WARN." alt="" coords="487,427,628,453"/>
+<area shape="rect" id="node15" href="$classlogs_1_1Logger.html#afa535aaf4891e02c4ff7f84d372b5b1b" title="Méthode générique de trace d&#39;un message." alt="" coords="963,477,1163,504"/>
+<area shape="rect" id="node20" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="517,579,598,605"/>
+<area shape="rect" id="node21" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#a0e4fd77693fd899ec1b0670354f93a02" title="Cette méthode valide le message en cours de construction et le transmet au Logger de référence." alt="" coords="691,579,915,605"/>
+<area shape="rect" id="node22" href="$classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32" title="Verrouille le mutex. Cette méthode doit être appelée avant d&#39;utiliser la ressource associée...." alt="" coords="995,604,1130,631"/>
+<area shape="rect" id="node23" href="$classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3" title="Déverrouille le mutex. Cette méthode doit être appelée après avoir utiliser la ressource associée." alt="" coords="987,553,1138,580"/>
+</map>

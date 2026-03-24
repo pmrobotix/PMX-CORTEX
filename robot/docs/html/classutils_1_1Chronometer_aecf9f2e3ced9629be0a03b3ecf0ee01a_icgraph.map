@@ -1,6 +1,7 @@
 <map id="utils::Chronometer::getElapsedTimeInMilliSec" name="utils::Chronometer::getElapsedTimeInMilliSec">
-<area shape="rect" id="node1" title="Retourne le temps écoulé en millisecondes." alt="" coords="463,39,661,80"/>
+<area shape="rect" id="node1" title="Retourne le temps écoulé en millisecondes." alt="" coords="463,71,661,112"/>
 <area shape="rect" id="node2" href="$classtest_1_1ChronometerTest.html#a23da1b885637b6bcebc73325fca0684a" title="Vérifie la mesure du temps écoulé après un sleep." alt="" coords="234,5,401,47"/>
 <area shape="rect" id="node4" href="$classtest_1_1ThreadTest.html#a313e3f9f588d83d238893bd58923ed21" title="Vérifie la précision de sleep_for_millis." alt="" coords="220,71,415,112"/>
+<area shape="rect" id="node5" href="$classtest_1_1ThreadTest.html#a1262fce3aca48dc17dab2ee10a7d5999" title="Vérifie la précision de sleep_for_micros." alt="" coords="220,136,415,177"/>
 <area shape="rect" id="node3" href="$classtest_1_1ChronometerTest.html#a1c7e36190a3c3f415a5547d408883d76" title="Execute les tests associés à la classe." alt="" coords="5,5,172,47"/>
 </map>

@@ -1,13 +1,27 @@
 <map id="logs::LoggerFactory::add" name="logs::LoggerFactory::add">
-<area shape="rect" id="node1" title="Cette méthode ajoute un appender au système." alt="" coords="815,46,993,73"/>
-<area shape="rect" id="node2" href="$classlogs_1_1LoggerFactory.html#a12d0cca9505bd37587b4c0333a7c86b8" title="Méthode d&#39;initialisation du système." alt="" coords="619,5,767,47"/>
-<area shape="rect" id="node4" href="$classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e" title="Cette méthode statique retourne un Logger en fonction de son nom." alt="" coords="619,71,767,112"/>
-<area shape="rect" id="node3" href="$classlogs_1_1LoggerFactory.html#af48dba1727daa4d9114882e5b64c35ac" title="constructeur de la classe." alt="" coords="418,5,566,47"/>
-<area shape="rect" id="node5" href="$classUnitTest.html#a04ac91fa9017d4c8ee88419ab365ebe1" title="Cette méthode retourne le logger associé à cette classe." alt="" coords="430,74,554,101"/>
-<area shape="rect" id="node9" href="$classUnitTestSuite.html#a9f4352aea6a472a2635fd222a4035658" title="Cette méthode retourne le logger associé à cette classe." alt="" coords="413,125,571,151"/>
-<area shape="rect" id="node6" href="$classUnitTest.html#aae657d6d8bdc56cb2a9d4e4e9f5f8929" title="Cette méthode fait échouer un test." alt="" coords="245,74,349,101"/>
-<area shape="rect" id="node7" href="$classUnitTest.html#a94aab90579073ba6e2068bbc05c47c4a" title="Valide un test dans le cadre des tests unitaires." alt="" coords="31,23,154,50"/>
-<area shape="rect" id="node8" href="$classUnitTest.html#a00a74363b89994348f5025b42f7ea96f" title="Vérifie si un message d&#39;erreur à bien été émis." alt="" coords="5,74,180,101"/>
-<area shape="rect" id="node10" href="$classUnitTestSuite.html#af7b586b2771e5b876628be90e33aba5e" title="Execution de tous les tests." alt="" coords="228,125,365,151"/>
-<area shape="rect" id="node11" href="$Main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="65,125,120,151"/>
+<area shape="rect" id="node1" title="Cette méthode ajoute un appender au système." alt="" coords="892,363,1071,390"/>
+<area shape="rect" id="node2" href="$classlogs_1_1LoggerFactory.html#a12d0cca9505bd37587b4c0333a7c86b8" title="Méthode d&#39;initialisation du système." alt="" coords="696,164,844,205"/>
+<area shape="rect" id="node4" href="$classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e" title="Cette méthode statique retourne un Logger en fonction de son nom." alt="" coords="696,388,844,429"/>
+<area shape="rect" id="node3" href="$classlogs_1_1LoggerFactory.html#af48dba1727daa4d9114882e5b64c35ac" title="constructeur de la classe." alt="" coords="471,5,619,47"/>
+<area shape="rect" id="node5" href="$classSvgWriter.html#a30059a7d7289c57d3bf1bf623713dc0a" title="Constructeur de la classe." alt="" coords="466,71,625,98"/>
+<area shape="rect" id="node6" href="$classUnitTest.html#a04ac91fa9017d4c8ee88419ab365ebe1" title="Cette méthode retourne le logger associé à cette classe." alt="" coords="483,122,607,149"/>
+<area shape="rect" id="node10" href="$classUnitTestSuite.html#a9f4352aea6a472a2635fd222a4035658" title="Cette méthode retourne le logger associé à cette classe." alt="" coords="467,173,624,199"/>
+<area shape="rect" id="node13" href="$classtest_1_1FileAppenderTest.html#ab47460a0731606c51db2ca317fc6ef0c" title="Vérifie que le destructeur flush automatiquement." alt="" coords="459,224,632,265"/>
+<area shape="rect" id="node15" href="$classtest_1_1SvgAppenderTest.html#aee81cfbf43a7ca0f227fdf112aaeb94c" title="Vérifie que le destructeur flush automatiquement." alt="" coords="459,420,632,461"/>
+<area shape="rect" id="node17" href="$classtest_1_1LoggerTest.html#a76ceb62a27076dd62490d377b09861ab" title="Vérifie la construction par copie d&#39;un logger parent." alt="" coords="444,616,647,657"/>
+<area shape="rect" id="node19" href="$classtest_1_1LoggerTest.html#a25080abab28188bb60904dbfac123252" title="Vérifie le nom et le niveau du logger." alt="" coords="444,681,647,723"/>
+<area shape="rect" id="node20" href="$classtest_1_1SvgAppenderTest.html#a855b9d39568bbe557279a635cebdeb86" title="Vérifie que plusieurs éléments SVG sont écrits dans l&#39;ordre." alt="" coords="461,485,630,527"/>
+<area shape="rect" id="node21" href="$classtest_1_1FileAppenderTest.html#a5c23aeaba819e2d022e35d75b8737350" title="Vérifie que plusieurs messages sont écrits dans l&#39;ordre." alt="" coords="459,289,632,331"/>
+<area shape="rect" id="node22" href="$classtest_1_1LoggerTest.html#a3b9ae6dbc586a91732890bbebc8f49ad" title="Vérifie les messages simples (debug, info, warn, error)." alt="" coords="444,747,647,788"/>
+<area shape="rect" id="node23" href="$classtest_1_1LoggerTest.html#a49ceaa16cfc816d22253860fad8ad59e" title="Vérifie les messages via l&#39;API stream (&lt;&lt;)." alt="" coords="443,812,648,853"/>
+<area shape="rect" id="node24" href="$classtest_1_1FileAppenderTest.html#a5f573c45406190ce597a59dca19e5ec9" title="Vérifie qu&#39;un message écrit est bien présent dans le fichier après flush." alt="" coords="462,355,629,396"/>
+<area shape="rect" id="node25" href="$classtest_1_1SvgAppenderTest.html#ab8ecdbbe67097178151f6145f4e9c5a8" title="Vérifie qu&#39;un élément SVG est écrit dans le fichier après flush." alt="" coords="462,551,629,592"/>
+<area shape="rect" id="node7" href="$classUnitTest.html#aae657d6d8bdc56cb2a9d4e4e9f5f8929" title="Cette méthode fait échouer un test." alt="" coords="259,122,363,149"/>
+<area shape="rect" id="node8" href="$classUnitTest.html#a94aab90579073ba6e2068bbc05c47c4a" title="Valide un test dans le cadre des tests unitaires." alt="" coords="31,71,154,98"/>
+<area shape="rect" id="node9" href="$classUnitTest.html#a00a74363b89994348f5025b42f7ea96f" title="Vérifie si un message d&#39;erreur à bien été émis." alt="" coords="5,122,180,149"/>
+<area shape="rect" id="node11" href="$classUnitTestSuite.html#af7b586b2771e5b876628be90e33aba5e" title="Execution de tous les tests." alt="" coords="243,173,380,199"/>
+<area shape="rect" id="node12" href="$Main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="65,173,120,199"/>
+<area shape="rect" id="node14" href="$classtest_1_1FileAppenderTest.html#a34d4f99eb29a3710953a9bdb277481c1" title="Execute les tests associés à la classe." alt="" coords="228,289,395,331"/>
+<area shape="rect" id="node16" href="$classtest_1_1SvgAppenderTest.html#ad368c503a768fb7fc9e154e7a18002cf" title="Execute les tests associés à la classe." alt="" coords="228,485,395,527"/>
+<area shape="rect" id="node18" href="$classtest_1_1LoggerTest.html#af4c75dbd29735b88c4aaf349bc9d4caf" title="Execute les tests associés à la classe." alt="" coords="229,721,394,747"/>
 </map>

@@ -1,8 +1,18 @@
 <map id="logs::end" name="logs::end">
-<area shape="rect" id="node1" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="413,81,495,108"/>
-<area shape="rect" id="node2" href="$classUnitTest.html#aae657d6d8bdc56cb2a9d4e4e9f5f8929" title="Cette méthode fait échouer un test." alt="" coords="245,56,349,83"/>
-<area shape="rect" id="node5" href="$classUnitTestSuite.html#af7b586b2771e5b876628be90e33aba5e" title="Execution de tous les tests." alt="" coords="228,107,365,133"/>
-<area shape="rect" id="node3" href="$classUnitTest.html#a94aab90579073ba6e2068bbc05c47c4a" title="Valide un test dans le cadre des tests unitaires." alt="" coords="31,5,154,32"/>
-<area shape="rect" id="node4" href="$classUnitTest.html#a00a74363b89994348f5025b42f7ea96f" title="Vérifie si un message d&#39;erreur à bien été émis." alt="" coords="5,56,180,83"/>
-<area shape="rect" id="node6" href="$Main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="65,107,120,133"/>
+<area shape="rect" id="node1" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="481,249,563,276"/>
+<area shape="rect" id="node2" href="$classSvgWriter.html#a30059a7d7289c57d3bf1bf623713dc0a" title="Constructeur de la classe." alt="" coords="251,5,410,32"/>
+<area shape="rect" id="node3" href="$classSvgWriter.html#ac6b52164bb48debc2aa814b2e96ec233" title="Écrit l&#39;en&#45;tête SVG (grille, defs, symboles)." alt="" coords="242,56,419,83"/>
+<area shape="rect" id="node4" href="$classSvgWriter.html#a18e6747b544e14bc12f184bce594ec63" title="Ferme le document SVG (balises de fin)." alt="" coords="248,107,413,133"/>
+<area shape="rect" id="node6" href="$classUnitTest.html#aae657d6d8bdc56cb2a9d4e4e9f5f8929" title="Cette méthode fait échouer un test." alt="" coords="279,157,383,184"/>
+<area shape="rect" id="node9" href="$classbackward_1_1Printer.html#a0c3901fa5647c29b72f92376f32a631c" title=" " alt="" coords="259,209,403,250"/>
+<area shape="rect" id="node10" href="$classbackward_1_1Printer.html#a2250517ae18d9d168b2e83c96b223b76" title=" " alt="" coords="259,274,403,315"/>
+<area shape="rect" id="node11" href="$classUnitTestSuite.html#af7b586b2771e5b876628be90e33aba5e" title="Execution de tous les tests." alt="" coords="262,340,399,367"/>
+<area shape="rect" id="node13" href="$classtest_1_1LoggerTest.html#a49ceaa16cfc816d22253860fad8ad59e" title="Vérifie les messages via l&#39;API stream (&lt;&lt;)." alt="" coords="228,391,433,433"/>
+<area shape="rect" id="node15" href="$classSvgWriter.html#a1860768b0bf4858dae8577f2b7653cac" title="Écrit un texte à une position donnée dans le SVG." alt="" coords="253,457,408,484"/>
+<area shape="rect" id="node16" href="$classSvgWriter.html#ae4246028907242734cc14db98d492eb5" title="Écrit un texte avec couleur et taille personnalisées." alt="" coords="229,508,433,535"/>
+<area shape="rect" id="node5" href="$classSvgWriter.html#ae9f503ecbe84f673f7f05dc50a52728d" title="Destructeur de la classe." alt="" coords="8,107,177,133"/>
+<area shape="rect" id="node7" href="$classUnitTest.html#a94aab90579073ba6e2068bbc05c47c4a" title="Valide un test dans le cadre des tests unitaires." alt="" coords="31,157,154,184"/>
+<area shape="rect" id="node8" href="$classUnitTest.html#a00a74363b89994348f5025b42f7ea96f" title="Vérifie si un message d&#39;erreur à bien été émis." alt="" coords="5,208,180,235"/>
+<area shape="rect" id="node12" href="$Main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="65,340,120,367"/>
+<area shape="rect" id="node14" href="$classtest_1_1LoggerTest.html#af4c75dbd29735b88c4aaf349bc9d4caf" title="Execute les tests associés à la classe." alt="" coords="10,399,175,425"/>
 </map>

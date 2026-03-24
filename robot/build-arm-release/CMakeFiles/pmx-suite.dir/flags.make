@@ -4,7 +4,7 @@
 # compile CXX with /install/opos6ul-git/buildroot/output/host/bin/arm-none-linux-gnueabihf-g++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/usr/include/as_devices -I/home/pmx/git/PMX-CORTEX/robot/test/suite -I/home/pmx/git/PMX-CORTEX/robot/src/common
+CXX_INCLUDES = -I/install/opos6ul-git/buildroot/output/host/arm-buildroot-linux-gnueabihf/sysroot/usr/include/as_devices -I/home/pmx/git/PMX-CORTEX/robot/test/suite -I/home/pmx/git/PMX-CORTEX/robot/src/common -I/home/pmx/git/PMX-CORTEX/libs/simple-svg
 
-CXX_FLAGS = -O3 -DNDEBUG -Wall -pthread -std=gnu++17
+CXX_FLAGS = -Os -DNDEBUG -Wall -pthread -Wno-psabi -std=gnu++17
 

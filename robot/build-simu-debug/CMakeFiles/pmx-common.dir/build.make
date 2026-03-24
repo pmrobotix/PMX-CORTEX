@@ -111,10 +111,38 @@ CMakeFiles/pmx-common.dir/src/common/utils/Chronometer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pmx-common.dir/src/common/utils/Chronometer.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/common/utils/Chronometer.cpp -o CMakeFiles/pmx-common.dir/src/common/utils/Chronometer.cpp.s
 
+CMakeFiles/pmx-common.dir/src/common/utils/itoa.cpp.o: CMakeFiles/pmx-common.dir/flags.make
+CMakeFiles/pmx-common.dir/src/common/utils/itoa.cpp.o: ../src/common/utils/itoa.cpp
+CMakeFiles/pmx-common.dir/src/common/utils/itoa.cpp.o: CMakeFiles/pmx-common.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/pmx-common.dir/src/common/utils/itoa.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pmx-common.dir/src/common/utils/itoa.cpp.o -MF CMakeFiles/pmx-common.dir/src/common/utils/itoa.cpp.o.d -o CMakeFiles/pmx-common.dir/src/common/utils/itoa.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/common/utils/itoa.cpp
+
+CMakeFiles/pmx-common.dir/src/common/utils/itoa.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pmx-common.dir/src/common/utils/itoa.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/src/common/utils/itoa.cpp > CMakeFiles/pmx-common.dir/src/common/utils/itoa.cpp.i
+
+CMakeFiles/pmx-common.dir/src/common/utils/itoa.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pmx-common.dir/src/common/utils/itoa.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/common/utils/itoa.cpp -o CMakeFiles/pmx-common.dir/src/common/utils/itoa.cpp.s
+
+CMakeFiles/pmx-common.dir/src/common/utils/WString.cpp.o: CMakeFiles/pmx-common.dir/flags.make
+CMakeFiles/pmx-common.dir/src/common/utils/WString.cpp.o: ../src/common/utils/WString.cpp
+CMakeFiles/pmx-common.dir/src/common/utils/WString.cpp.o: CMakeFiles/pmx-common.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/pmx-common.dir/src/common/utils/WString.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pmx-common.dir/src/common/utils/WString.cpp.o -MF CMakeFiles/pmx-common.dir/src/common/utils/WString.cpp.o.d -o CMakeFiles/pmx-common.dir/src/common/utils/WString.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/common/utils/WString.cpp
+
+CMakeFiles/pmx-common.dir/src/common/utils/WString.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pmx-common.dir/src/common/utils/WString.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/src/common/utils/WString.cpp > CMakeFiles/pmx-common.dir/src/common/utils/WString.cpp.i
+
+CMakeFiles/pmx-common.dir/src/common/utils/WString.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pmx-common.dir/src/common/utils/WString.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/common/utils/WString.cpp -o CMakeFiles/pmx-common.dir/src/common/utils/WString.cpp.s
+
 CMakeFiles/pmx-common.dir/src/common/log/Level.cpp.o: CMakeFiles/pmx-common.dir/flags.make
 CMakeFiles/pmx-common.dir/src/common/log/Level.cpp.o: ../src/common/log/Level.cpp
 CMakeFiles/pmx-common.dir/src/common/log/Level.cpp.o: CMakeFiles/pmx-common.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/pmx-common.dir/src/common/log/Level.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/pmx-common.dir/src/common/log/Level.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pmx-common.dir/src/common/log/Level.cpp.o -MF CMakeFiles/pmx-common.dir/src/common/log/Level.cpp.o.d -o CMakeFiles/pmx-common.dir/src/common/log/Level.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/common/log/Level.cpp
 
 CMakeFiles/pmx-common.dir/src/common/log/Level.cpp.i: cmake_force
@@ -128,7 +156,7 @@ CMakeFiles/pmx-common.dir/src/common/log/Level.cpp.s: cmake_force
 CMakeFiles/pmx-common.dir/src/common/log/Logger.cpp.o: CMakeFiles/pmx-common.dir/flags.make
 CMakeFiles/pmx-common.dir/src/common/log/Logger.cpp.o: ../src/common/log/Logger.cpp
 CMakeFiles/pmx-common.dir/src/common/log/Logger.cpp.o: CMakeFiles/pmx-common.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/pmx-common.dir/src/common/log/Logger.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/pmx-common.dir/src/common/log/Logger.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pmx-common.dir/src/common/log/Logger.cpp.o -MF CMakeFiles/pmx-common.dir/src/common/log/Logger.cpp.o.d -o CMakeFiles/pmx-common.dir/src/common/log/Logger.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/common/log/Logger.cpp
 
 CMakeFiles/pmx-common.dir/src/common/log/Logger.cpp.i: cmake_force
@@ -142,7 +170,7 @@ CMakeFiles/pmx-common.dir/src/common/log/Logger.cpp.s: cmake_force
 CMakeFiles/pmx-common.dir/src/common/log/LoggerFactory.cpp.o: CMakeFiles/pmx-common.dir/flags.make
 CMakeFiles/pmx-common.dir/src/common/log/LoggerFactory.cpp.o: ../src/common/log/LoggerFactory.cpp
 CMakeFiles/pmx-common.dir/src/common/log/LoggerFactory.cpp.o: CMakeFiles/pmx-common.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/pmx-common.dir/src/common/log/LoggerFactory.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/pmx-common.dir/src/common/log/LoggerFactory.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pmx-common.dir/src/common/log/LoggerFactory.cpp.o -MF CMakeFiles/pmx-common.dir/src/common/log/LoggerFactory.cpp.o.d -o CMakeFiles/pmx-common.dir/src/common/log/LoggerFactory.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/common/log/LoggerFactory.cpp
 
 CMakeFiles/pmx-common.dir/src/common/log/LoggerFactory.cpp.i: cmake_force
@@ -153,10 +181,38 @@ CMakeFiles/pmx-common.dir/src/common/log/LoggerFactory.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pmx-common.dir/src/common/log/LoggerFactory.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/common/log/LoggerFactory.cpp -o CMakeFiles/pmx-common.dir/src/common/log/LoggerFactory.cpp.s
 
+CMakeFiles/pmx-common.dir/src/common/log/SvgWriter.cpp.o: CMakeFiles/pmx-common.dir/flags.make
+CMakeFiles/pmx-common.dir/src/common/log/SvgWriter.cpp.o: ../src/common/log/SvgWriter.cpp
+CMakeFiles/pmx-common.dir/src/common/log/SvgWriter.cpp.o: CMakeFiles/pmx-common.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/pmx-common.dir/src/common/log/SvgWriter.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pmx-common.dir/src/common/log/SvgWriter.cpp.o -MF CMakeFiles/pmx-common.dir/src/common/log/SvgWriter.cpp.o.d -o CMakeFiles/pmx-common.dir/src/common/log/SvgWriter.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/common/log/SvgWriter.cpp
+
+CMakeFiles/pmx-common.dir/src/common/log/SvgWriter.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pmx-common.dir/src/common/log/SvgWriter.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/src/common/log/SvgWriter.cpp > CMakeFiles/pmx-common.dir/src/common/log/SvgWriter.cpp.i
+
+CMakeFiles/pmx-common.dir/src/common/log/SvgWriter.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pmx-common.dir/src/common/log/SvgWriter.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/common/log/SvgWriter.cpp -o CMakeFiles/pmx-common.dir/src/common/log/SvgWriter.cpp.s
+
+CMakeFiles/pmx-common.dir/src/common/log/backward.cpp.o: CMakeFiles/pmx-common.dir/flags.make
+CMakeFiles/pmx-common.dir/src/common/log/backward.cpp.o: ../src/common/log/backward.cpp
+CMakeFiles/pmx-common.dir/src/common/log/backward.cpp.o: CMakeFiles/pmx-common.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/pmx-common.dir/src/common/log/backward.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pmx-common.dir/src/common/log/backward.cpp.o -MF CMakeFiles/pmx-common.dir/src/common/log/backward.cpp.o.d -o CMakeFiles/pmx-common.dir/src/common/log/backward.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/common/log/backward.cpp
+
+CMakeFiles/pmx-common.dir/src/common/log/backward.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pmx-common.dir/src/common/log/backward.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/src/common/log/backward.cpp > CMakeFiles/pmx-common.dir/src/common/log/backward.cpp.i
+
+CMakeFiles/pmx-common.dir/src/common/log/backward.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pmx-common.dir/src/common/log/backward.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/common/log/backward.cpp -o CMakeFiles/pmx-common.dir/src/common/log/backward.cpp.s
+
 CMakeFiles/pmx-common.dir/src/common/log/appender/MemoryAppender.cpp.o: CMakeFiles/pmx-common.dir/flags.make
 CMakeFiles/pmx-common.dir/src/common/log/appender/MemoryAppender.cpp.o: ../src/common/log/appender/MemoryAppender.cpp
 CMakeFiles/pmx-common.dir/src/common/log/appender/MemoryAppender.cpp.o: CMakeFiles/pmx-common.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/pmx-common.dir/src/common/log/appender/MemoryAppender.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/pmx-common.dir/src/common/log/appender/MemoryAppender.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pmx-common.dir/src/common/log/appender/MemoryAppender.cpp.o -MF CMakeFiles/pmx-common.dir/src/common/log/appender/MemoryAppender.cpp.o.d -o CMakeFiles/pmx-common.dir/src/common/log/appender/MemoryAppender.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/common/log/appender/MemoryAppender.cpp
 
 CMakeFiles/pmx-common.dir/src/common/log/appender/MemoryAppender.cpp.i: cmake_force
@@ -170,7 +226,7 @@ CMakeFiles/pmx-common.dir/src/common/log/appender/MemoryAppender.cpp.s: cmake_fo
 CMakeFiles/pmx-common.dir/src/common/log/appender/ConsoleAppender.cpp.o: CMakeFiles/pmx-common.dir/flags.make
 CMakeFiles/pmx-common.dir/src/common/log/appender/ConsoleAppender.cpp.o: ../src/common/log/appender/ConsoleAppender.cpp
 CMakeFiles/pmx-common.dir/src/common/log/appender/ConsoleAppender.cpp.o: CMakeFiles/pmx-common.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/pmx-common.dir/src/common/log/appender/ConsoleAppender.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/pmx-common.dir/src/common/log/appender/ConsoleAppender.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pmx-common.dir/src/common/log/appender/ConsoleAppender.cpp.o -MF CMakeFiles/pmx-common.dir/src/common/log/appender/ConsoleAppender.cpp.o.d -o CMakeFiles/pmx-common.dir/src/common/log/appender/ConsoleAppender.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/common/log/appender/ConsoleAppender.cpp
 
 CMakeFiles/pmx-common.dir/src/common/log/appender/ConsoleAppender.cpp.i: cmake_force
@@ -181,16 +237,65 @@ CMakeFiles/pmx-common.dir/src/common/log/appender/ConsoleAppender.cpp.s: cmake_f
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pmx-common.dir/src/common/log/appender/ConsoleAppender.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/common/log/appender/ConsoleAppender.cpp -o CMakeFiles/pmx-common.dir/src/common/log/appender/ConsoleAppender.cpp.s
 
+CMakeFiles/pmx-common.dir/src/common/log/appender/FileAppender.cpp.o: CMakeFiles/pmx-common.dir/flags.make
+CMakeFiles/pmx-common.dir/src/common/log/appender/FileAppender.cpp.o: ../src/common/log/appender/FileAppender.cpp
+CMakeFiles/pmx-common.dir/src/common/log/appender/FileAppender.cpp.o: CMakeFiles/pmx-common.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/pmx-common.dir/src/common/log/appender/FileAppender.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pmx-common.dir/src/common/log/appender/FileAppender.cpp.o -MF CMakeFiles/pmx-common.dir/src/common/log/appender/FileAppender.cpp.o.d -o CMakeFiles/pmx-common.dir/src/common/log/appender/FileAppender.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/common/log/appender/FileAppender.cpp
+
+CMakeFiles/pmx-common.dir/src/common/log/appender/FileAppender.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pmx-common.dir/src/common/log/appender/FileAppender.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/src/common/log/appender/FileAppender.cpp > CMakeFiles/pmx-common.dir/src/common/log/appender/FileAppender.cpp.i
+
+CMakeFiles/pmx-common.dir/src/common/log/appender/FileAppender.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pmx-common.dir/src/common/log/appender/FileAppender.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/common/log/appender/FileAppender.cpp -o CMakeFiles/pmx-common.dir/src/common/log/appender/FileAppender.cpp.s
+
+CMakeFiles/pmx-common.dir/src/common/log/appender/SvgAppender.cpp.o: CMakeFiles/pmx-common.dir/flags.make
+CMakeFiles/pmx-common.dir/src/common/log/appender/SvgAppender.cpp.o: ../src/common/log/appender/SvgAppender.cpp
+CMakeFiles/pmx-common.dir/src/common/log/appender/SvgAppender.cpp.o: CMakeFiles/pmx-common.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/pmx-common.dir/src/common/log/appender/SvgAppender.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pmx-common.dir/src/common/log/appender/SvgAppender.cpp.o -MF CMakeFiles/pmx-common.dir/src/common/log/appender/SvgAppender.cpp.o.d -o CMakeFiles/pmx-common.dir/src/common/log/appender/SvgAppender.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/common/log/appender/SvgAppender.cpp
+
+CMakeFiles/pmx-common.dir/src/common/log/appender/SvgAppender.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pmx-common.dir/src/common/log/appender/SvgAppender.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/src/common/log/appender/SvgAppender.cpp > CMakeFiles/pmx-common.dir/src/common/log/appender/SvgAppender.cpp.i
+
+CMakeFiles/pmx-common.dir/src/common/log/appender/SvgAppender.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pmx-common.dir/src/common/log/appender/SvgAppender.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/common/log/appender/SvgAppender.cpp -o CMakeFiles/pmx-common.dir/src/common/log/appender/SvgAppender.cpp.s
+
+CMakeFiles/pmx-common.dir/src/common/log/appender/TelemetryAppender.cpp.o: CMakeFiles/pmx-common.dir/flags.make
+CMakeFiles/pmx-common.dir/src/common/log/appender/TelemetryAppender.cpp.o: ../src/common/log/appender/TelemetryAppender.cpp
+CMakeFiles/pmx-common.dir/src/common/log/appender/TelemetryAppender.cpp.o: CMakeFiles/pmx-common.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/pmx-common.dir/src/common/log/appender/TelemetryAppender.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pmx-common.dir/src/common/log/appender/TelemetryAppender.cpp.o -MF CMakeFiles/pmx-common.dir/src/common/log/appender/TelemetryAppender.cpp.o.d -o CMakeFiles/pmx-common.dir/src/common/log/appender/TelemetryAppender.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/common/log/appender/TelemetryAppender.cpp
+
+CMakeFiles/pmx-common.dir/src/common/log/appender/TelemetryAppender.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pmx-common.dir/src/common/log/appender/TelemetryAppender.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/src/common/log/appender/TelemetryAppender.cpp > CMakeFiles/pmx-common.dir/src/common/log/appender/TelemetryAppender.cpp.i
+
+CMakeFiles/pmx-common.dir/src/common/log/appender/TelemetryAppender.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pmx-common.dir/src/common/log/appender/TelemetryAppender.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/common/log/appender/TelemetryAppender.cpp -o CMakeFiles/pmx-common.dir/src/common/log/appender/TelemetryAppender.cpp.s
+
 # Object files for target pmx-common
 pmx__common_OBJECTS = \
 "CMakeFiles/pmx-common.dir/src/common/thread/Thread.cpp.o" \
 "CMakeFiles/pmx-common.dir/src/common/thread/Mutex.cpp.o" \
 "CMakeFiles/pmx-common.dir/src/common/utils/Chronometer.cpp.o" \
+"CMakeFiles/pmx-common.dir/src/common/utils/itoa.cpp.o" \
+"CMakeFiles/pmx-common.dir/src/common/utils/WString.cpp.o" \
 "CMakeFiles/pmx-common.dir/src/common/log/Level.cpp.o" \
 "CMakeFiles/pmx-common.dir/src/common/log/Logger.cpp.o" \
 "CMakeFiles/pmx-common.dir/src/common/log/LoggerFactory.cpp.o" \
+"CMakeFiles/pmx-common.dir/src/common/log/SvgWriter.cpp.o" \
+"CMakeFiles/pmx-common.dir/src/common/log/backward.cpp.o" \
 "CMakeFiles/pmx-common.dir/src/common/log/appender/MemoryAppender.cpp.o" \
-"CMakeFiles/pmx-common.dir/src/common/log/appender/ConsoleAppender.cpp.o"
+"CMakeFiles/pmx-common.dir/src/common/log/appender/ConsoleAppender.cpp.o" \
+"CMakeFiles/pmx-common.dir/src/common/log/appender/FileAppender.cpp.o" \
+"CMakeFiles/pmx-common.dir/src/common/log/appender/SvgAppender.cpp.o" \
+"CMakeFiles/pmx-common.dir/src/common/log/appender/TelemetryAppender.cpp.o"
 
 # External object files for target pmx-common
 pmx__common_EXTERNAL_OBJECTS =
@@ -198,14 +303,21 @@ pmx__common_EXTERNAL_OBJECTS =
 libpmx-common.a: CMakeFiles/pmx-common.dir/src/common/thread/Thread.cpp.o
 libpmx-common.a: CMakeFiles/pmx-common.dir/src/common/thread/Mutex.cpp.o
 libpmx-common.a: CMakeFiles/pmx-common.dir/src/common/utils/Chronometer.cpp.o
+libpmx-common.a: CMakeFiles/pmx-common.dir/src/common/utils/itoa.cpp.o
+libpmx-common.a: CMakeFiles/pmx-common.dir/src/common/utils/WString.cpp.o
 libpmx-common.a: CMakeFiles/pmx-common.dir/src/common/log/Level.cpp.o
 libpmx-common.a: CMakeFiles/pmx-common.dir/src/common/log/Logger.cpp.o
 libpmx-common.a: CMakeFiles/pmx-common.dir/src/common/log/LoggerFactory.cpp.o
+libpmx-common.a: CMakeFiles/pmx-common.dir/src/common/log/SvgWriter.cpp.o
+libpmx-common.a: CMakeFiles/pmx-common.dir/src/common/log/backward.cpp.o
 libpmx-common.a: CMakeFiles/pmx-common.dir/src/common/log/appender/MemoryAppender.cpp.o
 libpmx-common.a: CMakeFiles/pmx-common.dir/src/common/log/appender/ConsoleAppender.cpp.o
+libpmx-common.a: CMakeFiles/pmx-common.dir/src/common/log/appender/FileAppender.cpp.o
+libpmx-common.a: CMakeFiles/pmx-common.dir/src/common/log/appender/SvgAppender.cpp.o
+libpmx-common.a: CMakeFiles/pmx-common.dir/src/common/log/appender/TelemetryAppender.cpp.o
 libpmx-common.a: CMakeFiles/pmx-common.dir/build.make
 libpmx-common.a: CMakeFiles/pmx-common.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX static library libpmx-common.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build-simu-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Linking CXX static library libpmx-common.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/pmx-common.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/pmx-common.dir/link.txt --verbose=$(VERBOSE)
 

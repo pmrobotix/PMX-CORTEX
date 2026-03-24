@@ -1,0 +1,851 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot: Référence de la classe logs::TelemetryAppender</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespacelogs.html">logs</a></li><li class="navelem"><a class="el" href="classlogs_1_1TelemetryAppender.html">TelemetryAppender</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Fonctions membres publiques</a> &#124;
+<a href="#pro-methods">Fonctions membres protégées</a> &#124;
+<a href="#pro-attribs">Attributs protégés</a> &#124;
+<a href="#pri-methods">Fonctions membres privées</a> &#124;
+<a href="#pri-attribs">Attributs privés</a> &#124;
+<a href="classlogs_1_1TelemetryAppender-members.html">Liste de tous les membres</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence de la classe logs::TelemetryAppender</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Implémentation de <a class="el" href="classlogs_1_1Appender.html" title="Classe de gestion des flux de sortie pour les logs.">Appender</a> pour une écriture des traces sur un flux de reseau.  
+ <a href="classlogs_1_1TelemetryAppender.html#details">Plus de détails...</a></p>
+
+<p><code>#include &lt;<a class="el" href="TelemetryAppender_8hpp_source.html">TelemetryAppender.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Graphe d'héritage de logs::TelemetryAppender:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classlogs_1_1TelemetryAppender__inherit__graph.svg" width="254" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">légende</a>]</span></center></div>
+<div class="dynheader">
+Graphe de collaboration de logs::TelemetryAppender:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classlogs_1_1TelemetryAppender__coll__graph.svg" width="254" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a href="graph_legend.html">légende</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Fonctions membres publiques</h2></td></tr>
+<tr class="memitem:af3e00020871557769a6036e49cf0903f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogs_1_1TelemetryAppender.html#af3e00020871557769a6036e49cf0903f">TelemetryAppender</a> (std::string Id_Robot, std::string PlotJuggler_hostname)</td></tr>
+<tr class="memdesc:af3e00020871557769a6036e49cf0903f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur par défaut. L'appender sera associé au flux de sortie standard.  <a href="classlogs_1_1TelemetryAppender.html#af3e00020871557769a6036e49cf0903f">Plus de détails...</a><br /></td></tr>
+<tr class="separator:af3e00020871557769a6036e49cf0903f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f37f1968d5db9221fb33631729fbb0a"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogs_1_1TelemetryAppender.html#a0f37f1968d5db9221fb33631729fbb0a">~TelemetryAppender</a> ()</td></tr>
+<tr class="memdesc:a0f37f1968d5db9221fb33631729fbb0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructeur de la classe.  <a href="classlogs_1_1TelemetryAppender.html#a0f37f1968d5db9221fb33631729fbb0a">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a0f37f1968d5db9221fb33631729fbb0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70d4527e81e59cb89832f0ceb2cc5edb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogs_1_1TelemetryAppender.html#a70d4527e81e59cb89832f0ceb2cc5edb">flush</a> ()</td></tr>
+<tr class="memdesc:a70d4527e81e59cb89832f0ceb2cc5edb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Envoie tous les messages JSON en attente via UDP et affiche les messages console.  <a href="classlogs_1_1TelemetryAppender.html#a70d4527e81e59cb89832f0ceb2cc5edb">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a70d4527e81e59cb89832f0ceb2cc5edb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa584b418a5ef484f76b93e361a1d7e32"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32">lock</a> ()</td></tr>
+<tr class="memdesc:aa584b418a5ef484f76b93e361a1d7e32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verrouille le mutex. Cette méthode doit être appelée avant d'utiliser la ressource associée. Si le mutex est déjà verrouillée, cette méthode attend qu'il se libère.  <a href="classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32">Plus de détails...</a><br /></td></tr>
+<tr class="separator:aa584b418a5ef484f76b93e361a1d7e32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04b4a02cf45fa2f60306f1805d464418"><td class="memItemLeft" align="right" valign="top">const std::list&lt; std::string &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogs_1_1MemoryAppender.html#a04b4a02cf45fa2f60306f1805d464418">messages</a> () const</td></tr>
+<tr class="separator:a04b4a02cf45fa2f60306f1805d464418"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc40847f9465a3482885099aba452b68"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1Mutex.html#afc40847f9465a3482885099aba452b68">tryLock</a> ()</td></tr>
+<tr class="memdesc:afc40847f9465a3482885099aba452b68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Essaie de verrouiller le mutex.  <a href="classutils_1_1Mutex.html#afc40847f9465a3482885099aba452b68">Plus de détails...</a><br /></td></tr>
+<tr class="separator:afc40847f9465a3482885099aba452b68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59b2079dc7f803d49f78ac9c04406cd3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3">unlock</a> ()</td></tr>
+<tr class="memdesc:a59b2079dc7f803d49f78ac9c04406cd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Déverrouille le mutex. Cette méthode doit être appelée après avoir utiliser la ressource associée.  <a href="classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a59b2079dc7f803d49f78ac9c04406cd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac016e9912989d9550e5f5b42603a793c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogs_1_1TelemetryAppender.html#ac016e9912989d9550e5f5b42603a793c">writeMessage</a> (const <a class="el" href="classlogs_1_1Logger.html">logs::Logger</a> &amp;logger, const <a class="el" href="classlogs_1_1Level.html">logs::Level</a> &amp;level, const std::string &amp;message)</td></tr>
+<tr class="memdesc:ac016e9912989d9550e5f5b42603a793c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trace un message. Les messages TELEM et ERROR sont envoyés en UDP, les autres sont affichés sur la console.  <a href="classlogs_1_1TelemetryAppender.html#ac016e9912989d9550e5f5b42603a793c">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ac016e9912989d9550e5f5b42603a793c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6456fc6c33dd29be1964a2c39b5d329f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogs_1_1MemoryAppender.html#a6456fc6c33dd29be1964a2c39b5d329f">writeMessageOnly</a> (const std::string &amp;message)</td></tr>
+<tr class="memdesc:a6456fc6c33dd29be1964a2c39b5d329f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode générique de trace d'un message sans le nom du log devant chaque entrée.  <a href="classlogs_1_1MemoryAppender.html#a6456fc6c33dd29be1964a2c39b5d329f">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a6456fc6c33dd29be1964a2c39b5d329f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2021f9d6001dc21de8abb6f7dffce234"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogs_1_1TelemetryAppender.html#a2021f9d6001dc21de8abb6f7dffce234">writeMessageWithJsonTime</a> (std::string id, const <a class="el" href="classlogs_1_1Logger.html">logs::Logger</a> &amp;logger, const <a class="el" href="classlogs_1_1Level.html">logs::Level</a> &amp;level, const std::string &amp;message)</td></tr>
+<tr class="memdesc:a2021f9d6001dc21de8abb6f7dffce234"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enregistre un message au format JSON avec horodatage pour la télémétrie.  <a href="classlogs_1_1TelemetryAppender.html#a2021f9d6001dc21de8abb6f7dffce234">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a2021f9d6001dc21de8abb6f7dffce234"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Fonctions membres protégées</h2></td></tr>
+<tr class="memitem:a80be25f44b6b0f5b36e26442da0c85d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogs_1_1MemoryAppender.html#a80be25f44b6b0f5b36e26442da0c85d2">lockMessages</a> ()</td></tr>
+<tr class="separator:a80be25f44b6b0f5b36e26442da0c85d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60a0ea41d72e493005e1e7256920dd97"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogs_1_1MemoryAppender.html#a60a0ea41d72e493005e1e7256920dd97">unlockMessages</a> ()</td></tr>
+<tr class="separator:a60a0ea41d72e493005e1e7256920dd97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Attributs protégés</h2></td></tr>
+<tr class="memitem:acfdadc58e747a97c2bb85ce72a79656d"><td class="memItemLeft" align="right" valign="top">std::list&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogs_1_1MemoryAppender.html#acfdadc58e747a97c2bb85ce72a79656d">messages_</a></td></tr>
+<tr class="memdesc:acfdadc58e747a97c2bb85ce72a79656d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Liste des messages enregistrés.  <a href="classlogs_1_1MemoryAppender.html#acfdadc58e747a97c2bb85ce72a79656d">Plus de détails...</a><br /></td></tr>
+<tr class="separator:acfdadc58e747a97c2bb85ce72a79656d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7892adf078780d6ea1c4173f71f1749c"><td class="memItemLeft" align="right" valign="top">system_clock::time_point&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogs_1_1MemoryAppender.html#a7892adf078780d6ea1c4173f71f1749c">start_</a></td></tr>
+<tr class="memdesc:a7892adf078780d6ea1c4173f71f1749c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Temps de démarrage de l'appender.  <a href="classlogs_1_1MemoryAppender.html#a7892adf078780d6ea1c4173f71f1749c">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a7892adf078780d6ea1c4173f71f1749c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Fonctions membres privées</h2></td></tr>
+<tr class="memitem:a58d0a0f41b041351552aab7cd27a1e86"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogs_1_1TelemetryAppender.html#a58d0a0f41b041351552aab7cd27a1e86">hostname_to_ip</a> (char *hostname, char *ip)</td></tr>
+<tr class="memdesc:a58d0a0f41b041351552aab7cd27a1e86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resolution du hostname pour obtenir l'IP.  <a href="classlogs_1_1TelemetryAppender.html#a58d0a0f41b041351552aab7cd27a1e86">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a58d0a0f41b041351552aab7cd27a1e86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Attributs privés</h2></td></tr>
+<tr class="memitem:a89239d4135ed6b264f5224c0bee90b35"><td class="memItemLeft" align="right" valign="top">struct sockaddr_in&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogs_1_1TelemetryAppender.html#a89239d4135ed6b264f5224c0bee90b35">addr_</a></td></tr>
+<tr class="memdesc:a89239d4135ed6b264f5224c0bee90b35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Address socket UDP.  <a href="classlogs_1_1TelemetryAppender.html#a89239d4135ed6b264f5224c0bee90b35">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a89239d4135ed6b264f5224c0bee90b35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cd8ed42bd7f20b6843f5b5e23d0348b"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogs_1_1TelemetryAppender.html#a3cd8ed42bd7f20b6843f5b5e23d0348b">id_</a></td></tr>
+<tr class="memdesc:a3cd8ed42bd7f20b6843f5b5e23d0348b"><td class="mdescLeft">&#160;</td><td class="mdescRight">ID du ROBOT.  <a href="classlogs_1_1TelemetryAppender.html#a3cd8ed42bd7f20b6843f5b5e23d0348b">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a3cd8ed42bd7f20b6843f5b5e23d0348b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81556dd0f57caf1681c1708038287431"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogs_1_1TelemetryAppender.html#a81556dd0f57caf1681c1708038287431">ip_</a> [100]</td></tr>
+<tr class="memdesc:a81556dd0f57caf1681c1708038287431"><td class="mdescLeft">&#160;</td><td class="mdescRight">IP reseau du plotjuggler.  <a href="classlogs_1_1TelemetryAppender.html#a81556dd0f57caf1681c1708038287431">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a81556dd0f57caf1681c1708038287431"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d492d2282e0e81f4f5bed189511005e"><td class="memItemLeft" align="right" valign="top">std::list&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogs_1_1TelemetryAppender.html#a3d492d2282e0e81f4f5bed189511005e">messagesjson_</a></td></tr>
+<tr class="memdesc:a3d492d2282e0e81f4f5bed189511005e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Liste des messages json enregistrés.  <a href="classlogs_1_1TelemetryAppender.html#a3d492d2282e0e81f4f5bed189511005e">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a3d492d2282e0e81f4f5bed189511005e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd703372e6c7287a770ab4fb3af8f7cb"><td class="memItemLeft" align="right" valign="top">pthread_mutex_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1Mutex.html#afd703372e6c7287a770ab4fb3af8f7cb">mutex_</a></td></tr>
+<tr class="memdesc:afd703372e6c7287a770ab4fb3af8f7cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference du mutex associé.  <a href="classutils_1_1Mutex.html#afd703372e6c7287a770ab4fb3af8f7cb">Plus de détails...</a><br /></td></tr>
+<tr class="separator:afd703372e6c7287a770ab4fb3af8f7cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9c2a8013d746e36be4a227b1124589e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogs_1_1TelemetryAppender.html#ab9c2a8013d746e36be4a227b1124589e">t_fd</a></td></tr>
+<tr class="memdesc:ab9c2a8013d746e36be4a227b1124589e"><td class="mdescLeft">&#160;</td><td class="mdescRight">socket UDP.  <a href="classlogs_1_1TelemetryAppender.html#ab9c2a8013d746e36be4a227b1124589e">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ab9c2a8013d746e36be4a227b1124589e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Implémentation de <a class="el" href="classlogs_1_1Appender.html" title="Classe de gestion des flux de sortie pour les logs.">Appender</a> pour une écriture des traces sur un flux de reseau. </p>
+</div><h2 class="groupheader">Documentation des constructeurs et destructeur</h2>
+<a id="af3e00020871557769a6036e49cf0903f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3e00020871557769a6036e49cf0903f">&#9670;&nbsp;</a></span>TelemetryAppender()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">logs::TelemetryAppender::TelemetryAppender </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>Id_Robot</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>PlotJuggler_hostname</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructeur par défaut. L'appender sera associé au flux de sortie standard. </p>
+
+</div>
+</div>
+<a id="a0f37f1968d5db9221fb33631729fbb0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f37f1968d5db9221fb33631729fbb0a">&#9670;&nbsp;</a></span>~TelemetryAppender()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual logs::TelemetryAppender::~TelemetryAppender </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Destructeur de la classe. </p>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classlogs_1_1TelemetryAppender_a0f37f1968d5db9221fb33631729fbb0a_cgraph.svg" width="100%" height="404"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des fonctions membres</h2>
+<a id="a70d4527e81e59cb89832f0ceb2cc5edb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70d4527e81e59cb89832f0ceb2cc5edb">&#9670;&nbsp;</a></span>flush()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void logs::TelemetryAppender::flush </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Envoie tous les messages JSON en attente via UDP et affiche les messages console. </p>
+
+<p>Réimplémentée à partir de <a class="el" href="classlogs_1_1MemoryAppender.html#a90fd2058402bceaff5e896ceee438df4">logs::MemoryAppender</a>.</p>
+
+</div>
+</div>
+<a id="a58d0a0f41b041351552aab7cd27a1e86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58d0a0f41b041351552aab7cd27a1e86">&#9670;&nbsp;</a></span>hostname_to_ip()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int logs::TelemetryAppender::hostname_to_ip </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>hostname</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>ip</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Resolution du hostname pour obtenir l'IP. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>1 if error </dd></dl>
+
+</div>
+</div>
+<a id="aa584b418a5ef484f76b93e361a1d7e32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa584b418a5ef484f76b93e361a1d7e32">&#9670;&nbsp;</a></span>lock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void utils::Mutex::lock </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Verrouille le mutex. Cette méthode doit être appelée avant d'utiliser la ressource associée. Si le mutex est déjà verrouillée, cette méthode attend qu'il se libère. </p>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classutils_1_1Mutex_aa584b418a5ef484f76b93e361a1d7e32_icgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a80be25f44b6b0f5b36e26442da0c85d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80be25f44b6b0f5b36e26442da0c85d2">&#9670;&nbsp;</a></span>lockMessages()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void logs::MemoryAppender::lockMessages </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classlogs_1_1MemoryAppender_a80be25f44b6b0f5b36e26442da0c85d2_icgraph.svg" width="375" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a04b4a02cf45fa2f60306f1805d464418"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04b4a02cf45fa2f60306f1805d464418">&#9670;&nbsp;</a></span>messages()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::list&lt;std::string&gt;&amp; logs::MemoryAppender::messages </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Renvoie</dt><dd>Liste des messages enregistrés. </dd></dl>
+
+</div>
+</div>
+<a id="afc40847f9465a3482885099aba452b68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc40847f9465a3482885099aba452b68">&#9670;&nbsp;</a></span>tryLock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool utils::Mutex::tryLock </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Essaie de verrouiller le mutex. </p>
+<dl class="section return"><dt>Renvoie</dt><dd><code>true</code> si le lock a pu être posée. </dd></dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classutils_1_1Mutex_afc40847f9465a3482885099aba452b68_icgraph.svg" width="628" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a59b2079dc7f803d49f78ac9c04406cd3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59b2079dc7f803d49f78ac9c04406cd3">&#9670;&nbsp;</a></span>unlock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void utils::Mutex::unlock </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Déverrouille le mutex. Cette méthode doit être appelée après avoir utiliser la ressource associée. </p>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classutils_1_1Mutex_a59b2079dc7f803d49f78ac9c04406cd3_icgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a60a0ea41d72e493005e1e7256920dd97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60a0ea41d72e493005e1e7256920dd97">&#9670;&nbsp;</a></span>unlockMessages()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void logs::MemoryAppender::unlockMessages </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classlogs_1_1MemoryAppender_a60a0ea41d72e493005e1e7256920dd97_icgraph.svg" width="375" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="ac016e9912989d9550e5f5b42603a793c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac016e9912989d9550e5f5b42603a793c">&#9670;&nbsp;</a></span>writeMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void logs::TelemetryAppender::writeMessage </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classlogs_1_1Logger.html">logs::Logger</a> &amp;&#160;</td>
+          <td class="paramname"><em>logger</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classlogs_1_1Level.html">logs::Level</a> &amp;&#160;</td>
+          <td class="paramname"><em>level</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>message</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Trace un message. Les messages TELEM et ERROR sont envoyés en UDP, les autres sont affichés sur la console. </p>
+<p>Méthode générique de trace d'un message.</p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">logger</td><td><a class="el" href="classlogs_1_1Logger.html" title="Classe de gestion des traces de l&#39;application.">Logger</a> de référence du message. </td></tr>
+    <tr><td class="paramname">level</td><td>Niveau de référence du message. </td></tr>
+    <tr><td class="paramname">message</td><td>Message à tracer. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Réimplémentée à partir de <a class="el" href="classlogs_1_1MemoryAppender.html#a478c866b07f63f1f89c347b4465834bc">logs::MemoryAppender</a>.</p>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classlogs_1_1TelemetryAppender_ac016e9912989d9550e5f5b42603a793c_cgraph.svg" width="611" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a6456fc6c33dd29be1964a2c39b5d329f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6456fc6c33dd29be1964a2c39b5d329f">&#9670;&nbsp;</a></span>writeMessageOnly()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void logs::MemoryAppender::writeMessageOnly </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Méthode générique de trace d'un message sans le nom du log devant chaque entrée. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>Message à tracer. </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classlogs_1_1MemoryAppender_a6456fc6c33dd29be1964a2c39b5d329f_icgraph.svg" width="100%" height="584"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="a2021f9d6001dc21de8abb6f7dffce234"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2021f9d6001dc21de8abb6f7dffce234">&#9670;&nbsp;</a></span>writeMessageWithJsonTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void logs::TelemetryAppender::writeMessageWithJsonTime </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classlogs_1_1Logger.html">logs::Logger</a> &amp;&#160;</td>
+          <td class="paramname"><em>logger</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classlogs_1_1Level.html">logs::Level</a> &amp;&#160;</td>
+          <td class="paramname"><em>level</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>message</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enregistre un message au format JSON avec horodatage pour la télémétrie. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>Identifiant du robot. </td></tr>
+    <tr><td class="paramname">logger</td><td><a class="el" href="classlogs_1_1Logger.html" title="Classe de gestion des traces de l&#39;application.">Logger</a> de référence. </td></tr>
+    <tr><td class="paramname">level</td><td>Niveau de référence. </td></tr>
+    <tr><td class="paramname">message</td><td>Message à tracer (JSON pour TELEM, texte pour ERROR). </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classlogs_1_1TelemetryAppender_a2021f9d6001dc21de8abb6f7dffce234_cgraph.svg" width="416" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des données membres</h2>
+<a id="a89239d4135ed6b264f5224c0bee90b35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89239d4135ed6b264f5224c0bee90b35">&#9670;&nbsp;</a></span>addr_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct sockaddr_in logs::TelemetryAppender::addr_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Address socket UDP. </p>
+
+</div>
+</div>
+<a id="a3cd8ed42bd7f20b6843f5b5e23d0348b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cd8ed42bd7f20b6843f5b5e23d0348b">&#9670;&nbsp;</a></span>id_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string logs::TelemetryAppender::id_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ID du ROBOT. </p>
+
+</div>
+</div>
+<a id="a81556dd0f57caf1681c1708038287431"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81556dd0f57caf1681c1708038287431">&#9670;&nbsp;</a></span>ip_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char logs::TelemetryAppender::ip_[100]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>IP reseau du plotjuggler. </p>
+
+</div>
+</div>
+<a id="acfdadc58e747a97c2bb85ce72a79656d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfdadc58e747a97c2bb85ce72a79656d">&#9670;&nbsp;</a></span>messages_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::list&lt;std::string&gt; logs::MemoryAppender::messages_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Liste des messages enregistrés. </p>
+
+</div>
+</div>
+<a id="a3d492d2282e0e81f4f5bed189511005e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d492d2282e0e81f4f5bed189511005e">&#9670;&nbsp;</a></span>messagesjson_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::list&lt;std::string&gt; logs::TelemetryAppender::messagesjson_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Liste des messages json enregistrés. </p>
+
+</div>
+</div>
+<a id="afd703372e6c7287a770ab4fb3af8f7cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd703372e6c7287a770ab4fb3af8f7cb">&#9670;&nbsp;</a></span>mutex_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">pthread_mutex_t utils::Mutex::mutex_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reference du mutex associé. </p>
+
+</div>
+</div>
+<a id="a7892adf078780d6ea1c4173f71f1749c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7892adf078780d6ea1c4173f71f1749c">&#9670;&nbsp;</a></span>start_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">system_clock::time_point logs::MemoryAppender::start_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Temps de démarrage de l'appender. </p>
+
+</div>
+</div>
+<a id="ab9c2a8013d746e36be4a227b1124589e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9c2a8013d746e36be4a227b1124589e">&#9670;&nbsp;</a></span>t_fd</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int logs::TelemetryAppender::t_fd</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>socket UDP. </p>
+
+</div>
+</div>
+<hr/>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>src/common/log/appender/<a class="el" href="TelemetryAppender_8hpp_source.html">TelemetryAppender.hpp</a></li>
+<li>src/common/log/appender/<a class="el" href="TelemetryAppender_8cpp.html">TelemetryAppender.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Mardi 24 Mars 2026 17:17:19 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

@@ -1,5 +1,11 @@
 var searchData=
 [
-  ['name_5f_458',['name_',['../classlogs_1_1Level.html#ab882a0d70f004c2160495bbb4dd337cc',1,'logs::Level::name_()'],['../classlogs_1_1Logger.html#acfb52fa48dd3fac8701d296f01df5d1e',1,'logs::Logger::name_()'],['../classutils_1_1Thread.html#ac0e1f46eadc1329621caa5a20b8bb189',1,'utils::Thread::name_()'],['../classITimerListener.html#a5cd3eba68cf1e8c8ca99732cb2c607d0',1,'ITimerListener::name_()'],['../classITimerPosixListener.html#a22f7ae58626c79770d8facded3700516',1,'ITimerPosixListener::name_()'],['../classutils_1_1Chronometer.html#a8c656e9b13249bd2291c1438b8b209bb',1,'utils::Chronometer::name_()'],['../classUnitTest.html#a278e7fd28e7b849928d545818e3b7032',1,'UnitTest::name_()']]],
-  ['none_459',['NONE',['../classlogs_1_1Level.html#ae9043efe20e05475fc39612ebd940074',1,'logs::Level']]]
+  ['id_5f_1032',['id_',['../classlogs_1_1TelemetryAppender.html#a3cd8ed42bd7f20b6843f5b5e23d0348b',1,'logs::TelemetryAppender::id_()'],['../classSvgWriter.html#a196b26e9c4beaefa9124ca83ff8d640b',1,'SvgWriter::id_()'],['../classTimerPosix.html#acc7146e8d22986242f777b57627a558d',1,'TimerPosix::id_()']]],
+  ['idx_1033',['idx',['../structbackward_1_1Trace.html#a5358abf3fb068a745f339ea4dfffcb02',1,'backward::Trace']]],
+  ['indent_5f_1034',['indent_',['../classUnitTestAppender.html#aa236f8e8539dd9f8e94b624fb735abe2',1,'UnitTestAppender']]],
+  ['info_1035',['INFO',['../classlogs_1_1Level.html#a2b2d69562b730d64f0ad733cc1551da4',1,'logs::Level']]],
+  ['inliner_5fcontext_5fsize_1036',['inliner_context_size',['../classbackward_1_1Printer.html#a3fb390d205a00a630587fc793a5f09a6',1,'backward::Printer']]],
+  ['inliners_1037',['inliners',['../structbackward_1_1ResolvedTrace.html#ace83bba41b2067dc84237896a871c80f',1,'backward::ResolvedTrace']]],
+  ['ip_5f_1038',['ip_',['../classlogs_1_1TelemetryAppender.html#a81556dd0f57caf1681c1708038287431',1,'logs::TelemetryAppender']]],
+  ['iterations_5f_1039',['iterations_',['../classtest_1_1MutexCounterThread.html#ae3cce4aae399808aba3dd2a6b523d80a',1,'test::MutexCounterThread']]]
 ];

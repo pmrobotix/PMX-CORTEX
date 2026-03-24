@@ -1,14 +1,14 @@
 var searchData=
 [
-  ['end_31',['end',['../namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b',1,'logs::end()'],['../classlogs_1_1Logger_1_1LoggerBuffer.html#a0e4fd77693fd899ec1b0670354f93a02',1,'logs::Logger::LoggerBuffer::end()'],['../classutils_1_1PointerList.html#a9607cdd93b715a838e015452a49f61d5',1,'utils::PointerList::end()'],['../classutils_1_1PointerList.html#adb6a2b31b3e7d556e3d49c2690a93dc7',1,'utils::PointerList::end() const']]],
-  ['endcount_5f_32',['endCount_',['../classutils_1_1Chronometer.html#a1fc7ad386b6a973ac0449bd35258b628',1,'utils::Chronometer']]],
-  ['endset_5f_33',['endSet_',['../classutils_1_1Chronometer.html#aefcfa94d63908439fbd957552df1aad3',1,'utils::Chronometer']]],
-  ['endsettime_5fus_34',['endSetTime_us',['../classutils_1_1Chronometer.html#a5049fef91fb4c1175dcc4ed100c92420',1,'utils::Chronometer']]],
-  ['entrypoint_35',['entryPoint',['../classutils_1_1Thread.html#a61b6c3d0b87570254646120b323b89f7',1,'utils::Thread']]],
-  ['error_36',['error',['../classlogs_1_1Logger.html#a8b6a2019233bc44b3c3c86c653910831',1,'logs::Logger::error(const std::string &amp;message) const'],['../classlogs_1_1Logger.html#ac1468dbd9ac30bc400dafc0c6f69f971',1,'logs::Logger::error() const']]],
-  ['error_37',['ERROR',['../classlogs_1_1Level.html#a2ab4cb2da672f44e6cb5ac1de987f8dc',1,'logs::Level']]],
-  ['exception_38',['Exception',['../classlogs_1_1Exception.html#a0870a395ac3d8d26214b3fa12ed162dc',1,'logs::Exception::Exception()'],['../classlogs_1_1Exception.html',1,'logs::Exception']]],
-  ['exception_2ehpp_39',['Exception.hpp',['../Exception_8hpp.html',1,'']]],
-  ['execute_40',['execute',['../classlogs_1_1LoggerFactory.html#a7d16182a3e1394b8bf14e21c9dfbda90',1,'logs::LoggerFactory::execute()'],['../classutils_1_1Thread.html#a202b3fabad41b3be6d996043b262a43a',1,'utils::Thread::execute()'],['../classtest_1_1SimpleThread.html#a7ca8beebed5eeb47ff61ea98a7aaa7fe',1,'test::SimpleThread::execute()']]],
-  ['expectederror_41',['expectedError',['../classUnitTest.html#a734b8df5cd0686245f9ce9ccbb73c5ee',1,'UnitTest::expectedError(const std::string &amp;expected)'],['../classUnitTest.html#a00a74363b89994348f5025b42f7ea96f',1,'UnitTest::expectedError(const std::string &amp;expected, const std::string &amp;message)'],['../classUnitTestAppender.html#a673b17f2a021ca7cd78971409180061c',1,'UnitTestAppender::expectedError()']]]
+  ['debug_92',['debug',['../classlogs_1_1Logger.html#a7dffc8f610014ec59b63392da16140e4',1,'logs::Logger::debug(const std::string &amp;message) const'],['../classlogs_1_1Logger.html#aade259b85b4978c3b69fcdcc12a5974a',1,'logs::Logger::debug() const']]],
+  ['debug_93',['DEBUG',['../classlogs_1_1Level.html#a139c20d5b628600369c9420688be574f',1,'logs::Level']]],
+  ['decreaseindent_94',['decreaseIndent',['../classUnitTestAppender.html#a64063acb53860350f1efc8fe5e408ae9',1,'UnitTestAppender']]],
+  ['default_5fdelete_95',['default_delete',['../structbackward_1_1details_1_1default__delete.html',1,'backward::details']]],
+  ['deleter_96',['deleter',['../structbackward_1_1details_1_1deleter.html',1,'backward::details']]],
+  ['demangle_97',['demangle',['../structbackward_1_1details_1_1demangler__impl.html#a0ca9dcbfd8f10cdc5ad83ed1762e3c67',1,'backward::details::demangler_impl::demangle()'],['../structbackward_1_1details_1_1demangler__impl_3_01system__tag_1_1current__tag_01_4.html#a20d0528f8175928e00ada259dae6fe96',1,'backward::details::demangler_impl&lt; system_tag::current_tag &gt;::demangle()'],['../classbackward_1_1TraceResolverImplBase.html#a406d77349b64e212c6ad74439b2ec9bf',1,'backward::TraceResolverImplBase::demangle()']]],
+  ['demangler_98',['demangler',['../structbackward_1_1details_1_1demangler.html',1,'backward::details']]],
+  ['demangler_5fimpl_99',['demangler_impl',['../structbackward_1_1details_1_1demangler__impl.html',1,'backward::details::demangler_impl&lt; TAG &gt;'],['../structbackward_1_1details_1_1demangler__impl_3_01system__tag_1_1current__tag_01_4.html#ade2544850c5710b5e214af478ece66b3',1,'backward::details::demangler_impl&lt; system_tag::current_tag &gt;::demangler_impl()']]],
+  ['demangler_5fimpl_3c_20system_5ftag_3a_3acurrent_5ftag_20_3e_100',['demangler_impl&lt; system_tag::current_tag &gt;',['../structbackward_1_1details_1_1demangler__impl_3_01system__tag_1_1current__tag_01_4.html',1,'backward::details']]],
+  ['docsensor_5f_101',['docSensor_',['../classSvgWriter.html#a931fd35f5b8196b16dc15f92053995cc',1,'SvgWriter']]],
+  ['done_5f_102',['done_',['../classSvgWriter.html#a13da502348d120472ef4b6032a98dd8a',1,'SvgWriter']]]
 ];

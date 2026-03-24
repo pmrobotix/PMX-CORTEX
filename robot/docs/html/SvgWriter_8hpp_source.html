@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot:  Fichier source de src/common/log/SvgWriter.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_fdedb0aba14d44ce9d99bc100e026e6a.html">common</a></li><li class="navelem"><a class="el" href="dir_596f6805a163adddd97111db7833cf93.html">log</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">SvgWriter.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="SvgWriter_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef LOG_SVGWRITER_HPP_</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define LOG_SVGWRITER_HPP_</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;../utils/PointerList.hpp&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;../thread/Mutex.hpp&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;simple_svg_1.0.0.hpp&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacelogs.html">logs</a></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">class </span>Logger;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;} <span class="comment">/* namespace logs */</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classSvgWriter.html">   23</a></span>&#160;<span class="keyword">class </span><a class="code" href="classSvgWriter.html">SvgWriter</a>: <span class="keyword">public</span> <a class="code" href="classutils_1_1Mutex.html">utils::Mutex</a> {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">     * Id of the associated robot.</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classSvgWriter.html#a196b26e9c4beaefa9124ca83ff8d640b">   29</a></span>&#160;    std::string <a class="code" href="classSvgWriter.html#a196b26e9c4beaefa9124ca83ff8d640b">id_</a>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="classSvgWriter.html#a3d6e4e832042547fc96fe2143acead12">   31</a></span>&#160;    <a class="code" href="classutils_1_1PointerList.html">utils::PointerList&lt;std::string&gt;</a> <a class="code" href="classSvgWriter.html#a3d6e4e832042547fc96fe2143acead12">symbol_list_</a>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="classSvgWriter.html#a13da502348d120472ef4b6032a98dd8a">   34</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classSvgWriter.html#a13da502348d120472ef4b6032a98dd8a">done_</a>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classSvgWriter.html#a628e2263568c0486b340c77684982c54">   35</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classSvgWriter.html#a628e2263568c0486b340c77684982c54">beginDone_</a>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classSvgWriter.html#a8b23484c91d2b42d081a1ff21c4e45e6">   36</a></span>&#160;    <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a> *<a class="code" href="classSvgWriter.html#a8b23484c91d2b42d081a1ff21c4e45e6">fLogger</a>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classSvgWriter.html#a931fd35f5b8196b16dc15f92053995cc">   38</a></span>&#160;    svg::Document *<a class="code" href="classSvgWriter.html#a931fd35f5b8196b16dc15f92053995cc">docSensor_</a>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classSvgWriter.html#ab451613be4800c34e4ba7c65606ef382">   39</a></span>&#160;    <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a> *<a class="code" href="classSvgWriter.html#ab451613be4800c34e4ba7c65606ef382">fLoggerSensors</a>;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="classSvgWriter.html#a30059a7d7289c57d3bf1bf623713dc0a">SvgWriter</a>(std::string <span class="keywordtype">id</span>);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classSvgWriter.html#ae9f503ecbe84f673f7f05dc50a52728d">~SvgWriter</a>();</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="classSvgWriter.html#a0a4640b661160b29d991116a197f7aaf">   60</a></span>&#160;    <span class="keyword">inline</span> <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a>&amp; <a class="code" href="classSvgWriter.html#a0a4640b661160b29d991116a197f7aaf">logger</a>()</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    {</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keywordflow">return</span> *<a class="code" href="classSvgWriter.html#a8b23484c91d2b42d081a1ff21c4e45e6">fLogger</a>;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    }</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="classSvgWriter.html#ab74e6447bcb7ce52ecba9f9f0c5907b7">   69</a></span>&#160;    <span class="keyword">inline</span> <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a>&amp; <a class="code" href="classSvgWriter.html#ab74e6447bcb7ce52ecba9f9f0c5907b7">loggerSvgSensor</a>()</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordflow">return</span> *<a class="code" href="classSvgWriter.html#ab451613be4800c34e4ba7c65606ef382">fLoggerSensors</a>;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    }</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSvgWriter.html#a9fbe18d7bc202481f93b87a1b3a9077e">addDefsSymbol</a>(std::string symbol);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSvgWriter.html#ac6b52164bb48debc2aa814b2e96ec233">beginHeader</a>();</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSvgWriter.html#a18e6747b544e14bc12f184bce594ec63">endHeader</a>();</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSvgWriter.html#a1860768b0bf4858dae8577f2b7653cac">writeText</a>(<span class="keywordtype">float</span> x_mm, <span class="keywordtype">float</span> y_mm, std::string text);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSvgWriter.html#ae4246028907242734cc14db98d492eb5">writeTextCustom</a>(<span class="keywordtype">float</span> x_mm, <span class="keywordtype">float</span> y_mm, std::string text, std::string color, std::string fontsize);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="classSvgWriter.html#a1b9df8d232ad40c0818be21ee057cad0">  115</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSvgWriter.html#a1b9df8d232ad40c0818be21ee057cad0">writePosition_Bot</a>(<span class="keywordtype">float</span> x_mm, <span class="keywordtype">float</span> y_mm, <span class="keywordtype">float</span> a_rad, <span class="keywordtype">int</span> color = 0) = 0;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
+<div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="classSvgWriter.html#af8e2a0679e17a9b8df363450fc7ca598">  123</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSvgWriter.html#af8e2a0679e17a9b8df363450fc7ca598">writePosition_BotPos</a>(<span class="keywordtype">float</span> x_mm, <span class="keywordtype">float</span> y_mm, <span class="keywordtype">float</span> a_rad) = 0;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
+<div class="line"><a name="l00133"></a><span class="lineno"><a class="line" href="classSvgWriter.html#adf399e403e4fdcb453558208dfcda996">  133</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSvgWriter.html#adf399e403e4fdcb453558208dfcda996">writePosition_AdvPos</a>(<span class="keywordtype">float</span> x_adv_mm, <span class="keywordtype">float</span> y_adv_mm, <span class="keywordtype">float</span> x_pos_mm, <span class="keywordtype">float</span> y_pos_mm,</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;            <span class="keywordtype">int</span> color = 0) = 0;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
+<div class="line"><a name="l00147"></a><span class="lineno"><a class="line" href="classSvgWriter.html#ac1a7e8a8541391a22424b4e6c6efa6c8">  147</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSvgWriter.html#ac1a7e8a8541391a22424b4e6c6efa6c8">writeZone</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *name, <span class="keywordtype">float</span> minX_mm, <span class="keywordtype">float</span> minY_mm, <span class="keywordtype">float</span> width_mm, <span class="keywordtype">float</span> height_mm,</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;            <span class="keywordtype">float</span> startX_mm, <span class="keywordtype">float</span> startY_mm, <span class="keywordtype">float</span> startAngle_rad) = 0;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
+<div class="line"><a name="l00157"></a><span class="lineno"><a class="line" href="classSvgWriter.html#a9f3b5c557a70c8ef2daee65ef61e8456">  157</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSvgWriter.html#a9f3b5c557a70c8ef2daee65ef61e8456">writeIaPath</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *zone1Name, <span class="keyword">const</span> <span class="keywordtype">char</span> *zone2Name, <span class="keywordtype">float</span> x_mm, <span class="keywordtype">float</span> y_mm) = 0;</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
+<div class="line"><a name="l00163"></a><span class="lineno"><a class="line" href="classSvgWriter.html#a7079faf0c694ff10efe2f7e178d9e97c">  163</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classSvgWriter.html#a7079faf0c694ff10efe2f7e178d9e97c">pathPolyline</a>(std::string points) = 0;</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160; </div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;};</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassSvgWriter_html"><div class="ttname"><a href="classSvgWriter.html">SvgWriter</a></div><div class="ttdoc">Wrapper pour la génération de fichier svg via le système de log.</div><div class="ttdef"><b>Definition:</b> SvgWriter.hpp:23</div></div>
+<div class="ttc" id="aclassSvgWriter_html_a0a4640b661160b29d991116a197f7aaf"><div class="ttname"><a href="classSvgWriter.html#a0a4640b661160b29d991116a197f7aaf">SvgWriter::logger</a></div><div class="ttdeci">const logs::Logger &amp; logger()</div><div class="ttdoc">Retourne le logger principal du SVG.</div><div class="ttdef"><b>Definition:</b> SvgWriter.hpp:60</div></div>
+<div class="ttc" id="aclassSvgWriter_html_a13da502348d120472ef4b6032a98dd8a"><div class="ttname"><a href="classSvgWriter.html#a13da502348d120472ef4b6032a98dd8a">SvgWriter::done_</a></div><div class="ttdeci">bool done_</div><div class="ttdef"><b>Definition:</b> SvgWriter.hpp:34</div></div>
+<div class="ttc" id="aclassSvgWriter_html_a1860768b0bf4858dae8577f2b7653cac"><div class="ttname"><a href="classSvgWriter.html#a1860768b0bf4858dae8577f2b7653cac">SvgWriter::writeText</a></div><div class="ttdeci">void writeText(float x_mm, float y_mm, std::string text)</div><div class="ttdoc">Écrit un texte à une position donnée dans le SVG.</div><div class="ttdef"><b>Definition:</b> SvgWriter.cpp:143</div></div>
+<div class="ttc" id="aclassSvgWriter_html_a18e6747b544e14bc12f184bce594ec63"><div class="ttname"><a href="classSvgWriter.html#a18e6747b544e14bc12f184bce594ec63">SvgWriter::endHeader</a></div><div class="ttdeci">void endHeader()</div><div class="ttdoc">Ferme le document SVG (balises de fin).</div><div class="ttdef"><b>Definition:</b> SvgWriter.cpp:120</div></div>
+<div class="ttc" id="aclassSvgWriter_html_a196b26e9c4beaefa9124ca83ff8d640b"><div class="ttname"><a href="classSvgWriter.html#a196b26e9c4beaefa9124ca83ff8d640b">SvgWriter::id_</a></div><div class="ttdeci">std::string id_</div><div class="ttdef"><b>Definition:</b> SvgWriter.hpp:29</div></div>
+<div class="ttc" id="aclassSvgWriter_html_a1b9df8d232ad40c0818be21ee057cad0"><div class="ttname"><a href="classSvgWriter.html#a1b9df8d232ad40c0818be21ee057cad0">SvgWriter::writePosition_Bot</a></div><div class="ttdeci">virtual void writePosition_Bot(float x_mm, float y_mm, float a_rad, int color=0)=0</div><div class="ttdoc">Dessine la position du robot sur le SVG.</div></div>
+<div class="ttc" id="aclassSvgWriter_html_a30059a7d7289c57d3bf1bf623713dc0a"><div class="ttname"><a href="classSvgWriter.html#a30059a7d7289c57d3bf1bf623713dc0a">SvgWriter::SvgWriter</a></div><div class="ttdeci">SvgWriter(std::string id)</div><div class="ttdoc">Constructeur de la classe.</div><div class="ttdef"><b>Definition:</b> SvgWriter.cpp:16</div></div>
+<div class="ttc" id="aclassSvgWriter_html_a3d6e4e832042547fc96fe2143acead12"><div class="ttname"><a href="classSvgWriter.html#a3d6e4e832042547fc96fe2143acead12">SvgWriter::symbol_list_</a></div><div class="ttdeci">utils::PointerList&lt; std::string &gt; symbol_list_</div><div class="ttdef"><b>Definition:</b> SvgWriter.hpp:31</div></div>
+<div class="ttc" id="aclassSvgWriter_html_a628e2263568c0486b340c77684982c54"><div class="ttname"><a href="classSvgWriter.html#a628e2263568c0486b340c77684982c54">SvgWriter::beginDone_</a></div><div class="ttdeci">bool beginDone_</div><div class="ttdef"><b>Definition:</b> SvgWriter.hpp:35</div></div>
+<div class="ttc" id="aclassSvgWriter_html_a7079faf0c694ff10efe2f7e178d9e97c"><div class="ttname"><a href="classSvgWriter.html#a7079faf0c694ff10efe2f7e178d9e97c">SvgWriter::pathPolyline</a></div><div class="ttdeci">virtual void pathPolyline(std::string points)=0</div><div class="ttdoc">Dessine une polyline SVG à partir d'une liste de points.</div></div>
+<div class="ttc" id="aclassSvgWriter_html_a8b23484c91d2b42d081a1ff21c4e45e6"><div class="ttname"><a href="classSvgWriter.html#a8b23484c91d2b42d081a1ff21c4e45e6">SvgWriter::fLogger</a></div><div class="ttdeci">const logs::Logger * fLogger</div><div class="ttdef"><b>Definition:</b> SvgWriter.hpp:36</div></div>
+<div class="ttc" id="aclassSvgWriter_html_a931fd35f5b8196b16dc15f92053995cc"><div class="ttname"><a href="classSvgWriter.html#a931fd35f5b8196b16dc15f92053995cc">SvgWriter::docSensor_</a></div><div class="ttdeci">svg::Document * docSensor_</div><div class="ttdef"><b>Definition:</b> SvgWriter.hpp:38</div></div>
+<div class="ttc" id="aclassSvgWriter_html_a9f3b5c557a70c8ef2daee65ef61e8456"><div class="ttname"><a href="classSvgWriter.html#a9f3b5c557a70c8ef2daee65ef61e8456">SvgWriter::writeIaPath</a></div><div class="ttdeci">virtual void writeIaPath(const char *zone1Name, const char *zone2Name, float x_mm, float y_mm)=0</div><div class="ttdoc">Dessine un chemin IA entre deux zones.</div></div>
+<div class="ttc" id="aclassSvgWriter_html_a9fbe18d7bc202481f93b87a1b3a9077e"><div class="ttname"><a href="classSvgWriter.html#a9fbe18d7bc202481f93b87a1b3a9077e">SvgWriter::addDefsSymbol</a></div><div class="ttdeci">void addDefsSymbol(std::string symbol)</div><div class="ttdoc">Ajoute un symbole SVG dans la section defs.</div><div class="ttdef"><b>Definition:</b> SvgWriter.cpp:115</div></div>
+<div class="ttc" id="aclassSvgWriter_html_ab451613be4800c34e4ba7c65606ef382"><div class="ttname"><a href="classSvgWriter.html#ab451613be4800c34e4ba7c65606ef382">SvgWriter::fLoggerSensors</a></div><div class="ttdeci">const logs::Logger * fLoggerSensors</div><div class="ttdef"><b>Definition:</b> SvgWriter.hpp:39</div></div>
+<div class="ttc" id="aclassSvgWriter_html_ab74e6447bcb7ce52ecba9f9f0c5907b7"><div class="ttname"><a href="classSvgWriter.html#ab74e6447bcb7ce52ecba9f9f0c5907b7">SvgWriter::loggerSvgSensor</a></div><div class="ttdeci">const logs::Logger &amp; loggerSvgSensor()</div><div class="ttdoc">Retourne le logger dédié aux capteurs SVG.</div><div class="ttdef"><b>Definition:</b> SvgWriter.hpp:69</div></div>
+<div class="ttc" id="aclassSvgWriter_html_ac1a7e8a8541391a22424b4e6c6efa6c8"><div class="ttname"><a href="classSvgWriter.html#ac1a7e8a8541391a22424b4e6c6efa6c8">SvgWriter::writeZone</a></div><div class="ttdeci">virtual void writeZone(const char *name, float minX_mm, float minY_mm, float width_mm, float height_mm, float startX_mm, float startY_mm, float startAngle_rad)=0</div><div class="ttdoc">Dessine une zone d'action sur le terrain.</div></div>
+<div class="ttc" id="aclassSvgWriter_html_ac6b52164bb48debc2aa814b2e96ec233"><div class="ttname"><a href="classSvgWriter.html#ac6b52164bb48debc2aa814b2e96ec233">SvgWriter::beginHeader</a></div><div class="ttdeci">void beginHeader()</div><div class="ttdoc">Écrit l'en-tête SVG (grille, defs, symboles).</div><div class="ttdef"><b>Definition:</b> SvgWriter.cpp:58</div></div>
+<div class="ttc" id="aclassSvgWriter_html_adf399e403e4fdcb453558208dfcda996"><div class="ttname"><a href="classSvgWriter.html#adf399e403e4fdcb453558208dfcda996">SvgWriter::writePosition_AdvPos</a></div><div class="ttdeci">virtual void writePosition_AdvPos(float x_adv_mm, float y_adv_mm, float x_pos_mm, float y_pos_mm, int color=0)=0</div><div class="ttdoc">Dessine la position d'un adversaire détecté.</div></div>
+<div class="ttc" id="aclassSvgWriter_html_ae4246028907242734cc14db98d492eb5"><div class="ttname"><a href="classSvgWriter.html#ae4246028907242734cc14db98d492eb5">SvgWriter::writeTextCustom</a></div><div class="ttdeci">void writeTextCustom(float x_mm, float y_mm, std::string text, std::string color, std::string fontsize)</div><div class="ttdoc">Écrit un texte avec couleur et taille personnalisées.</div><div class="ttdef"><b>Definition:</b> SvgWriter.cpp:158</div></div>
+<div class="ttc" id="aclassSvgWriter_html_ae9f503ecbe84f673f7f05dc50a52728d"><div class="ttname"><a href="classSvgWriter.html#ae9f503ecbe84f673f7f05dc50a52728d">SvgWriter::~SvgWriter</a></div><div class="ttdeci">virtual ~SvgWriter()</div><div class="ttdoc">Destructeur de la classe.</div><div class="ttdef"><b>Definition:</b> SvgWriter.cpp:53</div></div>
+<div class="ttc" id="aclassSvgWriter_html_af8e2a0679e17a9b8df363450fc7ca598"><div class="ttname"><a href="classSvgWriter.html#af8e2a0679e17a9b8df363450fc7ca598">SvgWriter::writePosition_BotPos</a></div><div class="ttdeci">virtual void writePosition_BotPos(float x_mm, float y_mm, float a_rad)=0</div><div class="ttdoc">Dessine un marqueur de position du robot.</div></div>
+<div class="ttc" id="aclasslogs_1_1Logger_html"><div class="ttname"><a href="classlogs_1_1Logger.html">logs::Logger</a></div><div class="ttdoc">Classe de gestion des traces de l'application.</div><div class="ttdef"><b>Definition:</b> Logger.hpp:63</div></div>
+<div class="ttc" id="aclassutils_1_1Mutex_html"><div class="ttname"><a href="classutils_1_1Mutex.html">utils::Mutex</a></div><div class="ttdoc">Implémentation d'une gestion de mutex.</div><div class="ttdef"><b>Definition:</b> Mutex.hpp:17</div></div>
+<div class="ttc" id="aclassutils_1_1PointerList_html"><div class="ttname"><a href="classutils_1_1PointerList.html">utils::PointerList&lt; std::string &gt;</a></div></div>
+<div class="ttc" id="anamespacelogs_html"><div class="ttname"><a href="namespacelogs.html">logs</a></div><div class="ttdef"><b>Definition:</b> ConsoleAppender.hpp:13</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Mardi 24 Mars 2026 17:17:18 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

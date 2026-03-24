@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['appender_239',['Appender',['../classlogs_1_1Appender.html',1,'logs']]]
+  ['appender_543',['Appender',['../classlogs_1_1Appender.html',1,'logs']]]
 ];

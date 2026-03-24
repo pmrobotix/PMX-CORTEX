@@ -1,4 +1,5 @@
 {
     "cmake.sourceDirectory": "${workspaceFolder}",
-    "cmake.buildDirectory": "${workspaceFolder}/build-${buildKitVendor}-${buildType}"
+    "cmake.buildDirectory": "${workspaceFolder}/build-${buildKitVendor}-${buildType}",
+    "cmake.parallelJobs": 12
 }

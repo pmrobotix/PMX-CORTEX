@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['level_246',['Level',['../classlogs_1_1Level.html',1,'logs']]],
-  ['logger_247',['Logger',['../classlogs_1_1Logger.html',1,'logs']]],
-  ['loggerbuffer_248',['LoggerBuffer',['../classlogs_1_1Logger_1_1LoggerBuffer.html',1,'logs::Logger']]],
-  ['loggerfactory_249',['LoggerFactory',['../classlogs_1_1LoggerFactory.html',1,'logs']]]
+  ['fileappender_558',['FileAppender',['../classlogs_1_1FileAppender.html',1,'logs']]],
+  ['fileappendertest_559',['FileAppenderTest',['../classtest_1_1FileAppenderTest.html',1,'test']]]
 ];

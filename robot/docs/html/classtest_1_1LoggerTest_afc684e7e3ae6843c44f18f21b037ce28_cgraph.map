@@ -1,0 +1,8 @@
+<map id="test::LoggerTest::testLevelFiltering" name="test::LoggerTest::testLevelFiltering">
+<area shape="rect" id="node1" title="Vérifie que les messages sous le niveau du logger sont filtrés." alt="" coords="5,86,199,127"/>
+<area shape="rect" id="node2" href="$classlogs_1_1Logger.html#a48d911418afc6c935cae1e71ed771dee" title="Cette méthode retourne l&#39;appender au Logger." alt="" coords="247,5,417,32"/>
+<area shape="rect" id="node3" href="$classlogs_1_1LoggerFactory.html#a90478b91d7af2ef8841ded21e3521f69" title="Cette méthode statique retourne l&#39;instance unique de la classe LoggerFactory." alt="" coords="258,57,406,98"/>
+<area shape="rect" id="node4" href="$classlogs_1_1Logger.html#a13e5a43ff9ecfe978afcd4443be1b32b" title="Cette méthode vérifie si le logger est actif pour un niveau donné." alt="" coords="251,123,413,149"/>
+<area shape="rect" id="node6" href="$classlogs_1_1LoggerFactory.html#a212aa623f4b6bee12cb39e8017dde670" title="Cette méthode retourne le Logger principal qui définit le niveau de trace par défaut." alt="" coords="258,174,406,215"/>
+<area shape="rect" id="node5" href="$classlogs_1_1Logger.html#a94c013a945cf805fbbc8aa763f73f107" title="Cette méthode retourne le niveau associé au Logger." alt="" coords="465,123,607,149"/>
+</map>

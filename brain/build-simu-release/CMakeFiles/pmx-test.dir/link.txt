@@ -1,1 +1,0 @@
-/usr/bin/c++ -O3 -DNDEBUG CMakeFiles/pmx-test.dir/test/main_test.cpp.o -o pmx-test  -lpthread 

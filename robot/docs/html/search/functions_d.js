@@ -1,7 +1,13 @@
 var searchData=
 [
-  ['remove_364',['remove',['../classITimerPosixListener.html#a80bdf978eda3cfa0d9271a3c2e1d3f3a',1,'ITimerPosixListener::remove(timer_t thistimerID)'],['../classITimerPosixListener.html#a543d5682e0e998afeb5f0237cae8c71d',1,'ITimerPosixListener::remove()']]],
-  ['requesttostop_365',['requestToStop',['../classITimerListener.html#afb9764e6d9d018a13530c21e19b3cd6a',1,'ITimerListener::requestToStop()'],['../classITimerPosixListener.html#a5d3f9eac245766f6c6f304417870a5ff',1,'ITimerPosixListener::requestToStop()']]],
-  ['rootlogger_366',['rootLogger',['../classlogs_1_1LoggerFactory.html#a212aa623f4b6bee12cb39e8017dde670',1,'logs::LoggerFactory']]],
-  ['run_367',['run',['../classUnitTestSuite.html#af7b586b2771e5b876628be90e33aba5e',1,'UnitTestSuite']]]
+  ['pathpolyline_816',['pathPolyline',['../classSvgWriter.html#a7079faf0c694ff10efe2f7e178d9e97c',1,'SvgWriter']]],
+  ['pointerlist_817',['PointerList',['../classutils_1_1PointerList.html#aabad19d5a33c52b25ea3c7ff65fff4bd',1,'utils::PointerList::PointerList(const allocator_type &amp;a=allocator_type())'],['../classutils_1_1PointerList.html#afc8d53379d6f553abb47460eb589f67c',1,'utils::PointerList::PointerList(size_type n, const value_type &amp;value=value_type(), const allocator_type &amp;a=allocator_type())'],['../classutils_1_1PointerList.html#a134b56062d58f09feb8a2fcdb1f013d6',1,'utils::PointerList::PointerList(const PointerList &amp;x)'],['../classutils_1_1PointerList.html#aca676638d7eb111ee7800cfe6e74a3ee',1,'utils::PointerList::PointerList(_InputIterator first, _InputIterator last, const allocator_type &amp;a=allocator_type())']]],
+  ['pointerlisttest_818',['PointerListTest',['../classtest_1_1PointerListTest.html#af0220e1aae660cb7a448cc55172258b8',1,'test::PointerListTest']]],
+  ['print_819',['print',['../classbackward_1_1Printer.html#a0c3901fa5647c29b72f92376f32a631c',1,'backward::Printer::print(IT begin, IT end, FILE *fp=stderr, size_t thread_id=0)'],['../classbackward_1_1Printer.html#a7af9bc8d53ef45606372273d67e0ba32',1,'backward::Printer::print(IT begin, IT end, std::ostream &amp;os, size_t thread_id=0)'],['../classbackward_1_1Printer.html#a0b8a226c708625feaa57509f763b091a',1,'backward::Printer::print(ST &amp;st, std::ostream &amp;os)'],['../classbackward_1_1Printer.html#acf760efb8ed0cbbaeefe6c3e2e67408f',1,'backward::Printer::print(ST &amp;st, FILE *fp=stderr)']]],
+  ['print_5fheader_820',['print_header',['../classbackward_1_1Printer.html#a56aeef5f2d0e8e4f03a6268d724661ea',1,'backward::Printer']]],
+  ['print_5fsnippet_821',['print_snippet',['../classbackward_1_1Printer.html#affc0f56b7fecc8a76a047c122a01087d',1,'backward::Printer']]],
+  ['print_5fsource_5floc_822',['print_source_loc',['../classbackward_1_1Printer.html#ad21765fc77d16e0e3c145c751f40af4b',1,'backward::Printer']]],
+  ['print_5fstacktrace_823',['print_stacktrace',['../classbackward_1_1Printer.html#a274aa2ab415421684b59e98ebe10ed38',1,'backward::Printer::print_stacktrace(ST &amp;st, std::ostream &amp;os, Colorize &amp;colorize)'],['../classbackward_1_1Printer.html#a2250517ae18d9d168b2e83c96b223b76',1,'backward::Printer::print_stacktrace(IT begin, IT end, std::ostream &amp;os, size_t thread_id, Colorize &amp;colorize)']]],
+  ['print_5ftrace_824',['print_trace',['../classbackward_1_1Printer.html#aef11c4322fa24875b265ce75269d5363',1,'backward::Printer']]],
+  ['printer_825',['Printer',['../classbackward_1_1Printer.html#a5dd393c25901418af03b87809daeb279',1,'backward::Printer']]]
 ];

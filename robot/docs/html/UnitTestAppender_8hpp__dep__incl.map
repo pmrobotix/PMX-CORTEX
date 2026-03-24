@@ -1,7 +1,8 @@
 <map id="test/suite/UnitTestAppender.hpp" name="test/suite/UnitTestAppender.hpp">
-<area shape="rect" id="node1" title="Définition de la classe UnitTestAppender utilisant le memory Appender." alt="" coords="347,5,577,32"/>
+<area shape="rect" id="node1" title="Définition de la classe UnitTestAppender utilisant le memory Appender." alt="" coords="470,5,699,32"/>
 <area shape="rect" id="node2" href="$LoggerInitialize_8cpp.html" title="Initialisation du système de Log pour les tests unitaires." alt="" coords="5,80,244,107"/>
-<area shape="rect" id="node3" href="$UnitTest_8cpp.html" title="Implémentation de la classe DevUnitTest." alt="" coords="268,80,435,107"/>
-<area shape="rect" id="node4" href="$UnitTestAppender_8cpp.html" title="Implémentation de la classe UnitTestAppender." alt="" coords="459,80,687,107"/>
-<area shape="rect" id="node5" href="$UnitTestSuite_8cpp.html" title="Implementation de la classe UnitTestSuite." alt="" coords="711,80,911,107"/>
+<area shape="rect" id="node3" href="$LoggerTest_8cpp.html" title="Implémentation des tests de la classe logs::Logger." alt="" coords="268,80,477,107"/>
+<area shape="rect" id="node4" href="$UnitTest_8cpp.html" title="Implémentation de la classe DevUnitTest." alt="" coords="501,80,668,107"/>
+<area shape="rect" id="node5" href="$UnitTestAppender_8cpp.html" title="Implémentation de la classe UnitTestAppender." alt="" coords="692,80,920,107"/>
+<area shape="rect" id="node6" href="$UnitTestSuite_8cpp.html" title="Implementation de la classe UnitTestSuite." alt="" coords="945,80,1145,107"/>
 </map>

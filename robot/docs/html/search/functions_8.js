@@ -1,11 +1,15 @@
 var searchData=
 [
-  ['level_341',['level',['../classlogs_1_1Logger.html#a94c013a945cf805fbbc8aa763f73f107',1,'logs::Logger']]],
-  ['level_342',['Level',['../classlogs_1_1Level.html#af6c5f7e1d4de11ee1df98d5d45eb642f',1,'logs::Level']]],
-  ['lock_343',['lock',['../classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32',1,'utils::Mutex']]],
-  ['lockmessages_344',['lockMessages',['../classlogs_1_1MemoryAppender.html#a80be25f44b6b0f5b36e26442da0c85d2',1,'logs::MemoryAppender']]],
-  ['logger_345',['Logger',['../classlogs_1_1Logger.html#a46f087c40eefd95ab5092137592fd102',1,'logs::Logger::Logger(const Level &amp;level, const std::string &amp;name, Appender &amp;appender)'],['../classlogs_1_1Logger.html#a204a68a5f81fbfb74aaee18d208b021f',1,'logs::Logger::Logger(const Logger &amp;parent, const std::string &amp;name)']]],
-  ['logger_346',['logger',['../classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e',1,'logs::LoggerFactory::logger()'],['../classUnitTest.html#a04ac91fa9017d4c8ee88419ab365ebe1',1,'UnitTest::logger()'],['../classUnitTestSuite.html#a9f4352aea6a472a2635fd222a4035658',1,'UnitTestSuite::logger()']]],
-  ['loggerbuffer_347',['LoggerBuffer',['../classlogs_1_1Logger_1_1LoggerBuffer.html#af0693b3b740e8d5c8d09bea5ef0c8695',1,'logs::Logger::LoggerBuffer']]],
-  ['loggerfactory_348',['LoggerFactory',['../classlogs_1_1LoggerFactory.html#af48dba1727daa4d9114882e5b64c35ac',1,'logs::LoggerFactory']]]
+  ['id_759',['id',['../classutils_1_1Thread.html#ab3ecfb3efec3bb3d24d82de3fa5d1645',1,'utils::Thread']]],
+  ['increaseindent_760',['increaseIndent',['../classUnitTestAppender.html#a8142469443969a4e2c75820ef033c9cc',1,'UnitTestAppender']]],
+  ['info_761',['info',['../classlogs_1_1Logger.html#aa381165771d00a6a1e3aa9664bf6467f',1,'logs::Logger::info(const std::string &amp;message) const'],['../classlogs_1_1Logger.html#abe904448829b4235e8452cbd19b35f45',1,'logs::Logger::info() const']]],
+  ['init_762',['init',['../classITimerListener.html#a811943618feba4aa88c6f72c1a9a27ec',1,'ITimerListener::init()'],['../classITimerPosixListener.html#a8fa649b55c2f2fe751ee0bedb3a28e31',1,'ITimerPosixListener::init()']]],
+  ['initialize_763',['initialize',['../classlogs_1_1LoggerFactory.html#a12d0cca9505bd37587b4c0333a7c86b8',1,'logs::LoggerFactory']]],
+  ['instance_764',['instance',['../classlogs_1_1LoggerFactory.html#a90478b91d7af2ef8841ded21e3521f69',1,'logs::LoggerFactory']]],
+  ['is_5fopen_765',['is_open',['../classbackward_1_1SourceFile.html#a86f98eb88a4b694aef54946549200842',1,'backward::SourceFile']]],
+  ['isactive_766',['isActive',['../classlogs_1_1Logger.html#a13e5a43ff9ecfe978afcd4443be1b32b',1,'logs::Logger']]],
+  ['isfinished_767',['isFinished',['../classutils_1_1Thread.html#acc5214a88eab5c3bd421e7ee06f66b1a',1,'utils::Thread']]],
+  ['itimerlistener_768',['ITimerListener',['../classITimerListener.html#a2099c9b93c841f05c5e99449943d4e98',1,'ITimerListener']]],
+  ['itimerposixlistener_769',['ITimerPosixListener',['../classITimerPosixListener.html#ab72547ab3e43d15769a6c18799f07062',1,'ITimerPosixListener']]],
+  ['itoa_770',['itoa',['../classConsoleKeyInput.html#a16fa8ce68d9c99d5f26f2b1d6c11a5b0',1,'ConsoleKeyInput::itoa()'],['../itoa_8cpp.html#a956f53c668f7cd786a8e45db2491e8ad',1,'itoa(int value, char *string, int radix):&#160;itoa.cpp'],['../itoa_8hpp.html#a956f53c668f7cd786a8e45db2491e8ad',1,'itoa(int value, char *string, int radix):&#160;itoa.cpp']]]
 ];

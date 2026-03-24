@@ -1,6 +1,7 @@
 <map id="logs::Level::name" name="logs::Level::name">
-<area shape="rect" id="node1" title="Cette méthode retourne le nom de ce niveau." alt="" coords="511,42,648,69"/>
-<area shape="rect" id="node2" href="$classlogs_1_1MemoryAppender.html#a478c866b07f63f1f89c347b4465834bc" title="Méthode générique de trace d&#39;un message. Ajoute le nom du log devant chaque entrée." alt="" coords="289,35,463,76"/>
+<area shape="rect" id="node1" title="Cette méthode retourne le nom de ce niveau." alt="" coords="511,78,648,105"/>
+<area shape="rect" id="node2" href="$classlogs_1_1MemoryAppender.html#a478c866b07f63f1f89c347b4465834bc" title="Méthode générique de trace d&#39;un message. Ajoute le nom du log devant chaque entrée." alt="" coords="289,71,463,112"/>
 <area shape="rect" id="node3" href="$classlogs_1_1ConsoleAppender.html#a8bc998ae5666863d846b6909207b2fc7" title="Méthode de trace d&#39;un message." alt="" coords="38,5,209,47"/>
-<area shape="rect" id="node4" href="$classUnitTestAppender.html#a2b69943419d6fe74a7f8a9c6cdcd0c98" title="Méthode générique de trace d&#39;un message." alt="" coords="5,71,241,98"/>
+<area shape="rect" id="node4" href="$classlogs_1_1TelemetryAppender.html#ac016e9912989d9550e5f5b42603a793c" title="Trace un message. Les messages TELEM et ERROR sont envoyés en UDP, les autres sont affichés sur la co..." alt="" coords="31,71,215,112"/>
+<area shape="rect" id="node5" href="$classUnitTestAppender.html#a2b69943419d6fe74a7f8a9c6cdcd0c98" title="Méthode générique de trace d&#39;un message." alt="" coords="5,137,241,163"/>
 </map>

@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot:  Fichier source de src/common/log/appender/SvgAppender.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_fdedb0aba14d44ce9d99bc100e026e6a.html">common</a></li><li class="navelem"><a class="el" href="dir_596f6805a163adddd97111db7833cf93.html">log</a></li><li class="navelem"><a class="el" href="dir_c452ef55129fafb9c6479f33f6ba012e.html">appender</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">SvgAppender.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="SvgAppender_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef LOGS_SVGAPPENDER_HPP_</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define LOGS_SVGAPPENDER_HPP_</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;fstream&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="MemoryAppender_8hpp.html">MemoryAppender.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacelogs.html">logs</a> {</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="classlogs_1_1SvgAppender.html">   20</a></span>&#160;<span class="keyword">class </span><a class="code" href="classlogs_1_1SvgAppender.html">SvgAppender</a>: <span class="keyword">public</span> <a class="code" href="classlogs_1_1MemoryAppender.html">MemoryAppender</a></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;{</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="classlogs_1_1SvgAppender.html#a75074a68718f094bc64dbb402ca1a283">   27</a></span>&#160;    std::ofstream <a class="code" href="classlogs_1_1SvgAppender.html#a75074a68718f094bc64dbb402ca1a283">ofs_</a>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="classlogs_1_1SvgAppender.html#a98b279145533d5f20bb95bbeb9420218">SvgAppender</a>(<span class="keyword">const</span> std::string &amp; filename);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classlogs_1_1SvgAppender.html#a2a4fe7712072add61d1b773d355e629e">~SvgAppender</a>();</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classlogs_1_1SvgAppender.html#a9ec86931329330e976a213510d4d82e6">writeMessage</a>(<span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a> &amp;, <span class="keyword">const</span> <a class="code" href="classlogs_1_1Level.html">logs::Level</a> &amp;, <span class="keyword">const</span> std::string &amp; message);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classlogs_1_1SvgAppender.html#a2ad23bf7a9d95d09684c0f352e3cea1a">flush</a>();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;};</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;}</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aMemoryAppender_8hpp_html"><div class="ttname"><a href="MemoryAppender_8hpp.html">MemoryAppender.hpp</a></div><div class="ttdoc">Définition de la classe MemoryAppender.</div></div>
+<div class="ttc" id="aclasslogs_1_1Level_html"><div class="ttname"><a href="classlogs_1_1Level.html">logs::Level</a></div><div class="ttdoc">Cette classe représente un niveau de trace.</div><div class="ttdef"><b>Definition:</b> Level.hpp:21</div></div>
+<div class="ttc" id="aclasslogs_1_1Logger_html"><div class="ttname"><a href="classlogs_1_1Logger.html">logs::Logger</a></div><div class="ttdoc">Classe de gestion des traces de l'application.</div><div class="ttdef"><b>Definition:</b> Logger.hpp:63</div></div>
+<div class="ttc" id="aclasslogs_1_1MemoryAppender_html"><div class="ttname"><a href="classlogs_1_1MemoryAppender.html">logs::MemoryAppender</a></div><div class="ttdoc">Implémentation de Appender stockant les messages en mémoire.</div><div class="ttdef"><b>Definition:</b> MemoryAppender.hpp:26</div></div>
+<div class="ttc" id="aclasslogs_1_1SvgAppender_html"><div class="ttname"><a href="classlogs_1_1SvgAppender.html">logs::SvgAppender</a></div><div class="ttdoc">Implémentation de Appender créant un fichier SVG.</div><div class="ttdef"><b>Definition:</b> SvgAppender.hpp:21</div></div>
+<div class="ttc" id="aclasslogs_1_1SvgAppender_html_a2a4fe7712072add61d1b773d355e629e"><div class="ttname"><a href="classlogs_1_1SvgAppender.html#a2a4fe7712072add61d1b773d355e629e">logs::SvgAppender::~SvgAppender</a></div><div class="ttdeci">virtual ~SvgAppender()</div><div class="ttdoc">Destructeur de la classe.</div><div class="ttdef"><b>Definition:</b> SvgAppender.cpp:16</div></div>
+<div class="ttc" id="aclasslogs_1_1SvgAppender_html_a2ad23bf7a9d95d09684c0f352e3cea1a"><div class="ttname"><a href="classlogs_1_1SvgAppender.html#a2ad23bf7a9d95d09684c0f352e3cea1a">logs::SvgAppender::flush</a></div><div class="ttdeci">virtual void flush()</div><div class="ttdoc">Cette méthode clos le fichier de référence.</div><div class="ttdef"><b>Definition:</b> SvgAppender.cpp:29</div></div>
+<div class="ttc" id="aclasslogs_1_1SvgAppender_html_a75074a68718f094bc64dbb402ca1a283"><div class="ttname"><a href="classlogs_1_1SvgAppender.html#a75074a68718f094bc64dbb402ca1a283">logs::SvgAppender::ofs_</a></div><div class="ttdeci">std::ofstream ofs_</div><div class="ttdef"><b>Definition:</b> SvgAppender.hpp:27</div></div>
+<div class="ttc" id="aclasslogs_1_1SvgAppender_html_a98b279145533d5f20bb95bbeb9420218"><div class="ttname"><a href="classlogs_1_1SvgAppender.html#a98b279145533d5f20bb95bbeb9420218">logs::SvgAppender::SvgAppender</a></div><div class="ttdeci">SvgAppender(const std::string &amp;filename)</div><div class="ttdoc">Constructeur de la classe.</div><div class="ttdef"><b>Definition:</b> SvgAppender.cpp:11</div></div>
+<div class="ttc" id="aclasslogs_1_1SvgAppender_html_a9ec86931329330e976a213510d4d82e6"><div class="ttname"><a href="classlogs_1_1SvgAppender.html#a9ec86931329330e976a213510d4d82e6">logs::SvgAppender::writeMessage</a></div><div class="ttdeci">virtual void writeMessage(const logs::Logger &amp;, const logs::Level &amp;, const std::string &amp;message)</div><div class="ttdoc">Méthode générique de trace d'un message.</div><div class="ttdef"><b>Definition:</b> SvgAppender.cpp:24</div></div>
+<div class="ttc" id="anamespacelogs_html"><div class="ttname"><a href="namespacelogs.html">logs</a></div><div class="ttdef"><b>Definition:</b> ConsoleAppender.hpp:13</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Mardi 24 Mars 2026 17:17:18 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

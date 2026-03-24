@@ -303,7 +303,7 @@ Ils partagent `pmx-common` (Robot, Asserv, Actions base) et le même driver.
 
 ## Correspondance avec l'ancien projet PMX (Eclipse)
 
-| Ancien projet Eclipse | Nouveau dans brain/ |
+| Ancien projet Eclipse | Nouveau dans robot/ |
 |---|---|
 | `Common-UnitTest_SIMU` | `cmake --preset simu-debug && cmake --build --preset simu-debug --target common-test` |
 | `Common-UnitTest_OPOS6UL_ARM` | `cmake --preset arm-debug && cmake --build --preset arm-debug --target common-test` |
@@ -316,7 +316,7 @@ Ils partagent `pmx-common` (Robot, Asserv, Actions base) et le même driver.
 
 ## Correspondance fichiers ancien PMX → nouveau
 
-| Ancien (PMX/src/) | Nouveau (brain/src/) |
+| Ancien (PMX/src/) | Nouveau (robot/src/) |
 |---|---|
 | `Common/Interface.Driver/` | `common/interface/` |
 | `Common/Action/` | `common/action/` |
@@ -333,7 +333,7 @@ Ils partagent `pmx-common` (Robot, Asserv, Actions base) et le même driver.
 | `Bot-OPOS6UL/` | `bot/opos6ul/` |
 | `Bot-OPOS6UL.Main/` | `bot/opos6ul/` (Main.cpp + LoggerInitialize.cpp) |
 
-| Ancien (PMX/test/) | Nouveau (brain/test/) |
+| Ancien (PMX/test/) | Nouveau (robot/test/) |
 |---|---|
 | `Suite/` | `suite/` |
 | `Common-Test.Main/` | `common/` |

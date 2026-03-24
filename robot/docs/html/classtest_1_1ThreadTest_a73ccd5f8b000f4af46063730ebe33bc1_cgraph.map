@@ -1,0 +1,12 @@
+<map id="test::ThreadTest::testConcurrentMutex" name="test::ThreadTest::testConcurrentMutex">
+<area shape="rect" id="node1" title="Vérifie que plusieurs threads concurrents avec Mutex produisent un résultat cohérent." alt="" coords="5,78,236,119"/>
+<area shape="rect" id="node2" href="$classutils_1_1Thread.html#a430ee2b8962147b587157fac97932219" title="Lance le thread." alt="" coords="305,60,446,87"/>
+<area shape="rect" id="node10" href="$classutils_1_1Thread.html#a29b8cb62f6b5f80ffe5b050167780f97" title="Attend la fin du thread (appelle pthread_join)." alt="" coords="284,111,467,137"/>
+<area shape="rect" id="node3" href="$classutils_1_1Thread.html#a61b6c3d0b87570254646120b323b89f7" title="Cette méthode sert de point d&#39;entrée pour l&#39;appel à pcreate_thread." alt="" coords="515,31,693,57"/>
+<area shape="rect" id="node9" href="$namespaceutils.html#ac714339512d6dc1ee14c5b5a92d535be" title="Définit la priorité temps&#45;réel (SCHED_FIFO) du thread spécifié." alt="" coords="534,82,674,123"/>
+<area shape="rect" id="node4" href="$classutils_1_1Thread.html#a202b3fabad41b3be6d996043b262a43a" title="Méthode virtuelle pure à implémenter dans les sous&#45;classes." alt="" coords="743,5,905,32"/>
+<area shape="rect" id="node5" href="$classutils_1_1Thread.html#a46589324e8fc0735c20268db70d34aa5" title="Modifie l&#39;état du thread (thread&#45;safe)." alt="" coords="741,56,907,83"/>
+<area shape="rect" id="node6" href="$classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32" title="Verrouille le mutex. Cette méthode doit être appelée avant d&#39;utiliser la ressource associée...." alt="" coords="1155,19,1289,45"/>
+<area shape="rect" id="node7" href="$classutils_1_1Thread.html#ada9233f3e669c925e9ed518201ad31cd" title="Retourne l&#39;état courant du thread." alt="" coords="955,56,1099,83"/>
+<area shape="rect" id="node8" href="$classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3" title="Déverrouille le mutex. Cette méthode doit être appelée après avoir utiliser la ressource associée." alt="" coords="1147,81,1297,108"/>
+</map>

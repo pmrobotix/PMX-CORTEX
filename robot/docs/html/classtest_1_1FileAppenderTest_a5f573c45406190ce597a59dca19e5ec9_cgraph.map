@@ -1,0 +1,11 @@
+<map id="test::FileAppenderTest::testWriteAndFlush" name="test::FileAppenderTest::testWriteAndFlush">
+<area shape="rect" id="node1" title="Vérifie qu&#39;un message écrit est bien présent dans le fichier après flush." alt="" coords="5,100,172,141"/>
+<area shape="rect" id="node2" href="$classlogs_1_1FileAppender.html#ae8472809e267e97fd94aa9b1b8724367" title="Écrit tous les messages en attente dans le fichier." alt="" coords="223,5,365,47"/>
+<area shape="rect" id="node3" href="$classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e" title="Cette méthode statique retourne un Logger en fonction de son nom." alt="" coords="220,71,368,112"/>
+<area shape="rect" id="node7" href="$FileAppenderTest_8cpp.html#ac5e1f4ca4e6effee354ae49c4967ee8c" title=" " alt="" coords="251,137,337,163"/>
+<area shape="rect" id="node8" href="$classlogs_1_1FileAppender.html#ab0dad2dab0f7d659321a574bdfa769c7" title="Méthode générique de trace d&#39;un message." alt="" coords="223,191,365,232"/>
+<area shape="rect" id="node4" href="$classlogs_1_1LoggerFactory.html#ac89f19c0ffd71aa8cdc1c2d44c03809e" title="Cette méthode ajoute un appender au système." alt="" coords="416,15,595,42"/>
+<area shape="rect" id="node5" href="$classlogs_1_1LoggerFactory.html#a90478b91d7af2ef8841ded21e3521f69" title="Cette méthode statique retourne l&#39;instance unique de la classe LoggerFactory." alt="" coords="431,67,579,108"/>
+<area shape="rect" id="node6" href="$classlogs_1_1LoggerFactory.html#a212aa623f4b6bee12cb39e8017dde670" title="Cette méthode retourne le Logger principal qui définit le niveau de trace par défaut." alt="" coords="431,132,579,173"/>
+<area shape="rect" id="node9" href="$classlogs_1_1MemoryAppender.html#a6456fc6c33dd29be1964a2c39b5d329f" title="Méthode générique de trace d&#39;un message sans le nom du log devant chaque entrée." alt="" coords="419,197,592,239"/>
+</map>
