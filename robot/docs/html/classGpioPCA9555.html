@@ -1,0 +1,744 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot: Référence de la classe GpioPCA9555</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Fonctions membres publiques</a> &#124;
+<a href="#pub-static-methods">Fonctions membres publiques statiques</a> &#124;
+<a href="#pri-methods">Fonctions membres privées</a> &#124;
+<a href="#pri-static-methods">Fonctions membres privées statiques</a> &#124;
+<a href="#pri-attribs">Attributs privés</a> &#124;
+<a href="classGpioPCA9555-members.html">Liste de tous les membres</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence de la classe GpioPCA9555</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Driver singleton pour le GPIO expander PCA9555 via I2C.  
+ <a href="classGpioPCA9555.html#details">Plus de détails...</a></p>
+
+<p><code>#include &lt;<a class="el" href="GpioPCA9555_8hpp_source.html">GpioPCA9555.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Fonctions membres publiques</h2></td></tr>
+<tr class="memitem:a3f8929052c69810d59ef143e94af23ad"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGpioPCA9555.html#a3f8929052c69810d59ef143e94af23ad">~GpioPCA9555</a> ()</td></tr>
+<tr class="separator:a3f8929052c69810d59ef143e94af23ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada56d6ac5d165229e1a2e7e50387a376"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGpioPCA9555.html#ada56d6ac5d165229e1a2e7e50387a376">begin</a> ()</td></tr>
+<tr class="memdesc:ada56d6ac5d165229e1a2e7e50387a376"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise la communication I2C et configure les ports.  <a href="classGpioPCA9555.html#ada56d6ac5d165229e1a2e7e50387a376">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ada56d6ac5d165229e1a2e7e50387a376"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22dbebb8c5fffe0d0c119c6d958276e7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGpioPCA9555.html#a22dbebb8c5fffe0d0c119c6d958276e7">getValueP1</a> (int pin)</td></tr>
+<tr class="memdesc:a22dbebb8c5fffe0d0c119c6d958276e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit la valeur d'un pin du port1 (entrees).  <a href="classGpioPCA9555.html#a22dbebb8c5fffe0d0c119c6d958276e7">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a22dbebb8c5fffe0d0c119c6d958276e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adca3966252205ecd62523e39fc8e02d2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGpioPCA9555.html#adca3966252205ecd62523e39fc8e02d2">isConnected</a> ()</td></tr>
+<tr class="memdesc:adca3966252205ecd62523e39fc8e02d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifie si le PCA9555 est connecte.  <a href="classGpioPCA9555.html#adca3966252205ecd62523e39fc8e02d2">Plus de détails...</a><br /></td></tr>
+<tr class="separator:adca3966252205ecd62523e39fc8e02d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec22091c7c82bb5d1723cdecaf968a7a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGpioPCA9555.html#aec22091c7c82bb5d1723cdecaf968a7a">setOffP0</a> (int pin)</td></tr>
+<tr class="memdesc:aec22091c7c82bb5d1723cdecaf968a7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Desactive un pin du port0.  <a href="classGpioPCA9555.html#aec22091c7c82bb5d1723cdecaf968a7a">Plus de détails...</a><br /></td></tr>
+<tr class="separator:aec22091c7c82bb5d1723cdecaf968a7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cde1194bb5855ed2e59c7f29ba5e81e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGpioPCA9555.html#a6cde1194bb5855ed2e59c7f29ba5e81e">setOnP0</a> (int pin)</td></tr>
+<tr class="memdesc:a6cde1194bb5855ed2e59c7f29ba5e81e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Active un pin du port0.  <a href="classGpioPCA9555.html#a6cde1194bb5855ed2e59c7f29ba5e81e">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a6cde1194bb5855ed2e59c7f29ba5e81e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a700aff89e3f53630ec2e77a3755174a4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGpioPCA9555.html#a700aff89e3f53630ec2e77a3755174a4">setup</a> ()</td></tr>
+<tr class="memdesc:a700aff89e3f53630ec2e77a3755174a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure les registres de direction des ports.  <a href="classGpioPCA9555.html#a700aff89e3f53630ec2e77a3755174a4">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a700aff89e3f53630ec2e77a3755174a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a275bd8ed5c0b8bf2e22ea488ecf06456"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGpioPCA9555.html#a275bd8ed5c0b8bf2e22ea488ecf06456">setValueP0</a> (int port, int pin, int value)</td></tr>
+<tr class="memdesc:a275bd8ed5c0b8bf2e22ea488ecf06456"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ecrit une valeur sur un pin du port0 (sorties).  <a href="classGpioPCA9555.html#a275bd8ed5c0b8bf2e22ea488ecf06456">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a275bd8ed5c0b8bf2e22ea488ecf06456"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Fonctions membres publiques statiques</h2></td></tr>
+<tr class="memitem:af9f8fb2ed90d56abc86cfb06d2033441"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classGpioPCA9555.html">GpioPCA9555</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGpioPCA9555.html#af9f8fb2ed90d56abc86cfb06d2033441">instance</a> ()</td></tr>
+<tr class="memdesc:af9f8fb2ed90d56abc86cfb06d2033441"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourne l'instance unique (singleton).  <a href="classGpioPCA9555.html#af9f8fb2ed90d56abc86cfb06d2033441">Plus de détails...</a><br /></td></tr>
+<tr class="separator:af9f8fb2ed90d56abc86cfb06d2033441"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Fonctions membres privées</h2></td></tr>
+<tr class="memitem:ab8f016507f47f398c1027374ea717cef"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGpioPCA9555.html#ab8f016507f47f398c1027374ea717cef">GpioPCA9555</a> ()</td></tr>
+<tr class="memdesc:ab8f016507f47f398c1027374ea717cef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur prive (singleton).  <a href="classGpioPCA9555.html#ab8f016507f47f398c1027374ea717cef">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ab8f016507f47f398c1027374ea717cef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe90c236ba79417fb5b4b9ba635c3b97"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGpioPCA9555.html#abe90c236ba79417fb5b4b9ba635c3b97">read_i2c</a> (unsigned char command)</td></tr>
+<tr class="memdesc:abe90c236ba79417fb5b4b9ba635c3b97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit un octet depuis un registre I2C.  <a href="classGpioPCA9555.html#abe90c236ba79417fb5b4b9ba635c3b97">Plus de détails...</a><br /></td></tr>
+<tr class="separator:abe90c236ba79417fb5b4b9ba635c3b97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7527f1c102147b8921b3b4274947a6c"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGpioPCA9555.html#ad7527f1c102147b8921b3b4274947a6c">write_i2c</a> (unsigned char command, unsigned char value)</td></tr>
+<tr class="memdesc:ad7527f1c102147b8921b3b4274947a6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ecrit un octet dans un registre I2C.  <a href="classGpioPCA9555.html#ad7527f1c102147b8921b3b4274947a6c">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ad7527f1c102147b8921b3b4274947a6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-methods"></a>
+Fonctions membres privées statiques</h2></td></tr>
+<tr class="memitem:a0693bc4682685e552dd16bb29ca90210"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="classlogs_1_1Logger.html">logs::Logger</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGpioPCA9555.html#a0693bc4682685e552dd16bb29ca90210">logger</a> ()</td></tr>
+<tr class="separator:a0693bc4682685e552dd16bb29ca90210"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Attributs privés</h2></td></tr>
+<tr class="memitem:a32678851bf3816c70ff3498d41e7d75a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGpioPCA9555.html#a32678851bf3816c70ff3498d41e7d75a">connected_</a></td></tr>
+<tr class="memdesc:a32678851bf3816c70ff3498d41e7d75a"><td class="mdescLeft">&#160;</td><td class="mdescRight">true si le PCA9555 est detecte.  <a href="classGpioPCA9555.html#a32678851bf3816c70ff3498d41e7d75a">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a32678851bf3816c70ff3498d41e7d75a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04a4788af6f382478eb1df7460ca4301"><td class="memItemLeft" align="right" valign="top">AsI2c&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGpioPCA9555.html#a04a4788af6f382478eb1df7460ca4301">i2cGB_</a></td></tr>
+<tr class="memdesc:a04a4788af6f382478eb1df7460ca4301"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bus I2C.  <a href="classGpioPCA9555.html#a04a4788af6f382478eb1df7460ca4301">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a04a4788af6f382478eb1df7460ca4301"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70b7cf98bdafeb9cc6217b37849ca6eb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGpioPCA9555.html#a70b7cf98bdafeb9cc6217b37849ca6eb">port0Value_</a></td></tr>
+<tr class="memdesc:a70b7cf98bdafeb9cc6217b37849ca6eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Valeur courante du port0 (sorties).  <a href="classGpioPCA9555.html#a70b7cf98bdafeb9cc6217b37849ca6eb">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a70b7cf98bdafeb9cc6217b37849ca6eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fe2b6709dcb463bbc5bfaafb0f8d1fe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGpioPCA9555.html#a5fe2b6709dcb463bbc5bfaafb0f8d1fe">port1Value_</a></td></tr>
+<tr class="memdesc:a5fe2b6709dcb463bbc5bfaafb0f8d1fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Valeur courante du port1 (entrees).  <a href="classGpioPCA9555.html#a5fe2b6709dcb463bbc5bfaafb0f8d1fe">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a5fe2b6709dcb463bbc5bfaafb0f8d1fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Driver singleton pour le GPIO expander PCA9555 via I2C. </p>
+<p>Port0 = sorties (setOnP0/setOffP0), Port1 = entrees (getValueP1). Utilise pour la tirette et les switchs arriere sur l'OPOS6UL. </p>
+</div><h2 class="groupheader">Documentation des constructeurs et destructeur</h2>
+<a id="ab8f016507f47f398c1027374ea717cef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8f016507f47f398c1027374ea717cef">&#9670;&nbsp;</a></span>GpioPCA9555()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GpioPCA9555::GpioPCA9555 </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructeur prive (singleton). </p>
+
+</div>
+</div>
+<a id="a3f8929052c69810d59ef143e94af23ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f8929052c69810d59ef143e94af23ad">&#9670;&nbsp;</a></span>~GpioPCA9555()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual GpioPCA9555::~GpioPCA9555 </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des fonctions membres</h2>
+<a id="ada56d6ac5d165229e1a2e7e50387a376"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada56d6ac5d165229e1a2e7e50387a376">&#9670;&nbsp;</a></span>begin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GpioPCA9555::begin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialise la communication I2C et configure les ports. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>true si le PCA9555 est detecte et configure. </dd></dl>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classGpioPCA9555_ada56d6ac5d165229e1a2e7e50387a376_cgraph.svg" width="100%" height="541"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classGpioPCA9555_ada56d6ac5d165229e1a2e7e50387a376_icgraph.svg" width="410" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a22dbebb8c5fffe0d0c119c6d958276e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22dbebb8c5fffe0d0c119c6d958276e7">&#9670;&nbsp;</a></span>getValueP1()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int GpioPCA9555::getValueP1 </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>pin</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Lit la valeur d'un pin du port1 (entrees). </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pin</td><td>Numero du pin (0-7). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>0 ou 1, -1 si non connecte. </dd></dl>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classGpioPCA9555_a22dbebb8c5fffe0d0c119c6d958276e7_cgraph.svg" width="100%" height="560"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classGpioPCA9555_a22dbebb8c5fffe0d0c119c6d958276e7_icgraph.svg" width="100%" height="404"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="af9f8fb2ed90d56abc86cfb06d2033441"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9f8fb2ed90d56abc86cfb06d2033441">&#9670;&nbsp;</a></span>instance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="classGpioPCA9555.html">GpioPCA9555</a>&amp; GpioPCA9555::instance </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retourne l'instance unique (singleton). </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Reference vers l'instance. </dd></dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classGpioPCA9555_af9f8fb2ed90d56abc86cfb06d2033441_icgraph.svg" width="100%" height="594"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="adca3966252205ecd62523e39fc8e02d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adca3966252205ecd62523e39fc8e02d2">&#9670;&nbsp;</a></span>isConnected()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GpioPCA9555::isConnected </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Verifie si le PCA9555 est connecte. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>true si connecte. </dd></dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classGpioPCA9555_adca3966252205ecd62523e39fc8e02d2_icgraph.svg" width="456" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a0693bc4682685e552dd16bb29ca90210"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0693bc4682685e552dd16bb29ca90210">&#9670;&nbsp;</a></span>logger()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static const <a class="el" href="classlogs_1_1Logger.html">logs::Logger</a>&amp; GpioPCA9555::logger </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classGpioPCA9555_a0693bc4682685e552dd16bb29ca90210_cgraph.svg" width="618" height="170"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classGpioPCA9555_a0693bc4682685e552dd16bb29ca90210_icgraph.svg" width="100%" height="513"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="abe90c236ba79417fb5b4b9ba635c3b97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe90c236ba79417fb5b4b9ba635c3b97">&#9670;&nbsp;</a></span>read_i2c()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">long GpioPCA9555::read_i2c </td>
+          <td>(</td>
+          <td class="paramtype">unsigned char&#160;</td>
+          <td class="paramname"><em>command</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lit un octet depuis un registre I2C. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">command</td><td>Adresse du registre. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Valeur lue ou &lt;0 si erreur. </dd></dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classGpioPCA9555_abe90c236ba79417fb5b4b9ba635c3b97_icgraph.svg" width="100%" height="404"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="aec22091c7c82bb5d1723cdecaf968a7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec22091c7c82bb5d1723cdecaf968a7a">&#9670;&nbsp;</a></span>setOffP0()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GpioPCA9555::setOffP0 </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>pin</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Desactive un pin du port0. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pin</td><td>Numero du pin (0-7). </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classGpioPCA9555_aec22091c7c82bb5d1723cdecaf968a7a_cgraph.svg" width="100%" height="541"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classGpioPCA9555_aec22091c7c82bb5d1723cdecaf968a7a_icgraph.svg" width="398" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a6cde1194bb5855ed2e59c7f29ba5e81e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cde1194bb5855ed2e59c7f29ba5e81e">&#9670;&nbsp;</a></span>setOnP0()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GpioPCA9555::setOnP0 </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>pin</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Active un pin du port0. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pin</td><td>Numero du pin (0-7). </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classGpioPCA9555_a6cde1194bb5855ed2e59c7f29ba5e81e_cgraph.svg" width="100%" height="541"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classGpioPCA9555_a6cde1194bb5855ed2e59c7f29ba5e81e_icgraph.svg" width="396" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a700aff89e3f53630ec2e77a3755174a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a700aff89e3f53630ec2e77a3755174a4">&#9670;&nbsp;</a></span>setup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GpioPCA9555::setup </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Configure les registres de direction des ports. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>true si succes. </dd></dl>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classGpioPCA9555_a700aff89e3f53630ec2e77a3755174a4_cgraph.svg" width="100%" height="541"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classGpioPCA9555_a700aff89e3f53630ec2e77a3755174a4_icgraph.svg" width="612" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a275bd8ed5c0b8bf2e22ea488ecf06456"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a275bd8ed5c0b8bf2e22ea488ecf06456">&#9670;&nbsp;</a></span>setValueP0()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GpioPCA9555::setValueP0 </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>pin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Ecrit une valeur sur un pin du port0 (sorties). </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">port</td><td>Registre de sortie (OUT_P0). </td></tr>
+    <tr><td class="paramname">pin</td><td>Numero du pin (0-7). </td></tr>
+    <tr><td class="paramname">value</td><td>0 ou 1. </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classGpioPCA9555_a275bd8ed5c0b8bf2e22ea488ecf06456_cgraph.svg" width="100%" height="541"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classGpioPCA9555_a275bd8ed5c0b8bf2e22ea488ecf06456_icgraph.svg" width="636" height="88"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="ad7527f1c102147b8921b3b4274947a6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7527f1c102147b8921b3b4274947a6c">&#9670;&nbsp;</a></span>write_i2c()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">long GpioPCA9555::write_i2c </td>
+          <td>(</td>
+          <td class="paramtype">unsigned char&#160;</td>
+          <td class="paramname"><em>command</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned char&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Ecrit un octet dans un registre I2C. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">command</td><td>Adresse du registre. </td></tr>
+    <tr><td class="paramname">value</td><td>Valeur a ecrire. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>0 si succes, &lt;0 si erreur. </dd></dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classGpioPCA9555_ad7527f1c102147b8921b3b4274947a6c_icgraph.svg" width="100%" height="404"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des données membres</h2>
+<a id="a32678851bf3816c70ff3498d41e7d75a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32678851bf3816c70ff3498d41e7d75a">&#9670;&nbsp;</a></span>connected_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GpioPCA9555::connected_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>true si le PCA9555 est detecte. </p>
+
+</div>
+</div>
+<a id="a04a4788af6f382478eb1df7460ca4301"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04a4788af6f382478eb1df7460ca4301">&#9670;&nbsp;</a></span>i2cGB_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AsI2c GpioPCA9555::i2cGB_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Bus I2C. </p>
+
+</div>
+</div>
+<a id="a70b7cf98bdafeb9cc6217b37849ca6eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70b7cf98bdafeb9cc6217b37849ca6eb">&#9670;&nbsp;</a></span>port0Value_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int GpioPCA9555::port0Value_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Valeur courante du port0 (sorties). </p>
+
+</div>
+</div>
+<a id="a5fe2b6709dcb463bbc5bfaafb0f8d1fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fe2b6709dcb463bbc5bfaafb0f8d1fe">&#9670;&nbsp;</a></span>port1Value_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int GpioPCA9555::port1Value_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Valeur courante du port1 (entrees). </p>
+
+</div>
+</div>
+<hr/>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>src/driver-arm/<a class="el" href="GpioPCA9555_8hpp_source.html">GpioPCA9555.hpp</a></li>
+<li>src/driver-arm/<a class="el" href="GpioPCA9555_8cpp.html">GpioPCA9555.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Mardi 24 Mars 2026 23:42:30 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

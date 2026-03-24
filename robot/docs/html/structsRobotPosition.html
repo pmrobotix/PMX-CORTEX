@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot: Référence de la structure sRobotPosition</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Attributs publics</a> &#124;
+<a href="structsRobotPosition-members.html">Liste de tous les membres</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence de la structure sRobotPosition</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Position et etat du robot sur la table.  
+ <a href="structsRobotPosition.html#details">Plus de détails...</a></p>
+
+<p><code>#include &lt;<a class="el" href="ARobotPositionShared_8hpp_source.html">ARobotPositionShared.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Attributs publics</h2></td></tr>
+<tr class="memitem:ab2208f60510134a559cb7b025c868eac"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsRobotPosition.html#ab2208f60510134a559cb7b025c868eac">asservStatus</a></td></tr>
+<tr class="memdesc:ab2208f60510134a559cb7b025c868eac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Etat de l'asservissement : 0=idle, 1=running, 2=emergency stop, 3=blocked.  <a href="structsRobotPosition.html#ab2208f60510134a559cb7b025c868eac">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ab2208f60510134a559cb7b025c868eac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9287d38bfc15b5301c80da180c77ada"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsRobotPosition.html#ad9287d38bfc15b5301c80da180c77ada">debug_nb</a></td></tr>
+<tr class="memdesc:ad9287d38bfc15b5301c80da180c77ada"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compteur de debug.  <a href="structsRobotPosition.html#ad9287d38bfc15b5301c80da180c77ada">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ad9287d38bfc15b5301c80da180c77ada"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c52e18eeefb55da164261a1008cfa95"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsRobotPosition.html#a0c52e18eeefb55da164261a1008cfa95">queueSize</a></td></tr>
+<tr class="memdesc:a0c52e18eeefb55da164261a1008cfa95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nombre de commandes en file d'attente.  <a href="structsRobotPosition.html#a0c52e18eeefb55da164261a1008cfa95">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a0c52e18eeefb55da164261a1008cfa95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03827a7014ce765c2759aece07f545b1"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsRobotPosition.html#a03827a7014ce765c2759aece07f545b1">theta</a></td></tr>
+<tr class="memdesc:a03827a7014ce765c2759aece07f545b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Angle en radians.  <a href="structsRobotPosition.html#a03827a7014ce765c2759aece07f545b1">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a03827a7014ce765c2759aece07f545b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27848e837507a10e02819478b8aac8ef"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsRobotPosition.html#a27848e837507a10e02819478b8aac8ef">x</a></td></tr>
+<tr class="memdesc:a27848e837507a10e02819478b8aac8ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Position X en millimetres.  <a href="structsRobotPosition.html#a27848e837507a10e02819478b8aac8ef">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a27848e837507a10e02819478b8aac8ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0920843f24092875d622c74ca8bdb40"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsRobotPosition.html#ad0920843f24092875d622c74ca8bdb40">y</a></td></tr>
+<tr class="memdesc:ad0920843f24092875d622c74ca8bdb40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Position Y en millimetres.  <a href="structsRobotPosition.html#ad0920843f24092875d622c74ca8bdb40">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ad0920843f24092875d622c74ca8bdb40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Position et etat du robot sur la table. </p>
+</div><h2 class="groupheader">Documentation des données membres</h2>
+<a id="ab2208f60510134a559cb7b025c868eac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2208f60510134a559cb7b025c868eac">&#9670;&nbsp;</a></span>asservStatus</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int sRobotPosition::asservStatus</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Etat de l'asservissement : 0=idle, 1=running, 2=emergency stop, 3=blocked. </p>
+
+</div>
+</div>
+<a id="ad9287d38bfc15b5301c80da180c77ada"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9287d38bfc15b5301c80da180c77ada">&#9670;&nbsp;</a></span>debug_nb</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int sRobotPosition::debug_nb</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compteur de debug. </p>
+
+</div>
+</div>
+<a id="a0c52e18eeefb55da164261a1008cfa95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c52e18eeefb55da164261a1008cfa95">&#9670;&nbsp;</a></span>queueSize</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int sRobotPosition::queueSize</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Nombre de commandes en file d'attente. </p>
+
+</div>
+</div>
+<a id="a03827a7014ce765c2759aece07f545b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03827a7014ce765c2759aece07f545b1">&#9670;&nbsp;</a></span>theta</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float sRobotPosition::theta</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Angle en radians. </p>
+
+</div>
+</div>
+<a id="a27848e837507a10e02819478b8aac8ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27848e837507a10e02819478b8aac8ef">&#9670;&nbsp;</a></span>x</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float sRobotPosition::x</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Position X en millimetres. </p>
+
+</div>
+</div>
+<a id="ad0920843f24092875d622c74ca8bdb40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0920843f24092875d622c74ca8bdb40">&#9670;&nbsp;</a></span>y</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float sRobotPosition::y</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Position Y en millimetres. </p>
+
+</div>
+</div>
+<hr/>La documentation de cette structure a été générée à partir du fichier suivant :<ul>
+<li>src/common/interface/<a class="el" href="ARobotPositionShared_8hpp_source.html">ARobotPositionShared.hpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Mardi 24 Mars 2026 23:42:30 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

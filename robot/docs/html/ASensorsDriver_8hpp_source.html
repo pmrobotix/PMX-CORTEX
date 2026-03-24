@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot:  Fichier source de src/common/interface/ASensorsDriver.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_fdedb0aba14d44ce9d99bc100e026e6a.html">common</a></li><li class="navelem"><a class="el" href="dir_c403bcb0997343f24f003e4263caa61d.html">interface</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">ASensorsDriver.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="ASensorsDriver_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#ifndef ASENSORSDRIVER_HPP_</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#define ASENSORSDRIVER_HPP_</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">class </span><a class="code" href="classARobotPositionShared.html">ARobotPositionShared</a>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">class </span>Robot;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="classRobotPos.html">   22</a></span>&#160;<span class="keyword">class </span><a class="code" href="classRobotPos.html">RobotPos</a></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classRobotPos.html#a7e40220f593f34fff8eb7dff8ae5fe70">   25</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classRobotPos.html#a7e40220f593f34fff8eb7dff8ae5fe70">nbDetectedBots</a>;  </div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classRobotPos.html#af9d7566e0e4579ba6a87161dc0215a82">   26</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classRobotPos.html#af9d7566e0e4579ba6a87161dc0215a82">x</a>;             </div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="classRobotPos.html#af07632ccfe70a1ebcf8bfcd363721579">   27</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classRobotPos.html#af07632ccfe70a1ebcf8bfcd363721579">y</a>;             </div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classRobotPos.html#aad8c009d444b8189aa02d487d5913f02">   28</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classRobotPos.html#aad8c009d444b8189aa02d487d5913f02">theta_deg</a>;     </div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classRobotPos.html#a15a5dc32e6e374d38c3ca21ff0279242">   29</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classRobotPos.html#a15a5dc32e6e374d38c3ca21ff0279242">d</a>;             </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classRobotPos.html#a5623356602ab49f79d34a6e67d51fefd">   39</a></span>&#160;    <a class="code" href="classRobotPos.html#a5623356602ab49f79d34a6e67d51fefd">RobotPos</a>(<span class="keywordtype">int</span> nb, <span class="keywordtype">float</span> x_, <span class="keywordtype">float</span> y_, <span class="keywordtype">float</span> a_, <span class="keywordtype">float</span> d_)</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <a class="code" href="classRobotPos.html#a7e40220f593f34fff8eb7dff8ae5fe70">nbDetectedBots</a> = nb;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <a class="code" href="classRobotPos.html#af9d7566e0e4579ba6a87161dc0215a82">x</a> = x_;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <a class="code" href="classRobotPos.html#af07632ccfe70a1ebcf8bfcd363721579">y</a> = y_;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <a class="code" href="classRobotPos.html#aad8c009d444b8189aa02d487d5913f02">theta_deg</a> = a_;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <a class="code" href="classRobotPos.html#a15a5dc32e6e374d38c3ca21ff0279242">d</a> = d_;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    }</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;};</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="classASensorsDriver.html">   56</a></span>&#160;<span class="keyword">class </span><a class="code" href="classASensorsDriver.html">ASensorsDriver</a> {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="classASensorsDriver.html#a9743a29ef7d4faebd915f096f07bf729">   60</a></span>&#160;    <span class="keyword">typedef</span> std::vector&lt;RobotPos&gt; <a class="code" href="classASensorsDriver.html#a9743a29ef7d4faebd915f096f07bf729">bot_positions</a>;  </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="classASensorsDriver.html#aebbaded11af63b90140b3a08599cd9f2">   68</a></span>&#160;    <span class="keyword">static</span> <a class="code" href="classASensorsDriver.html">ASensorsDriver</a>* <a class="code" href="classASensorsDriver.html#aebbaded11af63b90140b3a08599cd9f2">create</a>(std::string botName, <a class="code" href="classARobotPositionShared.html">ARobotPositionShared</a> *aRobotPositionShared);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="classASensorsDriver.html#a51698531f71b94606b5f60c3d5f3dfc4">   74</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classASensorsDriver.html#a51698531f71b94606b5f60c3d5f3dfc4">is_connected</a>() = 0;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="classASensorsDriver.html#a0c581029ba10d5ac820a9e3e2e6883cd">   80</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classASensorsDriver.html#a0c581029ba10d5ac820a9e3e2e6883cd">sync</a>() = 0;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="classASensorsDriver.html#aec164c1aa888bc212ed5c3f986f22767">   86</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classASensorsDriver.html#a9743a29ef7d4faebd915f096f07bf729">bot_positions</a> <a class="code" href="classASensorsDriver.html#aec164c1aa888bc212ed5c3f986f22767">getvPositionsAdv</a>() = 0;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="comment">// ---- Capteurs de proximite ----</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="classASensorsDriver.html#a7873d770e0255d9ef9c4e64d181dccfb">   94</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classASensorsDriver.html#a7873d770e0255d9ef9c4e64d181dccfb">frontLeft</a>() = 0;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="classASensorsDriver.html#aeda5641a63ce110b5005494fd896ae62">  100</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classASensorsDriver.html#aeda5641a63ce110b5005494fd896ae62">frontCenter</a>() = 0;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="classASensorsDriver.html#afcf6344268efabb191cb38d7e900e245">  106</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classASensorsDriver.html#afcf6344268efabb191cb38d7e900e245">frontRight</a>() = 0;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="classASensorsDriver.html#a73d2598f685d481a58b3b5364de4f75c">  112</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classASensorsDriver.html#a73d2598f685d481a58b3b5364de4f75c">backLeft</a>() = 0;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
+<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="classASensorsDriver.html#a424c48415ec72021509c58cd4ce95fd8">  118</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classASensorsDriver.html#a424c48415ec72021509c58cd4ce95fd8">backCenter</a>() = 0;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00124"></a><span class="lineno"><a class="line" href="classASensorsDriver.html#afa92806f01cf2a920183fb0cb491101e">  124</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classASensorsDriver.html#afa92806f01cf2a920183fb0cb491101e">backRight</a>() = 0;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
+<div class="line"><a name="l00130"></a><span class="lineno"><a class="line" href="classASensorsDriver.html#a08927084e26b430add29c87f05616bf8">  130</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classASensorsDriver.html#a08927084e26b430add29c87f05616bf8">rightSide</a>() = 0;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
+<div class="line"><a name="l00136"></a><span class="lineno"><a class="line" href="classASensorsDriver.html#a800cc3f2ce33b02a9c9a758308d9e53c">  136</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classASensorsDriver.html#a800cc3f2ce33b02a9c9a758308d9e53c">leftSide</a>() = 0;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160; </div>
+<div class="line"><a name="l00142"></a><span class="lineno"><a class="line" href="classASensorsDriver.html#a1bbf3fcc72a8d2be97ae9a2237c1627f">  142</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classASensorsDriver.html#a1bbf3fcc72a8d2be97ae9a2237c1627f">displayNumber</a>(<span class="keywordtype">int</span> number) = 0;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160; </div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="comment">// ---- Simulation uniquement ----</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
+<div class="line"><a name="l00152"></a><span class="lineno"><a class="line" href="classASensorsDriver.html#a88bb31b860fd7f3dcac91cb08ceb797c">  152</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classASensorsDriver.html#a88bb31b860fd7f3dcac91cb08ceb797c">addvPositionsAdv</a>(<span class="keywordtype">float</span> x, <span class="keywordtype">float</span> y) = 0;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
+<div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="classASensorsDriver.html#ac5a29aeb565fdec608728cfb2f8d3f1d">  158</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classASensorsDriver.html#ac5a29aeb565fdec608728cfb2f8d3f1d">clearPositionsAdv</a>() = 0;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
+<div class="line"><a name="l00160"></a><span class="lineno"><a class="line" href="classASensorsDriver.html#a3371123b03a48e8759f913958d79e777">  160</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classASensorsDriver.html#a3371123b03a48e8759f913958d79e777">~ASensorsDriver</a>()</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    {</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    }</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160; </div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
+<div class="line"><a name="l00166"></a><span class="lineno"><a class="line" href="classASensorsDriver.html#a20a532a00130a076584de7a82b406780">  166</a></span>&#160;    <a class="code" href="classASensorsDriver.html#a20a532a00130a076584de7a82b406780">ASensorsDriver</a>()</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    {</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    }</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160; </div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;};</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160; </div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassARobotPositionShared_html"><div class="ttname"><a href="classARobotPositionShared.html">ARobotPositionShared</a></div><div class="ttdoc">Interface abstraite d'acces a la position partagee du robot.</div><div class="ttdef"><b>Definition:</b> ARobotPositionShared.hpp:94</div></div>
+<div class="ttc" id="aclassASensorsDriver_html"><div class="ttname"><a href="classASensorsDriver.html">ASensorsDriver</a></div><div class="ttdoc">Interface abstraite du driver de capteurs.</div><div class="ttdef"><b>Definition:</b> ASensorsDriver.hpp:56</div></div>
+<div class="ttc" id="aclassASensorsDriver_html_a08927084e26b430add29c87f05616bf8"><div class="ttname"><a href="classASensorsDriver.html#a08927084e26b430add29c87f05616bf8">ASensorsDriver::rightSide</a></div><div class="ttdeci">virtual int rightSide()=0</div><div class="ttdoc">Lit le capteur lateral droit.</div></div>
+<div class="ttc" id="aclassASensorsDriver_html_a0c581029ba10d5ac820a9e3e2e6883cd"><div class="ttname"><a href="classASensorsDriver.html#a0c581029ba10d5ac820a9e3e2e6883cd">ASensorsDriver::sync</a></div><div class="ttdeci">virtual int sync()=0</div><div class="ttdoc">Synchronise les donnees de la balise (lecture I2C).</div></div>
+<div class="ttc" id="aclassASensorsDriver_html_a1bbf3fcc72a8d2be97ae9a2237c1627f"><div class="ttname"><a href="classASensorsDriver.html#a1bbf3fcc72a8d2be97ae9a2237c1627f">ASensorsDriver::displayNumber</a></div><div class="ttdeci">virtual void displayNumber(int number)=0</div><div class="ttdoc">Affiche un nombre sur l'afficheur 7 segments.</div></div>
+<div class="ttc" id="aclassASensorsDriver_html_a20a532a00130a076584de7a82b406780"><div class="ttname"><a href="classASensorsDriver.html#a20a532a00130a076584de7a82b406780">ASensorsDriver::ASensorsDriver</a></div><div class="ttdeci">ASensorsDriver()</div><div class="ttdef"><b>Definition:</b> ASensorsDriver.hpp:166</div></div>
+<div class="ttc" id="aclassASensorsDriver_html_a3371123b03a48e8759f913958d79e777"><div class="ttname"><a href="classASensorsDriver.html#a3371123b03a48e8759f913958d79e777">ASensorsDriver::~ASensorsDriver</a></div><div class="ttdeci">virtual ~ASensorsDriver()</div><div class="ttdef"><b>Definition:</b> ASensorsDriver.hpp:160</div></div>
+<div class="ttc" id="aclassASensorsDriver_html_a424c48415ec72021509c58cd4ce95fd8"><div class="ttname"><a href="classASensorsDriver.html#a424c48415ec72021509c58cd4ce95fd8">ASensorsDriver::backCenter</a></div><div class="ttdeci">virtual int backCenter()=0</div><div class="ttdoc">Lit le capteur arriere centre.</div></div>
+<div class="ttc" id="aclassASensorsDriver_html_a51698531f71b94606b5f60c3d5f3dfc4"><div class="ttname"><a href="classASensorsDriver.html#a51698531f71b94606b5f60c3d5f3dfc4">ASensorsDriver::is_connected</a></div><div class="ttdeci">virtual bool is_connected()=0</div><div class="ttdoc">Verifie si la balise est connectee.</div></div>
+<div class="ttc" id="aclassASensorsDriver_html_a73d2598f685d481a58b3b5364de4f75c"><div class="ttname"><a href="classASensorsDriver.html#a73d2598f685d481a58b3b5364de4f75c">ASensorsDriver::backLeft</a></div><div class="ttdeci">virtual int backLeft()=0</div><div class="ttdoc">Lit le capteur arriere gauche.</div></div>
+<div class="ttc" id="aclassASensorsDriver_html_a7873d770e0255d9ef9c4e64d181dccfb"><div class="ttname"><a href="classASensorsDriver.html#a7873d770e0255d9ef9c4e64d181dccfb">ASensorsDriver::frontLeft</a></div><div class="ttdeci">virtual int frontLeft()=0</div><div class="ttdoc">Lit le capteur avant gauche.</div></div>
+<div class="ttc" id="aclassASensorsDriver_html_a800cc3f2ce33b02a9c9a758308d9e53c"><div class="ttname"><a href="classASensorsDriver.html#a800cc3f2ce33b02a9c9a758308d9e53c">ASensorsDriver::leftSide</a></div><div class="ttdeci">virtual int leftSide()=0</div><div class="ttdoc">Lit le capteur lateral gauche.</div></div>
+<div class="ttc" id="aclassASensorsDriver_html_a88bb31b860fd7f3dcac91cb08ceb797c"><div class="ttname"><a href="classASensorsDriver.html#a88bb31b860fd7f3dcac91cb08ceb797c">ASensorsDriver::addvPositionsAdv</a></div><div class="ttdeci">virtual void addvPositionsAdv(float x, float y)=0</div><div class="ttdoc">Ajoute une position adversaire simulee.</div></div>
+<div class="ttc" id="aclassASensorsDriver_html_a9743a29ef7d4faebd915f096f07bf729"><div class="ttname"><a href="classASensorsDriver.html#a9743a29ef7d4faebd915f096f07bf729">ASensorsDriver::bot_positions</a></div><div class="ttdeci">std::vector&lt; RobotPos &gt; bot_positions</div><div class="ttdoc">Liste de positions adversaires detectees.</div><div class="ttdef"><b>Definition:</b> ASensorsDriver.hpp:60</div></div>
+<div class="ttc" id="aclassASensorsDriver_html_ac5a29aeb565fdec608728cfb2f8d3f1d"><div class="ttname"><a href="classASensorsDriver.html#ac5a29aeb565fdec608728cfb2f8d3f1d">ASensorsDriver::clearPositionsAdv</a></div><div class="ttdeci">virtual void clearPositionsAdv()=0</div><div class="ttdoc">Supprime toutes les positions adversaires simulees.</div></div>
+<div class="ttc" id="aclassASensorsDriver_html_aebbaded11af63b90140b3a08599cd9f2"><div class="ttname"><a href="classASensorsDriver.html#aebbaded11af63b90140b3a08599cd9f2">ASensorsDriver::create</a></div><div class="ttdeci">static ASensorsDriver * create(std::string botName, ARobotPositionShared *aRobotPositionShared)</div><div class="ttdoc">Cree l'instance concrete selon la plateforme.</div></div>
+<div class="ttc" id="aclassASensorsDriver_html_aec164c1aa888bc212ed5c3f986f22767"><div class="ttname"><a href="classASensorsDriver.html#aec164c1aa888bc212ed5c3f986f22767">ASensorsDriver::getvPositionsAdv</a></div><div class="ttdeci">virtual bot_positions getvPositionsAdv()=0</div><div class="ttdoc">Retourne les positions des adversaires detectes.</div></div>
+<div class="ttc" id="aclassASensorsDriver_html_aeda5641a63ce110b5005494fd896ae62"><div class="ttname"><a href="classASensorsDriver.html#aeda5641a63ce110b5005494fd896ae62">ASensorsDriver::frontCenter</a></div><div class="ttdeci">virtual int frontCenter()=0</div><div class="ttdoc">Lit le capteur avant centre.</div></div>
+<div class="ttc" id="aclassASensorsDriver_html_afa92806f01cf2a920183fb0cb491101e"><div class="ttname"><a href="classASensorsDriver.html#afa92806f01cf2a920183fb0cb491101e">ASensorsDriver::backRight</a></div><div class="ttdeci">virtual int backRight()=0</div><div class="ttdoc">Lit le capteur arriere droit.</div></div>
+<div class="ttc" id="aclassASensorsDriver_html_afcf6344268efabb191cb38d7e900e245"><div class="ttname"><a href="classASensorsDriver.html#afcf6344268efabb191cb38d7e900e245">ASensorsDriver::frontRight</a></div><div class="ttdeci">virtual int frontRight()=0</div><div class="ttdoc">Lit le capteur avant droit.</div></div>
+<div class="ttc" id="aclassRobotPos_html"><div class="ttname"><a href="classRobotPos.html">RobotPos</a></div><div class="ttdoc">Position d'un robot adversaire detecte par la balise.</div><div class="ttdef"><b>Definition:</b> ASensorsDriver.hpp:23</div></div>
+<div class="ttc" id="aclassRobotPos_html_a15a5dc32e6e374d38c3ca21ff0279242"><div class="ttname"><a href="classRobotPos.html#a15a5dc32e6e374d38c3ca21ff0279242">RobotPos::d</a></div><div class="ttdeci">float d</div><div class="ttdoc">Distance du centre robot au centre adversaire en mm.</div><div class="ttdef"><b>Definition:</b> ASensorsDriver.hpp:29</div></div>
+<div class="ttc" id="aclassRobotPos_html_a5623356602ab49f79d34a6e67d51fefd"><div class="ttname"><a href="classRobotPos.html#a5623356602ab49f79d34a6e67d51fefd">RobotPos::RobotPos</a></div><div class="ttdeci">RobotPos(int nb, float x_, float y_, float a_, float d_)</div><div class="ttdoc">Constructeur.</div><div class="ttdef"><b>Definition:</b> ASensorsDriver.hpp:39</div></div>
+<div class="ttc" id="aclassRobotPos_html_a7e40220f593f34fff8eb7dff8ae5fe70"><div class="ttname"><a href="classRobotPos.html#a7e40220f593f34fff8eb7dff8ae5fe70">RobotPos::nbDetectedBots</a></div><div class="ttdeci">int nbDetectedBots</div><div class="ttdoc">Nombre total de robots detectes (duplique dans chaque element).</div><div class="ttdef"><b>Definition:</b> ASensorsDriver.hpp:25</div></div>
+<div class="ttc" id="aclassRobotPos_html_aad8c009d444b8189aa02d487d5913f02"><div class="ttname"><a href="classRobotPos.html#aad8c009d444b8189aa02d487d5913f02">RobotPos::theta_deg</a></div><div class="ttdeci">float theta_deg</div><div class="ttdoc">Angle de l'adversaire par rapport a l'avant du robot en degres.</div><div class="ttdef"><b>Definition:</b> ASensorsDriver.hpp:28</div></div>
+<div class="ttc" id="aclassRobotPos_html_af07632ccfe70a1ebcf8bfcd363721579"><div class="ttname"><a href="classRobotPos.html#af07632ccfe70a1ebcf8bfcd363721579">RobotPos::y</a></div><div class="ttdeci">float y</div><div class="ttdoc">Position Y de l'adversaire en mm (coordonnees table).</div><div class="ttdef"><b>Definition:</b> ASensorsDriver.hpp:27</div></div>
+<div class="ttc" id="aclassRobotPos_html_af9d7566e0e4579ba6a87161dc0215a82"><div class="ttname"><a href="classRobotPos.html#af9d7566e0e4579ba6a87161dc0215a82">RobotPos::x</a></div><div class="ttdeci">float x</div><div class="ttdoc">Position X de l'adversaire en mm (coordonnees table).</div><div class="ttdef"><b>Definition:</b> ASensorsDriver.hpp:26</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Mardi 24 Mars 2026 23:42:28 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

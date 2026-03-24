@@ -1,12 +1,12 @@
 {
 	"folders": [
 		{
-			"name": "brain",
-			"path": "brain"
-		},
-		{
 			"name": "robot",
 			"path": "robot"
+		},
+		{
+			"name": "brain",
+			"path": "brain"
 		},
 		{
 			"name": "libs/simple-svg",
@@ -18,12 +18,33 @@
 		}
 	],
 	"settings": {
-		"cmake.automaticReconfigure": true
+		// --- CMake : uniquement sur robot ---
+		"cmake.automaticReconfigure": true,
+		"cmake.sourceDirectory": "${workspaceFolder:robot}",
+		"cmake.ignoreCMakeListsMissing": true,
+		"cmake.provideTasks": false,
+		"tasks.statusbar.default.hide": true,
+		"cmake.options.advanced": {
+			"configurePreset":  { "statusBarVisibility": "visible" },
+			"buildPreset":      { "statusBarVisibility": "visible" },
+			"buildTarget":      { "statusBarVisibility": "visible" },
+			"build":            { "statusBarVisibility": "visible" },
+			"cpack":            { "statusBarVisibility": "hidden" },
+			"workflow":         { "statusBarVisibility": "hidden" },
+			"packagePreset":    { "statusBarVisibility": "hidden" },
+			"workflowPreset":   { "statusBarVisibility": "hidden" },
+			"ctest":            { "statusBarVisibility": "hidden" },
+			"testPreset":       { "statusBarVisibility": "hidden" },
+			"launch":           { "statusBarVisibility": "visible" },
+			"launchTarget":     { "statusBarVisibility": "visible" },
+			"debug":            { "statusBarVisibility": "hidden" }
+		}
 	},
 	"extensions": {
 		"recommendations": [
 			"ms-vscode.cpptools",
-			"ms-vscode.cmake-tools"
+			"ms-vscode.cmake-tools",
+			"actboy168.tasks"
 		]
 	}
 }

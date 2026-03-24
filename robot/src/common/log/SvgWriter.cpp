@@ -130,7 +130,6 @@ void SvgWriter::endHeader()
 			logger().info() << "</svg>" << logs::end;
 			this->unlock();
 
-			//TODO lock?
 			this->lock();
 			*docSensor_ << svg::elemEnd("g");
 			*docSensor_<< svg::elemEnd("svg");

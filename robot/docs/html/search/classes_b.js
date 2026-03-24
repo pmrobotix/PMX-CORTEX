@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['resolvedtrace_585',['ResolvedTrace',['../structbackward_1_1ResolvedTrace.html',1,'backward']]],
-  ['rm_5fptr_586',['rm_ptr',['../structbackward_1_1details_1_1rm__ptr.html',1,'backward::details']]],
-  ['rm_5fptr_3c_20const_20t_20_2a_20_3e_587',['rm_ptr&lt; const T * &gt;',['../structbackward_1_1details_1_1rm__ptr_3_01const_01T_01_5_01_4.html',1,'backward::details']]],
-  ['rm_5fptr_3c_20t_20_2a_20_3e_588',['rm_ptr&lt; T * &gt;',['../structbackward_1_1details_1_1rm__ptr_3_01T_01_5_01_4.html',1,'backward::details']]]
+  ['make_5fvoid_1945',['make_void',['../structdetail_1_1make__void.html',1,'detail']]],
+  ['memoryappender_1946',['MemoryAppender',['../classlogs_1_1MemoryAppender.html',1,'logs']]],
+  ['msgform_1947',['msgform',['../structmsgform.html',1,'']]],
+  ['mutex_1948',['Mutex',['../classutils_1_1Mutex.html',1,'utils']]],
+  ['mutexcounterthread_1949',['MutexCounterThread',['../classtest_1_1MutexCounterThread.html',1,'test']]],
+  ['mutextest_1950',['MutexTest',['../classtest_1_1MutexTest.html',1,'test']]]
 ];

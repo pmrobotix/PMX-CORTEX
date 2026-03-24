@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot:  Fichier source de src/common/interface/AServoDriver.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_fdedb0aba14d44ce9d99bc100e026e6a.html">common</a></li><li class="navelem"><a class="el" href="dir_c403bcb0997343f24f003e4263caa61d.html">interface</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">AServoDriver.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="AServoDriver_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#ifndef ASERVODRIVER_HPP_</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define ASERVODRIVER_HPP_</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="classAServoDriver.html">   19</a></span>&#160;<span class="keyword">class </span><a class="code" href="classAServoDriver.html">AServoDriver</a></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="classAServoDriver.html#af202d0a72cdde1d9c0c0eba05e253365">   27</a></span>&#160;    <span class="keyword">enum</span> <a class="code" href="classAServoDriver.html#af202d0a72cdde1d9c0c0eba05e253365">ServoType</a></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    {</div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classAServoDriver.html#af202d0a72cdde1d9c0c0eba05e253365ace3f795c279f2bfb2d40a715911be20b">   29</a></span>&#160;        <a class="code" href="classAServoDriver.html#af202d0a72cdde1d9c0c0eba05e253365ace3f795c279f2bfb2d40a715911be20b">SERVO_STANDARD</a>,  </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <a class="code" href="classAServoDriver.html#af202d0a72cdde1d9c0c0eba05e253365a4397a48ac192183b8bf8b98727ca0978">SERVO_DYNAMIXEL</a>  </div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="classAServoDriver.html#af202d0a72cdde1d9c0c0eba05e253365a4397a48ac192183b8bf8b98727ca0978">   31</a></span>&#160;    };</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classAServoDriver.html#a636e9fd1bd8ed8e6a2914d561ee1e804">   37</a></span>&#160;    <span class="keyword">static</span> <a class="code" href="classAServoDriver.html">AServoDriver</a>* <a class="code" href="classAServoDriver.html#a636e9fd1bd8ed8e6a2914d561ee1e804">create</a>();</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classAServoDriver.html#a3dbde2c92b140d02e520cf646bdd47f4">   39</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classAServoDriver.html#a3dbde2c92b140d02e520cf646bdd47f4">~AServoDriver</a>()</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    }</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classAServoDriver.html#a6f11bdbeabd16744ddfd24edcf24db3d">   43</a></span>&#160;    <a class="code" href="classAServoDriver.html#a6f11bdbeabd16744ddfd24edcf24db3d">AServoDriver</a>()</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    }</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="classAServoDriver.html#ad21637417b10b9f06418e070428a8b8d">   54</a></span>&#160;    <span class="keywordtype">long</span> <a class="code" href="classAServoDriver.html#ad21637417b10b9f06418e070428a8b8d">constrain</a>(<span class="keywordtype">long</span> value, <span class="keywordtype">long</span> valeurMin, <span class="keywordtype">long</span> valeurMax)</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordflow">if</span> (value &lt; valeurMin)</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <span class="keywordflow">return</span> valeurMin;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keywordflow">if</span> (value &gt; valeurMax)</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="keywordflow">return</span> valeurMax;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordflow">return</span> value;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    }</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="classAServoDriver.html#aa364bc577d881083d74126bb4ee65291">   67</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classAServoDriver.html#aa364bc577d881083d74126bb4ee65291">is_connected</a>() = 0;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="classAServoDriver.html#af90488fb6a2ea3149f4bf68ae01e61b2">   73</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classAServoDriver.html#af90488fb6a2ea3149f4bf68ae01e61b2">hold</a>(<span class="keywordtype">int</span> servo) = 0;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="classAServoDriver.html#a9005ceeeecc056474f1ae6e54ce8ba23">   79</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classAServoDriver.html#a9005ceeeecc056474f1ae6e54ce8ba23">release</a>(<span class="keywordtype">int</span> servo) = 0;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="classAServoDriver.html#aea0af472e44c21328bf4ebb7203ca416">   86</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classAServoDriver.html#aea0af472e44c21328bf4ebb7203ca416">turn</a>(<span class="keywordtype">int</span> servo, <span class="keywordtype">int</span> speed) = 0;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="classAServoDriver.html#a3db6d14f3d23fdbd96e95add6a552b0c">   94</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classAServoDriver.html#a3db6d14f3d23fdbd96e95add6a552b0c">setPulsePos</a>(<span class="keywordtype">int</span> servo, <span class="keywordtype">int</span> pulse, <span class="keywordtype">int</span> velocity = 0) = 0;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="classAServoDriver.html#ab7edad21e6c5cb53a72bdd1673040a36">  101</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classAServoDriver.html#ab7edad21e6c5cb53a72bdd1673040a36">setTorque</a>(<span class="keywordtype">int</span> servo, <span class="keywordtype">int</span> torque) = 0;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="classAServoDriver.html#ac0f03a69563322014fc956c1a24078ae">  108</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classAServoDriver.html#ac0f03a69563322014fc956c1a24078ae">setMinPulse</a>(<span class="keywordtype">int</span> servo, <span class="keywordtype">int</span> value) = 0;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="classAServoDriver.html#a33b073e7c2c9bce6cd7002ddc9786b83">  115</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classAServoDriver.html#a33b073e7c2c9bce6cd7002ddc9786b83">setMidPulse</a>(<span class="keywordtype">int</span> servo, <span class="keywordtype">int</span> value) = 0;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
+<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="classAServoDriver.html#a2c8ca2180aab710c796a8a52587adaa8">  122</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classAServoDriver.html#a2c8ca2180aab710c796a8a52587adaa8">setMaxPulse</a>(<span class="keywordtype">int</span> servo, <span class="keywordtype">int</span> value) = 0;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
+<div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="classAServoDriver.html#a9fc6590e81391fc05ea59b5512c982ad">  129</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classAServoDriver.html#a9fc6590e81391fc05ea59b5512c982ad">setPolarity</a>(<span class="keywordtype">int</span> servo, <span class="keywordtype">bool</span> inversed) = 0;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
+<div class="line"><a name="l00137"></a><span class="lineno"><a class="line" href="classAServoDriver.html#ae2b788756798105ae833a58984ade305">  137</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classAServoDriver.html#ae2b788756798105ae833a58984ade305">setType</a>(<span class="keywordtype">int</span> servo, <a class="code" href="classAServoDriver.html#af202d0a72cdde1d9c0c0eba05e253365">ServoType</a> <a class="code" href="namespacebackward_1_1ColorMode.html#aec82452ed7333b210e205aaf6da2d090">type</a>) = 0;</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
+<div class="line"><a name="l00144"></a><span class="lineno"><a class="line" href="classAServoDriver.html#a75ffc42390ff51d5d8b56985d3c93a47">  144</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classAServoDriver.html#a75ffc42390ff51d5d8b56985d3c93a47">ping</a>(<span class="keywordtype">int</span> servo) = 0;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
+<div class="line"><a name="l00151"></a><span class="lineno"><a class="line" href="classAServoDriver.html#a954ac7340407b997387d84d7059ed32b">  151</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classAServoDriver.html#a954ac7340407b997387d84d7059ed32b">getMoving</a>(<span class="keywordtype">int</span> servo) = 0;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
+<div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="classAServoDriver.html#a478684e583054bdff2d31ee2c7aa944d">  158</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classAServoDriver.html#a478684e583054bdff2d31ee2c7aa944d">getPulsePos</a>(<span class="keywordtype">int</span> servo) = 0;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
+<div class="line"><a name="l00165"></a><span class="lineno"><a class="line" href="classAServoDriver.html#a9a95b8efce958c283fb4ef65649a38cd">  165</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classAServoDriver.html#a9a95b8efce958c283fb4ef65649a38cd">getTorque</a>(<span class="keywordtype">int</span> servo) = 0;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;};</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160; </div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassAServoDriver_html"><div class="ttname"><a href="classAServoDriver.html">AServoDriver</a></div><div class="ttdoc">Interface abstraite du driver de servomoteurs.</div><div class="ttdef"><b>Definition:</b> AServoDriver.hpp:20</div></div>
+<div class="ttc" id="aclassAServoDriver_html_a2c8ca2180aab710c796a8a52587adaa8"><div class="ttname"><a href="classAServoDriver.html#a2c8ca2180aab710c796a8a52587adaa8">AServoDriver::setMaxPulse</a></div><div class="ttdeci">virtual void setMaxPulse(int servo, int value)=0</div><div class="ttdoc">Definit la largeur d'impulsion maximale.</div></div>
+<div class="ttc" id="aclassAServoDriver_html_a33b073e7c2c9bce6cd7002ddc9786b83"><div class="ttname"><a href="classAServoDriver.html#a33b073e7c2c9bce6cd7002ddc9786b83">AServoDriver::setMidPulse</a></div><div class="ttdeci">virtual void setMidPulse(int servo, int value)=0</div><div class="ttdoc">Definit la largeur d'impulsion centrale (position neutre).</div></div>
+<div class="ttc" id="aclassAServoDriver_html_a3db6d14f3d23fdbd96e95add6a552b0c"><div class="ttname"><a href="classAServoDriver.html#a3db6d14f3d23fdbd96e95add6a552b0c">AServoDriver::setPulsePos</a></div><div class="ttdeci">virtual void setPulsePos(int servo, int pulse, int velocity=0)=0</div><div class="ttdoc">Definit la position du servo par largeur d'impulsion PWM.</div></div>
+<div class="ttc" id="aclassAServoDriver_html_a3dbde2c92b140d02e520cf646bdd47f4"><div class="ttname"><a href="classAServoDriver.html#a3dbde2c92b140d02e520cf646bdd47f4">AServoDriver::~AServoDriver</a></div><div class="ttdeci">virtual ~AServoDriver()</div><div class="ttdef"><b>Definition:</b> AServoDriver.hpp:39</div></div>
+<div class="ttc" id="aclassAServoDriver_html_a478684e583054bdff2d31ee2c7aa944d"><div class="ttname"><a href="classAServoDriver.html#a478684e583054bdff2d31ee2c7aa944d">AServoDriver::getPulsePos</a></div><div class="ttdeci">virtual int getPulsePos(int servo)=0</div><div class="ttdoc">Lit la position courante du servo.</div></div>
+<div class="ttc" id="aclassAServoDriver_html_a636e9fd1bd8ed8e6a2914d561ee1e804"><div class="ttname"><a href="classAServoDriver.html#a636e9fd1bd8ed8e6a2914d561ee1e804">AServoDriver::create</a></div><div class="ttdeci">static AServoDriver * create()</div><div class="ttdoc">Cree l'instance concrete selon la plateforme.</div></div>
+<div class="ttc" id="aclassAServoDriver_html_a6f11bdbeabd16744ddfd24edcf24db3d"><div class="ttname"><a href="classAServoDriver.html#a6f11bdbeabd16744ddfd24edcf24db3d">AServoDriver::AServoDriver</a></div><div class="ttdeci">AServoDriver()</div><div class="ttdef"><b>Definition:</b> AServoDriver.hpp:43</div></div>
+<div class="ttc" id="aclassAServoDriver_html_a75ffc42390ff51d5d8b56985d3c93a47"><div class="ttname"><a href="classAServoDriver.html#a75ffc42390ff51d5d8b56985d3c93a47">AServoDriver::ping</a></div><div class="ttdeci">virtual int ping(int servo)=0</div><div class="ttdoc">Envoie un ping au servo pour verifier sa presence.</div></div>
+<div class="ttc" id="aclassAServoDriver_html_a9005ceeeecc056474f1ae6e54ce8ba23"><div class="ttname"><a href="classAServoDriver.html#a9005ceeeecc056474f1ae6e54ce8ba23">AServoDriver::release</a></div><div class="ttdeci">virtual void release(int servo)=0</div><div class="ttdoc">Relache le servo (desactive le couple).</div></div>
+<div class="ttc" id="aclassAServoDriver_html_a954ac7340407b997387d84d7059ed32b"><div class="ttname"><a href="classAServoDriver.html#a954ac7340407b997387d84d7059ed32b">AServoDriver::getMoving</a></div><div class="ttdeci">virtual int getMoving(int servo)=0</div><div class="ttdoc">Verifie si le servo est en mouvement.</div></div>
+<div class="ttc" id="aclassAServoDriver_html_a9a95b8efce958c283fb4ef65649a38cd"><div class="ttname"><a href="classAServoDriver.html#a9a95b8efce958c283fb4ef65649a38cd">AServoDriver::getTorque</a></div><div class="ttdeci">virtual int getTorque(int servo)=0</div><div class="ttdoc">Lit le couple courant du servo.</div></div>
+<div class="ttc" id="aclassAServoDriver_html_a9fc6590e81391fc05ea59b5512c982ad"><div class="ttname"><a href="classAServoDriver.html#a9fc6590e81391fc05ea59b5512c982ad">AServoDriver::setPolarity</a></div><div class="ttdeci">virtual void setPolarity(int servo, bool inversed)=0</div><div class="ttdoc">Inverse la polarite du servo.</div></div>
+<div class="ttc" id="aclassAServoDriver_html_aa364bc577d881083d74126bb4ee65291"><div class="ttname"><a href="classAServoDriver.html#aa364bc577d881083d74126bb4ee65291">AServoDriver::is_connected</a></div><div class="ttdeci">virtual bool is_connected()=0</div><div class="ttdoc">Verifie si la carte servo est connectee.</div></div>
+<div class="ttc" id="aclassAServoDriver_html_ab7edad21e6c5cb53a72bdd1673040a36"><div class="ttname"><a href="classAServoDriver.html#ab7edad21e6c5cb53a72bdd1673040a36">AServoDriver::setTorque</a></div><div class="ttdeci">virtual void setTorque(int servo, int torque)=0</div><div class="ttdoc">Definit le couple maximal du servo.</div></div>
+<div class="ttc" id="aclassAServoDriver_html_ac0f03a69563322014fc956c1a24078ae"><div class="ttname"><a href="classAServoDriver.html#ac0f03a69563322014fc956c1a24078ae">AServoDriver::setMinPulse</a></div><div class="ttdeci">virtual void setMinPulse(int servo, int value)=0</div><div class="ttdoc">Definit la largeur d'impulsion minimale.</div></div>
+<div class="ttc" id="aclassAServoDriver_html_ad21637417b10b9f06418e070428a8b8d"><div class="ttname"><a href="classAServoDriver.html#ad21637417b10b9f06418e070428a8b8d">AServoDriver::constrain</a></div><div class="ttdeci">long constrain(long value, long valeurMin, long valeurMax)</div><div class="ttdoc">Limite une valeur a un intervalle [min, max].</div><div class="ttdef"><b>Definition:</b> AServoDriver.hpp:54</div></div>
+<div class="ttc" id="aclassAServoDriver_html_ae2b788756798105ae833a58984ade305"><div class="ttname"><a href="classAServoDriver.html#ae2b788756798105ae833a58984ade305">AServoDriver::setType</a></div><div class="ttdeci">virtual void setType(int servo, ServoType type)=0</div><div class="ttdoc">Definit le type de servo.</div></div>
+<div class="ttc" id="aclassAServoDriver_html_aea0af472e44c21328bf4ebb7203ca416"><div class="ttname"><a href="classAServoDriver.html#aea0af472e44c21328bf4ebb7203ca416">AServoDriver::turn</a></div><div class="ttdeci">virtual void turn(int servo, int speed)=0</div><div class="ttdoc">Fait tourner le servo en mode moteur continu.</div></div>
+<div class="ttc" id="aclassAServoDriver_html_af202d0a72cdde1d9c0c0eba05e253365"><div class="ttname"><a href="classAServoDriver.html#af202d0a72cdde1d9c0c0eba05e253365">AServoDriver::ServoType</a></div><div class="ttdeci">ServoType</div><div class="ttdoc">Type de servomoteur.</div><div class="ttdef"><b>Definition:</b> AServoDriver.hpp:28</div></div>
+<div class="ttc" id="aclassAServoDriver_html_af202d0a72cdde1d9c0c0eba05e253365a4397a48ac192183b8bf8b98727ca0978"><div class="ttname"><a href="classAServoDriver.html#af202d0a72cdde1d9c0c0eba05e253365a4397a48ac192183b8bf8b98727ca0978">AServoDriver::SERVO_DYNAMIXEL</a></div><div class="ttdeci">@ SERVO_DYNAMIXEL</div><div class="ttdoc">Servo Dynamixel (protocole serie).</div><div class="ttdef"><b>Definition:</b> AServoDriver.hpp:30</div></div>
+<div class="ttc" id="aclassAServoDriver_html_af202d0a72cdde1d9c0c0eba05e253365ace3f795c279f2bfb2d40a715911be20b"><div class="ttname"><a href="classAServoDriver.html#af202d0a72cdde1d9c0c0eba05e253365ace3f795c279f2bfb2d40a715911be20b">AServoDriver::SERVO_STANDARD</a></div><div class="ttdeci">@ SERVO_STANDARD</div><div class="ttdoc">Servo PWM classique.</div><div class="ttdef"><b>Definition:</b> AServoDriver.hpp:29</div></div>
+<div class="ttc" id="aclassAServoDriver_html_af90488fb6a2ea3149f4bf68ae01e61b2"><div class="ttname"><a href="classAServoDriver.html#af90488fb6a2ea3149f4bf68ae01e61b2">AServoDriver::hold</a></div><div class="ttdeci">virtual void hold(int servo)=0</div><div class="ttdoc">Maintient la position courante du servo (active le couple).</div></div>
+<div class="ttc" id="anamespacebackward_1_1ColorMode_html_aec82452ed7333b210e205aaf6da2d090"><div class="ttname"><a href="namespacebackward_1_1ColorMode.html#aec82452ed7333b210e205aaf6da2d090">backward::ColorMode::type</a></div><div class="ttdeci">type</div><div class="ttdef"><b>Definition:</b> backward.hpp:3906</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Mardi 24 Mars 2026 23:42:29 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

@@ -1,47 +1,52 @@
 <map id="utils::Mutex::lock" name="utils::Mutex::lock">
-<area shape="rect" id="node1" title="Verrouille le mutex. Cette méthode doit être appelée avant d&#39;utiliser la ressource associée...." alt="" coords="1308,577,1443,603"/>
-<area shape="rect" id="node2" href="$classITimerPosixListener.html#af06fbcdd0f34a17d4341f896002860af" title=" " alt="" coords="789,105,939,147"/>
-<area shape="rect" id="node3" href="$classITimerPosixListener.html#a8fa649b55c2f2fe751ee0bedb3a28e31" title=" " alt="" coords="535,52,686,93"/>
-<area shape="rect" id="node4" href="$classSvgWriter.html#ac6b52164bb48debc2aa814b2e96ec233" title="Écrit l&#39;en&#45;tête SVG (grille, defs, symboles)." alt="" coords="522,119,699,146"/>
-<area shape="rect" id="node5" href="$classUnitTestAppender.html#a7ae813ab0a74967bd584b69531881825" title="Supprime tous les message enregistrés." alt="" coords="1015,678,1260,705"/>
-<area shape="rect" id="node6" href="$classUnitTestAppender.html#a64063acb53860350f1efc8fe5e408ae9" title="Diminue l&#39;indentation de la trace." alt="" coords="762,268,966,309"/>
-<area shape="rect" id="node9" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#a0e4fd77693fd899ec1b0670354f93a02" title="Cette méthode valide le message en cours de construction et le transmet au Logger de référence." alt="" coords="1025,458,1249,485"/>
-<area shape="rect" id="node12" href="$classSvgWriter.html#a18e6747b544e14bc12f184bce594ec63" title="Ferme le document SVG (balises de fin)." alt="" coords="528,221,693,247"/>
-<area shape="rect" id="node21" href="$classSvgWriter.html#a1860768b0bf4858dae8577f2b7653cac" title="Écrit un texte à une position donnée dans le SVG." alt="" coords="533,571,688,598"/>
-<area shape="rect" id="node22" href="$classSvgWriter.html#ae4246028907242734cc14db98d492eb5" title="Écrit un texte avec couleur et taille personnalisées." alt="" coords="509,622,713,649"/>
-<area shape="rect" id="node23" href="$classUnitTestAppender.html#a673b17f2a021ca7cd78971409180061c" title="Indique qu&#39;un message d&#39;erreur doit avoir été enregistré." alt="" coords="761,643,967,684"/>
-<area shape="rect" id="node24" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#aee16dd078779a8154f1b3d7238748a6f" title=" " alt="" coords="1041,729,1233,771"/>
-<area shape="rect" id="node29" href="$classUnitTestAppender.html#a8142469443969a4e2c75820ef033c9cc" title="Augmente l&#39;indentation de la trace." alt="" coords="764,333,964,375"/>
-<area shape="rect" id="node30" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#abb331f69c4ced4db2a19140eae18c7eb" title="Cet opérateur permet d&#39;utiliser cette classe comme un flux de sortie standard." alt="" coords="1041,795,1233,836"/>
-<area shape="rect" id="node31" href="$classITimerPosixListener.html#a80bdf978eda3cfa0d9271a3c2e1d3f3a" title=" " alt="" coords="1062,105,1213,147"/>
-<area shape="rect" id="node32" href="$classutils_1_1Thread.html#a46589324e8fc0735c20268db70d34aa5" title="Modifie l&#39;état du thread (thread&#45;safe)." alt="" coords="781,911,947,938"/>
-<area shape="rect" id="node40" href="$classITimerPosixListener.html#a89083ecb392fa2f81b4951ba0e2ba824" title=" " alt="" coords="1062,963,1213,1004"/>
-<area shape="rect" id="node41" href="$classutils_1_1Thread.html#ada9233f3e669c925e9ed518201ad31cd" title="Retourne l&#39;état courant du thread." alt="" coords="1065,911,1209,938"/>
-<area shape="rect" id="node43" href="$classtest_1_1MutexTest.html#abaf552ee23d1347ca7a39c31b70c22db" title="Vérifie que lock/unlock fonctionne sans deadlock." alt="" coords="1045,1028,1230,1069"/>
-<area shape="rect" id="node45" href="$classUnitTestAppender.html#a2b69943419d6fe74a7f8a9c6cdcd0c98" title="Méthode générique de trace d&#39;un message." alt="" coords="1019,1094,1255,1121"/>
-<area shape="rect" id="node7" href="$classUnitTestSuite.html#af7b586b2771e5b876628be90e33aba5e" title="Execution de tous les tests." alt="" coords="542,170,679,197"/>
-<area shape="rect" id="node8" href="$Main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="345,170,399,197"/>
-<area shape="rect" id="node10" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="823,450,905,477"/>
-<area shape="rect" id="node11" href="$classSvgWriter.html#a30059a7d7289c57d3bf1bf623713dc0a" title="Constructeur de la classe." alt="" coords="531,338,690,365"/>
-<area shape="rect" id="node14" href="$classUnitTest.html#aae657d6d8bdc56cb2a9d4e4e9f5f8929" title="Cette méthode fait échouer un test." alt="" coords="559,389,663,415"/>
-<area shape="rect" id="node17" href="$classbackward_1_1Printer.html#a0c3901fa5647c29b72f92376f32a631c" title=" " alt="" coords="539,440,683,481"/>
-<area shape="rect" id="node18" href="$classbackward_1_1Printer.html#a2250517ae18d9d168b2e83c96b223b76" title=" " alt="" coords="539,505,683,547"/>
-<area shape="rect" id="node19" href="$classtest_1_1LoggerTest.html#a49ceaa16cfc816d22253860fad8ad59e" title="Vérifie les messages via l&#39;API stream (&lt;&lt;)." alt="" coords="508,272,713,313"/>
-<area shape="rect" id="node13" href="$classSvgWriter.html#ae9f503ecbe84f673f7f05dc50a52728d" title="Destructeur de la classe." alt="" coords="287,221,457,247"/>
-<area shape="rect" id="node15" href="$classUnitTest.html#a94aab90579073ba6e2068bbc05c47c4a" title="Valide un test dans le cadre des tests unitaires." alt="" coords="311,389,433,415"/>
-<area shape="rect" id="node16" href="$classUnitTest.html#a00a74363b89994348f5025b42f7ea96f" title="Vérifie si un message d&#39;erreur à bien été émis." alt="" coords="285,557,459,583"/>
-<area shape="rect" id="node20" href="$classtest_1_1LoggerTest.html#af4c75dbd29735b88c4aaf349bc9d4caf" title="Execute les tests associés à la classe." alt="" coords="289,279,455,306"/>
-<area shape="rect" id="node25" href="$namespacelogs.html#ab465ba9cc0c8042ca19d9c1aeb008578" title=" " alt="" coords="820,767,908,794"/>
-<area shape="rect" id="node26" href="$classlogs_1_1MemoryAppender.html#aad5cff73a112f433a5766cc0c8da3ef6" title="Destructeur de la classe." alt="" coords="524,724,697,765"/>
-<area shape="rect" id="node27" href="$classlogs_1_1SvgAppender.html#a2a4fe7712072add61d1b773d355e629e" title="Destructeur de la classe." alt="" coords="535,789,686,831"/>
-<area shape="rect" id="node28" href="$classlogs_1_1TelemetryAppender.html#a0f37f1968d5db9221fb33631729fbb0a" title="Destructeur de la classe." alt="" coords="519,855,703,896"/>
-<area shape="rect" id="node33" href="$classutils_1_1Thread.html#a61b6c3d0b87570254646120b323b89f7" title="Cette méthode sert de point d&#39;entrée pour l&#39;appel à pcreate_thread." alt="" coords="521,921,700,947"/>
-<area shape="rect" id="node34" href="$classutils_1_1Thread.html#a430ee2b8962147b587157fac97932219" title="Lance le thread." alt="" coords="301,913,443,939"/>
-<area shape="rect" id="node35" href="$classtest_1_1ThreadTest.html#a3ab4926fa019981bd51a7464be5cf4be" title="Vérifie que cancel() arrête un thread en cours." alt="" coords="19,847,222,874"/>
-<area shape="rect" id="node36" href="$classtest_1_1ThreadTest.html#a73ccd5f8b000f4af46063730ebe33bc1" title="Vérifie que plusieurs threads concurrents avec Mutex produisent un résultat cohérent." alt="" coords="5,899,236,940"/>
-<area shape="rect" id="node37" href="$classtest_1_1ThreadTest.html#ac1c7afb471f89d1d6bd338a270e05912" title="Vérifie que le nom et l&#39;ID du thread sont correctement assignés." alt="" coords="21,781,220,823"/>
-<area shape="rect" id="node38" href="$classtest_1_1ThreadTest.html#ab50f7c14a8011c9e19f2631835bbbe46" title="Vérifie le démarrage, l&#39;exécution et l&#39;attente de fin d&#39;un thread." alt="" coords="25,964,216,1005"/>
-<area shape="rect" id="node39" href="$classtest_1_1ThreadTest.html#a6c8d29fa04a545a3c602c220804e8fb5" title="Vérifie les transitions d&#39;état CREATED → STARTED → STOPPED." alt="" coords="24,1030,217,1057"/>
-<area shape="rect" id="node42" href="$classutils_1_1Thread.html#acc5214a88eab5c3bd421e7ee06f66b1a" title="Indique si le thread est terminé ou pas encore démarré." alt="" coords="284,971,460,998"/>
-<area shape="rect" id="node44" href="$classtest_1_1MutexTest.html#a0d1f845c6ade475b9e1e152053a73682" title="Execute les tests associés à la classe." alt="" coords="783,1073,945,1099"/>
+<area shape="rect" id="node1" title="Verrouille le mutex. Cette méthode doit être appelée avant d&#39;utiliser la ressource associée...." alt="" coords="1069,951,1204,978"/>
+<area shape="rect" id="node2" href="$classITimerPosixListener.html#af06fbcdd0f34a17d4341f896002860af" title=" " alt="" coords="550,492,701,533"/>
+<area shape="rect" id="node3" href="$classITimerPosixListener.html#a8fa649b55c2f2fe751ee0bedb3a28e31" title=" " alt="" coords="276,5,427,47"/>
+<area shape="rect" id="node4" href="$classSvgWriter.html#ac6b52164bb48debc2aa814b2e96ec233" title="Écrit l&#39;en&#45;tête SVG (grille, defs, symboles)." alt="" coords="263,71,440,98"/>
+<area shape="rect" id="node5" href="$classUnitTestAppender.html#a7ae813ab0a74967bd584b69531881825" title="Supprime tous les message enregistrés." alt="" coords="776,1053,1021,1079"/>
+<area shape="rect" id="node6" href="$classUnitTestAppender.html#a64063acb53860350f1efc8fe5e408ae9" title="Diminue l&#39;indentation de la trace." alt="" coords="523,668,727,709"/>
+<area shape="rect" id="node9" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#a0e4fd77693fd899ec1b0670354f93a02" title="Cette méthode valide le message en cours de construction et le transmet au Logger de référence." alt="" coords="787,799,1011,826"/>
+<area shape="rect" id="node23" href="$classSvgWriter.html#a18e6747b544e14bc12f184bce594ec63" title="Ferme le document SVG (balises de fin)." alt="" coords="269,1505,434,1531"/>
+<area shape="rect" id="node34" href="$classSvgWriter.html#a1860768b0bf4858dae8577f2b7653cac" title="Écrit un texte à une position donnée dans le SVG." alt="" coords="274,1353,429,1379"/>
+<area shape="rect" id="node35" href="$classSvgWriter.html#ae4246028907242734cc14db98d492eb5" title="Écrit un texte avec couleur et taille personnalisées." alt="" coords="249,1403,453,1430"/>
+<area shape="rect" id="node36" href="$classUnitTestAppender.html#a673b17f2a021ca7cd78971409180061c" title="Indique qu&#39;un message d&#39;erreur doit avoir été enregistré." alt="" coords="523,952,728,993"/>
+<area shape="rect" id="node37" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#aee16dd078779a8154f1b3d7238748a6f" title=" " alt="" coords="803,1104,995,1145"/>
+<area shape="rect" id="node39" href="$classUnitTestAppender.html#a8142469443969a4e2c75820ef033c9cc" title="Augmente l&#39;indentation de la trace." alt="" coords="525,733,725,775"/>
+<area shape="rect" id="node40" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#abb331f69c4ced4db2a19140eae18c7eb" title="Cet opérateur permet d&#39;utiliser cette classe comme un flux de sortie standard." alt="" coords="803,1169,995,1211"/>
+<area shape="rect" id="node41" href="$classITimerPosixListener.html#a80bdf978eda3cfa0d9271a3c2e1d3f3a" title=" " alt="" coords="823,551,974,592"/>
+<area shape="rect" id="node42" href="$classutils_1_1Thread.html#a46589324e8fc0735c20268db70d34aa5" title="Modifie l&#39;état du thread (thread&#45;safe)." alt="" coords="543,1235,708,1262"/>
+<area shape="rect" id="node44" href="$classITimerPosixListener.html#a89083ecb392fa2f81b4951ba0e2ba824" title=" " alt="" coords="823,1337,974,1379"/>
+<area shape="rect" id="node45" href="$classutils_1_1Thread.html#ada9233f3e669c925e9ed518201ad31cd" title="Retourne l&#39;état courant du thread." alt="" coords="827,1286,971,1313"/>
+<area shape="rect" id="node48" href="$classtest_1_1MutexTest.html#abaf552ee23d1347ca7a39c31b70c22db" title="Vérifie que lock/unlock fonctionne sans deadlock." alt="" coords="806,1403,991,1444"/>
+<area shape="rect" id="node50" href="$classUnitTestAppender.html#a2b69943419d6fe74a7f8a9c6cdcd0c98" title="Méthode générique de trace d&#39;un message." alt="" coords="781,1469,1017,1495"/>
+<area shape="rect" id="node7" href="$classUnitTestSuite.html#af7b586b2771e5b876628be90e33aba5e" title="Execution de tous les tests." alt="" coords="283,122,420,149"/>
+<area shape="rect" id="node8" href="$bench_2Main_8cpp.html#a2c3f6775325c30275d11c6abee2db6a0" title=" " alt="" coords="65,122,120,149"/>
+<area shape="rect" id="node10" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="585,799,666,826"/>
+<area shape="rect" id="node11" href="$classSvgWriter.html#a30059a7d7289c57d3bf1bf623713dc0a" title="Constructeur de la classe." alt="" coords="272,850,431,877"/>
+<area shape="rect" id="node12" href="$classSwitchDriver.html#a318f2cc1988d9ddfae71131fcf39d929" title="Constructeur. Initialise le PCA9555." alt="" coords="253,901,449,927"/>
+<area shape="rect" id="node13" href="$classbasic__json.html#adee26a05c7e837cf1b8042de9331484b" title="checks the class invariants" alt="" coords="282,952,421,993"/>
+<area shape="rect" id="node14" href="$structordered__map.html#a67d741fe8d5de525c6f2d54e2df7560d" title=" " alt="" coords="287,1018,416,1045"/>
+<area shape="rect" id="node15" href="$classbasic__json.html#adafea743a0a74f86433b8b7cc5bb24bf" title="access the last element" alt="" coords="287,1119,416,1146"/>
+<area shape="rect" id="node16" href="$classSoundDriver.html#a02e19369da6d072ffb3e5ad66880c6cd" title="Emet un beep avec les arguments donnes." alt="" coords="280,1170,423,1197"/>
+<area shape="rect" id="node17" href="$classdetail_1_1binary__writer.html#af8d6408cc5daa2e485d3f7d6cdb0eb58" title=" " alt="" coords="267,1221,435,1263"/>
+<area shape="rect" id="node18" href="$structdetail_1_1external__constructor_3_01value__t_1_1array_01_4.html#ae399adc0d10013a567e8646807d650b5" title=" " alt="" coords="246,1287,457,1328"/>
+<area shape="rect" id="node19" href="$structdetail_1_1external__constructor_3_01value__t_1_1object_01_4.html#a96a727d374af438440e4f9fe6f273e3f" title=" " alt="" coords="243,173,459,215"/>
+<area shape="rect" id="node20" href="$structordered__map.html#a94ced73a996cf385aa68b6aae1f85dfe" title=" " alt="" coords="275,239,427,266"/>
+<area shape="rect" id="node21" href="$structdetail_1_1container__input__adapter__factory__impl_1_1container__input__adapter__factory_3983614ac0e8828aa386ca24b1ddc2bd1.html#a6b9ccb1f4f7503123e553956abde9b85" title=" " alt="" coords="228,291,475,420"/>
+<area shape="rect" id="node22" href="$structordered__map.html#a8ab9d18a0de258c21224ff3adfbd2372" title=" " alt="" coords="265,445,437,471"/>
+<area shape="rect" id="node25" href="$structordered__map.html#aaa50926fc8df543dbe294859db97514e" title=" " alt="" coords="275,495,427,522"/>
+<area shape="rect" id="node26" href="$classbasic__json.html#a7a5ed019983b582705ef5ee43d15ca24" title="remove element given an iterator" alt="" coords="284,546,419,573"/>
+<area shape="rect" id="node27" href="$classUnitTest.html#aae657d6d8bdc56cb2a9d4e4e9f5f8929" title="Cette méthode fait échouer un test." alt="" coords="299,1069,403,1095"/>
+<area shape="rect" id="node29" href="$structordered__map.html#a67c6dfc6bc7817980067b40db5c252a4" title=" " alt="" coords="281,597,421,623"/>
+<area shape="rect" id="node30" href="$classbasic__json.html#a8ed11f83edce392fd94659b1102d078e" title="find an element in a JSON object" alt="" coords="290,647,413,674"/>
+<area shape="rect" id="node31" href="$namespacedetail.html#ab722e171d99403f14337366b5e0d3620" title=" " alt="" coords="247,698,456,725"/>
+<area shape="rect" id="node32" href="$classGpioPCA9555.html#a22dbebb8c5fffe0d0c119c6d958276e7" title="Lit la valeur d&#39;un pin du port1 (entrees)." alt="" coords="256,749,447,775"/>
+<area shape="rect" id="node33" href="$structordered__map.html#a7c77f6d3fbd8f693c5a9ad25244c14de" title=" " alt="" coords="275,799,428,826"/>
+<area shape="rect" id="node24" href="$classSvgWriter.html#ae9f503ecbe84f673f7f05dc50a52728d" title="Destructeur de la classe." alt="" coords="8,1505,177,1531"/>
+<area shape="rect" id="node28" href="$classUnitTest.html#a00a74363b89994348f5025b42f7ea96f" title="Vérifie si un message d&#39;erreur à bien été émis." alt="" coords="5,1262,180,1289"/>
+<area shape="rect" id="node38" href="$namespacelogs.html#ab465ba9cc0c8042ca19d9c1aeb008578" title=" " alt="" coords="581,1111,669,1138"/>
+<area shape="rect" id="node43" href="$classutils_1_1Thread.html#a61b6c3d0b87570254646120b323b89f7" title="Cette méthode sert de point d&#39;entrée pour l&#39;appel à pcreate_thread." alt="" coords="262,1555,441,1582"/>
+<area shape="rect" id="node46" href="$classutils_1_1Thread.html#acc5214a88eab5c3bd421e7ee06f66b1a" title="Indique si le thread est terminé ou pas encore démarré." alt="" coords="537,1286,713,1313"/>
+<area shape="rect" id="node47" href="$classtest_1_1ThreadTest.html#a6c8d29fa04a545a3c602c220804e8fb5" title="Vérifie les transitions d&#39;état CREATED → STARTED → STOPPED." alt="" coords="529,1337,722,1363"/>
+<area shape="rect" id="node49" href="$classtest_1_1MutexTest.html#a0d1f845c6ade475b9e1e152053a73682" title="Execute les tests associés à la classe." alt="" coords="544,1410,707,1437"/>
 </map>

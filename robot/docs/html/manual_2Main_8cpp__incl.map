@@ -1,0 +1,25 @@
+<map id="test/manual/Main.cpp" name="test/manual/Main.cpp">
+<area shape="rect" id="node1" title="Point d&#39;entree des tests manuels (verification visuelle/physique)." alt="" coords="364,5,527,32"/>
+<area shape="rect" id="node2" href="$Thread_8hpp.html" title="Définition de la classe Thread." alt="" coords="93,333,265,375"/>
+<area shape="rect" id="node8" href="$UnitTestSuite_8hpp.html" title="Définition de la classe UnitTestSuite." alt="" coords="259,80,443,107"/>
+<area shape="rect" id="node19" href="$LedManualTest_8hpp.html" title="Test manuel visuel du driver de LEDs." alt="" coords="467,80,613,107"/>
+<area shape="rect" id="node22" href="$SwitchManualTest_8hpp.html" title="Test manuel de la tirette et des switchs arriere." alt="" coords="638,80,805,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="153,497,237,524"/>
+<area shape="rect" id="node4" title=" " alt="" coords="643,497,701,524"/>
+<area shape="rect" id="node5" title=" " alt="" coords="147,423,211,449"/>
+<area shape="rect" id="node6" href="$Mutex_8hpp.html" title="Définition de la classe Mutex." alt="" coords="235,423,325,449"/>
+<area shape="rect" id="node7" title=" " alt="" coords="5,423,72,449"/>
+<area shape="rect" id="node9" title=" " alt="" coords="212,251,255,278"/>
+<area shape="rect" id="node10" href="$PointerList_8hpp.html" title="Définition de la classe PointerList." alt="" coords="271,155,430,196"/>
+<area shape="rect" id="node13" href="$LoggerFactory_8hpp.html" title="Définition de la classe LoggerFactory." alt="" coords="517,244,667,285"/>
+<area shape="rect" id="node18" href="$UnitTest_8hpp.html" title="Définition de la classe DevUnitTest." alt="" coords="573,162,675,189"/>
+<area shape="rect" id="node11" title=" " alt="" coords="374,251,493,278"/>
+<area shape="rect" id="node12" title=" " alt="" coords="279,251,350,278"/>
+<area shape="rect" id="node14" title=" " alt="" coords="471,341,521,367"/>
+<area shape="rect" id="node15" href="$Logger_8hpp.html" title="Définition de la classe Logger." alt="" coords="545,341,639,367"/>
+<area shape="rect" id="node16" title=" " alt="" coords="451,423,525,449"/>
+<area shape="rect" id="node17" href="$Level_8hpp.html" title="Définition de la classe Level." alt="" coords="549,423,635,449"/>
+<area shape="rect" id="node20" href="$ALedDriver_8hpp.html" title="Interface abstraite du driver de LEDs." alt="" coords="751,162,934,189"/>
+<area shape="rect" id="node21" title=" " alt="" coords="751,251,847,278"/>
+<area shape="rect" id="node23" href="$ASwitchDriver_8hpp.html" title="Interface abstraite du driver de switchs et tirette." alt="" coords="921,341,1124,367"/>
+</map>

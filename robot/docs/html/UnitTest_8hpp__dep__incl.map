@@ -1,18 +1,22 @@
 <map id="test/suite/UnitTest.hpp" name="test/suite/UnitTest.hpp">
-<area shape="rect" id="node1" title="Définition de la classe DevUnitTest." alt="" coords="1331,5,1499,32"/>
-<area shape="rect" id="node2" href="$ChronometerTest_8hpp.html" title="Définition de la classe ChronometerTest." alt="" coords="97,87,348,114"/>
-<area shape="rect" id="node5" href="$ExceptionTest_8hpp.html" title="Définition de la classe ExceptionTest." alt="" coords="373,87,603,114"/>
-<area shape="rect" id="node7" href="$FileAppenderTest_8hpp.html" title="Définition de la classe FileAppenderTest." alt="" coords="628,80,825,121"/>
-<area shape="rect" id="node9" href="$LevelTest_8hpp.html" title="Définition de la classe LevelTest." alt="" coords="850,87,1051,114"/>
-<area shape="rect" id="node11" href="$LoggerTest_8hpp.html" title="Définition de la classe LoggerTest." alt="" coords="1076,87,1287,114"/>
-<area shape="rect" id="node13" href="$MutexTest_8hpp.html" title="Définition de la classe MutexTest." alt="" coords="1311,87,1518,114"/>
-<area shape="rect" id="node15" href="$PointerListTest_8hpp.html" title="Définition de la classe PointerListTest." alt="" coords="1543,87,1777,114"/>
-<area shape="rect" id="node17" href="$SvgAppenderTest_8hpp.html" title="Définition de la classe SvgAppenderTest." alt="" coords="1802,87,2054,114"/>
-<area shape="rect" id="node19" href="$ThreadTest_8hpp.html" title="Définition de la classe ThreadTest." alt="" coords="2079,87,2289,114"/>
-<area shape="rect" id="node21" href="$UnitTest_8cpp.html" title="Implémentation de la classe DevUnitTest." alt="" coords="2539,87,2706,114"/>
-<area shape="rect" id="node22" href="$UnitTestSuite_8hpp.html" title="Définition de la classe UnitTestSuite." alt="" coords="2314,87,2515,114"/>
+<area shape="rect" id="node1" title="Définition de la classe DevUnitTest." alt="" coords="1940,5,2108,32"/>
+<area shape="rect" id="node2" href="$ChronometerTest_8hpp.html" title="Définition de la classe ChronometerTest." alt="" coords="193,87,444,114"/>
+<area shape="rect" id="node5" href="$ExceptionTest_8hpp.html" title="Définition de la classe ExceptionTest." alt="" coords="469,87,699,114"/>
+<area shape="rect" id="node7" href="$FileAppenderTest_8hpp.html" title="Définition de la classe FileAppenderTest." alt="" coords="724,80,921,121"/>
+<area shape="rect" id="node9" href="$LevelTest_8hpp.html" title="Définition de la classe LevelTest." alt="" coords="946,87,1147,114"/>
+<area shape="rect" id="node11" href="$LoggerTest_8hpp.html" title="Définition de la classe LoggerTest." alt="" coords="1172,87,1383,114"/>
+<area shape="rect" id="node13" href="$MutexTest_8hpp.html" title="Définition de la classe MutexTest." alt="" coords="1407,87,1614,114"/>
+<area shape="rect" id="node15" href="$PointerListTest_8hpp.html" title="Définition de la classe PointerListTest." alt="" coords="1639,87,1873,114"/>
+<area shape="rect" id="node17" href="$SvgAppenderTest_8hpp.html" title="Définition de la classe SvgAppenderTest." alt="" coords="1898,87,2150,114"/>
+<area shape="rect" id="node19" href="$ThreadTest_8hpp.html" title="Définition de la classe ThreadTest." alt="" coords="2175,87,2385,114"/>
+<area shape="rect" id="node21" href="$LedDriverTest_8hpp.html" title="Test unitaire du driver de LEDs." alt="" coords="2409,87,2620,114"/>
+<area shape="rect" id="node24" href="$SwitchDriverTest_8hpp.html" title="Test unitaire du driver de switchs via l&#39;interface ASwitchDriver." alt="" coords="2644,80,2820,121"/>
+<area shape="rect" id="node26" href="$LedManualTest_8hpp.html" title="Test manuel visuel du driver de LEDs." alt="" coords="3152,87,3381,114"/>
+<area shape="rect" id="node29" href="$SwitchManualTest_8hpp.html" title="Test manuel de la tirette et des switchs arriere." alt="" coords="3405,80,3600,121"/>
+<area shape="rect" id="node31" href="$UnitTest_8cpp.html" title="Implémentation de la classe DevUnitTest." alt="" coords="3625,87,3791,114"/>
+<area shape="rect" id="node32" href="$UnitTestSuite_8hpp.html" title="Définition de la classe UnitTestSuite." alt="" coords="2886,87,3087,114"/>
 <area shape="rect" id="node3" href="$ChronometerTest_8cpp.html" title="Implémentation des tests de la classe utils::Chronometer." alt="" coords="5,177,256,203"/>
-<area shape="rect" id="node4" href="$Main_8cpp.html" title="Point d&#39;entrée des tests unitaires common." alt="" coords="1213,177,1384,203"/>
+<area shape="rect" id="node4" href="$common_2Main_8cpp.html" title="Point d&#39;entrée des tests unitaires common." alt="" coords="1213,177,1384,203"/>
 <area shape="rect" id="node6" href="$ExceptionTest_8cpp.html" title="Implémentation des tests de la classe logs::Exception." alt="" coords="280,177,509,203"/>
 <area shape="rect" id="node8" href="$FileAppenderTest_8cpp.html" title="Implémentation des tests de la classe logs::FileAppender." alt="" coords="533,169,731,211"/>
 <area shape="rect" id="node10" href="$LevelTest_8cpp.html" title="Implémentation des tests de la classe logs::Level." alt="" coords="755,177,955,203"/>
@@ -21,5 +25,12 @@
 <area shape="rect" id="node16" href="$PointerListTest_8cpp.html" title="Implémentation des tests de la classe utils::PointerList." alt="" coords="1640,177,1875,203"/>
 <area shape="rect" id="node18" href="$SvgAppenderTest_8cpp.html" title="Implémentation des tests de la classe logs::SvgAppender." alt="" coords="1899,177,2149,203"/>
 <area shape="rect" id="node20" href="$ThreadTest_8cpp.html" title="Implémentation des tests de la classe utils::Thread." alt="" coords="2173,177,2384,203"/>
-<area shape="rect" id="node23" href="$UnitTestSuite_8cpp.html" title="Implementation de la classe UnitTestSuite." alt="" coords="2408,177,2608,203"/>
+<area shape="rect" id="node22" href="$LedDriverTest_8cpp.html" title="Implementation du test unitaire du driver de LEDs." alt="" coords="2409,177,2618,203"/>
+<area shape="rect" id="node23" href="$driver_2Main_8cpp.html" title="Point d&#39;entree des tests unitaires driver." alt="" coords="2643,177,2795,203"/>
+<area shape="rect" id="node25" href="$SwitchDriverTest_8cpp.html" title="Implementation du test unitaire du driver de switchs." alt="" coords="2819,169,2995,211"/>
+<area shape="rect" id="node27" href="$LedManualTest_8cpp.html" title="Implementation du test manuel visuel des LEDs." alt="" coords="3609,177,3837,203"/>
+<area shape="rect" id="node28" href="$manual_2Main_8cpp.html" title="Point d&#39;entree des tests manuels (verification visuelle/physique)." alt="" coords="3421,177,3584,203"/>
+<area shape="rect" id="node30" href="$SwitchManualTest_8cpp.html" title="Implementation du test manuel de la tirette et des switchs." alt="" coords="3861,169,4056,211"/>
+<area shape="rect" id="node33" href="$bench_2Main_8cpp.html" title="Point d&#39;entree des benchmarks." alt="" coords="3019,177,3173,203"/>
+<area shape="rect" id="node34" href="$UnitTestSuite_8cpp.html" title="Implementation de la classe UnitTestSuite." alt="" coords="3197,177,3397,203"/>
 </map>

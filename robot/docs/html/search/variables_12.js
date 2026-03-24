@@ -1,4 +1,28 @@
 var searchData=
 [
-  ['warn_1095',['WARN',['../classlogs_1_1Level.html#a3dd740fa554fc4dd1b18fbd092e676cb',1,'logs::Level']]]
+  ['sax_3111',['sax',['../classdetail_1_1binary__reader.html#a012edbf7ba414b1646c7ccc30bae342c',1,'detail::binary_reader']]],
+  ['sb_3112',['sb',['../classdetail_1_1input__stream__adapter.html#a8d4a4b398f26963b08d0c021dc77c1ba',1,'detail::input_stream_adapter']]],
+  ['self_3113',['self',['../structbackward_1_1StackTraceImpl_3_01system__tag_1_1current__tag_01_4_1_1callback.html#a9ddeacd9148572cb4a00c2b6fbd93631',1,'backward::StackTraceImpl&lt; system_tag::current_tag &gt;::callback']]],
+  ['sh_3114',['sh',['../namespacebackward.html#a6be34a42939faf0fbcfe077ce9faf9ae',1,'backward']]],
+  ['sharedcounter_5f_3115',['sharedCounter_',['../classtest_1_1MutexCounterThread.html#a742710832ba854e36913d06ee3ed15cc',1,'test::MutexCounterThread']]],
+  ['sigblockset_3116',['SigBlockSet',['../classTimerPosix.html#a966f56106600e6413b24fd41c010730d',1,'TimerPosix::SigBlockSet()'],['../classITimerPosixListener.html#ac05248e49ad734a0c28f1f781e2a1891',1,'ITimerPosixListener::SigBlockSet()']]],
+  ['signalaction_3117',['SignalAction',['../classTimerPosix.html#ad0a5559e579653d3066787e0266fb3c8',1,'TimerPosix::SignalAction()'],['../classITimerPosixListener.html#a423a224a5a899e3871e5f2fc852f8c3c',1,'ITimerPosixListener::SignalAction()']]],
+  ['signalevent_3118',['signalEvent',['../classTimerPosix.html#ae624207220776d1b272744131aa39ca0',1,'TimerPosix::signalEvent()'],['../classITimerPosixListener.html#ade0b07b7d948a15037eb2ff4cf27df73',1,'ITimerPosixListener::signalEvent()']]],
+  ['sink_3119',['sink',['../classbackward_1_1cfile__streambuf.html#acb101ee63ffc7413c176af83abf9ea77',1,'backward::cfile_streambuf']]],
+  ['snippet_3120',['snippet',['../classbackward_1_1Printer.html#af5916965c8e12c840a1a4798a90b6161',1,'backward::Printer']]],
+  ['source_3121',['source',['../structbackward_1_1ResolvedTrace.html#ad0fe0ee2f664f0e6b61995165c04444e',1,'backward::ResolvedTrace']]],
+  ['start_5f_3122',['start_',['../classlogs_1_1MemoryAppender.html#a7892adf078780d6ea1c4173f71f1749c',1,'logs::MemoryAppender']]],
+  ['startcount_5f_3123',['startCount_',['../classutils_1_1Chronometer.html#a74a893740c5f1c56713cc3db26ad2c39',1,'utils::Chronometer']]],
+  ['started_5f_3124',['started_',['../classITimerPosixListener.html#af807e3efed45d03cb7e3659b30ec7b3b',1,'ITimerPosixListener']]],
+  ['state_3125',['state',['../classdetail_1_1serializer.html#a2db3d61cfc616f83763b6d4a03d0d772',1,'detail::serializer']]],
+  ['state_5f_3126',['state_',['../classutils_1_1Thread.html#a8ac202cdf0f0fc7dde60b9e0802bb43c',1,'utils::Thread::state_()'],['../classSwitchDriver.html#ae78d1b98589f3e65840e82361e9e0b59',1,'SwitchDriver::state_()']]],
+  ['stop_5f_3127',['stop_',['../classlogs_1_1LoggerFactory.html#a9836f8e8a75097df8bef05085980ca59',1,'logs::LoggerFactory::stop_()'],['../classButtonDriver.html#a91f4dc61a9f23814f5057389055da1ac',1,'ButtonDriver::stop_()']]],
+  ['stopped_5f_3128',['stopped_',['../classutils_1_1Chronometer.html#ab865389d8e51a816c08233dbaab9671b',1,'utils::Chronometer']]],
+  ['str_3129',['str',['../classdetail_1_1output__string__adapter.html#a7f5d78b9cb6cdaa747c418e2672608ea',1,'detail::output_string_adapter']]],
+  ['stream_3130',['stream',['../classdetail_1_1output__stream__adapter.html#a9ba28bcd682f7807a6dc93fd39bb9b1b',1,'detail::output_stream_adapter']]],
+  ['stream_5f_3131',['stream_',['../classlogs_1_1Logger_1_1LoggerBuffer.html#a6ed738b7b1495dfee3b86dd89ceb8701',1,'logs::Logger::LoggerBuffer']]],
+  ['string_3132',['string',['../classbasic__json.html#a51ff696f79f93c34b06cfad8dae08791',1,'basic_json']]],
+  ['string_5fbuffer_3133',['string_buffer',['../classdetail_1_1serializer.html#a27a61728ed0fbc65de009286531a6e70',1,'detail::serializer']]],
+  ['switchdriver_3134',['switchdriver',['../classtest_1_1SwitchDriverTest.html#a6bba05c353ced5fec7c8c1ba0e76976f',1,'test::SwitchDriverTest::switchdriver()'],['../classtest_1_1SwitchManualTest.html#a0ab0f7af7347d83f61828ffd19b60eb5',1,'test::SwitchManualTest::switchdriver()']]],
+  ['symbol_5flist_5f_3135',['symbol_list_',['../classSvgWriter.html#a3d6e4e832042547fc96fe2143acead12',1,'SvgWriter']]]
 ];

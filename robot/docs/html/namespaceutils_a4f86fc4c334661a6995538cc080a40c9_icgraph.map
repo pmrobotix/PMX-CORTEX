@@ -1,4 +1,7 @@
 <map id="utils::sleep_for_micros" name="utils::sleep_for_micros">
-<area shape="rect" id="node1" title="Met en pause le thread courant pendant usec microsecondes." alt="" coords="248,13,417,39"/>
-<area shape="rect" id="node2" href="$classtest_1_1ThreadTest.html#a1262fce3aca48dc17dab2ee10a7d5999" title="Vérifie la précision de sleep_for_micros." alt="" coords="5,5,200,47"/>
+<area shape="rect" id="node1" title="Met en pause le thread courant pendant usec microsecondes." alt="" coords="695,35,864,61"/>
+<area shape="rect" id="node2" href="$classGpioPCA9555.html#a700aff89e3f53630ec2e77a3755174a4" title="Configure les registres de direction des ports." alt="" coords="472,5,627,32"/>
+<area shape="rect" id="node5" href="$classtest_1_1ThreadTest.html#a1262fce3aca48dc17dab2ee10a7d5999" title="Vérifie la précision de sleep_for_micros." alt="" coords="452,57,647,98"/>
+<area shape="rect" id="node3" href="$classGpioPCA9555.html#ada56d6ac5d165229e1a2e7e50387a376" title="Initialise la communication I2C et configure les ports." alt="" coords="249,5,404,32"/>
+<area shape="rect" id="node4" href="$classSwitchDriver.html#a318f2cc1988d9ddfae71131fcf39d929" title="Constructeur. Initialise le PCA9555." alt="" coords="5,5,201,32"/>
 </map>

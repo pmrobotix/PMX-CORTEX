@@ -1,0 +1,354 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot: Référence du fichier src/common/interface/ARobotPositionShared.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_fdedb0aba14d44ce9d99bc100e026e6a.html">common</a></li><li class="navelem"><a class="el" href="dir_c403bcb0997343f24f003e4263caa61d.html">interface</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#typedef-members">Définitions de type</a> &#124;
+<a href="#enum-members">Énumérations</a> &#124;
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier ARobotPositionShared.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Position partagee du robot et utilitaires geometriques.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &lt;cmath&gt;</code><br />
+<code>#include &quot;<a class="el" href="Chronometer_8hpp_source.html">utils/Chronometer.hpp</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Graphe des dépendances par inclusion de ARobotPositionShared.hpp:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="ARobotPositionShared_8hpp__incl.svg" width="264" height="202"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</div><div class="textblock"><div class="dynheader">
+Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier :</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="ARobotPositionShared_8hpp__dep__incl.svg" width="210" height="142"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</div>
+<p><a href="ARobotPositionShared_8hpp_source.html">Aller au code source de ce fichier.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classARobotPositionShared.html">ARobotPositionShared</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface abstraite d'acces a la position partagee du robot.  <a href="classARobotPositionShared.html#details">Plus de détails...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsRobotPosition.html">sRobotPosition</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Position et etat du robot sur la table.  <a href="structsRobotPosition.html#details">Plus de détails...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Définitions de type</h2></td></tr>
+<tr class="memitem:ae9c2a6fe427c361b8ee5e4a6529346bb"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structsRobotPosition.html">sRobotPosition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ARobotPositionShared_8hpp.html#ae9c2a6fe427c361b8ee5e4a6529346bb">ROBOTPOSITION</a></td></tr>
+<tr class="separator:ae9c2a6fe427c361b8ee5e4a6529346bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Énumérations</h2></td></tr>
+<tr class="memitem:a3884f09273997d7f76583b737eca3f22"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ARobotPositionShared_8hpp.html#a3884f09273997d7f76583b737eca3f22">MOVEMENT_DIRECTION</a> { <a class="el" href="ARobotPositionShared_8hpp.html#a3884f09273997d7f76583b737eca3f22ac157bdf0b85a40d2619cbc8bc1ae5fe2">NONE</a>
+, <a class="el" href="ARobotPositionShared_8hpp.html#a3884f09273997d7f76583b737eca3f22aa26736999186daf8146f809e863712a1">FORWARD</a>
+, <a class="el" href="ARobotPositionShared_8hpp.html#a3884f09273997d7f76583b737eca3f22afed2fca77e454294d6b8bda1bf2c9fd6">BACKWARD</a>
+, <a class="el" href="ARobotPositionShared_8hpp.html#a3884f09273997d7f76583b737eca3f22a4e5add805436f8349199498326cf43d1">TURN</a>
+ }</td></tr>
+<tr class="memdesc:a3884f09273997d7f76583b737eca3f22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Direction de deplacement du robot.  <a href="ARobotPositionShared_8hpp.html#a3884f09273997d7f76583b737eca3f22">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a3884f09273997d7f76583b737eca3f22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a97d050db4571270c3c0c48170e84aab5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ARobotPositionShared_8hpp.html#a97d050db4571270c3c0c48170e84aab5">cmpf</a> (float A, float B, float epsilon=0.005f)</td></tr>
+<tr class="memdesc:a97d050db4571270c3c0c48170e84aab5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare deux flottants avec une tolerance.  <a href="ARobotPositionShared_8hpp.html#a97d050db4571270c3c0c48170e84aab5">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a97d050db4571270c3c0c48170e84aab5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae645817fbf89677ab8a3f779b4a10ae8"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ARobotPositionShared_8hpp.html#ae645817fbf89677ab8a3f779b4a10ae8">degToRad</a> (float deg)</td></tr>
+<tr class="memdesc:ae645817fbf89677ab8a3f779b4a10ae8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convertit des degres en radians.  <a href="ARobotPositionShared_8hpp.html#ae645817fbf89677ab8a3f779b4a10ae8">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ae645817fbf89677ab8a3f779b4a10ae8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9adaec7e3e76bf5d807683cf34dca858"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ARobotPositionShared_8hpp.html#a9adaec7e3e76bf5d807683cf34dca858">radToDeg</a> (float rad)</td></tr>
+<tr class="memdesc:a9adaec7e3e76bf5d807683cf34dca858"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convertit des radians en degres.  <a href="ARobotPositionShared_8hpp.html#a9adaec7e3e76bf5d807683cf34dca858">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a9adaec7e3e76bf5d807683cf34dca858"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45bb7dfd2e7442f6250b8d202cc75c7f"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ARobotPositionShared_8hpp.html#a45bb7dfd2e7442f6250b8d202cc75c7f">WrapAngle2PI</a> (float rad)</td></tr>
+<tr class="memdesc:a45bb7dfd2e7442f6250b8d202cc75c7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normalise un angle dans l'intervalle ]-PI, PI].  <a href="ARobotPositionShared_8hpp.html#a45bb7dfd2e7442f6250b8d202cc75c7f">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a45bb7dfd2e7442f6250b8d202cc75c7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Position partagee du robot et utilitaires geometriques. </p>
+<p>Definit la structure ROBOTPOSITION et l'interface abstraite d'acces concurrent a la position du robot. Utilisee par l'asservissement, les capteurs et la strategie. </p>
+</div><h2 class="groupheader">Documentation des définitions de type</h2>
+<a id="ae9c2a6fe427c361b8ee5e4a6529346bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9c2a6fe427c361b8ee5e4a6529346bb">&#9670;&nbsp;</a></span>ROBOTPOSITION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structsRobotPosition.html">sRobotPosition</a> <a class="el" href="ARobotPositionShared_8hpp.html#ae9c2a6fe427c361b8ee5e4a6529346bb">ROBOTPOSITION</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Documentation du type de l'énumération</h2>
+<a id="a3884f09273997d7f76583b737eca3f22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3884f09273997d7f76583b737eca3f22">&#9670;&nbsp;</a></span>MOVEMENT_DIRECTION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="ARobotPositionShared_8hpp.html#a3884f09273997d7f76583b737eca3f22">MOVEMENT_DIRECTION</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Direction de deplacement du robot. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Valeurs énumérées</th></tr><tr><td class="fieldname"><a id="a3884f09273997d7f76583b737eca3f22ac157bdf0b85a40d2619cbc8bc1ae5fe2"></a>NONE&#160;</td><td class="fielddoc"><p>Aucun deplacement. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a3884f09273997d7f76583b737eca3f22aa26736999186daf8146f809e863712a1"></a>FORWARD&#160;</td><td class="fielddoc"><p>Marche avant. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a3884f09273997d7f76583b737eca3f22afed2fca77e454294d6b8bda1bf2c9fd6"></a>BACKWARD&#160;</td><td class="fielddoc"><p>Marche arriere. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a3884f09273997d7f76583b737eca3f22a4e5add805436f8349199498326cf43d1"></a>TURN&#160;</td><td class="fielddoc"><p>Rotation sur place. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des fonctions</h2>
+<a id="a97d050db4571270c3c0c48170e84aab5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97d050db4571270c3c0c48170e84aab5">&#9670;&nbsp;</a></span>cmpf()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool cmpf </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>A</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>B</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>epsilon</em> = <code>0.005f</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compare deux flottants avec une tolerance. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">A</td><td>Premier flottant. </td></tr>
+    <tr><td class="paramname">B</td><td>Second flottant. </td></tr>
+    <tr><td class="paramname">epsilon</td><td>Tolerance (defaut 0.005). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>true si |A - B| &lt; epsilon. </dd></dl>
+
+</div>
+</div>
+<a id="ae645817fbf89677ab8a3f779b4a10ae8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae645817fbf89677ab8a3f779b4a10ae8">&#9670;&nbsp;</a></span>degToRad()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float degToRad </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>deg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convertit des degres en radians. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">deg</td><td>Angle en degres. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Angle en radians. </dd></dl>
+
+</div>
+</div>
+<a id="a9adaec7e3e76bf5d807683cf34dca858"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9adaec7e3e76bf5d807683cf34dca858">&#9670;&nbsp;</a></span>radToDeg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float radToDeg </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>rad</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convertit des radians en degres. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rad</td><td>Angle en radians. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Angle en degres. </dd></dl>
+
+</div>
+</div>
+<a id="a45bb7dfd2e7442f6250b8d202cc75c7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45bb7dfd2e7442f6250b8d202cc75c7f">&#9670;&nbsp;</a></span>WrapAngle2PI()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float WrapAngle2PI </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>rad</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Normalise un angle dans l'intervalle ]-PI, PI]. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rad</td><td>Angle en radians. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Angle normalise en radians. </dd></dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="ARobotPositionShared_8hpp_a45bb7dfd2e7442f6250b8d202cc75c7f_icgraph.svg" width="411" height="67"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Mardi 24 Mars 2026 23:42:29 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

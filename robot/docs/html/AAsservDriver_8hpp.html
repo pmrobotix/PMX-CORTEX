@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot: Référence du fichier src/common/interface/AAsservDriver.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_fdedb0aba14d44ce9d99bc100e026e6a.html">common</a></li><li class="navelem"><a class="el" href="dir_c403bcb0997343f24f003e4263caa61d.html">interface</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#enum-members">Énumérations</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier AAsservDriver.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Interface abstraite du driver d'asservissement.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &lt;cstdint&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &quot;<a class="el" href="ARobotPositionShared_8hpp_source.html">ARobotPositionShared.hpp</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Graphe des dépendances par inclusion de AAsservDriver.hpp:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="AAsservDriver_8hpp__incl.svg" width="407" height="276"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</div>
+<p><a href="AAsservDriver_8hpp_source.html">Aller au code source de ce fichier.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html">AAsservDriver</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface abstraite du driver d'asservissement.  <a href="classAAsservDriver.html#details">Plus de détails...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Énumérations</h2></td></tr>
+<tr class="memitem:aac4ff3749a562096c611ea6a6d9310ba"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="AAsservDriver_8hpp.html#aac4ff3749a562096c611ea6a6d9310ba">MOTION_STATE</a> { <a class="el" href="AAsservDriver_8hpp.html#aac4ff3749a562096c611ea6a6d9310baa33699e80d02f467af7ffa98918af9167">TRAJECTORY_RUNNING</a>
+, <a class="el" href="AAsservDriver_8hpp.html#aac4ff3749a562096c611ea6a6d9310baacb7875eef83eccae2eaa0a7aca44863b">ASSISTED_HANDLING</a>
+, <a class="el" href="AAsservDriver_8hpp.html#aac4ff3749a562096c611ea6a6d9310baa72585bc0014d48cf3e55f72ab8c824f3">FREE_MOTION</a>
+, <a class="el" href="AAsservDriver_8hpp.html#aac4ff3749a562096c611ea6a6d9310baacdadaf73fd4397c23d99992c0222499d">DISABLE_PID</a>
+ }</td></tr>
+<tr class="memdesc:aac4ff3749a562096c611ea6a6d9310ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Etat courant du mode de deplacement.  <a href="AAsservDriver_8hpp.html#aac4ff3749a562096c611ea6a6d9310ba">Plus de détails...</a><br /></td></tr>
+<tr class="separator:aac4ff3749a562096c611ea6a6d9310ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb3360abeb29758da93865c8afcb80eb"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="AAsservDriver_8hpp.html#adb3360abeb29758da93865c8afcb80eb">TRAJ_STATE</a> { <br />
+&#160;&#160;<a class="el" href="AAsservDriver_8hpp.html#adb3360abeb29758da93865c8afcb80ebaf6b60f7df461e76242a59c03b56bc141">TRAJ_IDLE</a>
+, <a class="el" href="AAsservDriver_8hpp.html#adb3360abeb29758da93865c8afcb80eba2b78b16ef1f129fa324a5281ed3aa725">TRAJ_FINISHED</a>
+, <a class="el" href="AAsservDriver_8hpp.html#adb3360abeb29758da93865c8afcb80eba871e002063b5d441e91070ffcdb3d8c9">TRAJ_INTERRUPTED</a> = 10
+, <a class="el" href="AAsservDriver_8hpp.html#adb3360abeb29758da93865c8afcb80eba47e68ca20be9d49839ba24715fb84564">TRAJ_IMPOSSIBLE</a> = 11
+, <br />
+&#160;&#160;<a class="el" href="AAsservDriver_8hpp.html#adb3360abeb29758da93865c8afcb80eba8d626593b75cca363509af48937247e3">TRAJ_NEAR_OBSTACLE</a> = 100
+, <a class="el" href="AAsservDriver_8hpp.html#adb3360abeb29758da93865c8afcb80eba29ed412b66db2ae88cc0cf6fcbb45d47">TRAJ_COLLISION</a> = 101
+, <a class="el" href="AAsservDriver_8hpp.html#adb3360abeb29758da93865c8afcb80ebadbca09dfac1c9101fd6577b0d29fcbf9">TRAJ_REAR_OBSTACLE</a> = 200
+, <a class="el" href="AAsservDriver_8hpp.html#adb3360abeb29758da93865c8afcb80ebacb0df7da3e500899290e102f0c2727bf">TRAJ_REAR_COLLISION</a> = 201
+, <br />
+&#160;&#160;<a class="el" href="AAsservDriver_8hpp.html#adb3360abeb29758da93865c8afcb80eba74e86e3d5a1c63a2cf8f2e436ad35067">TRAJ_ERROR</a> = 999
+<br />
+ }</td></tr>
+<tr class="memdesc:adb3360abeb29758da93865c8afcb80eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Etat de retour d'une trajectoire.  <a href="AAsservDriver_8hpp.html#adb3360abeb29758da93865c8afcb80eb">Plus de détails...</a><br /></td></tr>
+<tr class="separator:adb3360abeb29758da93865c8afcb80eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Interface abstraite du driver d'asservissement. </p>
+<p>Definit les commandes de mouvement haut niveau (goto, rotation, ligne) et le controle bas niveau des moteurs/encodeurs. Les implementations concretes sont dans driver-arm/ (carte ST serie), driver-simu/ (simulation) et asserv-esial/ (PID interne). </p>
+</div><h2 class="groupheader">Documentation du type de l'énumération</h2>
+<a id="aac4ff3749a562096c611ea6a6d9310ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac4ff3749a562096c611ea6a6d9310ba">&#9670;&nbsp;</a></span>MOTION_STATE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="AAsservDriver_8hpp.html#aac4ff3749a562096c611ea6a6d9310ba">MOTION_STATE</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Etat courant du mode de deplacement. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Valeurs énumérées</th></tr><tr><td class="fieldname"><a id="aac4ff3749a562096c611ea6a6d9310baa33699e80d02f467af7ffa98918af9167"></a>TRAJECTORY_RUNNING&#160;</td><td class="fielddoc"><p>Trajectoire en cours d'execution. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aac4ff3749a562096c611ea6a6d9310baacb7875eef83eccae2eaa0a7aca44863b"></a>ASSISTED_HANDLING&#160;</td><td class="fielddoc"><p>Mode deplacement assiste (PID actif). </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aac4ff3749a562096c611ea6a6d9310baa72585bc0014d48cf3e55f72ab8c824f3"></a>FREE_MOTION&#160;</td><td class="fielddoc"><p>Roue libre, pas d'asservissement. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aac4ff3749a562096c611ea6a6d9310baacdadaf73fd4397c23d99992c0222499d"></a>DISABLE_PID&#160;</td><td class="fielddoc"><p>PID desactive, moteurs stoppes. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="adb3360abeb29758da93865c8afcb80eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb3360abeb29758da93865c8afcb80eb">&#9670;&nbsp;</a></span>TRAJ_STATE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="AAsservDriver_8hpp.html#adb3360abeb29758da93865c8afcb80eb">TRAJ_STATE</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Etat de retour d'une trajectoire. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Valeurs énumérées</th></tr><tr><td class="fieldname"><a id="adb3360abeb29758da93865c8afcb80ebaf6b60f7df461e76242a59c03b56bc141"></a>TRAJ_IDLE&#160;</td><td class="fielddoc"><p>Etat initial avant trajectoire. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="adb3360abeb29758da93865c8afcb80eba2b78b16ef1f129fa324a5281ed3aa725"></a>TRAJ_FINISHED&#160;</td><td class="fielddoc"><p>Trajectoire terminee avec succes. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="adb3360abeb29758da93865c8afcb80eba871e002063b5d441e91070ffcdb3d8c9"></a>TRAJ_INTERRUPTED&#160;</td><td class="fielddoc"><p>Trajectoire interrompue par le logiciel. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="adb3360abeb29758da93865c8afcb80eba47e68ca20be9d49839ba24715fb84564"></a>TRAJ_IMPOSSIBLE&#160;</td><td class="fielddoc"><p>Trajectoire annulee ou chemin introuvable. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="adb3360abeb29758da93865c8afcb80eba8d626593b75cca363509af48937247e3"></a>TRAJ_NEAR_OBSTACLE&#160;</td><td class="fielddoc"><p>Arret pour obstacle proche (capteurs). </p>
+</td></tr>
+<tr><td class="fieldname"><a id="adb3360abeb29758da93865c8afcb80eba29ed412b66db2ae88cc0cf6fcbb45d47"></a>TRAJ_COLLISION&#160;</td><td class="fielddoc"><p>Arret pour collision (asserv bloque). </p>
+</td></tr>
+<tr><td class="fieldname"><a id="adb3360abeb29758da93865c8afcb80ebadbca09dfac1c9101fd6577b0d29fcbf9"></a>TRAJ_REAR_OBSTACLE&#160;</td><td class="fielddoc"><dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000001">Obsolète:</a></b></dt><dd>Obstacle arriere. </dd></dl>
+</td></tr>
+<tr><td class="fieldname"><a id="adb3360abeb29758da93865c8afcb80ebacb0df7da3e500899290e102f0c2727bf"></a>TRAJ_REAR_COLLISION&#160;</td><td class="fielddoc"><dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000002">Obsolète:</a></b></dt><dd>Collision arriere. </dd></dl>
+</td></tr>
+<tr><td class="fieldname"><a id="adb3360abeb29758da93865c8afcb80eba74e86e3d5a1c63a2cf8f2e436ad35067"></a>TRAJ_ERROR&#160;</td><td class="fielddoc"><p>Erreur generique. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Mardi 24 Mars 2026 23:42:29 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

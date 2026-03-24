@@ -1,5 +1,8 @@
 <map id="test/suite/UnitTestSuite.hpp" name="test/suite/UnitTestSuite.hpp">
-<area shape="rect" id="node1" title="Définition de la classe UnitTestSuite." alt="" coords="94,5,295,32"/>
-<area shape="rect" id="node2" href="$Main_8cpp.html" title="Point d&#39;entrée des tests unitaires common." alt="" coords="5,80,176,107"/>
-<area shape="rect" id="node3" href="$UnitTestSuite_8cpp.html" title="Implementation de la classe UnitTestSuite." alt="" coords="200,80,400,107"/>
+<area shape="rect" id="node1" title="Définition de la classe UnitTestSuite." alt="" coords="353,5,555,32"/>
+<area shape="rect" id="node2" href="$bench_2Main_8cpp.html" title="Point d&#39;entree des benchmarks." alt="" coords="5,80,159,107"/>
+<area shape="rect" id="node3" href="$common_2Main_8cpp.html" title="Point d&#39;entrée des tests unitaires common." alt="" coords="183,80,354,107"/>
+<area shape="rect" id="node4" href="$driver_2Main_8cpp.html" title="Point d&#39;entree des tests unitaires driver." alt="" coords="378,80,530,107"/>
+<area shape="rect" id="node5" href="$manual_2Main_8cpp.html" title="Point d&#39;entree des tests manuels (verification visuelle/physique)." alt="" coords="554,80,717,107"/>
+<area shape="rect" id="node6" href="$UnitTestSuite_8cpp.html" title="Implementation de la classe UnitTestSuite." alt="" coords="741,80,941,107"/>
 </map>

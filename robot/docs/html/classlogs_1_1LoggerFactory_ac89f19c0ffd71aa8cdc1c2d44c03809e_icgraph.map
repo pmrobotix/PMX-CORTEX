@@ -1,27 +1,52 @@
 <map id="logs::LoggerFactory::add" name="logs::LoggerFactory::add">
-<area shape="rect" id="node1" title="Cette méthode ajoute un appender au système." alt="" coords="892,363,1071,390"/>
-<area shape="rect" id="node2" href="$classlogs_1_1LoggerFactory.html#a12d0cca9505bd37587b4c0333a7c86b8" title="Méthode d&#39;initialisation du système." alt="" coords="696,164,844,205"/>
-<area shape="rect" id="node4" href="$classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e" title="Cette méthode statique retourne un Logger en fonction de son nom." alt="" coords="696,388,844,429"/>
-<area shape="rect" id="node3" href="$classlogs_1_1LoggerFactory.html#af48dba1727daa4d9114882e5b64c35ac" title="constructeur de la classe." alt="" coords="471,5,619,47"/>
-<area shape="rect" id="node5" href="$classSvgWriter.html#a30059a7d7289c57d3bf1bf623713dc0a" title="Constructeur de la classe." alt="" coords="466,71,625,98"/>
-<area shape="rect" id="node6" href="$classUnitTest.html#a04ac91fa9017d4c8ee88419ab365ebe1" title="Cette méthode retourne le logger associé à cette classe." alt="" coords="483,122,607,149"/>
-<area shape="rect" id="node10" href="$classUnitTestSuite.html#a9f4352aea6a472a2635fd222a4035658" title="Cette méthode retourne le logger associé à cette classe." alt="" coords="467,173,624,199"/>
-<area shape="rect" id="node13" href="$classtest_1_1FileAppenderTest.html#ab47460a0731606c51db2ca317fc6ef0c" title="Vérifie que le destructeur flush automatiquement." alt="" coords="459,224,632,265"/>
-<area shape="rect" id="node15" href="$classtest_1_1SvgAppenderTest.html#aee81cfbf43a7ca0f227fdf112aaeb94c" title="Vérifie que le destructeur flush automatiquement." alt="" coords="459,420,632,461"/>
-<area shape="rect" id="node17" href="$classtest_1_1LoggerTest.html#a76ceb62a27076dd62490d377b09861ab" title="Vérifie la construction par copie d&#39;un logger parent." alt="" coords="444,616,647,657"/>
-<area shape="rect" id="node19" href="$classtest_1_1LoggerTest.html#a25080abab28188bb60904dbfac123252" title="Vérifie le nom et le niveau du logger." alt="" coords="444,681,647,723"/>
-<area shape="rect" id="node20" href="$classtest_1_1SvgAppenderTest.html#a855b9d39568bbe557279a635cebdeb86" title="Vérifie que plusieurs éléments SVG sont écrits dans l&#39;ordre." alt="" coords="461,485,630,527"/>
-<area shape="rect" id="node21" href="$classtest_1_1FileAppenderTest.html#a5c23aeaba819e2d022e35d75b8737350" title="Vérifie que plusieurs messages sont écrits dans l&#39;ordre." alt="" coords="459,289,632,331"/>
-<area shape="rect" id="node22" href="$classtest_1_1LoggerTest.html#a3b9ae6dbc586a91732890bbebc8f49ad" title="Vérifie les messages simples (debug, info, warn, error)." alt="" coords="444,747,647,788"/>
-<area shape="rect" id="node23" href="$classtest_1_1LoggerTest.html#a49ceaa16cfc816d22253860fad8ad59e" title="Vérifie les messages via l&#39;API stream (&lt;&lt;)." alt="" coords="443,812,648,853"/>
-<area shape="rect" id="node24" href="$classtest_1_1FileAppenderTest.html#a5f573c45406190ce597a59dca19e5ec9" title="Vérifie qu&#39;un message écrit est bien présent dans le fichier après flush." alt="" coords="462,355,629,396"/>
-<area shape="rect" id="node25" href="$classtest_1_1SvgAppenderTest.html#ab8ecdbbe67097178151f6145f4e9c5a8" title="Vérifie qu&#39;un élément SVG est écrit dans le fichier après flush." alt="" coords="462,551,629,592"/>
-<area shape="rect" id="node7" href="$classUnitTest.html#aae657d6d8bdc56cb2a9d4e4e9f5f8929" title="Cette méthode fait échouer un test." alt="" coords="259,122,363,149"/>
-<area shape="rect" id="node8" href="$classUnitTest.html#a94aab90579073ba6e2068bbc05c47c4a" title="Valide un test dans le cadre des tests unitaires." alt="" coords="31,71,154,98"/>
-<area shape="rect" id="node9" href="$classUnitTest.html#a00a74363b89994348f5025b42f7ea96f" title="Vérifie si un message d&#39;erreur à bien été émis." alt="" coords="5,122,180,149"/>
-<area shape="rect" id="node11" href="$classUnitTestSuite.html#af7b586b2771e5b876628be90e33aba5e" title="Execution de tous les tests." alt="" coords="243,173,380,199"/>
-<area shape="rect" id="node12" href="$Main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="65,173,120,199"/>
-<area shape="rect" id="node14" href="$classtest_1_1FileAppenderTest.html#a34d4f99eb29a3710953a9bdb277481c1" title="Execute les tests associés à la classe." alt="" coords="228,289,395,331"/>
-<area shape="rect" id="node16" href="$classtest_1_1SvgAppenderTest.html#ad368c503a768fb7fc9e154e7a18002cf" title="Execute les tests associés à la classe." alt="" coords="228,485,395,527"/>
-<area shape="rect" id="node18" href="$classtest_1_1LoggerTest.html#af4c75dbd29735b88c4aaf349bc9d4caf" title="Execute les tests associés à la classe." alt="" coords="229,721,394,747"/>
+<area shape="rect" id="node1" title="Cette méthode ajoute un appender au système." alt="" coords="1193,616,1372,643"/>
+<area shape="rect" id="node2" href="$classlogs_1_1LoggerFactory.html#a12d0cca9505bd37587b4c0333a7c86b8" title="Méthode d&#39;initialisation du système." alt="" coords="997,295,1145,337"/>
+<area shape="rect" id="node4" href="$classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e" title="Cette méthode statique retourne un Logger en fonction de son nom." alt="" coords="997,641,1145,682"/>
+<area shape="rect" id="node3" href="$classlogs_1_1LoggerFactory.html#af48dba1727daa4d9114882e5b64c35ac" title="constructeur de la classe." alt="" coords="773,15,921,57"/>
+<area shape="rect" id="node5" href="$classSvgWriter.html#a30059a7d7289c57d3bf1bf623713dc0a" title="Constructeur de la classe." alt="" coords="767,81,926,108"/>
+<area shape="rect" id="node6" href="$classGpioPCA9555.html#a0693bc4682685e552dd16bb29ca90210" title=" " alt="" coords="767,132,926,159"/>
+<area shape="rect" id="node18" href="$classLedDriver.html#a866d7a44a40f78d72e3862dfbd5e7a16" title=" " alt="" coords="779,183,914,209"/>
+<area shape="rect" id="node19" href="$classSwitchDriver.html#a91371ed2f8914f4f43a8ebd4f3f6d3c1" title=" " alt="" coords="293,259,447,285"/>
+<area shape="rect" id="node20" href="$classButtonDriver.html#ad012e9f5521b17497279e822cce78950" title=" " alt="" coords="769,284,924,311"/>
+<area shape="rect" id="node22" href="$classSoundDriver.html#ab6004c75e492563469d1888f0a89948f" title=" " alt="" coords="771,335,922,361"/>
+<area shape="rect" id="node27" href="$classtest_1_1LedDriverTest.html#a2cd5c7972fe2ff1af216f9519661ab8c" title=" " alt="" coords="775,386,919,427"/>
+<area shape="rect" id="node28" href="$classtest_1_1SwitchDriverTest.html#a66a84d166cea64159324105a2ef7e734" title=" " alt="" coords="765,451,929,493"/>
+<area shape="rect" id="node29" href="$classtest_1_1LedManualTest.html#a70f132164c9a3bdf1eeae6f5882bcd19" title=" " alt="" coords="771,517,923,558"/>
+<area shape="rect" id="node30" href="$classtest_1_1SwitchManualTest.html#a8328f914a6b3d7c85a2b4f6776b93111" title=" " alt="" coords="761,582,933,623"/>
+<area shape="rect" id="node31" href="$classUnitTest.html#a04ac91fa9017d4c8ee88419ab365ebe1" title="Cette méthode retourne le logger associé à cette classe." alt="" coords="785,648,909,675"/>
+<area shape="rect" id="node35" href="$classUnitTestSuite.html#a9f4352aea6a472a2635fd222a4035658" title="Cette méthode retourne le logger associé à cette classe." alt="" coords="768,699,925,725"/>
+<area shape="rect" id="node38" href="$classtest_1_1FileAppenderTest.html#ab47460a0731606c51db2ca317fc6ef0c" title="Vérifie que le destructeur flush automatiquement." alt="" coords="760,750,933,791"/>
+<area shape="rect" id="node40" href="$classtest_1_1SvgAppenderTest.html#aee81cfbf43a7ca0f227fdf112aaeb94c" title="Vérifie que le destructeur flush automatiquement." alt="" coords="760,946,933,987"/>
+<area shape="rect" id="node42" href="$classtest_1_1LoggerTest.html#a76ceb62a27076dd62490d377b09861ab" title="Vérifie la construction par copie d&#39;un logger parent." alt="" coords="745,1142,948,1183"/>
+<area shape="rect" id="node44" href="$classtest_1_1LoggerTest.html#a25080abab28188bb60904dbfac123252" title="Vérifie le nom et le niveau du logger." alt="" coords="745,1207,948,1249"/>
+<area shape="rect" id="node45" href="$classtest_1_1SvgAppenderTest.html#a855b9d39568bbe557279a635cebdeb86" title="Vérifie que plusieurs éléments SVG sont écrits dans l&#39;ordre." alt="" coords="762,1011,931,1053"/>
+<area shape="rect" id="node46" href="$classtest_1_1FileAppenderTest.html#a5c23aeaba819e2d022e35d75b8737350" title="Vérifie que plusieurs messages sont écrits dans l&#39;ordre." alt="" coords="760,815,933,857"/>
+<area shape="rect" id="node47" href="$classtest_1_1LoggerTest.html#a3b9ae6dbc586a91732890bbebc8f49ad" title="Vérifie les messages simples (debug, info, warn, error)." alt="" coords="745,1273,948,1314"/>
+<area shape="rect" id="node48" href="$classtest_1_1LoggerTest.html#a49ceaa16cfc816d22253860fad8ad59e" title="Vérifie les messages via l&#39;API stream (&lt;&lt;)." alt="" coords="744,1338,949,1379"/>
+<area shape="rect" id="node49" href="$classtest_1_1FileAppenderTest.html#a5f573c45406190ce597a59dca19e5ec9" title="Vérifie qu&#39;un message écrit est bien présent dans le fichier après flush." alt="" coords="763,881,930,922"/>
+<area shape="rect" id="node50" href="$classtest_1_1SvgAppenderTest.html#ab8ecdbbe67097178151f6145f4e9c5a8" title="Vérifie qu&#39;un élément SVG est écrit dans le fichier après flush." alt="" coords="763,1077,930,1118"/>
+<area shape="rect" id="node7" href="$classGpioPCA9555.html#a22dbebb8c5fffe0d0c119c6d958276e7" title="Lit la valeur d&#39;un pin du port1 (entrees)." alt="" coords="505,56,696,83"/>
+<area shape="rect" id="node12" href="$classGpioPCA9555.html#a700aff89e3f53630ec2e77a3755174a4" title="Configure les registres de direction des ports." alt="" coords="523,107,678,133"/>
+<area shape="rect" id="node15" href="$classGpioPCA9555.html#a275bd8ed5c0b8bf2e22ea488ecf06456" title="Ecrit une valeur sur un pin du port0 (sorties)." alt="" coords="505,157,696,184"/>
+<area shape="rect" id="node8" href="$classSwitchDriver.html#a379d72f1adda71986eda15ac793e47b2" title="Lit l&#39;etat d&#39;un pin du port1 du PCA9555." alt="" coords="288,56,452,83"/>
+<area shape="rect" id="node9" href="$classSwitchDriver.html#a97e70a13f40c94c24fd7f23a91151b92" title="Lit le switch arriere gauche." alt="" coords="11,5,229,32"/>
+<area shape="rect" id="node10" href="$classSwitchDriver.html#ae0ad61bcf1763760b84afb18ab4df78e" title="Lit le switch arriere droit." alt="" coords="5,56,235,83"/>
+<area shape="rect" id="node11" href="$classSwitchDriver.html#aab8d39af82077190141c93ce683475ae" title="Lit l&#39;etat de la tirette de depart." alt="" coords="18,107,222,133"/>
+<area shape="rect" id="node13" href="$classGpioPCA9555.html#ada56d6ac5d165229e1a2e7e50387a376" title="Initialise la communication I2C et configure les ports." alt="" coords="293,107,447,133"/>
+<area shape="rect" id="node14" href="$classSwitchDriver.html#a318f2cc1988d9ddfae71131fcf39d929" title="Constructeur. Initialise le PCA9555." alt="" coords="22,208,218,235"/>
+<area shape="rect" id="node16" href="$classGpioPCA9555.html#aec22091c7c82bb5d1723cdecaf968a7a" title="Desactive un pin du port0." alt="" coords="283,157,457,184"/>
+<area shape="rect" id="node17" href="$classGpioPCA9555.html#a6cde1194bb5855ed2e59c7f29ba5e81e" title="Active un pin du port0." alt="" coords="284,208,456,235"/>
+<area shape="rect" id="node21" href="$classButtonDriver.html#acc197da87cfbc9bee896ad284bbeedbe" title="Teste si un bouton est actuellement appuye." alt="" coords="519,284,683,311"/>
+<area shape="rect" id="node23" href="$classSoundDriver.html#a02e19369da6d072ffb3e5ad66880c6cd" title="Emet un beep avec les arguments donnes." alt="" coords="529,335,672,361"/>
+<area shape="rect" id="node24" href="$classSoundDriver.html#a73545c968e699406198166d414de00b4" title="Joue un fichier audio." alt="" coords="531,385,670,412"/>
+<area shape="rect" id="node25" href="$classSoundDriver.html#a54675f49f8f2fa084a79da5361c210b6" title="Synthese vocale (text&#45;to&#45;speech)." alt="" coords="526,436,675,463"/>
+<area shape="rect" id="node26" href="$classSoundDriver.html#a04c82a6087ffbcbd2d8d3d8a8dfa67d1" title="Joue une tonalite a une frequence donnee." alt="" coords="531,487,670,513"/>
+<area shape="rect" id="node32" href="$classUnitTest.html#aae657d6d8bdc56cb2a9d4e4e9f5f8929" title="Cette méthode fait échouer un test." alt="" coords="549,648,653,675"/>
+<area shape="rect" id="node33" href="$classUnitTest.html#a94aab90579073ba6e2068bbc05c47c4a" title="Valide un test dans le cadre des tests unitaires." alt="" coords="309,597,431,624"/>
+<area shape="rect" id="node34" href="$classUnitTest.html#a00a74363b89994348f5025b42f7ea96f" title="Vérifie si un message d&#39;erreur à bien été émis." alt="" coords="283,648,457,675"/>
+<area shape="rect" id="node36" href="$classUnitTestSuite.html#af7b586b2771e5b876628be90e33aba5e" title="Execution de tous les tests." alt="" coords="532,699,669,725"/>
+<area shape="rect" id="node37" href="$bench_2Main_8cpp.html#a2c3f6775325c30275d11c6abee2db6a0" title=" " alt="" coords="343,699,397,725"/>
+<area shape="rect" id="node39" href="$classtest_1_1FileAppenderTest.html#a34d4f99eb29a3710953a9bdb277481c1" title="Execute les tests associés à la classe." alt="" coords="517,815,684,857"/>
+<area shape="rect" id="node41" href="$classtest_1_1SvgAppenderTest.html#ad368c503a768fb7fc9e154e7a18002cf" title="Execute les tests associés à la classe." alt="" coords="517,1011,684,1053"/>
+<area shape="rect" id="node43" href="$classtest_1_1LoggerTest.html#af4c75dbd29735b88c4aaf349bc9d4caf" title="Execute les tests associés à la classe." alt="" coords="518,1247,683,1273"/>
 </map>

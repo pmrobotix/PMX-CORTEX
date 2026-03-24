@@ -1,9 +1,12 @@
 <map id="src/common/utils/PointerList.hpp" name="src/common/utils/PointerList.hpp">
-<area shape="rect" id="node1" title="Définition de la classe PointerList." alt="" coords="276,5,460,47"/>
-<area shape="rect" id="node2" href="$SvgWriter_8hpp.html" title="Définition de la classe SvgWriter." alt="" coords="5,95,227,121"/>
-<area shape="rect" id="node4" href="$PointerListTest_8cpp.html" title="Implémentation des tests de la classe utils::PointerList." alt="" coords="251,95,485,121"/>
-<area shape="rect" id="node5" href="$UnitTestSuite_8hpp.html" title="Définition de la classe UnitTestSuite." alt="" coords="510,95,711,121"/>
-<area shape="rect" id="node3" href="$SvgWriter_8cpp.html" title="Implémentation de la classe SvgWriter." alt="" coords="6,169,226,196"/>
-<area shape="rect" id="node6" href="$Main_8cpp.html" title="Point d&#39;entrée des tests unitaires common." alt="" coords="420,169,591,196"/>
-<area shape="rect" id="node7" href="$UnitTestSuite_8cpp.html" title="Implementation de la classe UnitTestSuite." alt="" coords="615,169,815,196"/>
+<area shape="rect" id="node1" title="Définition de la classe PointerList." alt="" coords="341,5,525,47"/>
+<area shape="rect" id="node2" href="$SvgWriter_8hpp.html" title="Définition de la classe SvgWriter." alt="" coords="49,95,270,121"/>
+<area shape="rect" id="node4" href="$PointerListTest_8cpp.html" title="Implémentation des tests de la classe utils::PointerList." alt="" coords="315,95,550,121"/>
+<area shape="rect" id="node5" href="$UnitTestSuite_8hpp.html" title="Définition de la classe UnitTestSuite." alt="" coords="585,95,787,121"/>
+<area shape="rect" id="node3" href="$SvgWriter_8cpp.html" title="Implémentation de la classe SvgWriter." alt="" coords="5,169,225,196"/>
+<area shape="rect" id="node6" href="$bench_2Main_8cpp.html" title="Point d&#39;entree des benchmarks." alt="" coords="249,169,403,196"/>
+<area shape="rect" id="node7" href="$common_2Main_8cpp.html" title="Point d&#39;entrée des tests unitaires common." alt="" coords="427,169,598,196"/>
+<area shape="rect" id="node8" href="$driver_2Main_8cpp.html" title="Point d&#39;entree des tests unitaires driver." alt="" coords="622,169,774,196"/>
+<area shape="rect" id="node9" href="$manual_2Main_8cpp.html" title="Point d&#39;entree des tests manuels (verification visuelle/physique)." alt="" coords="798,169,961,196"/>
+<area shape="rect" id="node10" href="$UnitTestSuite_8cpp.html" title="Implementation de la classe UnitTestSuite." alt="" coords="985,169,1185,196"/>
 </map>

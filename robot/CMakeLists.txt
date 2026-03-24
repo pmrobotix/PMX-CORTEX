@@ -74,6 +74,42 @@ target_include_directories(pmx-common PUBLIC
 target_link_libraries(pmx-common PUBLIC pthread rt simple-svg)
 
 # =============================================
+# Bibliothèque driver : sélection automatique
+# =============================================
+if(TARGET_PLATFORM STREQUAL "ARM")
+    # --- pmx-driver-arm (cross-compilation OPOS6UL) ---
+    add_library(pmx-driver-arm STATIC
+        src/driver-arm/LedDriver.cpp
+        src/driver-arm/SwitchDriver.cpp
+        src/driver-arm/GpioPCA9555.cpp
+    )
+
+    target_include_directories(pmx-driver-arm PUBLIC
+        src/driver-arm
+    )
+
+    target_link_libraries(pmx-driver-arm PUBLIC pmx-common as_devices as_devices_cpp)
+
+    set(DRIVER_LIB pmx-driver-arm)
+else()
+    # --- pmx-driver-simu (compilation native PC) ---
+    add_library(pmx-driver-simu STATIC
+        src/driver-simu/LedDriver.cpp
+        src/driver-simu/ButtonDriver.cpp
+        src/driver-simu/SwitchDriver.cpp
+        src/driver-simu/SoundDriver.cpp
+    )
+
+    target_include_directories(pmx-driver-simu PUBLIC
+        src/driver-simu
+    )
+
+    target_link_libraries(pmx-driver-simu PUBLIC pmx-common)
+
+    set(DRIVER_LIB pmx-driver-simu)
+endif()
+
+# =============================================
 # Bibliothèque : pmx-suite (framework de test)
 # =============================================
 add_library(pmx-suite STATIC
@@ -106,3 +142,39 @@ add_executable(common-test
 )
 
 target_link_libraries(common-test PRIVATE pmx-suite)
+
+# =============================================
+# Cible test : driver-test
+# =============================================
+if(DRIVER_LIB)
+    add_executable(driver-test
+        test/driver/Main.cpp
+        test/driver/LoggerInitialize.cpp
+        test/driver/LedDriverTest.cpp
+        test/driver/SwitchDriverTest.cpp
+    )
+
+    target_link_libraries(driver-test PRIVATE pmx-suite ${DRIVER_LIB})
+
+    # =============================================
+    # Cible test : manual-test (verification visuelle/physique)
+    # =============================================
+    add_executable(manual-test
+        test/manual/Main.cpp
+        test/manual/LoggerInitialize.cpp
+        test/manual/LedManualTest.cpp
+        test/manual/SwitchManualTest.cpp
+    )
+
+    target_link_libraries(manual-test PRIVATE pmx-suite ${DRIVER_LIB})
+
+    # =============================================
+    # Cible test : bench (metriques de performance)
+    # =============================================
+    add_executable(bench
+        test/bench/Main.cpp
+        test/bench/LoggerInitialize.cpp
+    )
+
+    target_link_libraries(bench PRIVATE pmx-suite)
+endif()

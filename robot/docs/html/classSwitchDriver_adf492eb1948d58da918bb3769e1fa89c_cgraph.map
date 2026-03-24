@@ -1,0 +1,5 @@
+<map id="SwitchDriver::is_connected" name="SwitchDriver::is_connected">
+<area shape="rect" id="node1" title="Verifie si le module est connecte." alt="" coords="5,31,204,57"/>
+<area shape="rect" id="node2" href="$classGpioPCA9555.html#af9f8fb2ed90d56abc86cfb06d2033441" title="Retourne l&#39;instance unique (singleton)." alt="" coords="265,5,438,32"/>
+<area shape="rect" id="node3" href="$classGpioPCA9555.html#adca3966252205ecd62523e39fc8e02d2" title="Verifie si le PCA9555 est connecte." alt="" coords="252,56,451,83"/>
+</map>

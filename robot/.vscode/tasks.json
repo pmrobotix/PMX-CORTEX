@@ -1,28 +1,135 @@
 {
+    // ============================================================
+    // Tasks VSCode pour le projet robot PMX-CORTEX
+    //
+    // Raccourci : Ctrl+Shift+T → menu de toutes les tasks
+    // Barre de statut : boutons Deploy+Run, SSH, Recup SVG
+    //   (extension actboy168.tasks)
+    //
+    // Chaque task ARM demande :
+    //   1. L'IP de la carte (eth0, 5g, wifi, home)
+    //   2. Le binaire a deployer (driver-test, common-test, etc.)
+    //
+    // Prerequis : sshpass (sudo apt install sshpass)
+    // ============================================================
     "version": "2.0.0",
+    "inputs": [
+        {
+            // eth0  = cable direct     192.168.2.105
+            // 5g    = WiFi 5GHz AP     192.168.3.103
+            // wifi  = WiFi PMX         192.168.2.107
+            // home  = WiFi maison      192.168.0.205
+            "id": "targetIP",
+            "type": "pickString",
+            "description": "Interface reseau OPOS6UL",
+            "options": [
+                "192.168.2.105",
+                "192.168.3.103",
+                "192.168.2.107",
+                "192.168.0.205"
+            ],
+            "default": "192.168.2.105"
+        },
+        {
+            "id": "targetBin",
+            "type": "pickString",
+            "description": "Binaire a deployer",
+            "options": [
+                "driver-test",
+                "common-test",
+                "manual-test",
+                "bench",
+                "opos6ul"
+            ],
+            "default": "driver-test"
+        }
+    ],
     "tasks": [
         {
-            "label": "Doxygen: Générer la doc",
+            // Build ARM + strip + scp (sans execution)
+            "label": "ARM: Deploy",
             "type": "shell",
-            "command": "doxygen",
+            "command": "bash sh/deploy.sh ${input:targetIP} ${input:targetBin}",
             "options": {
-                "cwd": "${workspaceFolder}"
+                "cwd": "${workspaceFolder}",
+                "statusbar": { "hide": true }
             },
             "group": "build",
             "problemMatcher": [],
-            "presentation": {
-                "reveal": "always",
-                "panel": "shared"
-            }
+            "presentation": { "reveal": "always", "panel": "shared", "focus": true }
         },
         {
+            // Build + strip + scp + kill ancien process + execute
+            "label": "ARM: Deploy + Run",
+            "type": "shell",
+            "command": "bash sh/deploy.sh ${input:targetIP} ${input:targetBin} run",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "statusbar": {
+                    "hide": false,
+                    "label": "$(rocket) Deploy+Run",
+                    "color": "#4EC9B0"
+                }
+            },
+            "group": "test",
+            "problemMatcher": [],
+            "presentation": { "reveal": "always", "panel": "shared", "focus": true }
+        },
+        {
+            // Terminal SSH interactif dans /root/pmx/
+            "label": "ARM: Connect SSH",
+            "type": "shell",
+            "command": "sshpass -p pmx ssh -o StrictHostKeyChecking=no root@${input:targetIP} 'cd /root/pmx ; exec $SHELL -l'",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "statusbar": {
+                    "hide": false,
+                    "label": "$(terminal) SSH",
+                    "color": "#CCCCCC"
+                }
+            },
+            "problemMatcher": [],
+            "presentation": { "reveal": "always", "panel": "dedicated", "focus": true }
+        },
+        {
+            // Rapatrie les fichiers SVG generes sur la carte
+            "label": "ARM: Recup SVG",
+            "type": "shell",
+            "command": "sshpass -p pmx scp -o StrictHostKeyChecking=no root@${input:targetIP}:/root/pmx/*.svg /home/pmx/recup/",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "statusbar": {
+                    "hide": false,
+                    "label": "$(file-media) Recup SVG",
+                    "color": "#DCDCAA"
+                }
+            },
+            "problemMatcher": [],
+            "presentation": { "reveal": "always", "panel": "shared" }
+        },
+        {
+            // Generation de la documentation Doxygen
+            "label": "Doxygen: Generer la doc",
+            "type": "shell",
+            "command": "doxygen",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "statusbar": { "hide": true }
+            },
+            "group": "build",
+            "problemMatcher": [],
+            "presentation": { "reveal": "always", "panel": "shared" }
+        },
+        {
+            // Genere la doc puis ouvre dans le navigateur
             "label": "Doxygen: Ouvrir la doc",
             "type": "shell",
             "command": "xdg-open docs/html/index.html",
             "options": {
-                "cwd": "${workspaceFolder}"
+                "cwd": "${workspaceFolder}",
+                "statusbar": { "hide": true }
             },
-            "dependsOn": "Doxygen: Générer la doc",
+            "dependsOn": "Doxygen: Generer la doc",
             "problemMatcher": []
         }
     ]

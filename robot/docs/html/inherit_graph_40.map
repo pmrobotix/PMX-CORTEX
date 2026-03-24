@@ -1,12 +1,4 @@
 <map id="Graphe hiérarchique des classes" name="Graphe hiérarchique des classes">
-<area shape="rect" id="node1" href="$classUnitTest.html" title="Cette classe permet de créer des tests unitaires." alt="" coords="5,208,80,235"/>
-<area shape="rect" id="node2" href="$classtest_1_1ChronometerTest.html" title="Teste la classe utils::Chronometer." alt="" coords="128,5,295,32"/>
-<area shape="rect" id="node3" href="$classtest_1_1ExceptionTest.html" title="Teste la classe logs::Exception." alt="" coords="139,56,284,83"/>
-<area shape="rect" id="node4" href="$classtest_1_1FileAppenderTest.html" title="Teste la classe logs::FileAppender." alt="" coords="128,107,295,133"/>
-<area shape="rect" id="node5" href="$classtest_1_1LevelTest.html" title="Teste la classe logs::Level." alt="" coords="153,157,269,184"/>
-<area shape="rect" id="node6" href="$classtest_1_1LoggerTest.html" title="Teste la classe logs::Logger." alt="" coords="149,208,274,235"/>
-<area shape="rect" id="node7" href="$classtest_1_1MutexTest.html" title="Teste la classe utils::Mutex." alt="" coords="150,259,273,285"/>
-<area shape="rect" id="node8" href="$classtest_1_1PointerListTest.html" title="Teste la classe utils::PointerList." alt="" coords="136,309,287,336"/>
-<area shape="rect" id="node9" href="$classtest_1_1SvgAppenderTest.html" title="Teste la classe logs::SvgAppender." alt="" coords="128,360,295,387"/>
-<area shape="rect" id="node10" href="$classtest_1_1ThreadTest.html" title="Teste la classe utils::Thread." alt="" coords="148,411,275,437"/>
+<area shape="rect" id="node1" href="$classbackward_1_1TraceResolverImpl.html" title=" " alt="" coords="5,5,219,47"/>
+<area shape="rect" id="node2" href="$classbackward_1_1TraceResolver.html" title=" " alt="" coords="267,13,451,39"/>
 </map>

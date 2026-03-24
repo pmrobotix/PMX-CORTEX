@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['never_1115',['never',['../namespacebackward_1_1ColorMode.html#aec82452ed7333b210e205aaf6da2d090af0469cd8b4e78a7dbbb315e69b8a441b',1,'backward::ColorMode']]]
+  ['cbor_3359',['cbor',['../namespacedetail.html#a0ab3b338d0eadc6890b72cccef0ea04faaf9de350d652f0c9055ddab514bd23ea',1,'detail']]],
+  ['created_3360',['CREATED',['../namespaceutils.html#a504e3834817aefe4aa5d0403791dd269a8d459cadc59075506c6f41a2945fefd0',1,'utils']]]
 ];

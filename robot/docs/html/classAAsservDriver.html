@@ -1,0 +1,1850 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot: Référence de la classe AAsservDriver</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Fonctions membres publiques</a> &#124;
+<a href="#pub-static-methods">Fonctions membres publiques statiques</a> &#124;
+<a href="classAAsservDriver-members.html">Liste de tous les membres</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence de la classe AAsservDriver<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Interface abstraite du driver d'asservissement.  
+ <a href="classAAsservDriver.html#details">Plus de détails...</a></p>
+
+<p><code>#include &lt;<a class="el" href="AAsservDriver_8hpp_source.html">AAsservDriver.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Fonctions membres publiques</h2></td></tr>
+<tr class="memitem:af6a0b1c219c8a25d589667f05da7f64d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#af6a0b1c219c8a25d589667f05da7f64d">AAsservDriver</a> ()</td></tr>
+<tr class="separator:af6a0b1c219c8a25d589667f05da7f64d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a624c97511d788f1df927625a1d0eb54c"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#a624c97511d788f1df927625a1d0eb54c">~AAsservDriver</a> ()</td></tr>
+<tr class="separator:a624c97511d788f1df927625a1d0eb54c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54ee068cec3c9f9f98b9e6b3d8c10f6e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#a54ee068cec3c9f9f98b9e6b3d8c10f6e">endWhatTodo</a> ()=0</td></tr>
+<tr class="memdesc:a54ee068cec3c9f9f98b9e6b3d8c10f6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Actions de nettoyage avant l'arret du programme.  <a href="classAAsservDriver.html#a54ee068cec3c9f9f98b9e6b3d8c10f6e">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a54ee068cec3c9f9f98b9e6b3d8c10f6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a733770d9a0eb73caa897baadd3e36f9d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#a733770d9a0eb73caa897baadd3e36f9d">getCountsExternal</a> (int32_t *countR, int32_t *countL)=0</td></tr>
+<tr class="memdesc:a733770d9a0eb73caa897baadd3e36f9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit les compteurs externes cumules (ticks).  <a href="classAAsservDriver.html#a733770d9a0eb73caa897baadd3e36f9d">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a733770d9a0eb73caa897baadd3e36f9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa5418d791cab277447abf18afe31c4e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#aaa5418d791cab277447abf18afe31c4e">getCountsInternal</a> (int32_t *countR, int32_t *countL)=0</td></tr>
+<tr class="memdesc:aaa5418d791cab277447abf18afe31c4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit les compteurs internes cumules.  <a href="classAAsservDriver.html#aaa5418d791cab277447abf18afe31c4e">Plus de détails...</a><br /></td></tr>
+<tr class="separator:aaa5418d791cab277447abf18afe31c4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac303905f9004ca89964b7fd6c3b5df81"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#ac303905f9004ca89964b7fd6c3b5df81">getDeltaCountsExternal</a> (int32_t *deltaR, int32_t *deltaL)=0</td></tr>
+<tr class="memdesc:ac303905f9004ca89964b7fd6c3b5df81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit le delta des compteurs externes depuis le dernier appel.  <a href="classAAsservDriver.html#ac303905f9004ca89964b7fd6c3b5df81">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ac303905f9004ca89964b7fd6c3b5df81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac30b15c18f0bf293cb322ae90a5bf7cc"><td class="memItemLeft" align="right" valign="top">virtual long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#ac30b15c18f0bf293cb322ae90a5bf7cc">getLeftExternalEncoder</a> ()=0</td></tr>
+<tr class="memdesc:ac30b15c18f0bf293cb322ae90a5bf7cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit la valeur de l'encodeur externe gauche.  <a href="classAAsservDriver.html#ac30b15c18f0bf293cb322ae90a5bf7cc">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ac30b15c18f0bf293cb322ae90a5bf7cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99137b00bcf944c7fe8280d4e6adf194"><td class="memItemLeft" align="right" valign="top">virtual long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#a99137b00bcf944c7fe8280d4e6adf194">getLeftInternalEncoder</a> ()=0</td></tr>
+<tr class="memdesc:a99137b00bcf944c7fe8280d4e6adf194"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit la valeur de l'encodeur interne gauche.  <a href="classAAsservDriver.html#a99137b00bcf944c7fe8280d4e6adf194">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a99137b00bcf944c7fe8280d4e6adf194"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b6c4cafec7a55188604ec8af44b11bb"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#a8b6c4cafec7a55188604ec8af44b11bb">getMotorLeftCurrent</a> ()=0</td></tr>
+<tr class="memdesc:a8b6c4cafec7a55188604ec8af44b11bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit le courant du moteur gauche.  <a href="classAAsservDriver.html#a8b6c4cafec7a55188604ec8af44b11bb">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a8b6c4cafec7a55188604ec8af44b11bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29ab60a2685bdec463339cca10e6efaf"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#a29ab60a2685bdec463339cca10e6efaf">getMotorRightCurrent</a> ()=0</td></tr>
+<tr class="memdesc:a29ab60a2685bdec463339cca10e6efaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit le courant du moteur droit.  <a href="classAAsservDriver.html#a29ab60a2685bdec463339cca10e6efaf">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a29ab60a2685bdec463339cca10e6efaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2799a875b5fc7975d6eeb0a3f98bc108"><td class="memItemLeft" align="right" valign="top">virtual long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#a2799a875b5fc7975d6eeb0a3f98bc108">getRightExternalEncoder</a> ()=0</td></tr>
+<tr class="memdesc:a2799a875b5fc7975d6eeb0a3f98bc108"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit la valeur de l'encodeur externe droit.  <a href="classAAsservDriver.html#a2799a875b5fc7975d6eeb0a3f98bc108">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a2799a875b5fc7975d6eeb0a3f98bc108"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a474f74d48b64f813c6c7a3aa67bb5c07"><td class="memItemLeft" align="right" valign="top">virtual long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#a474f74d48b64f813c6c7a3aa67bb5c07">getRightInternalEncoder</a> ()=0</td></tr>
+<tr class="memdesc:a474f74d48b64f813c6c7a3aa67bb5c07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit la valeur de l'encodeur interne droit.  <a href="classAAsservDriver.html#a474f74d48b64f813c6c7a3aa67bb5c07">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a474f74d48b64f813c6c7a3aa67bb5c07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a046eb790d147ad8ec34bcd9565ad675b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#a046eb790d147ad8ec34bcd9565ad675b">motion_ActivateManager</a> (bool enablethread)=0</td></tr>
+<tr class="memdesc:a046eb790d147ad8ec34bcd9565ad675b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Active ou desactive le thread d'asservissement.  <a href="classAAsservDriver.html#a046eb790d147ad8ec34bcd9565ad675b">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a046eb790d147ad8ec34bcd9565ad675b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5b16fb3a46e690deb213b556749e33f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#ae5b16fb3a46e690deb213b556749e33f">motion_ActivateReguAngle</a> (bool enable)=0</td></tr>
+<tr class="memdesc:ae5b16fb3a46e690deb213b556749e33f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Active/desactive la regulation en angle.  <a href="classAAsservDriver.html#ae5b16fb3a46e690deb213b556749e33f">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ae5b16fb3a46e690deb213b556749e33f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a41963b5f908604a55f109e7ea3214e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#a7a41963b5f908604a55f109e7ea3214e">motion_ActivateReguDist</a> (bool enable)=0</td></tr>
+<tr class="memdesc:a7a41963b5f908604a55f109e7ea3214e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Active/desactive la regulation en distance.  <a href="classAAsservDriver.html#a7a41963b5f908604a55f109e7ea3214e">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a7a41963b5f908604a55f109e7ea3214e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83153736da05eba6451f02b399eb4438"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#a83153736da05eba6451f02b399eb4438">motion_AssistedHandling</a> (void)=0</td></tr>
+<tr class="memdesc:a83153736da05eba6451f02b399eb4438"><td class="mdescLeft">&#160;</td><td class="mdescRight">Active le mode deplacement assiste (PID actif).  <a href="classAAsservDriver.html#a83153736da05eba6451f02b399eb4438">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a83153736da05eba6451f02b399eb4438"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d4f4d2a80ee1887212f38fda3094c26"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#a3d4f4d2a80ee1887212f38fda3094c26">motion_DisablePID</a> (void)=0</td></tr>
+<tr class="memdesc:a3d4f4d2a80ee1887212f38fda3094c26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Desactive le PID et stoppe les moteurs.  <a href="classAAsservDriver.html#a3d4f4d2a80ee1887212f38fda3094c26">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a3d4f4d2a80ee1887212f38fda3094c26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c41681cce40f67e84af3ad973281913"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="AAsservDriver_8hpp.html#adb3360abeb29758da93865c8afcb80eb">TRAJ_STATE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#a3c41681cce40f67e84af3ad973281913">motion_DoArcRotate</a> (float angle_radians, float radius)=0</td></tr>
+<tr class="memdesc:a3c41681cce40f67e84af3ad973281913"><td class="mdescLeft">&#160;</td><td class="mdescRight">Effectue une rotation en arc de cercle.  <a href="classAAsservDriver.html#a3c41681cce40f67e84af3ad973281913">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a3c41681cce40f67e84af3ad973281913"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe49d0d089fd94136e4a2f90d8508c9e"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="AAsservDriver_8hpp.html#adb3360abeb29758da93865c8afcb80eb">TRAJ_STATE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#abe49d0d089fd94136e4a2f90d8508c9e">motion_DoFace</a> (float x_mm, float y_mm, bool back_face)=0</td></tr>
+<tr class="memdesc:abe49d0d089fd94136e4a2f90d8508c9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Oriente le robot face a un point.  <a href="classAAsservDriver.html#abe49d0d089fd94136e4a2f90d8508c9e">Plus de détails...</a><br /></td></tr>
+<tr class="separator:abe49d0d089fd94136e4a2f90d8508c9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8eadfcc295d9c3f54811e857be3e9921"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="AAsservDriver_8hpp.html#adb3360abeb29758da93865c8afcb80eb">TRAJ_STATE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#a8eadfcc295d9c3f54811e857be3e9921">motion_DoLine</a> (float dist_mm)=0</td></tr>
+<tr class="memdesc:a8eadfcc295d9c3f54811e857be3e9921"><td class="mdescLeft">&#160;</td><td class="mdescRight">Avance ou recule en ligne droite.  <a href="classAAsservDriver.html#a8eadfcc295d9c3f54811e857be3e9921">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a8eadfcc295d9c3f54811e857be3e9921"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2211748fb68a1431096c17ba4f9d7c42"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="AAsservDriver_8hpp.html#adb3360abeb29758da93865c8afcb80eb">TRAJ_STATE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#a2211748fb68a1431096c17ba4f9d7c42">motion_DoRotate</a> (float angle_radians)=0</td></tr>
+<tr class="memdesc:a2211748fb68a1431096c17ba4f9d7c42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Effectue une rotation sur place.  <a href="classAAsservDriver.html#a2211748fb68a1431096c17ba4f9d7c42">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a2211748fb68a1431096c17ba4f9d7c42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca4741e0e7e11947180f53ba8abe0730"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#aca4741e0e7e11947180f53ba8abe0730">motion_FreeMotion</a> (void)=0</td></tr>
+<tr class="memdesc:aca4741e0e7e11947180f53ba8abe0730"><td class="mdescLeft">&#160;</td><td class="mdescRight">Passe en roue libre (aucun asservissement).  <a href="classAAsservDriver.html#aca4741e0e7e11947180f53ba8abe0730">Plus de détails...</a><br /></td></tr>
+<tr class="separator:aca4741e0e7e11947180f53ba8abe0730"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac62c5066c309e395a63a155f78053c9e"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="AAsservDriver_8hpp.html#adb3360abeb29758da93865c8afcb80eb">TRAJ_STATE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#ac62c5066c309e395a63a155f78053c9e">motion_Goto</a> (float x_mm, float y_mm)=0</td></tr>
+<tr class="memdesc:ac62c5066c309e395a63a155f78053c9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deplace le robot vers un point (marche avant).  <a href="classAAsservDriver.html#ac62c5066c309e395a63a155f78053c9e">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ac62c5066c309e395a63a155f78053c9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8a6a390e76b8999c59a28c2e8190106"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="AAsservDriver_8hpp.html#adb3360abeb29758da93865c8afcb80eb">TRAJ_STATE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#ab8a6a390e76b8999c59a28c2e8190106">motion_GotoChain</a> (float x_mm, float y_mm)=0</td></tr>
+<tr class="memdesc:ab8a6a390e76b8999c59a28c2e8190106"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deplace le robot vers un point sans s'arreter (enchainement).  <a href="classAAsservDriver.html#ab8a6a390e76b8999c59a28c2e8190106">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ab8a6a390e76b8999c59a28c2e8190106"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19b77ce59325a7c6c5f65eac3d9c7593"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="AAsservDriver_8hpp.html#adb3360abeb29758da93865c8afcb80eb">TRAJ_STATE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#a19b77ce59325a7c6c5f65eac3d9c7593">motion_GotoReverse</a> (float x_mm, float y_mm)=0</td></tr>
+<tr class="memdesc:a19b77ce59325a7c6c5f65eac3d9c7593"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deplace le robot vers un point (marche arriere).  <a href="classAAsservDriver.html#a19b77ce59325a7c6c5f65eac3d9c7593">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a19b77ce59325a7c6c5f65eac3d9c7593"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa0de8f03c96e899d5339d394295c560"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="AAsservDriver_8hpp.html#adb3360abeb29758da93865c8afcb80eb">TRAJ_STATE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#afa0de8f03c96e899d5339d394295c560">motion_GotoReverseChain</a> (float x_mm, float y_mm)=0</td></tr>
+<tr class="memdesc:afa0de8f03c96e899d5339d394295c560"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deplace le robot vers un point en marche arriere sans s'arreter.  <a href="classAAsservDriver.html#afa0de8f03c96e899d5339d394295c560">Plus de détails...</a><br /></td></tr>
+<tr class="separator:afa0de8f03c96e899d5339d394295c560"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a621a0b60fec76be04f8960f2e56ba5fe"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#a621a0b60fec76be04f8960f2e56ba5fe">motion_setLowSpeedBackward</a> (bool enable, int percent=0)=0</td></tr>
+<tr class="memdesc:a621a0b60fec76be04f8960f2e56ba5fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Active/desactive la vitesse reduite en marche arriere.  <a href="classAAsservDriver.html#a621a0b60fec76be04f8960f2e56ba5fe">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a621a0b60fec76be04f8960f2e56ba5fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6912c759115a6357b3ce8ce55f365663"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#a6912c759115a6357b3ce8ce55f365663">motion_setLowSpeedForward</a> (bool enable, int percent=0)=0</td></tr>
+<tr class="memdesc:a6912c759115a6357b3ce8ce55f365663"><td class="mdescLeft">&#160;</td><td class="mdescRight">Active/desactive la vitesse reduite en marche avant.  <a href="classAAsservDriver.html#a6912c759115a6357b3ce8ce55f365663">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a6912c759115a6357b3ce8ce55f365663"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab66d16795aa077f077b545c9216a1c98"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#ab66d16795aa077f077b545c9216a1c98">motion_setMaxSpeed</a> (bool enable, int speed_dist_m_sec=0, int speed_angle_rad_sec=0)=0</td></tr>
+<tr class="memdesc:ab66d16795aa077f077b545c9216a1c98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definit la vitesse maximale.  <a href="classAAsservDriver.html#ab66d16795aa077f077b545c9216a1c98">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ab66d16795aa077f077b545c9216a1c98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81dea0fa2d154d60d67e9e12b415b265"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="ARobotPositionShared_8hpp.html#ae9c2a6fe427c361b8ee5e4a6529346bb">ROBOTPOSITION</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#a81dea0fa2d154d60d67e9e12b415b265">odo_GetPosition</a> ()=0</td></tr>
+<tr class="memdesc:a81dea0fa2d154d60d67e9e12b415b265"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit la position courante du robot.  <a href="classAAsservDriver.html#a81dea0fa2d154d60d67e9e12b415b265">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a81dea0fa2d154d60d67e9e12b415b265"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1980c0a6071940839bfe9782ab939db0"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#a1980c0a6071940839bfe9782ab939db0">odo_SetPosition</a> (float x_mm, float y_mm, float angle_rad)=0</td></tr>
+<tr class="memdesc:a1980c0a6071940839bfe9782ab939db0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definit la position courante du robot (recalage).  <a href="classAAsservDriver.html#a1980c0a6071940839bfe9782ab939db0">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a1980c0a6071940839bfe9782ab939db0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6cff4776b36ad5f17e3683112eaba86"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#af6cff4776b36ad5f17e3683112eaba86">path_GetLastCommandStatus</a> ()=0</td></tr>
+<tr class="memdesc:af6cff4776b36ad5f17e3683112eaba86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit le statut de la derniere commande.  <a href="classAAsservDriver.html#af6cff4776b36ad5f17e3683112eaba86">Plus de détails...</a><br /></td></tr>
+<tr class="separator:af6cff4776b36ad5f17e3683112eaba86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c40ae9ee4591963723aab90e7b1d7a0"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#a3c40ae9ee4591963723aab90e7b1d7a0">path_InterruptTrajectory</a> ()=0</td></tr>
+<tr class="memdesc:a3c40ae9ee4591963723aab90e7b1d7a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrompt la trajectoire en cours (arret d'urgence logiciel).  <a href="classAAsservDriver.html#a3c40ae9ee4591963723aab90e7b1d7a0">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a3c40ae9ee4591963723aab90e7b1d7a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55e3b442898d83f302b9d9e0898317b6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#a55e3b442898d83f302b9d9e0898317b6">path_ResetEmergencyStop</a> ()=0</td></tr>
+<tr class="memdesc:a55e3b442898d83f302b9d9e0898317b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reinitialise l'arret d'urgence pour permettre un nouveau mouvement.  <a href="classAAsservDriver.html#a55e3b442898d83f302b9d9e0898317b6">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a55e3b442898d83f302b9d9e0898317b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affe6c7f465c2f499a6f1e28ea2e7eb85"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#affe6c7f465c2f499a6f1e28ea2e7eb85">resetEncoders</a> ()=0</td></tr>
+<tr class="memdesc:affe6c7f465c2f499a6f1e28ea2e7eb85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remet a zero tous les encodeurs.  <a href="classAAsservDriver.html#affe6c7f465c2f499a6f1e28ea2e7eb85">Plus de détails...</a><br /></td></tr>
+<tr class="separator:affe6c7f465c2f499a6f1e28ea2e7eb85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1124f108bbdb293cf71ae1ce3d0222c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#ac1124f108bbdb293cf71ae1ce3d0222c">resetExternalEncoders</a> ()=0</td></tr>
+<tr class="memdesc:ac1124f108bbdb293cf71ae1ce3d0222c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remet a zero les encodeurs externes.  <a href="classAAsservDriver.html#ac1124f108bbdb293cf71ae1ce3d0222c">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ac1124f108bbdb293cf71ae1ce3d0222c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40cc13dd2668e52283fa8fdc22ba7805"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#a40cc13dd2668e52283fa8fdc22ba7805">resetInternalEncoders</a> ()=0</td></tr>
+<tr class="memdesc:a40cc13dd2668e52283fa8fdc22ba7805"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remet a zero les encodeurs internes.  <a href="classAAsservDriver.html#a40cc13dd2668e52283fa8fdc22ba7805">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a40cc13dd2668e52283fa8fdc22ba7805"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77a5c938390e25a3231fe8b735ff3237"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#a77a5c938390e25a3231fe8b735ff3237">setMotorLeftPosition</a> (int power, long ticks)=0</td></tr>
+<tr class="memdesc:a77a5c938390e25a3231fe8b735ff3237"><td class="mdescLeft">&#160;</td><td class="mdescRight">Commande le moteur gauche en position.  <a href="classAAsservDriver.html#a77a5c938390e25a3231fe8b735ff3237">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a77a5c938390e25a3231fe8b735ff3237"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67ed5e8b3460f9496f36662beab44a46"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#a67ed5e8b3460f9496f36662beab44a46">setMotorLeftPower</a> (int power, int time_ms)=0</td></tr>
+<tr class="memdesc:a67ed5e8b3460f9496f36662beab44a46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Commande le moteur gauche en puissance pendant un temps donne.  <a href="classAAsservDriver.html#a67ed5e8b3460f9496f36662beab44a46">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a67ed5e8b3460f9496f36662beab44a46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68eacbe79f71032a0dab1109948ea5f8"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#a68eacbe79f71032a0dab1109948ea5f8">setMotorRightPosition</a> (int power, long ticks)=0</td></tr>
+<tr class="memdesc:a68eacbe79f71032a0dab1109948ea5f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Commande le moteur droit en position.  <a href="classAAsservDriver.html#a68eacbe79f71032a0dab1109948ea5f8">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a68eacbe79f71032a0dab1109948ea5f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cd9bf62cb78150f94d38fa978c0a83a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#a6cd9bf62cb78150f94d38fa978c0a83a">setMotorRightPower</a> (int power, int time_ms)=0</td></tr>
+<tr class="memdesc:a6cd9bf62cb78150f94d38fa978c0a83a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Commande le moteur droit en puissance pendant un temps donne.  <a href="classAAsservDriver.html#a6cd9bf62cb78150f94d38fa978c0a83a">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a6cd9bf62cb78150f94d38fa978c0a83a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e3415d0b04fb227e468f23f7b7a0ad0"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#a7e3415d0b04fb227e468f23f7b7a0ad0">stopMotorLeft</a> ()=0</td></tr>
+<tr class="memdesc:a7e3415d0b04fb227e468f23f7b7a0ad0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arrete le moteur gauche.  <a href="classAAsservDriver.html#a7e3415d0b04fb227e468f23f7b7a0ad0">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a7e3415d0b04fb227e468f23f7b7a0ad0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa92c72fe63cf97fb219566f912bdbbc"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#aaa92c72fe63cf97fb219566f912bdbbc">stopMotorRight</a> ()=0</td></tr>
+<tr class="memdesc:aaa92c72fe63cf97fb219566f912bdbbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arrete le moteur droit.  <a href="classAAsservDriver.html#aaa92c72fe63cf97fb219566f912bdbbc">Plus de détails...</a><br /></td></tr>
+<tr class="separator:aaa92c72fe63cf97fb219566f912bdbbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89f9e1895450dea80736f0fe561e4357"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#a89f9e1895450dea80736f0fe561e4357">stopMotors</a> ()=0</td></tr>
+<tr class="memdesc:a89f9e1895450dea80736f0fe561e4357"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arrete les deux moteurs.  <a href="classAAsservDriver.html#a89f9e1895450dea80736f0fe561e4357">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a89f9e1895450dea80736f0fe561e4357"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Fonctions membres publiques statiques</h2></td></tr>
+<tr class="memitem:a606aca3d54ad7b32a8248ceab22a8e6d"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classAAsservDriver.html">AAsservDriver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAAsservDriver.html#a606aca3d54ad7b32a8248ceab22a8e6d">create</a> (std::string botid, <a class="el" href="classARobotPositionShared.html">ARobotPositionShared</a> *aRobotPositionShared)</td></tr>
+<tr class="memdesc:a606aca3d54ad7b32a8248ceab22a8e6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cree l'instance concrete selon la plateforme.  <a href="classAAsservDriver.html#a606aca3d54ad7b32a8248ceab22a8e6d">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a606aca3d54ad7b32a8248ceab22a8e6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Interface abstraite du driver d'asservissement. </p>
+<p>Regroupe les commandes de mouvement (goto, rotation, ligne), le controle direct des moteurs/encodeurs, et la gestion de l'odometrie. Chaque plateforme (ARM, SIMU, EsialR) fournit sa propre implementation.</p>
+<dl class="section note"><dt>Note</dt><dd>Cette interface contient 47 methodes et sera a terme decoupee en AAsserv (haut niveau) + AMotorDriver (bas niveau). Voir ARCHITECTURE.md pour le plan de refactoring. </dd></dl>
+</div><h2 class="groupheader">Documentation des constructeurs et destructeur</h2>
+<a id="a624c97511d788f1df927625a1d0eb54c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a624c97511d788f1df927625a1d0eb54c">&#9670;&nbsp;</a></span>~AAsservDriver()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual AAsservDriver::~AAsservDriver </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af6a0b1c219c8a25d589667f05da7f64d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6a0b1c219c8a25d589667f05da7f64d">&#9670;&nbsp;</a></span>AAsservDriver()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AAsservDriver::AAsservDriver </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des fonctions membres</h2>
+<a id="a606aca3d54ad7b32a8248ceab22a8e6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a606aca3d54ad7b32a8248ceab22a8e6d">&#9670;&nbsp;</a></span>create()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="classAAsservDriver.html">AAsservDriver</a>* AAsservDriver::create </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>botid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classARobotPositionShared.html">ARobotPositionShared</a> *&#160;</td>
+          <td class="paramname"><em>aRobotPositionShared</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Cree l'instance concrete selon la plateforme. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">botid</td><td>Identifiant du robot (pour le fichier de config). </td></tr>
+    <tr><td class="paramname">aRobotPositionShared</td><td>Pointeur vers la position partagee du robot. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Pointeur vers l'instance creee (ARM, SIMU ou EsialR). </dd></dl>
+
+</div>
+</div>
+<a id="a54ee068cec3c9f9f98b9e6b3d8c10f6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54ee068cec3c9f9f98b9e6b3d8c10f6e">&#9670;&nbsp;</a></span>endWhatTodo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AAsservDriver::endWhatTodo </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Actions de nettoyage avant l'arret du programme. </p>
+
+</div>
+</div>
+<a id="a733770d9a0eb73caa897baadd3e36f9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a733770d9a0eb73caa897baadd3e36f9d">&#9670;&nbsp;</a></span>getCountsExternal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AAsservDriver::getCountsExternal </td>
+          <td>(</td>
+          <td class="paramtype">int32_t *&#160;</td>
+          <td class="paramname"><em>countR</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t *&#160;</td>
+          <td class="paramname"><em>countL</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lit les compteurs externes cumules (ticks). </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">countR</td><td>Compteur droit. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">countL</td><td>Compteur gauche. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aaa5418d791cab277447abf18afe31c4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa5418d791cab277447abf18afe31c4e">&#9670;&nbsp;</a></span>getCountsInternal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AAsservDriver::getCountsInternal </td>
+          <td>(</td>
+          <td class="paramtype">int32_t *&#160;</td>
+          <td class="paramname"><em>countR</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t *&#160;</td>
+          <td class="paramname"><em>countL</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lit les compteurs internes cumules. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">countR</td><td>Compteur droit. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">countL</td><td>Compteur gauche. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac303905f9004ca89964b7fd6c3b5df81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac303905f9004ca89964b7fd6c3b5df81">&#9670;&nbsp;</a></span>getDeltaCountsExternal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AAsservDriver::getDeltaCountsExternal </td>
+          <td>(</td>
+          <td class="paramtype">int32_t *&#160;</td>
+          <td class="paramname"><em>deltaR</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t *&#160;</td>
+          <td class="paramname"><em>deltaL</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lit le delta des compteurs externes depuis le dernier appel. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">deltaR</td><td>Delta droit en ticks. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">deltaL</td><td>Delta gauche en ticks. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac30b15c18f0bf293cb322ae90a5bf7cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac30b15c18f0bf293cb322ae90a5bf7cc">&#9670;&nbsp;</a></span>getLeftExternalEncoder()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual long AAsservDriver::getLeftExternalEncoder </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lit la valeur de l'encodeur externe gauche. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Valeur cumulee en ticks. </dd></dl>
+
+</div>
+</div>
+<a id="a99137b00bcf944c7fe8280d4e6adf194"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99137b00bcf944c7fe8280d4e6adf194">&#9670;&nbsp;</a></span>getLeftInternalEncoder()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual long AAsservDriver::getLeftInternalEncoder </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lit la valeur de l'encodeur interne gauche. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Valeur cumulee en ticks. </dd></dl>
+
+</div>
+</div>
+<a id="a8b6c4cafec7a55188604ec8af44b11bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b6c4cafec7a55188604ec8af44b11bb">&#9670;&nbsp;</a></span>getMotorLeftCurrent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int AAsservDriver::getMotorLeftCurrent </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lit le courant du moteur gauche. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Courant en mA. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000003">Obsolète:</a></b></dt><dd>Stub dans toutes les implementations. </dd></dl>
+
+</div>
+</div>
+<a id="a29ab60a2685bdec463339cca10e6efaf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29ab60a2685bdec463339cca10e6efaf">&#9670;&nbsp;</a></span>getMotorRightCurrent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int AAsservDriver::getMotorRightCurrent </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lit le courant du moteur droit. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Courant en mA. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000004">Obsolète:</a></b></dt><dd>Stub dans toutes les implementations. </dd></dl>
+
+</div>
+</div>
+<a id="a2799a875b5fc7975d6eeb0a3f98bc108"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2799a875b5fc7975d6eeb0a3f98bc108">&#9670;&nbsp;</a></span>getRightExternalEncoder()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual long AAsservDriver::getRightExternalEncoder </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lit la valeur de l'encodeur externe droit. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Valeur cumulee en ticks. </dd></dl>
+
+</div>
+</div>
+<a id="a474f74d48b64f813c6c7a3aa67bb5c07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a474f74d48b64f813c6c7a3aa67bb5c07">&#9670;&nbsp;</a></span>getRightInternalEncoder()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual long AAsservDriver::getRightInternalEncoder </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lit la valeur de l'encodeur interne droit. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Valeur cumulee en ticks. </dd></dl>
+
+</div>
+</div>
+<a id="a046eb790d147ad8ec34bcd9565ad675b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a046eb790d147ad8ec34bcd9565ad675b">&#9670;&nbsp;</a></span>motion_ActivateManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AAsservDriver::motion_ActivateManager </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enablethread</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Active ou desactive le thread d'asservissement. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">enablethread</td><td>true pour demarrer, false pour arreter. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae5b16fb3a46e690deb213b556749e33f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5b16fb3a46e690deb213b556749e33f">&#9670;&nbsp;</a></span>motion_ActivateReguAngle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AAsservDriver::motion_ActivateReguAngle </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enable</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Active/desactive la regulation en angle. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">enable</td><td>true pour activer. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000007">Obsolète:</a></b></dt><dd>Utilise uniquement par ARM et EsialR. </dd></dl>
+
+</div>
+</div>
+<a id="a7a41963b5f908604a55f109e7ea3214e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a41963b5f908604a55f109e7ea3214e">&#9670;&nbsp;</a></span>motion_ActivateReguDist()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AAsservDriver::motion_ActivateReguDist </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enable</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Active/desactive la regulation en distance. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">enable</td><td>true pour activer. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000006">Obsolète:</a></b></dt><dd>Utilise uniquement par ARM et EsialR. </dd></dl>
+
+</div>
+</div>
+<a id="a83153736da05eba6451f02b399eb4438"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83153736da05eba6451f02b399eb4438">&#9670;&nbsp;</a></span>motion_AssistedHandling()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AAsservDriver::motion_AssistedHandling </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Active le mode deplacement assiste (PID actif). </p>
+
+</div>
+</div>
+<a id="a3d4f4d2a80ee1887212f38fda3094c26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d4f4d2a80ee1887212f38fda3094c26">&#9670;&nbsp;</a></span>motion_DisablePID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AAsservDriver::motion_DisablePID </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Desactive le PID et stoppe les moteurs. </p>
+
+</div>
+</div>
+<a id="a3c41681cce40f67e84af3ad973281913"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c41681cce40f67e84af3ad973281913">&#9670;&nbsp;</a></span>motion_DoArcRotate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="AAsservDriver_8hpp.html#adb3360abeb29758da93865c8afcb80eb">TRAJ_STATE</a> AAsservDriver::motion_DoArcRotate </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>angle_radians</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>radius</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Effectue une rotation en arc de cercle. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">angle_radians</td><td>Angle de l'arc en radians. </td></tr>
+    <tr><td class="paramname">radius</td><td>Rayon de courbure en mm. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Etat de la trajectoire a la fin du mouvement. </dd></dl>
+
+</div>
+</div>
+<a id="abe49d0d089fd94136e4a2f90d8508c9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe49d0d089fd94136e4a2f90d8508c9e">&#9670;&nbsp;</a></span>motion_DoFace()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="AAsservDriver_8hpp.html#adb3360abeb29758da93865c8afcb80eb">TRAJ_STATE</a> AAsservDriver::motion_DoFace </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x_mm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>y_mm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>back_face</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Oriente le robot face a un point. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x_mm</td><td>Coordonnee X cible en mm. </td></tr>
+    <tr><td class="paramname">y_mm</td><td>Coordonnee Y cible en mm. </td></tr>
+    <tr><td class="paramname">back_face</td><td>true pour faire face avec l'arriere du robot. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Etat de la trajectoire a la fin du mouvement. </dd></dl>
+
+</div>
+</div>
+<a id="a8eadfcc295d9c3f54811e857be3e9921"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8eadfcc295d9c3f54811e857be3e9921">&#9670;&nbsp;</a></span>motion_DoLine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="AAsservDriver_8hpp.html#adb3360abeb29758da93865c8afcb80eb">TRAJ_STATE</a> AAsservDriver::motion_DoLine </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>dist_mm</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Avance ou recule en ligne droite. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dist_mm</td><td>Distance en mm (positif = avant, negatif = arriere). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Etat de la trajectoire a la fin du mouvement. </dd></dl>
+
+</div>
+</div>
+<a id="a2211748fb68a1431096c17ba4f9d7c42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2211748fb68a1431096c17ba4f9d7c42">&#9670;&nbsp;</a></span>motion_DoRotate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="AAsservDriver_8hpp.html#adb3360abeb29758da93865c8afcb80eb">TRAJ_STATE</a> AAsservDriver::motion_DoRotate </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>angle_radians</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Effectue une rotation sur place. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">angle_radians</td><td>Angle de rotation en radians. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Etat de la trajectoire a la fin du mouvement. </dd></dl>
+
+</div>
+</div>
+<a id="aca4741e0e7e11947180f53ba8abe0730"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca4741e0e7e11947180f53ba8abe0730">&#9670;&nbsp;</a></span>motion_FreeMotion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AAsservDriver::motion_FreeMotion </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Passe en roue libre (aucun asservissement). </p>
+
+</div>
+</div>
+<a id="ac62c5066c309e395a63a155f78053c9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac62c5066c309e395a63a155f78053c9e">&#9670;&nbsp;</a></span>motion_Goto()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="AAsservDriver_8hpp.html#adb3360abeb29758da93865c8afcb80eb">TRAJ_STATE</a> AAsservDriver::motion_Goto </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x_mm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>y_mm</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Deplace le robot vers un point (marche avant). </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x_mm</td><td>Coordonnee X cible en mm. </td></tr>
+    <tr><td class="paramname">y_mm</td><td>Coordonnee Y cible en mm. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Etat de la trajectoire a la fin du mouvement. </dd></dl>
+
+</div>
+</div>
+<a id="ab8a6a390e76b8999c59a28c2e8190106"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8a6a390e76b8999c59a28c2e8190106">&#9670;&nbsp;</a></span>motion_GotoChain()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="AAsservDriver_8hpp.html#adb3360abeb29758da93865c8afcb80eb">TRAJ_STATE</a> AAsservDriver::motion_GotoChain </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x_mm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>y_mm</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Deplace le robot vers un point sans s'arreter (enchainement). </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x_mm</td><td>Coordonnee X cible en mm. </td></tr>
+    <tr><td class="paramname">y_mm</td><td>Coordonnee Y cible en mm. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Etat de la trajectoire a la fin du mouvement. </dd></dl>
+
+</div>
+</div>
+<a id="a19b77ce59325a7c6c5f65eac3d9c7593"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19b77ce59325a7c6c5f65eac3d9c7593">&#9670;&nbsp;</a></span>motion_GotoReverse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="AAsservDriver_8hpp.html#adb3360abeb29758da93865c8afcb80eb">TRAJ_STATE</a> AAsservDriver::motion_GotoReverse </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x_mm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>y_mm</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Deplace le robot vers un point (marche arriere). </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x_mm</td><td>Coordonnee X cible en mm. </td></tr>
+    <tr><td class="paramname">y_mm</td><td>Coordonnee Y cible en mm. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Etat de la trajectoire a la fin du mouvement. </dd></dl>
+
+</div>
+</div>
+<a id="afa0de8f03c96e899d5339d394295c560"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa0de8f03c96e899d5339d394295c560">&#9670;&nbsp;</a></span>motion_GotoReverseChain()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="AAsservDriver_8hpp.html#adb3360abeb29758da93865c8afcb80eb">TRAJ_STATE</a> AAsservDriver::motion_GotoReverseChain </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x_mm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>y_mm</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Deplace le robot vers un point en marche arriere sans s'arreter. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x_mm</td><td>Coordonnee X cible en mm. </td></tr>
+    <tr><td class="paramname">y_mm</td><td>Coordonnee Y cible en mm. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Etat de la trajectoire a la fin du mouvement. </dd></dl>
+
+</div>
+</div>
+<a id="a621a0b60fec76be04f8960f2e56ba5fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a621a0b60fec76be04f8960f2e56ba5fe">&#9670;&nbsp;</a></span>motion_setLowSpeedBackward()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AAsservDriver::motion_setLowSpeedBackward </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enable</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>percent</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Active/desactive la vitesse reduite en marche arriere. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">enable</td><td>true pour activer. </td></tr>
+    <tr><td class="paramname">percent</td><td>Pourcentage de la vitesse max (0-100). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6912c759115a6357b3ce8ce55f365663"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6912c759115a6357b3ce8ce55f365663">&#9670;&nbsp;</a></span>motion_setLowSpeedForward()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AAsservDriver::motion_setLowSpeedForward </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enable</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>percent</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Active/desactive la vitesse reduite en marche avant. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">enable</td><td>true pour activer. </td></tr>
+    <tr><td class="paramname">percent</td><td>Pourcentage de la vitesse max (0-100). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab66d16795aa077f077b545c9216a1c98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab66d16795aa077f077b545c9216a1c98">&#9670;&nbsp;</a></span>motion_setMaxSpeed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AAsservDriver::motion_setMaxSpeed </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enable</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>speed_dist_m_sec</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>speed_angle_rad_sec</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definit la vitesse maximale. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">enable</td><td>true pour activer la limitation. </td></tr>
+    <tr><td class="paramname">speed_dist_m_sec</td><td>Vitesse lineaire max en mm/s. </td></tr>
+    <tr><td class="paramname">speed_angle_rad_sec</td><td>Vitesse angulaire max en rad/s. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a81dea0fa2d154d60d67e9e12b415b265"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81dea0fa2d154d60d67e9e12b415b265">&#9670;&nbsp;</a></span>odo_GetPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="ARobotPositionShared_8hpp.html#ae9c2a6fe427c361b8ee5e4a6529346bb">ROBOTPOSITION</a> AAsservDriver::odo_GetPosition </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lit la position courante du robot. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Structure ROBOTPOSITION (x en mm, y en mm, theta en radians). </dd></dl>
+
+</div>
+</div>
+<a id="a1980c0a6071940839bfe9782ab939db0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1980c0a6071940839bfe9782ab939db0">&#9670;&nbsp;</a></span>odo_SetPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AAsservDriver::odo_SetPosition </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x_mm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>y_mm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>angle_rad</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definit la position courante du robot (recalage). </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x_mm</td><td>Position X en millimetres. </td></tr>
+    <tr><td class="paramname">y_mm</td><td>Position Y en millimetres. </td></tr>
+    <tr><td class="paramname">angle_rad</td><td>Angle en radians. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af6cff4776b36ad5f17e3683112eaba86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6cff4776b36ad5f17e3683112eaba86">&#9670;&nbsp;</a></span>path_GetLastCommandStatus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int AAsservDriver::path_GetLastCommandStatus </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lit le statut de la derniere commande. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Code de statut. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000005">Obsolète:</a></b></dt><dd>Retourne -1 dans toutes les implementations. </dd></dl>
+
+</div>
+</div>
+<a id="a3c40ae9ee4591963723aab90e7b1d7a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c40ae9ee4591963723aab90e7b1d7a0">&#9670;&nbsp;</a></span>path_InterruptTrajectory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AAsservDriver::path_InterruptTrajectory </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Interrompt la trajectoire en cours (arret d'urgence logiciel). </p>
+
+</div>
+</div>
+<a id="a55e3b442898d83f302b9d9e0898317b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55e3b442898d83f302b9d9e0898317b6">&#9670;&nbsp;</a></span>path_ResetEmergencyStop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AAsservDriver::path_ResetEmergencyStop </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reinitialise l'arret d'urgence pour permettre un nouveau mouvement. </p>
+
+</div>
+</div>
+<a id="affe6c7f465c2f499a6f1e28ea2e7eb85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affe6c7f465c2f499a6f1e28ea2e7eb85">&#9670;&nbsp;</a></span>resetEncoders()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AAsservDriver::resetEncoders </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Remet a zero tous les encodeurs. </p>
+
+</div>
+</div>
+<a id="ac1124f108bbdb293cf71ae1ce3d0222c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1124f108bbdb293cf71ae1ce3d0222c">&#9670;&nbsp;</a></span>resetExternalEncoders()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AAsservDriver::resetExternalEncoders </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Remet a zero les encodeurs externes. </p>
+
+</div>
+</div>
+<a id="a40cc13dd2668e52283fa8fdc22ba7805"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40cc13dd2668e52283fa8fdc22ba7805">&#9670;&nbsp;</a></span>resetInternalEncoders()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AAsservDriver::resetInternalEncoders </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Remet a zero les encodeurs internes. </p>
+
+</div>
+</div>
+<a id="a77a5c938390e25a3231fe8b735ff3237"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77a5c938390e25a3231fe8b735ff3237">&#9670;&nbsp;</a></span>setMotorLeftPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AAsservDriver::setMotorLeftPosition </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>power</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>ticks</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Commande le moteur gauche en position. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">power</td><td>Puissance appliquee (0-100). </td></tr>
+    <tr><td class="paramname">ticks</td><td>Position cible en ticks encodeur. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a67ed5e8b3460f9496f36662beab44a46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67ed5e8b3460f9496f36662beab44a46">&#9670;&nbsp;</a></span>setMotorLeftPower()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AAsservDriver::setMotorLeftPower </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>power</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>time_ms</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Commande le moteur gauche en puissance pendant un temps donne. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">power</td><td>Puissance appliquee (0-100). </td></tr>
+    <tr><td class="paramname">time_ms</td><td>Duree en millisecondes. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a68eacbe79f71032a0dab1109948ea5f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68eacbe79f71032a0dab1109948ea5f8">&#9670;&nbsp;</a></span>setMotorRightPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AAsservDriver::setMotorRightPosition </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>power</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>ticks</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Commande le moteur droit en position. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">power</td><td>Puissance appliquee (0-100). </td></tr>
+    <tr><td class="paramname">ticks</td><td>Position cible en ticks encodeur. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6cd9bf62cb78150f94d38fa978c0a83a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cd9bf62cb78150f94d38fa978c0a83a">&#9670;&nbsp;</a></span>setMotorRightPower()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AAsservDriver::setMotorRightPower </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>power</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>time_ms</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Commande le moteur droit en puissance pendant un temps donne. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">power</td><td>Puissance appliquee (0-100). </td></tr>
+    <tr><td class="paramname">time_ms</td><td>Duree en millisecondes. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7e3415d0b04fb227e468f23f7b7a0ad0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e3415d0b04fb227e468f23f7b7a0ad0">&#9670;&nbsp;</a></span>stopMotorLeft()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AAsservDriver::stopMotorLeft </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Arrete le moteur gauche. </p>
+
+</div>
+</div>
+<a id="aaa92c72fe63cf97fb219566f912bdbbc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa92c72fe63cf97fb219566f912bdbbc">&#9670;&nbsp;</a></span>stopMotorRight()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AAsservDriver::stopMotorRight </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Arrete le moteur droit. </p>
+
+</div>
+</div>
+<a id="a89f9e1895450dea80736f0fe561e4357"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89f9e1895450dea80736f0fe561e4357">&#9670;&nbsp;</a></span>stopMotors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AAsservDriver::stopMotors </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Arrete les deux moteurs. </p>
+
+</div>
+</div>
+<hr/>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>src/common/interface/<a class="el" href="AAsservDriver_8hpp_source.html">AAsservDriver.hpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Mardi 24 Mars 2026 23:42:30 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

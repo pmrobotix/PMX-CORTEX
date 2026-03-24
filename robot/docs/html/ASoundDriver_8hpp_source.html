@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot:  Fichier source de src/common/interface/ASoundDriver.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_fdedb0aba14d44ce9d99bc100e026e6a.html">common</a></li><li class="navelem"><a class="el" href="dir_c403bcb0997343f24f003e4263caa61d.html">interface</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">ASoundDriver.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="ASoundDriver_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#ifndef ASOUNDDRIVER_HPP_</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define ASOUNDDRIVER_HPP_</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="classASoundDriver.html">   21</a></span>&#160;<span class="keyword">class </span><a class="code" href="classASoundDriver.html">ASoundDriver</a></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;{</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">static</span> <a class="code" href="classASoundDriver.html">ASoundDriver</a> * <a class="code" href="classASoundDriver.html#ac943c874b6d8dab9ec75b3178547560a">create</a>();</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classASoundDriver.html#a65461d3d3b39c52dd038bfd5f696c25f">   37</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classASoundDriver.html#a65461d3d3b39c52dd038bfd5f696c25f">beep</a>(<span class="keyword">const</span> std::string &amp;args, <span class="keywordtype">bool</span> bSynchronous = <span class="keyword">true</span>) = 0;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classASoundDriver.html#ad0c7a1f3ccf20e9a92e981d03ae84b80">   45</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classASoundDriver.html#ad0c7a1f3ccf20e9a92e981d03ae84b80">tone</a>(<span class="keywordtype">unsigned</span> frequency, <span class="keywordtype">unsigned</span> ms, <span class="keywordtype">bool</span> bSynchronous = <span class="keyword">true</span>) = 0;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classASoundDriver.html#a3e12c9b0ac4ea72b90b0b4ef500b2802">   52</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classASoundDriver.html#a3e12c9b0ac4ea72b90b0b4ef500b2802">tone</a>(<span class="keyword">const</span> std::vector&lt;std::vector&lt;float&gt; &gt; &amp;sequence, <span class="keywordtype">bool</span> bSynchronous = <span class="keyword">true</span>) = 0;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classASoundDriver.html#a3e8ac55c3df292bd278001c1b628d1d7">   59</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classASoundDriver.html#a3e8ac55c3df292bd278001c1b628d1d7">play</a>(<span class="keyword">const</span> std::string &amp;soundfile, <span class="keywordtype">bool</span> bSynchronous = <span class="keyword">true</span>) = 0;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="classASoundDriver.html#af6b99213f89da6e6c4cbffa09f2d29a8">   66</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classASoundDriver.html#af6b99213f89da6e6c4cbffa09f2d29a8">speak</a>(<span class="keyword">const</span> std::string &amp;text, <span class="keywordtype">bool</span> bSynchronous = <span class="keyword">true</span>) = 0;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="classASoundDriver.html#abdb81b386c26ffe1f4443f8fd6c1a435">   68</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classASoundDriver.html#abdb81b386c26ffe1f4443f8fd6c1a435">~ASoundDriver</a>()</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    {</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    }</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="classASoundDriver.html#a8feb8c4ad2739e174b239225eb625d53">   74</a></span>&#160;    <a class="code" href="classASoundDriver.html#a8feb8c4ad2739e174b239225eb625d53">ASoundDriver</a>()</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    }</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;};</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassASoundDriver_html"><div class="ttname"><a href="classASoundDriver.html">ASoundDriver</a></div><div class="ttdoc">Interface abstraite du driver de son.</div><div class="ttdef"><b>Definition:</b> ASoundDriver.hpp:22</div></div>
+<div class="ttc" id="aclassASoundDriver_html_a3e12c9b0ac4ea72b90b0b4ef500b2802"><div class="ttname"><a href="classASoundDriver.html#a3e12c9b0ac4ea72b90b0b4ef500b2802">ASoundDriver::tone</a></div><div class="ttdeci">virtual void tone(const std::vector&lt; std::vector&lt; float &gt; &gt; &amp;sequence, bool bSynchronous=true)=0</div><div class="ttdoc">Joue une sequence de tonalites.</div></div>
+<div class="ttc" id="aclassASoundDriver_html_a3e8ac55c3df292bd278001c1b628d1d7"><div class="ttname"><a href="classASoundDriver.html#a3e8ac55c3df292bd278001c1b628d1d7">ASoundDriver::play</a></div><div class="ttdeci">virtual void play(const std::string &amp;soundfile, bool bSynchronous=true)=0</div><div class="ttdoc">Joue un fichier audio.</div></div>
+<div class="ttc" id="aclassASoundDriver_html_a65461d3d3b39c52dd038bfd5f696c25f"><div class="ttname"><a href="classASoundDriver.html#a65461d3d3b39c52dd038bfd5f696c25f">ASoundDriver::beep</a></div><div class="ttdeci">virtual void beep(const std::string &amp;args, bool bSynchronous=true)=0</div><div class="ttdoc">Emet un beep avec les arguments donnes.</div></div>
+<div class="ttc" id="aclassASoundDriver_html_a8feb8c4ad2739e174b239225eb625d53"><div class="ttname"><a href="classASoundDriver.html#a8feb8c4ad2739e174b239225eb625d53">ASoundDriver::ASoundDriver</a></div><div class="ttdeci">ASoundDriver()</div><div class="ttdef"><b>Definition:</b> ASoundDriver.hpp:74</div></div>
+<div class="ttc" id="aclassASoundDriver_html_abdb81b386c26ffe1f4443f8fd6c1a435"><div class="ttname"><a href="classASoundDriver.html#abdb81b386c26ffe1f4443f8fd6c1a435">ASoundDriver::~ASoundDriver</a></div><div class="ttdeci">virtual ~ASoundDriver()</div><div class="ttdef"><b>Definition:</b> ASoundDriver.hpp:68</div></div>
+<div class="ttc" id="aclassASoundDriver_html_ac943c874b6d8dab9ec75b3178547560a"><div class="ttname"><a href="classASoundDriver.html#ac943c874b6d8dab9ec75b3178547560a">ASoundDriver::create</a></div><div class="ttdeci">static ASoundDriver * create()</div><div class="ttdoc">Cree l'instance concrete selon la plateforme.</div><div class="ttdef"><b>Definition:</b> SoundDriver.cpp:10</div></div>
+<div class="ttc" id="aclassASoundDriver_html_ad0c7a1f3ccf20e9a92e981d03ae84b80"><div class="ttname"><a href="classASoundDriver.html#ad0c7a1f3ccf20e9a92e981d03ae84b80">ASoundDriver::tone</a></div><div class="ttdeci">virtual void tone(unsigned frequency, unsigned ms, bool bSynchronous=true)=0</div><div class="ttdoc">Joue une tonalite a une frequence donnee.</div></div>
+<div class="ttc" id="aclassASoundDriver_html_af6b99213f89da6e6c4cbffa09f2d29a8"><div class="ttname"><a href="classASoundDriver.html#af6b99213f89da6e6c4cbffa09f2d29a8">ASoundDriver::speak</a></div><div class="ttdeci">virtual void speak(const std::string &amp;text, bool bSynchronous=true)=0</div><div class="ttdoc">Synthese vocale (text-to-speech).</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Mardi 24 Mars 2026 23:42:29 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

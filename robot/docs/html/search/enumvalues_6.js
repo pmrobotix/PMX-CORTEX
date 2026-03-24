@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['yellow_1121',['yellow',['../namespacebackward_1_1Color.html#a6292269f4da43517b3fe825563efee5ca8f7946cb6e3cd72b9624130f4d6b3053',1,'backward::Color']]]
+  ['ignore_3369',['ignore',['../namespacedetail.html#a7c070b2bf3d61e3d8b8013f6fb18d592a567bc1d268f135496de3d5b946b691f3',1,'detail::ignore()'],['../namespacedetail.html#abe7cfa1fd8fa706ff4392bff9d1a8298a567bc1d268f135496de3d5b946b691f3',1,'detail::ignore()']]]
 ];

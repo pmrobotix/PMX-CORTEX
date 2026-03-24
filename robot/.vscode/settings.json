@@ -1,5 +1,8 @@
 {
     "cmake.sourceDirectory": "${workspaceFolder}",
     "cmake.buildDirectory": "${workspaceFolder}/build-${buildKitVendor}-${buildType}",
-    "cmake.parallelJobs": 12
+    "cmake.parallelJobs": 12,
+    "cmake.buildBeforeRun": true,
+    "cmake.provideTasks": false,
+    "tasks.statusbar.default.hide": true
 }

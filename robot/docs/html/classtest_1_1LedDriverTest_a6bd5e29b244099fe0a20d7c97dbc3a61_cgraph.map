@@ -1,0 +1,7 @@
+<map id="test::LedDriverTest::suite" name="test::LedDriverTest::suite">
+<area shape="rect" id="node1" title="Execute les tests associés à la classe." alt="" coords="5,104,149,145"/>
+<area shape="rect" id="node2" href="$classtest_1_1LedDriverTest.html#aef1281754961d19ff34039b4d4348a4d" title="Verifie que create() retourne une instance valide." alt="" coords="197,5,341,47"/>
+<area shape="rect" id="node3" href="$classtest_1_1LedDriverTest.html#a92d74bd216b3ea483e7332acf9476167" title="Verifie que setBytes(0x00, OFF) remet tout a zero." alt="" coords="197,71,341,112"/>
+<area shape="rect" id="node4" href="$classtest_1_1LedDriverTest.html#a0dc4c06a6701957a1d0a6cbac02f2512" title="Verifie que setBit met la bonne couleur au bon index." alt="" coords="197,136,341,177"/>
+<area shape="rect" id="node5" href="$classtest_1_1LedDriverTest.html#a6d032b77123c65a0b354a29a00fe96a5" title="Verifie que setBytes applique le masque correctement." alt="" coords="197,201,341,243"/>
+</map>

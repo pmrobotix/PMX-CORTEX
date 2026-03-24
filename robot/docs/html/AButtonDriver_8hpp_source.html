@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot:  Fichier source de src/common/interface/AButtonDriver.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_fdedb0aba14d44ce9d99bc100e026e6a.html">common</a></li><li class="navelem"><a class="el" href="dir_c403bcb0997343f24f003e4263caa61d.html">interface</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">AButtonDriver.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="AButtonDriver_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#ifndef ABUTTONDRIVER_HPP_</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define ABUTTONDRIVER_HPP_</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="AButtonDriver_8hpp.html#afe40759ef2412718de5759731626fab4">   15</a></span>&#160;<span class="keyword">enum</span> <a class="code" href="AButtonDriver_8hpp.html#afe40759ef2412718de5759731626fab4">ButtonTouch</a></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="AButtonDriver_8hpp.html#afe40759ef2412718de5759731626fab4a0cd1892024d07425ce2cdd2d8b620395">   17</a></span>&#160;    <a class="code" href="AButtonDriver_8hpp.html#afe40759ef2412718de5759731626fab4a0cd1892024d07425ce2cdd2d8b620395">BUTTON_ENTER_KEY</a>,  </div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="AButtonDriver_8hpp.html#afe40759ef2412718de5759731626fab4a6a2bc049ee33a1fc741dbba121f09d34">   18</a></span>&#160;    <a class="code" href="AButtonDriver_8hpp.html#afe40759ef2412718de5759731626fab4a6a2bc049ee33a1fc741dbba121f09d34">BUTTON_BACK_KEY</a>,   </div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="AButtonDriver_8hpp.html#afe40759ef2412718de5759731626fab4a1099d008413bad41dc39340ccc316881">   19</a></span>&#160;    <a class="code" href="AButtonDriver_8hpp.html#afe40759ef2412718de5759731626fab4a1099d008413bad41dc39340ccc316881">BUTTON_UP_KEY</a>,     </div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="AButtonDriver_8hpp.html#afe40759ef2412718de5759731626fab4a3e93927b585476d1212dbada0d99f1fe">   20</a></span>&#160;    <a class="code" href="AButtonDriver_8hpp.html#afe40759ef2412718de5759731626fab4a3e93927b585476d1212dbada0d99f1fe">BUTTON_DOWN_KEY</a>,   </div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="AButtonDriver_8hpp.html#afe40759ef2412718de5759731626fab4a6e3c7a1633a6486105304681d331584b">   21</a></span>&#160;    <a class="code" href="AButtonDriver_8hpp.html#afe40759ef2412718de5759731626fab4a6e3c7a1633a6486105304681d331584b">BUTTON_LEFT_KEY</a>,   </div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="AButtonDriver_8hpp.html#afe40759ef2412718de5759731626fab4acab0f15eb7d140298a05c67766bfb1a5">   22</a></span>&#160;    <a class="code" href="AButtonDriver_8hpp.html#afe40759ef2412718de5759731626fab4acab0f15eb7d140298a05c67766bfb1a5">BUTTON_RIGHT_KEY</a>,  </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="AButtonDriver_8hpp.html#afe40759ef2412718de5759731626fab4a44b65ff2efb4231ba8109b9f72b7ad6d">BUTTON_NONE</a>        </div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="AButtonDriver_8hpp.html#afe40759ef2412718de5759731626fab4a44b65ff2efb4231ba8109b9f72b7ad6d">   24</a></span>&#160;};</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classAButtonDriver.html">   32</a></span>&#160;<span class="keyword">class </span><a class="code" href="classAButtonDriver.html">AButtonDriver</a></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">static</span> <a class="code" href="classAButtonDriver.html">AButtonDriver</a> * <a class="code" href="classAButtonDriver.html#abc99f5a63facaaa7c57b39eca57e3c8b">create</a>();</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classAButtonDriver.html#a76900724cd51ab5213273cd2ef4e4918">   48</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classAButtonDriver.html#a76900724cd51ab5213273cd2ef4e4918">pressed</a>(<a class="code" href="AButtonDriver_8hpp.html#afe40759ef2412718de5759731626fab4">ButtonTouch</a> button) = 0;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="classAButtonDriver.html#aa234368ae4f01fd3bd0d63b605f85ef8">   50</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classAButtonDriver.html#aa234368ae4f01fd3bd0d63b605f85ef8">~AButtonDriver</a>()</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    {</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    }</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="classAButtonDriver.html#a035c36655b359b7e8e3ae0a3be85c0c9">   56</a></span>&#160;    <a class="code" href="classAButtonDriver.html#a035c36655b359b7e8e3ae0a3be85c0c9">AButtonDriver</a>()</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    {</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    }</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;};</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aAButtonDriver_8hpp_html_afe40759ef2412718de5759731626fab4"><div class="ttname"><a href="AButtonDriver_8hpp.html#afe40759ef2412718de5759731626fab4">ButtonTouch</a></div><div class="ttdeci">ButtonTouch</div><div class="ttdoc">Enumeration des boutons disponibles.</div><div class="ttdef"><b>Definition:</b> AButtonDriver.hpp:16</div></div>
+<div class="ttc" id="aAButtonDriver_8hpp_html_afe40759ef2412718de5759731626fab4a0cd1892024d07425ce2cdd2d8b620395"><div class="ttname"><a href="AButtonDriver_8hpp.html#afe40759ef2412718de5759731626fab4a0cd1892024d07425ce2cdd2d8b620395">BUTTON_ENTER_KEY</a></div><div class="ttdeci">@ BUTTON_ENTER_KEY</div><div class="ttdoc">Touche Entree/Valider.</div><div class="ttdef"><b>Definition:</b> AButtonDriver.hpp:17</div></div>
+<div class="ttc" id="aAButtonDriver_8hpp_html_afe40759ef2412718de5759731626fab4a1099d008413bad41dc39340ccc316881"><div class="ttname"><a href="AButtonDriver_8hpp.html#afe40759ef2412718de5759731626fab4a1099d008413bad41dc39340ccc316881">BUTTON_UP_KEY</a></div><div class="ttdeci">@ BUTTON_UP_KEY</div><div class="ttdoc">Touche Haut.</div><div class="ttdef"><b>Definition:</b> AButtonDriver.hpp:19</div></div>
+<div class="ttc" id="aAButtonDriver_8hpp_html_afe40759ef2412718de5759731626fab4a3e93927b585476d1212dbada0d99f1fe"><div class="ttname"><a href="AButtonDriver_8hpp.html#afe40759ef2412718de5759731626fab4a3e93927b585476d1212dbada0d99f1fe">BUTTON_DOWN_KEY</a></div><div class="ttdeci">@ BUTTON_DOWN_KEY</div><div class="ttdoc">Touche Bas.</div><div class="ttdef"><b>Definition:</b> AButtonDriver.hpp:20</div></div>
+<div class="ttc" id="aAButtonDriver_8hpp_html_afe40759ef2412718de5759731626fab4a44b65ff2efb4231ba8109b9f72b7ad6d"><div class="ttname"><a href="AButtonDriver_8hpp.html#afe40759ef2412718de5759731626fab4a44b65ff2efb4231ba8109b9f72b7ad6d">BUTTON_NONE</a></div><div class="ttdeci">@ BUTTON_NONE</div><div class="ttdoc">Sentinelle de fin d'enumeration / aucun bouton.</div><div class="ttdef"><b>Definition:</b> AButtonDriver.hpp:23</div></div>
+<div class="ttc" id="aAButtonDriver_8hpp_html_afe40759ef2412718de5759731626fab4a6a2bc049ee33a1fc741dbba121f09d34"><div class="ttname"><a href="AButtonDriver_8hpp.html#afe40759ef2412718de5759731626fab4a6a2bc049ee33a1fc741dbba121f09d34">BUTTON_BACK_KEY</a></div><div class="ttdeci">@ BUTTON_BACK_KEY</div><div class="ttdoc">Touche Retour.</div><div class="ttdef"><b>Definition:</b> AButtonDriver.hpp:18</div></div>
+<div class="ttc" id="aAButtonDriver_8hpp_html_afe40759ef2412718de5759731626fab4a6e3c7a1633a6486105304681d331584b"><div class="ttname"><a href="AButtonDriver_8hpp.html#afe40759ef2412718de5759731626fab4a6e3c7a1633a6486105304681d331584b">BUTTON_LEFT_KEY</a></div><div class="ttdeci">@ BUTTON_LEFT_KEY</div><div class="ttdoc">Touche Gauche.</div><div class="ttdef"><b>Definition:</b> AButtonDriver.hpp:21</div></div>
+<div class="ttc" id="aAButtonDriver_8hpp_html_afe40759ef2412718de5759731626fab4acab0f15eb7d140298a05c67766bfb1a5"><div class="ttname"><a href="AButtonDriver_8hpp.html#afe40759ef2412718de5759731626fab4acab0f15eb7d140298a05c67766bfb1a5">BUTTON_RIGHT_KEY</a></div><div class="ttdeci">@ BUTTON_RIGHT_KEY</div><div class="ttdoc">Touche Droite.</div><div class="ttdef"><b>Definition:</b> AButtonDriver.hpp:22</div></div>
+<div class="ttc" id="aclassAButtonDriver_html"><div class="ttname"><a href="classAButtonDriver.html">AButtonDriver</a></div><div class="ttdoc">Interface abstraite du driver de boutons.</div><div class="ttdef"><b>Definition:</b> AButtonDriver.hpp:33</div></div>
+<div class="ttc" id="aclassAButtonDriver_html_a035c36655b359b7e8e3ae0a3be85c0c9"><div class="ttname"><a href="classAButtonDriver.html#a035c36655b359b7e8e3ae0a3be85c0c9">AButtonDriver::AButtonDriver</a></div><div class="ttdeci">AButtonDriver()</div><div class="ttdef"><b>Definition:</b> AButtonDriver.hpp:56</div></div>
+<div class="ttc" id="aclassAButtonDriver_html_a76900724cd51ab5213273cd2ef4e4918"><div class="ttname"><a href="classAButtonDriver.html#a76900724cd51ab5213273cd2ef4e4918">AButtonDriver::pressed</a></div><div class="ttdeci">virtual bool pressed(ButtonTouch button)=0</div><div class="ttdoc">Teste si un bouton est actuellement appuye.</div></div>
+<div class="ttc" id="aclassAButtonDriver_html_aa234368ae4f01fd3bd0d63b605f85ef8"><div class="ttname"><a href="classAButtonDriver.html#aa234368ae4f01fd3bd0d63b605f85ef8">AButtonDriver::~AButtonDriver</a></div><div class="ttdeci">virtual ~AButtonDriver()</div><div class="ttdef"><b>Definition:</b> AButtonDriver.hpp:50</div></div>
+<div class="ttc" id="aclassAButtonDriver_html_abc99f5a63facaaa7c57b39eca57e3c8b"><div class="ttname"><a href="classAButtonDriver.html#abc99f5a63facaaa7c57b39eca57e3c8b">AButtonDriver::create</a></div><div class="ttdeci">static AButtonDriver * create()</div><div class="ttdoc">Cree l'instance concrete selon la plateforme.</div><div class="ttdef"><b>Definition:</b> ButtonDriver.cpp:12</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Mardi 24 Mars 2026 23:42:28 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

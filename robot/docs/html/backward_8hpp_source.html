@@ -658,7 +658,7 @@ $(function() {
 <div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classbackward_1_1details_1_1handle.html#a1d523299d15b726db3988da92e783096">_val</a>;</div>
 <div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;  }</div>
 <div class="line"><a name="l00587"></a><span class="lineno"><a class="line" href="classbackward_1_1details_1_1handle.html#adf744eade5fcb454324d4fa45cfa2a38">  587</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classbackward_1_1details_1_1handle.html#adf744eade5fcb454324d4fa45cfa2a38">swap</a>(<a class="code" href="classbackward_1_1details_1_1handle.html">handle</a> &amp;b) {</div>
-<div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160;    <span class="keyword">using</span> std::swap;</div>
+<div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160;    <span class="keyword">using</span> <a class="code" href="namespacestd.html#a3ece115a1c8ed9020a20f1d0b70efda8">std::swap</a>;</div>
 <div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;    <a class="code" href="classbackward_1_1details_1_1handle.html#adf744eade5fcb454324d4fa45cfa2a38">swap</a>(b.<a class="code" href="classbackward_1_1details_1_1handle.html#a1d523299d15b726db3988da92e783096">_val</a>, <a class="code" href="classbackward_1_1details_1_1handle.html#a1d523299d15b726db3988da92e783096">_val</a>);     <span class="comment">// can throw, we are safe here.</span></div>
 <div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;    <a class="code" href="classbackward_1_1details_1_1handle.html#adf744eade5fcb454324d4fa45cfa2a38">swap</a>(b.<a class="code" href="classbackward_1_1details_1_1handle.html#a4a0a24a127c7ce01429f63dcb488e098">_empty</a>, <a class="code" href="classbackward_1_1details_1_1handle.html#a4a0a24a127c7ce01429f63dcb488e098">_empty</a>); <span class="comment">// should not throw: if you cannot swap two</span></div>
 <div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;    <span class="comment">// bools without throwing... It&#39;s a lost cause anyway!</span></div>
@@ -2058,11 +2058,11 @@ $(function() {
 <div class="line"><a name="l01985"></a><span class="lineno"> 1985</span>&#160;      <span class="keywordflow">if</span> (dwarf_highpc(die, &amp;high) != 0) {</div>
 <div class="line"><a name="l01986"></a><span class="lineno"> 1986</span>&#160;        Dwarf_Attribute attr_mem;</div>
 <div class="line"><a name="l01987"></a><span class="lineno"> 1987</span>&#160;        Dwarf_Attribute *attr = dwarf_attr(die, DW_AT_high_pc, &amp;attr_mem);</div>
-<div class="line"><a name="l01988"></a><span class="lineno"> 1988</span>&#160;        Dwarf_Word value;</div>
+<div class="line"><a name="l01988"></a><span class="lineno"> 1988</span>&#160;        Dwarf_Word <a class="code" href="namespacedetail.html#a47b1bb0bbd3596589ed9187059c312efa2063c1608d6e0baf80249c42e2be5804">value</a>;</div>
 <div class="line"><a name="l01989"></a><span class="lineno"> 1989</span>&#160;        <span class="keywordflow">if</span> (dwarf_formudata(attr, &amp;value) != 0) {</div>
 <div class="line"><a name="l01990"></a><span class="lineno"> 1990</span>&#160;          <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a name="l01991"></a><span class="lineno"> 1991</span>&#160;        }</div>
-<div class="line"><a name="l01992"></a><span class="lineno"> 1992</span>&#160;        high = low + value;</div>
+<div class="line"><a name="l01992"></a><span class="lineno"> 1992</span>&#160;        high = low + <a class="code" href="namespacedetail.html#a47b1bb0bbd3596589ed9187059c312efa2063c1608d6e0baf80249c42e2be5804">value</a>;</div>
 <div class="line"><a name="l01993"></a><span class="lineno"> 1993</span>&#160;      }</div>
 <div class="line"><a name="l01994"></a><span class="lineno"> 1994</span>&#160;      <span class="keywordflow">return</span> pc &gt;= low &amp;&amp; pc &lt; high;</div>
 <div class="line"><a name="l01995"></a><span class="lineno"> 1995</span>&#160;    }</div>
@@ -2289,7 +2289,7 @@ $(function() {
 <div class="line"><a name="l02216"></a><span class="lineno"> 2216</span>&#160;    <span class="comment">// Get the Dwarf_Line that the address points to and call libdwarf</span></div>
 <div class="line"><a name="l02217"></a><span class="lineno"> 2217</span>&#160;    <span class="comment">// to get source file, line and column info.</span></div>
 <div class="line"><a name="l02218"></a><span class="lineno"> 2218</span>&#160;    Dwarf_Line line = die_object.line_buffer[it-&gt;second];</div>
-<div class="line"><a name="l02219"></a><span class="lineno"> 2219</span>&#160;    Dwarf_Error error = DW_DLE_NE;</div>
+<div class="line"><a name="l02219"></a><span class="lineno"> 2219</span>&#160;    Dwarf_Error <a class="code" href="namespacedetail.html#a7c070b2bf3d61e3d8b8013f6fb18d592acb5e100e5a9a3e7f6d1fd97512215282">error</a> = DW_DLE_NE;</div>
 <div class="line"><a name="l02220"></a><span class="lineno"> 2220</span>&#160; </div>
 <div class="line"><a name="l02221"></a><span class="lineno"> 2221</span>&#160;    <span class="keywordtype">char</span> *filename;</div>
 <div class="line"><a name="l02222"></a><span class="lineno"> 2222</span>&#160;    <span class="keywordflow">if</span> (dwarf_linesrc(line, &amp;filename, &amp;error) == DW_DLV_OK) {</div>
@@ -2533,7 +2533,7 @@ $(function() {
 <div class="line"><a name="l02460"></a><span class="lineno"> 2460</span>&#160; </div>
 <div class="line"><a name="l02461"></a><span class="lineno"> 2461</span>&#160;    <span class="comment">// Ok, we have a valid ELF handle, let&#39;s try to get debug symbols</span></div>
 <div class="line"><a name="l02462"></a><span class="lineno"> 2462</span>&#160;    Dwarf_Debug dwarf_debug;</div>
-<div class="line"><a name="l02463"></a><span class="lineno"> 2463</span>&#160;    Dwarf_Error error = DW_DLE_NE;</div>
+<div class="line"><a name="l02463"></a><span class="lineno"> 2463</span>&#160;    Dwarf_Error <a class="code" href="namespacedetail.html#a7c070b2bf3d61e3d8b8013f6fb18d592acb5e100e5a9a3e7f6d1fd97512215282">error</a> = DW_DLE_NE;</div>
 <div class="line"><a name="l02464"></a><span class="lineno"> 2464</span>&#160;    dwarf_handle_t dwarf_handle;</div>
 <div class="line"><a name="l02465"></a><span class="lineno"> 2465</span>&#160; </div>
 <div class="line"><a name="l02466"></a><span class="lineno"> 2466</span>&#160;    <span class="keywordtype">int</span> dwarf_result = dwarf_elf_init(elf_handle.get(), DW_DLC_READ, NULL, NULL,</div>
@@ -2556,7 +2556,7 @@ $(function() {
 <div class="line"><a name="l02483"></a><span class="lineno"> 2483</span>&#160;  }</div>
 <div class="line"><a name="l02484"></a><span class="lineno"> 2484</span>&#160; </div>
 <div class="line"><a name="l02485"></a><span class="lineno"> 2485</span>&#160;  die_cache_entry &amp;get_die_cache(dwarf_fileobject &amp;fobj, Dwarf_Die die) {</div>
-<div class="line"><a name="l02486"></a><span class="lineno"> 2486</span>&#160;    Dwarf_Error error = DW_DLE_NE;</div>
+<div class="line"><a name="l02486"></a><span class="lineno"> 2486</span>&#160;    Dwarf_Error <a class="code" href="namespacedetail.html#a7c070b2bf3d61e3d8b8013f6fb18d592acb5e100e5a9a3e7f6d1fd97512215282">error</a> = DW_DLE_NE;</div>
 <div class="line"><a name="l02487"></a><span class="lineno"> 2487</span>&#160; </div>
 <div class="line"><a name="l02488"></a><span class="lineno"> 2488</span>&#160;    <span class="comment">// Get the die offset, we use it as the cache key</span></div>
 <div class="line"><a name="l02489"></a><span class="lineno"> 2489</span>&#160;    Dwarf_Off die_offset;</div>
@@ -2673,7 +2673,7 @@ $(function() {
 <div class="line"><a name="l02600"></a><span class="lineno"> 2600</span>&#160; </div>
 <div class="line"><a name="l02601"></a><span class="lineno"> 2601</span>&#160;  <span class="keyword">static</span> Dwarf_Die get_referenced_die(Dwarf_Debug dwarf, Dwarf_Die die,</div>
 <div class="line"><a name="l02602"></a><span class="lineno"> 2602</span>&#160;                                      Dwarf_Half attr, <span class="keywordtype">bool</span> global) {</div>
-<div class="line"><a name="l02603"></a><span class="lineno"> 2603</span>&#160;    Dwarf_Error error = DW_DLE_NE;</div>
+<div class="line"><a name="l02603"></a><span class="lineno"> 2603</span>&#160;    Dwarf_Error <a class="code" href="namespacedetail.html#a7c070b2bf3d61e3d8b8013f6fb18d592acb5e100e5a9a3e7f6d1fd97512215282">error</a> = DW_DLE_NE;</div>
 <div class="line"><a name="l02604"></a><span class="lineno"> 2604</span>&#160;    Dwarf_Attribute attr_mem;</div>
 <div class="line"><a name="l02605"></a><span class="lineno"> 2605</span>&#160; </div>
 <div class="line"><a name="l02606"></a><span class="lineno"> 2606</span>&#160;    Dwarf_Die found_die = NULL;</div>
@@ -2698,8 +2698,8 @@ $(function() {
 <div class="line"><a name="l02625"></a><span class="lineno"> 2625</span>&#160; </div>
 <div class="line"><a name="l02626"></a><span class="lineno"> 2626</span>&#160;  <span class="keyword">static</span> std::string get_referenced_die_name(Dwarf_Debug dwarf, Dwarf_Die die,</div>
 <div class="line"><a name="l02627"></a><span class="lineno"> 2627</span>&#160;                                             Dwarf_Half attr, <span class="keywordtype">bool</span> global) {</div>
-<div class="line"><a name="l02628"></a><span class="lineno"> 2628</span>&#160;    Dwarf_Error error = DW_DLE_NE;</div>
-<div class="line"><a name="l02629"></a><span class="lineno"> 2629</span>&#160;    std::string value;</div>
+<div class="line"><a name="l02628"></a><span class="lineno"> 2628</span>&#160;    Dwarf_Error <a class="code" href="namespacedetail.html#a7c070b2bf3d61e3d8b8013f6fb18d592acb5e100e5a9a3e7f6d1fd97512215282">error</a> = DW_DLE_NE;</div>
+<div class="line"><a name="l02629"></a><span class="lineno"> 2629</span>&#160;    std::string <a class="code" href="namespacedetail.html#a47b1bb0bbd3596589ed9187059c312efa2063c1608d6e0baf80249c42e2be5804">value</a>;</div>
 <div class="line"><a name="l02630"></a><span class="lineno"> 2630</span>&#160; </div>
 <div class="line"><a name="l02631"></a><span class="lineno"> 2631</span>&#160;    Dwarf_Die found_die = get_referenced_die(dwarf, die, attr, global);</div>
 <div class="line"><a name="l02632"></a><span class="lineno"> 2632</span>&#160; </div>
@@ -2707,21 +2707,21 @@ $(function() {
 <div class="line"><a name="l02634"></a><span class="lineno"> 2634</span>&#160;      <span class="keywordtype">char</span> *name;</div>
 <div class="line"><a name="l02635"></a><span class="lineno"> 2635</span>&#160;      <span class="keywordflow">if</span> (dwarf_diename(found_die, &amp;name, &amp;error) == DW_DLV_OK) {</div>
 <div class="line"><a name="l02636"></a><span class="lineno"> 2636</span>&#160;        <span class="keywordflow">if</span> (name) {</div>
-<div class="line"><a name="l02637"></a><span class="lineno"> 2637</span>&#160;          value = std::string(name);</div>
+<div class="line"><a name="l02637"></a><span class="lineno"> 2637</span>&#160;          <a class="code" href="namespacedetail.html#a47b1bb0bbd3596589ed9187059c312efa2063c1608d6e0baf80249c42e2be5804">value</a> = std::string(name);</div>
 <div class="line"><a name="l02638"></a><span class="lineno"> 2638</span>&#160;        }</div>
 <div class="line"><a name="l02639"></a><span class="lineno"> 2639</span>&#160;        dwarf_dealloc(dwarf, name, DW_DLA_STRING);</div>
 <div class="line"><a name="l02640"></a><span class="lineno"> 2640</span>&#160;      }</div>
 <div class="line"><a name="l02641"></a><span class="lineno"> 2641</span>&#160;      dwarf_dealloc(dwarf, found_die, DW_DLA_DIE);</div>
 <div class="line"><a name="l02642"></a><span class="lineno"> 2642</span>&#160;    }</div>
 <div class="line"><a name="l02643"></a><span class="lineno"> 2643</span>&#160; </div>
-<div class="line"><a name="l02644"></a><span class="lineno"> 2644</span>&#160;    <span class="keywordflow">return</span> value;</div>
+<div class="line"><a name="l02644"></a><span class="lineno"> 2644</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="namespacedetail.html#a47b1bb0bbd3596589ed9187059c312efa2063c1608d6e0baf80249c42e2be5804">value</a>;</div>
 <div class="line"><a name="l02645"></a><span class="lineno"> 2645</span>&#160;  }</div>
 <div class="line"><a name="l02646"></a><span class="lineno"> 2646</span>&#160; </div>
 <div class="line"><a name="l02647"></a><span class="lineno"> 2647</span>&#160;  <span class="comment">// Returns a spec DIE linked to the passed one. The caller should</span></div>
 <div class="line"><a name="l02648"></a><span class="lineno"> 2648</span>&#160;  <span class="comment">// deallocate the DIE</span></div>
 <div class="line"><a name="l02649"></a><span class="lineno"> 2649</span>&#160;  <span class="keyword">static</span> Dwarf_Die get_spec_die(dwarf_fileobject &amp;fobj, Dwarf_Die die) {</div>
 <div class="line"><a name="l02650"></a><span class="lineno"> 2650</span>&#160;    Dwarf_Debug dwarf = fobj.dwarf_handle.get();</div>
-<div class="line"><a name="l02651"></a><span class="lineno"> 2651</span>&#160;    Dwarf_Error error = DW_DLE_NE;</div>
+<div class="line"><a name="l02651"></a><span class="lineno"> 2651</span>&#160;    Dwarf_Error <a class="code" href="namespacedetail.html#a7c070b2bf3d61e3d8b8013f6fb18d592acb5e100e5a9a3e7f6d1fd97512215282">error</a> = DW_DLE_NE;</div>
 <div class="line"><a name="l02652"></a><span class="lineno"> 2652</span>&#160;    Dwarf_Off die_offset;</div>
 <div class="line"><a name="l02653"></a><span class="lineno"> 2653</span>&#160;    <span class="keywordflow">if</span> (fobj.current_cu &amp;&amp;</div>
 <div class="line"><a name="l02654"></a><span class="lineno"> 2654</span>&#160;        dwarf_die_CU_offset(die, &amp;die_offset, &amp;error) == DW_DLV_OK) {</div>
@@ -2747,7 +2747,7 @@ $(function() {
 <div class="line"><a name="l02674"></a><span class="lineno"> 2674</span>&#160;    Dwarf_Addr low_pc = 0, high_pc = 0;</div>
 <div class="line"><a name="l02675"></a><span class="lineno"> 2675</span>&#160;    Dwarf_Half high_pc_form = 0;</div>
 <div class="line"><a name="l02676"></a><span class="lineno"> 2676</span>&#160;    Dwarf_Form_Class return_class;</div>
-<div class="line"><a name="l02677"></a><span class="lineno"> 2677</span>&#160;    Dwarf_Error error = DW_DLE_NE;</div>
+<div class="line"><a name="l02677"></a><span class="lineno"> 2677</span>&#160;    Dwarf_Error <a class="code" href="namespacedetail.html#a7c070b2bf3d61e3d8b8013f6fb18d592acb5e100e5a9a3e7f6d1fd97512215282">error</a> = DW_DLE_NE;</div>
 <div class="line"><a name="l02678"></a><span class="lineno"> 2678</span>&#160;    Dwarf_Debug dwarf = fobj.dwarf_handle.get();</div>
 <div class="line"><a name="l02679"></a><span class="lineno"> 2679</span>&#160;    <span class="keywordtype">bool</span> has_lowpc = <span class="keyword">false</span>;</div>
 <div class="line"><a name="l02680"></a><span class="lineno"> 2680</span>&#160;    <span class="keywordtype">bool</span> has_highpc = <span class="keyword">false</span>;</div>
@@ -2830,7 +2830,7 @@ $(function() {
 <div class="line"><a name="l02757"></a><span class="lineno"> 2757</span>&#160;  }</div>
 <div class="line"><a name="l02758"></a><span class="lineno"> 2758</span>&#160; </div>
 <div class="line"><a name="l02759"></a><span class="lineno"> 2759</span>&#160;  <span class="keyword">static</span> <span class="keywordtype">void</span> get_type(Dwarf_Debug dwarf, Dwarf_Die die, std::string &amp;<a class="code" href="namespacebackward_1_1Color.html#a6292269f4da43517b3fe825563efee5c">type</a>) {</div>
-<div class="line"><a name="l02760"></a><span class="lineno"> 2760</span>&#160;    Dwarf_Error error = DW_DLE_NE;</div>
+<div class="line"><a name="l02760"></a><span class="lineno"> 2760</span>&#160;    Dwarf_Error <a class="code" href="namespacedetail.html#a7c070b2bf3d61e3d8b8013f6fb18d592acb5e100e5a9a3e7f6d1fd97512215282">error</a> = DW_DLE_NE;</div>
 <div class="line"><a name="l02761"></a><span class="lineno"> 2761</span>&#160; </div>
 <div class="line"><a name="l02762"></a><span class="lineno"> 2762</span>&#160;    Dwarf_Die child = 0;</div>
 <div class="line"><a name="l02763"></a><span class="lineno"> 2763</span>&#160;    <span class="keywordflow">if</span> (dwarf_child(die, &amp;child, &amp;error) == DW_DLV_OK) {</div>
@@ -2852,7 +2852,7 @@ $(function() {
 <div class="line"><a name="l02779"></a><span class="lineno"> 2779</span>&#160;  }</div>
 <div class="line"><a name="l02780"></a><span class="lineno"> 2780</span>&#160; </div>
 <div class="line"><a name="l02781"></a><span class="lineno"> 2781</span>&#160;  <span class="keyword">static</span> std::string get_type_by_signature(Dwarf_Debug dwarf, Dwarf_Die die) {</div>
-<div class="line"><a name="l02782"></a><span class="lineno"> 2782</span>&#160;    Dwarf_Error error = DW_DLE_NE;</div>
+<div class="line"><a name="l02782"></a><span class="lineno"> 2782</span>&#160;    Dwarf_Error <a class="code" href="namespacedetail.html#a7c070b2bf3d61e3d8b8013f6fb18d592acb5e100e5a9a3e7f6d1fd97512215282">error</a> = DW_DLE_NE;</div>
 <div class="line"><a name="l02783"></a><span class="lineno"> 2783</span>&#160; </div>
 <div class="line"><a name="l02784"></a><span class="lineno"> 2784</span>&#160;    Dwarf_Sig8 signature;</div>
 <div class="line"><a name="l02785"></a><span class="lineno"> 2785</span>&#160;    Dwarf_Bool has_attr = 0;</div>
@@ -2931,7 +2931,7 @@ $(function() {
 <div class="line"><a name="l02858"></a><span class="lineno"> 2858</span>&#160;  <span class="keyword">static</span> <span class="keywordtype">void</span> set_parameter_string(dwarf_fileobject &amp;fobj, Dwarf_Die die,</div>
 <div class="line"><a name="l02859"></a><span class="lineno"> 2859</span>&#160;                                   type_context_t &amp;context) {</div>
 <div class="line"><a name="l02860"></a><span class="lineno"> 2860</span>&#160;    <span class="keywordtype">char</span> *name;</div>
-<div class="line"><a name="l02861"></a><span class="lineno"> 2861</span>&#160;    Dwarf_Error error = DW_DLE_NE;</div>
+<div class="line"><a name="l02861"></a><span class="lineno"> 2861</span>&#160;    Dwarf_Error <a class="code" href="namespacedetail.html#a7c070b2bf3d61e3d8b8013f6fb18d592acb5e100e5a9a3e7f6d1fd97512215282">error</a> = DW_DLE_NE;</div>
 <div class="line"><a name="l02862"></a><span class="lineno"> 2862</span>&#160; </div>
 <div class="line"><a name="l02863"></a><span class="lineno"> 2863</span>&#160;    <span class="comment">// typedefs contain also the base type, so we skip it and only</span></div>
 <div class="line"><a name="l02864"></a><span class="lineno"> 2864</span>&#160;    <span class="comment">// print the typedef name</span></div>
@@ -3046,7 +3046,7 @@ $(function() {
 <div class="line"><a name="l02973"></a><span class="lineno"> 2973</span>&#160;                                      std::vector&lt;std::string&gt; &amp;ns,</div>
 <div class="line"><a name="l02974"></a><span class="lineno"> 2974</span>&#160;                                      dwarf_fileobject &amp;fobj, Dwarf_Die die) {</div>
 <div class="line"><a name="l02975"></a><span class="lineno"> 2975</span>&#160;    Dwarf_Debug dwarf = fobj.dwarf_handle.get();</div>
-<div class="line"><a name="l02976"></a><span class="lineno"> 2976</span>&#160;    Dwarf_Error error = DW_DLE_NE;</div>
+<div class="line"><a name="l02976"></a><span class="lineno"> 2976</span>&#160;    Dwarf_Error <a class="code" href="namespacedetail.html#a7c070b2bf3d61e3d8b8013f6fb18d592acb5e100e5a9a3e7f6d1fd97512215282">error</a> = DW_DLE_NE;</div>
 <div class="line"><a name="l02977"></a><span class="lineno"> 2977</span>&#160;    Dwarf_Die current_die = 0;</div>
 <div class="line"><a name="l02978"></a><span class="lineno"> 2978</span>&#160;    std::string parameters;</div>
 <div class="line"><a name="l02979"></a><span class="lineno"> 2979</span>&#160;    <span class="keywordtype">bool</span> has_spec = <span class="keyword">true</span>;</div>
@@ -3143,7 +3143,7 @@ $(function() {
 <div class="line"><a name="l03070"></a><span class="lineno"> 3070</span>&#160;  <span class="comment">// defined types... grrr.</span></div>
 <div class="line"><a name="l03071"></a><span class="lineno"> 3071</span>&#160;  <span class="keyword">struct </span>inliners_search_cb {</div>
 <div class="line"><a name="l03072"></a><span class="lineno"> 3072</span>&#160;    <span class="keywordtype">void</span> operator()(Dwarf_Die die, std::vector&lt;std::string&gt; &amp;ns) {</div>
-<div class="line"><a name="l03073"></a><span class="lineno"> 3073</span>&#160;      Dwarf_Error error = DW_DLE_NE;</div>
+<div class="line"><a name="l03073"></a><span class="lineno"> 3073</span>&#160;      Dwarf_Error <a class="code" href="namespacedetail.html#a7c070b2bf3d61e3d8b8013f6fb18d592acb5e100e5a9a3e7f6d1fd97512215282">error</a> = DW_DLE_NE;</div>
 <div class="line"><a name="l03074"></a><span class="lineno"> 3074</span>&#160;      Dwarf_Half tag_value;</div>
 <div class="line"><a name="l03075"></a><span class="lineno"> 3075</span>&#160;      Dwarf_Attribute attr_mem;</div>
 <div class="line"><a name="l03076"></a><span class="lineno"> 3076</span>&#160;      Dwarf_Debug dwarf = fobj.dwarf_handle.get();</div>
@@ -3252,7 +3252,7 @@ $(function() {
 <div class="line"><a name="l03179"></a><span class="lineno"> 3179</span>&#160;                                     Dwarf_Die parent_die, Dwarf_Addr pc,</div>
 <div class="line"><a name="l03180"></a><span class="lineno"> 3180</span>&#160;                                     Dwarf_Die result) {</div>
 <div class="line"><a name="l03181"></a><span class="lineno"> 3181</span>&#160;    Dwarf_Die current_die = 0;</div>
-<div class="line"><a name="l03182"></a><span class="lineno"> 3182</span>&#160;    Dwarf_Error error = DW_DLE_NE;</div>
+<div class="line"><a name="l03182"></a><span class="lineno"> 3182</span>&#160;    Dwarf_Error <a class="code" href="namespacedetail.html#a7c070b2bf3d61e3d8b8013f6fb18d592acb5e100e5a9a3e7f6d1fd97512215282">error</a> = DW_DLE_NE;</div>
 <div class="line"><a name="l03183"></a><span class="lineno"> 3183</span>&#160;    Dwarf_Debug dwarf = fobj.dwarf_handle.get();</div>
 <div class="line"><a name="l03184"></a><span class="lineno"> 3184</span>&#160; </div>
 <div class="line"><a name="l03185"></a><span class="lineno"> 3185</span>&#160;    <span class="keywordflow">if</span> (dwarf_child(parent_die, &amp;current_die, &amp;error) != DW_DLV_OK) {</div>
@@ -3318,7 +3318,7 @@ $(function() {
 <div class="line"><a name="l03245"></a><span class="lineno"> 3245</span>&#160;                                      std::vector&lt;std::string&gt; &amp;ns, CB cb) {</div>
 <div class="line"><a name="l03246"></a><span class="lineno"> 3246</span>&#160;    Dwarf_Die current_die = 0;</div>
 <div class="line"><a name="l03247"></a><span class="lineno"> 3247</span>&#160;    Dwarf_Debug dwarf = fobj.dwarf_handle.get();</div>
-<div class="line"><a name="l03248"></a><span class="lineno"> 3248</span>&#160;    Dwarf_Error error = DW_DLE_NE;</div>
+<div class="line"><a name="l03248"></a><span class="lineno"> 3248</span>&#160;    Dwarf_Error <a class="code" href="namespacedetail.html#a7c070b2bf3d61e3d8b8013f6fb18d592acb5e100e5a9a3e7f6d1fd97512215282">error</a> = DW_DLE_NE;</div>
 <div class="line"><a name="l03249"></a><span class="lineno"> 3249</span>&#160; </div>
 <div class="line"><a name="l03250"></a><span class="lineno"> 3250</span>&#160;    <span class="keywordflow">if</span> (dwarf_child(parent_die, &amp;current_die, &amp;error) != DW_DLV_OK) {</div>
 <div class="line"><a name="l03251"></a><span class="lineno"> 3251</span>&#160;      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
@@ -3403,7 +3403,7 @@ $(function() {
 <div class="line"><a name="l03330"></a><span class="lineno"> 3330</span>&#160;  <span class="keyword">static</span> std::string die_call_file(Dwarf_Debug dwarf, Dwarf_Die die,</div>
 <div class="line"><a name="l03331"></a><span class="lineno"> 3331</span>&#160;                                   Dwarf_Die cu_die) {</div>
 <div class="line"><a name="l03332"></a><span class="lineno"> 3332</span>&#160;    Dwarf_Attribute attr_mem;</div>
-<div class="line"><a name="l03333"></a><span class="lineno"> 3333</span>&#160;    Dwarf_Error error = DW_DLE_NE;</div>
+<div class="line"><a name="l03333"></a><span class="lineno"> 3333</span>&#160;    Dwarf_Error <a class="code" href="namespacedetail.html#a7c070b2bf3d61e3d8b8013f6fb18d592acb5e100e5a9a3e7f6d1fd97512215282">error</a> = DW_DLE_NE;</div>
 <div class="line"><a name="l03334"></a><span class="lineno"> 3334</span>&#160;    Dwarf_Unsigned file_index;</div>
 <div class="line"><a name="l03335"></a><span class="lineno"> 3335</span>&#160; </div>
 <div class="line"><a name="l03336"></a><span class="lineno"> 3336</span>&#160;    std::string file;</div>
@@ -3440,7 +3440,7 @@ $(function() {
 <div class="line"><a name="l03367"></a><span class="lineno"> 3367</span>&#160;    <span class="comment">// we can speed up the search</span></div>
 <div class="line"><a name="l03368"></a><span class="lineno"> 3368</span>&#160; </div>
 <div class="line"><a name="l03369"></a><span class="lineno"> 3369</span>&#160;    Dwarf_Debug dwarf = fobj.dwarf_handle.get();</div>
-<div class="line"><a name="l03370"></a><span class="lineno"> 3370</span>&#160;    Dwarf_Error error = DW_DLE_NE;</div>
+<div class="line"><a name="l03370"></a><span class="lineno"> 3370</span>&#160;    Dwarf_Error <a class="code" href="namespacedetail.html#a7c070b2bf3d61e3d8b8013f6fb18d592acb5e100e5a9a3e7f6d1fd97512215282">error</a> = DW_DLE_NE;</div>
 <div class="line"><a name="l03371"></a><span class="lineno"> 3371</span>&#160;    Dwarf_Arange *aranges;</div>
 <div class="line"><a name="l03372"></a><span class="lineno"> 3372</span>&#160;    Dwarf_Signed arange_count;</div>
 <div class="line"><a name="l03373"></a><span class="lineno"> 3373</span>&#160; </div>
@@ -3793,7 +3793,7 @@ $(function() {
 <div class="line"><a name="l03720"></a><span class="lineno"><a class="line" href="classbackward_1_1SourceFile.html#a86f98eb88a4b694aef54946549200842"> 3720</a></span>&#160;  <span class="keywordtype">bool</span> <a class="code" href="classbackward_1_1SourceFile.html#a86f98eb88a4b694aef54946549200842">is_open</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _file-&gt;is_open(); }</div>
 <div class="line"><a name="l03721"></a><span class="lineno"> 3721</span>&#160; </div>
 <div class="line"><a name="l03722"></a><span class="lineno"><a class="line" href="classbackward_1_1SourceFile.html#ae6835e99c593a5a2df9ac4bf36685bad"> 3722</a></span>&#160;  <a class="code" href="classbackward_1_1SourceFile.html#a249ad26d824e683f42d1b93f3eafb973">lines_t</a> &amp;<a class="code" href="classbackward_1_1SourceFile.html#ae6835e99c593a5a2df9ac4bf36685bad">get_lines</a>(<span class="keywordtype">unsigned</span> line_start, <span class="keywordtype">unsigned</span> line_count, <a class="code" href="classbackward_1_1SourceFile.html#a249ad26d824e683f42d1b93f3eafb973">lines_t</a> &amp;lines) {</div>
-<div class="line"><a name="l03723"></a><span class="lineno"> 3723</span>&#160;    <span class="keyword">using namespace </span>std;</div>
+<div class="line"><a name="l03723"></a><span class="lineno"> 3723</span>&#160;    <span class="keyword">using namespace </span><a class="code" href="namespacestd.html">std</a>;</div>
 <div class="line"><a name="l03724"></a><span class="lineno"> 3724</span>&#160;    <span class="comment">// This function make uses of the dumbest algo ever:</span></div>
 <div class="line"><a name="l03725"></a><span class="lineno"> 3725</span>&#160;    <span class="comment">//    1) seek(0)</span></div>
 <div class="line"><a name="l03726"></a><span class="lineno"> 3726</span>&#160;    <span class="comment">//    2) read lines one by one and discard until line_start</span></div>
@@ -3864,19 +3864,19 @@ $(function() {
 <div class="line"><a name="l03791"></a><span class="lineno"><a class="line" href="classbackward_1_1SourceFile.html#ac366364cbae9bb0edc23269e71a19364"> 3791</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classbackward_1_1SourceFile.html#ac366364cbae9bb0edc23269e71a19364">swap</a>(<a class="code" href="classbackward_1_1SourceFile.html">SourceFile</a> &amp;b) { _file.swap(b.<a class="code" href="classbackward_1_1SourceFile.html#a51983659f9007727423542f3eb1fa231">_file</a>); }</div>
 <div class="line"><a name="l03792"></a><span class="lineno"> 3792</span>&#160; </div>
 <div class="line"><a name="l03793"></a><span class="lineno"> 3793</span>&#160;<span class="preprocessor">#ifdef BACKWARD_ATLEAST_CXX11</span></div>
-<div class="line"><a name="l03794"></a><span class="lineno"> 3794</span>&#160;  <a class="code" href="classbackward_1_1SourceFile.html">SourceFile</a>(<a class="code" href="classbackward_1_1SourceFile.html">SourceFile</a> &amp;&amp;from) : _file(<a class="code" href="backward_8hpp.html#ab979d9d4b4923f7c54d6caa6e1a61936">nullptr</a>) { swap(from); }</div>
+<div class="line"><a name="l03794"></a><span class="lineno"> 3794</span>&#160;  <a class="code" href="classbackward_1_1SourceFile.html">SourceFile</a>(<a class="code" href="classbackward_1_1SourceFile.html">SourceFile</a> &amp;&amp;from) : _file(<a class="code" href="backward_8hpp.html#ab979d9d4b4923f7c54d6caa6e1a61936">nullptr</a>) { <a class="code" href="namespacestd.html#a3ece115a1c8ed9020a20f1d0b70efda8">swap</a>(from); }</div>
 <div class="line"><a name="l03795"></a><span class="lineno"> 3795</span>&#160;  SourceFile &amp;operator=(SourceFile &amp;&amp;from) {</div>
-<div class="line"><a name="l03796"></a><span class="lineno"> 3796</span>&#160;    swap(from);</div>
+<div class="line"><a name="l03796"></a><span class="lineno"> 3796</span>&#160;    <a class="code" href="namespacestd.html#a3ece115a1c8ed9020a20f1d0b70efda8">swap</a>(from);</div>
 <div class="line"><a name="l03797"></a><span class="lineno"> 3797</span>&#160;    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
 <div class="line"><a name="l03798"></a><span class="lineno"> 3798</span>&#160;  }</div>
 <div class="line"><a name="l03799"></a><span class="lineno"> 3799</span>&#160;<span class="preprocessor">#else</span></div>
 <div class="line"><a name="l03800"></a><span class="lineno"><a class="line" href="classbackward_1_1SourceFile.html#aa32237a72e4175a9cfc3772bcd0c204e"> 3800</a></span>&#160;  <span class="keyword">explicit</span> <a class="code" href="classbackward_1_1SourceFile.html#aa32237a72e4175a9cfc3772bcd0c204e">SourceFile</a>(<span class="keyword">const</span> <a class="code" href="classbackward_1_1SourceFile.html">SourceFile</a> &amp;from) {</div>
 <div class="line"><a name="l03801"></a><span class="lineno"> 3801</span>&#160;    <span class="comment">// some sort of poor man&#39;s move semantic.</span></div>
-<div class="line"><a name="l03802"></a><span class="lineno"> 3802</span>&#160;    swap(<span class="keyword">const_cast&lt;</span><a class="code" href="classbackward_1_1SourceFile.html">SourceFile</a> &amp;<span class="keyword">&gt;</span>(from));</div>
+<div class="line"><a name="l03802"></a><span class="lineno"> 3802</span>&#160;    <a class="code" href="namespacestd.html#a3ece115a1c8ed9020a20f1d0b70efda8">swap</a>(<span class="keyword">const_cast&lt;</span><a class="code" href="classbackward_1_1SourceFile.html">SourceFile</a> &amp;<span class="keyword">&gt;</span>(from));</div>
 <div class="line"><a name="l03803"></a><span class="lineno"> 3803</span>&#160;  }</div>
 <div class="line"><a name="l03804"></a><span class="lineno"><a class="line" href="classbackward_1_1SourceFile.html#adc174c36d2866c7d4176ac71a310d47b"> 3804</a></span>&#160;  <a class="code" href="classbackward_1_1SourceFile.html">SourceFile</a> &amp;<a class="code" href="classbackward_1_1SourceFile.html#adc174c36d2866c7d4176ac71a310d47b">operator=</a>(<span class="keyword">const</span> <a class="code" href="classbackward_1_1SourceFile.html">SourceFile</a> &amp;from) {</div>
 <div class="line"><a name="l03805"></a><span class="lineno"> 3805</span>&#160;    <span class="comment">// some sort of poor man&#39;s move semantic.</span></div>
-<div class="line"><a name="l03806"></a><span class="lineno"> 3806</span>&#160;    swap(<span class="keyword">const_cast&lt;</span><a class="code" href="classbackward_1_1SourceFile.html">SourceFile</a> &amp;<span class="keyword">&gt;</span>(from));</div>
+<div class="line"><a name="l03806"></a><span class="lineno"> 3806</span>&#160;    <a class="code" href="namespacestd.html#a3ece115a1c8ed9020a20f1d0b70efda8">swap</a>(<span class="keyword">const_cast&lt;</span><a class="code" href="classbackward_1_1SourceFile.html">SourceFile</a> &amp;<span class="keyword">&gt;</span>(from));</div>
 <div class="line"><a name="l03807"></a><span class="lineno"> 3807</span>&#160;    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
 <div class="line"><a name="l03808"></a><span class="lineno"> 3808</span>&#160;  }</div>
 <div class="line"><a name="l03809"></a><span class="lineno"> 3809</span>&#160;<span class="preprocessor">#endif</span></div>
@@ -4197,7 +4197,7 @@ $(function() {
 <div class="line"><a name="l04124"></a><span class="lineno"> 4124</span>&#160;                     <span class="keyword">const</span> <a class="code" href="structbackward_1_1ResolvedTrace_1_1SourceLoc.html">ResolvedTrace::SourceLoc</a> &amp;source_loc,</div>
 <div class="line"><a name="l04125"></a><span class="lineno"> 4125</span>&#160;                     <a class="code" href="classbackward_1_1Colorize.html">Colorize</a> &amp;colorize, <a class="code" href="namespacebackward_1_1Color.html#a6292269f4da43517b3fe825563efee5c">Color::type</a> color_code,</div>
 <div class="line"><a name="l04126"></a><span class="lineno"> 4126</span>&#160;                     <span class="keywordtype">int</span> context_size) {</div>
-<div class="line"><a name="l04127"></a><span class="lineno"> 4127</span>&#160;    <span class="keyword">using namespace </span>std;</div>
+<div class="line"><a name="l04127"></a><span class="lineno"> 4127</span>&#160;    <span class="keyword">using namespace </span><a class="code" href="namespacestd.html">std</a>;</div>
 <div class="line"><a name="l04128"></a><span class="lineno"> 4128</span>&#160;    <span class="keyword">typedef</span> <a class="code" href="classbackward_1_1SnippetFactory.html#a2bfbaa900acb0d4fdea885cf9c2ef93c">SnippetFactory::lines_t</a> lines_t;</div>
 <div class="line"><a name="l04129"></a><span class="lineno"> 4129</span>&#160; </div>
 <div class="line"><a name="l04130"></a><span class="lineno"> 4130</span>&#160;    lines_t lines = _snippets.<a class="code" href="classbackward_1_1SnippetFactory.html#a97300d912624d23fffab2f1583293284">get_snippet</a>(source_loc.<a class="code" href="structbackward_1_1ResolvedTrace_1_1SourceLoc.html#aa11f1aff189550af633198c00d534926">filename</a>, source_loc.<a class="code" href="structbackward_1_1ResolvedTrace_1_1SourceLoc.html#ac59b61725a1e1539d1ecbbcdfecfabd5">line</a>,</div>
@@ -4733,7 +4733,11 @@ $(function() {
 <div class="ttc" id="anamespacebackward_1_1system__tag_html_a2b2892da6463eac5fb85c252c7d784ce"><div class="ttname"><a href="namespacebackward_1_1system__tag.html#a2b2892da6463eac5fb85c252c7d784ce">backward::system_tag::current_tag</a></div><div class="ttdeci">linux_tag current_tag</div><div class="ttdef"><b>Definition:</b> backward.hpp:457</div></div>
 <div class="ttc" id="anamespacebackward_1_1trace__resolver__tag_html_af00341287d363ce2ef1e9a4a848c8952"><div class="ttname"><a href="namespacebackward_1_1trace__resolver__tag.html#af00341287d363ce2ef1e9a4a848c8952">backward::trace_resolver_tag::current</a></div><div class="ttdeci">backtrace_symbol current</div><div class="ttdef"><b>Definition:</b> backward.hpp:477</div></div>
 <div class="ttc" id="anamespacebackward_html"><div class="ttname"><a href="namespacebackward.html">backward</a></div><div class="ttdef"><b>Definition:</b> backward.cpp:38</div></div>
+<div class="ttc" id="anamespacedetail_html_a47b1bb0bbd3596589ed9187059c312efa2063c1608d6e0baf80249c42e2be5804"><div class="ttname"><a href="namespacedetail.html#a47b1bb0bbd3596589ed9187059c312efa2063c1608d6e0baf80249c42e2be5804">detail::parse_event_t::value</a></div><div class="ttdeci">@ value</div><div class="ttdoc">the parser finished reading a JSON value</div></div>
+<div class="ttc" id="anamespacedetail_html_a7c070b2bf3d61e3d8b8013f6fb18d592acb5e100e5a9a3e7f6d1fd97512215282"><div class="ttname"><a href="namespacedetail.html#a7c070b2bf3d61e3d8b8013f6fb18d592acb5e100e5a9a3e7f6d1fd97512215282">detail::cbor_tag_handler_t::error</a></div><div class="ttdeci">@ error</div><div class="ttdoc">throw a parse_error exception in case of a tag</div></div>
 <div class="ttc" id="anamespacelogs_html_ac6f325c6cfe6189bc8e243daa184453b"><div class="ttname"><a href="namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b">logs::end</a></div><div class="ttdeci">void end(logs::Logger::LoggerBuffer &amp;buffer)</div><div class="ttdoc">Cette méthode permet de finir les flux de construction par la notation.</div><div class="ttdef"><b>Definition:</b> Logger.cpp:45</div></div>
+<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdef"><b>Definition:</b> json_3.11.2.hpp:5293</div></div>
+<div class="ttc" id="anamespacestd_html_a3ece115a1c8ed9020a20f1d0b70efda8"><div class="ttname"><a href="namespacestd.html#a3ece115a1c8ed9020a20f1d0b70efda8">std::swap</a></div><div class="ttdeci">NLOHMANN_BASIC_JSON_TPL_DECLARATION void swap(nlohmann::NLOHMANN_BASIC_JSON_TPL &amp;j1, nlohmann::NLOHMANN_BASIC_JSON_TPL &amp;j2) noexcept(//NOLINT(readability-inconsistent-declaration-parameter-name) is_nothrow_move_constructible&lt; nlohmann::NLOHMANN_BASIC_JSON_TPL &gt;::value &amp;&amp;//NOLINT(misc-redundant-expression) is_nothrow_move_assignable&lt; nlohmann::NLOHMANN_BASIC_JSON_TPL &gt;::value)</div><div class="ttdoc">exchanges the values of two JSON objects</div><div class="ttdef"><b>Definition:</b> json_3.11.2.hpp:24378</div></div>
 <div class="ttc" id="astructbackward_1_1ResolvedTrace_1_1SourceLoc_html"><div class="ttname"><a href="structbackward_1_1ResolvedTrace_1_1SourceLoc.html">backward::ResolvedTrace::SourceLoc</a></div><div class="ttdef"><b>Definition:</b> backward.hpp:678</div></div>
 <div class="ttc" id="astructbackward_1_1ResolvedTrace_1_1SourceLoc_html_a046bc448516ddd9bca3b06c98670d51a"><div class="ttname"><a href="structbackward_1_1ResolvedTrace_1_1SourceLoc.html#a046bc448516ddd9bca3b06c98670d51a">backward::ResolvedTrace::SourceLoc::operator==</a></div><div class="ttdeci">bool operator==(const SourceLoc &amp;b) const</div><div class="ttdef"><b>Definition:</b> backward.hpp:686</div></div>
 <div class="ttc" id="astructbackward_1_1ResolvedTrace_1_1SourceLoc_html_a14401a63f17582a84dcb8fa028064956"><div class="ttname"><a href="structbackward_1_1ResolvedTrace_1_1SourceLoc.html#a14401a63f17582a84dcb8fa028064956">backward::ResolvedTrace::SourceLoc::SourceLoc</a></div><div class="ttdeci">SourceLoc()</div><div class="ttdef"><b>Definition:</b> backward.hpp:684</div></div>
@@ -4781,7 +4785,7 @@ $(function() {
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Généré le Mardi 24 Mars 2026 17:17:18 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Généré le Mardi 24 Mars 2026 23:42:29 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

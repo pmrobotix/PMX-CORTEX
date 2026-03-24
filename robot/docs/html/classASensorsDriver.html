@@ -1,0 +1,689 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot: Référence de la classe ASensorsDriver</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Types publics</a> &#124;
+<a href="#pub-methods">Fonctions membres publiques</a> &#124;
+<a href="#pub-static-methods">Fonctions membres publiques statiques</a> &#124;
+<a href="#pro-methods">Fonctions membres protégées</a> &#124;
+<a href="classASensorsDriver-members.html">Liste de tous les membres</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence de la classe ASensorsDriver<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Interface abstraite du driver de capteurs.  
+ <a href="classASensorsDriver.html#details">Plus de détails...</a></p>
+
+<p><code>#include &lt;<a class="el" href="ASensorsDriver_8hpp_source.html">ASensorsDriver.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Types publics</h2></td></tr>
+<tr class="memitem:a9743a29ef7d4faebd915f096f07bf729"><td class="memItemLeft" align="right" valign="top">typedef std::vector&lt; <a class="el" href="classRobotPos.html">RobotPos</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classASensorsDriver.html#a9743a29ef7d4faebd915f096f07bf729">bot_positions</a></td></tr>
+<tr class="memdesc:a9743a29ef7d4faebd915f096f07bf729"><td class="mdescLeft">&#160;</td><td class="mdescRight">Liste de positions adversaires detectees.  <a href="classASensorsDriver.html#a9743a29ef7d4faebd915f096f07bf729">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a9743a29ef7d4faebd915f096f07bf729"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Fonctions membres publiques</h2></td></tr>
+<tr class="memitem:a3371123b03a48e8759f913958d79e777"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classASensorsDriver.html#a3371123b03a48e8759f913958d79e777">~ASensorsDriver</a> ()</td></tr>
+<tr class="separator:a3371123b03a48e8759f913958d79e777"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88bb31b860fd7f3dcac91cb08ceb797c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classASensorsDriver.html#a88bb31b860fd7f3dcac91cb08ceb797c">addvPositionsAdv</a> (float x, float y)=0</td></tr>
+<tr class="memdesc:a88bb31b860fd7f3dcac91cb08ceb797c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ajoute une position adversaire simulee.  <a href="classASensorsDriver.html#a88bb31b860fd7f3dcac91cb08ceb797c">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a88bb31b860fd7f3dcac91cb08ceb797c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a424c48415ec72021509c58cd4ce95fd8"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classASensorsDriver.html#a424c48415ec72021509c58cd4ce95fd8">backCenter</a> ()=0</td></tr>
+<tr class="memdesc:a424c48415ec72021509c58cd4ce95fd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit le capteur arriere centre.  <a href="classASensorsDriver.html#a424c48415ec72021509c58cd4ce95fd8">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a424c48415ec72021509c58cd4ce95fd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73d2598f685d481a58b3b5364de4f75c"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classASensorsDriver.html#a73d2598f685d481a58b3b5364de4f75c">backLeft</a> ()=0</td></tr>
+<tr class="memdesc:a73d2598f685d481a58b3b5364de4f75c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit le capteur arriere gauche.  <a href="classASensorsDriver.html#a73d2598f685d481a58b3b5364de4f75c">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a73d2598f685d481a58b3b5364de4f75c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa92806f01cf2a920183fb0cb491101e"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classASensorsDriver.html#afa92806f01cf2a920183fb0cb491101e">backRight</a> ()=0</td></tr>
+<tr class="memdesc:afa92806f01cf2a920183fb0cb491101e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit le capteur arriere droit.  <a href="classASensorsDriver.html#afa92806f01cf2a920183fb0cb491101e">Plus de détails...</a><br /></td></tr>
+<tr class="separator:afa92806f01cf2a920183fb0cb491101e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5a29aeb565fdec608728cfb2f8d3f1d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classASensorsDriver.html#ac5a29aeb565fdec608728cfb2f8d3f1d">clearPositionsAdv</a> ()=0</td></tr>
+<tr class="memdesc:ac5a29aeb565fdec608728cfb2f8d3f1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Supprime toutes les positions adversaires simulees.  <a href="classASensorsDriver.html#ac5a29aeb565fdec608728cfb2f8d3f1d">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ac5a29aeb565fdec608728cfb2f8d3f1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bbf3fcc72a8d2be97ae9a2237c1627f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classASensorsDriver.html#a1bbf3fcc72a8d2be97ae9a2237c1627f">displayNumber</a> (int number)=0</td></tr>
+<tr class="memdesc:a1bbf3fcc72a8d2be97ae9a2237c1627f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche un nombre sur l'afficheur 7 segments.  <a href="classASensorsDriver.html#a1bbf3fcc72a8d2be97ae9a2237c1627f">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a1bbf3fcc72a8d2be97ae9a2237c1627f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeda5641a63ce110b5005494fd896ae62"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classASensorsDriver.html#aeda5641a63ce110b5005494fd896ae62">frontCenter</a> ()=0</td></tr>
+<tr class="memdesc:aeda5641a63ce110b5005494fd896ae62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit le capteur avant centre.  <a href="classASensorsDriver.html#aeda5641a63ce110b5005494fd896ae62">Plus de détails...</a><br /></td></tr>
+<tr class="separator:aeda5641a63ce110b5005494fd896ae62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7873d770e0255d9ef9c4e64d181dccfb"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classASensorsDriver.html#a7873d770e0255d9ef9c4e64d181dccfb">frontLeft</a> ()=0</td></tr>
+<tr class="memdesc:a7873d770e0255d9ef9c4e64d181dccfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit le capteur avant gauche.  <a href="classASensorsDriver.html#a7873d770e0255d9ef9c4e64d181dccfb">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a7873d770e0255d9ef9c4e64d181dccfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcf6344268efabb191cb38d7e900e245"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classASensorsDriver.html#afcf6344268efabb191cb38d7e900e245">frontRight</a> ()=0</td></tr>
+<tr class="memdesc:afcf6344268efabb191cb38d7e900e245"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit le capteur avant droit.  <a href="classASensorsDriver.html#afcf6344268efabb191cb38d7e900e245">Plus de détails...</a><br /></td></tr>
+<tr class="separator:afcf6344268efabb191cb38d7e900e245"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec164c1aa888bc212ed5c3f986f22767"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classASensorsDriver.html#a9743a29ef7d4faebd915f096f07bf729">bot_positions</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classASensorsDriver.html#aec164c1aa888bc212ed5c3f986f22767">getvPositionsAdv</a> ()=0</td></tr>
+<tr class="memdesc:aec164c1aa888bc212ed5c3f986f22767"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourne les positions des adversaires detectes.  <a href="classASensorsDriver.html#aec164c1aa888bc212ed5c3f986f22767">Plus de détails...</a><br /></td></tr>
+<tr class="separator:aec164c1aa888bc212ed5c3f986f22767"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51698531f71b94606b5f60c3d5f3dfc4"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classASensorsDriver.html#a51698531f71b94606b5f60c3d5f3dfc4">is_connected</a> ()=0</td></tr>
+<tr class="memdesc:a51698531f71b94606b5f60c3d5f3dfc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifie si la balise est connectee.  <a href="classASensorsDriver.html#a51698531f71b94606b5f60c3d5f3dfc4">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a51698531f71b94606b5f60c3d5f3dfc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a800cc3f2ce33b02a9c9a758308d9e53c"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classASensorsDriver.html#a800cc3f2ce33b02a9c9a758308d9e53c">leftSide</a> ()=0</td></tr>
+<tr class="memdesc:a800cc3f2ce33b02a9c9a758308d9e53c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit le capteur lateral gauche.  <a href="classASensorsDriver.html#a800cc3f2ce33b02a9c9a758308d9e53c">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a800cc3f2ce33b02a9c9a758308d9e53c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08927084e26b430add29c87f05616bf8"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classASensorsDriver.html#a08927084e26b430add29c87f05616bf8">rightSide</a> ()=0</td></tr>
+<tr class="memdesc:a08927084e26b430add29c87f05616bf8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit le capteur lateral droit.  <a href="classASensorsDriver.html#a08927084e26b430add29c87f05616bf8">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a08927084e26b430add29c87f05616bf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c581029ba10d5ac820a9e3e2e6883cd"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classASensorsDriver.html#a0c581029ba10d5ac820a9e3e2e6883cd">sync</a> ()=0</td></tr>
+<tr class="memdesc:a0c581029ba10d5ac820a9e3e2e6883cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Synchronise les donnees de la balise (lecture I2C).  <a href="classASensorsDriver.html#a0c581029ba10d5ac820a9e3e2e6883cd">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a0c581029ba10d5ac820a9e3e2e6883cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Fonctions membres publiques statiques</h2></td></tr>
+<tr class="memitem:aebbaded11af63b90140b3a08599cd9f2"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classASensorsDriver.html">ASensorsDriver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classASensorsDriver.html#aebbaded11af63b90140b3a08599cd9f2">create</a> (std::string botName, <a class="el" href="classARobotPositionShared.html">ARobotPositionShared</a> *aRobotPositionShared)</td></tr>
+<tr class="memdesc:aebbaded11af63b90140b3a08599cd9f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cree l'instance concrete selon la plateforme.  <a href="classASensorsDriver.html#aebbaded11af63b90140b3a08599cd9f2">Plus de détails...</a><br /></td></tr>
+<tr class="separator:aebbaded11af63b90140b3a08599cd9f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Fonctions membres protégées</h2></td></tr>
+<tr class="memitem:a20a532a00130a076584de7a82b406780"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classASensorsDriver.html#a20a532a00130a076584de7a82b406780">ASensorsDriver</a> ()</td></tr>
+<tr class="separator:a20a532a00130a076584de7a82b406780"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Interface abstraite du driver de capteurs. </p>
+<p>Fournit l'acces aux donnees des capteurs de detection d'obstacles. L'implementation ARM lit les capteurs I2C reels, l'implementation SIMU fournit des positions injectees manuellement. </p>
+</div><h2 class="groupheader">Documentation des définitions de type membres</h2>
+<a id="a9743a29ef7d4faebd915f096f07bf729"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9743a29ef7d4faebd915f096f07bf729">&#9670;&nbsp;</a></span>bot_positions</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::vector&lt;<a class="el" href="classRobotPos.html">RobotPos</a>&gt; <a class="el" href="classASensorsDriver.html#a9743a29ef7d4faebd915f096f07bf729">ASensorsDriver::bot_positions</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Liste de positions adversaires detectees. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des constructeurs et destructeur</h2>
+<a id="a3371123b03a48e8759f913958d79e777"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3371123b03a48e8759f913958d79e777">&#9670;&nbsp;</a></span>~ASensorsDriver()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual ASensorsDriver::~ASensorsDriver </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a20a532a00130a076584de7a82b406780"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20a532a00130a076584de7a82b406780">&#9670;&nbsp;</a></span>ASensorsDriver()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ASensorsDriver::ASensorsDriver </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des fonctions membres</h2>
+<a id="a88bb31b860fd7f3dcac91cb08ceb797c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88bb31b860fd7f3dcac91cb08ceb797c">&#9670;&nbsp;</a></span>addvPositionsAdv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void ASensorsDriver::addvPositionsAdv </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Ajoute une position adversaire simulee. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Position X en mm. </td></tr>
+    <tr><td class="paramname">y</td><td>Position Y en mm. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>Utilise uniquement en mode SIMU. </dd></dl>
+
+</div>
+</div>
+<a id="a424c48415ec72021509c58cd4ce95fd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a424c48415ec72021509c58cd4ce95fd8">&#9670;&nbsp;</a></span>backCenter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int ASensorsDriver::backCenter </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lit le capteur arriere centre. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Distance en mm (0 si rien detecte). </dd></dl>
+
+</div>
+</div>
+<a id="a73d2598f685d481a58b3b5364de4f75c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73d2598f685d481a58b3b5364de4f75c">&#9670;&nbsp;</a></span>backLeft()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int ASensorsDriver::backLeft </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lit le capteur arriere gauche. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Distance en mm (0 si rien detecte). </dd></dl>
+
+</div>
+</div>
+<a id="afa92806f01cf2a920183fb0cb491101e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa92806f01cf2a920183fb0cb491101e">&#9670;&nbsp;</a></span>backRight()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int ASensorsDriver::backRight </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lit le capteur arriere droit. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Distance en mm (0 si rien detecte). </dd></dl>
+
+</div>
+</div>
+<a id="ac5a29aeb565fdec608728cfb2f8d3f1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5a29aeb565fdec608728cfb2f8d3f1d">&#9670;&nbsp;</a></span>clearPositionsAdv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void ASensorsDriver::clearPositionsAdv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Supprime toutes les positions adversaires simulees. </p>
+<dl class="section note"><dt>Note</dt><dd>Utilise uniquement en mode SIMU. </dd></dl>
+
+</div>
+</div>
+<a id="aebbaded11af63b90140b3a08599cd9f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebbaded11af63b90140b3a08599cd9f2">&#9670;&nbsp;</a></span>create()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="classASensorsDriver.html">ASensorsDriver</a>* ASensorsDriver::create </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>botName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classARobotPositionShared.html">ARobotPositionShared</a> *&#160;</td>
+          <td class="paramname"><em>aRobotPositionShared</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Cree l'instance concrete selon la plateforme. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">botName</td><td>Nom du robot. </td></tr>
+    <tr><td class="paramname">aRobotPositionShared</td><td>Pointeur vers la position partagee du robot. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Pointeur vers l'instance creee. </dd></dl>
+
+</div>
+</div>
+<a id="a1bbf3fcc72a8d2be97ae9a2237c1627f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bbf3fcc72a8d2be97ae9a2237c1627f">&#9670;&nbsp;</a></span>displayNumber()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void ASensorsDriver::displayNumber </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>number</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Affiche un nombre sur l'afficheur 7 segments. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">number</td><td>Nombre a afficher. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aeda5641a63ce110b5005494fd896ae62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeda5641a63ce110b5005494fd896ae62">&#9670;&nbsp;</a></span>frontCenter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int ASensorsDriver::frontCenter </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lit le capteur avant centre. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Distance en mm (0 si rien detecte). </dd></dl>
+
+</div>
+</div>
+<a id="a7873d770e0255d9ef9c4e64d181dccfb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7873d770e0255d9ef9c4e64d181dccfb">&#9670;&nbsp;</a></span>frontLeft()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int ASensorsDriver::frontLeft </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lit le capteur avant gauche. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Distance en mm (0 si rien detecte). </dd></dl>
+
+</div>
+</div>
+<a id="afcf6344268efabb191cb38d7e900e245"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afcf6344268efabb191cb38d7e900e245">&#9670;&nbsp;</a></span>frontRight()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int ASensorsDriver::frontRight </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lit le capteur avant droit. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Distance en mm (0 si rien detecte). </dd></dl>
+
+</div>
+</div>
+<a id="aec164c1aa888bc212ed5c3f986f22767"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec164c1aa888bc212ed5c3f986f22767">&#9670;&nbsp;</a></span>getvPositionsAdv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classASensorsDriver.html#a9743a29ef7d4faebd915f096f07bf729">bot_positions</a> ASensorsDriver::getvPositionsAdv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retourne les positions des adversaires detectes. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Vecteur de positions adversaires. </dd></dl>
+
+</div>
+</div>
+<a id="a51698531f71b94606b5f60c3d5f3dfc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51698531f71b94606b5f60c3d5f3dfc4">&#9670;&nbsp;</a></span>is_connected()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool ASensorsDriver::is_connected </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Verifie si la balise est connectee. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>true si la communication est etablie. </dd></dl>
+
+</div>
+</div>
+<a id="a800cc3f2ce33b02a9c9a758308d9e53c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a800cc3f2ce33b02a9c9a758308d9e53c">&#9670;&nbsp;</a></span>leftSide()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int ASensorsDriver::leftSide </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lit le capteur lateral gauche. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Distance en mm (0 si rien detecte). </dd></dl>
+
+</div>
+</div>
+<a id="a08927084e26b430add29c87f05616bf8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08927084e26b430add29c87f05616bf8">&#9670;&nbsp;</a></span>rightSide()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int ASensorsDriver::rightSide </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lit le capteur lateral droit. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Distance en mm (0 si rien detecte). </dd></dl>
+
+</div>
+</div>
+<a id="a0c581029ba10d5ac820a9e3e2e6883cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c581029ba10d5ac820a9e3e2e6883cd">&#9670;&nbsp;</a></span>sync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int ASensorsDriver::sync </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Synchronise les donnees de la balise (lecture I2C). </p>
+<dl class="section return"><dt>Renvoie</dt><dd>0 si succes, -1 si erreur. </dd></dl>
+
+</div>
+</div>
+<hr/>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>src/common/interface/<a class="el" href="ASensorsDriver_8hpp_source.html">ASensorsDriver.hpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Mardi 24 Mars 2026 23:42:30 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

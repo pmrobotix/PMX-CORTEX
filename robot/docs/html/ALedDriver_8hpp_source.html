@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot:  Fichier source de src/common/interface/ALedDriver.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_fdedb0aba14d44ce9d99bc100e026e6a.html">common</a></li><li class="navelem"><a class="el" href="dir_c403bcb0997343f24f003e4263caa61d.html">interface</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">ALedDriver.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="ALedDriver_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#ifndef ALEDDRIVER_HPP_</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define ALEDDRIVER_HPP_</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;sys/types.h&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbde">   18</a></span>&#160;<span class="keyword">enum</span> <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbde">LedColor</a></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdea4376d5e9e19f1983bbc3e8b412f84e3d">   20</a></span>&#160;    <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdea4376d5e9e19f1983bbc3e8b412f84e3d">LED_BLACK</a>,   </div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdea0ad916c7f80666dc88f6b5b22a72e742">   21</a></span>&#160;    <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdea0ad916c7f80666dc88f6b5b22a72e742">LED_GREEN</a>,   </div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdead80f13022b6d309268fadc7b1da89cb9">   22</a></span>&#160;    <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdead80f13022b6d309268fadc7b1da89cb9">LED_RED</a>,     </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdea082cd0390f10e6458c4e2a8adf6594c5">   23</a></span>&#160;    <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdea082cd0390f10e6458c4e2a8adf6594c5">LED_ORANGE</a>,  </div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdea166e95adb7210faadc8fd560affa3ca6">   24</a></span>&#160;    <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdea166e95adb7210faadc8fd560affa3ca6">LED_AMBER</a>,   </div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdea81b537bb7607998bab91c7f08c5883de">   25</a></span>&#160;    <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdea81b537bb7607998bab91c7f08c5883de">LED_YELLOW</a>,  </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdeafc0ca8cc6cbe215fd3f1ae6d40255b40">LED_OFF</a>      </div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdeafc0ca8cc6cbe215fd3f1ae6d40255b40">   27</a></span>&#160;};</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classALedDriver.html">   36</a></span>&#160;<span class="keyword">class </span><a class="code" href="classALedDriver.html">ALedDriver</a></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">static</span> <a class="code" href="classALedDriver.html">ALedDriver</a> * <a class="code" href="classALedDriver.html#a5ae5ce81a20d5d143ff1194ef2929302">create</a>(std::string botName, <span class="keywordtype">int</span> nb);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="classALedDriver.html#acbc8507c36f0f4fa3afb845d81e56eb2">   54</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classALedDriver.html#acbc8507c36f0f4fa3afb845d81e56eb2">setBit</a>(<span class="keywordtype">int</span> index, <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbde">LedColor</a> color) = 0;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="classALedDriver.html#a3a219f7546870d4bce0ae36cad3b0518">   65</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classALedDriver.html#a3a219f7546870d4bce0ae36cad3b0518">setBytes</a>(uint hex, <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbde">LedColor</a> color) = 0;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="classALedDriver.html#ad31e8fc66d7214f92b31497d2ce1894c">   76</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classALedDriver.html#ad31e8fc66d7214f92b31497d2ce1894c">getBit</a>(<span class="keywordtype">int</span> index) = 0;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="classALedDriver.html#ad5b6e2342c40194df04be1f34149f0ec">   78</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classALedDriver.html#ad5b6e2342c40194df04be1f34149f0ec">~ALedDriver</a>()</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    {</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    }</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="classALedDriver.html#ae7d91068831803e70771b780087dc57b">   84</a></span>&#160;    <a class="code" href="classALedDriver.html#ae7d91068831803e70771b780087dc57b">ALedDriver</a>()</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    {</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    }</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;};</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aALedDriver_8hpp_html_a81ea3de5b76240d46410f8b9acf4cbde"><div class="ttname"><a href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbde">LedColor</a></div><div class="ttdeci">LedColor</div><div class="ttdoc">Couleurs disponibles pour les LEDs.</div><div class="ttdef"><b>Definition:</b> ALedDriver.hpp:19</div></div>
+<div class="ttc" id="aALedDriver_8hpp_html_a81ea3de5b76240d46410f8b9acf4cbdea082cd0390f10e6458c4e2a8adf6594c5"><div class="ttname"><a href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdea082cd0390f10e6458c4e2a8adf6594c5">LED_ORANGE</a></div><div class="ttdeci">@ LED_ORANGE</div><div class="ttdoc">Orange.</div><div class="ttdef"><b>Definition:</b> ALedDriver.hpp:23</div></div>
+<div class="ttc" id="aALedDriver_8hpp_html_a81ea3de5b76240d46410f8b9acf4cbdea0ad916c7f80666dc88f6b5b22a72e742"><div class="ttname"><a href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdea0ad916c7f80666dc88f6b5b22a72e742">LED_GREEN</a></div><div class="ttdeci">@ LED_GREEN</div><div class="ttdoc">Vert.</div><div class="ttdef"><b>Definition:</b> ALedDriver.hpp:21</div></div>
+<div class="ttc" id="aALedDriver_8hpp_html_a81ea3de5b76240d46410f8b9acf4cbdea166e95adb7210faadc8fd560affa3ca6"><div class="ttname"><a href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdea166e95adb7210faadc8fd560affa3ca6">LED_AMBER</a></div><div class="ttdeci">@ LED_AMBER</div><div class="ttdoc">Ambre.</div><div class="ttdef"><b>Definition:</b> ALedDriver.hpp:24</div></div>
+<div class="ttc" id="aALedDriver_8hpp_html_a81ea3de5b76240d46410f8b9acf4cbdea4376d5e9e19f1983bbc3e8b412f84e3d"><div class="ttname"><a href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdea4376d5e9e19f1983bbc3e8b412f84e3d">LED_BLACK</a></div><div class="ttdeci">@ LED_BLACK</div><div class="ttdoc">LED eteinte.</div><div class="ttdef"><b>Definition:</b> ALedDriver.hpp:20</div></div>
+<div class="ttc" id="aALedDriver_8hpp_html_a81ea3de5b76240d46410f8b9acf4cbdea81b537bb7607998bab91c7f08c5883de"><div class="ttname"><a href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdea81b537bb7607998bab91c7f08c5883de">LED_YELLOW</a></div><div class="ttdeci">@ LED_YELLOW</div><div class="ttdoc">Jaune.</div><div class="ttdef"><b>Definition:</b> ALedDriver.hpp:25</div></div>
+<div class="ttc" id="aALedDriver_8hpp_html_a81ea3de5b76240d46410f8b9acf4cbdead80f13022b6d309268fadc7b1da89cb9"><div class="ttname"><a href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdead80f13022b6d309268fadc7b1da89cb9">LED_RED</a></div><div class="ttdeci">@ LED_RED</div><div class="ttdoc">Rouge.</div><div class="ttdef"><b>Definition:</b> ALedDriver.hpp:22</div></div>
+<div class="ttc" id="aALedDriver_8hpp_html_a81ea3de5b76240d46410f8b9acf4cbdeafc0ca8cc6cbe215fd3f1ae6d40255b40"><div class="ttname"><a href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdeafc0ca8cc6cbe215fd3f1ae6d40255b40">LED_OFF</a></div><div class="ttdeci">@ LED_OFF</div><div class="ttdoc">Sentinelle de fin d'enumeration.</div><div class="ttdef"><b>Definition:</b> ALedDriver.hpp:26</div></div>
+<div class="ttc" id="aclassALedDriver_html"><div class="ttname"><a href="classALedDriver.html">ALedDriver</a></div><div class="ttdoc">Interface abstraite du driver de LEDs.</div><div class="ttdef"><b>Definition:</b> ALedDriver.hpp:37</div></div>
+<div class="ttc" id="aclassALedDriver_html_a3a219f7546870d4bce0ae36cad3b0518"><div class="ttname"><a href="classALedDriver.html#a3a219f7546870d4bce0ae36cad3b0518">ALedDriver::setBytes</a></div><div class="ttdeci">virtual void setBytes(uint hex, LedColor color)=0</div><div class="ttdoc">Definit l'etat de toute la barre par masque binaire.</div></div>
+<div class="ttc" id="aclassALedDriver_html_a5ae5ce81a20d5d143ff1194ef2929302"><div class="ttname"><a href="classALedDriver.html#a5ae5ce81a20d5d143ff1194ef2929302">ALedDriver::create</a></div><div class="ttdeci">static ALedDriver * create(std::string botName, int nb)</div><div class="ttdoc">Cree l'instance concrete selon la plateforme.</div><div class="ttdef"><b>Definition:</b> LedDriver.cpp:13</div></div>
+<div class="ttc" id="aclassALedDriver_html_acbc8507c36f0f4fa3afb845d81e56eb2"><div class="ttname"><a href="classALedDriver.html#acbc8507c36f0f4fa3afb845d81e56eb2">ALedDriver::setBit</a></div><div class="ttdeci">virtual void setBit(int index, LedColor color)=0</div><div class="ttdoc">Allume une LED a une position donnee.</div></div>
+<div class="ttc" id="aclassALedDriver_html_ad31e8fc66d7214f92b31497d2ce1894c"><div class="ttname"><a href="classALedDriver.html#ad31e8fc66d7214f92b31497d2ce1894c">ALedDriver::getBit</a></div><div class="ttdeci">virtual int getBit(int index)=0</div><div class="ttdoc">Lit la couleur d'une LED a une position donnee.</div></div>
+<div class="ttc" id="aclassALedDriver_html_ad5b6e2342c40194df04be1f34149f0ec"><div class="ttname"><a href="classALedDriver.html#ad5b6e2342c40194df04be1f34149f0ec">ALedDriver::~ALedDriver</a></div><div class="ttdeci">virtual ~ALedDriver()</div><div class="ttdef"><b>Definition:</b> ALedDriver.hpp:78</div></div>
+<div class="ttc" id="aclassALedDriver_html_ae7d91068831803e70771b780087dc57b"><div class="ttname"><a href="classALedDriver.html#ae7d91068831803e70771b780087dc57b">ALedDriver::ALedDriver</a></div><div class="ttdeci">ALedDriver()</div><div class="ttdef"><b>Definition:</b> ALedDriver.hpp:84</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Mardi 24 Mars 2026 23:42:28 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

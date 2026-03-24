@@ -1,8 +1,11 @@
 <map id="test/suite/UnitTestAppender.hpp" name="test/suite/UnitTestAppender.hpp">
-<area shape="rect" id="node1" title="Définition de la classe UnitTestAppender utilisant le memory Appender." alt="" coords="470,5,699,32"/>
-<area shape="rect" id="node2" href="$LoggerInitialize_8cpp.html" title="Initialisation du système de Log pour les tests unitaires." alt="" coords="5,80,244,107"/>
-<area shape="rect" id="node3" href="$LoggerTest_8cpp.html" title="Implémentation des tests de la classe logs::Logger." alt="" coords="268,80,477,107"/>
-<area shape="rect" id="node4" href="$UnitTest_8cpp.html" title="Implémentation de la classe DevUnitTest." alt="" coords="501,80,668,107"/>
-<area shape="rect" id="node5" href="$UnitTestAppender_8cpp.html" title="Implémentation de la classe UnitTestAppender." alt="" coords="692,80,920,107"/>
-<area shape="rect" id="node6" href="$UnitTestSuite_8cpp.html" title="Implementation de la classe UnitTestSuite." alt="" coords="945,80,1145,107"/>
+<area shape="rect" id="node1" title="Définition de la classe UnitTestAppender utilisant le memory Appender." alt="" coords="867,5,1096,32"/>
+<area shape="rect" id="node2" href="$bench_2LoggerInitialize_8cpp.html" title="Initialisation du systeme de Log pour les benchmarks." alt="" coords="5,80,227,107"/>
+<area shape="rect" id="node3" href="$common_2LoggerInitialize_8cpp.html" title="Initialisation du système de Log pour les tests unitaires." alt="" coords="251,80,490,107"/>
+<area shape="rect" id="node4" href="$LoggerTest_8cpp.html" title="Implémentation des tests de la classe logs::Logger." alt="" coords="514,80,723,107"/>
+<area shape="rect" id="node5" href="$driver_2LoggerInitialize_8cpp.html" title="Initialisation du systeme de Log pour les tests driver." alt="" coords="747,80,967,107"/>
+<area shape="rect" id="node6" href="$manual_2LoggerInitialize_8cpp.html" title="Initialisation du systeme de Log pour les tests manuels." alt="" coords="991,80,1222,107"/>
+<area shape="rect" id="node7" href="$UnitTest_8cpp.html" title="Implémentation de la classe DevUnitTest." alt="" coords="1246,80,1413,107"/>
+<area shape="rect" id="node8" href="$UnitTestAppender_8cpp.html" title="Implémentation de la classe UnitTestAppender." alt="" coords="1437,80,1665,107"/>
+<area shape="rect" id="node9" href="$UnitTestSuite_8cpp.html" title="Implementation de la classe UnitTestSuite." alt="" coords="1689,80,1889,107"/>
 </map>

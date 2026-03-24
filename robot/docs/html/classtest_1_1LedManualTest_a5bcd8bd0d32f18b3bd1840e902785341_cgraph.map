@@ -1,0 +1,10 @@
+<map id="test::LedManualTest::suite" name="test::LedManualTest::suite">
+<area shape="rect" id="node1" title="Execute les tests associés à la classe." alt="" coords="5,49,157,90"/>
+<area shape="rect" id="node2" href="$classtest_1_1LedManualTest.html#a2194b42491f61e03e69fcb5c4fc69962" title="Alterne les patterns 0xAA et 0x55 (verification visuelle)." alt="" coords="205,15,367,57"/>
+<area shape="rect" id="node8" href="$classtest_1_1LedManualTest.html#ad2b46f866993429420e02e6f24f26c4e" title="Allume/eteint chaque LED une par une (verification visuelle)." alt="" coords="210,81,362,122"/>
+<area shape="rect" id="node3" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="415,56,496,83"/>
+<area shape="rect" id="node4" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#a0e4fd77693fd899ec1b0670354f93a02" title="Cette méthode valide le message en cours de construction et le transmet au Logger de référence." alt="" coords="544,56,768,83"/>
+<area shape="rect" id="node5" href="$classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32" title="Verrouille le mutex. Cette méthode doit être appelée avant d&#39;utiliser la ressource associée...." alt="" coords="849,5,983,32"/>
+<area shape="rect" id="node6" href="$classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3" title="Déverrouille le mutex. Cette méthode doit être appelée après avoir utiliser la ressource associée." alt="" coords="841,56,991,83"/>
+<area shape="rect" id="node7" href="$classlogs_1_1Logger.html#afa535aaf4891e02c4ff7f84d372b5b1b" title="Méthode générique de trace d&#39;un message." alt="" coords="816,107,1016,133"/>
+</map>

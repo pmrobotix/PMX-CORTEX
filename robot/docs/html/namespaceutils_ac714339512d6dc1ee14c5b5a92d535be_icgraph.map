@@ -1,6 +1,6 @@
 <map id="utils::set_realtime_priority" name="utils::set_realtime_priority">
 <area shape="rect" id="node1" title="Définit la priorité temps&#45;réel (SCHED_FIFO) du thread spécifié." alt="" coords="473,97,613,138"/>
-<area shape="rect" id="node2" href="$Main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="327,79,382,105"/>
+<area shape="rect" id="node2" href="$bench_2Main_8cpp.html#a2c3f6775325c30275d11c6abee2db6a0" title=" " alt="" coords="327,79,382,105"/>
 <area shape="rect" id="node3" href="$classutils_1_1Thread.html#a430ee2b8962147b587157fac97932219" title="Lance le thread." alt="" coords="284,129,425,156"/>
 <area shape="rect" id="node4" href="$classtest_1_1ThreadTest.html#a3ab4926fa019981bd51a7464be5cf4be" title="Vérifie que cancel() arrête un thread en cours." alt="" coords="19,5,222,32"/>
 <area shape="rect" id="node5" href="$classtest_1_1ThreadTest.html#a73ccd5f8b000f4af46063730ebe33bc1" title="Vérifie que plusieurs threads concurrents avec Mutex produisent un résultat cohérent." alt="" coords="5,57,236,98"/>

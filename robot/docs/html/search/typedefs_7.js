@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['value_5ftype_1109',['value_type',['../classutils_1_1PointerList.html#af1c536b3d0d508b69700ad038ea5279a',1,'utils::PointerList']]]
+  ['has_5ferase_5fwith_5fkey_5ftype_3227',['has_erase_with_key_type',['../namespacedetail.html#abd4a9f5dc3f5e2b43c8dc87698d6d689',1,'detail']]]
 ];

@@ -949,6 +949,66 @@ test/
 | AsservDriverTest | Non — `assert(true)` | `driver/` (+ assertions réelles) |
 | SensorDriverTest | Non — `assert(true)` | `driver/` (+ assertions réelles) |
 
+## Déploiement ARM (OPOS6UL)
+
+### Principe
+
+Le binaire est compilé en cross-compilation (preset `arm-release`), strippé pour réduire
+sa taille, puis envoyé sur la carte OPOS6UL via `scp`. L'authentification utilise `sshpass`.
+
+### Prérequis
+
+```bash
+sudo apt install sshpass
+```
+
+### Adresses IP de la carte
+
+| Interface | IP | Usage |
+|---|---|---|
+| eth0 (câble direct) | `192.168.2.105` | En atelier, connexion fiable |
+| WiFi 5GHz AP | `192.168.3.103` | Sur le terrain, sans câble |
+| WiFi PMX | `192.168.2.107` | Réseau local PMX |
+| WiFi maison | `192.168.0.205` | Dev à domicile |
+
+### Utilisation
+
+#### Via VSCode (recommandé)
+
+Raccourci : **Ctrl+Shift+T** → menu des tasks :
+
+| Task | Description |
+|---|---|
+| `ARM: Deploy` | Build ARM + strip + scp vers `/root/pmx/` |
+| `ARM: Deploy + Run` | Idem + exécute sur la carte via SSH |
+| `ARM: Connect SSH` | Terminal SSH interactif dans `/root/pmx/` |
+| `ARM: Recup SVG` | Rapatrie les fichiers SVG depuis la carte |
+
+Chaque task demande l'IP et le binaire via des menus déroulants.
+
+#### Via ligne de commande
+
+```bash
+cd robot/
+
+# Deploy seulement
+bash sh/deploy.sh 192.168.2.105 driver-test
+
+# Deploy + exécute
+bash sh/deploy.sh 192.168.2.105 driver-test run
+
+# Autres cibles : common-test, manual-test, bench, opos6ul
+bash sh/deploy.sh 192.168.3.103 opos6ul run
+```
+
+### Script `sh/deploy.sh`
+
+Étapes exécutées :
+1. `cmake --preset arm-release` + `cmake --build` sur la target demandée
+2. Strip du binaire (toolchain ARM)
+3. `scp` vers `root@IP:/root/pmx/`
+4. (optionnel) `ssh` pour exécuter le binaire
+
 ## Documentation Doxygen
 
 Le code utilise des commentaires Doxygen (`\file`, `\brief`, `\param`, `\return`) pour documenter

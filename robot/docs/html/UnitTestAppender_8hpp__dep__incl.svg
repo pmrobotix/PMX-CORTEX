@@ -46,7 +46,7 @@ if (edges && edges.length) {
         </defs>
 
 <script type="text/javascript">
-var viewWidth = 863;
+var viewWidth = 1421;
 var viewHeight = 84;
 var sectionId = 'dynsection-1';
 </script>
@@ -54,90 +54,135 @@ var sectionId = 'dynsection-1';
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>test/suite/UnitTestAppender.hpp</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-80 858.5,-80 858.5,4 -4,4"/>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-80 1417,-80 1417,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title="Définition de la classe UnitTestAppender utilisant le memory Appender.">
-<polygon fill="#bfbfbf" stroke="black" points="348.5,-56.5 348.5,-75.5 520.5,-75.5 520.5,-56.5 348.5,-56.5"/>
-<text text-anchor="middle" x="434.5" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">test/suite/UnitTestAppender.hpp</text>
+<polygon fill="#bfbfbf" stroke="black" points="646,-56.5 646,-75.5 818,-75.5 818,-56.5 646,-56.5"/>
+<text text-anchor="middle" x="732" y="-63.5" font-family="Helvetica,sans-Serif" font-size="10.00">test/suite/UnitTestAppender.hpp</text>
 </a>
 </g>
 </g>
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="LoggerInitialize_8cpp.html" target="_top" xlink:title="Initialisation du système de Log pour les tests unitaires.">
-<polygon fill="white" stroke="black" points="0,-0.5 0,-19.5 179,-19.5 179,-0.5 0,-0.5"/>
-<text text-anchor="middle" x="89.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">test/common/LoggerInitialize.cpp</text>
+<g id="a_node2"><a xlink:href="bench_2LoggerInitialize_8cpp.html" target="_top" xlink:title="Initialisation du systeme de Log pour les benchmarks.">
+<polygon fill="white" stroke="black" points="0,-0.5 0,-19.5 166,-19.5 166,-0.5 0,-0.5"/>
+<text text-anchor="middle" x="83" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">test/bench/LoggerInitialize.cpp</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge1" class="edge">
 <title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M369.68,-54.85C304.49,-44.65 205.12,-29.1 143.91,-19.52"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="369.41,-58.35 379.83,-56.44 370.5,-51.44 369.41,-58.35"/>
+<path fill="none" stroke="midnightblue" d="M635.43,-57.7C524.32,-49.18 336.41,-34.41 175,-20 172.12,-19.74 169.2,-19.48 166.24,-19.21"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="635.37,-61.2 645.61,-58.48 635.9,-54.22 635.37,-61.2"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="LoggerTest_8cpp.html" target="_top" xlink:title="Implémentation des tests de la classe logs::Logger.">
-<polygon fill="white" stroke="black" points="197,-0.5 197,-19.5 354,-19.5 354,-0.5 197,-0.5"/>
-<text text-anchor="middle" x="275.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">test/common/LoggerTest.cpp</text>
+<g id="a_node3"><a xlink:href="common_2LoggerInitialize_8cpp.html" target="_top" xlink:title="Initialisation du système de Log pour les tests unitaires.">
+<polygon fill="white" stroke="black" points="184.5,-0.5 184.5,-19.5 363.5,-19.5 363.5,-0.5 184.5,-0.5"/>
+<text text-anchor="middle" x="274" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">test/common/LoggerInitialize.cpp</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node3 -->
 <g id="edge2" class="edge">
 <title>Node1&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M399.67,-53.17C369.73,-43 327.28,-28.59 300.58,-19.52"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="398.71,-56.54 409.31,-56.44 400.96,-49.91 398.71,-56.54"/>
+<path fill="none" stroke="midnightblue" d="M649.65,-55.29C563.24,-45.1 428.76,-29.25 346.32,-19.53"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="649.34,-58.78 659.68,-56.47 650.16,-51.83 649.34,-58.78"/>
 </g>
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="UnitTest_8cpp.html" target="_top" xlink:title="Implémentation de la classe DevUnitTest.">
-<polygon fill="white" stroke="black" points="372,-0.5 372,-19.5 497,-19.5 497,-0.5 372,-0.5"/>
-<text text-anchor="middle" x="434.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">test/suite/UnitTest.cpp</text>
+<g id="a_node4"><a xlink:href="LoggerTest_8cpp.html" target="_top" xlink:title="Implémentation des tests de la classe logs::Logger.">
+<polygon fill="white" stroke="black" points="381.5,-0.5 381.5,-19.5 538.5,-19.5 538.5,-0.5 381.5,-0.5"/>
+<text text-anchor="middle" x="460" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">test/common/LoggerTest.cpp</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node4 -->
 <g id="edge3" class="edge">
 <title>Node1&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M434.5,-45.8C434.5,-36.91 434.5,-26.78 434.5,-19.75"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="431,-46.08 434.5,-56.08 438,-46.08 431,-46.08"/>
+<path fill="none" stroke="midnightblue" d="M678.98,-54.47C627.57,-44.27 550.56,-28.98 502.9,-19.52"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="678.41,-57.93 688.9,-56.44 679.77,-51.06 678.41,-57.93"/>
 </g>
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="UnitTestAppender_8cpp.html" target="_top" xlink:title="Implémentation de la classe UnitTestAppender.">
-<polygon fill="white" stroke="black" points="515,-0.5 515,-19.5 686,-19.5 686,-0.5 515,-0.5"/>
-<text text-anchor="middle" x="600.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">test/suite/UnitTestAppender.cpp</text>
+<g id="a_node5"><a xlink:href="driver_2LoggerInitialize_8cpp.html" target="_top" xlink:title="Initialisation du systeme de Log pour les tests driver.">
+<polygon fill="white" stroke="black" points="556.5,-0.5 556.5,-19.5 721.5,-19.5 721.5,-0.5 556.5,-0.5"/>
+<text text-anchor="middle" x="639" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">test/driver/LoggerInitialize.cpp</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node5 -->
 <g id="edge4" class="edge">
 <title>Node1&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M470.45,-53.3C501.73,-43.13 546.32,-28.62 574.32,-19.52"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="469.23,-50.02 460.8,-56.44 471.4,-56.68 469.23,-50.02"/>
+<path fill="none" stroke="midnightblue" d="M708.19,-51.18C691.08,-41.24 668.53,-28.15 653.9,-19.65"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="706.65,-54.33 717.06,-56.32 710.17,-48.28 706.65,-54.33"/>
 </g>
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
-<g id="a_node6"><a xlink:href="UnitTestSuite_8cpp.html" target="_top" xlink:title="Implementation de la classe UnitTestSuite.">
-<polygon fill="white" stroke="black" points="704.5,-0.5 704.5,-19.5 854.5,-19.5 854.5,-0.5 704.5,-0.5"/>
-<text text-anchor="middle" x="779.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">test/suite/UnitTestSuite.cpp</text>
+<g id="a_node6"><a xlink:href="manual_2LoggerInitialize_8cpp.html" target="_top" xlink:title="Initialisation du systeme de Log pour les tests manuels.">
+<polygon fill="white" stroke="black" points="739.5,-0.5 739.5,-19.5 912.5,-19.5 912.5,-0.5 739.5,-0.5"/>
+<text text-anchor="middle" x="826" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">test/manual/LoggerInitialize.cpp</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node6 -->
 <g id="edge5" class="edge">
 <title>Node1&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M499.32,-54.85C564.51,-44.65 663.88,-29.1 725.09,-19.52"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="498.5,-51.44 489.17,-56.44 499.59,-58.35 498.5,-51.44"/>
+<path fill="none" stroke="midnightblue" d="M756.06,-51.18C773.36,-41.24 796.15,-28.15 810.93,-19.65"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="754.03,-48.31 747.1,-56.32 757.52,-54.38 754.03,-48.31"/>
+</g>
+<!-- Node7 -->
+<g id="node7" class="node">
+<title>Node7</title>
+<g id="a_node7"><a xlink:href="UnitTest_8cpp.html" target="_top" xlink:title="Implémentation de la classe DevUnitTest.">
+<polygon fill="white" stroke="black" points="930.5,-0.5 930.5,-19.5 1055.5,-19.5 1055.5,-0.5 930.5,-0.5"/>
+<text text-anchor="middle" x="993" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">test/suite/UnitTest.cpp</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node7 -->
+<g id="edge6" class="edge">
+<title>Node1&#45;&gt;Node7</title>
+<path fill="none" stroke="midnightblue" d="M783.19,-54.41C832.51,-44.2 906.19,-28.96 951.84,-19.52"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="782.44,-50.99 773.36,-56.44 783.86,-57.84 782.44,-50.99"/>
+</g>
+<!-- Node8 -->
+<g id="node8" class="node">
+<title>Node8</title>
+<g id="a_node8"><a xlink:href="UnitTestAppender_8cpp.html" target="_top" xlink:title="Implémentation de la classe UnitTestAppender.">
+<polygon fill="white" stroke="black" points="1073.5,-0.5 1073.5,-19.5 1244.5,-19.5 1244.5,-0.5 1073.5,-0.5"/>
+<text text-anchor="middle" x="1159" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">test/suite/UnitTestAppender.cpp</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node8 -->
+<g id="edge7" class="edge">
+<title>Node1&#45;&gt;Node8</title>
+<path fill="none" stroke="midnightblue" d="M809.75,-55.17C890.37,-44.97 1015.11,-29.2 1091.66,-19.52"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="809.14,-51.72 799.66,-56.44 810.02,-58.66 809.14,-51.72"/>
+</g>
+<!-- Node9 -->
+<g id="node9" class="node">
+<title>Node9</title>
+<g id="a_node9"><a xlink:href="UnitTestSuite_8cpp.html" target="_top" xlink:title="Implementation de la classe UnitTestSuite.">
+<polygon fill="white" stroke="black" points="1263,-0.5 1263,-19.5 1413,-19.5 1413,-0.5 1263,-0.5"/>
+<text text-anchor="middle" x="1338" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">test/suite/UnitTestSuite.cpp</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node9 -->
+<g id="edge8" class="edge">
+<title>Node1&#45;&gt;Node9</title>
+<path fill="none" stroke="midnightblue" d="M828.66,-57.27C933.48,-48.75 1105.7,-34.34 1254,-20 1256.92,-19.72 1259.9,-19.42 1262.9,-19.12"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="828.1,-53.81 818.41,-58.1 828.66,-60.78 828.1,-53.81"/>
 </g>
 </g>
 </svg>

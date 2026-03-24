@@ -104,26 +104,21 @@ void logs::TelemetryAppender::writeMessage(const logs::Logger &logger, const log
 void logs::TelemetryAppender::writeMessageWithJsonTime(std::string id, const logs::Logger & logger, const logs::Level &level,
         const std::string & message)
 {
-    //TODO CORRIGER l'ERRUEUR qui intervient de temps en temps sur nlohmann
-
-
     uint64_t duration = (duration_cast<microseconds>(system_clock::now() - start_).count());
     uint64_t ms = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
     nlohmann::json j;
     j[id]["timestamp"] = (double)(ms/1000.0); //pour avoir les millisseconds 3 chiffres apres la virgule
     j[id]["elapsedtime_ms"] = (double)(duration/1000.0);
 
-
     if (level == logs::Level::TELEM) {
         try
         {
             j[id][logger.name()] = nlohmann::json::parse(message);
-        }catch(const std::exception& e)
+        }
+        catch(const std::exception& e)
         {
-            std::cout << e.what(); // information from length_error printed
-            std::cout << "!!!!!!!ERROR msg is" << message << std::endl;
-            sleep(1);
-            exit(0);
+            // Message TELEM non-JSON : stocker le message brut en fallback
+            j[id][logger.name()] = message;
         }
     }
     else if (level == logs::Level::ERROR) {

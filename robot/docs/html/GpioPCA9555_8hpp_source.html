@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot:  Fichier source de src/driver-arm/GpioPCA9555.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_a369de7a6c9198ab5056a0bc5cf5ea3e.html">driver-arm</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">GpioPCA9555.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="GpioPCA9555_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#ifndef OPOS6UL_GPIO_PCA9555_HPP</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define OPOS6UL_GPIO_PCA9555_HPP</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;as_devices/cpp/as_i2c.hpp&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="LoggerFactory_8hpp.html">log/LoggerFactory.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="GpioPCA9555_8hpp.html#afada43ef75977ee2d6affe27b63592e7">   17</a></span>&#160;<span class="preprocessor">#define GPIOBOARD_PCA9555        0x24</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">// Registres PCA9555</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="GpioPCA9555_8hpp.html#ad5d243facb2f0b60bae4e2bcd4507133">   20</a></span>&#160;<span class="preprocessor">#define IN_P0           0x00 </span></div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="GpioPCA9555_8hpp.html#aae8ab17c66ca2200c187994907d6b16c">   21</a></span>&#160;<span class="preprocessor">#define IN_P1           0x01 </span></div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="GpioPCA9555_8hpp.html#a90c98bc31603eaf644c72656b48f5cff">   22</a></span>&#160;<span class="preprocessor">#define OUT_P0          0x02 </span></div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="GpioPCA9555_8hpp.html#a6ebb86f05678172c35a63b3543683ac0">   23</a></span>&#160;<span class="preprocessor">#define OUT_P1          0x03 </span></div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="GpioPCA9555_8hpp.html#a236702c8f9bbd04b12151d53751479c4">   24</a></span>&#160;<span class="preprocessor">#define INV_P0          0x04 </span></div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="GpioPCA9555_8hpp.html#a9f4a7cb71447f0f7078def6685858e9a">   25</a></span>&#160;<span class="preprocessor">#define INV_P1          0x05 </span></div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="GpioPCA9555_8hpp.html#a8ce1f52d19af060466222c2c37dd04d6">   26</a></span>&#160;<span class="preprocessor">#define CONFIG_P0       0x06 </span></div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="GpioPCA9555_8hpp.html#a99732f7c96d976f153270f3f27911274">   27</a></span>&#160;<span class="preprocessor">#define CONFIG_P1       0x07 </span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="GpioPCA9555_8hpp.html#a5666ac5930c9f903698073ab1fa694f7">   29</a></span>&#160;<span class="preprocessor">#define PAUSE 200000 </span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classGpioPCA9555.html">   37</a></span>&#160;<span class="keyword">class </span><a class="code" href="classGpioPCA9555.html">GpioPCA9555</a></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;{</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classGpioPCA9555.html#a0693bc4682685e552dd16bb29ca90210">   41</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a> &amp; <a class="code" href="classGpioPCA9555.html#a0693bc4682685e552dd16bb29ca90210">logger</a>()</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a> &amp; <a class="code" href="classGpioPCA9555.html#af9f8fb2ed90d56abc86cfb06d2033441">instance</a> = <a class="code" href="classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e">logs::LoggerFactory::logger</a>(<span class="stringliteral">&quot;GpioPCA9555.OPO&quot;</span>);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classGpioPCA9555.html#af9f8fb2ed90d56abc86cfb06d2033441">instance</a>;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    }</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classGpioPCA9555.html#a04a4788af6f382478eb1df7460ca4301">   47</a></span>&#160;    AsI2c <a class="code" href="classGpioPCA9555.html#a04a4788af6f382478eb1df7460ca4301">i2cGB_</a>;           </div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classGpioPCA9555.html#a32678851bf3816c70ff3498d41e7d75a">   48</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classGpioPCA9555.html#a32678851bf3816c70ff3498d41e7d75a">connected_</a>;        </div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classGpioPCA9555.html#a70b7cf98bdafeb9cc6217b37849ca6eb">   49</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classGpioPCA9555.html#a70b7cf98bdafeb9cc6217b37849ca6eb">port0Value_</a>;        </div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="classGpioPCA9555.html#a5fe2b6709dcb463bbc5bfaafb0f8d1fe">   50</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classGpioPCA9555.html#a5fe2b6709dcb463bbc5bfaafb0f8d1fe">port1Value_</a>;        </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="classGpioPCA9555.html#ab8f016507f47f398c1027374ea717cef">GpioPCA9555</a>();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">long</span> <a class="code" href="classGpioPCA9555.html#ad7527f1c102147b8921b3b4274947a6c">write_i2c</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> command, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> value);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">long</span> <a class="code" href="classGpioPCA9555.html#abe90c236ba79417fb5b4b9ba635c3b97">read_i2c</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> command);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="classGpioPCA9555.html#af9f8fb2ed90d56abc86cfb06d2033441">   78</a></span>&#160;    <span class="keyword">static</span> <a class="code" href="classGpioPCA9555.html">GpioPCA9555</a> &amp; <a class="code" href="classGpioPCA9555.html#af9f8fb2ed90d56abc86cfb06d2033441">instance</a>()</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    {</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keyword">static</span> <a class="code" href="classGpioPCA9555.html">GpioPCA9555</a> <a class="code" href="classGpioPCA9555.html#af9f8fb2ed90d56abc86cfb06d2033441">instance</a>;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classGpioPCA9555.html#af9f8fb2ed90d56abc86cfb06d2033441">instance</a>;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="classGpioPCA9555.html#a3f8929052c69810d59ef143e94af23ad">   84</a></span>&#160;    <span class="keyword">virtual</span> <span class="keyword">inline</span> <a class="code" href="classGpioPCA9555.html#a3f8929052c69810d59ef143e94af23ad">~GpioPCA9555</a>()</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    {</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    }</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classGpioPCA9555.html#ada56d6ac5d165229e1a2e7e50387a376">begin</a>();</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="classGpioPCA9555.html#adca3966252205ecd62523e39fc8e02d2">   98</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classGpioPCA9555.html#adca3966252205ecd62523e39fc8e02d2">isConnected</a>()</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    {</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classGpioPCA9555.html#a32678851bf3816c70ff3498d41e7d75a">connected_</a>;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    }</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classGpioPCA9555.html#a22dbebb8c5fffe0d0c119c6d958276e7">getValueP1</a>(<span class="keywordtype">int</span> pin);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGpioPCA9555.html#a275bd8ed5c0b8bf2e22ea488ecf06456">setValueP0</a>(<span class="keywordtype">int</span> port, <span class="keywordtype">int</span> pin, <span class="keywordtype">int</span> value);</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGpioPCA9555.html#a6cde1194bb5855ed2e59c7f29ba5e81e">setOnP0</a>(<span class="keywordtype">int</span> pin);</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGpioPCA9555.html#aec22091c7c82bb5d1723cdecaf968a7a">setOffP0</a>(<span class="keywordtype">int</span> pin);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classGpioPCA9555.html#a700aff89e3f53630ec2e77a3755174a4">setup</a>();</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;};</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aLoggerFactory_8hpp_html"><div class="ttname"><a href="LoggerFactory_8hpp.html">LoggerFactory.hpp</a></div><div class="ttdoc">Définition de la classe LoggerFactory.</div></div>
+<div class="ttc" id="aclassGpioPCA9555_html"><div class="ttname"><a href="classGpioPCA9555.html">GpioPCA9555</a></div><div class="ttdoc">Driver singleton pour le GPIO expander PCA9555 via I2C.</div><div class="ttdef"><b>Definition:</b> GpioPCA9555.hpp:38</div></div>
+<div class="ttc" id="aclassGpioPCA9555_html_a04a4788af6f382478eb1df7460ca4301"><div class="ttname"><a href="classGpioPCA9555.html#a04a4788af6f382478eb1df7460ca4301">GpioPCA9555::i2cGB_</a></div><div class="ttdeci">AsI2c i2cGB_</div><div class="ttdoc">Bus I2C.</div><div class="ttdef"><b>Definition:</b> GpioPCA9555.hpp:47</div></div>
+<div class="ttc" id="aclassGpioPCA9555_html_a0693bc4682685e552dd16bb29ca90210"><div class="ttname"><a href="classGpioPCA9555.html#a0693bc4682685e552dd16bb29ca90210">GpioPCA9555::logger</a></div><div class="ttdeci">static const logs::Logger &amp; logger()</div><div class="ttdef"><b>Definition:</b> GpioPCA9555.hpp:41</div></div>
+<div class="ttc" id="aclassGpioPCA9555_html_a22dbebb8c5fffe0d0c119c6d958276e7"><div class="ttname"><a href="classGpioPCA9555.html#a22dbebb8c5fffe0d0c119c6d958276e7">GpioPCA9555::getValueP1</a></div><div class="ttdeci">int getValueP1(int pin)</div><div class="ttdoc">Lit la valeur d'un pin du port1 (entrees).</div><div class="ttdef"><b>Definition:</b> GpioPCA9555.cpp:67</div></div>
+<div class="ttc" id="aclassGpioPCA9555_html_a275bd8ed5c0b8bf2e22ea488ecf06456"><div class="ttname"><a href="classGpioPCA9555.html#a275bd8ed5c0b8bf2e22ea488ecf06456">GpioPCA9555::setValueP0</a></div><div class="ttdeci">void setValueP0(int port, int pin, int value)</div><div class="ttdoc">Ecrit une valeur sur un pin du port0 (sorties).</div><div class="ttdef"><b>Definition:</b> GpioPCA9555.cpp:40</div></div>
+<div class="ttc" id="aclassGpioPCA9555_html_a32678851bf3816c70ff3498d41e7d75a"><div class="ttname"><a href="classGpioPCA9555.html#a32678851bf3816c70ff3498d41e7d75a">GpioPCA9555::connected_</a></div><div class="ttdeci">bool connected_</div><div class="ttdoc">true si le PCA9555 est detecte.</div><div class="ttdef"><b>Definition:</b> GpioPCA9555.hpp:48</div></div>
+<div class="ttc" id="aclassGpioPCA9555_html_a3f8929052c69810d59ef143e94af23ad"><div class="ttname"><a href="classGpioPCA9555.html#a3f8929052c69810d59ef143e94af23ad">GpioPCA9555::~GpioPCA9555</a></div><div class="ttdeci">virtual ~GpioPCA9555()</div><div class="ttdef"><b>Definition:</b> GpioPCA9555.hpp:84</div></div>
+<div class="ttc" id="aclassGpioPCA9555_html_a5fe2b6709dcb463bbc5bfaafb0f8d1fe"><div class="ttname"><a href="classGpioPCA9555.html#a5fe2b6709dcb463bbc5bfaafb0f8d1fe">GpioPCA9555::port1Value_</a></div><div class="ttdeci">int port1Value_</div><div class="ttdoc">Valeur courante du port1 (entrees).</div><div class="ttdef"><b>Definition:</b> GpioPCA9555.hpp:50</div></div>
+<div class="ttc" id="aclassGpioPCA9555_html_a6cde1194bb5855ed2e59c7f29ba5e81e"><div class="ttname"><a href="classGpioPCA9555.html#a6cde1194bb5855ed2e59c7f29ba5e81e">GpioPCA9555::setOnP0</a></div><div class="ttdeci">void setOnP0(int pin)</div><div class="ttdoc">Active un pin du port0.</div><div class="ttdef"><b>Definition:</b> GpioPCA9555.cpp:57</div></div>
+<div class="ttc" id="aclassGpioPCA9555_html_a700aff89e3f53630ec2e77a3755174a4"><div class="ttname"><a href="classGpioPCA9555.html#a700aff89e3f53630ec2e77a3755174a4">GpioPCA9555::setup</a></div><div class="ttdeci">bool setup()</div><div class="ttdoc">Configure les registres de direction des ports.</div><div class="ttdef"><b>Definition:</b> GpioPCA9555.cpp:23</div></div>
+<div class="ttc" id="aclassGpioPCA9555_html_a70b7cf98bdafeb9cc6217b37849ca6eb"><div class="ttname"><a href="classGpioPCA9555.html#a70b7cf98bdafeb9cc6217b37849ca6eb">GpioPCA9555::port0Value_</a></div><div class="ttdeci">int port0Value_</div><div class="ttdoc">Valeur courante du port0 (sorties).</div><div class="ttdef"><b>Definition:</b> GpioPCA9555.hpp:49</div></div>
+<div class="ttc" id="aclassGpioPCA9555_html_ab8f016507f47f398c1027374ea717cef"><div class="ttname"><a href="classGpioPCA9555.html#ab8f016507f47f398c1027374ea717cef">GpioPCA9555::GpioPCA9555</a></div><div class="ttdeci">GpioPCA9555()</div><div class="ttdoc">Constructeur prive (singleton).</div><div class="ttdef"><b>Definition:</b> GpioPCA9555.cpp:12</div></div>
+<div class="ttc" id="aclassGpioPCA9555_html_abe90c236ba79417fb5b4b9ba635c3b97"><div class="ttname"><a href="classGpioPCA9555.html#abe90c236ba79417fb5b4b9ba635c3b97">GpioPCA9555::read_i2c</a></div><div class="ttdeci">long read_i2c(unsigned char command)</div><div class="ttdoc">Lit un octet depuis un registre I2C.</div><div class="ttdef"><b>Definition:</b> GpioPCA9555.cpp:85</div></div>
+<div class="ttc" id="aclassGpioPCA9555_html_ad7527f1c102147b8921b3b4274947a6c"><div class="ttname"><a href="classGpioPCA9555.html#ad7527f1c102147b8921b3b4274947a6c">GpioPCA9555::write_i2c</a></div><div class="ttdeci">long write_i2c(unsigned char command, unsigned char value)</div><div class="ttdoc">Ecrit un octet dans un registre I2C.</div><div class="ttdef"><b>Definition:</b> GpioPCA9555.cpp:80</div></div>
+<div class="ttc" id="aclassGpioPCA9555_html_ada56d6ac5d165229e1a2e7e50387a376"><div class="ttname"><a href="classGpioPCA9555.html#ada56d6ac5d165229e1a2e7e50387a376">GpioPCA9555::begin</a></div><div class="ttdeci">bool begin()</div><div class="ttdoc">Initialise la communication I2C et configure les ports.</div><div class="ttdef"><b>Definition:</b> GpioPCA9555.cpp:17</div></div>
+<div class="ttc" id="aclassGpioPCA9555_html_adca3966252205ecd62523e39fc8e02d2"><div class="ttname"><a href="classGpioPCA9555.html#adca3966252205ecd62523e39fc8e02d2">GpioPCA9555::isConnected</a></div><div class="ttdeci">bool isConnected()</div><div class="ttdoc">Verifie si le PCA9555 est connecte.</div><div class="ttdef"><b>Definition:</b> GpioPCA9555.hpp:98</div></div>
+<div class="ttc" id="aclassGpioPCA9555_html_aec22091c7c82bb5d1723cdecaf968a7a"><div class="ttname"><a href="classGpioPCA9555.html#aec22091c7c82bb5d1723cdecaf968a7a">GpioPCA9555::setOffP0</a></div><div class="ttdeci">void setOffP0(int pin)</div><div class="ttdoc">Desactive un pin du port0.</div><div class="ttdef"><b>Definition:</b> GpioPCA9555.cpp:62</div></div>
+<div class="ttc" id="aclassGpioPCA9555_html_af9f8fb2ed90d56abc86cfb06d2033441"><div class="ttname"><a href="classGpioPCA9555.html#af9f8fb2ed90d56abc86cfb06d2033441">GpioPCA9555::instance</a></div><div class="ttdeci">static GpioPCA9555 &amp; instance()</div><div class="ttdoc">Retourne l'instance unique (singleton).</div><div class="ttdef"><b>Definition:</b> GpioPCA9555.hpp:78</div></div>
+<div class="ttc" id="aclasslogs_1_1LoggerFactory_html_a82585b5de73e471e06cafdccc3b3721e"><div class="ttname"><a href="classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e">logs::LoggerFactory::logger</a></div><div class="ttdeci">static const Logger &amp; logger(const std::string &amp;name)</div><div class="ttdoc">Cette méthode statique retourne un Logger en fonction de son nom.</div><div class="ttdef"><b>Definition:</b> LoggerFactory.cpp:54</div></div>
+<div class="ttc" id="aclasslogs_1_1Logger_html"><div class="ttname"><a href="classlogs_1_1Logger.html">logs::Logger</a></div><div class="ttdoc">Classe de gestion des traces de l'application.</div><div class="ttdef"><b>Definition:</b> Logger.hpp:63</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Mardi 24 Mars 2026 23:42:29 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

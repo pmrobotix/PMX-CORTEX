@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot:  Fichier source de src/common/interface/ARobotPositionShared.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_fdedb0aba14d44ce9d99bc100e026e6a.html">common</a></li><li class="navelem"><a class="el" href="dir_c403bcb0997343f24f003e4263caa61d.html">interface</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">ARobotPositionShared.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="ARobotPositionShared_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="line" href="ARobotPositionShared_8hpp.html#ae9c2a6fe427c361b8ee5e4a6529346bb">    1</a></span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#ifndef _AROBOTPOSSHARED_HPP_</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#define _AROBOTPOSSHARED_HPP_</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;cmath&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Chronometer_8hpp.html">utils/Chronometer.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="ARobotPositionShared_8hpp.html#a3884f09273997d7f76583b737eca3f22">   20</a></span>&#160;<span class="keyword">enum</span> <a class="code" href="ARobotPositionShared_8hpp.html#a3884f09273997d7f76583b737eca3f22">MOVEMENT_DIRECTION</a> {</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="ARobotPositionShared_8hpp.html#a3884f09273997d7f76583b737eca3f22ac157bdf0b85a40d2619cbc8bc1ae5fe2">   21</a></span>&#160;    <a class="code" href="ARobotPositionShared_8hpp.html#a3884f09273997d7f76583b737eca3f22ac157bdf0b85a40d2619cbc8bc1ae5fe2">NONE</a>,       </div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="ARobotPositionShared_8hpp.html#a3884f09273997d7f76583b737eca3f22aa26736999186daf8146f809e863712a1">   22</a></span>&#160;    <a class="code" href="ARobotPositionShared_8hpp.html#a3884f09273997d7f76583b737eca3f22aa26736999186daf8146f809e863712a1">FORWARD</a>,    </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="ARobotPositionShared_8hpp.html#a3884f09273997d7f76583b737eca3f22afed2fca77e454294d6b8bda1bf2c9fd6">   23</a></span>&#160;    <a class="code" href="ARobotPositionShared_8hpp.html#a3884f09273997d7f76583b737eca3f22afed2fca77e454294d6b8bda1bf2c9fd6">BACKWARD</a>,   </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="ARobotPositionShared_8hpp.html#a3884f09273997d7f76583b737eca3f22a4e5add805436f8349199498326cf43d1">TURN</a>        </div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="ARobotPositionShared_8hpp.html#a3884f09273997d7f76583b737eca3f22a4e5add805436f8349199498326cf43d1">   25</a></span>&#160;};</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="structsRobotPosition.html">   30</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structsRobotPosition.html">sRobotPosition</a> {</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="structsRobotPosition.html#a27848e837507a10e02819478b8aac8ef">   31</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="structsRobotPosition.html#a27848e837507a10e02819478b8aac8ef">x</a>;                </div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="structsRobotPosition.html#ad0920843f24092875d622c74ca8bdb40">   32</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="structsRobotPosition.html#ad0920843f24092875d622c74ca8bdb40">y</a>;                </div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="structsRobotPosition.html#a03827a7014ce765c2759aece07f545b1">   33</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="structsRobotPosition.html#a03827a7014ce765c2759aece07f545b1">theta</a>;            </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="structsRobotPosition.html#ab2208f60510134a559cb7b025c868eac">   36</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structsRobotPosition.html#ab2208f60510134a559cb7b025c868eac">asservStatus</a>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="structsRobotPosition.html#a0c52e18eeefb55da164261a1008cfa95">   38</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="structsRobotPosition.html#a0c52e18eeefb55da164261a1008cfa95">queueSize</a>; </div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="structsRobotPosition.html#ad9287d38bfc15b5301c80da180c77ada">   39</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="structsRobotPosition.html#ad9287d38bfc15b5301c80da180c77ada">debug_nb</a>;  </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;};</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structsRobotPosition.html">sRobotPosition</a> <a class="code" href="structsRobotPosition.html">ROBOTPOSITION</a>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="ARobotPositionShared_8hpp.html#ae645817fbf89677ab8a3f779b4a10ae8">   48</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">float</span> <a class="code" href="ARobotPositionShared_8hpp.html#ae645817fbf89677ab8a3f779b4a10ae8">degToRad</a>(<span class="keywordtype">float</span> deg)</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;{</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordflow">return</span> deg * M_PI / 180.0;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;}</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="ARobotPositionShared_8hpp.html#a9adaec7e3e76bf5d807683cf34dca858">   58</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">float</span> <a class="code" href="ARobotPositionShared_8hpp.html#a9adaec7e3e76bf5d807683cf34dca858">radToDeg</a>(<span class="keywordtype">float</span> rad)</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;{</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordflow">return</span> rad * 180.0 / M_PI;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="ARobotPositionShared_8hpp.html#a97d050db4571270c3c0c48170e84aab5">   70</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="ARobotPositionShared_8hpp.html#a97d050db4571270c3c0c48170e84aab5">cmpf</a>(<span class="keywordtype">float</span> A, <span class="keywordtype">float</span> B, <span class="keywordtype">float</span> epsilon = 0.005f)</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;{</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordflow">return</span> (fabs(A - B) &lt; epsilon);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;}</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="ARobotPositionShared_8hpp.html#a45bb7dfd2e7442f6250b8d202cc75c7f">   80</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">float</span> <a class="code" href="ARobotPositionShared_8hpp.html#a45bb7dfd2e7442f6250b8d202cc75c7f">WrapAngle2PI</a>(<span class="keywordtype">float</span> rad)</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;{</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    rad = std::fmod(rad, 2.0 * M_PI);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordflow">if</span> (rad &lt; -M_PI) rad += (2.0 * M_PI);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordflow">if</span> (rad &gt; M_PI) rad -= (2.0 * M_PI);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordflow">return</span> rad;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;}</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="classARobotPositionShared.html">   94</a></span>&#160;<span class="keyword">class </span><a class="code" href="classARobotPositionShared.html">ARobotPositionShared</a> {</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="classARobotPositionShared.html#a1c0d90cc9ab90c46d6db36bda8bf268e">   98</a></span>&#160;    <a class="code" href="classutils_1_1Chronometer.html">utils::Chronometer</a> <a class="code" href="classARobotPositionShared.html#a1c0d90cc9ab90c46d6db36bda8bf268e">chrono_</a>;  </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="classARobotPositionShared.html#a326839c4f2d912f97c658ab7ec14d7e3">  104</a></span>&#160;    <span class="keyword">static</span> <a class="code" href="classARobotPositionShared.html">ARobotPositionShared</a>* <a class="code" href="classARobotPositionShared.html#a326839c4f2d912f97c658ab7ec14d7e3">create</a>();</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="classARobotPositionShared.html#a051d4c785a23df154911fa9f3840e195">  111</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="structsRobotPosition.html">ROBOTPOSITION</a> <a class="code" href="classARobotPositionShared.html#a051d4c785a23df154911fa9f3840e195">getRobotPosition</a>(<span class="keywordtype">int</span> debug = 0) = 0;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
+<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="classARobotPositionShared.html#a42f840a7c37b33555643005112dc1875">  117</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classARobotPositionShared.html#a42f840a7c37b33555643005112dc1875">setRobotPosition</a>(<a class="code" href="structsRobotPosition.html">ROBOTPOSITION</a> p) = 0;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00133"></a><span class="lineno"><a class="line" href="classARobotPositionShared.html#a14480af08789f17d82ec5ccac92be7cf">  133</a></span>&#160;    <a class="code" href="structsRobotPosition.html">ROBOTPOSITION</a> <a class="code" href="classARobotPositionShared.html#a14480af08789f17d82ec5ccac92be7cf">convertPositionBeaconToRepereTable</a>(<span class="keywordtype">float</span> d_mm, <span class="keywordtype">float</span> x_mm, <span class="keywordtype">float</span> y_mm, <span class="keywordtype">float</span> theta_deg,</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;            <span class="keywordtype">float</span> *x_botpos, <span class="keywordtype">float</span> *y_botpos)</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    {</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        <a class="code" href="structsRobotPosition.html">ROBOTPOSITION</a> p = <a class="code" href="classARobotPositionShared.html#a051d4c785a23df154911fa9f3840e195">getRobotPosition</a>(0);</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160; </div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        <span class="keywordtype">float</span> a = (p.<a class="code" href="structsRobotPosition.html#a03827a7014ce765c2759aece07f545b1">theta</a> - M_PI_2 + (theta_deg * M_PI / 180.0f));</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        a = <a class="code" href="ARobotPositionShared_8hpp.html#a45bb7dfd2e7442f6250b8d202cc75c7f">WrapAngle2PI</a>(a);</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        *x_botpos = p.<a class="code" href="structsRobotPosition.html#a27848e837507a10e02819478b8aac8ef">x</a> + (d_mm * cos(a));</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        *y_botpos = p.<a class="code" href="structsRobotPosition.html#ad0920843f24092875d622c74ca8bdb40">y</a> + (d_mm * sin(a));</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160; </div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        <span class="keywordflow">return</span> p;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    }</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160; </div>
+<div class="line"><a name="l00147"></a><span class="lineno"><a class="line" href="classARobotPositionShared.html#a7821aadad0d9b50e000a7f84c7e7d2db">  147</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classARobotPositionShared.html#a7821aadad0d9b50e000a7f84c7e7d2db">~ARobotPositionShared</a>()</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    {</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    }</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160; </div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
+<div class="line"><a name="l00153"></a><span class="lineno"><a class="line" href="classARobotPositionShared.html#a5b10a8dfc224143c540c1f01c01a1907">  153</a></span>&#160;    <a class="code" href="classARobotPositionShared.html#a5b10a8dfc224143c540c1f01c01a1907">ARobotPositionShared</a>() :</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;            <a class="code" href="classARobotPositionShared.html#a1c0d90cc9ab90c46d6db36bda8bf268e">chrono_</a>(<span class="stringliteral">&quot;ARobotPositionShared&quot;</span>)</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    {</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    }</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160; </div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;};</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aARobotPositionShared_8hpp_html_a3884f09273997d7f76583b737eca3f22"><div class="ttname"><a href="ARobotPositionShared_8hpp.html#a3884f09273997d7f76583b737eca3f22">MOVEMENT_DIRECTION</a></div><div class="ttdeci">MOVEMENT_DIRECTION</div><div class="ttdoc">Direction de deplacement du robot.</div><div class="ttdef"><b>Definition:</b> ARobotPositionShared.hpp:20</div></div>
+<div class="ttc" id="aARobotPositionShared_8hpp_html_a3884f09273997d7f76583b737eca3f22a4e5add805436f8349199498326cf43d1"><div class="ttname"><a href="ARobotPositionShared_8hpp.html#a3884f09273997d7f76583b737eca3f22a4e5add805436f8349199498326cf43d1">TURN</a></div><div class="ttdeci">@ TURN</div><div class="ttdoc">Rotation sur place.</div><div class="ttdef"><b>Definition:</b> ARobotPositionShared.hpp:24</div></div>
+<div class="ttc" id="aARobotPositionShared_8hpp_html_a3884f09273997d7f76583b737eca3f22aa26736999186daf8146f809e863712a1"><div class="ttname"><a href="ARobotPositionShared_8hpp.html#a3884f09273997d7f76583b737eca3f22aa26736999186daf8146f809e863712a1">FORWARD</a></div><div class="ttdeci">@ FORWARD</div><div class="ttdoc">Marche avant.</div><div class="ttdef"><b>Definition:</b> ARobotPositionShared.hpp:22</div></div>
+<div class="ttc" id="aARobotPositionShared_8hpp_html_a3884f09273997d7f76583b737eca3f22ac157bdf0b85a40d2619cbc8bc1ae5fe2"><div class="ttname"><a href="ARobotPositionShared_8hpp.html#a3884f09273997d7f76583b737eca3f22ac157bdf0b85a40d2619cbc8bc1ae5fe2">NONE</a></div><div class="ttdeci">@ NONE</div><div class="ttdoc">Aucun deplacement.</div><div class="ttdef"><b>Definition:</b> ARobotPositionShared.hpp:21</div></div>
+<div class="ttc" id="aARobotPositionShared_8hpp_html_a3884f09273997d7f76583b737eca3f22afed2fca77e454294d6b8bda1bf2c9fd6"><div class="ttname"><a href="ARobotPositionShared_8hpp.html#a3884f09273997d7f76583b737eca3f22afed2fca77e454294d6b8bda1bf2c9fd6">BACKWARD</a></div><div class="ttdeci">@ BACKWARD</div><div class="ttdoc">Marche arriere.</div><div class="ttdef"><b>Definition:</b> ARobotPositionShared.hpp:23</div></div>
+<div class="ttc" id="aARobotPositionShared_8hpp_html_a45bb7dfd2e7442f6250b8d202cc75c7f"><div class="ttname"><a href="ARobotPositionShared_8hpp.html#a45bb7dfd2e7442f6250b8d202cc75c7f">WrapAngle2PI</a></div><div class="ttdeci">float WrapAngle2PI(float rad)</div><div class="ttdoc">Normalise un angle dans l'intervalle ]-PI, PI].</div><div class="ttdef"><b>Definition:</b> ARobotPositionShared.hpp:80</div></div>
+<div class="ttc" id="aARobotPositionShared_8hpp_html_a97d050db4571270c3c0c48170e84aab5"><div class="ttname"><a href="ARobotPositionShared_8hpp.html#a97d050db4571270c3c0c48170e84aab5">cmpf</a></div><div class="ttdeci">bool cmpf(float A, float B, float epsilon=0.005f)</div><div class="ttdoc">Compare deux flottants avec une tolerance.</div><div class="ttdef"><b>Definition:</b> ARobotPositionShared.hpp:70</div></div>
+<div class="ttc" id="aARobotPositionShared_8hpp_html_a9adaec7e3e76bf5d807683cf34dca858"><div class="ttname"><a href="ARobotPositionShared_8hpp.html#a9adaec7e3e76bf5d807683cf34dca858">radToDeg</a></div><div class="ttdeci">float radToDeg(float rad)</div><div class="ttdoc">Convertit des radians en degres.</div><div class="ttdef"><b>Definition:</b> ARobotPositionShared.hpp:58</div></div>
+<div class="ttc" id="aARobotPositionShared_8hpp_html_ae645817fbf89677ab8a3f779b4a10ae8"><div class="ttname"><a href="ARobotPositionShared_8hpp.html#ae645817fbf89677ab8a3f779b4a10ae8">degToRad</a></div><div class="ttdeci">float degToRad(float deg)</div><div class="ttdoc">Convertit des degres en radians.</div><div class="ttdef"><b>Definition:</b> ARobotPositionShared.hpp:48</div></div>
+<div class="ttc" id="aChronometer_8hpp_html"><div class="ttname"><a href="Chronometer_8hpp.html">Chronometer.hpp</a></div><div class="ttdoc">Définition de la classe Chronometer.</div></div>
+<div class="ttc" id="aclassARobotPositionShared_html"><div class="ttname"><a href="classARobotPositionShared.html">ARobotPositionShared</a></div><div class="ttdoc">Interface abstraite d'acces a la position partagee du robot.</div><div class="ttdef"><b>Definition:</b> ARobotPositionShared.hpp:94</div></div>
+<div class="ttc" id="aclassARobotPositionShared_html_a051d4c785a23df154911fa9f3840e195"><div class="ttname"><a href="classARobotPositionShared.html#a051d4c785a23df154911fa9f3840e195">ARobotPositionShared::getRobotPosition</a></div><div class="ttdeci">virtual ROBOTPOSITION getRobotPosition(int debug=0)=0</div><div class="ttdoc">Lit la position courante du robot.</div></div>
+<div class="ttc" id="aclassARobotPositionShared_html_a14480af08789f17d82ec5ccac92be7cf"><div class="ttname"><a href="classARobotPositionShared.html#a14480af08789f17d82ec5ccac92be7cf">ARobotPositionShared::convertPositionBeaconToRepereTable</a></div><div class="ttdeci">ROBOTPOSITION convertPositionBeaconToRepereTable(float d_mm, float x_mm, float y_mm, float theta_deg, float *x_botpos, float *y_botpos)</div><div class="ttdoc">Convertit une position balise (polaire relative) en coordonnees table.</div><div class="ttdef"><b>Definition:</b> ARobotPositionShared.hpp:133</div></div>
+<div class="ttc" id="aclassARobotPositionShared_html_a1c0d90cc9ab90c46d6db36bda8bf268e"><div class="ttname"><a href="classARobotPositionShared.html#a1c0d90cc9ab90c46d6db36bda8bf268e">ARobotPositionShared::chrono_</a></div><div class="ttdeci">utils::Chronometer chrono_</div><div class="ttdoc">Chronometre pour mesurer les temps entre mises a jour.</div><div class="ttdef"><b>Definition:</b> ARobotPositionShared.hpp:98</div></div>
+<div class="ttc" id="aclassARobotPositionShared_html_a326839c4f2d912f97c658ab7ec14d7e3"><div class="ttname"><a href="classARobotPositionShared.html#a326839c4f2d912f97c658ab7ec14d7e3">ARobotPositionShared::create</a></div><div class="ttdeci">static ARobotPositionShared * create()</div><div class="ttdoc">Cree l'instance concrete selon la plateforme.</div></div>
+<div class="ttc" id="aclassARobotPositionShared_html_a42f840a7c37b33555643005112dc1875"><div class="ttname"><a href="classARobotPositionShared.html#a42f840a7c37b33555643005112dc1875">ARobotPositionShared::setRobotPosition</a></div><div class="ttdeci">virtual void setRobotPosition(ROBOTPOSITION p)=0</div><div class="ttdoc">Met a jour la position du robot.</div></div>
+<div class="ttc" id="aclassARobotPositionShared_html_a5b10a8dfc224143c540c1f01c01a1907"><div class="ttname"><a href="classARobotPositionShared.html#a5b10a8dfc224143c540c1f01c01a1907">ARobotPositionShared::ARobotPositionShared</a></div><div class="ttdeci">ARobotPositionShared()</div><div class="ttdef"><b>Definition:</b> ARobotPositionShared.hpp:153</div></div>
+<div class="ttc" id="aclassARobotPositionShared_html_a7821aadad0d9b50e000a7f84c7e7d2db"><div class="ttname"><a href="classARobotPositionShared.html#a7821aadad0d9b50e000a7f84c7e7d2db">ARobotPositionShared::~ARobotPositionShared</a></div><div class="ttdeci">virtual ~ARobotPositionShared()</div><div class="ttdef"><b>Definition:</b> ARobotPositionShared.hpp:147</div></div>
+<div class="ttc" id="aclassutils_1_1Chronometer_html"><div class="ttname"><a href="classutils_1_1Chronometer.html">utils::Chronometer</a></div><div class="ttdoc">Gestion d'un chronomètre.</div><div class="ttdef"><b>Definition:</b> Chronometer.hpp:28</div></div>
+<div class="ttc" id="astructsRobotPosition_html"><div class="ttname"><a href="structsRobotPosition.html">sRobotPosition</a></div><div class="ttdoc">Position et etat du robot sur la table.</div><div class="ttdef"><b>Definition:</b> ARobotPositionShared.hpp:30</div></div>
+<div class="ttc" id="astructsRobotPosition_html_a03827a7014ce765c2759aece07f545b1"><div class="ttname"><a href="structsRobotPosition.html#a03827a7014ce765c2759aece07f545b1">sRobotPosition::theta</a></div><div class="ttdeci">float theta</div><div class="ttdoc">Angle en radians.</div><div class="ttdef"><b>Definition:</b> ARobotPositionShared.hpp:33</div></div>
+<div class="ttc" id="astructsRobotPosition_html_a0c52e18eeefb55da164261a1008cfa95"><div class="ttname"><a href="structsRobotPosition.html#a0c52e18eeefb55da164261a1008cfa95">sRobotPosition::queueSize</a></div><div class="ttdeci">unsigned int queueSize</div><div class="ttdoc">Nombre de commandes en file d'attente.</div><div class="ttdef"><b>Definition:</b> ARobotPositionShared.hpp:38</div></div>
+<div class="ttc" id="astructsRobotPosition_html_a27848e837507a10e02819478b8aac8ef"><div class="ttname"><a href="structsRobotPosition.html#a27848e837507a10e02819478b8aac8ef">sRobotPosition::x</a></div><div class="ttdeci">float x</div><div class="ttdoc">Position X en millimetres.</div><div class="ttdef"><b>Definition:</b> ARobotPositionShared.hpp:31</div></div>
+<div class="ttc" id="astructsRobotPosition_html_ab2208f60510134a559cb7b025c868eac"><div class="ttname"><a href="structsRobotPosition.html#ab2208f60510134a559cb7b025c868eac">sRobotPosition::asservStatus</a></div><div class="ttdeci">int asservStatus</div><div class="ttdoc">Etat de l'asservissement : 0=idle, 1=running, 2=emergency stop, 3=blocked.</div><div class="ttdef"><b>Definition:</b> ARobotPositionShared.hpp:36</div></div>
+<div class="ttc" id="astructsRobotPosition_html_ad0920843f24092875d622c74ca8bdb40"><div class="ttname"><a href="structsRobotPosition.html#ad0920843f24092875d622c74ca8bdb40">sRobotPosition::y</a></div><div class="ttdeci">float y</div><div class="ttdoc">Position Y en millimetres.</div><div class="ttdef"><b>Definition:</b> ARobotPositionShared.hpp:32</div></div>
+<div class="ttc" id="astructsRobotPosition_html_ad9287d38bfc15b5301c80da180c77ada"><div class="ttname"><a href="structsRobotPosition.html#ad9287d38bfc15b5301c80da180c77ada">sRobotPosition::debug_nb</a></div><div class="ttdeci">unsigned int debug_nb</div><div class="ttdoc">Compteur de debug.</div><div class="ttdef"><b>Definition:</b> ARobotPositionShared.hpp:39</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Mardi 24 Mars 2026 23:42:28 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

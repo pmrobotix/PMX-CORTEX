@@ -1,45 +1,52 @@
 <map id="src/common/log/Level.hpp" name="src/common/log/Level.hpp">
-<area shape="rect" id="node1" title="Définition de la classe Level." alt="" coords="4544,5,4737,32"/>
-<area shape="rect" id="node2" href="$ConsoleAppender_8cpp.html" title="Implémentation de la classe ConsoleAppender." alt="" coords="160,333,350,375"/>
-<area shape="rect" id="node3" href="$Level_8cpp.html" title="Implémentation de la classe Level." alt="" coords="62,80,254,107"/>
-<area shape="rect" id="node4" href="$Logger_8hpp.html" title="Définition de la classe Logger." alt="" coords="1474,80,1676,107"/>
-<area shape="rect" id="node17" href="$LoggerInitialize_8cpp.html" title="Initialisation du système de Log pour les tests unitaires." alt="" coords="4321,341,4560,367"/>
-<area shape="rect" id="node18" href="$LoggerTest_8cpp.html" title="Implémentation des tests de la classe logs::Logger." alt="" coords="4493,430,4702,457"/>
-<area shape="rect" id="node20" href="$UnitTestAppender_8cpp.html" title="Implémentation de la classe UnitTestAppender." alt="" coords="4636,341,4864,367"/>
-<area shape="rect" id="node24" href="$LoggerFactory_8cpp.html" title="Implémentation de la classe LoggerFactory." alt="" coords="4517,251,4764,278"/>
-<area shape="rect" id="node25" href="$SvgWriter_8cpp.html" title="Implémentation de la classe SvgWriter." alt="" coords="62,251,282,278"/>
-<area shape="rect" id="node34" href="$LevelTest_8cpp.html" title="Implémentation des tests de la classe logs::Level." alt="" coords="4815,430,5015,457"/>
-<area shape="rect" id="node5" href="$MemoryAppender_8hpp.html" title="Définition de la classe MemoryAppender." alt="" coords="1121,155,1312,196"/>
-<area shape="rect" id="node9" href="$FileAppenderTest_8cpp.html" title="Implémentation des tests de la classe logs::FileAppender." alt="" coords="1242,423,1439,464"/>
-<area shape="rect" id="node13" href="$SvgAppenderTest_8cpp.html" title="Implémentation des tests de la classe logs::SvgAppender." alt="" coords="606,430,856,457"/>
-<area shape="rect" id="node19" href="$UnitTest_8cpp.html" title="Implémentation de la classe DevUnitTest." alt="" coords="1588,341,1754,367"/>
-<area shape="rect" id="node21" href="$UnitTestSuite_8cpp.html" title="Implementation de la classe UnitTestSuite." alt="" coords="1700,430,1900,457"/>
-<area shape="rect" id="node22" href="$Logger_8cpp.html" title="Implémentation de la classe Logger." alt="" coords="1638,162,1838,189"/>
-<area shape="rect" id="node23" href="$LoggerFactory_8hpp.html" title="Définition de la classe LoggerFactory." alt="" coords="1861,162,2108,189"/>
-<area shape="rect" id="node6" href="$ConsoleAppender_8hpp.html" title="Définition de la classe ConsoleAppender." alt="" coords="306,244,497,285"/>
-<area shape="rect" id="node7" href="$FileAppender_8hpp.html" title="Définition de la classe FileAppender." alt="" coords="1054,244,1245,285"/>
-<area shape="rect" id="node10" href="$MemoryAppender_8cpp.html" title="Implementation de la classe MemoryAppender." alt="" coords="788,244,978,285"/>
-<area shape="rect" id="node11" href="$SvgAppender_8hpp.html" title="Définition de la classe SvgAppender." alt="" coords="521,244,712,285"/>
-<area shape="rect" id="node14" href="$TelemetryAppender_8hpp.html" title="Définition de la classe TelemetryAppender." alt="" coords="1321,244,1512,285"/>
-<area shape="rect" id="node16" href="$UnitTestAppender_8hpp.html" title="Définition de la classe UnitTestAppender utilisant le memory Appender." alt="" coords="3299,251,3528,278"/>
-<area shape="rect" id="node8" href="$FileAppender_8cpp.html" title="Implémentation de la classe FileAppender." alt="" coords="953,333,1144,375"/>
-<area shape="rect" id="node12" href="$SvgAppender_8cpp.html" title="Implémentation de la classe SvgAppender." alt="" coords="636,333,826,375"/>
-<area shape="rect" id="node15" href="$TelemetryAppender_8cpp.html" title="Implémentation de la classe TelemetryAppender." alt="" coords="1270,333,1461,375"/>
-<area shape="rect" id="node26" href="$UnitTest_8hpp.html" title="Définition de la classe DevUnitTest." alt="" coords="2695,251,2863,278"/>
-<area shape="rect" id="node43" href="$UnitTestSuite_8hpp.html" title="Définition de la classe UnitTestSuite." alt="" coords="1778,341,1980,367"/>
-<area shape="rect" id="node27" href="$ChronometerTest_8hpp.html" title="Définition de la classe ChronometerTest." alt="" coords="3278,341,3528,367"/>
-<area shape="rect" id="node30" href="$ExceptionTest_8hpp.html" title="Définition de la classe ExceptionTest." alt="" coords="3553,341,3784,367"/>
-<area shape="rect" id="node32" href="$FileAppenderTest_8hpp.html" title="Définition de la classe FileAppenderTest." alt="" coords="2280,333,2478,375"/>
-<area shape="rect" id="node33" href="$LevelTest_8hpp.html" title="Définition de la classe LevelTest." alt="" coords="4044,341,4245,367"/>
-<area shape="rect" id="node35" href="$LoggerTest_8hpp.html" title="Définition de la classe LoggerTest." alt="" coords="3808,341,4019,367"/>
-<area shape="rect" id="node36" href="$MutexTest_8hpp.html" title="Définition de la classe MutexTest." alt="" coords="2553,341,2760,367"/>
-<area shape="rect" id="node38" href="$PointerListTest_8hpp.html" title="Définition de la classe PointerListTest." alt="" coords="2784,341,3019,367"/>
-<area shape="rect" id="node40" href="$SvgAppenderTest_8hpp.html" title="Définition de la classe SvgAppenderTest." alt="" coords="2004,341,2256,367"/>
-<area shape="rect" id="node41" href="$ThreadTest_8hpp.html" title="Définition de la classe ThreadTest." alt="" coords="3043,341,3254,367"/>
-<area shape="rect" id="node28" href="$ChronometerTest_8cpp.html" title="Implémentation des tests de la classe utils::Chronometer." alt="" coords="3279,430,3530,457"/>
-<area shape="rect" id="node29" href="$Main_8cpp.html" title="Point d&#39;entrée des tests unitaires common." alt="" coords="2850,430,3020,457"/>
-<area shape="rect" id="node31" href="$ExceptionTest_8cpp.html" title="Implémentation des tests de la classe logs::Exception." alt="" coords="3554,430,3783,457"/>
-<area shape="rect" id="node37" href="$MutexTest_8cpp.html" title="Implémentation des tests de la classe utils::Mutex." alt="" coords="2360,430,2566,457"/>
-<area shape="rect" id="node39" href="$PointerListTest_8cpp.html" title="Implémentation des tests de la classe utils::PointerList." alt="" coords="2591,430,2826,457"/>
-<area shape="rect" id="node42" href="$ThreadTest_8cpp.html" title="Implémentation des tests de la classe utils::Thread." alt="" coords="3044,430,3255,457"/>
+<area shape="rect" id="node1" title="Définition de la classe Level." alt="" coords="1269,5,1463,32"/>
+<area shape="rect" id="node2" href="$ConsoleAppender_8cpp.html" title="Implémentation de la classe ConsoleAppender." alt="" coords="5,333,196,375"/>
+<area shape="rect" id="node3" href="$Level_8cpp.html" title="Implémentation de la classe Level." alt="" coords="5734,80,5926,107"/>
+<area shape="rect" id="node4" href="$Logger_8hpp.html" title="Définition de la classe Logger." alt="" coords="3133,80,3335,107"/>
+<area shape="rect" id="node17" href="$bench_2LoggerInitialize_8cpp.html" title="Initialisation du systeme de Log pour les benchmarks." alt="" coords="1074,341,1295,367"/>
+<area shape="rect" id="node18" href="$common_2LoggerInitialize_8cpp.html" title="Initialisation du système de Log pour les tests unitaires." alt="" coords="1320,341,1559,367"/>
+<area shape="rect" id="node19" href="$LoggerTest_8cpp.html" title="Implémentation des tests de la classe logs::Logger." alt="" coords="1583,341,1792,367"/>
+<area shape="rect" id="node20" href="$driver_2LoggerInitialize_8cpp.html" title="Initialisation du systeme de Log pour les tests driver." alt="" coords="779,341,999,367"/>
+<area shape="rect" id="node21" href="$manual_2LoggerInitialize_8cpp.html" title="Initialisation du systeme de Log pour les tests manuels." alt="" coords="524,341,755,367"/>
+<area shape="rect" id="node23" href="$UnitTestAppender_8cpp.html" title="Implémentation de la classe UnitTestAppender." alt="" coords="272,341,500,367"/>
+<area shape="rect" id="node27" href="$LoggerFactory_8cpp.html" title="Implémentation de la classe LoggerFactory." alt="" coords="1695,251,1941,278"/>
+<area shape="rect" id="node28" href="$SvgWriter_8cpp.html" title="Implémentation de la classe SvgWriter." alt="" coords="5583,251,5803,278"/>
+<area shape="rect" id="node50" href="$LevelTest_8cpp.html" title="Implémentation des tests de la classe logs::Level." alt="" coords="5950,80,6150,107"/>
+<area shape="rect" id="node5" href="$MemoryAppender_8hpp.html" title="Définition de la classe MemoryAppender." alt="" coords="1429,155,1620,196"/>
+<area shape="rect" id="node9" href="$FileAppenderTest_8cpp.html" title="Implémentation des tests de la classe logs::FileAppender." alt="" coords="2246,333,2443,375"/>
+<area shape="rect" id="node13" href="$SvgAppenderTest_8cpp.html" title="Implémentation des tests de la classe logs::SvgAppender." alt="" coords="2467,341,2718,367"/>
+<area shape="rect" id="node22" href="$UnitTest_8cpp.html" title="Implémentation de la classe DevUnitTest." alt="" coords="4385,341,4552,367"/>
+<area shape="rect" id="node24" href="$UnitTestSuite_8cpp.html" title="Implementation de la classe UnitTestSuite." alt="" coords="2321,423,2521,449"/>
+<area shape="rect" id="node25" href="$Logger_8cpp.html" title="Implémentation de la classe Logger." alt="" coords="2649,162,2849,189"/>
+<area shape="rect" id="node26" href="$LoggerFactory_8hpp.html" title="Définition de la classe LoggerFactory." alt="" coords="3667,162,3913,189"/>
+<area shape="rect" id="node30" href="$GpioPCA9555_8cpp.html" title="Implementation du driver I2C PCA9555." alt="" coords="3196,341,3429,367"/>
+<area shape="rect" id="node31" href="$driver-arm_2SwitchDriver_8cpp.html" title="Implementation ARM du driver de switchs pour l&#39;OPOS6UL." alt="" coords="3454,341,3681,367"/>
+<area shape="rect" id="node33" href="$driver-arm_2LedDriver_8cpp.html" title="Implementation ARM du driver de LEDs pour l&#39;OPOS6UL." alt="" coords="5544,341,5751,367"/>
+<area shape="rect" id="node36" href="$ButtonDriver_8cpp.html" title="Implementation SIMU du driver de boutons." alt="" coords="5775,341,6008,367"/>
+<area shape="rect" id="node38" href="$driver-simu_2LedDriver_8cpp.html" title="Implementation SIMU du driver de LEDs." alt="" coords="2958,341,3171,367"/>
+<area shape="rect" id="node40" href="$SoundDriver_8cpp.html" title="Implementation SIMU du driver de son." alt="" coords="5289,341,5520,367"/>
+<area shape="rect" id="node6" href="$ConsoleAppender_8hpp.html" title="Définition de la classe ConsoleAppender." alt="" coords="411,244,601,285"/>
+<area shape="rect" id="node7" href="$FileAppender_8hpp.html" title="Définition de la classe FileAppender." alt="" coords="2168,244,2359,285"/>
+<area shape="rect" id="node10" href="$MemoryAppender_8cpp.html" title="Implementation de la classe MemoryAppender." alt="" coords="1429,244,1620,285"/>
+<area shape="rect" id="node11" href="$SvgAppender_8hpp.html" title="Définition de la classe SvgAppender." alt="" coords="2383,244,2573,285"/>
+<area shape="rect" id="node14" href="$TelemetryAppender_8hpp.html" title="Définition de la classe TelemetryAppender." alt="" coords="2708,244,2899,285"/>
+<area shape="rect" id="node16" href="$UnitTestAppender_8hpp.html" title="Définition de la classe UnitTestAppender utilisant le memory Appender." alt="" coords="1023,251,1253,278"/>
+<area shape="rect" id="node8" href="$FileAppender_8cpp.html" title="Implémentation de la classe FileAppender." alt="" coords="1816,333,2007,375"/>
+<area shape="rect" id="node12" href="$SvgAppender_8cpp.html" title="Implémentation de la classe SvgAppender." alt="" coords="2031,333,2221,375"/>
+<area shape="rect" id="node15" href="$TelemetryAppender_8cpp.html" title="Implémentation de la classe TelemetryAppender." alt="" coords="2743,333,2933,375"/>
+<area shape="rect" id="node29" href="$GpioPCA9555_8hpp.html" title="Driver I2C pour le GPIO expander PCA9555." alt="" coords="3417,251,3651,278"/>
+<area shape="rect" id="node32" href="$driver-arm_2LedDriver_8hpp.html" title="Implementation ARM du driver de LEDs pour l&#39;OPOS6UL." alt="" coords="4939,251,5147,278"/>
+<area shape="rect" id="node34" href="$driver-arm_2SwitchDriver_8hpp.html" title="Implementation ARM du driver de switchs pour l&#39;OPOS6UL." alt="" coords="3676,251,3904,278"/>
+<area shape="rect" id="node35" href="$ButtonDriver_8hpp.html" title="Implementation SIMU du driver de boutons." alt="" coords="5171,251,5406,278"/>
+<area shape="rect" id="node37" href="$driver-simu_2LedDriver_8hpp.html" title="Implementation SIMU du driver de LEDs." alt="" coords="3127,251,3341,278"/>
+<area shape="rect" id="node39" href="$SoundDriver_8hpp.html" title="Implementation SIMU du driver de son." alt="" coords="4684,251,4915,278"/>
+<area shape="rect" id="node41" href="$driver-simu_2SwitchDriver_8hpp.html" title="Implementation SIMU du driver de switchs et tirette." alt="" coords="4374,251,4609,278"/>
+<area shape="rect" id="node43" href="$LedDriverTest_8hpp.html" title="Test unitaire du driver de LEDs." alt="" coords="5054,341,5265,367"/>
+<area shape="rect" id="node45" href="$SwitchDriverTest_8hpp.html" title="Test unitaire du driver de switchs via l&#39;interface ASwitchDriver." alt="" coords="3931,333,4107,375"/>
+<area shape="rect" id="node46" href="$LedManualTest_8hpp.html" title="Test manuel visuel du driver de LEDs." alt="" coords="4131,341,4361,367"/>
+<area shape="rect" id="node47" href="$SwitchManualTest_8hpp.html" title="Test manuel de la tirette et des switchs arriere." alt="" coords="4577,333,4771,375"/>
+<area shape="rect" id="node48" href="$UnitTest_8hpp.html" title="Définition de la classe DevUnitTest." alt="" coords="4081,251,4249,278"/>
+<area shape="rect" id="node49" href="$UnitTestSuite_8hpp.html" title="Définition de la classe UnitTestSuite." alt="" coords="3705,341,3907,367"/>
+<area shape="rect" id="node42" href="$driver-simu_2SwitchDriver_8cpp.html" title="Implementation SIMU du driver de switchs et tirette." alt="" coords="4796,341,5029,367"/>
+<area shape="rect" id="node44" href="$LedDriverTest_8cpp.html" title="Implementation du test unitaire du driver de LEDs." alt="" coords="5055,423,5264,449"/>
 </map>

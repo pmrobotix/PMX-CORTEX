@@ -1,0 +1,10 @@
+<map id="test::SwitchDriverTest::suite" name="test::SwitchDriverTest::suite">
+<area shape="rect" id="node1" title="Execute les tests associés à la classe." alt="" coords="5,39,169,80"/>
+<area shape="rect" id="node2" href="$classtest_1_1SwitchDriverTest.html#a5aaa73c3d5fa79d72aa39ab105f3205b" title="Verifie que create() retourne une instance connectee." alt="" coords="217,5,381,47"/>
+<area shape="rect" id="node3" href="$classtest_1_1SwitchDriverTest.html#a5abc1bf1c5471d47c2a44441984fe6a6" title="Verifie les valeurs par defaut des switchs." alt="" coords="217,71,381,112"/>
+<area shape="rect" id="node4" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="429,78,511,105"/>
+<area shape="rect" id="node5" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#a0e4fd77693fd899ec1b0670354f93a02" title="Cette méthode valide le message en cours de construction et le transmet au Logger de référence." alt="" coords="559,78,783,105"/>
+<area shape="rect" id="node6" href="$classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32" title="Verrouille le mutex. Cette méthode doit être appelée avant d&#39;utiliser la ressource associée...." alt="" coords="863,27,998,54"/>
+<area shape="rect" id="node7" href="$classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3" title="Déverrouille le mutex. Cette méthode doit être appelée après avoir utiliser la ressource associée." alt="" coords="855,78,1006,105"/>
+<area shape="rect" id="node8" href="$classlogs_1_1Logger.html#afa535aaf4891e02c4ff7f84d372b5b1b" title="Méthode générique de trace d&#39;un message." alt="" coords="831,129,1031,155"/>
+</map>

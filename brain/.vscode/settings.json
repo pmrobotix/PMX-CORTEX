@@ -1,5 +1,7 @@
 {
     "platformio-ide.disableToolbar": true,
     "platformio-ide.activateOnlyOnPlatformIOProject": true,
-    "cmake.configureOnOpen": true
+    "cmake.configureOnOpen": false,
+    "cmake.autoSelectActiveFolder": false,
+    "cmake.enabledProjects": []
 }
