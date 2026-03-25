@@ -2,19 +2,28 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Build",
+            "label": "Build (ubit-test-pxt)",
             "type": "shell",
             "command": "./build.sh",
-            "group": "build",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
             "presentation": {
                 "reveal": "always",
                 "panel": "shared"
             }
         },
         {
-            "label": "Flash",
+            "label": "Flash (ubit-test-pxt)",
             "type": "shell",
             "command": "./flash.sh",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
             "group": "build",
             "presentation": {
                 "reveal": "always",
