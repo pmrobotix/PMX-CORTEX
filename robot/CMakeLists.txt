@@ -82,6 +82,12 @@ if(TARGET_PLATFORM STREQUAL "ARM")
         src/driver-arm/LedDriver.cpp
         src/driver-arm/SwitchDriver.cpp
         src/driver-arm/GpioPCA9555.cpp
+        src/driver-arm/ButtonDriver.cpp
+        src/driver-arm/SoundDriver.cpp
+        src/driver-arm/LcdShieldDriver.cpp
+        src/driver-arm/RobotPositionShared.cpp
+        src/driver-arm/Adafruit_MCP23017.cpp
+        src/driver-arm/Adafruit_RGBLCDShield.cpp
     )
 
     target_include_directories(pmx-driver-arm PUBLIC
@@ -98,6 +104,8 @@ else()
         src/driver-simu/ButtonDriver.cpp
         src/driver-simu/SwitchDriver.cpp
         src/driver-simu/SoundDriver.cpp
+        src/driver-simu/LcdShieldDriver.cpp
+        src/driver-simu/RobotPositionShared.cpp
     )
 
     target_include_directories(pmx-driver-simu PUBLIC
