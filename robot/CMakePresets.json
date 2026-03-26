@@ -14,7 +14,8 @@
             "binaryDir": "${sourceDir}/build-simu-debug",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
-                "TARGET_PLATFORM": "SIMU"
+                "TARGET_PLATFORM": "SIMU",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
             }
         },
         {
@@ -25,7 +26,8 @@
             "binaryDir": "${sourceDir}/build-simu-release",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release",
-                "TARGET_PLATFORM": "SIMU"
+                "TARGET_PLATFORM": "SIMU",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
             }
         },
         {
