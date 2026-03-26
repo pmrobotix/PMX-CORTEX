@@ -78,6 +78,13 @@
 #define BUTTON_RIGHT 0x02
 #define BUTTON_SELECT 0x01
 
+/*!
+ * \brief Driver pour le LCD Shield RGB 16x2 Adafruit.
+ *
+ * Singleton. Communique avec le LCD et les boutons via le MCP23017 I2C.
+ * Fournit l'affichage texte, le controle du backlight et la lecture
+ * des 5 boutons du shield.
+ */
 class Adafruit_RGBLCDShield: public utils::Mutex
 {
 private:
@@ -87,22 +94,23 @@ private:
         return instance;
     }
 
-    utils::Mutex mutex_;
-    bool connected_;
+    utils::Mutex mutex_;          ///< Mutex pour acces concurrent aux commandes LCD.
+    bool connected_;              ///< true si le MCP23017 repond sur I2C.
 
-    uint8_t _rs_pin; // LOW: command.  HIGH: character.
-    uint8_t _rw_pin; // LOW: write to LCD.  HIGH: read from LCD.
-    uint8_t _enable_pin; // activated by a HIGH pulse.
-    uint8_t _data_pins[8];
-    uint8_t _button_pins[5];
-    uint8_t _displayfunction;
-    uint8_t _displaycontrol;
-    uint8_t _displaymode;
+    uint8_t _rs_pin;              ///< Pin Register Select (commande/caractere).
+    uint8_t _rw_pin;              ///< Pin Read/Write.
+    uint8_t _enable_pin;          ///< Pin Enable (pulse HIGH).
+    uint8_t _data_pins[8];        ///< Pins de donnees (4-bit ou 8-bit).
+    uint8_t _button_pins[5];      ///< Pins des 5 boutons du shield.
+    uint8_t _displayfunction;     ///< Registre fonction (4/8 bit, 1/2 lignes).
+    uint8_t _displaycontrol;      ///< Registre controle (display, cursor, blink).
+    uint8_t _displaymode;         ///< Registre mode (direction texte, autoscroll).
 
-    uint8_t _numlines, _currline;
+    uint8_t _numlines;            ///< Nombre de lignes du LCD.
+    uint8_t _currline;            ///< Ligne courante.
 
-    uint8_t _i2cAddr;
-    Adafruit_MCP23017 _i2c;
+    uint8_t _i2cAddr;             ///< Adresse I2C du MCP23017.
+    Adafruit_MCP23017 _i2c;       ///< Instance du GPIO expander I2C.
 
     Adafruit_RGBLCDShield();
 

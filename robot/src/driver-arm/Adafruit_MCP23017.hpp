@@ -49,6 +49,12 @@
 #define MCP23017_GPIOB 0x13
 #define MCP23017_OLATB 0x15
 
+/*!
+ * \brief Driver I2C pour le GPIO expander MCP23017 (Adafruit).
+ *
+ * Fournit les operations de base (pinMode, digitalRead/Write, pullUp)
+ * sur les 16 GPIO du MCP23017 via le bus I2C Armadeus.
+ */
 class Adafruit_MCP23017
 {
 
@@ -59,7 +65,7 @@ private:
         return instance;
     }
 
-    AsI2c MCP_i2c_;
+    AsI2c MCP_i2c_;  ///< Bus I2C Armadeus (bus 1).
 
 public:
     Adafruit_MCP23017();

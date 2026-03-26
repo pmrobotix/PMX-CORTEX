@@ -29,7 +29,7 @@ private:
 		return instance;
 	}
 
-	bool connected_;
+	bool connected_;  ///< true si le LCD est connecte en I2C.
 
 public:
 

@@ -27,9 +27,9 @@ private:
 		return instance;
 	}
 
-	ROBOTPOSITION p_;
+	ROBOTPOSITION p_;  ///< Position courante du robot.
 
-	unsigned long long t_set_us_;
+	unsigned long long t_set_us_;  ///< Timestamp du dernier set (microsecondes).
 
 public:
 
