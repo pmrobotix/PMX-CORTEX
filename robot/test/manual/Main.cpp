@@ -11,6 +11,7 @@
 
 #include "LedManualTest.hpp"
 #include "SwitchManualTest.hpp"
+#include "ActionManagerTimerManualTest.hpp"
 
 int main(int, char**)
 {
@@ -20,6 +21,7 @@ int main(int, char**)
 
 	suite.addTest(new test::LedManualTest());
 	suite.addTest(new test::SwitchManualTest());
+	suite.addTest(new test::ActionManagerTimerManualTest());
 
 	suite.run();
 

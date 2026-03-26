@@ -65,6 +65,8 @@ add_library(pmx-common STATIC
     src/common/log/appender/FileAppender.cpp
     src/common/log/appender/SvgAppender.cpp
     src/common/log/appender/TelemetryAppender.cpp
+    # action
+    src/common/action/ActionManagerTimer.cpp
 )
 
 target_include_directories(pmx-common PUBLIC
@@ -164,6 +166,7 @@ add_executable(common-test
     test/common/PointerListTest.cpp
     test/common/FileAppenderTest.cpp
     test/common/SvgAppenderTest.cpp
+    test/common/ActionManagerTimerTest.cpp
 )
 
 target_link_libraries(common-test PRIVATE pmx-suite)
@@ -189,6 +192,7 @@ if(DRIVER_LIB)
         test/manual/LoggerInitialize.cpp
         test/manual/LedManualTest.cpp
         test/manual/SwitchManualTest.cpp
+        test/manual/ActionManagerTimerManualTest.cpp
     )
 
     target_link_libraries(manual-test PRIVATE pmx-suite ${DRIVER_LIB})
@@ -199,6 +203,7 @@ if(DRIVER_LIB)
     add_executable(bench
         test/bench/Main.cpp
         test/bench/LoggerInitialize.cpp
+        test/bench/PosixTimerBench.cpp
     )
 
     target_link_libraries(bench PRIVATE pmx-suite)

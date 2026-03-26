@@ -5,9 +5,16 @@
 
 #include <list>
 #include <sstream>
+#include <unistd.h>
 
 #include "../../src/common/log/Level.hpp"
 #include "UnitTestAppender.hpp"
+
+// Codes ANSI pour la colorisation console
+#define ANSI_RESET   "\033[0m"
+#define ANSI_DIM     "\033[2m"        // gris (DEBUG)
+#define ANSI_ORANGE  "\033[38;5;208m" // orange (WARN)
+#define ANSI_RED     "\033[31m"       // rouge (ERROR)
 
 UnitTestAppender::UnitTestAppender()
 {
@@ -20,19 +27,27 @@ UnitTestAppender::~UnitTestAppender()
 
 void UnitTestAppender::writeMessage(const logs::Logger &logger, const logs::Level &level, const std::string &message)
 {
-    if (level == logs::Level::INFO) //normal info pour les tests unitaires
-    {
-        this->lock();
-        std::ostringstream out;
-        for (int i = 0; i < this->indent_; i++) {
-            out << "   ";
+    // Colorisation si la sortie est un terminal
+    const char *colorStart = "";
+    const char *colorEnd = "";
+    if (isatty(STDOUT_FILENO)) {
+        if (level == logs::Level::DEBUG) {
+            colorStart = ANSI_DIM;
+            colorEnd = ANSI_RESET;
+        } else if (level == logs::Level::WARN) {
+            colorStart = ANSI_ORANGE;
+            colorEnd = ANSI_RESET;
+        } else if (level == logs::Level::ERROR) {
+            colorStart = ANSI_RED;
+            colorEnd = ANSI_RESET;
         }
-        out << message;
-        this->messages_.push_back(out.str());
-        this->unlock();
-    } else {
-        logs::MemoryAppender::writeMessage(logger, level, message);
     }
+
+    if (level == logs::Level::TELEM)
+        return;
+
+    std::string coloredMessage = std::string(colorStart) + message + colorEnd;
+    logs::MemoryAppender::writeMessage(logger, level, coloredMessage);
 }
 
 void UnitTestAppender::increaseIndent()

@@ -9,15 +9,15 @@
 #include "../../src/common/thread/Thread.hpp"
 #include "../suite/UnitTestSuite.hpp"
 
+#include "PosixTimerBench.hpp"
+
 int main(int, char**)
 {
 	utils::set_realtime_priority(3, "bench");
 
 	UnitTestSuite suite;
 
-	// Ajouter les benchmarks ici :
-	// suite.addTest(new test::ChronometerBench());
-	// suite.addTest(new test::ReadWriteBench());
+	suite.addTest(new test::PosixTimerBench());
 
 	suite.run();
 
