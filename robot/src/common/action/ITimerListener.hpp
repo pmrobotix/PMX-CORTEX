@@ -38,22 +38,35 @@ public:
         return name_;
     }
 
+    /*!
+     * \brief Retourne l'intervalle du timer en millisecondes.
+     */
     inline int timeSpan()
     {
         return timeSpan_ms_;
     }
 
-    //last execution time
+    /*!
+     * \brief Retourne le timestamp de la derniere execution (microsecondes).
+     */
     inline int getLastTime()
     {
         return lasttime_;
     }
 
+    /*!
+     * \brief Met a jour le timestamp de la derniere execution.
+     * \param l Timestamp en microsecondes.
+     */
     inline void setLastTime(long l)
     {
         lasttime_ = l;
     }
 
+    /*!
+     * \brief Indique si le timer a demande son arret.
+     * \return true si le timer doit etre arrete.
+     */
     inline bool requestToStop()
     {
         return requestToStop_;
@@ -68,14 +81,16 @@ public:
 
 protected:
 
-    bool requestToStop_;
+    bool requestToStop_;       ///< true si le timer a demande son arret.
+    long timeSpan_ms_;         ///< Intervalle du timer en millisecondes.
+    long lasttime_;            ///< Timestamp de la derniere execution (microsecondes).
+    std::string name_;         ///< Nom identifiant le timer.
 
-    long timeSpan_ms_; //for Timer tasks
-
-    long lasttime_;
-
-    std::string name_;
-
+    /*!
+     * \brief Initialise le timer avec un label et un intervalle.
+     * \param label Nom du timer.
+     * \param time_us Intervalle en microsecondes (converti en ms).
+     */
     void init(std::string label, uint time_us)
     {
         name_ = label;

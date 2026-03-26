@@ -31,8 +31,7 @@ class ITimerPosixListener
 {
 public:
 
-    // Stored timer ID for alarm
-    timer_t timerID;
+    timer_t timerID;  ///< Identifiant du timer POSIX.
 
     /*!
      * \brief Actions a executer pour le timer.
@@ -60,6 +59,9 @@ public:
         return timeSpan_us_;
     }
 
+    /*!
+     * \brief Demarre le timer POSIX. Cree le timer systeme et installe le signal handler.
+     */
     inline void startTimer()
     {
         mfct_.lock();
@@ -95,22 +97,37 @@ public:
         mfct_.unlock();
     }
 
+    /*!
+     * \brief Indique si le timer est demarre.
+     * \return true si le timer est en cours d'execution.
+     */
     inline bool getRunning()
     {
         return started_;
     }
 
+    /*!
+     * \brief Indique si le timer a demande son arret.
+     * \return true si le timer doit etre arrete.
+     */
     inline bool requestToStop()
     {
         return requestToStop_;
     }
 
+    /*!
+     * \brief Met en pause ou reprend le timer.
+     * \param paused true pour mettre en pause, false pour reprendre.
+     */
     inline void setPause(bool paused)
     {
         paused_ = paused;
     }
 
-    //deprecated
+    /*!
+     * \brief Supprime un timer POSIX par son identifiant. Deprecated, utiliser remove().
+     * \param thistimerID Identifiant du timer a supprimer.
+     */
     inline void remove(timer_t thistimerID)
     {
         mfct_.lock();
@@ -127,6 +144,9 @@ public:
         mfct_.unlock();
     }
 
+    /*!
+     * \brief Supprime le timer POSIX courant.
+     */
     inline void remove()
     {
         mfct_.lock();
@@ -143,8 +163,14 @@ public:
         mfct_.unlock();
     }
 
-    /**
-     * The signal handler function with extended signature
+    /*!
+     * \brief Handler de signal POSIX appele a chaque expiration du timer.
+     *
+     * Recupere le pointeur vers l'instance ITimerPosixListener depuis
+     * la structure siginfo et appelle onTimer() ou onTimerEnd().
+     * \param sigNumb Numero du signal (SIGALRM).
+     * \param si Informations du signal (contient le pointeur this).
+     * \param uc Contexte utilisateur (non utilise).
      */
     static void alarmFunction(int sigNumb, siginfo_t *si, void *uc)
     {
@@ -184,26 +210,24 @@ public:
 
 protected:
 
-    std::string name_;
-    long timeSpan_us_;
-    utils::Chronometer chrono;
+    std::string name_;              ///< Nom identifiant le timer.
+    long timeSpan_us_;              ///< Intervalle du timer en microsecondes.
+    utils::Chronometer chrono;      ///< Chronometre interne du timer.
 
-    bool started_;
-    bool paused_;
-    bool requestToStop_;
+    bool started_;                  ///< true si le timer est demarre.
+    bool paused_;                   ///< true si le timer est en pause.
+    bool requestToStop_;            ///< true si le timer a demande son arret.
 
-    // Signal blocking set
-    sigset_t SigBlockSet;
+    sigset_t SigBlockSet;           ///< Ensemble de signaux bloques.
+    struct sigevent signalEvent;    ///< Evenement signal contenant le pointeur this.
+    struct sigaction SignalAction;   ///< Action associee au signal SIGALRM.
+    struct itimerspec timerSpecs;    ///< Specification d'intervalle du timer POSIX.
 
-    // The according signal event containing the this-pointer
-    struct sigevent signalEvent;
-
-    // Defines the action for the signal -> thus signalAction ;-)
-    struct sigaction SignalAction;
-
-    // The itimerspec structure for the timer
-    struct itimerspec timerSpecs;
-
+    /*!
+     * \brief Initialise le timer avec un label et un intervalle.
+     * \param label Nom du timer.
+     * \param time_us Intervalle en microsecondes.
+     */
     void init(std::string label, uint time_us)
     {
         mfct_.lock();

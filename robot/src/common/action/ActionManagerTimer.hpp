@@ -251,10 +251,18 @@ public:
     void pause(bool value);
 
     /*!
-     * \brief Affiche via le logger les differentes actions en cours.
+     * \brief Affiche via le logger les actions en cours.
      */
     void debugActions();
+
+    /*!
+     * \brief Affiche via le logger les timers posix en cours et en attente.
+     */
     void debugPTimers();
+
+    /*!
+     * \brief Affiche via le logger les timers classiques en cours. Deprecated.
+     */
     void debugTimers();
 };
 
