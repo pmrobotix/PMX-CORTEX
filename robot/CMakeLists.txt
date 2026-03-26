@@ -88,6 +88,17 @@ if(TARGET_PLATFORM STREQUAL "ARM")
         src/driver-arm/RobotPositionShared.cpp
         src/driver-arm/Adafruit_MCP23017.cpp
         src/driver-arm/Adafruit_RGBLCDShield.cpp
+        src/driver-arm/AsservDriver.cpp
+        src/driver-arm/BeaconSensors.cpp
+        src/driver-arm/CCAx12Teensy.cpp
+        src/driver-arm/Gp2y0e02b.cpp
+        src/driver-arm/GroveColorSensor.cpp
+        src/driver-arm/SensorsDriver.cpp
+        src/driver-arm/serialib.cpp
+        src/driver-arm/ServoDriver.cpp
+        src/driver-arm/MD25.cpp
+        src/driver-arm/ServoUsingMotorDriver.cpp
+        src/driver-arm/ActionDriver.cpp
     )
 
     target_include_directories(pmx-driver-arm PUBLIC
@@ -106,6 +117,12 @@ else()
         src/driver-simu/SoundDriver.cpp
         src/driver-simu/LcdShieldDriver.cpp
         src/driver-simu/RobotPositionShared.cpp
+        src/driver-simu/AsservDriver.cpp
+        src/driver-simu/SensorsDriver.cpp
+        src/driver-simu/ServoDriver.cpp
+        src/driver-simu/ServoUsingMotorDriver.cpp
+        src/driver-simu/ActionDriver.cpp
+        src/driver-simu/ColorDriver.cpp
     )
 
     target_include_directories(pmx-driver-simu PUBLIC

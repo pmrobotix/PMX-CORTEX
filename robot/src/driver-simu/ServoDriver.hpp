@@ -1,0 +1,68 @@
+#ifndef SIMU_SERVODRIVER_HPP_
+#define SIMU_SERVODRIVER_HPP_
+
+#include "interface/AServoDriver.hpp"
+#include "log/LoggerFactory.hpp"
+
+class ServoDriver: public AServoDriver
+{
+private:
+
+    /*!
+     * \brief Retourne le \ref Logger associé à la classe \ref ServoDriver(SIMU).
+     */
+    static inline const logs::Logger & logger()
+    {
+        static const logs::Logger & instance = logs::LoggerFactory::logger("ServoDriver.SIMU");
+        return instance;
+    }
+
+    int connected_;
+
+protected:
+
+public:
+    /*!
+     * \brief Constructor.
+     */
+    ServoDriver();
+
+    /*!
+     * \brief Destructor.
+     */
+    inline ~ServoDriver()
+    {
+    }
+
+    bool is_connected();
+
+    void setType(int servo, ServoType);
+
+    void hold(int servo);
+
+    void setPulsePos(int servo, int pos, int rate);
+
+    void release(int servo);
+
+    void setTorque(int servo, int millisec);
+
+    void turn(int servo, int speed);
+
+    int getMoving(int servo);
+
+    int getPulsePos(int servo);
+
+    int ping(int);
+
+    void setMinPulse(int servo, int value = 600); //default 600 [300 to 700]
+
+    void setMidPulse(int servo, int value = 1500); //default 1500 [1300 to 1700]
+
+    void setMaxPulse(int servo, int value = 2400); //default 2400 [2300 to 2700]
+
+    void setPolarity(int servo, bool inversed);
+
+    int getTorque(int servo);
+};
+
+#endif
