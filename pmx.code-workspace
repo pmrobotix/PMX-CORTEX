@@ -15,6 +15,14 @@
 		{
 			"name": "libs/PathFinding",
 			"path": "libs/PathFinding"
+		},
+		{
+			"name": "asserv_chibios",
+			"path": "../asserv_chibios"
+		},
+		{
+			"name": "plotjuggler-plugin",
+			"path": "../plotjuggler_asservstream_plugin"
 		}
 	],
 	"settings": {
@@ -23,6 +31,8 @@
 		"cmake.sourceDirectory": "${workspaceFolder:robot}",
 		"cmake.ignoreCMakeListsMissing": true,
 		"cmake.provideTasks": false,
+		"cmake.configureOnOpen": false,
+		"cmake.autoSelectActiveFolder": false,
 		"tasks.statusbar.default.hide": true,
 		"cmake.options.advanced": {
 			"configurePreset":  { "statusBarVisibility": "visible" },
@@ -38,7 +48,89 @@
 			"launch":           { "statusBarVisibility": "visible" },
 			"launchTarget":     { "statusBarVisibility": "visible" },
 			"debug":            { "statusBarVisibility": "hidden" }
-		}
+		},
+		"git.scanRepositories": [
+			"../asserv_chibios",
+			"../plotjuggler_asservstream_plugin"
+		]
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "asserv_chibios: build PMX",
+				"type": "shell",
+				"command": "make",
+				"args": ["ROBOT=PMX", "all"],
+				"options": {
+					"cwd": "${workspaceFolder:asserv_chibios}"
+				},
+				"group": "build",
+				"problemMatcher": "$gcc"
+			},
+			{
+				"label": "asserv_chibios: flash PMX",
+				"type": "shell",
+				"command": "openocd",
+				"args": [
+					"-c", "tcl_port disabled",
+					"-c", "telnet_port disabled",
+					"-c", "source [find board/st_nucleo_f4.cfg]",
+					"-c", "stm32f4x.cpu configure -rtos chibios",
+					"-c", "init",
+					"-c", "reset halt",
+					"-c", "flash write_image erase unlock ./build/asservNucleo.elf",
+					"-c", "verify_image ./build/asservNucleo.elf",
+					"-c", "reset run",
+					"-c", "shutdown"
+				],
+				"options": {
+					"cwd": "${workspaceFolder:asserv_chibios}/src/Robots/PMX"
+				},
+				"group": "none",
+				"problemMatcher": [],
+				"dependsOn": "asserv_chibios: build PMX"
+			},
+			{
+				"label": "asserv_chibios: clean PMX",
+				"type": "shell",
+				"command": "make",
+				"args": ["ROBOT=PMX", "clean"],
+				"options": {
+					"cwd": "${workspaceFolder:asserv_chibios}"
+				},
+				"group": "build",
+				"problemMatcher": []
+			},
+			{
+				"label": "plotjuggler-plugin: build",
+				"type": "shell",
+				"command": "mkdir -p asserv_stream_plugin/build && cd asserv_stream_plugin/build && cmake .. && make -j4",
+				"options": {
+					"cwd": "${workspaceFolder:plotjuggler-plugin}"
+				},
+				"group": "build",
+				"problemMatcher": "$gcc"
+			},
+			{
+				"label": "plotjuggler-plugin: clean",
+				"type": "shell",
+				"command": "rm -rf asserv_stream_plugin/build",
+				"options": {
+					"cwd": "${workspaceFolder:plotjuggler-plugin}"
+				},
+				"group": "build",
+				"problemMatcher": []
+			},
+			{
+				"label": "plotjuggler: run with plugin",
+				"type": "shell",
+				"command": "plotjuggler --plugin_folders ${workspaceFolder:plotjuggler-plugin}/asserv_stream_plugin/build",
+				"group": "none",
+				"problemMatcher": [],
+				"isBackground": true
+			}
+		]
 	},
 	"extensions": {
 		"recommendations": [
