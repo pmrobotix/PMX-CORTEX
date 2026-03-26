@@ -65,12 +65,49 @@ add_library(pmx-common STATIC
     src/common/log/appender/FileAppender.cpp
     src/common/log/appender/SvgAppender.cpp
     src/common/log/appender/TelemetryAppender.cpp
-    # action
-    src/common/action/ActionManagerTimer.cpp
+    # timer
+    src/common/timer/ActionManagerTimer.cpp
+    # state
+    src/common/state/Automate.cpp
+    # asserv (generique)
+    src/common/asserv/Asserv.cpp
+    # asserv.esial (implementation EsialRobotik)
+    src/common/asserv.esial/AsservEsialR.cpp
+    src/common/asserv.esial/codeurs/BotCodeurs.cpp
+    src/common/asserv.esial/codeurs/Codeur.cpp
+    src/common/asserv.esial/codeurs/CodeursDirects.cpp
+    src/common/asserv.esial/commandManager/CMDList/CMDList.cpp
+    src/common/asserv.esial/commandManager/CommandManagerA.cpp
+    src/common/asserv.esial/config/config.cpp
+    src/common/asserv.esial/consignController/ConsignController.cpp
+    src/common/asserv.esial/filtres/Pid/Pid.cpp
+    src/common/asserv.esial/filtres/QuadRampDerivee/QuadRampDerivee.cpp
+    src/common/asserv.esial/motorsController/BotMotors.cpp
+    src/common/asserv.esial/odometrie/Odometrie.cpp
+    src/common/asserv.esial/regulateur/Regulateur.cpp
+    src/common/asserv.esial/Utils/Utils.cpp
+    # utils
+    src/common/utils/Arguments.cpp
+    src/common/utils/ConsoleManager.cpp
+    # robot
+    src/common/Robot.cpp
+    # action (wrappers)
+    src/common/action/Actions.cpp
+    src/common/action/ButtonBar.cpp
+    src/common/action/LcdShield.cpp
+    src/common/action/LedBar.cpp
+    src/common/action/ServoObjectsSystem.cpp
+    src/common/action/ServoUsingMotor.cpp
+    src/common/action/SoundBar.cpp
+    src/common/action/Tirette.cpp
+    src/common/action/Sensors.cpp
+    # utils (Arduino Print)
+    src/common/utils/Print.cpp
 )
 
 target_include_directories(pmx-common PUBLIC
     src/common
+    src/common/asserv.esial
 )
 
 target_link_libraries(pmx-common PUBLIC pthread rt simple-svg)
@@ -193,6 +230,12 @@ if(DRIVER_LIB)
         test/manual/LedManualTest.cpp
         test/manual/SwitchManualTest.cpp
         test/manual/ActionManagerTimerManualTest.cpp
+        test/manual/AsservDriverManualTest.cpp
+        test/manual/ButtonDriverManualTest.cpp
+        test/manual/LcdShieldDriverManualTest.cpp
+        test/manual/ServoDriverManualTest.cpp
+        test/manual/ColorDriverManualTest.cpp
+        test/manual/SensorDriverManualTest.cpp
     )
 
     target_link_libraries(manual-test PRIVATE pmx-suite ${DRIVER_LIB})
@@ -204,6 +247,8 @@ if(DRIVER_LIB)
         test/bench/Main.cpp
         test/bench/LoggerInitialize.cpp
         test/bench/PosixTimerBench.cpp
+        test/bench/TimerPosix.cpp
+        test/bench/TimerPosixStandaloneBench.cpp
     )
 
     target_link_libraries(bench PRIVATE pmx-suite)

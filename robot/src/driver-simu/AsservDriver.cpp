@@ -50,14 +50,12 @@ AsservDriver::AsservDriver(std::string botid, ARobotPositionShared *aRobotPositi
 
 	} else if (botid == "OPOS6UL_Robot")
 	{
-		//printf("--- AsservDriver - botid == OPOS6UL_Robot\n");
-		//CONFIGURATION OPOS6UL_Robot SIMULATEUR CONSOLE  --------------------------------------------
+		//CONFIGURATION OPOS6UL / PMX SIMULATEUR CONSOLE
 		simuTicksPerMeter_ = 130566.0f; //nb ticks for 1000mm
 		simuMaxSpeed_ = 1.0; //m/s
 		simuMaxPower_ = 100.0; //127.0;
 		periodTime_us_ = 2000;
 		asservSimuStarted_ = true;
-		//CONFIGURATION APF9328 SIMULATEUR CONSOLE  --------------------------------------------
 	} else
 	{
 		logger().error() << "NO BOT ID!! => EXIT botid_=" << botid_ << logs::end;

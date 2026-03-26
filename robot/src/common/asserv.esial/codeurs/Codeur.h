@@ -1,0 +1,34 @@
+#if CONFIG_CODEUR_DIRECTS
+
+#ifndef ASSERV_E_CODEUR
+#define ASSERV_E_CODEUR
+
+
+#include "../config/config.h"
+
+//Un codeur branché directement sur la Mbed
+
+class Codeur
+{
+
+public:
+
+    Codeur(PinName pinChanA, PinName pinChanB);
+    ~Codeur();
+    int32_t getCount();
+    void reset();
+
+private:
+
+    void handleInterruptA();
+    void handleInterruptB();
+
+    volatile int32_t count;
+    InterruptIn pinChannelA;
+    InterruptIn pinChannelB;
+
+};
+
+#endif /* CODEUR */
+
+#endif /* CONFIG_CODEUR_DIRECTS */

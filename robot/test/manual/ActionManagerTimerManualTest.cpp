@@ -3,7 +3,7 @@
  * \brief Tests manuels longs de l'ActionManagerTimer.
  */
 
-#include "action/ActionManagerTimer.hpp"
+#include "timer/ActionManagerTimer.hpp"
 #include "ActionManagerTimerManualTest.hpp"
 
 #include <chrono>
@@ -12,8 +12,8 @@
 #include <thread>
 
 #include "action/IAction.hpp"
-#include "action/ITimerListener.hpp"
-#include "action/ITimerPosixListener.hpp"
+#include "timer/ITimerListener.hpp"
+#include "timer/ITimerPosixListener.hpp"
 #include "utils/Chronometer.hpp"
 #include "log/Logger.hpp"
 #include "log/LoggerFactory.hpp"

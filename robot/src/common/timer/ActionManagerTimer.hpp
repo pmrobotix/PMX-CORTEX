@@ -15,7 +15,7 @@
 #include "log/LoggerFactory.hpp"
 #include "utils/Chronometer.hpp"
 #include "utils/PointerList.hpp"
-#include "IAction.hpp"
+#include "action/IAction.hpp"
 #include "ITimerListener.hpp"
 #include "ITimerPosixListener.hpp"
 

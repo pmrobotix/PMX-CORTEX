@@ -12,6 +12,12 @@
 #include "LedManualTest.hpp"
 #include "SwitchManualTest.hpp"
 #include "ActionManagerTimerManualTest.hpp"
+#include "AsservDriverManualTest.hpp"
+#include "ButtonDriverManualTest.hpp"
+#include "LcdShieldDriverManualTest.hpp"
+#include "ServoDriverManualTest.hpp"
+#include "ColorDriverManualTest.hpp"
+#include "SensorDriverManualTest.hpp"
 
 int main(int, char**)
 {
@@ -22,6 +28,12 @@ int main(int, char**)
 	suite.addTest(new test::LedManualTest());
 	suite.addTest(new test::SwitchManualTest());
 	suite.addTest(new test::ActionManagerTimerManualTest());
+	suite.addTest(new test::AsservDriverManualTest());
+	suite.addTest(new test::LcdShieldDriverManualTest());
+	suite.addTest(new test::ServoDriverManualTest());
+	suite.addTest(new test::ColorDriverManualTest());
+	suite.addTest(new test::SensorDriverManualTest());
+	suite.addTest(new test::ButtonDriverManualTest());
 
 	suite.run();
 

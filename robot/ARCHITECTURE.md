@@ -1070,3 +1070,9 @@ Chaque méthode publique doit être documentée :
 | `CALL_GRAPH` | YES | Graphe d'appels de fonctions |
 | `EXCLUDE` | `json.hpp` | nlohmann/json (24000 lignes, pas utile) |
 | `GENERATE_LATEX` | NO | HTML uniquement |
+
+## TODO
+
+- [ ] SlowMotionServo : tester la lib de motion progressive des servos (portage Arduino → Linux, source dans PMX/src/Common/Action/SlowMotionServo/)
+- [ ] Renommer `interface/` → `driver_interface/` et `timer/` → `action_interface/` (+ déplacer IAction.hpp dans action_interface/)
+- [ ] Renommer `Actions.hpp/cpp` → `TaskManager.hpp/cpp` (classe Actions → TaskManager)

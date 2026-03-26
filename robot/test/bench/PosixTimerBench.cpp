@@ -9,8 +9,8 @@
 #include <vector>
 #include <thread>
 
-#include "action/ActionManagerTimer.hpp"
-#include "action/ITimerPosixListener.hpp"
+#include "timer/ActionManagerTimer.hpp"
+#include "timer/ITimerPosixListener.hpp"
 #include "utils/Chronometer.hpp"
 #include "log/Logger.hpp"
 #include "log/LoggerFactory.hpp"
