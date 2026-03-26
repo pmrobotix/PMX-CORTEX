@@ -1,0 +1,15 @@
+<map id="ALcdShieldDriver::clear" name="ALcdShieldDriver::clear">
+<area shape="rect" id="node1" title="Efface tout le contenu de l&#39;ecran." alt="" coords="1161,165,1335,192"/>
+<area shape="rect" id="node2" href="$classLcdShield.html#a9a329fba00c24f56f24266225dcb6a16" title="Efface le contenu de l&#39;écran." alt="" coords="989,165,1113,192"/>
+<area shape="rect" id="node3" href="$classOPOS6UL__RobotExtended.html#a73821b0ec83f0ebcdccf8c9e999616a0" title="Affiche les points accumulés pendant le match." alt="" coords="752,158,941,199"/>
+<area shape="rect" id="node4" href="$classO__State__Init.html#abc19788b7457d1f819245dd28367fe91" title="Exécute l&#39;état d&#39;initialisation." alt="" coords="521,107,681,133"/>
+<area shape="rect" id="node5" href="$classO__State__WaitEndOfMatch.html#aa73613440b37c8dd42181e2e0265ae86" title="Exécute l&#39;état d&#39;attente de fin de match." alt="" coords="5,158,193,199"/>
+<area shape="rect" id="node6" href="$classLcdShield.html#a0575c9063dd1860ea6b8d5b47f518c59" title="Initialise l&#39;écran LCD." alt="" coords="790,224,903,251"/>
+<area shape="rect" id="node8" href="$classLcdShield.html#a6a7281ea6adf98a4ab23ce79a7a0d323" title="Réinitialise l&#39;écran LCD." alt="" coords="784,5,909,32"/>
+<area shape="rect" id="node12" href="$classO__LcdBoardTest.html#a5fe507797dd1ee404d3fd4a0fd6b7885" title="Execute le test." alt="" coords="769,275,924,301"/>
+<area shape="rect" id="node13" href="$classO__State__Init.html#a1980cd82dcb83e88d61f2e7e14dddfa0" title=" " alt="" coords="771,107,923,133"/>
+<area shape="rect" id="node7" href="$classOPOS6UL__ActionsExtended.html#aced00f2c03b0aa9b9eda54e6874bac75" title=" " alt="" coords="497,217,704,258"/>
+<area shape="rect" id="node9" href="$classOPOS6UL__ActionsExtended.html#a87bb61d89759101cac844e7c399f2f61" title="Arrête tous les périphériques supplémentaires (capteurs, LEDs, LCD) et relâche les servos." alt="" coords="501,17,700,58"/>
+<area shape="rect" id="node10" href="$classOPOS6UL__RobotExtended.html#ac8ac2be407a78cdd62261f72226162df" title=" " alt="" coords="241,82,449,123"/>
+<area shape="rect" id="node11" href="$classOPOS6UL__RobotExtended.html#a0a997f7fd88abac1efe0083fce633649" title="Arrête toutes les actions supplémentaires (capteurs, LEDs, servos)." alt="" coords="251,17,440,58"/>
+</map>

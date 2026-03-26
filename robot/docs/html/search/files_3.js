@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['exception_2ehpp_2079',['Exception.hpp',['../Exception_8hpp.html',1,'']]],
-  ['exceptiontest_2ecpp_2080',['ExceptionTest.cpp',['../ExceptionTest_8cpp.html',1,'']]],
-  ['exceptiontest_2ehpp_2081',['ExceptionTest.hpp',['../ExceptionTest_8hpp.html',1,'']]]
+  ['dummymotorscontroller_2eh_3792',['DummyMotorsController.h',['../DummyMotorsController_8h.html',1,'']]],
+  ['dynamixeldriver_2ecpp_3793',['DynamixelDriver.cpp',['../DynamixelDriver_8cpp.html',1,'']]],
+  ['dynamixeldriver_2ehpp_3794',['DynamixelDriver.hpp',['../DynamixelDriver_8hpp.html',1,'']]]
 ];

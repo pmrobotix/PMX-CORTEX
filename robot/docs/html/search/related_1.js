@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['basic_5fjson_3434',['basic_json',['../classjson__pointer.html#ada3100cdb8700566051828f1355fa745',1,'json_pointer']]]
+  ['arguments_6418',['Arguments',['../classArguments_1_1Argument.html#acbd2a21b98cd2cb694fd02340724b625',1,'Arguments::Argument::Arguments()'],['../classArguments_1_1Option.html#acbd2a21b98cd2cb694fd02340724b625',1,'Arguments::Option::Arguments()']]]
 ];

@@ -1,0 +1,52 @@
+<map id="src/bot&#45;opos6ul/OPOS6UL_ActionsExtended.hpp" name="src/bot&#45;opos6ul/OPOS6UL_ActionsExtended.hpp">
+<area shape="rect" id="node1" title="Extension des actions du robot pour la carte OPOS6UL." alt="" coords="1381,5,1568,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="1936,468,1995,495"/>
+<area shape="rect" id="node3" title=" " alt="" coords="3573,319,3653,345"/>
+<area shape="rect" id="node4" href="$Actions_8hpp.html" title="Définition de la classe Actions." alt="" coords="1581,95,1723,121"/>
+<area shape="rect" id="node28" href="$LedBar_8hpp.html" title="Gestion de la barre de LEDs et ses actions/timers associés." alt="" coords="2505,169,2599,196"/>
+<area shape="rect" id="node32" href="$ButtonBar_8hpp.html" title="Définition de la classe ButtonBar." alt="" coords="1177,169,1335,196"/>
+<area shape="rect" id="node34" href="$LcdShield_8hpp.html" title="Définition de la classe LcdShield." alt="" coords="369,169,525,196"/>
+<area shape="rect" id="node41" href="$Sensors_8hpp.html" title="Gestion des capteurs de detection et de distance." alt="" coords="3159,95,3305,121"/>
+<area shape="rect" id="node46" href="$ServoObjectsSystem_8hpp.html" title="Gestion du système de servomoteurs et timers de déplacement associés." alt="" coords="1360,169,1589,196"/>
+<area shape="rect" id="node47" href="$AServoDriver_8hpp.html" title="Interface abstraite du driver de servomoteurs." alt="" coords="651,244,848,271"/>
+<area shape="rect" id="node48" href="$Tirette_8hpp.html" title="Définition de la classe Tirette." alt="" coords="734,169,871,196"/>
+<area shape="rect" id="node50" href="$ServoUsingMotor_8hpp.html" title="Définition de la classe ServoUsingMotor." alt="" coords="896,169,1101,196"/>
+<area shape="rect" id="node5" href="$Logger_8hpp.html" title="Définition de la classe Logger." alt="" coords="1649,319,1767,345"/>
+<area shape="rect" id="node9" href="$LoggerFactory_8hpp.html" title="Définition de la classe LoggerFactory." alt="" coords="1387,244,1549,271"/>
+<area shape="rect" id="node12" href="$ActionManagerTimer_8hpp.html" title="Definition de la classe ActionManagerTimer." alt="" coords="1888,169,2112,196"/>
+<area shape="rect" id="node6" title=" " alt="" coords="3256,393,3331,420"/>
+<area shape="rect" id="node7" href="$Mutex_8hpp.html" title="Définition de la classe Mutex." alt="" coords="1619,393,1768,420"/>
+<area shape="rect" id="node8" href="$Level_8hpp.html" title="Définition de la classe Level." alt="" coords="1843,393,1928,420"/>
+<area shape="rect" id="node10" title=" " alt="" coords="2389,319,2440,345"/>
+<area shape="rect" id="node11" href="$Thread_8hpp.html" title="Définition de la classe Thread." alt="" coords="1471,319,1625,345"/>
+<area shape="rect" id="node13" title=" " alt="" coords="2093,244,2200,271"/>
+<area shape="rect" id="node14" title=" " alt="" coords="2003,244,2069,271"/>
+<area shape="rect" id="node15" title=" " alt="" coords="1791,319,1833,345"/>
+<area shape="rect" id="node16" href="$Chronometer_8hpp.html" title="Définition de la classe Chronometer." alt="" coords="3047,319,3214,345"/>
+<area shape="rect" id="node18" href="$PointerList_8hpp.html" title="Définition de la classe PointerList." alt="" coords="1726,244,1877,271"/>
+<area shape="rect" id="node19" href="$IAction_8hpp.html" title="Definition de l&#39;interface IAction." alt="" coords="2224,244,2363,271"/>
+<area shape="rect" id="node20" href="$ITimerListener_8hpp.html" title="Définition de l&#39;interface ITimerListener." alt="" coords="2387,244,2530,271"/>
+<area shape="rect" id="node21" href="$ITimerPosixListener_8hpp.html" title="Définition de l&#39;interface ITimerPosixListener." alt="" coords="2555,244,2733,271"/>
+<area shape="rect" id="node17" title=" " alt="" coords="3085,393,3176,420"/>
+<area shape="rect" id="node22" title=" " alt="" coords="3331,319,3397,345"/>
+<area shape="rect" id="node23" title=" " alt="" coords="2294,319,2365,345"/>
+<area shape="rect" id="node24" title=" " alt="" coords="2465,319,2535,345"/>
+<area shape="rect" id="node25" title=" " alt="" coords="2560,319,2635,345"/>
+<area shape="rect" id="node26" title=" " alt="" coords="2659,319,2733,345"/>
+<area shape="rect" id="node27" title=" " alt="" coords="2205,319,2269,345"/>
+<area shape="rect" id="node29" title=" " alt="" coords="2808,319,2904,345"/>
+<area shape="rect" id="node30" href="$ALedDriver_8hpp.html" title="Interface abstraite du driver de LEDs." alt="" coords="2859,244,3042,271"/>
+<area shape="rect" id="node31" href="$AActionsElement_8hpp.html" title="Définition de la classe AActionsElement." alt="" coords="923,244,1085,271"/>
+<area shape="rect" id="node33" href="$AButtonDriver_8hpp.html" title="Interface abstraite du driver de boutons." alt="" coords="1109,244,1312,271"/>
+<area shape="rect" id="node35" title=" " alt="" coords="5,319,80,345"/>
+<area shape="rect" id="node36" title=" " alt="" coords="211,244,277,271"/>
+<area shape="rect" id="node37" href="$Print_8hpp.html" title=" " alt="" coords="301,244,413,271"/>
+<area shape="rect" id="node38" title=" " alt="" coords="105,319,175,345"/>
+<area shape="rect" id="node39" title=" " alt="" coords="200,319,267,345"/>
+<area shape="rect" id="node40" href="$WString_8hpp.html" title=" " alt="" coords="291,319,424,345"/>
+<area shape="rect" id="node42" href="$ASensorsDriver_8hpp.html" title="Interface abstraite du driver de capteurs (balise ToF, IR, ultrasons)." alt="" coords="3803,244,4013,271"/>
+<area shape="rect" id="node44" href="$Robot_8hpp.html" title=" " alt="" coords="3283,169,3383,196"/>
+<area shape="rect" id="node43" title=" " alt="" coords="3779,319,3842,345"/>
+<area shape="rect" id="node45" href="$Arguments_8hpp.html" title=" " alt="" coords="3523,244,3677,271"/>
+<area shape="rect" id="node49" href="$ASwitchDriver_8hpp.html" title="Interface abstraite du driver de switchs et tirette." alt="" coords="623,393,825,420"/>
+</map>

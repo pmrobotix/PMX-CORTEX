@@ -1,8 +1,6 @@
 <map id="UnitTestAppender::writeMessage" name="UnitTestAppender::writeMessage">
-<area shape="rect" id="node1" title="Méthode générique de trace d&#39;un message." alt="" coords="5,56,241,83"/>
-<area shape="rect" id="node2" href="$classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32" title="Verrouille le mutex. Cette méthode doit être appelée avant d&#39;utiliser la ressource associée...." alt="" coords="309,5,443,32"/>
-<area shape="rect" id="node3" href="$classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3" title="Déverrouille le mutex. Cette méthode doit être appelée après avoir utiliser la ressource associée." alt="" coords="301,56,451,83"/>
-<area shape="rect" id="node4" href="$classlogs_1_1MemoryAppender.html#a478c866b07f63f1f89c347b4465834bc" title="Méthode générique de trace d&#39;un message. Ajoute le nom du log devant chaque entrée." alt="" coords="289,107,463,149"/>
-<area shape="rect" id="node5" href="$classlogs_1_1Level.html#a068733ab7f581994ab9e2e9359a4434d" title="Cette méthode retourne le nom de ce niveau." alt="" coords="515,89,653,116"/>
-<area shape="rect" id="node6" href="$classlogs_1_1Logger.html#a6706ac94e219fd82c6049e376805202e" title="Cette méthode retourne le nom associé au Logger." alt="" coords="511,140,657,167"/>
+<area shape="rect" id="node1" title="Méthode générique de trace d&#39;un message." alt="" coords="5,31,241,57"/>
+<area shape="rect" id="node2" href="$classlogs_1_1MemoryAppender.html#a478c866b07f63f1f89c347b4465834bc" title="Méthode générique de trace d&#39;un message. Ajoute le nom du log devant chaque entrée." alt="" coords="289,23,463,65"/>
+<area shape="rect" id="node3" href="$classlogs_1_1Level.html#a068733ab7f581994ab9e2e9359a4434d" title="Cette méthode retourne le nom de ce niveau." alt="" coords="515,5,653,32"/>
+<area shape="rect" id="node4" href="$classlogs_1_1Logger.html#a6706ac94e219fd82c6049e376805202e" title="Cette méthode retourne le nom associé au Logger." alt="" coords="511,56,657,83"/>
 </map>

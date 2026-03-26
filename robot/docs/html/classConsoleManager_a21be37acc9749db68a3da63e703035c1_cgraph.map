@@ -1,0 +1,14 @@
+<map id="ConsoleManager::displayMenuFunctionalTestsAndRun" name="ConsoleManager::displayMenuFunctionalTestsAndRun">
+<area shape="rect" id="node1" title="Affiche un menu de sélection des tests." alt="" coords="5,166,228,207"/>
+<area shape="rect" id="node2" href="$classConsoleKeyInput.html#a6ff58ba8628e71281679d3732553216a" title="Efface l&#39;écran du terminal." alt="" coords="292,5,507,32"/>
+<area shape="rect" id="node3" href="$classConsoleManager.html#a64d4e3f6022402c0ec145ad7d9aef03f" title=" " alt="" coords="276,57,523,98"/>
+<area shape="rect" id="node4" href="$namespacelogs.html#ab465ba9cc0c8042ca19d9c1aeb008578" title=" " alt="" coords="571,93,659,120"/>
+<area shape="rect" id="node9" href="$classConsoleManager.html#a417ef6797adc469a5e5a609519a0f75e" title="Execute un test en particulier en fonction de son identifiant." alt="" coords="291,173,507,200"/>
+<area shape="rect" id="node10" href="$classConsoleKeyInput.html#a60528b5f9b4295de7b271ea4ad16bd96" title="Lit un caractère depuis le terminal sans echo ni attente de retour chariot." alt="" coords="301,224,497,251"/>
+<area shape="rect" id="node11" href="$classConsoleKeyInput.html#a50c105a501cf1640c7ad5822aba7255f" title="Déplace le curseur à une position donnée (ligne, colonne). Le coin supérieur gauche est (1,..." alt="" coords="293,275,505,301"/>
+<area shape="rect" id="node12" href="$namespaceutils.html#a4f86fc4c334661a6995538cc080a40c9" title="Met en pause le thread courant pendant usec microsecondes." alt="" coords="315,325,484,352"/>
+<area shape="rect" id="node5" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#aee16dd078779a8154f1b3d7238748a6f" title=" " alt="" coords="707,86,899,127"/>
+<area shape="rect" id="node6" href="$classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32" title="Verrouille le mutex. Cette méthode doit être appelée avant d&#39;utiliser la ressource associée...." alt="" coords="979,43,1114,69"/>
+<area shape="rect" id="node7" href="$classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3" title="Déverrouille le mutex. Cette méthode doit être appelée après avoir utiliser la ressource associée." alt="" coords="971,93,1122,120"/>
+<area shape="rect" id="node8" href="$classlogs_1_1Logger.html#afa535aaf4891e02c4ff7f84d372b5b1b" title="Méthode générique de trace d&#39;un message." alt="" coords="947,144,1147,171"/>
+</map>

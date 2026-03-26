@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot: Référence du fichier src/driver-arm/AsservDriver.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_a369de7a6c9198ab5056a0bc5cf5ea3e.html">driver-arm</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#enum-members">Énumérations</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier AsservDriver.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Définition de la classe <a class="el" href="classAsservDriver.html">AsservDriver</a> (OPOS6UL).  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="AAsservDriver_8hpp_source.html">interface/AAsservDriver.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="LoggerFactory_8hpp_source.html">log/LoggerFactory.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Thread_8hpp_source.html">thread/Thread.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="serialib_8hpp_source.html">serialib.hpp</a>&quot;</code><br />
+<code>#include &lt;unistd.h&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Graphe des dépendances par inclusion de AsservDriver.hpp:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="driver-arm_2AsservDriver_8hpp__incl.svg" width="100%" height="552"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+</div><div class="textblock"><div class="dynheader">
+Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier :</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="driver-arm_2AsservDriver_8hpp__dep__incl.svg" width="240" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</div>
+<p><a href="driver-arm_2AsservDriver_8hpp_source.html">Aller au code source de ce fichier.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAsservDriver.html">AsservDriver</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionfloat2bytes__t.html">float2bytes_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ac08f8f916661bb5fc606373bea93d274"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="driver-arm_2AsservDriver_8hpp.html#ac08f8f916661bb5fc606373bea93d274">SERIAL_PORT</a>&#160;&#160;&#160;&quot;/dev/ttymxc1&quot;</td></tr>
+<tr class="separator:ac08f8f916661bb5fc606373bea93d274"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Énumérations</h2></td></tr>
+<tr class="memitem:af56a0c8b912645f61cdb4aae207a2ef8"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="driver-arm_2AsservDriver_8hpp.html#af56a0c8b912645f61cdb4aae207a2ef8">CommandStatus</a> { <br />
+&#160;&#160;<a class="el" href="CommandManagerA_8h.html#af56a0c8b912645f61cdb4aae207a2ef8a99ade6ecff7f9e1fb13b62be39b85d82">STATUS_IDLE</a> = 0
+, <a class="el" href="CommandManagerA_8h.html#af56a0c8b912645f61cdb4aae207a2ef8a0ff59dc8290c4a7d8936a81cae0f7c3c">STATUS_RUNNING</a> = 1
+, <a class="el" href="CommandManagerA_8h.html#af56a0c8b912645f61cdb4aae207a2ef8aa4ea8c4a1b3178fd437969d4280bd2b9">STATUS_HALTED</a> = 2
+, <a class="el" href="CommandManagerA_8h.html#af56a0c8b912645f61cdb4aae207a2ef8a8beab2ef9ffa25a6fa1501a2c3d35dfd">STATUS_BLOCKED</a> = 3
+, <br />
+&#160;&#160;<a class="el" href="driver-arm_2AsservDriver_8hpp.html#af56a0c8b912645f61cdb4aae207a2ef8a99ade6ecff7f9e1fb13b62be39b85d82">STATUS_IDLE</a> = 0
+, <a class="el" href="driver-arm_2AsservDriver_8hpp.html#af56a0c8b912645f61cdb4aae207a2ef8a0ff59dc8290c4a7d8936a81cae0f7c3c">STATUS_RUNNING</a> = 1
+, <a class="el" href="driver-arm_2AsservDriver_8hpp.html#af56a0c8b912645f61cdb4aae207a2ef8aa4ea8c4a1b3178fd437969d4280bd2b9">STATUS_HALTED</a> = 2
+, <a class="el" href="driver-arm_2AsservDriver_8hpp.html#af56a0c8b912645f61cdb4aae207a2ef8a8beab2ef9ffa25a6fa1501a2c3d35dfd">STATUS_BLOCKED</a> = 3
+<br />
+ }</td></tr>
+<tr class="separator:af56a0c8b912645f61cdb4aae207a2ef8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Définition de la classe <a class="el" href="classAsservDriver.html">AsservDriver</a> (OPOS6UL). </p>
+</div><h2 class="groupheader">Documentation des macros</h2>
+<a id="ac08f8f916661bb5fc606373bea93d274"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac08f8f916661bb5fc606373bea93d274">&#9670;&nbsp;</a></span>SERIAL_PORT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SERIAL_PORT&#160;&#160;&#160;&quot;/dev/ttymxc1&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Documentation du type de l'énumération</h2>
+<a id="af56a0c8b912645f61cdb4aae207a2ef8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af56a0c8b912645f61cdb4aae207a2ef8">&#9670;&nbsp;</a></span>CommandStatus</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="CommandManagerA_8h.html#af56a0c8b912645f61cdb4aae207a2ef8">CommandStatus</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Valeurs énumérées</th></tr><tr><td class="fieldname"><a id="af56a0c8b912645f61cdb4aae207a2ef8a99ade6ecff7f9e1fb13b62be39b85d82"></a>STATUS_IDLE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="af56a0c8b912645f61cdb4aae207a2ef8a0ff59dc8290c4a7d8936a81cae0f7c3c"></a>STATUS_RUNNING&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="af56a0c8b912645f61cdb4aae207a2ef8aa4ea8c4a1b3178fd437969d4280bd2b9"></a>STATUS_HALTED&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="af56a0c8b912645f61cdb4aae207a2ef8a8beab2ef9ffa25a6fa1501a2c3d35dfd"></a>STATUS_BLOCKED&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="af56a0c8b912645f61cdb4aae207a2ef8a99ade6ecff7f9e1fb13b62be39b85d82"></a>STATUS_IDLE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="af56a0c8b912645f61cdb4aae207a2ef8a0ff59dc8290c4a7d8936a81cae0f7c3c"></a>STATUS_RUNNING&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="af56a0c8b912645f61cdb4aae207a2ef8aa4ea8c4a1b3178fd437969d4280bd2b9"></a>STATUS_HALTED&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="af56a0c8b912645f61cdb4aae207a2ef8a8beab2ef9ffa25a6fa1501a2c3d35dfd"></a>STATUS_BLOCKED&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Jeudi 26 Mars 2026 23:28:57 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

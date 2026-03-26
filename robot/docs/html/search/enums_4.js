@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ledcolor_3329',['LedColor',['../ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbde',1,'ALedDriver.hpp']]]
+  ['input_5fformat_5ft_6254',['input_format_t',['../namespacedetail.html#a0ab3b338d0eadc6890b72cccef0ea04f',1,'detail']]]
 ];

@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot:  Fichier source de src/bot-opos6ul/OPOS6UL_IAExtended.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_d465e8d31fb80e2931b929fe23883031.html">bot-opos6ul</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">OPOS6UL_IAExtended.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="OPOS6UL__IAExtended_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef OPOS6UL_IAEXTENDED_HPP_</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define OPOS6UL_IAEXTENDED_HPP_</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">//TODO: migrer le module IA (IAbyPath, IAbyZone, PathFinding)</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">class </span><a class="code" href="classRobot.html">Robot</a>;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="classOPOS6UL__IAExtended.html">   20</a></span>&#160;<span class="keyword">class </span><a class="code" href="classOPOS6UL__IAExtended.html">OPOS6UL_IAExtended</a></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;{</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="classOPOS6UL__IAExtended.html#a25b80fe3ad16f9481def0b7f939a5a3d">OPOS6UL_IAExtended</a>(std::string botId, <a class="code" href="classRobot.html">Robot</a> *robot);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classOPOS6UL__IAExtended.html#ab355163f4574290fc586cc8c41b67c9f">   26</a></span>&#160;    <a class="code" href="classOPOS6UL__IAExtended.html#ab355163f4574290fc586cc8c41b67c9f">~OPOS6UL_IAExtended</a>()</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    }</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classOPOS6UL__IAExtended.html#aeaa64a0f2c66aa082fc79e6fa77472ab">initPlayground</a>();</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classOPOS6UL__IAExtended.html#af172b51de46364b5a1d6b6f6354888e3">move_adv</a>(<span class="keywordtype">float</span> x_mm, <span class="keywordtype">float</span> y_mm);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;};</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassOPOS6UL__IAExtended_html"><div class="ttname"><a href="classOPOS6UL__IAExtended.html">OPOS6UL_IAExtended</a></div><div class="ttdoc">Gestion de l'IA étendue du robot OPOS6UL (terrain de jeu, déplacement adverse).</div><div class="ttdef"><b>Definition:</b> OPOS6UL_IAExtended.hpp:21</div></div>
+<div class="ttc" id="aclassOPOS6UL__IAExtended_html_a25b80fe3ad16f9481def0b7f939a5a3d"><div class="ttname"><a href="classOPOS6UL__IAExtended.html#a25b80fe3ad16f9481def0b7f939a5a3d">OPOS6UL_IAExtended::OPOS6UL_IAExtended</a></div><div class="ttdeci">OPOS6UL_IAExtended(std::string botId, Robot *robot)</div><div class="ttdef"><b>Definition:</b> OPOS6UL_IAExtended.cpp:7</div></div>
+<div class="ttc" id="aclassOPOS6UL__IAExtended_html_ab355163f4574290fc586cc8c41b67c9f"><div class="ttname"><a href="classOPOS6UL__IAExtended.html#ab355163f4574290fc586cc8c41b67c9f">OPOS6UL_IAExtended::~OPOS6UL_IAExtended</a></div><div class="ttdeci">~OPOS6UL_IAExtended()</div><div class="ttdef"><b>Definition:</b> OPOS6UL_IAExtended.hpp:26</div></div>
+<div class="ttc" id="aclassOPOS6UL__IAExtended_html_aeaa64a0f2c66aa082fc79e6fa77472ab"><div class="ttname"><a href="classOPOS6UL__IAExtended.html#aeaa64a0f2c66aa082fc79e6fa77472ab">OPOS6UL_IAExtended::initPlayground</a></div><div class="ttdeci">void initPlayground()</div><div class="ttdoc">Initialise le terrain de jeu (zones, obstacles, chemins).</div><div class="ttdef"><b>Definition:</b> OPOS6UL_IAExtended.cpp:11</div></div>
+<div class="ttc" id="aclassOPOS6UL__IAExtended_html_af172b51de46364b5a1d6b6f6354888e3"><div class="ttname"><a href="classOPOS6UL__IAExtended.html#af172b51de46364b5a1d6b6f6354888e3">OPOS6UL_IAExtended::move_adv</a></div><div class="ttdeci">void move_adv(float x_mm, float y_mm)</div><div class="ttdoc">Déplace la position connue de l'adversaire sur le terrain.</div><div class="ttdef"><b>Definition:</b> OPOS6UL_IAExtended.cpp:14</div></div>
+<div class="ttc" id="aclassRobot_html"><div class="ttname"><a href="classRobot.html">Robot</a></div><div class="ttdef"><b>Definition:</b> Robot.hpp:26</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Jeudi 26 Mars 2026 23:28:54 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

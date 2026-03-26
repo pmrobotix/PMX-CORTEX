@@ -1,0 +1,28 @@
+<map id="logs::Logger::telemetry" name="logs::Logger::telemetry">
+<area shape="rect" id="node1" title="Trace un message de niveau TELEM." alt="" coords="1089,559,1263,585"/>
+<area shape="rect" id="node2" href="$classLedBar.html#a31ff074dd2184f11b0fc4858542a8050" title="Allume/eteint les leds définit par hexValue, max = 0xFF." alt="" coords="935,483,1041,509"/>
+<area shape="rect" id="node19" href="$classLedBar.html#a4f6f26d47d0ea82380cebb8c2b9ea7c3" title="Change le statut d&#39;une led." alt="" coords="772,635,867,661"/>
+<area shape="rect" id="node3" href="$classLedBar.html#ab34bee22db4d68f6c6057e2fbb3b33cd" title="Clignote toutes les leds nb fois sur les 2 valeurs hex val1 et val2." alt="" coords="752,508,887,535"/>
+<area shape="rect" id="node4" href="$classLedBarAction.html#a67bc2c636064156c80319623b88ec5e8" title="Execution de l&#39;action." alt="" coords="517,457,684,484"/>
+<area shape="rect" id="node5" href="$classLedBar.html#ad91d62f821e6b1eb6689a0d23f021097" title="Allume toutes leds." alt="" coords="758,407,881,433"/>
+<area shape="rect" id="node9" href="$classLedBarTimer.html#a508f0c79e394a111d211f457fd589870" title="fonction qui sera executer à chaque traitement du timer." alt="" coords="262,879,429,905"/>
+<area shape="rect" id="node10" href="$classLedBar.html#aa771bd13ff72b872ec4c34e9ef68ea1b" title="Eteint toutes leds." alt="" coords="757,276,882,303"/>
+<area shape="rect" id="node6" href="$classLedBar.html#afad90556b784654b618c527eb19c50dd" title="Clignote toutes les leds nb fois." alt="" coords="547,407,654,433"/>
+<area shape="rect" id="node8" href="$classO__State__WaitEndOfMatch.html#aa73613440b37c8dd42181e2e0265ae86" title="Exécute l&#39;état d&#39;attente de fin de match." alt="" coords="5,349,193,390"/>
+<area shape="rect" id="node7" href="$classO__LedBarTest.html#af9e0e172d13b334cda0fe32bb659b414" title=" " alt="" coords="276,580,415,607"/>
+<area shape="rect" id="node11" href="$classO__State__Init.html#abc19788b7457d1f819245dd28367fe91" title="Exécute l&#39;état d&#39;initialisation." alt="" coords="521,188,681,215"/>
+<area shape="rect" id="node12" href="$classLedBarTimer.html#a7836430e649650253638c3c1c95d20ad" title="fonction qui sera executer en dernière action à faire pour ce timer." alt="" coords="505,5,696,32"/>
+<area shape="rect" id="node13" href="$classLedBar.html#a7bb1b0cf26c7202807bdc3e68e1f2e48" title=" " alt="" coords="537,508,664,535"/>
+<area shape="rect" id="node14" href="$classOPOS6UL__RobotExtended.html#a819ce5f4225f7082d6ce8cf19466dc33" title="Réinitialise l&#39;affichage de détection d&#39;obstacle." alt="" coords="506,57,695,98"/>
+<area shape="rect" id="node15" href="$classOPOS6UL__RobotExtended.html#a5297c0c8c1c9b4f25effe72b71ace570" title="Réinitialise l&#39;affichage du statut de trajectoire." alt="" coords="506,122,695,163"/>
+<area shape="rect" id="node16" href="$classOPOS6UL__ActionsExtended.html#a87bb61d89759101cac844e7c399f2f61" title="Arrête tous les périphériques supplémentaires (capteurs, LEDs, LCD) et relâche les servos." alt="" coords="501,239,700,281"/>
+<area shape="rect" id="node17" href="$classOPOS6UL__RobotExtended.html#ac8ac2be407a78cdd62261f72226162df" title=" " alt="" coords="241,225,449,266"/>
+<area shape="rect" id="node18" href="$classOPOS6UL__RobotExtended.html#a0a997f7fd88abac1efe0083fce633649" title="Arrête toutes les actions supplémentaires (capteurs, LEDs, servos)." alt="" coords="251,290,440,331"/>
+<area shape="rect" id="node20" href="$classOPOS6UL__ActionsExtended.html#aced00f2c03b0aa9b9eda54e6874bac75" title=" " alt="" coords="497,762,704,803"/>
+<area shape="rect" id="node21" href="$classLedBar.html#abc84af9e1f24d8e7a0c9a7f67767c34f" title="Clignote une led nb fois pendant timeus." alt="" coords="537,711,664,737"/>
+<area shape="rect" id="node22" href="$classLedBar.html#a5272d702b081c2fe6288a690e92cc488" title="Clignote toutes les leds nb fois sur les 2 valeurs hex val1 et val2." alt="" coords="545,559,657,585"/>
+<area shape="rect" id="node23" href="$classLedBar.html#a3069414fedb0a97740ffd3ff819d63f1" title="Désactive une led spécifique." alt="" coords="543,828,658,855"/>
+<area shape="rect" id="node24" href="$classLedBar.html#aebfc6c5221a223364044fc5c6efacd7a" title="Active une led spécifique." alt="" coords="544,660,657,687"/>
+<area shape="rect" id="node25" href="$classOPOS6UL__RobotExtended.html#a9b3f31797fc1916741d6bc61eaf3d1b7" title="Affiche le niveau de détection d&#39;obstacle." alt="" coords="251,642,440,683"/>
+<area shape="rect" id="node26" href="$classOPOS6UL__RobotExtended.html#a4c7e16c32c1eaa463f577c100f63f618" title="Affiche le statut de trajectoire courant." alt="" coords="251,707,440,749"/>
+</map>

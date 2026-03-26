@@ -1,0 +1,9 @@
+<map id="ServoObjectsSystem::move_finished" name="ServoObjectsSystem::move_finished">
+<area shape="rect" id="node1" title="Retourne vrai si le mouvement en cours est terminé (thread&#45;safe)." alt="" coords="457,136,615,177"/>
+<area shape="rect" id="node2" href="$classServoObjectsSystem.html#a209d4e6a24c8cd26c76168c08e330655" title="move 2 servos." alt="" coords="252,71,409,112"/>
+<area shape="rect" id="node6" href="$classServoObjectsTimer.html#a678b5b8c91a359ee1fc44c314e6d547e" title="fonction qui sera executer à chaque traitement du timer." alt="" coords="253,136,408,177"/>
+<area shape="rect" id="node7" href="$classServoObjectsTimer.html#abb55f255d6ddbd31e94f1036bce541a9" title="fonction qui sera executer en dernière action à faire pour ce timer." alt="" coords="253,201,408,243"/>
+<area shape="rect" id="node3" href="$classOPOS6UL__ActionsExtended.html#a565acda2ce4cdd1be8263835465d0fdc" title="Initialise le bras gauche (épaule, coude, poignet) à la position de repos." alt="" coords="5,5,204,47"/>
+<area shape="rect" id="node4" href="$classOPOS6UL__ActionsExtended.html#a50a3db095faaaf15ec9630d9abcfb5d4" title="Initialise les deux bras (gauche et droit) à la position de repos." alt="" coords="5,71,204,112"/>
+<area shape="rect" id="node5" href="$classOPOS6UL__ActionsExtended.html#a298422faffadf81c4350cd47464d3f0a" title="Initialise le bras droit (épaule, coude, poignet) à la position de repos." alt="" coords="5,136,204,177"/>
+</map>

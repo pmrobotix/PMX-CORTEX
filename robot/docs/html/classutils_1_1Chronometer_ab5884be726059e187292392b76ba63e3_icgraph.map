@@ -1,8 +1,9 @@
 <map id="utils::Chronometer::stop" name="utils::Chronometer::stop">
-<area shape="rect" id="node1" title="Arrête le chronomètre." alt="" coords="463,104,605,145"/>
-<area shape="rect" id="node2" href="$classtest_1_1ChronometerTest.html#a23da1b885637b6bcebc73325fca0684a" title="Vérifie la mesure du temps écoulé après un sleep." alt="" coords="234,5,401,47"/>
-<area shape="rect" id="node4" href="$classtest_1_1ThreadTest.html#a313e3f9f588d83d238893bd58923ed21" title="Vérifie la précision de sleep_for_millis." alt="" coords="220,71,415,112"/>
-<area shape="rect" id="node5" href="$classtest_1_1ThreadTest.html#a1262fce3aca48dc17dab2ee10a7d5999" title="Vérifie la précision de sleep_for_micros." alt="" coords="220,136,415,177"/>
-<area shape="rect" id="node6" href="$classtest_1_1ChronometerTest.html#a415d1e31bcf8129824fcb03e304021c7" title="Vérifie les transitions start/stop et le flag started()." alt="" coords="234,201,401,243"/>
-<area shape="rect" id="node3" href="$classtest_1_1ChronometerTest.html#a1c7e36190a3c3f415a5547d408883d76" title="Execute les tests associés à la classe." alt="" coords="5,104,172,145"/>
+<area shape="rect" id="node1" title="Arrête le chronomètre." alt="" coords="463,122,605,163"/>
+<area shape="rect" id="node2" href="$classMockAction.html#ad7f3909b21271f52aaa5205458925b8b" title="Execute une action. Attention toujours renvoyer un bool, sinon seg fault ;)" alt="" coords="239,5,396,32"/>
+<area shape="rect" id="node3" href="$classtest_1_1ChronometerTest.html#a23da1b885637b6bcebc73325fca0684a" title="Vérifie la mesure du temps écoulé après un sleep." alt="" coords="234,57,401,98"/>
+<area shape="rect" id="node5" href="$classtest_1_1ThreadTest.html#a313e3f9f588d83d238893bd58923ed21" title="Vérifie la précision de sleep_for_millis." alt="" coords="220,122,415,163"/>
+<area shape="rect" id="node6" href="$classtest_1_1ThreadTest.html#a1262fce3aca48dc17dab2ee10a7d5999" title="Vérifie la précision de sleep_for_micros." alt="" coords="220,187,415,229"/>
+<area shape="rect" id="node7" href="$classtest_1_1ChronometerTest.html#a415d1e31bcf8129824fcb03e304021c7" title="Vérifie les transitions start/stop et le flag started()." alt="" coords="234,253,401,294"/>
+<area shape="rect" id="node4" href="$classtest_1_1ChronometerTest.html#a1c7e36190a3c3f415a5547d408883d76" title="Execute les tests associés à la classe." alt="" coords="5,155,172,197"/>
 </map>

@@ -1,0 +1,8 @@
+<map id="timeOut::elapsedTime_ms" name="timeOut::elapsedTime_ms">
+<area shape="rect" id="node1" title="Returns the time elapsed since initialization. It write the current time of the day in the structure ..." alt="" coords="871,56,1065,83"/>
+<area shape="rect" id="node2" href="$classserialib.html#ab05e51ff3bc47c02d7d000d58b45a961" title="Read an array of bytes from the serial device (with timeout)" alt="" coords="679,5,823,32"/>
+<area shape="rect" id="node3" href="$classserialib.html#a6c78b8a11ae7b8af57eea3dbc7fa237b" title="Wait for a byte from the serial device and return the data read." alt="" coords="682,56,819,83"/>
+<area shape="rect" id="node4" href="$classserialib.html#ab155c84352ddefe1304d391c19497ac1" title="Read a string from the serial device (with timeout)" alt="" coords="219,56,364,83"/>
+<area shape="rect" id="node6" href="$classserialib.html#a543d9ece0586fb00ae20ee282d325890" title="Read a string from the serial device (without TimeOut)" alt="" coords="412,56,631,83"/>
+<area shape="rect" id="node5" href="$classAsservDriver.html#ae2fdf0d75abab4e2cc974706c8a81867" title="Méthode virtuelle pure à implémenter dans les sous&#45;classes." alt="" coords="5,56,171,83"/>
+</map>

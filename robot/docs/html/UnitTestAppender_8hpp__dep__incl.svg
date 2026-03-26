@@ -67,7 +67,7 @@ var sectionId = 'dynsection-1';
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="bench_2LoggerInitialize_8cpp.html" target="_top" xlink:title="Initialisation du systeme de Log pour les benchmarks.">
+<g id="a_node2"><a xlink:href="test_2bench_2LoggerInitialize_8cpp.html" target="_top" xlink:title="Initialisation du systeme de Log pour les benchmarks.">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-19.5 166,-19.5 166,-0.5 0,-0.5"/>
 <text text-anchor="middle" x="83" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">test/bench/LoggerInitialize.cpp</text>
 </a>
@@ -82,7 +82,7 @@ var sectionId = 'dynsection-1';
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="common_2LoggerInitialize_8cpp.html" target="_top" xlink:title="Initialisation du système de Log pour les tests unitaires.">
+<g id="a_node3"><a xlink:href="test_2common_2LoggerInitialize_8cpp.html" target="_top" xlink:title="Initialisation du système de Log pour les tests unitaires.">
 <polygon fill="white" stroke="black" points="184.5,-0.5 184.5,-19.5 363.5,-19.5 363.5,-0.5 184.5,-0.5"/>
 <text text-anchor="middle" x="274" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">test/common/LoggerInitialize.cpp</text>
 </a>
@@ -112,7 +112,7 @@ var sectionId = 'dynsection-1';
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="driver_2LoggerInitialize_8cpp.html" target="_top" xlink:title="Initialisation du systeme de Log pour les tests driver.">
+<g id="a_node5"><a xlink:href="test_2driver_2LoggerInitialize_8cpp.html" target="_top" xlink:title="Initialisation du systeme de Log pour les tests driver.">
 <polygon fill="white" stroke="black" points="556.5,-0.5 556.5,-19.5 721.5,-19.5 721.5,-0.5 556.5,-0.5"/>
 <text text-anchor="middle" x="639" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">test/driver/LoggerInitialize.cpp</text>
 </a>
@@ -127,7 +127,7 @@ var sectionId = 'dynsection-1';
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
-<g id="a_node6"><a xlink:href="manual_2LoggerInitialize_8cpp.html" target="_top" xlink:title="Initialisation du systeme de Log pour les tests manuels.">
+<g id="a_node6"><a xlink:href="test_2manual_2LoggerInitialize_8cpp.html" target="_top" xlink:title="Initialisation du systeme de Log pour les tests manuels.">
 <polygon fill="white" stroke="black" points="739.5,-0.5 739.5,-19.5 912.5,-19.5 912.5,-0.5 739.5,-0.5"/>
 <text text-anchor="middle" x="826" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">test/manual/LoggerInitialize.cpp</text>
 </a>

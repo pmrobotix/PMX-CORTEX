@@ -1,0 +1,5 @@
+<map id="serialib::readBytes" name="serialib::readBytes">
+<area shape="rect" id="node1" title="Read an array of bytes from the serial device (with timeout)" alt="" coords="5,31,149,57"/>
+<area shape="rect" id="node2" href="$classtimeOut.html#af5db5b5f0db4f6ada19187ef8f214214" title="Returns the time elapsed since initialization. It write the current time of the day in the structure ..." alt="" coords="197,5,392,32"/>
+<area shape="rect" id="node3" href="$classtimeOut.html#a88b4caef4ce7bfc42b73a61589c098e8" title="Initialise the timer. It writes the current time of the day in the structure PreviousTime." alt="" coords="223,56,366,83"/>
+</map>

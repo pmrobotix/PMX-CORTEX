@@ -1,0 +1,11 @@
+<map id="DynamixelDriver::logger" name="DynamixelDriver::logger">
+<area shape="rect" id="node1" title="Retourne le Logger associé à la classe DynamixelDriver(OPOS6UL)." alt="" coords="272,198,453,225"/>
+<area shape="rect" id="node2" href="$classDynamixelDriver.html#a6652b8534770759128aa2e77ddf4faa8" title="Constructor." alt="" coords="9,5,220,47"/>
+<area shape="rect" id="node3" href="$classDynamixelDriver.html#a142a774bb716628483fa010727b84cdb" title="Verifie si le servo est en mouvement." alt="" coords="10,71,219,98"/>
+<area shape="rect" id="node4" href="$classDynamixelDriver.html#a3f431b5c398e201834c7b018a726a7c3" title="Lit le couple courant du servo." alt="" coords="13,122,217,149"/>
+<area shape="rect" id="node5" href="$classDynamixelDriver.html#a158a5d3216643efd306c036eac270752" title="Maintient la position courante du servo (active le couple)." alt="" coords="31,173,199,199"/>
+<area shape="rect" id="node6" href="$classDynamixelDriver.html#a16fc2b6f82b30c98bab3d64079f16360" title="Relache le servo (desactive le couple)." alt="" coords="21,223,209,250"/>
+<area shape="rect" id="node7" href="$classDynamixelDriver.html#ab9d0e9a3d8ef54d7bd1fee238bfb5278" title=" " alt="" coords="5,274,224,301"/>
+<area shape="rect" id="node8" href="$classDynamixelDriver.html#a71ddbc9a7a468231b5334e95e9bd1eb3" title=" " alt="" coords="19,325,210,351"/>
+<area shape="rect" id="node9" href="$classDynamixelDriver.html#a0dd50e159c075dc8e09a297501a5e23d" title="Fait tourner le servo en mode moteur continu." alt="" coords="31,375,198,402"/>
+</map>

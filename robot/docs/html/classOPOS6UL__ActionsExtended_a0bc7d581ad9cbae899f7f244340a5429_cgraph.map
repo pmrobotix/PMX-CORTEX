@@ -1,0 +1,6 @@
+<map id="OPOS6UL_ActionsExtended::releaseAll" name="OPOS6UL_ActionsExtended::releaseAll">
+<area shape="rect" id="node1" title="Relâche tous les servomoteurs AX12 (coupe le maintien en position)." alt="" coords="5,39,204,80"/>
+<area shape="rect" id="node2" href="$classServoObjectsSystem.html#aee9ba86b5c2d9cb07aff947f28812b83" title="Relâche le couple d&#39;un servo (désactive le maintien)." alt="" coords="273,5,430,47"/>
+<area shape="rect" id="node4" href="$classOPOS6UL__ActionsExtended.html#a1a6ccdf4aae1302cdf664d32ae5a67c6" title="Cette methode retourne l&#39;objet servos." alt="" coords="252,71,451,112"/>
+<area shape="rect" id="node3" href="$classAServoDriver.html#a9005ceeeecc056474f1ae6e54ce8ba23" title="Relache le servo (desactive le couple)." alt="" coords="499,13,663,39"/>
+</map>

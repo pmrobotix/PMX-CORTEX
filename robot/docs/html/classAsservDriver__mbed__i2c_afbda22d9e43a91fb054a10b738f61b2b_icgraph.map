@@ -1,0 +1,20 @@
+<map id="AsservDriver_mbed_i2c::mbed_writeI2c" name="AsservDriver_mbed_i2c::mbed_writeI2c">
+<area shape="rect" id="node1" title=" " alt="" coords="511,496,687,537"/>
+<area shape="rect" id="node2" href="$classAsservDriver__mbed__i2c.html#a58c64e63be1bbf59fb1a6ab18db1c15e" title="Assisted movement mode =)" alt="" coords="249,5,443,47"/>
+<area shape="rect" id="node3" href="$classAsservDriver__mbed__i2c.html#a4b60135063f545a6c686f360ca8c2b88" title="Active/desactive la regulation en angle." alt="" coords="243,71,449,112"/>
+<area shape="rect" id="node4" href="$classAsservDriver__mbed__i2c.html#abbe122067f7bab901b67c3d148faaccd" title="Active/desactive la regulation en distance." alt="" coords="248,136,444,177"/>
+<area shape="rect" id="node5" href="$classAsservDriver__mbed__i2c.html#a5b4597c615883c58bbc0c5d649c8a67f" title="just disable PID" alt="" coords="248,201,444,243"/>
+<area shape="rect" id="node6" href="$classAsservDriver__mbed__i2c.html#adf94df7551cf686e5d1e13d2e091e5fa" title=" " alt="" coords="258,267,434,308"/>
+<area shape="rect" id="node7" href="$classAsservDriver__mbed__i2c.html#a90b40e26cd6ef4fde1ec9fe8b3b3d217" title=" " alt="" coords="258,332,434,373"/>
+<area shape="rect" id="node8" href="$classAsservDriver__mbed__i2c.html#a7d70497cf01398466de8b8a3b838a660" title="Avance ou recule en ligne droite." alt="" coords="258,397,434,439"/>
+<area shape="rect" id="node9" href="$classAsservDriver__mbed__i2c.html#a31be52ac0bbe9f9d761548deb1c86252" title="Effectue une rotation sur place." alt="" coords="258,463,434,504"/>
+<area shape="rect" id="node10" href="$classAsservDriver__mbed__i2c.html#a35d019875b35e49db97a3e700404e53a" title="Passe en roue libre (aucun asservissement)." alt="" coords="258,528,434,569"/>
+<area shape="rect" id="node12" href="$classAsservDriver__mbed__i2c.html#a717a1f7797a4aa778d3c63446746b6a6" title=" " alt="" coords="251,593,441,635"/>
+<area shape="rect" id="node13" href="$classAsservDriver__mbed__i2c.html#a6bb232217e5846a7d4935d4d49d79e0f" title=" " alt="" coords="257,659,435,700"/>
+<area shape="rect" id="node14" href="$classAsservDriver__mbed__i2c.html#a6d459bb635686b809447eaaf6e11fa32" title="Active/desactive la vitesse reduite en marche arriere." alt="" coords="229,724,463,765"/>
+<area shape="rect" id="node15" href="$classAsservDriver__mbed__i2c.html#ac160c31f1579eca298e3891b51e0727b" title="Active/desactive la vitesse reduite en marche avant." alt="" coords="235,789,457,831"/>
+<area shape="rect" id="node16" href="$classAsservDriver__mbed__i2c.html#aa24966587d78fbf770e8cdd9e4d74f4f" title="Definit la position courante du robot (recalage)." alt="" coords="258,855,434,896"/>
+<area shape="rect" id="node17" href="$classAsservDriver__mbed__i2c.html#aad59dce9726d41ec38b9f6fdef2f0270" title="Interrompt la trajectoire en cours (arret d&#39;urgence logiciel)." alt="" coords="253,920,439,961"/>
+<area shape="rect" id="node18" href="$classAsservDriver__mbed__i2c.html#a22a7599761e3c381bfa767e4ddf47383" title="Reinitialise l&#39;arret d&#39;urgence pour permettre un nouveau mouvement." alt="" coords="243,985,449,1027"/>
+<area shape="rect" id="node11" href="$classAsservDriver__mbed__i2c.html#a24eba7a1a351ef4ba2fb41af163feb8c" title="Desactive le PID et stoppe les moteurs." alt="" coords="5,528,181,569"/>
+</map>

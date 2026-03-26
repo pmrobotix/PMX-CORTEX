@@ -1,0 +1,6 @@
+<map id="AsservEsialR::motion_ActivateReguAngle" name="AsservEsialR::motion_ActivateReguAngle">
+<area shape="rect" id="node1" title="Active/desactive la regulation en angle." alt="" coords="5,64,165,105"/>
+<area shape="rect" id="node2" href="$classConsignController.html#ad6059481f0503eb82ba18bd635f08e6d" title=" " alt="" coords="215,5,362,47"/>
+<area shape="rect" id="node3" href="$classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32" title="Verrouille le mutex. Cette méthode doit être appelée avant d&#39;utiliser la ressource associée...." alt="" coords="221,71,356,98"/>
+<area shape="rect" id="node4" href="$classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3" title="Déverrouille le mutex. Cette méthode doit être appelée après avoir utiliser la ressource associée." alt="" coords="213,122,364,149"/>
+</map>

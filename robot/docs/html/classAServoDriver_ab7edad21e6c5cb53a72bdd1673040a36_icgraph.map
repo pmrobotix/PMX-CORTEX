@@ -1,0 +1,20 @@
+<map id="AServoDriver::setTorque" name="AServoDriver::setTorque">
+<area shape="rect" id="node1" title="Definit le couple maximal du servo." alt="" coords="1112,470,1291,497"/>
+<area shape="rect" id="node2" href="$classServoObjectsSystem.html#a60de17986f65700a7659b22edda2faef" title="move 1 servo." alt="" coords="907,300,1064,341"/>
+<area shape="rect" id="node15" href="$classServoObjectsSystem.html#a209d4e6a24c8cd26c76168c08e330655" title="move 2 servos." alt="" coords="907,397,1064,439"/>
+<area shape="rect" id="node16" href="$classServoObjectsSystem.html#a8d96f5f8ccdfb9ca69a73e523f388191" title="Déplace 3 servos simultanément." alt="" coords="907,463,1064,504"/>
+<area shape="rect" id="node17" href="$classServoObjectsSystem.html#a885ad7b498315c66de65dae7149b3ea1" title="Déplace 4 servos simultanément." alt="" coords="907,528,1064,569"/>
+<area shape="rect" id="node18" href="$classServoObjectsSystem.html#acf68a1b28ef93c8d960b84e008e9c974" title="Définit la valeur de couple d&#39;un servo." alt="" coords="907,593,1064,635"/>
+<area shape="rect" id="node3" href="$classOPOS6UL__ActionsExtended.html#a946560d21bc7c1a12be600b16e07c93a" title="Déploie le bras droit en position d&#39;action." alt="" coords="660,332,859,373"/>
+<area shape="rect" id="node7" href="$classOPOS6UL__ActionsExtended.html#a67daef275b861004d118273c7e2564c2" title="Place le bras droit en position initiale (replié)." alt="" coords="660,5,859,47"/>
+<area shape="rect" id="node8" href="$classOPOS6UL__ActionsExtended.html#a5b32b355b6907dda48874f40dc9101eb" title="Déploie le bras gauche en position d&#39;action." alt="" coords="660,71,859,112"/>
+<area shape="rect" id="node9" href="$classOPOS6UL__ActionsExtended.html#ad3b7d5a26040d5780cc43a5a9ead9ad3" title="Place le bras gauche en position initiale (replié)." alt="" coords="660,201,859,243"/>
+<area shape="rect" id="node10" href="$classOPOS6UL__ActionsExtended.html#a44856498aa3839098211785a1fe0b6a3" title="Déploie la banderole (action de fin de match)." alt="" coords="660,136,859,177"/>
+<area shape="rect" id="node11" href="$classOPOS6UL__ActionsExtended.html#ae63e06f334f5095383387aa9ff68c8a3" title="Initialise le servo de la banderole à la position repliée." alt="" coords="660,267,859,308"/>
+<area shape="rect" id="node12" href="$classOPOS6UL__ActionsExtended.html#a565acda2ce4cdd1be8263835465d0fdc" title="Initialise le bras gauche (épaule, coude, poignet) à la position de repos." alt="" coords="660,397,859,439"/>
+<area shape="rect" id="node13" href="$classOPOS6UL__ActionsExtended.html#a50a3db095faaaf15ec9630d9abcfb5d4" title="Initialise les deux bras (gauche et droit) à la position de repos." alt="" coords="660,463,859,504"/>
+<area shape="rect" id="node14" href="$classOPOS6UL__ActionsExtended.html#a298422faffadf81c4350cd47464d3f0a" title="Initialise le bras droit (épaule, coude, poignet) à la position de repos." alt="" coords="660,528,859,569"/>
+<area shape="rect" id="node4" href="$classOPOS6UL__ActionsExtended.html#af04e19802d90a78d82e67b10061521a2" title="Initialise tous les servomoteurs AX12 à leur position de départ." alt="" coords="413,201,612,243"/>
+<area shape="rect" id="node5" href="$classO__State__Init.html#abc19788b7457d1f819245dd28367fe91" title="Exécute l&#39;état d&#39;initialisation." alt="" coords="5,209,165,235"/>
+<area shape="rect" id="node6" href="$classO__State__Init.html#a1980cd82dcb83e88d61f2e7e14dddfa0" title=" " alt="" coords="213,234,365,261"/>
+</map>

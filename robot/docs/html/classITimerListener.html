@@ -77,6 +77,12 @@ $(function() {
  <a href="classITimerListener.html#details">Plus de détails...</a></p>
 
 <p><code>#include &lt;<a class="el" href="ITimerListener_8hpp_source.html">ITimerListener.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Graphe d'héritage de ITimerListener:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classITimerListener__inherit__graph.svg" width="248" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="graph_legend.html">légende</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Fonctions membres publiques</h2></td></tr>
@@ -89,10 +95,10 @@ Fonctions membres publiques</h2></td></tr>
 <tr class="memdesc:a1fb13795b7ae788210f5e6bce5a9aeb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter sur les infos permettant d'identifier le timer.  <a href="classITimerListener.html#a1fb13795b7ae788210f5e6bce5a9aeb0">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a1fb13795b7ae788210f5e6bce5a9aeb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d974556acf49d43add83ffabb25abe8"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classITimerListener.html#a0d974556acf49d43add83ffabb25abe8">onTimer</a> (<a class="el" href="classutils_1_1Chronometer.html">utils::Chronometer</a> chrono)=0</td></tr>
-<tr class="memdesc:a0d974556acf49d43add83ffabb25abe8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Actions à executer pour le timer.  <a href="classITimerListener.html#a0d974556acf49d43add83ffabb25abe8">Plus de détails...</a><br /></td></tr>
+<tr class="memdesc:a0d974556acf49d43add83ffabb25abe8"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classActions.html">Actions</a> à executer pour le timer.  <a href="classITimerListener.html#a0d974556acf49d43add83ffabb25abe8">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a0d974556acf49d43add83ffabb25abe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0004b567b000eef6df12d9d970909142"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classITimerListener.html#a0004b567b000eef6df12d9d970909142">onTimerEnd</a> (<a class="el" href="classutils_1_1Chronometer.html">utils::Chronometer</a> chrono)=0</td></tr>
-<tr class="memdesc:a0004b567b000eef6df12d9d970909142"><td class="mdescLeft">&#160;</td><td class="mdescRight">Actions de fin à executer pour le timer.  <a href="classITimerListener.html#a0004b567b000eef6df12d9d970909142">Plus de détails...</a><br /></td></tr>
+<tr class="memdesc:a0004b567b000eef6df12d9d970909142"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classActions.html">Actions</a> de fin à executer pour le timer.  <a href="classITimerListener.html#a0004b567b000eef6df12d9d970909142">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a0004b567b000eef6df12d9d970909142"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afb9764e6d9d018a13530c21e19b3cd6a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classITimerListener.html#afb9764e6d9d018a13530c21e19b3cd6a">requestToStop</a> ()</td></tr>
 <tr class="separator:afb9764e6d9d018a13530c21e19b3cd6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -263,6 +269,12 @@ Attributs protégés</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Getter sur les infos permettant d'identifier le timer. </p>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classITimerListener_a1fb13795b7ae788210f5e6bce5a9aeb0_icgraph.svg" width="100%" height="430"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
 
 </div>
 </div>
@@ -290,7 +302,9 @@ Attributs protégés</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Actions à executer pour le timer. </p>
+<p><a class="el" href="classActions.html">Actions</a> à executer pour le timer. </p>
+
+<p>Implémenté dans <a class="el" href="classMockTimer.html#ab27dbe205304fa9f8ea18483b913b3ad">MockTimer</a>, et <a class="el" href="classCountingTimer.html#a49fe7e645fe1cedecbfcc7b169680cbb">CountingTimer</a>.</p>
 
 </div>
 </div>
@@ -318,7 +332,15 @@ Attributs protégés</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Actions de fin à executer pour le timer. </p>
+<p><a class="el" href="classActions.html">Actions</a> de fin à executer pour le timer. </p>
+
+<p>Implémenté dans <a class="el" href="classMockTimer.html#ac01d1b1a9937f862b3c7669fc31e0db7">MockTimer</a>, et <a class="el" href="classCountingTimer.html#a1010c5a697833cae687806d5ec588e48">CountingTimer</a>.</p>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classITimerListener_a0004b567b000eef6df12d9d970909142_icgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
 
 </div>
 </div>
@@ -395,6 +417,12 @@ Attributs protégés</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classITimerListener_a746c0ceee4eb354754d2e90c5638454c_icgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
 
 </div>
 </div>
@@ -493,7 +521,7 @@ Attributs protégés</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Généré le Mercredi 25 Mars 2026 00:56:57 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Généré le Jeudi 26 Mars 2026 23:28:59 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

@@ -1,0 +1,25 @@
+<map id="GroveColorSensor::TCS3414GetColor" name="GroveColorSensor::TCS3414GetColor">
+<area shape="rect" id="node1" title="Calculate the color values [Clear,Red,Green,Blue]." alt="" coords="5,220,208,261"/>
+<area shape="rect" id="node2" href="$classGroveColorSensor.html#a5e660dc8888a0b2bdbaa2f4445fb2e25" title="Keeps a running average of 4 values per color." alt="" coords="286,5,493,47"/>
+<area shape="rect" id="node3" href="$classGroveColorSensor.html#a7c3b429a3541802917165ec053f63153" title="Takes the raw values from the sensors and converts them to Correlated Color Temperature." alt="" coords="587,122,787,149"/>
+<area shape="rect" id="node5" href="$classlogs_1_1Logger.html#a7dffc8f610014ec59b63392da16140e4" title="Trace un message de niveau DEBUG." alt="" coords="879,362,1028,389"/>
+<area shape="rect" id="node7" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="913,261,994,287"/>
+<area shape="rect" id="node11" href="$classGroveColorSensor.html#a7fb44a3e96d78d46985a335b887d20db" title="Retourne le Logger associé à la classe GroveColorSensor (OPOS6UL)." alt="" coords="859,210,1047,237"/>
+<area shape="rect" id="node16" href="$classGroveColorSensor.html#a614d9a4f55a38d5449cff7b74ad3395e" title="enable/disable color compensation of the sensor sensitivity per color." alt="" coords="256,507,523,534"/>
+<area shape="rect" id="node17" href="$classGroveColorSensor.html#aac18734e8eaff42c51e1889ccf945997" title="calculates percentages for R,G,B channels, if enabled." alt="" coords="261,558,517,585"/>
+<area shape="rect" id="node18" href="$classGroveColorSensor.html#a8e64a0c9360199183fae4c938ace91eb" title="retrieve all colors." alt="" coords="279,282,500,309"/>
+<area shape="rect" id="node4" href="$classGroveColorSensor.html#a40907d4f2a0cca2571660e4744049c40" title="Get the color temperature, using the algorithm in the TCS3414 datasheet." alt="" coords="867,122,1040,149"/>
+<area shape="rect" id="node6" href="$classlogs_1_1Logger.html#afa535aaf4891e02c4ff7f84d372b5b1b" title="Méthode générique de trace d&#39;un message." alt="" coords="1375,362,1575,389"/>
+<area shape="rect" id="node8" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#a0e4fd77693fd899ec1b0670354f93a02" title="Cette méthode valide le message en cours de construction et le transmet au Logger de référence." alt="" coords="1103,290,1327,317"/>
+<area shape="rect" id="node9" href="$classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32" title="Verrouille le mutex. Cette méthode doit être appelée avant d&#39;utiliser la ressource associée...." alt="" coords="1407,311,1542,338"/>
+<area shape="rect" id="node10" href="$classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3" title="Déverrouille le mutex. Cette méthode doit être appelée après avoir utiliser la ressource associée." alt="" coords="1399,261,1550,287"/>
+<area shape="rect" id="node12" href="$classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e" title="Cette méthode statique retourne un Logger en fonction de son nom." alt="" coords="1141,173,1289,215"/>
+<area shape="rect" id="node13" href="$classlogs_1_1LoggerFactory.html#ac89f19c0ffd71aa8cdc1c2d44c03809e" title="Cette méthode ajoute un appender au système." alt="" coords="1385,210,1564,237"/>
+<area shape="rect" id="node14" href="$classlogs_1_1LoggerFactory.html#a90478b91d7af2ef8841ded21e3521f69" title="Cette méthode statique retourne l&#39;instance unique de la classe LoggerFactory." alt="" coords="1401,79,1549,120"/>
+<area shape="rect" id="node15" href="$classlogs_1_1LoggerFactory.html#a212aa623f4b6bee12cb39e8017dde670" title="Cette méthode retourne le Logger principal qui définit le niveau de trace par défaut." alt="" coords="1401,144,1549,185"/>
+<area shape="rect" id="node19" href="$classGroveColorSensor.html#aff6d2790d1b0722f9a93701af3f2571f" title="retrieve blue color." alt="" coords="571,223,804,250"/>
+<area shape="rect" id="node21" href="$classGroveColorSensor.html#a99ce85e9e60e69dc73271ae9c0cdf190" title="retrieve clear color." alt="" coords="585,275,789,316"/>
+<area shape="rect" id="node22" href="$classGroveColorSensor.html#a3f2021212497161c52f7a03ad688d52d" title="retrieve green color." alt="" coords="585,340,789,381"/>
+<area shape="rect" id="node23" href="$classGroveColorSensor.html#a2cff828afbb09c412a4378d00582e10f" title="retrieve red color." alt="" coords="573,406,802,433"/>
+<area shape="rect" id="node20" href="$classGroveColorSensor.html#ad963d1be2494813887189cf169b6c7b0" title="read using a command on i2c abd using automatic slave address." alt="" coords="852,311,1055,338"/>
+</map>

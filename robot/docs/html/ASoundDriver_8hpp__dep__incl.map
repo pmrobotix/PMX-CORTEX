@@ -1,5 +1,8 @@
 <map id="src/common/interface/ASoundDriver.hpp" name="src/common/interface/ASoundDriver.hpp">
-<area shape="rect" id="node1" title="Interface abstraite du driver de son." alt="" coords="39,5,203,47"/>
-<area shape="rect" id="node2" href="$SoundDriver_8hpp.html" title="Implementation SIMU du driver de son." alt="" coords="5,95,236,121"/>
-<area shape="rect" id="node3" href="$SoundDriver_8cpp.html" title="Implementation SIMU du driver de son." alt="" coords="5,169,236,196"/>
+<area shape="rect" id="node1" title="Interface abstraite du driver de son." alt="" coords="299,5,463,47"/>
+<area shape="rect" id="node2" href="$SoundBar_8cpp.html" title=" " alt="" coords="5,95,244,121"/>
+<area shape="rect" id="node3" href="$driver-arm_2SoundDriver_8hpp.html" title="Implementation ARM du driver de son pour l&#39;OPOS6UL." alt="" coords="268,95,493,121"/>
+<area shape="rect" id="node5" href="$driver-simu_2SoundDriver_8hpp.html" title="Implementation SIMU du driver de son." alt="" coords="517,95,748,121"/>
+<area shape="rect" id="node4" href="$driver-arm_2SoundDriver_8cpp.html" title="Implementation ARM du driver de son." alt="" coords="269,169,493,196"/>
+<area shape="rect" id="node6" href="$driver-simu_2SoundDriver_8cpp.html" title="Implementation SIMU du driver de son." alt="" coords="517,169,748,196"/>
 </map>

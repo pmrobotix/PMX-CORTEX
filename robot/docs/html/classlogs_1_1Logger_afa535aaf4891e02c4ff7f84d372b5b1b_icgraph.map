@@ -1,52 +1,52 @@
 <map id="logs::Logger::writeMessage" name="logs::Logger::writeMessage">
-<area shape="rect" id="node1" title="Méthode générique de trace d&#39;un message." alt="" coords="1227,484,1427,510"/>
-<area shape="rect" id="node2" href="$classlogs_1_1Logger.html#a7dffc8f610014ec59b63392da16140e4" title="Trace un message de niveau DEBUG." alt="" coords="757,180,907,206"/>
-<area shape="rect" id="node12" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#a0e4fd77693fd899ec1b0670354f93a02" title="Cette méthode valide le message en cours de construction et le transmet au Logger de référence." alt="" coords="955,534,1179,561"/>
-<area shape="rect" id="node45" href="$classlogs_1_1Logger.html#a8b6a2019233bc44b3c3c86c653910831" title="Trace un message de niveau ERROR." alt="" coords="762,332,902,358"/>
-<area shape="rect" id="node46" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#aee16dd078779a8154f1b3d7238748a6f" title=" " alt="" coords="971,586,1163,627"/>
-<area shape="rect" id="node48" href="$classlogs_1_1Logger.html#aa381165771d00a6a1e3aa9664bf6467f" title="Trace un message de niveau INFO." alt="" coords="765,585,899,612"/>
-<area shape="rect" id="node49" href="$classlogs_1_1Logger.html#ae55afdeeb1bc9acb6dc02a3e2d06062f" title="Trace un message de niveau TELEM." alt="" coords="980,652,1153,678"/>
-<area shape="rect" id="node50" href="$classlogs_1_1Logger.html#a240e8d7b58195c85bd7b4e4a3417d955" title="Trace un message de niveau WARN." alt="" coords="761,121,903,148"/>
-<area shape="rect" id="node3" href="$classSwitchDriver.html#a318f2cc1988d9ddfae71131fcf39d929" title="Constructeur. Initialise le PCA9555." alt="" coords="5,281,201,308"/>
-<area shape="rect" id="node4" href="$classGpioPCA9555.html#a22dbebb8c5fffe0d0c119c6d958276e7" title="Lit la valeur d&#39;un pin du port1 (entrees)." alt="" coords="491,180,681,206"/>
-<area shape="rect" id="node6" href="$classButtonDriver.html#acc197da87cfbc9bee896ad284bbeedbe" title="Teste si un bouton est actuellement appuye." alt="" coords="504,230,668,257"/>
-<area shape="rect" id="node7" href="$classGpioPCA9555.html#a700aff89e3f53630ec2e77a3755174a4" title="Configure les registres de direction des ports." alt="" coords="509,281,663,308"/>
-<area shape="rect" id="node9" href="$classtest_1_1LoggerTest.html#a3b9ae6dbc586a91732890bbebc8f49ad" title="Vérifie les messages simples (debug, info, warn, error)." alt="" coords="485,48,687,90"/>
-<area shape="rect" id="node11" href="$classtest_1_1LoggerTest.html#a49ceaa16cfc816d22253860fad8ad59e" title="Vérifie les messages via l&#39;API stream (&lt;&lt;)." alt="" coords="483,114,689,155"/>
-<area shape="rect" id="node5" href="$classSwitchDriver.html#a379d72f1adda71986eda15ac793e47b2" title="Lit l&#39;etat d&#39;un pin du port1 du PCA9555." alt="" coords="250,180,414,206"/>
-<area shape="rect" id="node8" href="$classGpioPCA9555.html#ada56d6ac5d165229e1a2e7e50387a376" title="Initialise la communication I2C et configure les ports." alt="" coords="255,281,409,308"/>
-<area shape="rect" id="node10" href="$classtest_1_1LoggerTest.html#af4c75dbd29735b88c4aaf349bc9d4caf" title="Execute les tests associés à la classe." alt="" coords="249,89,415,116"/>
-<area shape="rect" id="node13" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="791,981,873,1008"/>
-<area shape="rect" id="node14" href="$classSvgWriter.html#a30059a7d7289c57d3bf1bf623713dc0a" title="Constructeur de la classe." alt="" coords="507,838,665,865"/>
-<area shape="rect" id="node15" href="$classbasic__json.html#adee26a05c7e837cf1b8042de9331484b" title="checks the class invariants" alt="" coords="517,1894,655,1935"/>
-<area shape="rect" id="node16" href="$structordered__map.html#a67d741fe8d5de525c6f2d54e2df7560d" title=" " alt="" coords="521,1960,651,1986"/>
-<area shape="rect" id="node17" href="$classbasic__json.html#adafea743a0a74f86433b8b7cc5bb24bf" title="access the last element" alt="" coords="521,2010,651,2037"/>
-<area shape="rect" id="node18" href="$classSoundDriver.html#a02e19369da6d072ffb3e5ad66880c6cd" title="Emet un beep avec les arguments donnes." alt="" coords="515,889,657,916"/>
-<area shape="rect" id="node19" href="$classSvgWriter.html#ac6b52164bb48debc2aa814b2e96ec233" title="Écrit l&#39;en&#45;tête SVG (grille, defs, symboles)." alt="" coords="497,433,675,460"/>
-<area shape="rect" id="node20" href="$classdetail_1_1binary__writer.html#af8d6408cc5daa2e485d3f7d6cdb0eb58" title=" " alt="" coords="502,2112,670,2154"/>
-<area shape="rect" id="node21" href="$structdetail_1_1external__constructor_3_01value__t_1_1array_01_4.html#ae399adc0d10013a567e8646807d650b5" title=" " alt="" coords="481,940,691,982"/>
-<area shape="rect" id="node22" href="$structdetail_1_1external__constructor_3_01value__t_1_1object_01_4.html#a96a727d374af438440e4f9fe6f273e3f" title=" " alt="" coords="478,1006,694,1047"/>
-<area shape="rect" id="node23" href="$structordered__map.html#a94ced73a996cf385aa68b6aae1f85dfe" title=" " alt="" coords="510,1072,662,1098"/>
-<area shape="rect" id="node24" href="$structdetail_1_1container__input__adapter__factory__impl_1_1container__input__adapter__factory_3983614ac0e8828aa386ca24b1ddc2bd1.html#a6b9ccb1f4f7503123e553956abde9b85" title=" " alt="" coords="463,1123,709,1252"/>
-<area shape="rect" id="node25" href="$structordered__map.html#a8ab9d18a0de258c21224ff3adfbd2372" title=" " alt="" coords="500,1277,672,1304"/>
-<area shape="rect" id="node26" href="$classSvgWriter.html#a18e6747b544e14bc12f184bce594ec63" title="Ferme le document SVG (balises de fin)." alt="" coords="503,484,669,510"/>
-<area shape="rect" id="node27" href="$structordered__map.html#aaa50926fc8df543dbe294859db97514e" title=" " alt="" coords="510,1328,662,1354"/>
-<area shape="rect" id="node28" href="$classbasic__json.html#a7a5ed019983b582705ef5ee43d15ca24" title="remove element given an iterator" alt="" coords="519,1378,653,1405"/>
-<area shape="rect" id="node29" href="$classUnitTest.html#aae657d6d8bdc56cb2a9d4e4e9f5f8929" title="Cette méthode fait échouer un test." alt="" coords="534,332,638,358"/>
-<area shape="rect" id="node30" href="$structordered__map.html#a67c6dfc6bc7817980067b40db5c252a4" title=" " alt="" coords="516,1429,656,1456"/>
-<area shape="rect" id="node31" href="$classbasic__json.html#a8ed11f83edce392fd94659b1102d078e" title="find an element in a JSON object" alt="" coords="525,1480,647,1506"/>
-<area shape="rect" id="node32" href="$namespacedetail.html#ab722e171d99403f14337366b5e0d3620" title=" " alt="" coords="481,1530,691,1557"/>
-<area shape="rect" id="node33" href="$structordered__map.html#a7c77f6d3fbd8f693c5a9ad25244c14de" title=" " alt="" coords="509,1581,663,1608"/>
-<area shape="rect" id="node34" href="$classSoundDriver.html#a73545c968e699406198166d414de00b4" title="Joue un fichier audio." alt="" coords="517,534,655,561"/>
-<area shape="rect" id="node35" href="$classbackward_1_1Printer.html#a0c3901fa5647c29b72f92376f32a631c" title=" " alt="" coords="514,1632,658,1674"/>
-<area shape="rect" id="node36" href="$classbackward_1_1Printer.html#a2250517ae18d9d168b2e83c96b223b76" title=" " alt="" coords="514,1698,658,1739"/>
-<area shape="rect" id="node37" href="$classUnitTestSuite.html#af7b586b2771e5b876628be90e33aba5e" title="Execution de tous les tests." alt="" coords="517,585,655,612"/>
-<area shape="rect" id="node38" href="$classGpioPCA9555.html#a275bd8ed5c0b8bf2e22ea488ecf06456" title="Ecrit une valeur sur un pin du port0 (sorties)." alt="" coords="491,382,681,409"/>
-<area shape="rect" id="node39" href="$classSoundDriver.html#a54675f49f8f2fa084a79da5361c210b6" title="Synthese vocale (text&#45;to&#45;speech)." alt="" coords="511,636,661,662"/>
-<area shape="rect" id="node40" href="$classtest_1_1LedManualTest.html#a2194b42491f61e03e69fcb5c4fc69962" title="Alterne les patterns 0xAA et 0x55 (verification visuelle)." alt="" coords="505,1763,667,1804"/>
-<area shape="rect" id="node41" href="$classtest_1_1SwitchManualTest.html#a6ae12dfd6a2695b81345c80e0d218701" title="Lit les switchs arriere en boucle." alt="" coords="500,1828,672,1870"/>
-<area shape="rect" id="node42" href="$classSoundDriver.html#a04c82a6087ffbcbd2d8d3d8a8dfa67d1" title="Joue une tonalite a une frequence donnee." alt="" coords="517,686,655,713"/>
-<area shape="rect" id="node43" href="$classSvgWriter.html#a1860768b0bf4858dae8577f2b7653cac" title="Écrit un texte à une position donnée dans le SVG." alt="" coords="509,737,663,764"/>
-<area shape="rect" id="node44" href="$classSvgWriter.html#ae4246028907242734cc14db98d492eb5" title="Écrit un texte avec couleur et taille personnalisées." alt="" coords="484,788,688,814"/>
-<area shape="rect" id="node47" href="$namespacelogs.html#ab465ba9cc0c8042ca19d9c1aeb008578" title=" " alt="" coords="788,1032,876,1058"/>
+<area shape="rect" id="node1" title="Méthode générique de trace d&#39;un message." alt="" coords="1044,1349,1244,1376"/>
+<area shape="rect" id="node2" href="$classlogs_1_1Logger.html#a7dffc8f610014ec59b63392da16140e4" title="Trace un message de niveau DEBUG." alt="" coords="809,1298,959,1325"/>
+<area shape="rect" id="node45" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#a0e4fd77693fd899ec1b0670354f93a02" title="Cette méthode valide le message en cours de construction et le transmet au Logger de référence." alt="" coords="772,1349,996,1376"/>
+<area shape="rect" id="node46" href="$classlogs_1_1Logger.html#a8b6a2019233bc44b3c3c86c653910831" title="Trace un message de niveau ERROR." alt="" coords="814,289,954,316"/>
+<area shape="rect" id="node47" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#aee16dd078779a8154f1b3d7238748a6f" title=" " alt="" coords="788,1400,980,1442"/>
+<area shape="rect" id="node48" href="$classlogs_1_1Logger.html#aa381165771d00a6a1e3aa9664bf6467f" title="Trace un message de niveau INFO." alt="" coords="817,137,951,164"/>
+<area shape="rect" id="node49" href="$classlogs_1_1Logger.html#ae55afdeeb1bc9acb6dc02a3e2d06062f" title="Trace un message de niveau TELEM." alt="" coords="797,1466,971,1493"/>
+<area shape="rect" id="node50" href="$classlogs_1_1Logger.html#a240e8d7b58195c85bd7b4e4a3417d955" title="Trace un message de niveau WARN." alt="" coords="813,1517,955,1544"/>
+<area shape="rect" id="node3" href="$classAsservEsialR.html#adf4da92cf4d885cc744c970c7626fa0d" title=" " alt="" coords="511,725,709,752"/>
+<area shape="rect" id="node4" href="$classBeaconSensors.html#ae88c123cdeac6ee17c034a239bd38705" title="Constructor." alt="" coords="496,776,724,802"/>
+<area shape="rect" id="node5" href="$classDynamixelDriver.html#a6652b8534770759128aa2e77ddf4faa8" title="Constructor." alt="" coords="505,827,715,868"/>
+<area shape="rect" id="node6" href="$classGp2y0e02b.html#a3b3fe74d902e2b2d0447e9265c246ec6" title="Constructor." alt="" coords="521,238,699,265"/>
+<area shape="rect" id="node7" href="$classLcdShield.html#adf69aee9cba76742905ec98b0c3902d5" title="Constructor." alt="" coords="533,1440,687,1466"/>
+<area shape="rect" id="node8" href="$classServoUsingMotorDriver.html#acc8ccf92143efa853b83940d2d690817" title="Constructor." alt="" coords="257,1508,439,1550"/>
+<area shape="rect" id="node9" href="$classSwitchDriver.html#a318f2cc1988d9ddfae71131fcf39d929" title="Constructeur. Initialise le PCA9555." alt="" coords="512,1592,708,1618"/>
+<area shape="rect" id="node10" href="$classTestTimer.html#a7bd3bc501eab8acb36c03dffc677bf32" title="Constructeur de la classe." alt="" coords="531,1642,689,1669"/>
+<area shape="rect" id="node11" href="$classTestAction.html#ae3f7cc56414d35d8160f482efdf806fb" title="Destructeur de la classe." alt="" coords="523,1693,697,1720"/>
+<area shape="rect" id="node12" href="$classAdafruit__RGBLCDShield.html#aead28395830ccd7e74041736aba46e03" title=" " alt="" coords="523,1927,697,1968"/>
+<area shape="rect" id="node13" href="$classAdafruit__RGBLCDShield.html#a441c8fb704534e39e8716f8e43797523" title=" " alt="" coords="261,1839,435,1880"/>
+<area shape="rect" id="node14" href="$classAdafruit__RGBLCDShield.html#a1668a3877e0d9960df698b68195b3d27" title=" " alt="" coords="523,1992,697,2034"/>
+<area shape="rect" id="node15" href="$classSensors.html#a1ef07aeea0536ccf34e310d831e71ef0" title=" " alt="" coords="513,2058,707,2085"/>
+<area shape="rect" id="node16" href="$classAsserv.html#a3a481367962ccacd1a378c3bb5df3b25" title=" " alt="" coords="5,2197,200,2224"/>
+<area shape="rect" id="node17" href="$classAdafruit__RGBLCDShield.html#a265d1ecc4335973e71b12c05fb038673" title=" " alt="" coords="523,2278,697,2319"/>
+<area shape="rect" id="node18" href="$classSensors.html#a7c1612f78d78562aa12322638a74140f" title=" " alt="" coords="292,344,404,370"/>
+<area shape="rect" id="node19" href="$classMD25.html#a935ef31b09c463fead4abab0accbbb6c" title=" " alt="" coords="558,1541,662,1568"/>
+<area shape="rect" id="node20" href="$classOPOS6UL__RobotExtended.html#a3af6cff5115c7ae70f7a797d9e90e66a" title="Initialise l&#39;état du robot et le décisionmaker IA." alt="" coords="253,130,443,171"/>
+<area shape="rect" id="node21" href="$classRobot.html#ae8cede2564e5b9229da095991c064ae4" title="Start the robot (console for tests or main program).." alt="" coords="558,137,662,164"/>
+<area shape="rect" id="node22" href="$classBeaconSensors.html#ab5da914e8d5038ecb88bbefe650215d5" title="initialise i2c" alt="" coords="527,2344,693,2370"/>
+<area shape="rect" id="node23" href="$classAdafruit__RGBLCDShield.html#a5a9697632b6ded2d3d76cf903f9fd3a9" title=" " alt="" coords="523,2395,697,2436"/>
+<area shape="rect" id="node24" href="$classLedBar.html#abc84af9e1f24d8e7a0c9a7f67767c34f" title="Clignote une led nb fois pendant timeus." alt="" coords="547,2461,673,2488"/>
+<area shape="rect" id="node25" href="$classGroveColorSensor.html#a7c3b429a3541802917165ec053f63153" title="Takes the raw values from the sensors and converts them to Correlated Color Temperature." alt="" coords="510,2512,710,2538"/>
+<area shape="rect" id="node26" href="$classAdafruit__RGBLCDShield.html#ad203e22075b6a8b63e9e206105bcc433" title=" " alt="" coords="523,1744,697,1786"/>
+<area shape="rect" id="node27" href="$classGroveColorSensor.html#aaca3a16d1b12b867cfd9de6d4f1e05ae" title="Log the parameters." alt="" coords="521,542,699,569"/>
+<area shape="rect" id="node28" href="$classAsservDriver.html#a05bd91c77a979511dda5d0e901ddf6e6" title=" " alt="" coords="509,594,711,635"/>
+<area shape="rect" id="node29" href="$classAdafruit__RGBLCDShield.html#a3865353c3a27760ec7ca874c47ba2a07" title=" " alt="" coords="523,659,697,700"/>
+<area shape="rect" id="node30" href="$classAdafruit__RGBLCDShield.html#a3b041610ba67c0c0e343a7b18b6e668e" title=" " alt="" coords="523,944,697,986"/>
+<area shape="rect" id="node31" href="$classActionManagerTimer.html#a40e5f9d8c2706434376d416d3e43fd3b" title="Affiche via le logger les actions en cours." alt="" coords="531,1062,689,1103"/>
+<area shape="rect" id="node32" href="$classActionManagerTimer.html#a17c6563c7a6c0955c7ca2230b038d832" title="Affiche via le logger les timers posix en cours et en attente." alt="" coords="531,1127,689,1168"/>
+<area shape="rect" id="node33" href="$classActionManagerTimer.html#aef6be0b68f6595c8ac5ce89c66b9333a" title="Affiche via le logger les timers classiques en cours. Deprecated." alt="" coords="531,1192,689,1234"/>
+<area shape="rect" id="node34" href="$classServoObjectsSystem.html#a6df7e1694087d2fa67d41aeef363b3f3" title="Déploie un servo à la position donnée." alt="" coords="531,1258,689,1299"/>
+<area shape="rect" id="node35" href="$classAdafruit__RGBLCDShield.html#aa721251c365c8033ac872c18ad64b93f" title=" " alt="" coords="523,1810,697,1851"/>
+<area shape="rect" id="node36" href="$classAsserv.html#a31cb7196e12282ed27c45e8f58b4db04" title=" " alt="" coords="509,1010,711,1037"/>
+<area shape="rect" id="node37" href="$classAsserv.html#a960679fed5ab18f631d7847c95fc1f85" title=" " alt="" coords="253,1010,443,1037"/>
+<area shape="rect" id="node38" href="$classAsserv.html#a9ae528690268f84726565305c42718e5" title=" " alt="" coords="248,2160,448,2202"/>
+<area shape="rect" id="node39" href="$classAsserv.html#a744a8285ae7c6339252458a9c94fd602" title=" " alt="" coords="535,2160,685,2202"/>
+<area shape="rect" id="node40" href="$classSoundBarAction.html#ad080a35d375a14b912ed5d2625c0b687" title="Execution de l&#39;action." alt="" coords="518,390,702,417"/>
+<area shape="rect" id="node41" href="$classAsservEsialR.html#abfd3be9bde7bf8ae887688bf8bc0ca43" title="Méthode virtuelle pure à implémenter dans les sous&#45;classes." alt="" coords="527,289,693,316"/>
+<area shape="rect" id="node42" href="$classAsservDriver.html#ae2fdf0d75abab4e2cc974706c8a81867" title="Méthode virtuelle pure à implémenter dans les sous&#45;classes." alt="" coords="527,340,693,366"/>
+<area shape="rect" id="node43" href="$classOPOS6UL__AsservExtended.html#a4e96d47def0637c3f6e135a0a3ee3d1c" title="Vérifie si une détection capteur correspond à une position dans le terrain." alt="" coords="513,1323,707,1364"/>
+<area shape="rect" id="node44" href="$classAsserv.html#acc337a9f3d054ba09e3043a560a457a7" title=" " alt="" coords="513,492,707,518"/>
 </map>

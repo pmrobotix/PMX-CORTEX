@@ -1,0 +1,40 @@
+<map id="OPOS6UL_ActionsExtended::ax12_bras_gauche" name="OPOS6UL_ActionsExtended::ax12_bras_gauche">
+<area shape="rect" id="node1" title="Déploie le bras gauche en position d&#39;action." alt="" coords="5,897,204,938"/>
+<area shape="rect" id="node2" href="$classServoObjectsSystem.html#a60de17986f65700a7659b22edda2faef" title="move 1 servo." alt="" coords="273,863,430,905"/>
+<area shape="rect" id="node38" href="$classOPOS6UL__ActionsExtended.html#a1a6ccdf4aae1302cdf664d32ae5a67c6" title="Cette methode retourne l&#39;objet servos." alt="" coords="252,929,451,970"/>
+<area shape="rect" id="node3" href="$classAActionsElement.html#a3fbd5b8201049a59602d8b7201a9ef8a" title="Retourne une référence sur le Actions associé." alt="" coords="508,384,696,411"/>
+<area shape="rect" id="node4" href="$classActions.html#a173e3bb37b9cbb0e5ef423b1719b7afd" title="Ajout d&#39;un timer standard." alt="" coords="532,485,672,512"/>
+<area shape="rect" id="node9" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="1239,536,1320,563"/>
+<area shape="rect" id="node22" href="$classServoObjectsSystem.html#a186c06950c82b6936e2143c4350f20eb" title=" " alt="" coords="523,739,681,781"/>
+<area shape="rect" id="node23" href="$classlogs_1_1Logger.html#a7dffc8f610014ec59b63392da16140e4" title="Trace un message de niveau DEBUG." alt="" coords="984,688,1133,715"/>
+<area shape="rect" id="node24" href="$classutils_1_1Chronometer.html#a8c641a39ccca4bf655bb09d9c1cd8d9b" title="Retourne le temps écoulé en microsecondes." alt="" coords="499,805,705,846"/>
+<area shape="rect" id="node25" href="$classAServoDriver.html#a954ac7340407b997387d84d7059ed32b" title="Verifie si le servo est en mouvement." alt="" coords="509,871,695,897"/>
+<area shape="rect" id="node26" href="$classAServoDriver.html#a478684e583054bdff2d31ee2c7aa944d" title="Lit la position courante du servo." alt="" coords="505,921,699,948"/>
+<area shape="rect" id="node27" href="$classAServoDriver.html#a9a95b8efce958c283fb4ef65649a38cd" title="Lit le couple courant du servo." alt="" coords="512,972,692,999"/>
+<area shape="rect" id="node28" href="$classServoObjectsSystem.html#a6a01a4858975287a97fdbc96f3ac08c7" title="Maintient le couple d&#39;un servo à sa position actuelle." alt="" coords="523,1023,681,1065"/>
+<area shape="rect" id="node30" href="$classlogs_1_1Logger.html#aa381165771d00a6a1e3aa9664bf6467f" title="Trace un message de niveau INFO." alt="" coords="991,637,1126,664"/>
+<area shape="rect" id="node31" href="$classServoObjectsSystem.html#a3443f7bcf51a8e48e813abac590a0f66" title="Retourne le Logger associé à la classe ServoObjectsSystem." alt="" coords="757,50,914,91"/>
+<area shape="rect" id="node32" href="$classServoObjectsSystem.html#aee9ba86b5c2d9cb07aff947f28812b83" title="Relâche le couple d&#39;un servo (désactive le maintien)." alt="" coords="523,1089,681,1130"/>
+<area shape="rect" id="node34" href="$classAServoDriver.html#a3db6d14f3d23fdbd96e95add6a552b0c" title="Definit la position du servo par largeur d&#39;impulsion PWM." alt="" coords="505,1155,699,1181"/>
+<area shape="rect" id="node35" href="$classAServoDriver.html#ab7edad21e6c5cb53a72bdd1673040a36" title="Definit le couple maximal du servo." alt="" coords="513,1205,691,1232"/>
+<area shape="rect" id="node36" href="$namespaceutils.html#a4f86fc4c334661a6995538cc080a40c9" title="Met en pause le thread courant pendant usec microsecondes." alt="" coords="517,1256,687,1283"/>
+<area shape="rect" id="node37" href="$classutils_1_1Chronometer.html#a174c35f7b276290813fe913ed5c82bd3" title="Lance ou réinitialise le chronomètre." alt="" coords="531,1307,673,1349"/>
+<area shape="rect" id="node5" href="$classActionManagerTimer.html#a37abad611ac11d81f2ebcb8d9d5766f8" title="Ajout d&#39;un timer. deprecated." alt="" coords="756,377,915,418"/>
+<area shape="rect" id="node13" href="$classlogs_1_1Logger.html#a8b6a2019233bc44b3c3c86c653910831" title="Trace un message de niveau ERROR." alt="" coords="1209,485,1349,512"/>
+<area shape="rect" id="node19" href="$classActions.html#a637e05ac19e873621b1e123c2ff29990" title="Indique si le gestionnaire d&#39;actions est démarré." alt="" coords="764,296,907,323"/>
+<area shape="rect" id="node21" href="$classActions.html#a9cc6c9bd885d6e03234b0cf5061a5ca1" title="Return Logger linked to Actions." alt="" coords="999,97,1118,124"/>
+<area shape="rect" id="node6" href="$classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32" title="Verrouille le mutex. Cette méthode doit être appelée avant d&#39;utiliser la ressource associée...." alt="" coords="1711,359,1846,385"/>
+<area shape="rect" id="node7" href="$classITimerListener.html#a746c0ceee4eb354754d2e90c5638454c" title=" " alt="" coords="965,435,1152,461"/>
+<area shape="rect" id="node8" href="$classActionManagerTimer.html#a39f4cbb5ddbbe6a40980bb59b8b59b05" title=" " alt="" coords="979,318,1138,359"/>
+<area shape="rect" id="node11" href="$classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3" title="Déverrouille le mutex. Cette méthode doit être appelée après avoir utiliser la ressource associée." alt="" coords="1703,257,1854,284"/>
+<area shape="rect" id="node14" href="$classActionManagerTimer.html#a280846361e5c7e0ebe57972755841c2b" title=" " alt="" coords="1200,115,1359,157"/>
+<area shape="rect" id="node10" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#a0e4fd77693fd899ec1b0670354f93a02" title="Cette méthode valide le message en cours de construction et le transmet au Logger de référence." alt="" coords="1407,453,1631,480"/>
+<area shape="rect" id="node12" href="$classlogs_1_1Logger.html#afa535aaf4891e02c4ff7f84d372b5b1b" title="Méthode générique de trace d&#39;un message." alt="" coords="1679,567,1879,593"/>
+<area shape="rect" id="node15" href="$classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e" title="Cette méthode statique retourne un Logger en fonction de son nom." alt="" coords="1445,57,1593,98"/>
+<area shape="rect" id="node16" href="$classlogs_1_1LoggerFactory.html#ac89f19c0ffd71aa8cdc1c2d44c03809e" title="Cette méthode ajoute un appender au système." alt="" coords="1689,5,1868,32"/>
+<area shape="rect" id="node17" href="$classlogs_1_1LoggerFactory.html#a90478b91d7af2ef8841ded21e3521f69" title="Cette méthode statique retourne l&#39;instance unique de la classe LoggerFactory." alt="" coords="1705,57,1853,98"/>
+<area shape="rect" id="node18" href="$classlogs_1_1LoggerFactory.html#a212aa623f4b6bee12cb39e8017dde670" title="Cette méthode retourne le Logger principal qui définit le niveau de trace par défaut." alt="" coords="1705,122,1853,163"/>
+<area shape="rect" id="node20" href="$classutils_1_1Thread.html#ada9233f3e669c925e9ed518201ad31cd" title="Retourne l&#39;état courant du thread." alt="" coords="1447,283,1591,309"/>
+<area shape="rect" id="node29" href="$classAServoDriver.html#af90488fb6a2ea3149f4bf68ae01e61b2" title="Maintient la position courante du servo (active le couple)." alt="" coords="763,1031,907,1057"/>
+<area shape="rect" id="node33" href="$classAServoDriver.html#a9005ceeeecc056474f1ae6e54ce8ba23" title="Relache le servo (desactive le couple)." alt="" coords="753,1096,917,1123"/>
+</map>

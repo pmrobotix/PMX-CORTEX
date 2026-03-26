@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot:  Fichier source de src/driver-arm/GroveColorSensor.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_a369de7a6c9198ab5056a0bc5cf5ea3e.html">driver-arm</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">GroveColorSensor.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="GroveColorSensor_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#ifndef OPOS6UL_GROVECOLORSENSOR_HPP</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#define OPOS6UL_GROVECOLORSENSOR_HPP</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;as_devices/cpp/as_i2c.hpp&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="AColorDriver_8hpp.html">interface/AColorDriver.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="LoggerFactory_8hpp.html">log/LoggerFactory.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="GroveColorSensor_8hpp.html#ae8a7d6e0f4e12cb5861261bcc5f4c2b4">   15</a></span>&#160;<span class="preprocessor">#define GROVE_COLOR_DEFAULT_ADDRESS    0x39 </span><span class="comment">// Address of the grove Color Sensor 0x39</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="GroveColorSensor_8hpp.html#a91339a8293cb53b81407c016bc41e2b1">   17</a></span>&#160;<span class="preprocessor">#define     REG_ID  0x94 </span><span class="comment">//Part Number /RevID</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="classGroveColorSensor.html">   22</a></span>&#160;<span class="keyword">class </span><a class="code" href="classGroveColorSensor.html">GroveColorSensor</a>: <span class="keyword">public</span> <a class="code" href="classAColorDriver.html">AColorDriver</a></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classGroveColorSensor.html#a7fb44a3e96d78d46985a335b887d20db">   29</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a> &amp; <a class="code" href="classGroveColorSensor.html#a7fb44a3e96d78d46985a335b887d20db">logger</a>()</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    {</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a> &amp; instance = <a class="code" href="classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e">logs::LoggerFactory::logger</a>(<span class="stringliteral">&quot;GroveColorSensor.OPO&quot;</span>);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keywordflow">return</span> instance;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    }</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classGroveColorSensor.html#af8be71ab040e68925698f73b52ab4d04">   35</a></span>&#160;    AsI2c <a class="code" href="classGroveColorSensor.html#af8be71ab040e68925698f73b52ab4d04">grovei2c_</a>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classGroveColorSensor.html#ad6fa056de9ec1193dfc53121b2b25aba">   37</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classGroveColorSensor.html#ad6fa056de9ec1193dfc53121b2b25aba">connected_</a>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="comment">// SET the integration time here. Higher times allow for higher values with better precicion.</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classGroveColorSensor.html#a27bfc4f829488beada618c03dc38a853">   40</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classGroveColorSensor.html#a27bfc4f829488beada618c03dc38a853">integrationtime_</a>; <span class="comment">//12 == 12ms, 100 = 100ms, 400 = 400ms. Other values are note accepted</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classGroveColorSensor.html#a48887d6fbbed194ac69de24649a2e6bf">   41</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classGroveColorSensor.html#a48887d6fbbed194ac69de24649a2e6bf">loopdelay_</a>; <span class="comment">//loop delay depends on the integration time</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classGroveColorSensor.html#a0935e769459adf4b3e57cf7b6650a937">   43</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classGroveColorSensor.html#a0935e769459adf4b3e57cf7b6650a937">percentageEnabled_</a>; <span class="comment">//enable/disable the percentage mode</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classGroveColorSensor.html#a8458b05e72fff584ec5aeb3d244845f6">   44</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classGroveColorSensor.html#a8458b05e72fff584ec5aeb3d244845f6">compensateEnabled_</a>; <span class="comment">//enable/disable color compensation of the sensor sensitivity per color</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classGroveColorSensor.html#a683a674a7067bff79110eb26c091bed9">   46</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> <a class="code" href="classGroveColorSensor.html#a683a674a7067bff79110eb26c091bed9">TCS3414values_</a>[4]; <span class="comment">// [Clear,Red,Green,Blue]</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classGroveColorSensor.html#a494c9c5d5afce5d65a85995067c0acc2">   47</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classGroveColorSensor.html#a494c9c5d5afce5d65a85995067c0acc2">TCS3414medium_</a>[4]; <span class="comment">// [Clear,Red,Green,Blue]</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classGroveColorSensor.html#a750e72ca18c6c651358618bd996a91cc">   48</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classGroveColorSensor.html#a750e72ca18c6c651358618bd996a91cc">TCS3414mediate_</a>[4]; <span class="comment">// [Clear,Red,Green,Blue]</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="classGroveColorSensor.html#a7b5404db4a143338bac225713a45f801">   50</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classGroveColorSensor.html#a7b5404db4a143338bac225713a45f801">TCS3414tristimulus_</a>[3]; <span class="comment">// [tri X, tri Y, tri Z]</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="classGroveColorSensor.html#afcaa135e9cd1bc508404f0a7ed2fb5e4">   51</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classGroveColorSensor.html#afcaa135e9cd1bc508404f0a7ed2fb5e4">TCS3414chromaticityCoordinates_</a>[2]; <span class="comment">//chromaticity coordinates // [x, y]</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classGroveColorSensor.html#a42fb4e6a401d782eaf143993b87337b9">   52</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classGroveColorSensor.html#a42fb4e6a401d782eaf143993b87337b9">colorTemperature_</a>; <span class="comment">//the color temperature, using the algorithm in the TCS3414 datasheet</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <a class="code" href="classGroveColorSensor.html#a0a57472cf6ba9df600003bf68f7bd557">GroveColorSensor</a>();</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="classGroveColorSensor.html#a6c3d8395a8ae1b0bd18e8236cd4a8a31">   64</a></span>&#160;    <a class="code" href="classGroveColorSensor.html#a6c3d8395a8ae1b0bd18e8236cd4a8a31">~GroveColorSensor</a>()</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="classGroveColorSensor.html#aa32408dcce1a55abd72e351faf4d4f26">   68</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classGroveColorSensor.html#aa32408dcce1a55abd72e351faf4d4f26">isConnected</a>()</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    {</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classGroveColorSensor.html#ad6fa056de9ec1193dfc53121b2b25aba">connected_</a>;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    }</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classGroveColorSensor.html#aa85f03d535c39540fad1a410ebd8184c">begin</a>();</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classGroveColorSensor.html#acd8fc1fe584b9aa8e51985ba99ad1836">readRGB</a>();</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classGroveColorSensor.html#aa2c72c2e245dc011bc3215aa2bdd84bf">getTX</a>();</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classGroveColorSensor.html#ab89e79b04f70f11dea991ca4f9d4de7c">getTY</a>();</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGroveColorSensor.html#a7632f53d6ad2466cf74a39ba08bbd07e">TCS3414Setup</a>(<span class="keywordtype">int</span> delay1, <span class="keywordtype">int</span> delay2);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> * <a class="code" href="classGroveColorSensor.html#a681f093bf14d2f9d544eff3c325ac533">TCS3414GetColor</a>();</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="classGroveColorSensor.html#a655f83dcbe1696743637c083f57eaa5e">   92</a></span>&#160;    <span class="keywordtype">float</span>* <a class="code" href="classGroveColorSensor.html#a655f83dcbe1696743637c083f57eaa5e">TCS3414tristimulus</a>()</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    {</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classGroveColorSensor.html#a7b5404db4a143338bac225713a45f801">TCS3414tristimulus_</a>;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    }</div>
+<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="classGroveColorSensor.html#aeeca525e17589d8cb1bdd7a0cfedc515">   99</a></span>&#160;    <span class="keywordtype">float</span>* <a class="code" href="classGroveColorSensor.html#aeeca525e17589d8cb1bdd7a0cfedc515">TCS3414chromaticityCoordinates</a>()</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    {</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classGroveColorSensor.html#afcaa135e9cd1bc508404f0a7ed2fb5e4">TCS3414chromaticityCoordinates_</a>;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    }</div>
+<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="classGroveColorSensor.html#a40907d4f2a0cca2571660e4744049c40">  106</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classGroveColorSensor.html#a40907d4f2a0cca2571660e4744049c40">CCT</a>()</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    {</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classGroveColorSensor.html#a42fb4e6a401d782eaf143993b87337b9">colorTemperature_</a>;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    }</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00114"></a><span class="lineno"><a class="line" href="classGroveColorSensor.html#ab13e681b298263726748b5e39f98da2d">  114</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> * <a class="code" href="classGroveColorSensor.html#ab13e681b298263726748b5e39f98da2d">TCS3414values</a>()</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    {</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classGroveColorSensor.html#a683a674a7067bff79110eb26c091bed9">TCS3414values_</a>;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    }</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGroveColorSensor.html#aaca3a16d1b12b867cfd9de6d4f1e05ae">CMD</a>(<span class="keywordtype">int</span> delayTime);</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGroveColorSensor.html#a8e64a0c9360199183fae4c938ace91eb">TSC3414All</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> allcolors[]);</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> <a class="code" href="classGroveColorSensor.html#a2cff828afbb09c412a4378d00582e10f">TSC3414Red</a>();</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> <a class="code" href="classGroveColorSensor.html#a3f2021212497161c52f7a03ad688d52d">TSC3414Green</a>();</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> <a class="code" href="classGroveColorSensor.html#aff6d2790d1b0722f9a93701af3f2571f">TSC3414Blue</a>();</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> <a class="code" href="classGroveColorSensor.html#a99ce85e9e60e69dc73271ae9c0cdf190">TSC3414Clear</a>();</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGroveColorSensor.html#a5e660dc8888a0b2bdbaa2f4445fb2e25">calculateMedium</a>(<span class="keywordtype">float</span> med[], <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> value[], <span class="keywordtype">float</span> divider);</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160; </div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGroveColorSensor.html#aac18734e8eaff42c51e1889ccf945997">makePercentage</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> allcolors[], <span class="keywordtype">float</span> allmedium[]);</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160; </div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGroveColorSensor.html#a614d9a4f55a38d5449cff7b74ad3395e">colorCompensator</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> allcolors[]);</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classGroveColorSensor.html#a7c3b429a3541802917165ec053f63153">CCTCalc</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> allcolors[]);</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    <span class="keywordtype">long</span> <a class="code" href="classGroveColorSensor.html#a5f16d992f9c98ee5ccfecb0e01dc6038">write_i2c</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> command, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> value);</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160; </div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> <a class="code" href="classGroveColorSensor.html#ad963d1be2494813887189cf169b6c7b0">read_i2c</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> command);</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160; </div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;};</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160; </div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aAColorDriver_8hpp_html"><div class="ttname"><a href="AColorDriver_8hpp.html">AColorDriver.hpp</a></div><div class="ttdoc">Interface abstraite du driver de capteur couleur.</div></div>
+<div class="ttc" id="aLoggerFactory_8hpp_html"><div class="ttname"><a href="LoggerFactory_8hpp.html">LoggerFactory.hpp</a></div><div class="ttdoc">Définition de la classe LoggerFactory.</div></div>
+<div class="ttc" id="aclassAColorDriver_html"><div class="ttname"><a href="classAColorDriver.html">AColorDriver</a></div><div class="ttdoc">Interface abstraite du driver de capteur couleur.</div><div class="ttdef"><b>Definition:</b> AColorDriver.hpp:22</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html"><div class="ttname"><a href="classGroveColorSensor.html">GroveColorSensor</a></div><div class="ttdoc">Implémentation du détecteur de couleur Grove associée au robot.</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.hpp:23</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_a0935e769459adf4b3e57cf7b6650a937"><div class="ttname"><a href="classGroveColorSensor.html#a0935e769459adf4b3e57cf7b6650a937">GroveColorSensor::percentageEnabled_</a></div><div class="ttdeci">bool percentageEnabled_</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.hpp:43</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_a0a57472cf6ba9df600003bf68f7bd557"><div class="ttname"><a href="classGroveColorSensor.html#a0a57472cf6ba9df600003bf68f7bd557">GroveColorSensor::GroveColorSensor</a></div><div class="ttdeci">GroveColorSensor()</div><div class="ttdoc">Constructeur de la classe.</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.cpp:17</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_a27bfc4f829488beada618c03dc38a853"><div class="ttname"><a href="classGroveColorSensor.html#a27bfc4f829488beada618c03dc38a853">GroveColorSensor::integrationtime_</a></div><div class="ttdeci">int integrationtime_</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.hpp:40</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_a2cff828afbb09c412a4378d00582e10f"><div class="ttname"><a href="classGroveColorSensor.html#a2cff828afbb09c412a4378d00582e10f">GroveColorSensor::TSC3414Red</a></div><div class="ttdeci">unsigned char TSC3414Red()</div><div class="ttdoc">retrieve red color.</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.cpp:111</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_a3f2021212497161c52f7a03ad688d52d"><div class="ttname"><a href="classGroveColorSensor.html#a3f2021212497161c52f7a03ad688d52d">GroveColorSensor::TSC3414Green</a></div><div class="ttdeci">unsigned char TSC3414Green()</div><div class="ttdoc">retrieve green color.</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.cpp:97</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_a40907d4f2a0cca2571660e4744049c40"><div class="ttname"><a href="classGroveColorSensor.html#a40907d4f2a0cca2571660e4744049c40">GroveColorSensor::CCT</a></div><div class="ttdeci">float CCT()</div><div class="ttdoc">Get the color temperature, using the algorithm in the TCS3414 datasheet.</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.hpp:106</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_a42fb4e6a401d782eaf143993b87337b9"><div class="ttname"><a href="classGroveColorSensor.html#a42fb4e6a401d782eaf143993b87337b9">GroveColorSensor::colorTemperature_</a></div><div class="ttdeci">float colorTemperature_</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.hpp:52</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_a48887d6fbbed194ac69de24649a2e6bf"><div class="ttname"><a href="classGroveColorSensor.html#a48887d6fbbed194ac69de24649a2e6bf">GroveColorSensor::loopdelay_</a></div><div class="ttdeci">int loopdelay_</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.hpp:41</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_a494c9c5d5afce5d65a85995067c0acc2"><div class="ttname"><a href="classGroveColorSensor.html#a494c9c5d5afce5d65a85995067c0acc2">GroveColorSensor::TCS3414medium_</a></div><div class="ttdeci">float TCS3414medium_[4]</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.hpp:47</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_a5e660dc8888a0b2bdbaa2f4445fb2e25"><div class="ttname"><a href="classGroveColorSensor.html#a5e660dc8888a0b2bdbaa2f4445fb2e25">GroveColorSensor::calculateMedium</a></div><div class="ttdeci">void calculateMedium(float med[], unsigned char value[], float divider)</div><div class="ttdoc">Keeps a running average of 4 values per color.</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.cpp:215</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_a5f16d992f9c98ee5ccfecb0e01dc6038"><div class="ttname"><a href="classGroveColorSensor.html#a5f16d992f9c98ee5ccfecb0e01dc6038">GroveColorSensor::write_i2c</a></div><div class="ttdeci">long write_i2c(unsigned char command, unsigned char value)</div><div class="ttdoc">write a command on i2c with automatic slave address.</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.cpp:325</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_a614d9a4f55a38d5449cff7b74ad3395e"><div class="ttname"><a href="classGroveColorSensor.html#a614d9a4f55a38d5449cff7b74ad3395e">GroveColorSensor::colorCompensator</a></div><div class="ttdeci">void colorCompensator(unsigned char allcolors[])</div><div class="ttdoc">enable/disable color compensation of the sensor sensitivity per color.</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.cpp:229</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_a655f83dcbe1696743637c083f57eaa5e"><div class="ttname"><a href="classGroveColorSensor.html#a655f83dcbe1696743637c083f57eaa5e">GroveColorSensor::TCS3414tristimulus</a></div><div class="ttdeci">float * TCS3414tristimulus()</div><div class="ttdoc">Get coordinates [tri X, tri Y, tri Z].</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.hpp:92</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_a681f093bf14d2f9d544eff3c325ac533"><div class="ttname"><a href="classGroveColorSensor.html#a681f093bf14d2f9d544eff3c325ac533">GroveColorSensor::TCS3414GetColor</a></div><div class="ttdeci">unsigned char * TCS3414GetColor()</div><div class="ttdoc">Calculate the color values [Clear,Red,Green,Blue].</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.cpp:272</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_a683a674a7067bff79110eb26c091bed9"><div class="ttname"><a href="classGroveColorSensor.html#a683a674a7067bff79110eb26c091bed9">GroveColorSensor::TCS3414values_</a></div><div class="ttdeci">unsigned char TCS3414values_[4]</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.hpp:46</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_a6c3d8395a8ae1b0bd18e8236cd4a8a31"><div class="ttname"><a href="classGroveColorSensor.html#a6c3d8395a8ae1b0bd18e8236cd4a8a31">GroveColorSensor::~GroveColorSensor</a></div><div class="ttdeci">~GroveColorSensor()</div><div class="ttdoc">Destructeur de la classe.</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.hpp:64</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_a750e72ca18c6c651358618bd996a91cc"><div class="ttname"><a href="classGroveColorSensor.html#a750e72ca18c6c651358618bd996a91cc">GroveColorSensor::TCS3414mediate_</a></div><div class="ttdeci">float TCS3414mediate_[4]</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.hpp:48</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_a7632f53d6ad2466cf74a39ba08bbd07e"><div class="ttname"><a href="classGroveColorSensor.html#a7632f53d6ad2466cf74a39ba08bbd07e">GroveColorSensor::TCS3414Setup</a></div><div class="ttdeci">void TCS3414Setup(int delay1, int delay2)</div><div class="ttdoc">TCS3414 Turns on the sensor and sets integration time.</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.cpp:160</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_a7b5404db4a143338bac225713a45f801"><div class="ttname"><a href="classGroveColorSensor.html#a7b5404db4a143338bac225713a45f801">GroveColorSensor::TCS3414tristimulus_</a></div><div class="ttdeci">float TCS3414tristimulus_[3]</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.hpp:50</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_a7c3b429a3541802917165ec053f63153"><div class="ttname"><a href="classGroveColorSensor.html#a7c3b429a3541802917165ec053f63153">GroveColorSensor::CCTCalc</a></div><div class="ttdeci">float CCTCalc(unsigned char allcolors[])</div><div class="ttdoc">Takes the raw values from the sensors and converts them to Correlated Color Temperature.</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.cpp:240</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_a7fb44a3e96d78d46985a335b887d20db"><div class="ttname"><a href="classGroveColorSensor.html#a7fb44a3e96d78d46985a335b887d20db">GroveColorSensor::logger</a></div><div class="ttdeci">static const logs::Logger &amp; logger()</div><div class="ttdoc">Retourne le Logger associé à la classe GroveColorSensor (OPOS6UL).</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.hpp:29</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_a8458b05e72fff584ec5aeb3d244845f6"><div class="ttname"><a href="classGroveColorSensor.html#a8458b05e72fff584ec5aeb3d244845f6">GroveColorSensor::compensateEnabled_</a></div><div class="ttdeci">bool compensateEnabled_</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.hpp:44</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_a8e64a0c9360199183fae4c938ace91eb"><div class="ttname"><a href="classGroveColorSensor.html#a8e64a0c9360199183fae4c938ace91eb">GroveColorSensor::TSC3414All</a></div><div class="ttdeci">void TSC3414All(unsigned char allcolors[])</div><div class="ttdoc">retrieve all colors.</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.cpp:142</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_a99ce85e9e60e69dc73271ae9c0cdf190"><div class="ttname"><a href="classGroveColorSensor.html#a99ce85e9e60e69dc73271ae9c0cdf190">GroveColorSensor::TSC3414Clear</a></div><div class="ttdeci">unsigned char TSC3414Clear()</div><div class="ttdoc">retrieve clear color.</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.cpp:124</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_aa2c72c2e245dc011bc3215aa2bdd84bf"><div class="ttname"><a href="classGroveColorSensor.html#aa2c72c2e245dc011bc3215aa2bdd84bf">GroveColorSensor::getTX</a></div><div class="ttdeci">float getTX()</div><div class="ttdoc">Retourne la coordonnee chromatique Tx.</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.cpp:67</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_aa32408dcce1a55abd72e351faf4d4f26"><div class="ttname"><a href="classGroveColorSensor.html#aa32408dcce1a55abd72e351faf4d4f26">GroveColorSensor::isConnected</a></div><div class="ttdeci">bool isConnected()</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.hpp:68</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_aa85f03d535c39540fad1a410ebd8184c"><div class="ttname"><a href="classGroveColorSensor.html#aa85f03d535c39540fad1a410ebd8184c">GroveColorSensor::begin</a></div><div class="ttdeci">bool begin()</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.cpp:26</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_aac18734e8eaff42c51e1889ccf945997"><div class="ttname"><a href="classGroveColorSensor.html#aac18734e8eaff42c51e1889ccf945997">GroveColorSensor::makePercentage</a></div><div class="ttdeci">void makePercentage(unsigned char allcolors[], float allmedium[])</div><div class="ttdoc">calculates percentages for R,G,B channels, if enabled.</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.cpp:222</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_aaca3a16d1b12b867cfd9de6d4f1e05ae"><div class="ttname"><a href="classGroveColorSensor.html#aaca3a16d1b12b867cfd9de6d4f1e05ae">GroveColorSensor::CMD</a></div><div class="ttdeci">void CMD(int delayTime)</div><div class="ttdoc">Log the parameters.</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.cpp:306</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_ab13e681b298263726748b5e39f98da2d"><div class="ttname"><a href="classGroveColorSensor.html#ab13e681b298263726748b5e39f98da2d">GroveColorSensor::TCS3414values</a></div><div class="ttdeci">unsigned char * TCS3414values()</div><div class="ttdoc">Get the colors.</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.hpp:114</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_ab89e79b04f70f11dea991ca4f9d4de7c"><div class="ttname"><a href="classGroveColorSensor.html#ab89e79b04f70f11dea991ca4f9d4de7c">GroveColorSensor::getTY</a></div><div class="ttdeci">float getTY()</div><div class="ttdoc">Retourne la coordonnee chromatique Ty.</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.cpp:74</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_acd8fc1fe584b9aa8e51985ba99ad1836"><div class="ttname"><a href="classGroveColorSensor.html#acd8fc1fe584b9aa8e51985ba99ad1836">GroveColorSensor::readRGB</a></div><div class="ttdeci">bool readRGB()</div><div class="ttdoc">Effectue une lecture RGB du capteur.</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.cpp:58</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_ad6fa056de9ec1193dfc53121b2b25aba"><div class="ttname"><a href="classGroveColorSensor.html#ad6fa056de9ec1193dfc53121b2b25aba">GroveColorSensor::connected_</a></div><div class="ttdeci">bool connected_</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.hpp:37</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_ad963d1be2494813887189cf169b6c7b0"><div class="ttname"><a href="classGroveColorSensor.html#ad963d1be2494813887189cf169b6c7b0">GroveColorSensor::read_i2c</a></div><div class="ttdeci">unsigned char read_i2c(unsigned char command)</div><div class="ttdoc">read using a command on i2c abd using automatic slave address.</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.cpp:331</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_aeeca525e17589d8cb1bdd7a0cfedc515"><div class="ttname"><a href="classGroveColorSensor.html#aeeca525e17589d8cb1bdd7a0cfedc515">GroveColorSensor::TCS3414chromaticityCoordinates</a></div><div class="ttdeci">float * TCS3414chromaticityCoordinates()</div><div class="ttdoc">Get chromaticity coordinates // [x, y].</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.hpp:99</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_af8be71ab040e68925698f73b52ab4d04"><div class="ttname"><a href="classGroveColorSensor.html#af8be71ab040e68925698f73b52ab4d04">GroveColorSensor::grovei2c_</a></div><div class="ttdeci">AsI2c grovei2c_</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.hpp:35</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_afcaa135e9cd1bc508404f0a7ed2fb5e4"><div class="ttname"><a href="classGroveColorSensor.html#afcaa135e9cd1bc508404f0a7ed2fb5e4">GroveColorSensor::TCS3414chromaticityCoordinates_</a></div><div class="ttdeci">float TCS3414chromaticityCoordinates_[2]</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.hpp:51</div></div>
+<div class="ttc" id="aclassGroveColorSensor_html_aff6d2790d1b0722f9a93701af3f2571f"><div class="ttname"><a href="classGroveColorSensor.html#aff6d2790d1b0722f9a93701af3f2571f">GroveColorSensor::TSC3414Blue</a></div><div class="ttdeci">unsigned char TSC3414Blue()</div><div class="ttdoc">retrieve blue color.</div><div class="ttdef"><b>Definition:</b> GroveColorSensor.cpp:83</div></div>
+<div class="ttc" id="aclasslogs_1_1LoggerFactory_html_a82585b5de73e471e06cafdccc3b3721e"><div class="ttname"><a href="classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e">logs::LoggerFactory::logger</a></div><div class="ttdeci">static const Logger &amp; logger(const std::string &amp;name)</div><div class="ttdoc">Cette méthode statique retourne un Logger en fonction de son nom.</div><div class="ttdef"><b>Definition:</b> LoggerFactory.cpp:54</div></div>
+<div class="ttc" id="aclasslogs_1_1Logger_html"><div class="ttname"><a href="classlogs_1_1Logger.html">logs::Logger</a></div><div class="ttdoc">Classe de gestion des traces de l'application.</div><div class="ttdef"><b>Definition:</b> Logger.hpp:63</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Jeudi 26 Mars 2026 23:28:55 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

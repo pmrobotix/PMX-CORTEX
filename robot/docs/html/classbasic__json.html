@@ -4863,6 +4863,7 @@ template&lt;typename ValueTypeCV , typename ValueType  = detail::uncvref_t&lt;Va
         <tr>
           <td class="memname">auto <a class="el" href="classbasic__json.html">basic_json</a>&lt; ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer, BinaryType &gt;::get </td>
           <td>(</td>
+          <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td> const -&gt; decltype(std::declval&lt;const <a class="el" href="classbasic__json.html#aac9997e46c538d338d4dbbfeb66c9e20">basic_json_t</a>&amp;&gt;().template <a class="el" href="classbasic__json.html#a5c1dbb7957e2224af836fca54b593801">get_impl</a>&lt;ValueType&gt;(<a class="el" href="structdetail_1_1priority__tag.html">detail::priority_tag</a>&lt;4&gt; {}))
     </td>
@@ -4922,6 +4923,7 @@ template&lt;typename PointerType , typename std::enable_if&lt; std::is_pointer&l
         <tr>
           <td class="memname">auto <a class="el" href="classbasic__json.html">basic_json</a>&lt; ObjectType, ArrayType, StringType, BooleanType, NumberIntegerType, NumberUnsignedType, NumberFloatType, AllocatorType, JSONSerializer, BinaryType &gt;::get </td>
           <td>(</td>
+          <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td> -&gt; decltype(std::declval&lt;<a class="el" href="classbasic__json.html#aac9997e46c538d338d4dbbfeb66c9e20">basic_json_t</a>&amp;&gt;().template <a class="el" href="classbasic__json.html#a206a3748ff1fc676f64f753e203388dd">get_ptr</a>&lt;PointerType&gt;())
     </td>
@@ -8449,7 +8451,7 @@ template&lt;typename SAX &gt; </div>
 
 <p>generate SAX events </p>
 <dl class="section see"><dt>Voir également</dt><dd><a href="https://json.nlohmann.me/api/basic_json/sax_parse/">https://json.nlohmann.me/api/basic_json/sax_parse/</a> </dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000011">Obsolète:</a></b></dt><dd>This function is deprecated since 3.8.0 and will be removed in version 4.0.0 of the library. Please use sax_parse(ptr, ptr + len) instead. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000012">Obsolète:</a></b></dt><dd>This function is deprecated since 3.8.0 and will be removed in version 4.0.0 of the library. Please use sax_parse(ptr, ptr + len) instead. </dd></dl>
 <div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
@@ -10272,7 +10274,7 @@ template&lt;template&lt; typename U, typename V, typename... Args &gt; class Obj
 
 <p>deserialize from stream </p>
 <dl class="section see"><dt>Voir également</dt><dd><a href="https://json.nlohmann.me/api/basic_json/operator_gtgt/">https://json.nlohmann.me/api/basic_json/operator_gtgt/</a> </dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000012">Obsolète:</a></b></dt><dd>This stream operator is deprecated since 3.0.0 and will be removed in version 4.0.0 of the library. Please use <a class="el" href="classbasic__json.html#aaf363408931d76472ded14017e59c9e8" title="deserialize from stream">operator&gt;&gt;(std::istream&amp;, basic_json&amp;)</a> instead; that is, replace calls like <code>j &lt;&lt; i;</code> with <code>i &gt;&gt; j;</code>. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000013">Obsolète:</a></b></dt><dd>This stream operator is deprecated since 3.0.0 and will be removed in version 4.0.0 of the library. Please use <a class="el" href="classbasic__json.html#aaf363408931d76472ded14017e59c9e8" title="deserialize from stream">operator&gt;&gt;(std::istream&amp;, basic_json&amp;)</a> instead; that is, replace calls like <code>j &lt;&lt; i;</code> with <code>i &gt;&gt; j;</code>. </dd></dl>
 
 </div>
 </div>
@@ -10701,7 +10703,7 @@ template&lt;template&lt; typename U, typename V, typename... Args &gt; class Obj
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Généré le Mercredi 25 Mars 2026 00:56:57 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Généré le Jeudi 26 Mars 2026 23:28:59 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

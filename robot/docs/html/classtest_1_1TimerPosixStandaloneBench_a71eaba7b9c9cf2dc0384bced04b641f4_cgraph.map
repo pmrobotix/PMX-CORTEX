@@ -1,0 +1,16 @@
+<map id="test::TimerPosixStandaloneBench::test" name="test::TimerPosixStandaloneBench::test">
+<area shape="rect" id="node1" title=" " alt="" coords="5,257,207,298"/>
+<area shape="rect" id="node2" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="317,56,399,83"/>
+<area shape="rect" id="node7" href="$classutils_1_1Chronometer.html#a8c641a39ccca4bf655bb09d9c1cd8d9b" title="Retourne le temps écoulé en microsecondes." alt="" coords="255,107,461,149"/>
+<area shape="rect" id="node8" href="$classutils_1_1Chronometer.html#a935aa20dd1791cfc8aec203a8838598d" title="Retourne le temps écoulé en secondes." alt="" coords="273,173,443,214"/>
+<area shape="rect" id="node9" href="$namespaceutils.html#a4f86fc4c334661a6995538cc080a40c9" title="Met en pause le thread courant pendant usec microsecondes." alt="" coords="273,239,443,265"/>
+<area shape="rect" id="node10" href="$namespaceutils.html#a1ade70582e50278926921bba958d53b6" title="Met en pause le thread courant pendant msec millisecondes." alt="" coords="277,289,439,316"/>
+<area shape="rect" id="node11" href="$namespaceutils.html#a94517b51f04480fb5c8c082d04283fa0" title="Met en pause le thread courant pendant sec secondes." alt="" coords="281,340,435,367"/>
+<area shape="rect" id="node12" href="$classutils_1_1Chronometer.html#a174c35f7b276290813fe913ed5c82bd3" title="Lance ou réinitialise le chronomètre." alt="" coords="550,383,693,425"/>
+<area shape="rect" id="node13" href="$classTimerPosix.html#ab15271c50cd9cc4306fc8a454df1e36f" title=" " alt="" coords="291,441,425,468"/>
+<area shape="rect" id="node3" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#a0e4fd77693fd899ec1b0670354f93a02" title="Cette méthode valide le message en cours de construction et le transmet au Logger de référence." alt="" coords="509,56,733,83"/>
+<area shape="rect" id="node4" href="$classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32" title="Verrouille le mutex. Cette méthode doit être appelée avant d&#39;utiliser la ressource associée...." alt="" coords="814,5,949,32"/>
+<area shape="rect" id="node5" href="$classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3" title="Déverrouille le mutex. Cette méthode doit être appelée après avoir utiliser la ressource associée." alt="" coords="806,56,957,83"/>
+<area shape="rect" id="node6" href="$classlogs_1_1Logger.html#afa535aaf4891e02c4ff7f84d372b5b1b" title="Méthode générique de trace d&#39;un message." alt="" coords="781,107,981,133"/>
+<area shape="rect" id="node14" href="$classutils_1_1Chronometer.html#af09b58a8ae28db72b09bca32efa3f95b" title="Indique si le chronomètre est en cours." alt="" coords="550,449,693,490"/>
+</map>

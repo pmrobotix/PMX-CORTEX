@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot:  Fichier source de src/driver-simu/LcdShieldDriver.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_7d5f4e6ed2536609adcd895097d33d4e.html">driver-simu</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">LcdShieldDriver.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="driver-simu_2LcdShieldDriver_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef SIMU_LCDSHIELDDRIVER_HPP_</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define SIMU_LCDSHIELDDRIVER_HPP_</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;cstdint&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ALcdShieldDriver_8hpp.html">interface/ALcdShieldDriver.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="LoggerFactory_8hpp.html">log/LoggerFactory.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">class </span><a class="code" href="classLcdShieldDriver.html">LcdShieldDriver</a>: <span class="keyword">public</span> <a class="code" href="classALcdShieldDriver.html">ALcdShieldDriver</a></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classLcdShieldDriver.html#a4caf81bcc96c0ce50a27bf6ec3181e7a">   26</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a> &amp; <a class="code" href="classLcdShieldDriver.html#a4caf81bcc96c0ce50a27bf6ec3181e7a">logger</a>()</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a> &amp; instance = <a class="code" href="classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e">logs::LoggerFactory::logger</a>(<span class="stringliteral">&quot;LcdShieldDriver.SIMU&quot;</span>);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordflow">return</span> instance;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    }</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classLcdShieldDriver.html#a14d2027ac041be273d6b894a6d66bb1f">   37</a></span>&#160;    <a class="code" href="classLcdShieldDriver.html#a14d2027ac041be273d6b894a6d66bb1f">LcdShieldDriver</a>();</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classLcdShieldDriver.html#aaec080d1c36326c1e58642a7e28d85b1">   42</a></span>&#160;    <a class="code" href="classLcdShieldDriver.html#aaec080d1c36326c1e58642a7e28d85b1">~LcdShieldDriver</a>();</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classLcdShieldDriver.html#a2ccbac0b5f8be6970c4c22fea837fc28">   44</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classLcdShieldDriver.html#a2ccbac0b5f8be6970c4c22fea837fc28">is_connected</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classLcdShieldDriver.html#a80962c9c080e1893adb005db6c86bd42">   45</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLcdShieldDriver.html#a80962c9c080e1893adb005db6c86bd42">clear</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classLcdShieldDriver.html#a86c79dd1fbddfb32eca989e9b04c5e0d">   46</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLcdShieldDriver.html#a86c79dd1fbddfb32eca989e9b04c5e0d">home</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classLcdShieldDriver.html#abd65717b78b982491fbd9be5c5e305da">   47</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLcdShieldDriver.html#abd65717b78b982491fbd9be5c5e305da">setBacklightOn</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classLcdShieldDriver.html#a87021c63ecb8870cc4f962bcfe8858ba">   48</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLcdShieldDriver.html#a87021c63ecb8870cc4f962bcfe8858ba">setBacklightOff</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classLcdShieldDriver.html#a6e781becd97ff26d01547f2d331da4d1">   49</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLcdShieldDriver.html#a6e781becd97ff26d01547f2d331da4d1">setCursor</a>(uint8_t, uint8_t) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="classLcdShieldDriver.html#af6ec56dc8b16553e24eb975f3850f6f7">   50</a></span>&#160;    <span class="keywordtype">size_t</span> <a class="code" href="classLcdShieldDriver.html#af6ec56dc8b16553e24eb975f3850f6f7">write</a>(uint8_t value) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="classLcdShieldDriver.html#a68a823f4c2b4922c17f73eac993e377d">   51</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLcdShieldDriver.html#a68a823f4c2b4922c17f73eac993e377d">print_content_string</a>(std::string str, <span class="keywordtype">int</span> row, <span class="keywordtype">int</span> col = 1) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classLcdShieldDriver.html#a4f0a80f1557b3fb957cf6fe4727efe9c">   52</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLcdShieldDriver.html#a4f0a80f1557b3fb957cf6fe4727efe9c">print_content_integer</a>(<span class="keywordtype">int</span> value, <span class="keywordtype">int</span> row, <span class="keywordtype">int</span> col = 1) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;};</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aALcdShieldDriver_8hpp_html"><div class="ttname"><a href="ALcdShieldDriver_8hpp.html">ALcdShieldDriver.hpp</a></div><div class="ttdoc">Interface abstraite du driver d'ecran LCD I2C.</div></div>
+<div class="ttc" id="aLoggerFactory_8hpp_html"><div class="ttname"><a href="LoggerFactory_8hpp.html">LoggerFactory.hpp</a></div><div class="ttdoc">Définition de la classe LoggerFactory.</div></div>
+<div class="ttc" id="aclassALcdShieldDriver_html"><div class="ttname"><a href="classALcdShieldDriver.html">ALcdShieldDriver</a></div><div class="ttdoc">Interface abstraite du driver d'ecran LCD.</div><div class="ttdef"><b>Definition:</b> ALcdShieldDriver.hpp:24</div></div>
+<div class="ttc" id="aclassLcdShieldDriver_html"><div class="ttname"><a href="classLcdShieldDriver.html">LcdShieldDriver</a></div><div class="ttdoc">Implementation ARM du driver LCD.</div><div class="ttdef"><b>Definition:</b> LcdShieldDriver.hpp:23</div></div>
+<div class="ttc" id="aclassLcdShieldDriver_html_a14d2027ac041be273d6b894a6d66bb1f"><div class="ttname"><a href="classLcdShieldDriver.html#a14d2027ac041be273d6b894a6d66bb1f">LcdShieldDriver::LcdShieldDriver</a></div><div class="ttdeci">LcdShieldDriver()</div><div class="ttdoc">Constructeur.</div></div>
+<div class="ttc" id="aclassLcdShieldDriver_html_a2ccbac0b5f8be6970c4c22fea837fc28"><div class="ttname"><a href="classLcdShieldDriver.html#a2ccbac0b5f8be6970c4c22fea837fc28">LcdShieldDriver::is_connected</a></div><div class="ttdeci">bool is_connected() override</div><div class="ttdoc">Verifie si l'ecran LCD est connecte.</div></div>
+<div class="ttc" id="aclassLcdShieldDriver_html_a4caf81bcc96c0ce50a27bf6ec3181e7a"><div class="ttname"><a href="classLcdShieldDriver.html#a4caf81bcc96c0ce50a27bf6ec3181e7a">LcdShieldDriver::logger</a></div><div class="ttdeci">static const logs::Logger &amp; logger()</div><div class="ttdef"><b>Definition:</b> LcdShieldDriver.hpp:26</div></div>
+<div class="ttc" id="aclassLcdShieldDriver_html_a4f0a80f1557b3fb957cf6fe4727efe9c"><div class="ttname"><a href="classLcdShieldDriver.html#a4f0a80f1557b3fb957cf6fe4727efe9c">LcdShieldDriver::print_content_integer</a></div><div class="ttdeci">void print_content_integer(int value, int row, int col=1) override</div><div class="ttdoc">Affiche un entier a une position donnee.</div></div>
+<div class="ttc" id="aclassLcdShieldDriver_html_a68a823f4c2b4922c17f73eac993e377d"><div class="ttname"><a href="classLcdShieldDriver.html#a68a823f4c2b4922c17f73eac993e377d">LcdShieldDriver::print_content_string</a></div><div class="ttdeci">void print_content_string(std::string str, int row, int col=1) override</div><div class="ttdoc">Affiche une chaine a une position donnee.</div></div>
+<div class="ttc" id="aclassLcdShieldDriver_html_a6e781becd97ff26d01547f2d331da4d1"><div class="ttname"><a href="classLcdShieldDriver.html#a6e781becd97ff26d01547f2d331da4d1">LcdShieldDriver::setCursor</a></div><div class="ttdeci">void setCursor(uint8_t, uint8_t) override</div><div class="ttdoc">Positionne le curseur.</div></div>
+<div class="ttc" id="aclassLcdShieldDriver_html_a80962c9c080e1893adb005db6c86bd42"><div class="ttname"><a href="classLcdShieldDriver.html#a80962c9c080e1893adb005db6c86bd42">LcdShieldDriver::clear</a></div><div class="ttdeci">void clear() override</div><div class="ttdoc">Efface tout le contenu de l'ecran.</div></div>
+<div class="ttc" id="aclassLcdShieldDriver_html_a86c79dd1fbddfb32eca989e9b04c5e0d"><div class="ttname"><a href="classLcdShieldDriver.html#a86c79dd1fbddfb32eca989e9b04c5e0d">LcdShieldDriver::home</a></div><div class="ttdeci">void home() override</div><div class="ttdoc">Remet le curseur en position (0, 0).</div></div>
+<div class="ttc" id="aclassLcdShieldDriver_html_a87021c63ecb8870cc4f962bcfe8858ba"><div class="ttname"><a href="classLcdShieldDriver.html#a87021c63ecb8870cc4f962bcfe8858ba">LcdShieldDriver::setBacklightOff</a></div><div class="ttdeci">void setBacklightOff() override</div><div class="ttdoc">Eteint le retro-eclairage.</div></div>
+<div class="ttc" id="aclassLcdShieldDriver_html_aaec080d1c36326c1e58642a7e28d85b1"><div class="ttname"><a href="classLcdShieldDriver.html#aaec080d1c36326c1e58642a7e28d85b1">LcdShieldDriver::~LcdShieldDriver</a></div><div class="ttdeci">~LcdShieldDriver()</div><div class="ttdoc">Destructeur.</div></div>
+<div class="ttc" id="aclassLcdShieldDriver_html_abd65717b78b982491fbd9be5c5e305da"><div class="ttname"><a href="classLcdShieldDriver.html#abd65717b78b982491fbd9be5c5e305da">LcdShieldDriver::setBacklightOn</a></div><div class="ttdeci">void setBacklightOn() override</div><div class="ttdoc">Allume le retro-eclairage.</div></div>
+<div class="ttc" id="aclassLcdShieldDriver_html_af6ec56dc8b16553e24eb975f3850f6f7"><div class="ttname"><a href="classLcdShieldDriver.html#af6ec56dc8b16553e24eb975f3850f6f7">LcdShieldDriver::write</a></div><div class="ttdeci">size_t write(uint8_t value) override</div><div class="ttdoc">Ecrit un octet brut sur l'ecran.</div></div>
+<div class="ttc" id="aclasslogs_1_1LoggerFactory_html_a82585b5de73e471e06cafdccc3b3721e"><div class="ttname"><a href="classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e">logs::LoggerFactory::logger</a></div><div class="ttdeci">static const Logger &amp; logger(const std::string &amp;name)</div><div class="ttdoc">Cette méthode statique retourne un Logger en fonction de son nom.</div><div class="ttdef"><b>Definition:</b> LoggerFactory.cpp:54</div></div>
+<div class="ttc" id="aclasslogs_1_1Logger_html"><div class="ttname"><a href="classlogs_1_1Logger.html">logs::Logger</a></div><div class="ttdoc">Classe de gestion des traces de l'application.</div><div class="ttdef"><b>Definition:</b> Logger.hpp:63</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Jeudi 26 Mars 2026 23:28:55 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

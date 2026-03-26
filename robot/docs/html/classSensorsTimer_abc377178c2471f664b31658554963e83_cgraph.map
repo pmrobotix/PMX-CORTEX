@@ -1,0 +1,52 @@
+<map id="SensorsTimer::onTimer" name="SensorsTimer::onTimer">
+<area shape="rect" id="node1" title="Actions à executer pour le timer." alt="" coords="5,1581,179,1607"/>
+<area shape="rect" id="node2" href="$classSensors.html#a7c1612f78d78562aa12322638a74140f" title=" " alt="" coords="271,767,383,794"/>
+<area shape="rect" id="node10" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="1079,1421,1161,1447"/>
+<area shape="rect" id="node12" href="$classlogs_1_1Logger.html#a8b6a2019233bc44b3c3c86c653910831" title="Trace un message de niveau ERROR." alt="" coords="807,1522,947,1549"/>
+<area shape="rect" id="node19" href="$classSensors.html#ad0ee45c4b37c566877550e50dab6e98b" title=" " alt="" coords="498,108,693,149"/>
+<area shape="rect" id="node21" href="$classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" title=" " alt="" coords="536,601,655,627"/>
+<area shape="rect" id="node22" href="$classSensors.html#aaf25dc2afdd983216b66476f69731d54" title=" " alt="" coords="538,1421,653,1447"/>
+<area shape="rect" id="node26" href="$classSensors.html#a33a5aa7e06b72aa392c3e9e1931c6d0b" title=" " alt="" coords="540,373,651,399"/>
+<area shape="rect" id="node35" href="$classRobot.html#a91607f9ec65e768636015e1e9ed71b3f" title=" " alt="" coords="509,1741,681,1767"/>
+<area shape="rect" id="node37" href="$classSensors.html#a6fde663a7fb649742b32c4c56e4b939c" title=" " alt="" coords="271,1193,383,1219"/>
+<area shape="rect" id="node39" href="$classSensors.html#a2c266a8b4feaec0456b1621fc6b2e865" title=" " alt="" coords="498,1573,693,1615"/>
+<area shape="rect" id="node40" href="$classSensorsTimer.html#a96561df211896b2acad5c5aecd2a36eb" title=" " alt="" coords="1040,2213,1200,2239"/>
+<area shape="rect" id="node41" href="$classRobot.html#afcfbfb8298b846a516f749c0bd087610" title=" " alt="" coords="492,1791,699,1818"/>
+<area shape="rect" id="node42" href="$classAsserv.html#a22cbdc18185f0d910473b8a5bb434c84" title=" " alt="" coords="485,2146,705,2173"/>
+<area shape="rect" id="node45" href="$classAsserv.html#ae8c86b1f9cfe795e8c9aad3e7e4ea40c" title=" " alt="" coords="227,1951,427,1992"/>
+<area shape="rect" id="node50" href="$classAsserv.html#a959dc45e49f920c77e62a11b75a15641" title=" " alt="" coords="227,1885,428,1927"/>
+<area shape="rect" id="node3" href="$classARobotPositionShared.html#a14480af08789f17d82ec5ccac92be7cf" title="Convertit une position balise (polaire relative) en coordonnees table." alt="" coords="476,753,715,809"/>
+<area shape="rect" id="node6" href="$classlogs_1_1Logger.html#a7dffc8f610014ec59b63392da16140e4" title="Trace un message de niveau DEBUG." alt="" coords="1045,1471,1195,1498"/>
+<area shape="rect" id="node8" href="$classSensors.html#aeeb30192f5749b90e9be6d62792c84aa" title=" " alt="" coords="531,702,659,729"/>
+<area shape="rect" id="node13" href="$classAsserv.html#acc337a9f3d054ba09e3043a560a457a7" title=" " alt="" coords="498,1218,693,1245"/>
+<area shape="rect" id="node16" href="$classAsserv.html#abd8ed43f91a27b900059078e06d8a201" title=" " alt="" coords="490,934,701,961"/>
+<area shape="rect" id="node17" href="$classSensors.html#a8ab2badef3a65b7181e990df21e48e22" title=" " alt="" coords="498,550,693,577"/>
+<area shape="rect" id="node18" href="$classSensors.html#a445b086f263ac98b47cb545d11b73ab1" title=" " alt="" coords="1059,998,1181,1025"/>
+<area shape="rect" id="node20" href="$classlogs_1_1Logger.html#aa381165771d00a6a1e3aa9664bf6467f" title="Trace un message de niveau INFO." alt="" coords="1053,614,1187,641"/>
+<area shape="rect" id="node23" href="$classSensors.html#ae796030d5af64414b0822e5e36940bd4" title=" " alt="" coords="503,1051,688,1092"/>
+<area shape="rect" id="node24" href="$classRobot.html#a6a118c509a6d7ab35cdf96203eb0238a" title=" " alt="" coords="795,1319,959,1346"/>
+<area shape="rect" id="node25" href="$classRobot.html#a4f30918c35c294fbd5404fc3c3ffc075" title=" " alt="" coords="544,1117,647,1143"/>
+<area shape="rect" id="node34" href="$classSvgWriter.html#adf399e403e4fdcb453558208dfcda996" title="Dessine la position d&#39;un adversaire détecté." alt="" coords="506,985,685,1027"/>
+<area shape="rect" id="node4" href="$classARobotPositionShared.html#a051d4c785a23df154911fa9f3840e195" title="Lit la position courante du robot." alt="" coords="794,868,961,909"/>
+<area shape="rect" id="node5" href="$ARobotPositionShared_8hpp.html#a45bb7dfd2e7442f6250b8d202cc75c7f" title="Normalise un angle dans l&#39;intervalle ]&#45;PI, PI]." alt="" coords="821,817,934,843"/>
+<area shape="rect" id="node7" href="$classlogs_1_1Logger.html#afa535aaf4891e02c4ff7f84d372b5b1b" title="Méthode générique de trace d&#39;un message." alt="" coords="1520,1446,1720,1473"/>
+<area shape="rect" id="node9" href="$classASensorsDriver.html#a1bbf3fcc72a8d2be97ae9a2237c1627f" title="Affiche un nombre sur l&#39;afficheur 7 segments." alt="" coords="763,766,992,793"/>
+<area shape="rect" id="node11" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#a0e4fd77693fd899ec1b0670354f93a02" title="Cette méthode valide le message en cours de construction et le transmet au Logger de référence." alt="" coords="1248,1421,1472,1447"/>
+<area shape="rect" id="node14" href="$classAsserv.html#a5857f21b4410828db5387367bb63a0df" title="Return Logger linked to Asserv." alt="" coords="820,1994,935,2021"/>
+<area shape="rect" id="node15" href="$classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e" title="Cette méthode statique retourne un Logger en fonction de son nom." alt="" coords="1286,1860,1434,1901"/>
+<area shape="rect" id="node27" href="$classASensorsDriver.html#a73d2598f685d481a58b3b5364de4f75c" title="Lit le capteur arriere gauche." alt="" coords="785,411,970,438"/>
+<area shape="rect" id="node28" href="$classASensorsDriver.html#afa92806f01cf2a920183fb0cb491101e" title="Lit le capteur arriere droit." alt="" coords="780,158,975,185"/>
+<area shape="rect" id="node29" href="$classASensorsDriver.html#a7873d770e0255d9ef9c4e64d181dccfb" title="Lit le capteur avant gauche." alt="" coords="785,209,970,235"/>
+<area shape="rect" id="node30" href="$classASensorsDriver.html#afcf6344268efabb191cb38d7e900e245" title="Lit le capteur avant droit." alt="" coords="780,259,975,286"/>
+<area shape="rect" id="node31" href="$classSensors.html#a1742695dacc4c683f7a6136b650c0aa7" title=" " alt="" coords="784,614,971,641"/>
+<area shape="rect" id="node32" href="$classSensors.html#ac64cdee4463d5580cbfca8e0aa8a6e70" title=" " alt="" coords="779,310,976,337"/>
+<area shape="rect" id="node33" href="$classASensorsDriver.html#a0c581029ba10d5ac820a9e3e2e6883cd" title="Synchronise les donnees de la balise (lecture I2C)." alt="" coords="797,361,957,387"/>
+<area shape="rect" id="node36" href="$classRobot.html#ace39678c476c8e8b193d9c8baf7a692b" title="Retourne le Logger associe a la classe Robot. public car utilise dans Main." alt="" coords="823,1741,932,1767"/>
+<area shape="rect" id="node38" href="$classSensors.html#adb6e31b5f292fad731e2fd33e1fde8fa" title=" " alt="" coords="780,1421,975,1447"/>
+<area shape="rect" id="node43" href="$classAsservEsialR.html#a89c3ed56d870037964c23bb657c75a7a" title="Reinitialise l&#39;arret d&#39;urgence pour permettre un nouveau mouvement." alt="" coords="793,2096,961,2137"/>
+<area shape="rect" id="node44" href="$classAAsservDriver.html#a55e3b442898d83f302b9d9e0898317b6" title="Reinitialise l&#39;arret d&#39;urgence pour permettre un nouveau mouvement." alt="" coords="793,2213,961,2255"/>
+<area shape="rect" id="node46" href="$classAsserv.html#a4ddc603205ab5200b9c3525c11cd5a8a" title=" " alt="" coords="483,2095,707,2122"/>
+<area shape="rect" id="node47" href="$classAsserv.html#a02914fbd6c3d2ee03c896cb7a9f86078" title=" " alt="" coords="507,1690,683,1717"/>
+<area shape="rect" id="node48" href="$classAsserv.html#a312602d6bf6f8591937e4d0003497bbb" title=" " alt="" coords="498,1943,693,1970"/>
+<area shape="rect" id="node49" href="$classAsserv.html#af4469650ff2e9587118fb98219528ed2" title=" " alt="" coords="515,2045,676,2071"/>
+</map>

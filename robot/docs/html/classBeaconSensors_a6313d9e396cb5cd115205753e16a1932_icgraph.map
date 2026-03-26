@@ -1,0 +1,11 @@
+<map id="BeaconSensors::logger" name="BeaconSensors::logger">
+<area shape="rect" id="node1" title="Retourne le Logger associé à la classe BeaconSensors(OPOS6UL)." alt="" coords="809,107,980,133"/>
+<area shape="rect" id="node2" href="$classBeaconSensors.html#ae88c123cdeac6ee17c034a239bd38705" title="Constructor." alt="" coords="533,5,761,32"/>
+<area shape="rect" id="node3" href="$classBeaconSensors.html#ab5da914e8d5038ecb88bbefe650215d5" title="initialise i2c" alt="" coords="293,107,458,133"/>
+<area shape="rect" id="node5" href="$classBeaconSensors.html#a1b1f41a7637ff58ccabc17fccb22b87c" title=" " alt="" coords="559,56,735,83"/>
+<area shape="rect" id="node7" href="$classBeaconSensors.html#a0fc052c2c3d6236020384847f1dd8d53" title="get distance in mm. //every 250 ms" alt="" coords="557,157,738,184"/>
+<area shape="rect" id="node9" href="$classBeaconSensors.html#abfdaa6bfe44e4fff7eccee320ab1a098" title=" " alt="" coords="555,208,739,235"/>
+<area shape="rect" id="node4" href="$classSensorsDriver.html#a93194289387be10d5f26f922e723fa91" title="Constructor." alt="" coords="5,107,217,133"/>
+<area shape="rect" id="node6" href="$classSensorsDriver.html#a0af2bde4cdb1f11d3a06f18a173b11bf" title="Affiche un nombre sur l&#39;afficheur 7 segments." alt="" coords="265,56,485,83"/>
+<area shape="rect" id="node8" href="$classSensorsDriver.html#a1bfbcc82461257094ed185fa2017afad" title="Synchronise les donnees de la balise (lecture I2C)." alt="" coords="300,157,451,184"/>
+</map>

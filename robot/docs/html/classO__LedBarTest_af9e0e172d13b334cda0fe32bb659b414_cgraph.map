@@ -1,0 +1,52 @@
+<map id="O_LedBarTest::run" name="O_LedBarTest::run">
+<area shape="rect" id="node1" title=" " alt="" coords="5,603,144,630"/>
+<area shape="rect" id="node2" href="$classOPOS6UL__RobotExtended.html#a6468a2bb1fc8de815154a322e038b875" title=" " alt="" coords="199,5,388,47"/>
+<area shape="rect" id="node3" href="$classRobot.html#ac3663ed46470faec31e0a6b7eeaad3fb" title=" " alt="" coords="238,71,349,98"/>
+<area shape="rect" id="node4" href="$classLedBar.html#afad90556b784654b618c527eb19c50dd" title="Clignote toutes les leds nb fois." alt="" coords="240,173,347,199"/>
+<area shape="rect" id="node11" href="$classLedBar.html#aa771bd13ff72b872ec4c34e9ef68ea1b" title="Eteint toutes leds." alt="" coords="474,71,599,98"/>
+<area shape="rect" id="node13" href="$namespaceutils.html#a4f86fc4c334661a6995538cc080a40c9" title="Met en pause le thread courant pendant usec microsecondes." alt="" coords="915,375,1085,402"/>
+<area shape="rect" id="node14" href="$classRobot.html#a7af430452b558088757324f857d099b2" title="Cette methode retourne l&#39;objet de manipulation du chronometer." alt="" coords="237,1135,349,1162"/>
+<area shape="rect" id="node15" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="959,823,1041,850"/>
+<area shape="rect" id="node19" href="$classRobot.html#a36b66143430e84b730555cf497b89774" title=" " alt="" coords="242,1186,345,1213"/>
+<area shape="rect" id="node20" href="$classOPOS6UL__RobotExtended.html#a514e663cf7537d64d2d0272b8856d6c0" title="Retourne l&#39;instance unique du robot (singleton)." alt="" coords="199,1237,388,1279"/>
+<area shape="rect" id="node21" href="$classLedBar.html#a5272d702b081c2fe6288a690e92cc488" title="Clignote toutes les leds nb fois sur les 2 valeurs hex val1 et val2." alt="" coords="237,426,349,453"/>
+<area shape="rect" id="node22" href="$classLedBar.html#a4f6f26d47d0ea82380cebb8c2b9ea7c3" title="Change le statut d&#39;une led." alt="" coords="489,274,584,301"/>
+<area shape="rect" id="node23" href="$classOPOS6UL__ActionsExtended.html#a45cbc8df7fe022adea06aa127b94069c" title="Cette methode retourne l&#39;objet ledbar." alt="" coords="194,1303,393,1344"/>
+<area shape="rect" id="node24" href="$classLedBar.html#a3069414fedb0a97740ffd3ff819d63f1" title="Désactive une led spécifique." alt="" coords="236,274,351,301"/>
+<area shape="rect" id="node25" href="$classLedBar.html#aebfc6c5221a223364044fc5c6efacd7a" title="Active une led spécifique." alt="" coords="237,325,350,351"/>
+<area shape="rect" id="node26" href="$classActions.html#adf0dec391b032c0b36b329a3f039001e" title="Active les actions." alt="" coords="718,1026,826,1053"/>
+<area shape="rect" id="node32" href="$classutils_1_1Chronometer.html#a174c35f7b276290813fe913ed5c82bd3" title="Lance ou réinitialise le chronomètre." alt="" coords="222,1368,365,1409"/>
+<area shape="rect" id="node33" href="$classAsserv.html#a366bf4a9f0880c5dc125ac0637fee326" title=" " alt="" coords="679,1077,865,1119"/>
+<area shape="rect" id="node39" href="$classLedBar.html#a985018b17b5051935a30d19e32880e11" title="Lance l&#39;action de changer le statut d&#39;une led en tache parallele sur l&#39;actionmanager." alt="" coords="230,755,357,782"/>
+<area shape="rect" id="node44" href="$classLedBar.html#ac680352e575b6a86e40e0d9143db38d7" title="Lance l&#39;action de faire alterner les leds selon les valeurs hexValue et hexValueNext." alt="" coords="192,629,395,655"/>
+<area shape="rect" id="node46" href="$classLedBar.html#a0c1e129df2b8cec98a190bf3c9aa18d3" title="Donne l&#39;ordre d&#39;arreter et attend au moins 1 ms." alt="" coords="485,578,588,605"/>
+<area shape="rect" id="node48" href="$classLedBar.html#a2fb2bd9ec3e7fcb7451cb859db3a6846" title="Lance l&#39;action de faire clignoter une led nb fois tous les timeus." alt="" coords="195,527,391,554"/>
+<area shape="rect" id="node49" href="$classLedBar.html#a4e3205aef3a0d44b623d4f8434235cbb" title="Lance l&#39;action d&#39;allumer alternativement les leds à la &quot;K2000&quot;." alt="" coords="203,705,384,731"/>
+<area shape="rect" id="node5" href="$classLedBar.html#ad91d62f821e6b1eb6689a0d23f021097" title="Allume toutes leds." alt="" coords="475,122,598,149"/>
+<area shape="rect" id="node12" href="$classLedBar.html#a2e77350f53c4579d7f71cc00d4f26dad" title="Retourne vrai si une action ou un timer est en cours." alt="" coords="475,426,599,453"/>
+<area shape="rect" id="node6" href="$classLedBar.html#a31ff074dd2184f11b0fc4858542a8050" title="Allume/eteint les leds définit par hexValue, max = 0xFF." alt="" coords="719,122,825,149"/>
+<area shape="rect" id="node7" href="$classLedBar.html#a349f726f4e7cd0058f95b6c9d9453b18" title="Retourne le Logger associé à la classe LedBar." alt="" coords="942,299,1058,326"/>
+<area shape="rect" id="node9" href="$classlogs_1_1Logger.html#ae55afdeeb1bc9acb6dc02a3e2d06062f" title="Trace un message de niveau TELEM." alt="" coords="913,223,1087,250"/>
+<area shape="rect" id="node8" href="$classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e" title="Cette méthode statique retourne un Logger en fonction de son nom." alt="" coords="1173,757,1321,799"/>
+<area shape="rect" id="node10" href="$classlogs_1_1Logger.html#afa535aaf4891e02c4ff7f84d372b5b1b" title="Méthode générique de trace d&#39;un message." alt="" coords="1407,706,1607,733"/>
+<area shape="rect" id="node16" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#a0e4fd77693fd899ec1b0670354f93a02" title="Cette méthode valide le message en cours de construction et le transmet au Logger de référence." alt="" coords="1135,823,1359,850"/>
+<area shape="rect" id="node17" href="$classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32" title="Verrouille le mutex. Cette méthode doit être appelée avant d&#39;utiliser la ressource associée...." alt="" coords="1439,899,1574,926"/>
+<area shape="rect" id="node18" href="$classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3" title="Déverrouille le mutex. Cette méthode doit être appelée après avoir utiliser la ressource associée." alt="" coords="1431,849,1582,875"/>
+<area shape="rect" id="node27" href="$classActions.html#a637e05ac19e873621b1e123c2ff29990" title="Indique si le gestionnaire d&#39;actions est démarré." alt="" coords="929,874,1071,901"/>
+<area shape="rect" id="node29" href="$classutils_1_1Thread.html#a430ee2b8962147b587157fac97932219" title="Lance le thread." alt="" coords="929,1026,1071,1053"/>
+<area shape="rect" id="node28" href="$classutils_1_1Thread.html#ada9233f3e669c925e9ed518201ad31cd" title="Retourne l&#39;état courant du thread." alt="" coords="1175,874,1319,901"/>
+<area shape="rect" id="node30" href="$classutils_1_1Thread.html#a61b6c3d0b87570254646120b323b89f7" title="Cette méthode sert de point d&#39;entrée pour l&#39;appel à pcreate_thread." alt="" coords="1157,1009,1336,1035"/>
+<area shape="rect" id="node31" href="$namespaceutils.html#ac714339512d6dc1ee14c5b5a92d535be" title="Définit la priorité temps&#45;réel (SCHED_FIFO) du thread spécifié." alt="" coords="1177,1060,1317,1101"/>
+<area shape="rect" id="node34" href="$classlogs_1_1Logger.html#a8b6a2019233bc44b3c3c86c653910831" title="Trace un message de niveau ERROR." alt="" coords="930,722,1070,749"/>
+<area shape="rect" id="node35" href="$classAsserv.html#a5857f21b4410828db5387367bb63a0df" title="Return Logger linked to Asserv." alt="" coords="943,975,1057,1002"/>
+<area shape="rect" id="node36" href="$classAAsservDriver.html#a046eb790d147ad8ec34bcd9565ad675b" title="Active ou desactive le thread d&#39;asservissement." alt="" coords="915,1208,1085,1249"/>
+<area shape="rect" id="node37" href="$classAAsservDriver.html#a83153736da05eba6451f02b399eb4438" title="Active le mode deplacement assiste (PID actif)." alt="" coords="915,1077,1085,1119"/>
+<area shape="rect" id="node38" href="$classAAsservDriver.html#aca4741e0e7e11947180f53ba8abe0730" title="Passe en roue libre (aucun asservissement)." alt="" coords="915,1143,1085,1184"/>
+<area shape="rect" id="node40" href="$classAActionsElement.html#a3fbd5b8201049a59602d8b7201a9ef8a" title="Retourne une référence sur le Actions associé." alt="" coords="443,730,631,757"/>
+<area shape="rect" id="node41" href="$classActions.html#a710f952f5942e626d73e47733a8848b0" title="Ajout d&#39;une action." alt="" coords="701,849,843,875"/>
+<area shape="rect" id="node42" href="$classActionManagerTimer.html#ad44aa7bf3d361e60d3ed764d833eafc5" title="Ajout d&#39;une action." alt="" coords="1167,925,1326,967"/>
+<area shape="rect" id="node43" href="$classActions.html#a9cc6c9bd885d6e03234b0cf5061a5ca1" title="Return Logger linked to Actions." alt="" coords="941,773,1059,799"/>
+<area shape="rect" id="node45" href="$classActions.html#a173e3bb37b9cbb0e5ef423b1719b7afd" title="Ajout d&#39;un timer standard." alt="" coords="702,773,842,799"/>
+<area shape="rect" id="node47" href="$classLedBar.html#a443827fdcb184f64cd2f71861564faed" title="Color de la led a appliquer. ‍/ LedColor color_;." alt="" coords="711,603,833,630"/>
+<area shape="rect" id="node50" href="$classLedBar.html#a15e2f8d21596686ea1a6938899fe4251" title="Retourne le nombre de LEDs de la barre." alt="" coords="479,781,594,807"/>
+</map>

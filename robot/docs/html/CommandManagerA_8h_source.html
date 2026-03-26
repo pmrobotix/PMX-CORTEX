@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot:  Fichier source de src/common/asserv.esial/commandManager/CommandManagerA.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_fdedb0aba14d44ce9d99bc100e026e6a.html">common</a></li><li class="navelem"><a class="el" href="dir_251413a062b2562b08c5015e69ca7513.html">asserv.esial</a></li><li class="navelem"><a class="el" href="dir_02d15ec8a167395c71a08a9fabe1094c.html">commandManager</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">CommandManagerA.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="CommandManagerA_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef ASSERV_E_COMMAND_MANAGER</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define ASSERV_E_COMMAND_MANAGER</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;../consignController/ConsignController.h&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="CMDList_8h.html">CMDList/CMDList.h</a>&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;../Utils/Utils.h&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;../config/config.h&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="CommandManagerA_8h.html#af56a0c8b912645f61cdb4aae207a2ef8">   10</a></span>&#160;<span class="keyword">enum</span> <a class="code" href="CommandManagerA_8h.html#af56a0c8b912645f61cdb4aae207a2ef8">CommandStatus</a> {</div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="CommandManagerA_8h.html#af56a0c8b912645f61cdb4aae207a2ef8a99ade6ecff7f9e1fb13b62be39b85d82">   11</a></span>&#160;    <a class="code" href="CommandManagerA_8h.html#af56a0c8b912645f61cdb4aae207a2ef8a99ade6ecff7f9e1fb13b62be39b85d82">STATUS_IDLE</a>     = 0, <span class="comment">// Auncune consigne en cours, en attente...</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="CommandManagerA_8h.html#af56a0c8b912645f61cdb4aae207a2ef8a0ff59dc8290c4a7d8936a81cae0f7c3c">   12</a></span>&#160;    <a class="code" href="CommandManagerA_8h.html#af56a0c8b912645f61cdb4aae207a2ef8a0ff59dc8290c4a7d8936a81cae0f7c3c">STATUS_RUNNING</a>  = 1, <span class="comment">// Commande en cours d&#39;exécution</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="CommandManagerA_8h.html#af56a0c8b912645f61cdb4aae207a2ef8aa4ea8c4a1b3178fd437969d4280bd2b9">   13</a></span>&#160;    <a class="code" href="CommandManagerA_8h.html#af56a0c8b912645f61cdb4aae207a2ef8aa4ea8c4a1b3178fd437969d4280bd2b9">STATUS_HALTED</a>   = 2, <span class="comment">// Arrêt d&#39;urgence en cours,</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="CommandManagerA_8h.html#af56a0c8b912645f61cdb4aae207a2ef8a8beab2ef9ffa25a6fa1501a2c3d35dfd">   14</a></span>&#160;    <a class="code" href="CommandManagerA_8h.html#af56a0c8b912645f61cdb4aae207a2ef8a8beab2ef9ffa25a6fa1501a2c3d35dfd">STATUS_BLOCKED</a>  = 3, <span class="comment">// Commande en cours, mais le robot ne bouge plus!</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;};</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classCommandManagerA.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCommandManagerA.html">CommandManagerA</a></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="classCommandManagerA.html#a6822113dab6c173fa3375453c766361d">CommandManagerA</a>(<span class="keywordtype">int</span> capacity, <a class="code" href="classConsignController.html">ConsignController</a> *ctrlr, <a class="code" href="classOdometrie.html">Odometrie</a> *odo);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="classCommandManagerA.html#aae909a7bba7c3a588d10af95d3344b86">~CommandManagerA</a>();</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCommandManagerA.html#a2dae6504721d5eaa0c4d1ae58cb0cdcc">addStraightLine</a>(int32_t valueInmm);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCommandManagerA.html#a962381653cece51ae2278284c646d678">addTurn</a>(int32_t angleInDeg);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCommandManagerA.html#a7b6f1b708edcd9dcbf636934ebd6fee4">addGoTo</a>(int32_t posXInmm, int32_t posYInmm);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCommandManagerA.html#a0d7a4731eeaab720cd4a9fc135c64084">addGoToBack</a>(int32_t posXInmm, int32_t posYInmm);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCommandManagerA.html#ac1f8a98137f08b0974cdee6bfda7ecf4">addGoToEnchainement</a>(int32_t posXInmm, int32_t posYInmm);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCommandManagerA.html#a4d8ac8cedd147da82fca1d73970e7b84">addGoToAngle</a>(int32_t posXInmm, int32_t posYInmm);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCommandManagerA.html#a7ba985f99583c8733999c5eed02912b5">addGoToAngleReverse</a>(int32_t posXInmm, int32_t posYInmm);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCommandManagerA.html#a5a1c89032b7f8150bed910011daf111a">perform</a>();</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="comment">// Gestion d&#39;un éventuel arrêt d&#39;urgence</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCommandManagerA.html#a7ce3c37b6130dd468a93a658f4b3aced">setEmergencyStop</a>();</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCommandManagerA.html#a15e1210241f2dd30047f151994e68692">resetEmergencyStop</a>();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="comment">// Statut des commandes</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classCommandManagerA.html#a3d4499244b1f7548c0889974a16b402b">   38</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classCommandManagerA.html#a3d4499244b1f7548c0889974a16b402b">getCommandStatus</a>() { <span class="keywordflow">return</span> <a class="code" href="classCommandManagerA.html#aec5fe3f5641ff05a890f9466c2716f23">commandStatus</a>; }</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classCommandManagerA.html#af99a7d9c7222cab61527a8acee9b54ee">getPendingCmdCount</a>();</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classCommandManagerA.html#ae485a84b4549ea2cd01e1687febcebe7">   41</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCommandManagerA.html#ae485a84b4549ea2cd01e1687febcebe7">perform_On</a>(<span class="keywordtype">bool</span> enable)</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <a class="code" href="classCommandManagerA.html#a1d83631113441f0d84292b74ebb0e9e8">perform_on</a> = enable;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    }</div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classCommandManagerA.html#a0de0b0db2a9ac94ad0f47ca705c3f381">   45</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCommandManagerA.html#a0de0b0db2a9ac94ad0f47ca705c3f381">on</a>()</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    {</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classCommandManagerA.html#a1d83631113441f0d84292b74ebb0e9e8">perform_on</a>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    }</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="classCommandManagerA.html#abfc27afc59abde79919e761952c384b5">   51</a></span>&#160;    <a class="code" href="classCMDList.html">CMDList</a> *<a class="code" href="classCommandManagerA.html#abfc27afc59abde79919e761952c384b5">liste</a>; <span class="comment">//File d&#39;attente des commandes</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classCommandManagerA.html#ab6f62a795c81bde5bb3a7e430f9ab236">   52</a></span>&#160;    <a class="code" href="classConsignController.html">ConsignController</a> *<a class="code" href="classCommandManagerA.html#ab6f62a795c81bde5bb3a7e430f9ab236">cnsgCtrl</a>;</div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="classCommandManagerA.html#aabf1cc8c9487264e3cf7a4021347bb56">   53</a></span>&#160;    <a class="code" href="classOdometrie.html">Odometrie</a> *<a class="code" href="classCommandManagerA.html#aabf1cc8c9487264e3cf7a4021347bb56">odometrie</a>; <span class="comment">// Odométrie, pour pouvoir faire les conversion et calculer la cible</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="classCommandManagerA.html#a79f7a9d21ac2ebfb2f640ec1252c0789">   54</a></span>&#160;    <a class="code" href="structCMD__struct.html">CMD</a> <a class="code" href="classCommandManagerA.html#a79f7a9d21ac2ebfb2f640ec1252c0789">currCMD</a>; <span class="comment">//commande courante</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classCommandManagerA.html#acfca70e2015d0cc230c7eb04a26a0e0d">   55</a></span>&#160;    <a class="code" href="structCMD__struct.html">CMD</a> <a class="code" href="classCommandManagerA.html#acfca70e2015d0cc230c7eb04a26a0e0d">nextCMD</a>; <span class="comment">//commande suivante</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="classCommandManagerA.html#a1d83631113441f0d84292b74ebb0e9e8">   57</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCommandManagerA.html#a1d83631113441f0d84292b74ebb0e9e8">perform_on</a>;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classCommandManagerA.html#aec5fe3f5641ff05a890f9466c2716f23">   59</a></span>&#160;    <a class="code" href="CommandManagerA_8h.html#af56a0c8b912645f61cdb4aae207a2ef8">CommandStatus</a> <a class="code" href="classCommandManagerA.html#aec5fe3f5641ff05a890f9466c2716f23">commandStatus</a>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classCommandManagerA.html#ab25cf6925f166ddec06afd14fd6e4660">computeDeltaTheta</a>(<span class="keywordtype">float</span> deltaX, <span class="keywordtype">float</span> deltaY); <span class="comment">// Calcul de l&#39;angle à parcourir</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classCommandManagerA.html#a159f4c2b8f7171416e0f559176c32981">computeDeltaThetaReverse</a>(<span class="keywordtype">float</span> deltaX, <span class="keywordtype">float</span> deltaY); <span class="comment">// Calcul de l&#39;angle à parcourir en arriere</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    int64_t <a class="code" href="classCommandManagerA.html#a479387faec437cf28af316fbd8147424">computeDeltaDist</a>(<span class="keywordtype">float</span> deltaX, <span class="keywordtype">float</span> deltaY); <span class="comment">// Calcul de la distance à parcourir</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="comment">// GoTo là où on veut</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCommandManagerA.html#a5705ed05c4c964a5cedbd7bdb5f471b1">computeGoTo</a>();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCommandManagerA.html#a0f62e1ea0526585a655dd3bd68f79f85">computeGoToBack</a>();</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCommandManagerA.html#a1f67dff0d897b42cd6ea9c241a1f5c8e">computeGoToAngle</a>();</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCommandManagerA.html#a14fdd92a5a998f6e0a1d91afd2e24465">computeGoToAngleReverse</a>();</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCommandManagerA.html#a23d52bda2157cc39ab2990c3d554b806">computeEnchainement</a>(); <span class="comment">// Tentative d&#39;enchainement</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;};</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aCMDList_8h_html"><div class="ttname"><a href="CMDList_8h.html">CMDList.h</a></div></div>
+<div class="ttc" id="aCommandManagerA_8h_html_af56a0c8b912645f61cdb4aae207a2ef8"><div class="ttname"><a href="CommandManagerA_8h.html#af56a0c8b912645f61cdb4aae207a2ef8">CommandStatus</a></div><div class="ttdeci">CommandStatus</div><div class="ttdef"><b>Definition:</b> CommandManagerA.h:10</div></div>
+<div class="ttc" id="aCommandManagerA_8h_html_af56a0c8b912645f61cdb4aae207a2ef8a0ff59dc8290c4a7d8936a81cae0f7c3c"><div class="ttname"><a href="CommandManagerA_8h.html#af56a0c8b912645f61cdb4aae207a2ef8a0ff59dc8290c4a7d8936a81cae0f7c3c">STATUS_RUNNING</a></div><div class="ttdeci">@ STATUS_RUNNING</div><div class="ttdef"><b>Definition:</b> CommandManagerA.h:12</div></div>
+<div class="ttc" id="aCommandManagerA_8h_html_af56a0c8b912645f61cdb4aae207a2ef8a8beab2ef9ffa25a6fa1501a2c3d35dfd"><div class="ttname"><a href="CommandManagerA_8h.html#af56a0c8b912645f61cdb4aae207a2ef8a8beab2ef9ffa25a6fa1501a2c3d35dfd">STATUS_BLOCKED</a></div><div class="ttdeci">@ STATUS_BLOCKED</div><div class="ttdef"><b>Definition:</b> CommandManagerA.h:14</div></div>
+<div class="ttc" id="aCommandManagerA_8h_html_af56a0c8b912645f61cdb4aae207a2ef8a99ade6ecff7f9e1fb13b62be39b85d82"><div class="ttname"><a href="CommandManagerA_8h.html#af56a0c8b912645f61cdb4aae207a2ef8a99ade6ecff7f9e1fb13b62be39b85d82">STATUS_IDLE</a></div><div class="ttdeci">@ STATUS_IDLE</div><div class="ttdef"><b>Definition:</b> CommandManagerA.h:11</div></div>
+<div class="ttc" id="aCommandManagerA_8h_html_af56a0c8b912645f61cdb4aae207a2ef8aa4ea8c4a1b3178fd437969d4280bd2b9"><div class="ttname"><a href="CommandManagerA_8h.html#af56a0c8b912645f61cdb4aae207a2ef8aa4ea8c4a1b3178fd437969d4280bd2b9">STATUS_HALTED</a></div><div class="ttdeci">@ STATUS_HALTED</div><div class="ttdef"><b>Definition:</b> CommandManagerA.h:13</div></div>
+<div class="ttc" id="aclassCMDList_html"><div class="ttname"><a href="classCMDList.html">CMDList</a></div><div class="ttdef"><b>Definition:</b> CMDList.h:30</div></div>
+<div class="ttc" id="aclassCommandManagerA_html"><div class="ttname"><a href="classCommandManagerA.html">CommandManagerA</a></div><div class="ttdef"><b>Definition:</b> CommandManagerA.h:18</div></div>
+<div class="ttc" id="aclassCommandManagerA_html_a0d7a4731eeaab720cd4a9fc135c64084"><div class="ttname"><a href="classCommandManagerA.html#a0d7a4731eeaab720cd4a9fc135c64084">CommandManagerA::addGoToBack</a></div><div class="ttdeci">bool addGoToBack(int32_t posXInmm, int32_t posYInmm)</div><div class="ttdef"><b>Definition:</b> CommandManagerA.cpp:51</div></div>
+<div class="ttc" id="aclassCommandManagerA_html_a0de0b0db2a9ac94ad0f47ca705c3f381"><div class="ttname"><a href="classCommandManagerA.html#a0de0b0db2a9ac94ad0f47ca705c3f381">CommandManagerA::on</a></div><div class="ttdeci">bool on()</div><div class="ttdef"><b>Definition:</b> CommandManagerA.h:45</div></div>
+<div class="ttc" id="aclassCommandManagerA_html_a0f62e1ea0526585a655dd3bd68f79f85"><div class="ttname"><a href="classCommandManagerA.html#a0f62e1ea0526585a655dd3bd68f79f85">CommandManagerA::computeGoToBack</a></div><div class="ttdeci">void computeGoToBack()</div><div class="ttdef"><b>Definition:</b> CommandManagerA.cpp:224</div></div>
+<div class="ttc" id="aclassCommandManagerA_html_a14fdd92a5a998f6e0a1d91afd2e24465"><div class="ttname"><a href="classCommandManagerA.html#a14fdd92a5a998f6e0a1d91afd2e24465">CommandManagerA::computeGoToAngleReverse</a></div><div class="ttdeci">void computeGoToAngleReverse()</div><div class="ttdef"><b>Definition:</b> CommandManagerA.cpp:286</div></div>
+<div class="ttc" id="aclassCommandManagerA_html_a159f4c2b8f7171416e0f559176c32981"><div class="ttname"><a href="classCommandManagerA.html#a159f4c2b8f7171416e0f559176c32981">CommandManagerA::computeDeltaThetaReverse</a></div><div class="ttdeci">float computeDeltaThetaReverse(float deltaX, float deltaY)</div><div class="ttdef"><b>Definition:</b> CommandManagerA.cpp:327</div></div>
+<div class="ttc" id="aclassCommandManagerA_html_a15e1210241f2dd30047f151994e68692"><div class="ttname"><a href="classCommandManagerA.html#a15e1210241f2dd30047f151994e68692">CommandManagerA::resetEmergencyStop</a></div><div class="ttdeci">void resetEmergencyStop()</div><div class="ttdef"><b>Definition:</b> CommandManagerA.cpp:409</div></div>
+<div class="ttc" id="aclassCommandManagerA_html_a1d83631113441f0d84292b74ebb0e9e8"><div class="ttname"><a href="classCommandManagerA.html#a1d83631113441f0d84292b74ebb0e9e8">CommandManagerA::perform_on</a></div><div class="ttdeci">bool perform_on</div><div class="ttdef"><b>Definition:</b> CommandManagerA.h:57</div></div>
+<div class="ttc" id="aclassCommandManagerA_html_a1f67dff0d897b42cd6ea9c241a1f5c8e"><div class="ttname"><a href="classCommandManagerA.html#a1f67dff0d897b42cd6ea9c241a1f5c8e">CommandManagerA::computeGoToAngle</a></div><div class="ttdeci">void computeGoToAngle()</div><div class="ttdef"><b>Definition:</b> CommandManagerA.cpp:267</div></div>
+<div class="ttc" id="aclassCommandManagerA_html_a23d52bda2157cc39ab2990c3d554b806"><div class="ttname"><a href="classCommandManagerA.html#a23d52bda2157cc39ab2990c3d554b806">CommandManagerA::computeEnchainement</a></div><div class="ttdeci">void computeEnchainement()</div><div class="ttdef"><b>Definition:</b> CommandManagerA.cpp:360</div></div>
+<div class="ttc" id="aclassCommandManagerA_html_a2dae6504721d5eaa0c4d1ae58cb0cdcc"><div class="ttname"><a href="classCommandManagerA.html#a2dae6504721d5eaa0c4d1ae58cb0cdcc">CommandManagerA::addStraightLine</a></div><div class="ttdeci">bool addStraightLine(int32_t valueInmm)</div><div class="ttdef"><b>Definition:</b> CommandManagerA.cpp:36</div></div>
+<div class="ttc" id="aclassCommandManagerA_html_a3d4499244b1f7548c0889974a16b402b"><div class="ttname"><a href="classCommandManagerA.html#a3d4499244b1f7548c0889974a16b402b">CommandManagerA::getCommandStatus</a></div><div class="ttdeci">int getCommandStatus()</div><div class="ttdef"><b>Definition:</b> CommandManagerA.h:38</div></div>
+<div class="ttc" id="aclassCommandManagerA_html_a479387faec437cf28af316fbd8147424"><div class="ttname"><a href="classCommandManagerA.html#a479387faec437cf28af316fbd8147424">CommandManagerA::computeDeltaDist</a></div><div class="ttdeci">int64_t computeDeltaDist(float deltaX, float deltaY)</div><div class="ttdef"><b>Definition:</b> CommandManagerA.cpp:346</div></div>
+<div class="ttc" id="aclassCommandManagerA_html_a4d8ac8cedd147da82fca1d73970e7b84"><div class="ttname"><a href="classCommandManagerA.html#a4d8ac8cedd147da82fca1d73970e7b84">CommandManagerA::addGoToAngle</a></div><div class="ttdeci">bool addGoToAngle(int32_t posXInmm, int32_t posYInmm)</div><div class="ttdef"><b>Definition:</b> CommandManagerA.cpp:61</div></div>
+<div class="ttc" id="aclassCommandManagerA_html_a5705ed05c4c964a5cedbd7bdb5f471b1"><div class="ttname"><a href="classCommandManagerA.html#a5705ed05c4c964a5cedbd7bdb5f471b1">CommandManagerA::computeGoTo</a></div><div class="ttdeci">void computeGoTo()</div><div class="ttdef"><b>Definition:</b> CommandManagerA.cpp:172</div></div>
+<div class="ttc" id="aclassCommandManagerA_html_a5a1c89032b7f8150bed910011daf111a"><div class="ttname"><a href="classCommandManagerA.html#a5a1c89032b7f8150bed910011daf111a">CommandManagerA::perform</a></div><div class="ttdeci">void perform()</div><div class="ttdef"><b>Definition:</b> CommandManagerA.cpp:74</div></div>
+<div class="ttc" id="aclassCommandManagerA_html_a6822113dab6c173fa3375453c766361d"><div class="ttname"><a href="classCommandManagerA.html#a6822113dab6c173fa3375453c766361d">CommandManagerA::CommandManagerA</a></div><div class="ttdeci">CommandManagerA(int capacity, ConsignController *ctrlr, Odometrie *odo)</div><div class="ttdef"><b>Definition:</b> CommandManagerA.cpp:16</div></div>
+<div class="ttc" id="aclassCommandManagerA_html_a79f7a9d21ac2ebfb2f640ec1252c0789"><div class="ttname"><a href="classCommandManagerA.html#a79f7a9d21ac2ebfb2f640ec1252c0789">CommandManagerA::currCMD</a></div><div class="ttdeci">CMD currCMD</div><div class="ttdef"><b>Definition:</b> CommandManagerA.h:54</div></div>
+<div class="ttc" id="aclassCommandManagerA_html_a7b6f1b708edcd9dcbf636934ebd6fee4"><div class="ttname"><a href="classCommandManagerA.html#a7b6f1b708edcd9dcbf636934ebd6fee4">CommandManagerA::addGoTo</a></div><div class="ttdeci">bool addGoTo(int32_t posXInmm, int32_t posYInmm)</div><div class="ttdef"><b>Definition:</b> CommandManagerA.cpp:46</div></div>
+<div class="ttc" id="aclassCommandManagerA_html_a7ba985f99583c8733999c5eed02912b5"><div class="ttname"><a href="classCommandManagerA.html#a7ba985f99583c8733999c5eed02912b5">CommandManagerA::addGoToAngleReverse</a></div><div class="ttdeci">bool addGoToAngleReverse(int32_t posXInmm, int32_t posYInmm)</div><div class="ttdef"><b>Definition:</b> CommandManagerA.cpp:66</div></div>
+<div class="ttc" id="aclassCommandManagerA_html_a7ce3c37b6130dd468a93a658f4b3aced"><div class="ttname"><a href="classCommandManagerA.html#a7ce3c37b6130dd468a93a658f4b3aced">CommandManagerA::setEmergencyStop</a></div><div class="ttdeci">void setEmergencyStop()</div><div class="ttdef"><b>Definition:</b> CommandManagerA.cpp:383</div></div>
+<div class="ttc" id="aclassCommandManagerA_html_a962381653cece51ae2278284c646d678"><div class="ttname"><a href="classCommandManagerA.html#a962381653cece51ae2278284c646d678">CommandManagerA::addTurn</a></div><div class="ttdeci">bool addTurn(int32_t angleInDeg)</div><div class="ttdef"><b>Definition:</b> CommandManagerA.cpp:41</div></div>
+<div class="ttc" id="aclassCommandManagerA_html_aabf1cc8c9487264e3cf7a4021347bb56"><div class="ttname"><a href="classCommandManagerA.html#aabf1cc8c9487264e3cf7a4021347bb56">CommandManagerA::odometrie</a></div><div class="ttdeci">Odometrie * odometrie</div><div class="ttdef"><b>Definition:</b> CommandManagerA.h:53</div></div>
+<div class="ttc" id="aclassCommandManagerA_html_aae909a7bba7c3a588d10af95d3344b86"><div class="ttname"><a href="classCommandManagerA.html#aae909a7bba7c3a588d10af95d3344b86">CommandManagerA::~CommandManagerA</a></div><div class="ttdeci">~CommandManagerA()</div><div class="ttdef"><b>Definition:</b> CommandManagerA.cpp:27</div></div>
+<div class="ttc" id="aclassCommandManagerA_html_ab25cf6925f166ddec06afd14fd6e4660"><div class="ttname"><a href="classCommandManagerA.html#ab25cf6925f166ddec06afd14fd6e4660">CommandManagerA::computeDeltaTheta</a></div><div class="ttdeci">float computeDeltaTheta(float deltaX, float deltaY)</div><div class="ttdef"><b>Definition:</b> CommandManagerA.cpp:305</div></div>
+<div class="ttc" id="aclassCommandManagerA_html_ab6f62a795c81bde5bb3a7e430f9ab236"><div class="ttname"><a href="classCommandManagerA.html#ab6f62a795c81bde5bb3a7e430f9ab236">CommandManagerA::cnsgCtrl</a></div><div class="ttdeci">ConsignController * cnsgCtrl</div><div class="ttdef"><b>Definition:</b> CommandManagerA.h:52</div></div>
+<div class="ttc" id="aclassCommandManagerA_html_abfc27afc59abde79919e761952c384b5"><div class="ttname"><a href="classCommandManagerA.html#abfc27afc59abde79919e761952c384b5">CommandManagerA::liste</a></div><div class="ttdeci">CMDList * liste</div><div class="ttdef"><b>Definition:</b> CommandManagerA.h:51</div></div>
+<div class="ttc" id="aclassCommandManagerA_html_ac1f8a98137f08b0974cdee6bfda7ecf4"><div class="ttname"><a href="classCommandManagerA.html#ac1f8a98137f08b0974cdee6bfda7ecf4">CommandManagerA::addGoToEnchainement</a></div><div class="ttdeci">bool addGoToEnchainement(int32_t posXInmm, int32_t posYInmm)</div><div class="ttdef"><b>Definition:</b> CommandManagerA.cpp:56</div></div>
+<div class="ttc" id="aclassCommandManagerA_html_acfca70e2015d0cc230c7eb04a26a0e0d"><div class="ttname"><a href="classCommandManagerA.html#acfca70e2015d0cc230c7eb04a26a0e0d">CommandManagerA::nextCMD</a></div><div class="ttdeci">CMD nextCMD</div><div class="ttdef"><b>Definition:</b> CommandManagerA.h:55</div></div>
+<div class="ttc" id="aclassCommandManagerA_html_ae485a84b4549ea2cd01e1687febcebe7"><div class="ttname"><a href="classCommandManagerA.html#ae485a84b4549ea2cd01e1687febcebe7">CommandManagerA::perform_On</a></div><div class="ttdeci">void perform_On(bool enable)</div><div class="ttdef"><b>Definition:</b> CommandManagerA.h:41</div></div>
+<div class="ttc" id="aclassCommandManagerA_html_aec5fe3f5641ff05a890f9466c2716f23"><div class="ttname"><a href="classCommandManagerA.html#aec5fe3f5641ff05a890f9466c2716f23">CommandManagerA::commandStatus</a></div><div class="ttdeci">CommandStatus commandStatus</div><div class="ttdef"><b>Definition:</b> CommandManagerA.h:59</div></div>
+<div class="ttc" id="aclassCommandManagerA_html_af99a7d9c7222cab61527a8acee9b54ee"><div class="ttname"><a href="classCommandManagerA.html#af99a7d9c7222cab61527a8acee9b54ee">CommandManagerA::getPendingCmdCount</a></div><div class="ttdeci">int getPendingCmdCount()</div><div class="ttdef"><b>Definition:</b> CommandManagerA.cpp:432</div></div>
+<div class="ttc" id="aclassConsignController_html"><div class="ttname"><a href="classConsignController.html">ConsignController</a></div><div class="ttdef"><b>Definition:</b> ConsignController.h:12</div></div>
+<div class="ttc" id="aclassOdometrie_html"><div class="ttname"><a href="classOdometrie.html">Odometrie</a></div><div class="ttdef"><b>Definition:</b> Odometrie.h:12</div></div>
+<div class="ttc" id="astructCMD__struct_html"><div class="ttname"><a href="structCMD__struct.html">CMD_struct</a></div><div class="ttdef"><b>Definition:</b> CMDList.h:23</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Jeudi 26 Mars 2026 23:28:54 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

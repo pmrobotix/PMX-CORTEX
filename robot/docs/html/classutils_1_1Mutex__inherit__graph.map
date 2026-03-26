@@ -1,16 +1,28 @@
 <map id="utils::Mutex" name="utils::Mutex">
-<area shape="rect" id="node1" title="Implémentation d&#39;une gestion de mutex." alt="" coords="5,107,104,133"/>
-<area shape="rect" id="node2" href="$classSvgWriter.html" title="Wrapper pour la génération de fichier svg via le système de log." alt="" coords="205,31,291,57"/>
-<area shape="rect" id="node3" href="$classlogs_1_1Logger_1_1LoggerBuffer.html" title="Classe de délégation pour faciliter la création des traces." alt="" coords="152,81,344,108"/>
-<area shape="rect" id="node4" href="$classlogs_1_1MemoryAppender.html" title="Implémentation de Appender stockant les messages en mémoire." alt="" coords="161,132,335,159"/>
-<area shape="rect" id="node10" href="$classutils_1_1Thread.html" title="Classe de base pour les threads (wrapper POSIX pthread)." alt="" coords="197,309,299,336"/>
-<area shape="rect" id="node5" href="$classUnitTestAppender.html" title="Implémente un appender spécifique à l&#39;execution et au suivi des tests unitaires." alt="" coords="419,5,557,32"/>
-<area shape="rect" id="node6" href="$classlogs_1_1ConsoleAppender.html" title="Implémentation de Appender pour une écriture des traces sur un flux de sortie de type std::ostream." alt="" coords="403,56,573,83"/>
-<area shape="rect" id="node7" href="$classlogs_1_1FileAppender.html" title="Implémentation de Appender pour une sortie sur fichier." alt="" coords="417,107,559,133"/>
-<area shape="rect" id="node8" href="$classlogs_1_1SvgAppender.html" title="Implémentation de Appender créant un fichier SVG." alt="" coords="417,157,559,184"/>
-<area shape="rect" id="node9" href="$classlogs_1_1TelemetryAppender.html" title="Implémentation de Appender pour une écriture des traces sur un flux de reseau." alt="" coords="396,208,580,235"/>
-<area shape="rect" id="node11" href="$classlogs_1_1LoggerFactory.html" title="Cette classe assure l&#39;initialisation du système de trace et son utilisation." alt="" coords="414,259,562,285"/>
-<area shape="rect" id="node12" href="$classtest_1_1MutexCounterThread.html" title="Thread qui incrémente un compteur partagé protégé par un Mutex." alt="" coords="392,309,584,336"/>
-<area shape="rect" id="node13" href="$classtest_1_1SimpleThread.html" title="Thread de test simple qui incrémente un compteur." alt="" coords="415,360,561,387"/>
-<area shape="rect" id="node14" href="$classtest_1_1SleepyThread.html" title="Thread qui dort longtemps (pour tester cancel)." alt="" coords="416,411,560,437"/>
+<area shape="rect" id="node1" title="Implémentation d&#39;une gestion de mutex." alt="" coords="5,183,104,209"/>
+<area shape="rect" id="node2" href="$classAdafruit__RGBLCDShield.html" title="Driver pour le LCD Shield RGB 16x2 Adafruit." alt="" coords="161,5,335,32"/>
+<area shape="rect" id="node3" href="$classCCAx12Adc.html" title="Implementation for CCAx12Adc card." alt="" coords="199,56,297,83"/>
+<area shape="rect" id="node4" href="$classCCAx12Teensy.html" title="Implementation for CCAx12Teensy card." alt="" coords="189,107,307,133"/>
+<area shape="rect" id="node5" href="$classRobotPositionShared.html" title="Implementation ARM de la position partagee." alt="" coords="169,157,327,184"/>
+<area shape="rect" id="node6" href="$classServoObjectsSystem.html" title="Système de gestion des servomoteurs (déploiement, positionnement, torque)." alt="" coords="169,208,327,235"/>
+<area shape="rect" id="node7" href="$classSvgWriter.html" title="Wrapper pour la génération de fichier svg via le système de log." alt="" coords="205,259,291,285"/>
+<area shape="rect" id="node10" href="$classlogs_1_1Logger_1_1LoggerBuffer.html" title="Classe de délégation pour faciliter la création des traces." alt="" coords="152,309,344,336"/>
+<area shape="rect" id="node11" href="$classlogs_1_1MemoryAppender.html" title="Implémentation de Appender stockant les messages en mémoire." alt="" coords="161,372,335,399"/>
+<area shape="rect" id="node17" href="$classutils_1_1Thread.html" title="Classe de base pour les threads (wrapper POSIX pthread)." alt="" coords="197,701,299,728"/>
+<area shape="rect" id="node8" href="$classOPOS6UL__SvgWriterExtended.html" title="Génération de fichiers SVG pour la visualisation du robot et du terrain." alt="" coords="392,195,607,221"/>
+<area shape="rect" id="node9" href="$classSvgWriterExtended.html" title=" " alt="" coords="426,245,573,272"/>
+<area shape="rect" id="node12" href="$classUnitTestAppender.html" title="Implémente un appender spécifique à l&#39;execution et au suivi des tests unitaires." alt="" coords="431,296,568,323"/>
+<area shape="rect" id="node13" href="$classlogs_1_1ConsoleAppender.html" title="Implémentation de Appender pour une écriture des traces sur un flux de sortie de type std::ostream." alt="" coords="414,347,585,373"/>
+<area shape="rect" id="node14" href="$classlogs_1_1FileAppender.html" title="Implémentation de Appender pour une sortie sur fichier." alt="" coords="428,397,571,424"/>
+<area shape="rect" id="node15" href="$classlogs_1_1SvgAppender.html" title="Implémentation de Appender créant un fichier SVG." alt="" coords="428,448,571,475"/>
+<area shape="rect" id="node16" href="$classlogs_1_1TelemetryAppender.html" title="Implémentation de Appender pour une écriture des traces sur un flux de reseau." alt="" coords="407,499,591,525"/>
+<area shape="rect" id="node18" href="$classActionManagerTimer.html" title="Classe de gestion des actions du robot et des actions par timer." alt="" coords="420,549,579,576"/>
+<area shape="rect" id="node19" href="$classAsservDriver.html" title=" " alt="" coords="446,600,553,627"/>
+<area shape="rect" id="node20" href="$classAsservDriver__mbed__i2c.html" title=" " alt="" coords="411,651,587,677"/>
+<area shape="rect" id="node21" href="$classAsservEsialR.html" title=" " alt="" coords="446,701,553,728"/>
+<area shape="rect" id="node22" href="$classO__State__DecisionMakerIA.html" title="Moteur de décision IA du robot." alt="" coords="405,752,594,779"/>
+<area shape="rect" id="node23" href="$classlogs_1_1LoggerFactory.html" title="Cette classe assure l&#39;initialisation du système de trace et son utilisation." alt="" coords="425,803,573,829"/>
+<area shape="rect" id="node24" href="$classtest_1_1MutexCounterThread.html" title="Thread qui incrémente un compteur partagé protégé par un Mutex." alt="" coords="403,853,595,880"/>
+<area shape="rect" id="node25" href="$classtest_1_1SimpleThread.html" title="Thread de test simple qui incrémente un compteur." alt="" coords="427,904,572,931"/>
+<area shape="rect" id="node26" href="$classtest_1_1SleepyThread.html" title="Thread qui dort longtemps (pour tester cancel)." alt="" coords="427,955,571,981"/>
 </map>

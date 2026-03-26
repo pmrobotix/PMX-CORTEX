@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot:  Fichier source de src/common/asserv.esial/commandManager/CMDList/CMDList.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_fdedb0aba14d44ce9d99bc100e026e6a.html">common</a></li><li class="navelem"><a class="el" href="dir_251413a062b2562b08c5015e69ca7513.html">asserv.esial</a></li><li class="navelem"><a class="el" href="dir_02d15ec8a167395c71a08a9fabe1094c.html">commandManager</a></li><li class="navelem"><a class="el" href="dir_721d0ba6e7dfc645bc520c2fb4d16aa9.html">CMDList</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">CMDList.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="CMDList_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef ASSERV_E_CMD_LIST</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define ASSERV_E_CMD_LIST</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;sys/types.h&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">// Internal Structures</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="CMDList_8h.html#a50735174f69413c46f244f2a438b2baa">    9</a></span>&#160;<span class="keyword">enum</span> <a class="code" href="CMDList_8h.html#a50735174f69413c46f244f2a438b2baa">typeCMD</a> {</div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="CMDList_8h.html#a50735174f69413c46f244f2a438b2baaafdba78079edece35c5aeda2c0690432c">   10</a></span>&#160;    <a class="code" href="CMDList_8h.html#a50735174f69413c46f244f2a438b2baaafdba78079edece35c5aeda2c0690432c">CMD_NULL</a>, <span class="comment">// Erreur....</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="CMDList_8h.html#a50735174f69413c46f244f2a438b2baaa3cc241ffb30b459d2aabaf341ed299d8">   11</a></span>&#160;    <a class="code" href="CMDList_8h.html#a50735174f69413c46f244f2a438b2baaa3cc241ffb30b459d2aabaf341ed299d8">CMD_GO</a>, <span class="comment">// Avancer ou reculer d&#39;une certaine distance</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="CMDList_8h.html#a50735174f69413c46f244f2a438b2baaae27b9caf9875de90902e405e6f548a4d">   12</a></span>&#160;    <a class="code" href="CMDList_8h.html#a50735174f69413c46f244f2a438b2baaae27b9caf9875de90902e405e6f548a4d">CMD_TURN</a>, <span class="comment">// Tourner d&#39;un certain angle</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="CMDList_8h.html#a50735174f69413c46f244f2a438b2baaaf1d86b498be7d0a42ad6fcf34296a362">   13</a></span>&#160;    <a class="code" href="CMDList_8h.html#a50735174f69413c46f244f2a438b2baaaf1d86b498be7d0a42ad6fcf34296a362">CMD_WAIT</a>, <span class="comment">// Attendre un certain temps (&#39;fin, je suppose, c&#39;est pas implémenté...)</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="CMDList_8h.html#a50735174f69413c46f244f2a438b2baaa1e0ceff2d6f13742786f42dac58149bc">   14</a></span>&#160;    <a class="code" href="CMDList_8h.html#a50735174f69413c46f244f2a438b2baaa1e0ceff2d6f13742786f42dac58149bc">CMD_STOP</a>, <span class="comment">// Bon, là, je sais pas...</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="CMDList_8h.html#a50735174f69413c46f244f2a438b2baaaf995507245f4e49bad1191f03e392d93">   15</a></span>&#160;    <a class="code" href="CMDList_8h.html#a50735174f69413c46f244f2a438b2baaaf995507245f4e49bad1191f03e392d93">CMD_GOTO</a>, <span class="comment">// Aller à un point précis</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="CMDList_8h.html#a50735174f69413c46f244f2a438b2baaace88b7b0844e3cca8365eb6756df5012">   16</a></span>&#160;    <a class="code" href="CMDList_8h.html#a50735174f69413c46f244f2a438b2baaace88b7b0844e3cca8365eb6756df5012">CMD_GOTO_BACK</a>, <span class="comment">// Aller à un point précis en marche arrière</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="CMDList_8h.html#a50735174f69413c46f244f2a438b2baaa580b7e3a84ddac886217b4256f2a91f2">   17</a></span>&#160;    <a class="code" href="CMDList_8h.html#a50735174f69413c46f244f2a438b2baaa580b7e3a84ddac886217b4256f2a91f2">CMD_GOTOANGLE</a>, <span class="comment">// Se tourner vers un point précis</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="CMDList_8h.html#a50735174f69413c46f244f2a438b2baaa1575deac827908e0da870d56f34cb6ca">   18</a></span>&#160;    <a class="code" href="CMDList_8h.html#a50735174f69413c46f244f2a438b2baaa1575deac827908e0da870d56f34cb6ca">CMD_GOTOANGLEREVERSE</a>, <span class="comment">// Se tourner vers un point précis en marche arrière</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="CMDList_8h.html#a50735174f69413c46f244f2a438b2baaa5f20b82cef12015fbd3cdecaaca36c74">CMD_GOTOENCHAIN</a> <span class="comment">// Aller vers un point précis, mais si la commande suivante est un GOTO ou</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="comment">// un GOTOENCHAIN, on s&#39;autorise à ne pas s&#39;arrêter au point de consigne</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="CMDList_8h.html#a50735174f69413c46f244f2a438b2baaa5f20b82cef12015fbd3cdecaaca36c74">   21</a></span>&#160;};</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="structCMD__struct.html">   23</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structCMD__struct.html">CMD_struct</a> {</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="structCMD__struct.html#a1df35a34527eeb7becada9c955eec30f">   24</a></span>&#160;    <a class="code" href="CMDList_8h.html#a50735174f69413c46f244f2a438b2baa">typeCMD</a> <a class="code" href="structCMD__struct.html#a1df35a34527eeb7becada9c955eec30f">type</a>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="structCMD__struct.html#a840437c5a7d21348fb6e0a75844c220b">   25</a></span>&#160;    int64_t <a class="code" href="structCMD__struct.html#a840437c5a7d21348fb6e0a75844c220b">value</a>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="structCMD__struct.html#adf4cf6334c1b6060c326f313d59584d7">   26</a></span>&#160;    int64_t <a class="code" href="structCMD__struct.html#adf4cf6334c1b6060c326f313d59584d7">secValue</a>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="CMDList_8h.html#a5127bf6e993f3bee9bd8c04436000d27">   27</a></span>&#160;} <a class="code" href="CMDList_8h.html#a5127bf6e993f3bee9bd8c04436000d27">CMD</a>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classCMDList.html">   29</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCMDList.html">CMDList</a></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;{</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="classCMDList.html#a3125b08098f9568b6a18175677d5fdf4">CMDList</a>(<span class="keywordtype">int</span> capacity);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCMDList.html#adc5c7ef68e420eeea3974275b48bb7e8">enqueue</a>(<a class="code" href="CMDList_8h.html#a50735174f69413c46f244f2a438b2baa">typeCMD</a> cmd , int64_t val, int64_t val2 = 0);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="structCMD__struct.html">CMD</a> <a class="code" href="classCMDList.html#a630537657f6af92dfdd3ca4c93949f95">dequeue</a>();</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classCMDList.html#a2f6d05220c0ced98488765f7280a5e62">size</a>();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="classCMDList.html#a21fe2841e604475ec66642865e5a3882">~CMDList</a>();</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classCMDList.html#acee1df09286e9c1e7d92c5c06b779175">   39</a></span>&#160;    <a class="code" href="structCMD__struct.html">CMD</a> *<a class="code" href="classCMDList.html#acee1df09286e9c1e7d92c5c06b779175">list</a>;</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classCMDList.html#a95b56004ef12033ae5c95767439c26b0">   40</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classCMDList.html#a95b56004ef12033ae5c95767439c26b0">capa</a>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classCMDList.html#a5b6785525f17b2ee3432c626737df05f">   41</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classCMDList.html#a5b6785525f17b2ee3432c626737df05f">nextFreePos</a>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classCMDList.html#af54c9dfd39689f955c6795070c2b3f6d">   42</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classCMDList.html#af54c9dfd39689f955c6795070c2b3f6d">headPos</a>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classCMDList.html#a3084b090d0e8e9ac627ac3a039cbab0c">   43</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCMDList.html#a3084b090d0e8e9ac627ac3a039cbab0c">full</a>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;};</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aCMDList_8h_html_a50735174f69413c46f244f2a438b2baa"><div class="ttname"><a href="CMDList_8h.html#a50735174f69413c46f244f2a438b2baa">typeCMD</a></div><div class="ttdeci">typeCMD</div><div class="ttdef"><b>Definition:</b> CMDList.h:9</div></div>
+<div class="ttc" id="aCMDList_8h_html_a50735174f69413c46f244f2a438b2baaa1575deac827908e0da870d56f34cb6ca"><div class="ttname"><a href="CMDList_8h.html#a50735174f69413c46f244f2a438b2baaa1575deac827908e0da870d56f34cb6ca">CMD_GOTOANGLEREVERSE</a></div><div class="ttdeci">@ CMD_GOTOANGLEREVERSE</div><div class="ttdef"><b>Definition:</b> CMDList.h:18</div></div>
+<div class="ttc" id="aCMDList_8h_html_a50735174f69413c46f244f2a438b2baaa1e0ceff2d6f13742786f42dac58149bc"><div class="ttname"><a href="CMDList_8h.html#a50735174f69413c46f244f2a438b2baaa1e0ceff2d6f13742786f42dac58149bc">CMD_STOP</a></div><div class="ttdeci">@ CMD_STOP</div><div class="ttdef"><b>Definition:</b> CMDList.h:14</div></div>
+<div class="ttc" id="aCMDList_8h_html_a50735174f69413c46f244f2a438b2baaa3cc241ffb30b459d2aabaf341ed299d8"><div class="ttname"><a href="CMDList_8h.html#a50735174f69413c46f244f2a438b2baaa3cc241ffb30b459d2aabaf341ed299d8">CMD_GO</a></div><div class="ttdeci">@ CMD_GO</div><div class="ttdef"><b>Definition:</b> CMDList.h:11</div></div>
+<div class="ttc" id="aCMDList_8h_html_a50735174f69413c46f244f2a438b2baaa580b7e3a84ddac886217b4256f2a91f2"><div class="ttname"><a href="CMDList_8h.html#a50735174f69413c46f244f2a438b2baaa580b7e3a84ddac886217b4256f2a91f2">CMD_GOTOANGLE</a></div><div class="ttdeci">@ CMD_GOTOANGLE</div><div class="ttdef"><b>Definition:</b> CMDList.h:17</div></div>
+<div class="ttc" id="aCMDList_8h_html_a50735174f69413c46f244f2a438b2baaa5f20b82cef12015fbd3cdecaaca36c74"><div class="ttname"><a href="CMDList_8h.html#a50735174f69413c46f244f2a438b2baaa5f20b82cef12015fbd3cdecaaca36c74">CMD_GOTOENCHAIN</a></div><div class="ttdeci">@ CMD_GOTOENCHAIN</div><div class="ttdef"><b>Definition:</b> CMDList.h:19</div></div>
+<div class="ttc" id="aCMDList_8h_html_a50735174f69413c46f244f2a438b2baaace88b7b0844e3cca8365eb6756df5012"><div class="ttname"><a href="CMDList_8h.html#a50735174f69413c46f244f2a438b2baaace88b7b0844e3cca8365eb6756df5012">CMD_GOTO_BACK</a></div><div class="ttdeci">@ CMD_GOTO_BACK</div><div class="ttdef"><b>Definition:</b> CMDList.h:16</div></div>
+<div class="ttc" id="aCMDList_8h_html_a50735174f69413c46f244f2a438b2baaae27b9caf9875de90902e405e6f548a4d"><div class="ttname"><a href="CMDList_8h.html#a50735174f69413c46f244f2a438b2baaae27b9caf9875de90902e405e6f548a4d">CMD_TURN</a></div><div class="ttdeci">@ CMD_TURN</div><div class="ttdef"><b>Definition:</b> CMDList.h:12</div></div>
+<div class="ttc" id="aCMDList_8h_html_a50735174f69413c46f244f2a438b2baaaf1d86b498be7d0a42ad6fcf34296a362"><div class="ttname"><a href="CMDList_8h.html#a50735174f69413c46f244f2a438b2baaaf1d86b498be7d0a42ad6fcf34296a362">CMD_WAIT</a></div><div class="ttdeci">@ CMD_WAIT</div><div class="ttdef"><b>Definition:</b> CMDList.h:13</div></div>
+<div class="ttc" id="aCMDList_8h_html_a50735174f69413c46f244f2a438b2baaaf995507245f4e49bad1191f03e392d93"><div class="ttname"><a href="CMDList_8h.html#a50735174f69413c46f244f2a438b2baaaf995507245f4e49bad1191f03e392d93">CMD_GOTO</a></div><div class="ttdeci">@ CMD_GOTO</div><div class="ttdef"><b>Definition:</b> CMDList.h:15</div></div>
+<div class="ttc" id="aCMDList_8h_html_a50735174f69413c46f244f2a438b2baaafdba78079edece35c5aeda2c0690432c"><div class="ttname"><a href="CMDList_8h.html#a50735174f69413c46f244f2a438b2baaafdba78079edece35c5aeda2c0690432c">CMD_NULL</a></div><div class="ttdeci">@ CMD_NULL</div><div class="ttdef"><b>Definition:</b> CMDList.h:10</div></div>
+<div class="ttc" id="aCMDList_8h_html_a5127bf6e993f3bee9bd8c04436000d27"><div class="ttname"><a href="CMDList_8h.html#a5127bf6e993f3bee9bd8c04436000d27">CMD</a></div><div class="ttdeci">struct CMD_struct CMD</div></div>
+<div class="ttc" id="aclassCMDList_html"><div class="ttname"><a href="classCMDList.html">CMDList</a></div><div class="ttdef"><b>Definition:</b> CMDList.h:30</div></div>
+<div class="ttc" id="aclassCMDList_html_a21fe2841e604475ec66642865e5a3882"><div class="ttname"><a href="classCMDList.html#a21fe2841e604475ec66642865e5a3882">CMDList::~CMDList</a></div><div class="ttdeci">~CMDList()</div><div class="ttdef"><b>Definition:</b> CMDList.cpp:15</div></div>
+<div class="ttc" id="aclassCMDList_html_a2f6d05220c0ced98488765f7280a5e62"><div class="ttname"><a href="classCMDList.html#a2f6d05220c0ced98488765f7280a5e62">CMDList::size</a></div><div class="ttdeci">int size()</div><div class="ttdef"><b>Definition:</b> CMDList.cpp:39</div></div>
+<div class="ttc" id="aclassCMDList_html_a3084b090d0e8e9ac627ac3a039cbab0c"><div class="ttname"><a href="classCMDList.html#a3084b090d0e8e9ac627ac3a039cbab0c">CMDList::full</a></div><div class="ttdeci">bool full</div><div class="ttdef"><b>Definition:</b> CMDList.h:43</div></div>
+<div class="ttc" id="aclassCMDList_html_a3125b08098f9568b6a18175677d5fdf4"><div class="ttname"><a href="classCMDList.html#a3125b08098f9568b6a18175677d5fdf4">CMDList::CMDList</a></div><div class="ttdeci">CMDList(int capacity)</div><div class="ttdef"><b>Definition:</b> CMDList.cpp:6</div></div>
+<div class="ttc" id="aclassCMDList_html_a5b6785525f17b2ee3432c626737df05f"><div class="ttname"><a href="classCMDList.html#a5b6785525f17b2ee3432c626737df05f">CMDList::nextFreePos</a></div><div class="ttdeci">int nextFreePos</div><div class="ttdef"><b>Definition:</b> CMDList.h:41</div></div>
+<div class="ttc" id="aclassCMDList_html_a630537657f6af92dfdd3ca4c93949f95"><div class="ttname"><a href="classCMDList.html#a630537657f6af92dfdd3ca4c93949f95">CMDList::dequeue</a></div><div class="ttdeci">CMD dequeue()</div><div class="ttdef"><b>Definition:</b> CMDList.cpp:51</div></div>
+<div class="ttc" id="aclassCMDList_html_a95b56004ef12033ae5c95767439c26b0"><div class="ttname"><a href="classCMDList.html#a95b56004ef12033ae5c95767439c26b0">CMDList::capa</a></div><div class="ttdeci">int capa</div><div class="ttdef"><b>Definition:</b> CMDList.h:40</div></div>
+<div class="ttc" id="aclassCMDList_html_acee1df09286e9c1e7d92c5c06b779175"><div class="ttname"><a href="classCMDList.html#acee1df09286e9c1e7d92c5c06b779175">CMDList::list</a></div><div class="ttdeci">CMD * list</div><div class="ttdef"><b>Definition:</b> CMDList.h:39</div></div>
+<div class="ttc" id="aclassCMDList_html_adc5c7ef68e420eeea3974275b48bb7e8"><div class="ttname"><a href="classCMDList.html#adc5c7ef68e420eeea3974275b48bb7e8">CMDList::enqueue</a></div><div class="ttdeci">bool enqueue(typeCMD cmd, int64_t val, int64_t val2=0)</div><div class="ttdef"><b>Definition:</b> CMDList.cpp:20</div></div>
+<div class="ttc" id="aclassCMDList_html_af54c9dfd39689f955c6795070c2b3f6d"><div class="ttname"><a href="classCMDList.html#af54c9dfd39689f955c6795070c2b3f6d">CMDList::headPos</a></div><div class="ttdeci">int headPos</div><div class="ttdef"><b>Definition:</b> CMDList.h:42</div></div>
+<div class="ttc" id="astructCMD__struct_html"><div class="ttname"><a href="structCMD__struct.html">CMD_struct</a></div><div class="ttdef"><b>Definition:</b> CMDList.h:23</div></div>
+<div class="ttc" id="astructCMD__struct_html_a1df35a34527eeb7becada9c955eec30f"><div class="ttname"><a href="structCMD__struct.html#a1df35a34527eeb7becada9c955eec30f">CMD_struct::type</a></div><div class="ttdeci">typeCMD type</div><div class="ttdef"><b>Definition:</b> CMDList.h:24</div></div>
+<div class="ttc" id="astructCMD__struct_html_a840437c5a7d21348fb6e0a75844c220b"><div class="ttname"><a href="structCMD__struct.html#a840437c5a7d21348fb6e0a75844c220b">CMD_struct::value</a></div><div class="ttdeci">int64_t value</div><div class="ttdef"><b>Definition:</b> CMDList.h:25</div></div>
+<div class="ttc" id="astructCMD__struct_html_adf4cf6334c1b6060c326f313d59584d7"><div class="ttname"><a href="structCMD__struct.html#adf4cf6334c1b6060c326f313d59584d7">CMD_struct::secValue</a></div><div class="ttdeci">int64_t secValue</div><div class="ttdef"><b>Definition:</b> CMDList.h:26</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Jeudi 26 Mars 2026 23:28:54 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

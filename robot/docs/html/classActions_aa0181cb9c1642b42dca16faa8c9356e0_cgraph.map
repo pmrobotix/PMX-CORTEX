@@ -1,0 +1,4 @@
+<map id="Actions::cancel" name="Actions::cancel">
+<area shape="rect" id="node1" title="Annule le thread en cours." alt="" coords="5,5,125,32"/>
+<area shape="rect" id="node2" href="$classutils_1_1Thread.html#ac7174393a61b12f962bfacef078bf43e" title="Annule le thread (appelle pthread_cancel)." alt="" coords="173,5,327,32"/>
+</map>

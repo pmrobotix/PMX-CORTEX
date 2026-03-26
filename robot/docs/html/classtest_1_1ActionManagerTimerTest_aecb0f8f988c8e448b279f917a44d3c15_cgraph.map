@@ -1,0 +1,31 @@
+<map id="test::ActionManagerTimerTest::testActionFinishesAndRemoved" name="test::ActionManagerTimerTest::testActionFinishesAndRemoved">
+<area shape="rect" id="node1" title=" " alt="" coords="5,302,268,343"/>
+<area shape="rect" id="node2" href="$classActionManagerTimer.html#ad44aa7bf3d361e60d3ed764d833eafc5" title="Ajout d&#39;une action." alt="" coords="541,403,700,445"/>
+<area shape="rect" id="node5" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="1053,493,1134,520"/>
+<area shape="rect" id="node15" href="$classCountingAction.html#a5aeea0070d57255e43859054ddc2b22d" title=" " alt="" coords="316,259,481,285"/>
+<area shape="rect" id="node16" href="$classActionManagerTimer.html#a6e6db535941463a0e590a6779f111dd2" title="Retourne le nombre d&#39;actions." alt="" coords="1257,259,1415,301"/>
+<area shape="rect" id="node17" href="$classIAction.html#a974d617d71344d64d2af7739a9e88d30" title="Getter sur les infos permettant d&#39;identifier l&#39;action." alt="" coords="349,360,449,387"/>
+<area shape="rect" id="node18" href="$classutils_1_1Thread.html#a430ee2b8962147b587157fac97932219" title="Lance le thread." alt="" coords="550,157,691,184"/>
+<area shape="rect" id="node24" href="$classActionManagerTimer.html#a072223491745aebbaa0344124635b7f8" title="Signale au thread qu&#39;il doit s&#39;arreter (proprement). Arrete aussi tous les timers posix en cours en l..." alt="" coords="319,579,478,621"/>
+<area shape="rect" id="node3" href="$classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32" title="Verrouille le mutex. Cette méthode doit être appelée avant d&#39;utiliser la ressource associée...." alt="" coords="1529,237,1663,264"/>
+<area shape="rect" id="node4" href="$classActionManagerTimer.html#a39f4cbb5ddbbe6a40980bb59b8b59b05" title=" " alt="" coords="782,514,941,555"/>
+<area shape="rect" id="node7" href="$classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3" title="Déverrouille le mutex. Cette méthode doit être appelée après avoir utiliser la ressource associée." alt="" coords="1521,464,1671,491"/>
+<area shape="rect" id="node9" href="$classlogs_1_1Logger.html#a8b6a2019233bc44b3c3c86c653910831" title="Trace un message de niveau ERROR." alt="" coords="1023,696,1163,723"/>
+<area shape="rect" id="node10" href="$classActionManagerTimer.html#a280846361e5c7e0ebe57972755841c2b" title=" " alt="" coords="1014,747,1173,789"/>
+<area shape="rect" id="node6" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#a0e4fd77693fd899ec1b0670354f93a02" title="Cette méthode valide le message en cours de construction et le transmet au Logger de référence." alt="" coords="1224,493,1448,520"/>
+<area shape="rect" id="node8" href="$classlogs_1_1Logger.html#afa535aaf4891e02c4ff7f84d372b5b1b" title="Méthode générique de trace d&#39;un message." alt="" coords="1496,565,1696,592"/>
+<area shape="rect" id="node11" href="$classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e" title="Cette méthode statique retourne un Logger en fonction de son nom." alt="" coords="1262,747,1410,789"/>
+<area shape="rect" id="node12" href="$classlogs_1_1LoggerFactory.html#ac89f19c0ffd71aa8cdc1c2d44c03809e" title="Cette méthode ajoute un appender au système." alt="" coords="1507,696,1685,723"/>
+<area shape="rect" id="node13" href="$classlogs_1_1LoggerFactory.html#a90478b91d7af2ef8841ded21e3521f69" title="Cette méthode statique retourne l&#39;instance unique de la classe LoggerFactory." alt="" coords="1522,747,1670,789"/>
+<area shape="rect" id="node14" href="$classlogs_1_1LoggerFactory.html#a212aa623f4b6bee12cb39e8017dde670" title="Cette méthode retourne le Logger principal qui définit le niveau de trace par défaut." alt="" coords="1522,813,1670,854"/>
+<area shape="rect" id="node19" href="$classutils_1_1Thread.html#a61b6c3d0b87570254646120b323b89f7" title="Cette méthode sert de point d&#39;entrée pour l&#39;appel à pcreate_thread." alt="" coords="772,157,951,184"/>
+<area shape="rect" id="node23" href="$namespaceutils.html#ac714339512d6dc1ee14c5b5a92d535be" title="Définit la priorité temps&#45;réel (SCHED_FIFO) du thread spécifié." alt="" coords="791,91,931,133"/>
+<area shape="rect" id="node20" href="$classutils_1_1Thread.html#a202b3fabad41b3be6d996043b262a43a" title="Méthode virtuelle pure à implémenter dans les sous&#45;classes." alt="" coords="1012,5,1175,32"/>
+<area shape="rect" id="node21" href="$classutils_1_1Thread.html#a46589324e8fc0735c20268db70d34aa5" title="Modifie l&#39;état du thread (thread&#45;safe)." alt="" coords="1011,157,1176,184"/>
+<area shape="rect" id="node22" href="$classutils_1_1Thread.html#ada9233f3e669c925e9ed518201ad31cd" title="Retourne l&#39;état courant du thread." alt="" coords="1264,208,1408,235"/>
+<area shape="rect" id="node25" href="$classActionManagerTimer.html#aea93da8bac8e622881a125ee7506a7ca" title="Arrete tous les timers posix. Permet d&#39;executer leur action de fin puis les supprime de la liste." alt="" coords="541,579,700,621"/>
+<area shape="rect" id="node29" href="$classutils_1_1Thread.html#a29b8cb62f6b5f80ffe5b050167780f97" title="Attend la fin du thread (appelle pthread_join)." alt="" coords="529,645,712,672"/>
+<area shape="rect" id="node26" href="$classITimerListener.html#a0004b567b000eef6df12d9d970909142" title="Actions de fin à executer pour le timer." alt="" coords="760,797,963,824"/>
+<area shape="rect" id="node27" href="$classITimerPosixListener.html#a4df70962b58b13d521f1f7f91ec6fc13" title="Actions de fin à executer pour le timer." alt="" coords="786,579,937,621"/>
+<area shape="rect" id="node28" href="$classITimerPosixListener.html#a80bdf978eda3cfa0d9271a3c2e1d3f3a" title=" " alt="" coords="1261,427,1411,469"/>
+</map>

@@ -174,6 +174,35 @@ else()
 endif()
 
 # =============================================
+# Cible principale : bot-opos6ul (executable)
+# =============================================
+if(DRIVER_LIB)
+    add_executable(bot-opos6ul
+        src/bot-opos6ul/Main.cpp
+        src/bot-opos6ul/LoggerInitialize.cpp
+        src/bot-opos6ul/OPOS6UL_RobotExtended.cpp
+        src/bot-opos6ul/OPOS6UL_ActionsExtended.cpp
+        src/bot-opos6ul/OPOS6UL_AsservExtended.cpp
+        src/bot-opos6ul/OPOS6UL_IAExtended.cpp
+        src/bot-opos6ul/OPOS6UL_SvgWriterExtended.cpp
+        src/bot-opos6ul/O_State_DecisionMakerIA.cpp
+        src/bot-opos6ul/O_State_Init.cpp
+        src/bot-opos6ul/O_State_WaitEndOfMatch.cpp
+        src/bot-opos6ul/O_LedBarTest.cpp
+        src/bot-opos6ul/O_TiretteTest.cpp
+        src/bot-opos6ul/O_ButtonBarTest.cpp
+        src/bot-opos6ul/O_LcdBoardTest.cpp
+        src/bot-opos6ul/O_ActionManagerTimerTest.cpp
+    )
+
+    target_include_directories(bot-opos6ul PRIVATE
+        src/bot-opos6ul
+    )
+
+    target_link_libraries(bot-opos6ul PRIVATE pmx-common ${DRIVER_LIB} pmr-pathfinding)
+endif()
+
+# =============================================
 # Bibliothèque : pmx-suite (framework de test)
 # =============================================
 add_library(pmx-suite STATIC

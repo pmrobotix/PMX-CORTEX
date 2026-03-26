@@ -1,7 +1,52 @@
 <map id="utils::sleep_for_micros" name="utils::sleep_for_micros">
-<area shape="rect" id="node1" title="Met en pause le thread courant pendant usec microsecondes." alt="" coords="695,35,864,61"/>
-<area shape="rect" id="node2" href="$classGpioPCA9555.html#a700aff89e3f53630ec2e77a3755174a4" title="Configure les registres de direction des ports." alt="" coords="472,5,627,32"/>
-<area shape="rect" id="node5" href="$classtest_1_1ThreadTest.html#a1262fce3aca48dc17dab2ee10a7d5999" title="Vérifie la précision de sleep_for_micros." alt="" coords="452,57,647,98"/>
-<area shape="rect" id="node3" href="$classGpioPCA9555.html#ada56d6ac5d165229e1a2e7e50387a376" title="Initialise la communication I2C et configure les ports." alt="" coords="249,5,404,32"/>
-<area shape="rect" id="node4" href="$classSwitchDriver.html#a318f2cc1988d9ddfae71131fcf39d929" title="Constructeur. Initialise le PCA9555." alt="" coords="5,5,201,32"/>
+<area shape="rect" id="node1" title="Met en pause le thread courant pendant usec microsecondes." alt="" coords="769,1137,939,1164"/>
+<area shape="rect" id="node2" href="$classLedBar.html#ab34bee22db4d68f6c6057e2fbb3b33cd" title="Clignote toutes les leds nb fois sur les 2 valeurs hex val1 et val2." alt="" coords="543,5,677,32"/>
+<area shape="rect" id="node3" href="$classRobot.html#ae8cede2564e5b9229da095991c064ae4" title="Start the robot (console for tests or main program).." alt="" coords="297,115,401,141"/>
+<area shape="rect" id="node5" href="$classAdafruit__RGBLCDShield.html#a441c8fb704534e39e8716f8e43797523" title=" " alt="" coords="262,231,437,273"/>
+<area shape="rect" id="node7" href="$classLedBar.html#afad90556b784654b618c527eb19c50dd" title="Clignote toutes les leds nb fois." alt="" coords="557,407,663,433"/>
+<area shape="rect" id="node8" href="$classO__LedBarTest.html#af9e0e172d13b334cda0fe32bb659b414" title=" " alt="" coords="280,407,419,433"/>
+<area shape="rect" id="node9" href="$classLedBar.html#abc84af9e1f24d8e7a0c9a7f67767c34f" title="Clignote une led nb fois pendant timeus." alt="" coords="547,609,673,636"/>
+<area shape="rect" id="node10" href="$classAdafruit__RGBLCDShield.html#ad203e22075b6a8b63e9e206105bcc433" title=" " alt="" coords="523,290,697,331"/>
+<area shape="rect" id="node12" href="$classGroveColorSensor.html#aaca3a16d1b12b867cfd9de6d4f1e05ae" title="Log the parameters." alt="" coords="521,711,699,737"/>
+<area shape="rect" id="node13" href="$classGroveColorSensor.html#a7632f53d6ad2466cf74a39ba08bbd07e" title="TCS3414 Turns on the sensor and sets integration time." alt="" coords="248,678,451,719"/>
+<area shape="rect" id="node14" href="$classServoObjectsSystem.html#a6df7e1694087d2fa67d41aeef363b3f3" title="Déploie un servo à la position donnée." alt="" coords="531,762,689,803"/>
+<area shape="rect" id="node15" href="$classServoObjectsSystem.html#a365a1064fe865a6e081294ed124861bb" title="Déploie un servo avec une vitesse contrôlée." alt="" coords="531,827,689,869"/>
+<area shape="rect" id="node16" href="$classConsoleManager.html#adf3d9ef10328d6854c13ad8130fcbee2" title=" " alt="" coords="499,107,721,149"/>
+<area shape="rect" id="node17" href="$classConsoleManager.html#a21be37acc9749db68a3da63e703035c1" title="Affiche un menu de sélection des tests." alt="" coords="499,173,721,214"/>
+<area shape="rect" id="node18" href="$classAsserv.html#a3468d8efb89878c2235dc491c6e7a541" title=" " alt="" coords="525,893,695,920"/>
+<area shape="rect" id="node19" href="$classAsserv.html#a79a9b2ee1d39046119673dc81733bdab" title=" " alt="" coords="519,944,701,971"/>
+<area shape="rect" id="node20" href="$classGp2y0e02b.html#a9aadae2b11c00e1e4cac2c967fbd2336" title=" " alt="" coords="514,995,706,1021"/>
+<area shape="rect" id="node21" href="$classO__State__Init.html#abc19788b7457d1f819245dd28367fe91" title="Exécute l&#39;état d&#39;initialisation." alt="" coords="269,541,429,568"/>
+<area shape="rect" id="node22" href="$classIrSensor.html#a5c391d7b0c385a748d2441e56a624498" title=" " alt="" coords="517,1045,703,1072"/>
+<area shape="rect" id="node23" href="$classAdafruit__RGBLCDShield.html#a891869292cf384f7edb2c4b7ec17c949" title=" " alt="" coords="523,1097,697,1138"/>
+<area shape="rect" id="node25" href="$classLedBar.html#a5272d702b081c2fe6288a690e92cc488" title="Clignote toutes les leds nb fois sur les 2 valeurs hex val1 et val2." alt="" coords="554,457,666,484"/>
+<area shape="rect" id="node27" href="$classAsservDriver__mbed__i2c.html#ad138d1be15ec6fe582b946c8cc55be36" title=" " alt="" coords="522,1162,698,1203"/>
+<area shape="rect" id="node30" href="$classTirette.html#afeb2d5ec3cadb1cc76ae203159495408" title="Affiche l&#39;état de la tirette pendant nb itérations (debug)." alt="" coords="548,1228,672,1255"/>
+<area shape="rect" id="node31" href="$classAsservDriver__mbed__i2c.html#a58c64e63be1bbf59fb1a6ab18db1c15e" title="Assisted movement mode =)" alt="" coords="513,1279,707,1321"/>
+<area shape="rect" id="node32" href="$classServoObjectsSystem.html#a60de17986f65700a7659b22edda2faef" title="move 1 servo." alt="" coords="531,1345,689,1386"/>
+<area shape="rect" id="node33" href="$classServoObjectsSystem.html#a209d4e6a24c8cd26c76168c08e330655" title="move 2 servos." alt="" coords="531,1410,689,1451"/>
+<area shape="rect" id="node34" href="$classServoObjectsSystem.html#a8d96f5f8ccdfb9ca69a73e523f388191" title="Déplace 3 servos simultanément." alt="" coords="531,1475,689,1517"/>
+<area shape="rect" id="node35" href="$classServoObjectsSystem.html#a885ad7b498315c66de65dae7149b3ea1" title="Déplace 4 servos simultanément." alt="" coords="531,1541,689,1582"/>
+<area shape="rect" id="node36" href="$classSensors.html#a1742695dacc4c683f7a6136b650c0aa7" title=" " alt="" coords="517,1607,703,1633"/>
+<area shape="rect" id="node37" href="$classSensors.html#ac64cdee4463d5580cbfca8e0aa8a6e70" title=" " alt="" coords="511,1657,709,1684"/>
+<area shape="rect" id="node38" href="$classLedBar.html#a7bb1b0cf26c7202807bdc3e68e1f2e48" title=" " alt="" coords="547,1708,673,1735"/>
+<area shape="rect" id="node39" href="$classGpioPCA9555.html#a700aff89e3f53630ec2e77a3755174a4" title="Configure les registres de direction des ports." alt="" coords="533,1759,687,1785"/>
+<area shape="rect" id="node40" href="$classActions.html#adf0dec391b032c0b36b329a3f039001e" title="Active les actions." alt="" coords="556,508,664,535"/>
+<area shape="rect" id="node41" href="$classAsservEsialR.html#a8917d11aef1998736c9e6e16dfe22de0" title=" " alt="" coords="517,1809,703,1836"/>
+<area shape="rect" id="node42" href="$classtest_1_1TimerPosixStandaloneBench.html#a71eaba7b9c9cf2dc0384bced04b641f4" title=" " alt="" coords="509,1861,711,1902"/>
+<area shape="rect" id="node43" href="$classtest_1_1ThreadTest.html#a1262fce3aca48dc17dab2ee10a7d5999" title="Vérifie la précision de sleep_for_micros." alt="" coords="513,1926,707,1967"/>
+<area shape="rect" id="node44" href="$classArguments.html#a255619dfd905699c2736d80b53e34e0a" title=" " alt="" coords="540,1992,680,2019"/>
+<area shape="rect" id="node45" href="$classAsservEsialR.html#a1cc2e13537bf94f214d94b67a0a39cde" title=" " alt="" coords="508,2043,712,2069"/>
+<area shape="rect" id="node46" href="$classLedBar.html#a443827fdcb184f64cd2f71861564faed" title="Color de la led a appliquer. ‍/ LedColor color_;." alt="" coords="549,2093,671,2120"/>
+<area shape="rect" id="node47" href="$classTirette.html#aff648839d9bf4cb4d814c0b45b93fc1c" title="Attend que la tirette soit enfoncée (bloquant)." alt="" coords="534,2144,686,2171"/>
+<area shape="rect" id="node48" href="$classButtonBar.html#aa1baddb8099d0bbdf90f19914119cbb4" title="Attend qu&#39;un bouton soit appuyé (bloquant)." alt="" coords="523,2195,697,2221"/>
+<area shape="rect" id="node49" href="$classTirette.html#afbe05aa7c5733bdda2a251b2ca35e14d" title="Attend que la tirette soit retirée (bloquant)." alt="" coords="525,2245,695,2272"/>
+<area shape="rect" id="node50" href="$classRobot.html#a7c2c32badf138c2a26b82068447c3c98" title="Fonctions de motion intelligente en plusieurs essais." alt="" coords="536,2296,684,2323"/>
+<area shape="rect" id="node4" href="$classOPOS6UL__RobotExtended.html#a3af6cff5115c7ae70f7a797d9e90e66a" title="Initialise l&#39;état du robot et le décisionmaker IA." alt="" coords="8,107,197,149"/>
+<area shape="rect" id="node6" href="$classLcdShieldDriver.html#a14d2027ac041be273d6b894a6d66bb1f" title="Constructeur. Initialise le LCD 16x2." alt="" coords="5,286,200,327"/>
+<area shape="rect" id="node11" href="$classLcdShieldDriver.html#a80962c9c080e1893adb005db6c86bd42" title="Efface tout le contenu de l&#39;ecran." alt="" coords="267,297,431,324"/>
+<area shape="rect" id="node24" href="$classLcdShieldDriver.html#a86c79dd1fbddfb32eca989e9b04c5e0d" title="Remet le curseur en position (0, 0)." alt="" coords="265,1104,434,1131"/>
+<area shape="rect" id="node26" href="$classO__State__WaitEndOfMatch.html#aa73613440b37c8dd42181e2e0265ae86" title="Exécute l&#39;état d&#39;attente de fin de match." alt="" coords="255,458,443,499"/>
+<area shape="rect" id="node28" href="$classAsservDriver__mbed__i2c.html#adf94df7551cf686e5d1e13d2e091e5fa" title=" " alt="" coords="261,1225,437,1266"/>
+<area shape="rect" id="node29" href="$classAsservDriver__mbed__i2c.html#a90b40e26cd6ef4fde1ec9fe8b3b3d217" title=" " alt="" coords="261,1159,437,1201"/>
 </map>

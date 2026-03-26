@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot:  Fichier source de src/driver-arm/Gp2y0e02b.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_a369de7a6c9198ab5056a0bc5cf5ea3e.html">driver-arm</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Gp2y0e02b.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="Gp2y0e02b_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> Reference:</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> http://www.sharp-world.com/products/device/lineup/data/pdf/datasheet/gp2y0e02_03_appl_e.pdf</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> https://github.com/martinpalsson/GP2Y0E02B_E-Fuse_Burner</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> other examples found on the web:</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> https://github.com/NorbotNorway/TeensyAndGP2Y0E02B/blob/master/Sample.ino</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> https://github.com/GeeAlex/PiSharpIR/blob/master/GP2Y.py</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> https://github.com/aahlborg/SharpRangerReader/blob/master/SharpRangerReader.ino</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> https://www.robot-electronics.co.uk/htm/arduino_examples.htm#GP2Y0E02B</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#ifndef DRIVER_OPOS6UL_ARM_GP2Y0E02B_HPP_</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#define DRIVER_OPOS6UL_ARM_GP2Y0E02B_HPP_</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;as_devices/cpp/as_i2c.hpp&gt;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="LoggerFactory_8hpp.html">log/LoggerFactory.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">//#define ADDRESS_gp2y0e02b       0x40 //0x80 &gt;&gt; 1  // Arduino uses 7 bit addressing so we shift address right one bit</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="Gp2y0e02b_8hpp.html#aa0dd0d51a9d85c3807473f511fc32f68">   25</a></span>&#160;<span class="preprocessor">#define SHIFT_ADDR      0x35</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="Gp2y0e02b_8hpp.html#a9b16900cc45091f016ec74e5da4148e4">   26</a></span>&#160;<span class="preprocessor">#define DISTANCE_ADDR   0x5E</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="Gp2y0e02b_8hpp.html#aa7601d212faa41423572f39f57fa7afa">   27</a></span>&#160;<span class="preprocessor">#define RIGHT_EDGE_ADDR 0xF8 </span><span class="comment">// C</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="Gp2y0e02b_8hpp.html#a62836030a119bcf70785fb276e8f0840">   28</a></span>&#160;<span class="preprocessor">#define LEFT_EDGE_ADDR  0xF9 </span><span class="comment">// A</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="Gp2y0e02b_8hpp.html#a26cfed06d74f1fa4d7fb8475be9398bb">   29</a></span>&#160;<span class="preprocessor">#define PEAK_EDGE_ADDR  0xFA </span><span class="comment">// B</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="classGp2y0e02b.html">   31</a></span>&#160;<span class="keyword">class </span><a class="code" href="classGp2y0e02b.html">Gp2y0e02b</a></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;{</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classGp2y0e02b.html#ae7e9813d2b284b8c4e14d1cabd4f89cb">   38</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a> &amp; <a class="code" href="classGp2y0e02b.html#ae7e9813d2b284b8c4e14d1cabd4f89cb">logger</a>()</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a> &amp; instance = <a class="code" href="classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e">logs::LoggerFactory::logger</a>(<span class="stringliteral">&quot;Gp2y0e02b.OPO&quot;</span>);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordflow">return</span> instance;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    }</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classGp2y0e02b.html#a3663973d270c75513c1eaae69ab688ca">   44</a></span>&#160;    AsI2c <a class="code" href="classGp2y0e02b.html#a3663973d270c75513c1eaae69ab688ca">i2c_gp2y0e02b_</a>;</div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classGp2y0e02b.html#abf2b10a95f0a5680fd13a5227d97392c">   45</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> <a class="code" href="classGp2y0e02b.html#abf2b10a95f0a5680fd13a5227d97392c">address_</a>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classGp2y0e02b.html#ae3ef7097d690001321d107fe04b4d788">   46</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classGp2y0e02b.html#ae3ef7097d690001321d107fe04b4d788">connected_gp2y0e02b_</a>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classGp2y0e02b.html#a2144968ac0197eb807408a5a884a0e89">   47</a></span>&#160;    <span class="keywordtype">long</span> <a class="code" href="classGp2y0e02b.html#a2144968ac0197eb807408a5a884a0e89">shift_</a>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> <a class="code" href="classGp2y0e02b.html#a907a376600bcc47a4221be6ec866ffcd">readAddr</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> address);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> <a class="code" href="classGp2y0e02b.html#a0471f03d9c265580cdab2a97cb6908ee">readRegByte</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> command);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classGp2y0e02b.html#a769c49566480f7e23274f22926c9dabe">readReg2Bytes</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> command, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *aData);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classGp2y0e02b.html#abc0781859313a2bad70d954dbf0ad56c">readReg3Bytes</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> command, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *aData);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classGp2y0e02b.html#a20dbc641d5c97aa088302f0ab63f5e49">writeRegByte</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> command, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> aData1);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classGp2y0e02b.html#a4b9779e75b647dc97be313b1f147c25f">writeReg2Bytes</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> command, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> aData1, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> aData2);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <a class="code" href="classGp2y0e02b.html#a3b3fe74d902e2b2d0447e9265c246ec6">Gp2y0e02b</a>(<span class="keywordtype">int</span> bus, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> address);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="classGp2y0e02b.html#a8e18232e9001037642fc2292a0630ccc">   67</a></span>&#160;    <a class="code" href="classGp2y0e02b.html#a8e18232e9001037642fc2292a0630ccc">~Gp2y0e02b</a>()</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    }</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classGp2y0e02b.html#a5bd1a340c7b3677c896602fe0e736d0e">getDistanceMm</a>();</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGp2y0e02b.html#a436a6b241732d37ee1e712b63033419a">getInfoData</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> *spotSize, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> *spotSym);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGp2y0e02b.html#a9aadae2b11c00e1e4cac2c967fbd2336">EFuseSlaveID</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> desiredAddress, <span class="keywordtype">bool</span> pin_activated);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classGp2y0e02b.html#addec1ee55e38f4b6fd7045034e17c46c">ScanBus</a>();</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;};</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* DRIVER_OPOS6UL_ARM_GP2Y0E02B_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="aLoggerFactory_8hpp_html"><div class="ttname"><a href="LoggerFactory_8hpp.html">LoggerFactory.hpp</a></div><div class="ttdoc">Définition de la classe LoggerFactory.</div></div>
+<div class="ttc" id="aclassGp2y0e02b_html"><div class="ttname"><a href="classGp2y0e02b.html">Gp2y0e02b</a></div><div class="ttdef"><b>Definition:</b> Gp2y0e02b.hpp:32</div></div>
+<div class="ttc" id="aclassGp2y0e02b_html_a0471f03d9c265580cdab2a97cb6908ee"><div class="ttname"><a href="classGp2y0e02b.html#a0471f03d9c265580cdab2a97cb6908ee">Gp2y0e02b::readRegByte</a></div><div class="ttdeci">unsigned char readRegByte(unsigned char command)</div><div class="ttdef"><b>Definition:</b> Gp2y0e02b.cpp:232</div></div>
+<div class="ttc" id="aclassGp2y0e02b_html_a20dbc641d5c97aa088302f0ab63f5e49"><div class="ttname"><a href="classGp2y0e02b.html#a20dbc641d5c97aa088302f0ab63f5e49">Gp2y0e02b::writeRegByte</a></div><div class="ttdeci">int writeRegByte(unsigned char command, unsigned char aData1)</div><div class="ttdef"><b>Definition:</b> Gp2y0e02b.cpp:245</div></div>
+<div class="ttc" id="aclassGp2y0e02b_html_a2144968ac0197eb807408a5a884a0e89"><div class="ttname"><a href="classGp2y0e02b.html#a2144968ac0197eb807408a5a884a0e89">Gp2y0e02b::shift_</a></div><div class="ttdeci">long shift_</div><div class="ttdef"><b>Definition:</b> Gp2y0e02b.hpp:47</div></div>
+<div class="ttc" id="aclassGp2y0e02b_html_a3663973d270c75513c1eaae69ab688ca"><div class="ttname"><a href="classGp2y0e02b.html#a3663973d270c75513c1eaae69ab688ca">Gp2y0e02b::i2c_gp2y0e02b_</a></div><div class="ttdeci">AsI2c i2c_gp2y0e02b_</div><div class="ttdef"><b>Definition:</b> Gp2y0e02b.hpp:44</div></div>
+<div class="ttc" id="aclassGp2y0e02b_html_a3b3fe74d902e2b2d0447e9265c246ec6"><div class="ttname"><a href="classGp2y0e02b.html#a3b3fe74d902e2b2d0447e9265c246ec6">Gp2y0e02b::Gp2y0e02b</a></div><div class="ttdeci">Gp2y0e02b(int bus, unsigned char address)</div><div class="ttdoc">Constructor.</div><div class="ttdef"><b>Definition:</b> Gp2y0e02b.cpp:12</div></div>
+<div class="ttc" id="aclassGp2y0e02b_html_a436a6b241732d37ee1e712b63033419a"><div class="ttname"><a href="classGp2y0e02b.html#a436a6b241732d37ee1e712b63033419a">Gp2y0e02b::getInfoData</a></div><div class="ttdeci">void getInfoData(unsigned int *spotSize, unsigned int *spotSym)</div><div class="ttdef"><b>Definition:</b> Gp2y0e02b.cpp:51</div></div>
+<div class="ttc" id="aclassGp2y0e02b_html_a4b9779e75b647dc97be313b1f147c25f"><div class="ttname"><a href="classGp2y0e02b.html#a4b9779e75b647dc97be313b1f147c25f">Gp2y0e02b::writeReg2Bytes</a></div><div class="ttdeci">int writeReg2Bytes(unsigned char command, unsigned char aData1, unsigned char aData2)</div><div class="ttdef"><b>Definition:</b> Gp2y0e02b.cpp:249</div></div>
+<div class="ttc" id="aclassGp2y0e02b_html_a5bd1a340c7b3677c896602fe0e736d0e"><div class="ttname"><a href="classGp2y0e02b.html#a5bd1a340c7b3677c896602fe0e736d0e">Gp2y0e02b::getDistanceMm</a></div><div class="ttdeci">int getDistanceMm()</div><div class="ttdoc">get distance in mm. //every 250 ms</div><div class="ttdef"><b>Definition:</b> Gp2y0e02b.cpp:31</div></div>
+<div class="ttc" id="aclassGp2y0e02b_html_a769c49566480f7e23274f22926c9dabe"><div class="ttname"><a href="classGp2y0e02b.html#a769c49566480f7e23274f22926c9dabe">Gp2y0e02b::readReg2Bytes</a></div><div class="ttdeci">int readReg2Bytes(unsigned char command, unsigned char *aData)</div><div class="ttdef"><b>Definition:</b> Gp2y0e02b.cpp:236</div></div>
+<div class="ttc" id="aclassGp2y0e02b_html_a8e18232e9001037642fc2292a0630ccc"><div class="ttname"><a href="classGp2y0e02b.html#a8e18232e9001037642fc2292a0630ccc">Gp2y0e02b::~Gp2y0e02b</a></div><div class="ttdeci">~Gp2y0e02b()</div><div class="ttdoc">Destructor.</div><div class="ttdef"><b>Definition:</b> Gp2y0e02b.hpp:67</div></div>
+<div class="ttc" id="aclassGp2y0e02b_html_a907a376600bcc47a4221be6ec866ffcd"><div class="ttname"><a href="classGp2y0e02b.html#a907a376600bcc47a4221be6ec866ffcd">Gp2y0e02b::readAddr</a></div><div class="ttdeci">unsigned char readAddr(unsigned char address)</div><div class="ttdef"><b>Definition:</b> Gp2y0e02b.cpp:228</div></div>
+<div class="ttc" id="aclassGp2y0e02b_html_a9aadae2b11c00e1e4cac2c967fbd2336"><div class="ttname"><a href="classGp2y0e02b.html#a9aadae2b11c00e1e4cac2c967fbd2336">Gp2y0e02b::EFuseSlaveID</a></div><div class="ttdeci">void EFuseSlaveID(unsigned char desiredAddress, bool pin_activated)</div><div class="ttdef"><b>Definition:</b> Gp2y0e02b.cpp:65</div></div>
+<div class="ttc" id="aclassGp2y0e02b_html_abc0781859313a2bad70d954dbf0ad56c"><div class="ttname"><a href="classGp2y0e02b.html#abc0781859313a2bad70d954dbf0ad56c">Gp2y0e02b::readReg3Bytes</a></div><div class="ttdeci">int readReg3Bytes(unsigned char command, unsigned char *aData)</div><div class="ttdef"><b>Definition:</b> Gp2y0e02b.cpp:240</div></div>
+<div class="ttc" id="aclassGp2y0e02b_html_abf2b10a95f0a5680fd13a5227d97392c"><div class="ttname"><a href="classGp2y0e02b.html#abf2b10a95f0a5680fd13a5227d97392c">Gp2y0e02b::address_</a></div><div class="ttdeci">unsigned char address_</div><div class="ttdef"><b>Definition:</b> Gp2y0e02b.hpp:45</div></div>
+<div class="ttc" id="aclassGp2y0e02b_html_addec1ee55e38f4b6fd7045034e17c46c"><div class="ttname"><a href="classGp2y0e02b.html#addec1ee55e38f4b6fd7045034e17c46c">Gp2y0e02b::ScanBus</a></div><div class="ttdeci">int ScanBus()</div><div class="ttdef"><b>Definition:</b> Gp2y0e02b.cpp:194</div></div>
+<div class="ttc" id="aclassGp2y0e02b_html_ae3ef7097d690001321d107fe04b4d788"><div class="ttname"><a href="classGp2y0e02b.html#ae3ef7097d690001321d107fe04b4d788">Gp2y0e02b::connected_gp2y0e02b_</a></div><div class="ttdeci">bool connected_gp2y0e02b_</div><div class="ttdef"><b>Definition:</b> Gp2y0e02b.hpp:46</div></div>
+<div class="ttc" id="aclassGp2y0e02b_html_ae7e9813d2b284b8c4e14d1cabd4f89cb"><div class="ttname"><a href="classGp2y0e02b.html#ae7e9813d2b284b8c4e14d1cabd4f89cb">Gp2y0e02b::logger</a></div><div class="ttdeci">static const logs::Logger &amp; logger()</div><div class="ttdoc">Retourne le Logger associé à la classe Gp2y0e02b(OPOS6UL).</div><div class="ttdef"><b>Definition:</b> Gp2y0e02b.hpp:38</div></div>
+<div class="ttc" id="aclasslogs_1_1LoggerFactory_html_a82585b5de73e471e06cafdccc3b3721e"><div class="ttname"><a href="classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e">logs::LoggerFactory::logger</a></div><div class="ttdeci">static const Logger &amp; logger(const std::string &amp;name)</div><div class="ttdoc">Cette méthode statique retourne un Logger en fonction de son nom.</div><div class="ttdef"><b>Definition:</b> LoggerFactory.cpp:54</div></div>
+<div class="ttc" id="aclasslogs_1_1Logger_html"><div class="ttname"><a href="classlogs_1_1Logger.html">logs::Logger</a></div><div class="ttdoc">Classe de gestion des traces de l'application.</div><div class="ttdef"><b>Definition:</b> Logger.hpp:63</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Jeudi 26 Mars 2026 23:28:55 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

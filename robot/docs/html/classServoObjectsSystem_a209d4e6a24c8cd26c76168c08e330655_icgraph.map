@@ -1,0 +1,6 @@
+<map id="ServoObjectsSystem::move_2_servos" name="ServoObjectsSystem::move_2_servos">
+<area shape="rect" id="node1" title="move 2 servos." alt="" coords="252,71,409,112"/>
+<area shape="rect" id="node2" href="$classOPOS6UL__ActionsExtended.html#a565acda2ce4cdd1be8263835465d0fdc" title="Initialise le bras gauche (épaule, coude, poignet) à la position de repos." alt="" coords="5,5,204,47"/>
+<area shape="rect" id="node3" href="$classOPOS6UL__ActionsExtended.html#a50a3db095faaaf15ec9630d9abcfb5d4" title="Initialise les deux bras (gauche et droit) à la position de repos." alt="" coords="5,71,204,112"/>
+<area shape="rect" id="node4" href="$classOPOS6UL__ActionsExtended.html#a298422faffadf81c4350cd47464d3f0a" title="Initialise le bras droit (épaule, coude, poignet) à la position de repos." alt="" coords="5,136,204,177"/>
+</map>

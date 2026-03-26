@@ -1,0 +1,23 @@
+<map id="SoundBar::startBeep" name="SoundBar::startBeep">
+<area shape="rect" id="node1" title="Lance l&#39;action asynchrone d&#39;émission d&#39;un beep." alt="" coords="5,393,160,420"/>
+<area shape="rect" id="node2" href="$classAActionsElement.html#a3fbd5b8201049a59602d8b7201a9ef8a" title="Retourne une référence sur le Actions associé." alt="" coords="208,292,396,319"/>
+<area shape="rect" id="node3" href="$classActions.html#a710f952f5942e626d73e47733a8848b0" title="Ajout d&#39;une action." alt="" coords="231,393,373,420"/>
+<area shape="rect" id="node7" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="896,485,977,512"/>
+<area shape="rect" id="node20" href="$classlogs_1_1Logger.html#a7dffc8f610014ec59b63392da16140e4" title="Trace un message de niveau DEBUG." alt="" coords="655,587,805,613"/>
+<area shape="rect" id="node21" href="$classSoundBar.html#a26880f8b93ee5135df79f122409cc20f" title="Retourne le Logger associé à la classe SoundBar." alt="" coords="457,64,590,91"/>
+<area shape="rect" id="node4" href="$classActionManagerTimer.html#ad44aa7bf3d361e60d3ed764d833eafc5" title="Ajout d&#39;une action." alt="" coords="444,343,603,385"/>
+<area shape="rect" id="node11" href="$classlogs_1_1Logger.html#a8b6a2019233bc44b3c3c86c653910831" title="Trace un message de niveau ERROR." alt="" coords="867,435,1007,461"/>
+<area shape="rect" id="node17" href="$classActions.html#a637e05ac19e873621b1e123c2ff29990" title="Indique si le gestionnaire d&#39;actions est démarré." alt="" coords="452,280,595,307"/>
+<area shape="rect" id="node19" href="$classActions.html#a9cc6c9bd885d6e03234b0cf5061a5ca1" title="Return Logger linked to Actions." alt="" coords="671,97,789,124"/>
+<area shape="rect" id="node5" href="$classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32" title="Verrouille le mutex. Cette méthode doit être appelée avant d&#39;utiliser la ressource associée...." alt="" coords="1369,257,1503,284"/>
+<area shape="rect" id="node6" href="$classActionManagerTimer.html#a39f4cbb5ddbbe6a40980bb59b8b59b05" title=" " alt="" coords="651,318,809,359"/>
+<area shape="rect" id="node9" href="$classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3" title="Déverrouille le mutex. Cette méthode doit être appelée après avoir utiliser la ressource associée." alt="" coords="1361,359,1511,385"/>
+<area shape="rect" id="node12" href="$classActionManagerTimer.html#a280846361e5c7e0ebe57972755841c2b" title=" " alt="" coords="857,115,1016,157"/>
+<area shape="rect" id="node8" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#a0e4fd77693fd899ec1b0670354f93a02" title="Cette méthode valide le message en cours de construction et le transmet au Logger de référence." alt="" coords="1064,435,1288,461"/>
+<area shape="rect" id="node10" href="$classlogs_1_1Logger.html#afa535aaf4891e02c4ff7f84d372b5b1b" title="Méthode générique de trace d&#39;un message." alt="" coords="1336,485,1536,512"/>
+<area shape="rect" id="node13" href="$classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e" title="Cette méthode statique retourne un Logger en fonction de son nom." alt="" coords="1102,57,1250,98"/>
+<area shape="rect" id="node14" href="$classlogs_1_1LoggerFactory.html#ac89f19c0ffd71aa8cdc1c2d44c03809e" title="Cette méthode ajoute un appender au système." alt="" coords="1347,5,1525,32"/>
+<area shape="rect" id="node15" href="$classlogs_1_1LoggerFactory.html#a90478b91d7af2ef8841ded21e3521f69" title="Cette méthode statique retourne l&#39;instance unique de la classe LoggerFactory." alt="" coords="1362,57,1510,98"/>
+<area shape="rect" id="node16" href="$classlogs_1_1LoggerFactory.html#a212aa623f4b6bee12cb39e8017dde670" title="Cette méthode retourne le Logger principal qui définit le niveau de trace par défaut." alt="" coords="1362,122,1510,163"/>
+<area shape="rect" id="node18" href="$classutils_1_1Thread.html#ada9233f3e669c925e9ed518201ad31cd" title="Retourne l&#39;état courant du thread." alt="" coords="1104,283,1248,309"/>
+</map>

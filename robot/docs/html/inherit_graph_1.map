@@ -1,3 +1,40 @@
 <map id="Graphe hiérarchique des classes" name="Graphe hiérarchique des classes">
-<area shape="rect" id="node1" href="$classAAsservDriver.html" title="Interface abstraite du driver d&#39;asservissement." alt="" coords="5,5,120,32"/>
+<area shape="rect" id="node1" href="$classAActionsElement.html" title="Classe abstraite définissant la notion d&#39;élément du robot." alt="" coords="22,183,155,209"/>
+<area shape="rect" id="node2" href="$classButtonBar.html" title="Gestion de la barre de boutons du robot." alt="" coords="273,208,359,235"/>
+<area shape="rect" id="node3" href="$classLcdShield.html" title="Gestion de l&#39;écran LCD du robot." alt="" coords="274,5,358,32"/>
+<area shape="rect" id="node4" href="$classLedBar.html" title="Gestion d&#39;une barre de LEDs avec actions et timers de clignotement." alt="" coords="283,259,349,285"/>
+<area shape="rect" id="node5" href="$classSensors.html" title="Gestion des capteurs de detection et de distance." alt="" coords="279,309,353,336"/>
+<area shape="rect" id="node6" href="$classServoObjectsSystem.html" title="Système de gestion des servomoteurs (déploiement, positionnement, torque)." alt="" coords="237,360,395,387"/>
+<area shape="rect" id="node7" href="$classServoUsingMotor.html" title="Gère un servomoteur piloté via un driver moteur." alt="" coords="249,56,383,83"/>
+<area shape="rect" id="node8" href="$classSoundBar.html" title="Gère la barre de son du robot (beeps, mélodies, synthèse vocale)." alt="" coords="274,107,358,133"/>
+<area shape="rect" id="node9" href="$classTirette.html" title="Gère la tirette de démarrage du robot (interrupteur de lancement)." alt="" coords="283,157,349,184"/>
+<area shape="rect" id="node10" href="$classAAsservDriver.html" title="Interface abstraite du driver d&#39;asservissement." alt="" coords="259,715,373,741"/>
+<area shape="rect" id="node11" href="$classAsservDriver.html" title=" " alt="" coords="514,765,621,792"/>
+<area shape="rect" id="node12" href="$classAsservDriver__mbed__i2c.html" title=" " alt="" coords="479,664,655,691"/>
+<area shape="rect" id="node13" href="$classAsservEsialR.html" title=" " alt="" coords="514,715,621,741"/>
+<area shape="rect" id="node14" href="$classlogs_1_1Appender.html" title="Classe de gestion des flux de sortie pour les logs." alt="" coords="29,411,148,437"/>
+<area shape="rect" id="node15" href="$classlogs_1_1MemoryAppender.html" title="Implémentation de Appender stockant les messages en mémoire." alt="" coords="229,411,403,437"/>
+<area shape="rect" id="node16" href="$classUnitTestAppender.html" title="Implémente un appender spécifique à l&#39;execution et au suivi des tests unitaires." alt="" coords="499,461,636,488"/>
+<area shape="rect" id="node17" href="$classlogs_1_1ConsoleAppender.html" title="Implémentation de Appender pour une écriture des traces sur un flux de sortie de type std::ostream." alt="" coords="482,512,653,539"/>
+<area shape="rect" id="node18" href="$classlogs_1_1FileAppender.html" title="Implémentation de Appender pour une sortie sur fichier." alt="" coords="496,309,639,336"/>
+<area shape="rect" id="node19" href="$classlogs_1_1SvgAppender.html" title="Implémentation de Appender créant un fichier SVG." alt="" coords="496,360,639,387"/>
+<area shape="rect" id="node20" href="$classlogs_1_1TelemetryAppender.html" title="Implémentation de Appender pour une écriture des traces sur un flux de reseau." alt="" coords="475,411,659,437"/>
+<area shape="rect" id="node21" href="$classARobotPositionShared.html" title="Interface abstraite d&#39;acces a la position partagee du robot." alt="" coords="5,461,172,488"/>
+<area shape="rect" id="node22" href="$classRobotPositionShared.html" title="Implementation ARM de la position partagee." alt="" coords="237,461,395,488"/>
+<area shape="rect" id="node23" href="$classutils_1_1Mutex.html" title="Implémentation d&#39;une gestion de mutex." alt="" coords="39,563,138,589"/>
+<area shape="rect" id="node24" href="$classAdafruit__RGBLCDShield.html" title="Driver pour le LCD Shield RGB 16x2 Adafruit." alt="" coords="229,512,403,539"/>
+<area shape="rect" id="node25" href="$classCCAx12Adc.html" title="Implementation for CCAx12Adc card." alt="" coords="267,563,365,589"/>
+<area shape="rect" id="node26" href="$classCCAx12Teensy.html" title="Implementation for CCAx12Teensy card." alt="" coords="257,664,375,691"/>
+<area shape="rect" id="node27" href="$classSvgWriter.html" title="Wrapper pour la génération de fichier svg via le système de log." alt="" coords="273,613,359,640"/>
+<area shape="rect" id="node30" href="$classlogs_1_1Logger_1_1LoggerBuffer.html" title="Classe de délégation pour faciliter la création des traces." alt="" coords="220,765,412,792"/>
+<area shape="rect" id="node31" href="$classutils_1_1Thread.html" title="Classe de base pour les threads (wrapper POSIX pthread)." alt="" coords="265,841,367,868"/>
+<area shape="rect" id="node28" href="$classOPOS6UL__SvgWriterExtended.html" title="Génération de fichiers SVG pour la visualisation du robot et du terrain." alt="" coords="460,563,675,589"/>
+<area shape="rect" id="node29" href="$classSvgWriterExtended.html" title=" " alt="" coords="494,613,641,640"/>
+<area shape="rect" id="node32" href="$classActionManagerTimer.html" title="Classe de gestion des actions du robot et des actions par timer." alt="" coords="488,867,647,893"/>
+<area shape="rect" id="node33" href="$classO__State__DecisionMakerIA.html" title="Moteur de décision IA du robot." alt="" coords="473,917,662,944"/>
+<area shape="rect" id="node34" href="$classlogs_1_1LoggerFactory.html" title="Cette classe assure l&#39;initialisation du système de trace et son utilisation." alt="" coords="493,968,641,995"/>
+<area shape="rect" id="node35" href="$classtest_1_1MutexCounterThread.html" title="Thread qui incrémente un compteur partagé protégé par un Mutex." alt="" coords="471,1019,663,1045"/>
+<area shape="rect" id="node36" href="$classtest_1_1SimpleThread.html" title="Thread de test simple qui incrémente un compteur." alt="" coords="495,1069,640,1096"/>
+<area shape="rect" id="node37" href="$classtest_1_1SleepyThread.html" title="Thread qui dort longtemps (pour tester cancel)." alt="" coords="495,816,639,843"/>
+<area shape="rect" id="node38" href="$classPrint.html" title=" " alt="" coords="63,5,115,32"/>
 </map>

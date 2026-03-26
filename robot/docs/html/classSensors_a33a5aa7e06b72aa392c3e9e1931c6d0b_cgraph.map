@@ -1,0 +1,27 @@
+<map id="Sensors::sync" name="Sensors::sync">
+<area shape="rect" id="node1" title=" " alt="" coords="5,157,116,184"/>
+<area shape="rect" id="node2" href="$classASensorsDriver.html#a73d2598f685d481a58b3b5364de4f75c" title="Lit le capteur arriere gauche." alt="" coords="170,5,355,32"/>
+<area shape="rect" id="node3" href="$classASensorsDriver.html#afa92806f01cf2a920183fb0cb491101e" title="Lit le capteur arriere droit." alt="" coords="165,56,360,83"/>
+<area shape="rect" id="node4" href="$classASensorsDriver.html#a7873d770e0255d9ef9c4e64d181dccfb" title="Lit le capteur avant gauche." alt="" coords="170,107,355,133"/>
+<area shape="rect" id="node5" href="$classASensorsDriver.html#afcf6344268efabb191cb38d7e900e245" title="Lit le capteur avant droit." alt="" coords="165,157,360,184"/>
+<area shape="rect" id="node6" href="$classSensors.html#a1742695dacc4c683f7a6136b650c0aa7" title=" " alt="" coords="169,208,356,235"/>
+<area shape="rect" id="node22" href="$classSensors.html#ac64cdee4463d5580cbfca8e0aa8a6e70" title=" " alt="" coords="164,284,361,311"/>
+<area shape="rect" id="node25" href="$classASensorsDriver.html#a0c581029ba10d5ac820a9e3e2e6883cd" title="Synchronise les donnees de la balise (lecture I2C)." alt="" coords="183,335,343,361"/>
+<area shape="rect" id="node7" href="$classlogs_1_1Logger.html#a7dffc8f610014ec59b63392da16140e4" title="Trace un message de niveau DEBUG." alt="" coords="664,43,813,69"/>
+<area shape="rect" id="node9" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="453,144,535,171"/>
+<area shape="rect" id="node13" href="$classlogs_1_1Logger.html#aa381165771d00a6a1e3aa9664bf6467f" title="Trace un message de niveau INFO." alt="" coords="671,93,806,120"/>
+<area shape="rect" id="node14" href="$classSensors.html#a298faac37527e7e0aa16658acb2b3e41" title=" " alt="" coords="429,195,559,221"/>
+<area shape="rect" id="node16" href="$classSensors.html#a445b086f263ac98b47cb545d11b73ab1" title=" " alt="" coords="433,245,555,272"/>
+<area shape="rect" id="node21" href="$namespaceutils.html#a4f86fc4c334661a6995538cc080a40c9" title="Met en pause le thread courant pendant usec microsecondes." alt="" coords="409,296,579,323"/>
+<area shape="rect" id="node8" href="$classlogs_1_1Logger.html#afa535aaf4891e02c4ff7f84d372b5b1b" title="Méthode générique de trace d&#39;un message." alt="" coords="899,76,1099,103"/>
+<area shape="rect" id="node10" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#a0e4fd77693fd899ec1b0670354f93a02" title="Cette méthode valide le message en cours de construction et le transmet au Logger de référence." alt="" coords="627,144,851,171"/>
+<area shape="rect" id="node11" href="$classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32" title="Verrouille le mutex. Cette méthode doit être appelée avant d&#39;utiliser la ressource associée...." alt="" coords="931,127,1066,153"/>
+<area shape="rect" id="node12" href="$classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3" title="Déverrouille le mutex. Cette méthode doit être appelée après avoir utiliser la ressource associée." alt="" coords="923,177,1074,204"/>
+<area shape="rect" id="node15" href="$classASensorsDriver.html#a800cc3f2ce33b02a9c9a758308d9e53c" title="Lit le capteur lateral gauche." alt="" coords="649,195,828,221"/>
+<area shape="rect" id="node17" href="$classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e" title="Cette méthode statique retourne un Logger en fonction de son nom." alt="" coords="665,263,813,305"/>
+<area shape="rect" id="node18" href="$classlogs_1_1LoggerFactory.html#ac89f19c0ffd71aa8cdc1c2d44c03809e" title="Cette méthode ajoute un appender au système." alt="" coords="909,228,1088,255"/>
+<area shape="rect" id="node19" href="$classlogs_1_1LoggerFactory.html#a90478b91d7af2ef8841ded21e3521f69" title="Cette méthode statique retourne l&#39;instance unique de la classe LoggerFactory." alt="" coords="925,279,1073,321"/>
+<area shape="rect" id="node20" href="$classlogs_1_1LoggerFactory.html#a212aa623f4b6bee12cb39e8017dde670" title="Cette méthode retourne le Logger principal qui définit le niveau de trace par défaut." alt="" coords="925,345,1073,386"/>
+<area shape="rect" id="node23" href="$classSensors.html#a6f91528b57a31690c61f03503ee180d5" title=" " alt="" coords="425,347,563,373"/>
+<area shape="rect" id="node24" href="$classASensorsDriver.html#a08927084e26b430add29c87f05616bf8" title="Lit le capteur lateral droit." alt="" coords="645,347,833,373"/>
+</map>

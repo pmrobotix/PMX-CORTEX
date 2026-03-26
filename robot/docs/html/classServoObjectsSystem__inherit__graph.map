@@ -1,0 +1,5 @@
+<map id="ServoObjectsSystem" name="ServoObjectsSystem">
+<area shape="rect" id="node1" title="Système de gestion des servomoteurs (déploiement, positionnement, torque)." alt="" coords="63,80,220,107"/>
+<area shape="rect" id="node2" href="$classAActionsElement.html" title="Classe abstraite définissant la notion d&#39;élément du robot." alt="" coords="5,5,139,32"/>
+<area shape="rect" id="node3" href="$classutils_1_1Mutex.html" title="Implémentation d&#39;une gestion de mutex." alt="" coords="163,5,261,32"/>
+</map>

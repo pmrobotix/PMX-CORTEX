@@ -1,0 +1,298 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot:  Fichier source de src/common/timer/ActionManagerTimer.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_fdedb0aba14d44ce9d99bc100e026e6a.html">common</a></li><li class="navelem"><a class="el" href="dir_ad3a66e4abe01a94c50aff5d550c7725.html">timer</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">ActionManagerTimer.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="ActionManagerTimer_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef COMMON_ACTIONMANAGERTIMER_HPP_</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define COMMON_ACTIONMANAGERTIMER_HPP_</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;semaphore.h&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;atomic&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;list&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Logger_8hpp.html">log/Logger.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="LoggerFactory_8hpp.html">log/LoggerFactory.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Chronometer_8hpp.html">utils/Chronometer.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="PointerList_8hpp.html">utils/PointerList.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="IAction_8hpp.html">action/IAction.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ITimerListener_8hpp.html">ITimerListener.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ITimerPosixListener_8hpp.html">ITimerPosixListener.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classActionManagerTimer.html">   25</a></span>&#160;<span class="keyword">class </span><a class="code" href="classActionManagerTimer.html">ActionManagerTimer</a>: <span class="keyword">public</span> <a class="code" href="classutils_1_1Thread.html">utils::Thread</a></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;{</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classActionManagerTimer.html#a280846361e5c7e0ebe57972755841c2b">   29</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a>&amp; <a class="code" href="classActionManagerTimer.html#a280846361e5c7e0ebe57972755841c2b">logger</a>()</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    {</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a> &amp;instance = <a class="code" href="classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e">logs::LoggerFactory::logger</a>(<span class="stringliteral">&quot;ActionManagerTimer&quot;</span>);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keywordflow">return</span> instance;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    }</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classActionManagerTimer.html#a74bc451c556cb2f583576c8ddbbb52b0">   38</a></span>&#160;    <a class="code" href="classutils_1_1PointerList.html">utils::PointerList&lt;IAction*&gt;</a> <a class="code" href="classActionManagerTimer.html#a74bc451c556cb2f583576c8ddbbb52b0">actions_</a>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classActionManagerTimer.html#a49952361272df689f4aa9906fd7d3cc3">   43</a></span>&#160;    <a class="code" href="classutils_1_1PointerList.html">utils::PointerList&lt;ITimerListener*&gt;</a> <a class="code" href="classActionManagerTimer.html#a49952361272df689f4aa9906fd7d3cc3">timers_</a>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classActionManagerTimer.html#a351dc95645c20b34ac8d9e8feb8989db">   48</a></span>&#160;    <a class="code" href="classutils_1_1PointerList.html">utils::PointerList&lt;ITimerPosixListener*&gt;</a> <a class="code" href="classActionManagerTimer.html#a351dc95645c20b34ac8d9e8feb8989db">ptimers_</a>;</div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classActionManagerTimer.html#a476ce45a4ebfde0818ac44f2c62c6b03">   52</a></span>&#160;    <a class="code" href="classutils_1_1PointerList.html">utils::PointerList&lt;ITimerPosixListener*&gt;</a> <a class="code" href="classActionManagerTimer.html#a476ce45a4ebfde0818ac44f2c62c6b03">ptimers_tobestarted_</a>;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="classActionManagerTimer.html#ae4749f64ec9d2e6f769cd4b42f37d5e2">   57</a></span>&#160;    std::atomic&lt;bool&gt; <a class="code" href="classActionManagerTimer.html#ae4749f64ec9d2e6f769cd4b42f37d5e2">stopActionsAndTimers_</a>;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="classActionManagerTimer.html#a2ac4679da14c48674714b3feef20b4f0">   62</a></span>&#160;    std::atomic&lt;bool&gt; <a class="code" href="classActionManagerTimer.html#a2ac4679da14c48674714b3feef20b4f0">pause_</a>;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="classActionManagerTimer.html#a9d2195bc8f6a025bd3106fb63f89c2aa">   67</a></span>&#160;    <a class="code" href="classutils_1_1Chronometer.html">utils::Chronometer</a> <a class="code" href="classActionManagerTimer.html#a9d2195bc8f6a025bd3106fb63f89c2aa">chronoTimer_</a>;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="classActionManagerTimer.html#ad09e42a9bd1d0c31e720584566bf0554">   72</a></span>&#160;    <a class="code" href="classutils_1_1Mutex.html">utils::Mutex</a> <a class="code" href="classActionManagerTimer.html#ad09e42a9bd1d0c31e720584566bf0554">mtimer_</a>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="classActionManagerTimer.html#a4100f40387b7e278d996320ace311a1e">   76</a></span>&#160;    <a class="code" href="classutils_1_1Mutex.html">utils::Mutex</a> <a class="code" href="classActionManagerTimer.html#a4100f40387b7e278d996320ace311a1e">maction_</a>;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="classActionManagerTimer.html#a1dfa20a4149ac8c1fd892d851725010e">   81</a></span>&#160;    sem_t <a class="code" href="classActionManagerTimer.html#a1dfa20a4149ac8c1fd892d851725010e">AMT</a>;</div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="classActionManagerTimer.html#a96d4d34ee34ec4f6741e36dbd290b53a">   85</a></span>&#160;    <a class="code" href="classutils_1_1Mutex.html">utils::Mutex</a> <a class="code" href="classActionManagerTimer.html#a96d4d34ee34ec4f6741e36dbd290b53a">msem_</a>;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classActionManagerTimer.html#a8eb81df877c40053d71f659265882058">execute</a>();</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="classActionManagerTimer.html#a39f4cbb5ddbbe6a40980bb59b8b59b05">   94</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classActionManagerTimer.html#a39f4cbb5ddbbe6a40980bb59b8b59b05">unblock</a>(std::string debug = <span class="stringliteral">&quot;ActionManagerTimer&quot;</span>)</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    {</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <a class="code" href="classActionManagerTimer.html#a96d4d34ee34ec4f6741e36dbd290b53a">msem_</a>.<a class="code" href="classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32">lock</a>();</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="keywordtype">int</span> val = 0;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        sem_getvalue(&amp;<a class="code" href="classActionManagerTimer.html#a1dfa20a4149ac8c1fd892d851725010e">AMT</a>, &amp;val);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <span class="keywordflow">if</span> (val &gt; 1)</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            <a class="code" href="classActionManagerTimer.html#a280846361e5c7e0ebe57972755841c2b">logger</a>().<a class="code" href="classlogs_1_1Logger.html#a8b6a2019233bc44b3c3c86c653910831">error</a>() &lt;&lt; <span class="stringliteral">&quot;ERROR - la valeur de semaphore est &gt; 1 !!&quot;</span> &lt;&lt; val &lt;&lt; <a class="code" href="namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b">logs::end</a>;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="comment">//dans le cas d&#39;une attente, on debloque.</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <span class="keywordflow">if</span> (val == 0)</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            sem_post(&amp;<a class="code" href="classActionManagerTimer.html#a1dfa20a4149ac8c1fd892d851725010e">AMT</a>);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <a class="code" href="classActionManagerTimer.html#a96d4d34ee34ec4f6741e36dbd290b53a">msem_</a>.<a class="code" href="classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3">unlock</a>();</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    }</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <a class="code" href="classActionManagerTimer.html#a957a5706d13675e5282372523c2db521">ActionManagerTimer</a>();</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
+<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="classActionManagerTimer.html#ad465b1e6b2f352a92cc10bcaf5e6416e">  117</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classActionManagerTimer.html#ad465b1e6b2f352a92cc10bcaf5e6416e">~ActionManagerTimer</a>()</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    {</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        sem_destroy(&amp;<a class="code" href="classActionManagerTimer.html#a1dfa20a4149ac8c1fd892d851725010e">AMT</a>);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    }</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00125"></a><span class="lineno"><a class="line" href="classActionManagerTimer.html#a6e6db535941463a0e590a6779f111dd2">  125</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classActionManagerTimer.html#a6e6db535941463a0e590a6779f111dd2">countActions</a>()</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    {</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <a class="code" href="classActionManagerTimer.html#a4100f40387b7e278d996320ace311a1e">maction_</a>.<a class="code" href="classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32">lock</a>();</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        <span class="keywordtype">int</span> size = this-&gt;actions_.size();</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        <a class="code" href="classActionManagerTimer.html#a4100f40387b7e278d996320ace311a1e">maction_</a>.<a class="code" href="classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3">unlock</a>();</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <span class="keywordflow">return</span> size;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    }</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
+<div class="line"><a name="l00136"></a><span class="lineno"><a class="line" href="classActionManagerTimer.html#af44ca42a2cebadd32062dedf874d4f82">  136</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classActionManagerTimer.html#af44ca42a2cebadd32062dedf874d4f82">countTimers</a>()</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    {</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        <a class="code" href="classActionManagerTimer.html#ad09e42a9bd1d0c31e720584566bf0554">mtimer_</a>.<a class="code" href="classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32">lock</a>();</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        <span class="keywordtype">int</span> size = this-&gt;timers_.size();</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;        <a class="code" href="classActionManagerTimer.html#ad09e42a9bd1d0c31e720584566bf0554">mtimer_</a>.<a class="code" href="classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3">unlock</a>();</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        <span class="keywordflow">return</span> size;</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    }</div>
+<div class="line"><a name="l00146"></a><span class="lineno"><a class="line" href="classActionManagerTimer.html#ad5a07cffbb588205edcdcb594208769c">  146</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classActionManagerTimer.html#ad5a07cffbb588205edcdcb594208769c">countPTimers</a>()</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    {</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        <a class="code" href="classActionManagerTimer.html#ad09e42a9bd1d0c31e720584566bf0554">mtimer_</a>.<a class="code" href="classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32">lock</a>();</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        <span class="keywordtype">int</span> size = this-&gt;ptimers_.size();</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        <a class="code" href="classActionManagerTimer.html#ad09e42a9bd1d0c31e720584566bf0554">mtimer_</a>.<a class="code" href="classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3">unlock</a>();</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        <span class="keywordflow">return</span> size;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    }</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
+<div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="classActionManagerTimer.html#ad44aa7bf3d361e60d3ed764d833eafc5">  158</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classActionManagerTimer.html#ad44aa7bf3d361e60d3ed764d833eafc5">addAction</a>(<a class="code" href="classIAction.html">IAction</a> *action)</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    {</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        <a class="code" href="classActionManagerTimer.html#a4100f40387b7e278d996320ace311a1e">maction_</a>.<a class="code" href="classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32">lock</a>();</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        <a class="code" href="classActionManagerTimer.html#a74bc451c556cb2f583576c8ddbbb52b0">actions_</a>.push_back(action);</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        <a class="code" href="classActionManagerTimer.html#a4100f40387b7e278d996320ace311a1e">maction_</a>.<a class="code" href="classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3">unlock</a>();</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        <a class="code" href="classActionManagerTimer.html#a39f4cbb5ddbbe6a40980bb59b8b59b05">unblock</a>(<span class="stringliteral">&quot;addAction&quot;</span>);</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    }</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
+<div class="line"><a name="l00170"></a><span class="lineno"><a class="line" href="classActionManagerTimer.html#a37abad611ac11d81f2ebcb8d9d5766f8">  170</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classActionManagerTimer.html#a37abad611ac11d81f2ebcb8d9d5766f8">addTimer</a>(<a class="code" href="classITimerListener.html">ITimerListener</a> *timer)</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    {</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        <span class="keywordflow">if</span> (timer-&gt;<a class="code" href="classITimerListener.html#a746c0ceee4eb354754d2e90c5638454c">timeSpan</a>() != 0) {</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;            <a class="code" href="classActionManagerTimer.html#ad09e42a9bd1d0c31e720584566bf0554">mtimer_</a>.<a class="code" href="classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32">lock</a>();</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;            <a class="code" href="classActionManagerTimer.html#a49952361272df689f4aa9906fd7d3cc3">timers_</a>.push_back(timer);</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;            <a class="code" href="classActionManagerTimer.html#ad09e42a9bd1d0c31e720584566bf0554">mtimer_</a>.<a class="code" href="classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3">unlock</a>();</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;            <a class="code" href="classActionManagerTimer.html#a39f4cbb5ddbbe6a40980bb59b8b59b05">unblock</a>(<span class="stringliteral">&quot;addTimer&quot;</span>);</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        }</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    }</div>
+<div class="line"><a name="l00183"></a><span class="lineno"><a class="line" href="classActionManagerTimer.html#a4d893b58bd1d02a9a610eabea05bec1a">  183</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classActionManagerTimer.html#a4d893b58bd1d02a9a610eabea05bec1a">addTimer</a>(<a class="code" href="classITimerPosixListener.html">ITimerPosixListener</a> *timer)</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    {</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        <span class="keywordflow">if</span> (timer-&gt;<a class="code" href="classITimerPosixListener.html#a68a996ffa95155e824dec8653fbc8e40">timeSpan_us</a>() != 0) {</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;            <a class="code" href="classActionManagerTimer.html#ad09e42a9bd1d0c31e720584566bf0554">mtimer_</a>.<a class="code" href="classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32">lock</a>();</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;            <a class="code" href="classActionManagerTimer.html#a476ce45a4ebfde0818ac44f2c62c6b03">ptimers_tobestarted_</a>.push_back(timer);</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;            <a class="code" href="classActionManagerTimer.html#ad09e42a9bd1d0c31e720584566bf0554">mtimer_</a>.<a class="code" href="classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3">unlock</a>();</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160; </div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;            <span class="comment">//give the signal to unblock the actiontimermanager</span></div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;            <a class="code" href="classActionManagerTimer.html#a39f4cbb5ddbbe6a40980bb59b8b59b05">unblock</a>(<span class="stringliteral">&quot;addTimerPosix&quot;</span>);</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160; </div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;            <a class="code" href="classActionManagerTimer.html#a280846361e5c7e0ebe57972755841c2b">logger</a>().<a class="code" href="classlogs_1_1Logger.html#a8b6a2019233bc44b3c3c86c653910831">error</a>() &lt;&lt; <span class="stringliteral">&quot;timeSpan_us is 0 !!&quot;</span> &lt;&lt; <a class="code" href="namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b">logs::end</a>;</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        }</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    }</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160; </div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classActionManagerTimer.html#a3043c43e2b56ed05633d68bf5c530c1f">stopTimer</a>(std::string timerNameToDelete);</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classActionManagerTimer.html#a77bc841824ad1722363dd29a351a74cf">stopPTimer</a>(std::string timerNameToDelete);</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160; </div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classActionManagerTimer.html#a1d13444da59d96cb4a127fbcea4075c7">findPTimer</a>(std::string timerNameToFind);</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160; </div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classActionManagerTimer.html#aea93da8bac8e622881a125ee7506a7ca">stopAllPTimers</a>();</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160; </div>
+<div class="line"><a name="l00223"></a><span class="lineno"><a class="line" href="classActionManagerTimer.html#a20bd3b06bc5f9b9fb747bb27d154d88d">  223</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classActionManagerTimer.html#a20bd3b06bc5f9b9fb747bb27d154d88d">clearActions</a>()</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    {</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;        <a class="code" href="classActionManagerTimer.html#a4100f40387b7e278d996320ace311a1e">maction_</a>.<a class="code" href="classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32">lock</a>();</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        <a class="code" href="classActionManagerTimer.html#a74bc451c556cb2f583576c8ddbbb52b0">actions_</a>.clear();</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        <a class="code" href="classActionManagerTimer.html#a4100f40387b7e278d996320ace311a1e">maction_</a>.<a class="code" href="classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3">unlock</a>();</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    }</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160; </div>
+<div class="line"><a name="l00233"></a><span class="lineno"><a class="line" href="classActionManagerTimer.html#af2afa74f3445e32823371b926aa3f55c">  233</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classActionManagerTimer.html#af2afa74f3445e32823371b926aa3f55c">clearTimers</a>()</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    {</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;        <a class="code" href="classActionManagerTimer.html#ad09e42a9bd1d0c31e720584566bf0554">mtimer_</a>.<a class="code" href="classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32">lock</a>();</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;        <a class="code" href="classActionManagerTimer.html#a49952361272df689f4aa9906fd7d3cc3">timers_</a>.clear();</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;        <a class="code" href="classActionManagerTimer.html#a351dc95645c20b34ac8d9e8feb8989db">ptimers_</a>.clear();</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;        <a class="code" href="classActionManagerTimer.html#a476ce45a4ebfde0818ac44f2c62c6b03">ptimers_tobestarted_</a>.clear();</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;        <a class="code" href="classActionManagerTimer.html#ad09e42a9bd1d0c31e720584566bf0554">mtimer_</a>.<a class="code" href="classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3">unlock</a>();</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    }</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160; </div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classActionManagerTimer.html#a072223491745aebbaa0344124635b7f8">stop</a>();</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160; </div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classActionManagerTimer.html#ad14a24ea8609f916a5fb3e43c7f0e856">pause</a>(<span class="keywordtype">bool</span> value);</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160; </div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classActionManagerTimer.html#a40e5f9d8c2706434376d416d3e43fd3b">debugActions</a>();</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160; </div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classActionManagerTimer.html#a17c6563c7a6c0955c7ca2230b038d832">debugPTimers</a>();</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160; </div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classActionManagerTimer.html#aef6be0b68f6595c8ac5ce89c66b9333a">debugTimers</a>();</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;};</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160; </div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aChronometer_8hpp_html"><div class="ttname"><a href="Chronometer_8hpp.html">Chronometer.hpp</a></div><div class="ttdoc">Définition de la classe Chronometer.</div></div>
+<div class="ttc" id="aIAction_8hpp_html"><div class="ttname"><a href="IAction_8hpp.html">IAction.hpp</a></div><div class="ttdoc">Definition de l'interface IAction.</div></div>
+<div class="ttc" id="aITimerListener_8hpp_html"><div class="ttname"><a href="ITimerListener_8hpp.html">ITimerListener.hpp</a></div><div class="ttdoc">Définition de l'interface ITimerListener.</div></div>
+<div class="ttc" id="aITimerPosixListener_8hpp_html"><div class="ttname"><a href="ITimerPosixListener_8hpp.html">ITimerPosixListener.hpp</a></div><div class="ttdoc">Définition de l'interface ITimerPosixListener.</div></div>
+<div class="ttc" id="aLoggerFactory_8hpp_html"><div class="ttname"><a href="LoggerFactory_8hpp.html">LoggerFactory.hpp</a></div><div class="ttdoc">Définition de la classe LoggerFactory.</div></div>
+<div class="ttc" id="aLogger_8hpp_html"><div class="ttname"><a href="Logger_8hpp.html">Logger.hpp</a></div><div class="ttdoc">Définition de la classe Logger.</div></div>
+<div class="ttc" id="aPointerList_8hpp_html"><div class="ttname"><a href="PointerList_8hpp.html">PointerList.hpp</a></div><div class="ttdoc">Définition de la classe PointerList.</div></div>
+<div class="ttc" id="aclassActionManagerTimer_html"><div class="ttname"><a href="classActionManagerTimer.html">ActionManagerTimer</a></div><div class="ttdoc">Classe de gestion des actions du robot et des actions par timer.</div><div class="ttdef"><b>Definition:</b> ActionManagerTimer.hpp:26</div></div>
+<div class="ttc" id="aclassActionManagerTimer_html_a072223491745aebbaa0344124635b7f8"><div class="ttname"><a href="classActionManagerTimer.html#a072223491745aebbaa0344124635b7f8">ActionManagerTimer::stop</a></div><div class="ttdeci">void stop()</div><div class="ttdoc">Signale au thread qu'il doit s'arreter (proprement). Arrete aussi tous les timers posix en cours en l...</div><div class="ttdef"><b>Definition:</b> ActionManagerTimer.cpp:217</div></div>
+<div class="ttc" id="aclassActionManagerTimer_html_a17c6563c7a6c0955c7ca2230b038d832"><div class="ttname"><a href="classActionManagerTimer.html#a17c6563c7a6c0955c7ca2230b038d832">ActionManagerTimer::debugPTimers</a></div><div class="ttdeci">void debugPTimers()</div><div class="ttdoc">Affiche via le logger les timers posix en cours et en attente.</div><div class="ttdef"><b>Definition:</b> ActionManagerTimer.cpp:258</div></div>
+<div class="ttc" id="aclassActionManagerTimer_html_a1d13444da59d96cb4a127fbcea4075c7"><div class="ttname"><a href="classActionManagerTimer.html#a1d13444da59d96cb4a127fbcea4075c7">ActionManagerTimer::findPTimer</a></div><div class="ttdeci">bool findPTimer(std::string timerNameToFind)</div><div class="ttdoc">Trouve un timer posix specifique.</div><div class="ttdef"><b>Definition:</b> ActionManagerTimer.cpp:159</div></div>
+<div class="ttc" id="aclassActionManagerTimer_html_a1dfa20a4149ac8c1fd892d851725010e"><div class="ttname"><a href="classActionManagerTimer.html#a1dfa20a4149ac8c1fd892d851725010e">ActionManagerTimer::AMT</a></div><div class="ttdeci">sem_t AMT</div><div class="ttdoc">Semaphore de gestion de la boucle des actions.</div><div class="ttdef"><b>Definition:</b> ActionManagerTimer.hpp:81</div></div>
+<div class="ttc" id="aclassActionManagerTimer_html_a20bd3b06bc5f9b9fb747bb27d154d88d"><div class="ttname"><a href="classActionManagerTimer.html#a20bd3b06bc5f9b9fb747bb27d154d88d">ActionManagerTimer::clearActions</a></div><div class="ttdeci">void clearActions()</div><div class="ttdoc">Vide la liste des actions actuellement enregistrees.</div><div class="ttdef"><b>Definition:</b> ActionManagerTimer.hpp:223</div></div>
+<div class="ttc" id="aclassActionManagerTimer_html_a280846361e5c7e0ebe57972755841c2b"><div class="ttname"><a href="classActionManagerTimer.html#a280846361e5c7e0ebe57972755841c2b">ActionManagerTimer::logger</a></div><div class="ttdeci">static const logs::Logger &amp; logger()</div><div class="ttdef"><b>Definition:</b> ActionManagerTimer.hpp:29</div></div>
+<div class="ttc" id="aclassActionManagerTimer_html_a2ac4679da14c48674714b3feef20b4f0"><div class="ttname"><a href="classActionManagerTimer.html#a2ac4679da14c48674714b3feef20b4f0">ActionManagerTimer::pause_</a></div><div class="ttdeci">std::atomic&lt; bool &gt; pause_</div><div class="ttdoc">Vaut true si les actions doivent se mettre en pause.</div><div class="ttdef"><b>Definition:</b> ActionManagerTimer.hpp:62</div></div>
+<div class="ttc" id="aclassActionManagerTimer_html_a3043c43e2b56ed05633d68bf5c530c1f"><div class="ttname"><a href="classActionManagerTimer.html#a3043c43e2b56ed05633d68bf5c530c1f">ActionManagerTimer::stopTimer</a></div><div class="ttdeci">void stopTimer(std::string timerNameToDelete)</div><div class="ttdoc">Arrete un timer specifique. Permet d'executer son action de fin puis le supprime de la liste.</div><div class="ttdef"><b>Definition:</b> ActionManagerTimer.cpp:107</div></div>
+<div class="ttc" id="aclassActionManagerTimer_html_a351dc95645c20b34ac8d9e8feb8989db"><div class="ttname"><a href="classActionManagerTimer.html#a351dc95645c20b34ac8d9e8feb8989db">ActionManagerTimer::ptimers_</a></div><div class="ttdeci">utils::PointerList&lt; ITimerPosixListener * &gt; ptimers_</div><div class="ttdoc">Liste des timers posix en cours d'execution.</div><div class="ttdef"><b>Definition:</b> ActionManagerTimer.hpp:48</div></div>
+<div class="ttc" id="aclassActionManagerTimer_html_a37abad611ac11d81f2ebcb8d9d5766f8"><div class="ttname"><a href="classActionManagerTimer.html#a37abad611ac11d81f2ebcb8d9d5766f8">ActionManagerTimer::addTimer</a></div><div class="ttdeci">void addTimer(ITimerListener *timer)</div><div class="ttdoc">Ajout d'un timer. deprecated.</div><div class="ttdef"><b>Definition:</b> ActionManagerTimer.hpp:170</div></div>
+<div class="ttc" id="aclassActionManagerTimer_html_a39f4cbb5ddbbe6a40980bb59b8b59b05"><div class="ttname"><a href="classActionManagerTimer.html#a39f4cbb5ddbbe6a40980bb59b8b59b05">ActionManagerTimer::unblock</a></div><div class="ttdeci">void unblock(std::string debug=&quot;ActionManagerTimer&quot;)</div><div class="ttdef"><b>Definition:</b> ActionManagerTimer.hpp:94</div></div>
+<div class="ttc" id="aclassActionManagerTimer_html_a40e5f9d8c2706434376d416d3e43fd3b"><div class="ttname"><a href="classActionManagerTimer.html#a40e5f9d8c2706434376d416d3e43fd3b">ActionManagerTimer::debugActions</a></div><div class="ttdeci">void debugActions()</div><div class="ttdoc">Affiche via le logger les actions en cours.</div><div class="ttdef"><b>Definition:</b> ActionManagerTimer.cpp:241</div></div>
+<div class="ttc" id="aclassActionManagerTimer_html_a4100f40387b7e278d996320ace311a1e"><div class="ttname"><a href="classActionManagerTimer.html#a4100f40387b7e278d996320ace311a1e">ActionManagerTimer::maction_</a></div><div class="ttdeci">utils::Mutex maction_</div><div class="ttdoc">Mutex lie aux actions.</div><div class="ttdef"><b>Definition:</b> ActionManagerTimer.hpp:76</div></div>
+<div class="ttc" id="aclassActionManagerTimer_html_a476ce45a4ebfde0818ac44f2c62c6b03"><div class="ttname"><a href="classActionManagerTimer.html#a476ce45a4ebfde0818ac44f2c62c6b03">ActionManagerTimer::ptimers_tobestarted_</a></div><div class="ttdeci">utils::PointerList&lt; ITimerPosixListener * &gt; ptimers_tobestarted_</div><div class="ttdoc">Liste des timers posix a demarrer au plus vite.</div><div class="ttdef"><b>Definition:</b> ActionManagerTimer.hpp:52</div></div>
+<div class="ttc" id="aclassActionManagerTimer_html_a49952361272df689f4aa9906fd7d3cc3"><div class="ttname"><a href="classActionManagerTimer.html#a49952361272df689f4aa9906fd7d3cc3">ActionManagerTimer::timers_</a></div><div class="ttdeci">utils::PointerList&lt; ITimerListener * &gt; timers_</div><div class="ttdoc">Liste des timers (gestion par timings), prend 100% processor.</div><div class="ttdef"><b>Definition:</b> ActionManagerTimer.hpp:43</div></div>
+<div class="ttc" id="aclassActionManagerTimer_html_a4d893b58bd1d02a9a610eabea05bec1a"><div class="ttname"><a href="classActionManagerTimer.html#a4d893b58bd1d02a9a610eabea05bec1a">ActionManagerTimer::addTimer</a></div><div class="ttdeci">void addTimer(ITimerPosixListener *timer)</div><div class="ttdoc">Ajout d'un timer posix.</div><div class="ttdef"><b>Definition:</b> ActionManagerTimer.hpp:183</div></div>
+<div class="ttc" id="aclassActionManagerTimer_html_a6e6db535941463a0e590a6779f111dd2"><div class="ttname"><a href="classActionManagerTimer.html#a6e6db535941463a0e590a6779f111dd2">ActionManagerTimer::countActions</a></div><div class="ttdeci">int countActions()</div><div class="ttdoc">Retourne le nombre d'actions.</div><div class="ttdef"><b>Definition:</b> ActionManagerTimer.hpp:125</div></div>
+<div class="ttc" id="aclassActionManagerTimer_html_a74bc451c556cb2f583576c8ddbbb52b0"><div class="ttname"><a href="classActionManagerTimer.html#a74bc451c556cb2f583576c8ddbbb52b0">ActionManagerTimer::actions_</a></div><div class="ttdeci">utils::PointerList&lt; IAction * &gt; actions_</div><div class="ttdoc">Liste des actions a executer.</div><div class="ttdef"><b>Definition:</b> ActionManagerTimer.hpp:38</div></div>
+<div class="ttc" id="aclassActionManagerTimer_html_a77bc841824ad1722363dd29a351a74cf"><div class="ttname"><a href="classActionManagerTimer.html#a77bc841824ad1722363dd29a351a74cf">ActionManagerTimer::stopPTimer</a></div><div class="ttdeci">void stopPTimer(std::string timerNameToDelete)</div><div class="ttdoc">Arrete un timer posix specifique. Permet d'executer son action de fin puis le supprime de la liste.</div><div class="ttdef"><b>Definition:</b> ActionManagerTimer.cpp:131</div></div>
+<div class="ttc" id="aclassActionManagerTimer_html_a8eb81df877c40053d71f659265882058"><div class="ttname"><a href="classActionManagerTimer.html#a8eb81df877c40053d71f659265882058">ActionManagerTimer::execute</a></div><div class="ttdeci">virtual void execute()</div><div class="ttdoc">Execute l'ensemble des actions enregistrees.</div><div class="ttdef"><b>Definition:</b> ActionManagerTimer.cpp:20</div></div>
+<div class="ttc" id="aclassActionManagerTimer_html_a957a5706d13675e5282372523c2db521"><div class="ttname"><a href="classActionManagerTimer.html#a957a5706d13675e5282372523c2db521">ActionManagerTimer::ActionManagerTimer</a></div><div class="ttdeci">ActionManagerTimer()</div><div class="ttdoc">Constructeur de la classe.</div><div class="ttdef"><b>Definition:</b> ActionManagerTimer.cpp:9</div></div>
+<div class="ttc" id="aclassActionManagerTimer_html_a96d4d34ee34ec4f6741e36dbd290b53a"><div class="ttname"><a href="classActionManagerTimer.html#a96d4d34ee34ec4f6741e36dbd290b53a">ActionManagerTimer::msem_</a></div><div class="ttdeci">utils::Mutex msem_</div><div class="ttdoc">Mutex pour proteger les operations sur le semaphore.</div><div class="ttdef"><b>Definition:</b> ActionManagerTimer.hpp:85</div></div>
+<div class="ttc" id="aclassActionManagerTimer_html_a9d2195bc8f6a025bd3106fb63f89c2aa"><div class="ttname"><a href="classActionManagerTimer.html#a9d2195bc8f6a025bd3106fb63f89c2aa">ActionManagerTimer::chronoTimer_</a></div><div class="ttdeci">utils::Chronometer chronoTimer_</div><div class="ttdoc">Chronometre lie au Minuteur.</div><div class="ttdef"><b>Definition:</b> ActionManagerTimer.hpp:67</div></div>
+<div class="ttc" id="aclassActionManagerTimer_html_ad09e42a9bd1d0c31e720584566bf0554"><div class="ttname"><a href="classActionManagerTimer.html#ad09e42a9bd1d0c31e720584566bf0554">ActionManagerTimer::mtimer_</a></div><div class="ttdeci">utils::Mutex mtimer_</div><div class="ttdoc">Mutex lie aux timers.</div><div class="ttdef"><b>Definition:</b> ActionManagerTimer.hpp:72</div></div>
+<div class="ttc" id="aclassActionManagerTimer_html_ad14a24ea8609f916a5fb3e43c7f0e856"><div class="ttname"><a href="classActionManagerTimer.html#ad14a24ea8609f916a5fb3e43c7f0e856">ActionManagerTimer::pause</a></div><div class="ttdeci">void pause(bool value)</div><div class="ttdoc">Met en pause la boucle du manager d'actions et de timer.</div><div class="ttdef"><b>Definition:</b> ActionManagerTimer.cpp:225</div></div>
+<div class="ttc" id="aclassActionManagerTimer_html_ad44aa7bf3d361e60d3ed764d833eafc5"><div class="ttname"><a href="classActionManagerTimer.html#ad44aa7bf3d361e60d3ed764d833eafc5">ActionManagerTimer::addAction</a></div><div class="ttdeci">void addAction(IAction *action)</div><div class="ttdoc">Ajout d'une action.</div><div class="ttdef"><b>Definition:</b> ActionManagerTimer.hpp:158</div></div>
+<div class="ttc" id="aclassActionManagerTimer_html_ad465b1e6b2f352a92cc10bcaf5e6416e"><div class="ttname"><a href="classActionManagerTimer.html#ad465b1e6b2f352a92cc10bcaf5e6416e">ActionManagerTimer::~ActionManagerTimer</a></div><div class="ttdeci">virtual ~ActionManagerTimer()</div><div class="ttdoc">Destructeur de la classe.</div><div class="ttdef"><b>Definition:</b> ActionManagerTimer.hpp:117</div></div>
+<div class="ttc" id="aclassActionManagerTimer_html_ad5a07cffbb588205edcdcb594208769c"><div class="ttname"><a href="classActionManagerTimer.html#ad5a07cffbb588205edcdcb594208769c">ActionManagerTimer::countPTimers</a></div><div class="ttdeci">int countPTimers()</div><div class="ttdoc">Retourne le nombre de timers posix.</div><div class="ttdef"><b>Definition:</b> ActionManagerTimer.hpp:146</div></div>
+<div class="ttc" id="aclassActionManagerTimer_html_ae4749f64ec9d2e6f769cd4b42f37d5e2"><div class="ttname"><a href="classActionManagerTimer.html#ae4749f64ec9d2e6f769cd4b42f37d5e2">ActionManagerTimer::stopActionsAndTimers_</a></div><div class="ttdeci">std::atomic&lt; bool &gt; stopActionsAndTimers_</div><div class="ttdoc">Vaut true si les actions et timers doivent s'arreter.</div><div class="ttdef"><b>Definition:</b> ActionManagerTimer.hpp:57</div></div>
+<div class="ttc" id="aclassActionManagerTimer_html_aea93da8bac8e622881a125ee7506a7ca"><div class="ttname"><a href="classActionManagerTimer.html#aea93da8bac8e622881a125ee7506a7ca">ActionManagerTimer::stopAllPTimers</a></div><div class="ttdeci">void stopAllPTimers()</div><div class="ttdoc">Arrete tous les timers posix. Permet d'executer leur action de fin puis les supprime de la liste.</div><div class="ttdef"><b>Definition:</b> ActionManagerTimer.cpp:181</div></div>
+<div class="ttc" id="aclassActionManagerTimer_html_aef6be0b68f6595c8ac5ce89c66b9333a"><div class="ttname"><a href="classActionManagerTimer.html#aef6be0b68f6595c8ac5ce89c66b9333a">ActionManagerTimer::debugTimers</a></div><div class="ttdeci">void debugTimers()</div><div class="ttdoc">Affiche via le logger les timers classiques en cours. Deprecated.</div><div class="ttdef"><b>Definition:</b> ActionManagerTimer.cpp:293</div></div>
+<div class="ttc" id="aclassActionManagerTimer_html_af2afa74f3445e32823371b926aa3f55c"><div class="ttname"><a href="classActionManagerTimer.html#af2afa74f3445e32823371b926aa3f55c">ActionManagerTimer::clearTimers</a></div><div class="ttdeci">void clearTimers()</div><div class="ttdoc">Vide la liste des timers actuellement enregistres.</div><div class="ttdef"><b>Definition:</b> ActionManagerTimer.hpp:233</div></div>
+<div class="ttc" id="aclassActionManagerTimer_html_af44ca42a2cebadd32062dedf874d4f82"><div class="ttname"><a href="classActionManagerTimer.html#af44ca42a2cebadd32062dedf874d4f82">ActionManagerTimer::countTimers</a></div><div class="ttdeci">int countTimers()</div><div class="ttdoc">Retourne le nombre de timers.</div><div class="ttdef"><b>Definition:</b> ActionManagerTimer.hpp:136</div></div>
+<div class="ttc" id="aclassIAction_html"><div class="ttname"><a href="classIAction.html">IAction</a></div><div class="ttdoc">Cette interface represente une action executee.</div><div class="ttdef"><b>Definition:</b> IAction.hpp:14</div></div>
+<div class="ttc" id="aclassITimerListener_html"><div class="ttname"><a href="classITimerListener.html">ITimerListener</a></div><div class="ttdoc">Cette interface représente une action executée par un timer lorsqu'il atteint son seuil d'execution.</div><div class="ttdef"><b>Definition:</b> ITimerListener.hpp:20</div></div>
+<div class="ttc" id="aclassITimerListener_html_a746c0ceee4eb354754d2e90c5638454c"><div class="ttname"><a href="classITimerListener.html#a746c0ceee4eb354754d2e90c5638454c">ITimerListener::timeSpan</a></div><div class="ttdeci">int timeSpan()</div><div class="ttdef"><b>Definition:</b> ITimerListener.hpp:41</div></div>
+<div class="ttc" id="aclassITimerPosixListener_html"><div class="ttname"><a href="classITimerPosixListener.html">ITimerPosixListener</a></div><div class="ttdoc">Cette interface représente une action executée par un timer lorsqu'il atteint son seuil d'execution.</div><div class="ttdef"><b>Definition:</b> ITimerPosixListener.hpp:31</div></div>
+<div class="ttc" id="aclassITimerPosixListener_html_a68a996ffa95155e824dec8653fbc8e40"><div class="ttname"><a href="classITimerPosixListener.html#a68a996ffa95155e824dec8653fbc8e40">ITimerPosixListener::timeSpan_us</a></div><div class="ttdeci">int timeSpan_us()</div><div class="ttdoc">Getter sur le temps interval du timer.</div><div class="ttdef"><b>Definition:</b> ITimerPosixListener.hpp:58</div></div>
+<div class="ttc" id="aclasslogs_1_1LoggerFactory_html_a82585b5de73e471e06cafdccc3b3721e"><div class="ttname"><a href="classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e">logs::LoggerFactory::logger</a></div><div class="ttdeci">static const Logger &amp; logger(const std::string &amp;name)</div><div class="ttdoc">Cette méthode statique retourne un Logger en fonction de son nom.</div><div class="ttdef"><b>Definition:</b> LoggerFactory.cpp:54</div></div>
+<div class="ttc" id="aclasslogs_1_1Logger_html"><div class="ttname"><a href="classlogs_1_1Logger.html">logs::Logger</a></div><div class="ttdoc">Classe de gestion des traces de l'application.</div><div class="ttdef"><b>Definition:</b> Logger.hpp:63</div></div>
+<div class="ttc" id="aclasslogs_1_1Logger_html_a8b6a2019233bc44b3c3c86c653910831"><div class="ttname"><a href="classlogs_1_1Logger.html#a8b6a2019233bc44b3c3c86c653910831">logs::Logger::error</a></div><div class="ttdeci">void error(const std::string &amp;message) const</div><div class="ttdoc">Trace un message de niveau ERROR.</div><div class="ttdef"><b>Definition:</b> Logger.hpp:310</div></div>
+<div class="ttc" id="aclassutils_1_1Chronometer_html"><div class="ttname"><a href="classutils_1_1Chronometer.html">utils::Chronometer</a></div><div class="ttdoc">Gestion d'un chronomètre.</div><div class="ttdef"><b>Definition:</b> Chronometer.hpp:28</div></div>
+<div class="ttc" id="aclassutils_1_1Mutex_html"><div class="ttname"><a href="classutils_1_1Mutex.html">utils::Mutex</a></div><div class="ttdoc">Implémentation d'une gestion de mutex.</div><div class="ttdef"><b>Definition:</b> Mutex.hpp:17</div></div>
+<div class="ttc" id="aclassutils_1_1Mutex_html_a59b2079dc7f803d49f78ac9c04406cd3"><div class="ttname"><a href="classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3">utils::Mutex::unlock</a></div><div class="ttdeci">void unlock()</div><div class="ttdoc">Déverrouille le mutex. Cette méthode doit être appelée après avoir utiliser la ressource associée.</div><div class="ttdef"><b>Definition:</b> Mutex.cpp:13</div></div>
+<div class="ttc" id="aclassutils_1_1Mutex_html_aa584b418a5ef484f76b93e361a1d7e32"><div class="ttname"><a href="classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32">utils::Mutex::lock</a></div><div class="ttdeci">void lock()</div><div class="ttdoc">Verrouille le mutex. Cette méthode doit être appelée avant d'utiliser la ressource associée....</div><div class="ttdef"><b>Definition:</b> Mutex.cpp:9</div></div>
+<div class="ttc" id="aclassutils_1_1PointerList_html"><div class="ttname"><a href="classutils_1_1PointerList.html">utils::PointerList&lt; IAction * &gt;</a></div></div>
+<div class="ttc" id="aclassutils_1_1Thread_html"><div class="ttname"><a href="classutils_1_1Thread.html">utils::Thread</a></div><div class="ttdoc">Classe de base pour les threads (wrapper POSIX pthread).</div><div class="ttdef"><b>Definition:</b> Thread.hpp:55</div></div>
+<div class="ttc" id="anamespacelogs_html_ac6f325c6cfe6189bc8e243daa184453b"><div class="ttname"><a href="namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b">logs::end</a></div><div class="ttdeci">void end(logs::Logger::LoggerBuffer &amp;buffer)</div><div class="ttdoc">Cette méthode permet de finir les flux de construction par la notation.</div><div class="ttdef"><b>Definition:</b> Logger.cpp:45</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Jeudi 26 Mars 2026 23:28:54 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

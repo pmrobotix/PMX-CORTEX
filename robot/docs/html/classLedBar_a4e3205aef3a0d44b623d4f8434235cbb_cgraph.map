@@ -1,0 +1,28 @@
+<map id="LedBar::startTimerK2mil" name="LedBar::startTimerK2mil">
+<area shape="rect" id="node1" title="Lance l&#39;action d&#39;allumer alternativement les leds à la &quot;K2000&quot;." alt="" coords="5,145,187,172"/>
+<area shape="rect" id="node2" href="$classAActionsElement.html#a3fbd5b8201049a59602d8b7201a9ef8a" title="Retourne une référence sur le Actions associé." alt="" coords="235,5,423,32"/>
+<area shape="rect" id="node3" href="$classActions.html#a173e3bb37b9cbb0e5ef423b1719b7afd" title="Ajout d&#39;un timer standard." alt="" coords="259,196,399,223"/>
+<area shape="rect" id="node21" href="$classLedBar.html#a15e2f8d21596686ea1a6938899fe4251" title="Retourne le nombre de LEDs de la barre." alt="" coords="271,247,386,273"/>
+<area shape="rect" id="node22" href="$classLedBar.html#a2e77350f53c4579d7f71cc00d4f26dad" title="Retourne vrai si une action ou un timer est en cours." alt="" coords="267,297,391,324"/>
+<area shape="rect" id="node23" href="$classLedBar.html#a0c1e129df2b8cec98a190bf3c9aa18d3" title="Donne l&#39;ordre d&#39;arreter et attend au moins 1 ms." alt="" coords="499,107,601,133"/>
+<area shape="rect" id="node24" href="$classLedBar.html#a443827fdcb184f64cd2f71861564faed" title="Color de la led a appliquer. ‍/ LedColor color_;." alt="" coords="709,107,832,133"/>
+<area shape="rect" id="node4" href="$classActionManagerTimer.html#a37abad611ac11d81f2ebcb8d9d5766f8" title="Ajout d&#39;un timer. deprecated." alt="" coords="471,369,629,410"/>
+<area shape="rect" id="node8" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="956,259,1037,285"/>
+<area shape="rect" id="node12" href="$classlogs_1_1Logger.html#a8b6a2019233bc44b3c3c86c653910831" title="Trace un message de niveau ERROR." alt="" coords="927,208,1067,235"/>
+<area shape="rect" id="node18" href="$classActions.html#a637e05ac19e873621b1e123c2ff29990" title="Indique si le gestionnaire d&#39;actions est démarré." alt="" coords="479,507,621,533"/>
+<area shape="rect" id="node20" href="$classActions.html#a9cc6c9bd885d6e03234b0cf5061a5ca1" title="Return Logger linked to Actions." alt="" coords="491,157,609,184"/>
+<area shape="rect" id="node5" href="$classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32" title="Verrouille le mutex. Cette méthode doit être appelée avant d&#39;utiliser la ressource associée...." alt="" coords="1434,401,1569,428"/>
+<area shape="rect" id="node6" href="$classITimerListener.html#a746c0ceee4eb354754d2e90c5638454c" title=" " alt="" coords="677,376,864,403"/>
+<area shape="rect" id="node7" href="$classActionManagerTimer.html#a39f4cbb5ddbbe6a40980bb59b8b59b05" title=" " alt="" coords="691,310,850,351"/>
+<area shape="rect" id="node10" href="$classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3" title="Déverrouille le mutex. Cette méthode doit être appelée après avoir utiliser la ressource associée." alt="" coords="1426,503,1577,529"/>
+<area shape="rect" id="node13" href="$classActionManagerTimer.html#a280846361e5c7e0ebe57972755841c2b" title=" " alt="" coords="917,310,1076,351"/>
+<area shape="rect" id="node9" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#a0e4fd77693fd899ec1b0670354f93a02" title="Cette méthode valide le message en cours de construction et le transmet au Logger de référence." alt="" coords="1129,300,1353,327"/>
+<area shape="rect" id="node11" href="$classlogs_1_1Logger.html#afa535aaf4891e02c4ff7f84d372b5b1b" title="Méthode générique de trace d&#39;un message." alt="" coords="1401,288,1601,315"/>
+<area shape="rect" id="node14" href="$classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e" title="Cette méthode statique retourne un Logger en fonction de son nom." alt="" coords="1167,150,1315,191"/>
+<area shape="rect" id="node15" href="$classlogs_1_1LoggerFactory.html#ac89f19c0ffd71aa8cdc1c2d44c03809e" title="Cette méthode ajoute un appender au système." alt="" coords="1412,157,1591,184"/>
+<area shape="rect" id="node16" href="$classlogs_1_1LoggerFactory.html#a90478b91d7af2ef8841ded21e3521f69" title="Cette méthode statique retourne l&#39;instance unique de la classe LoggerFactory." alt="" coords="1427,209,1575,250"/>
+<area shape="rect" id="node17" href="$classlogs_1_1LoggerFactory.html#a212aa623f4b6bee12cb39e8017dde670" title="Cette méthode retourne le Logger principal qui définit le niveau de trace par défaut." alt="" coords="1427,91,1575,133"/>
+<area shape="rect" id="node19" href="$classutils_1_1Thread.html#ada9233f3e669c925e9ed518201ad31cd" title="Retourne l&#39;état courant du thread." alt="" coords="1169,579,1313,605"/>
+<area shape="rect" id="node25" href="$classLedBar.html#a349f726f4e7cd0058f95b6c9d9453b18" title="Retourne le Logger associé à la classe LedBar." alt="" coords="939,107,1055,133"/>
+<area shape="rect" id="node26" href="$namespaceutils.html#a4f86fc4c334661a6995538cc080a40c9" title="Met en pause le thread courant pendant usec microsecondes." alt="" coords="912,56,1081,83"/>
+</map>

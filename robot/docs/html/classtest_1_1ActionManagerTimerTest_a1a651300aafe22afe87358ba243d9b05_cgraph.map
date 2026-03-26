@@ -1,0 +1,36 @@
+<map id="test::ActionManagerTimerTest::testStopPTimerByName" name="test::ActionManagerTimerTest::testStopPTimerByName">
+<area shape="rect" id="node1" title=" " alt="" coords="5,455,217,496"/>
+<area shape="rect" id="node2" href="$classActionManagerTimer.html#a37abad611ac11d81f2ebcb8d9d5766f8" title="Ajout d&#39;un timer. deprecated." alt="" coords="484,396,643,437"/>
+<area shape="rect" id="node6" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="995,642,1077,669"/>
+<area shape="rect" id="node16" href="$classActionManagerTimer.html#ad5a07cffbb588205edcdcb594208769c" title="Retourne le nombre de timers posix." alt="" coords="1199,427,1358,468"/>
+<area shape="rect" id="node17" href="$classCountingPosixTimer.html#ac3296aa1b17b067e082bba619424007c" title=" " alt="" coords="268,455,421,496"/>
+<area shape="rect" id="node18" href="$classutils_1_1Thread.html#a430ee2b8962147b587157fac97932219" title="Lance le thread." alt="" coords="493,71,634,98"/>
+<area shape="rect" id="node24" href="$classActionManagerTimer.html#a072223491745aebbaa0344124635b7f8" title="Signale au thread qu&#39;il doit s&#39;arreter (proprement). Arrete aussi tous les timers posix en cours en l..." alt="" coords="265,572,424,613"/>
+<area shape="rect" id="node30" href="$classActionManagerTimer.html#a77bc841824ad1722363dd29a351a74cf" title="Arrete un timer posix specifique. Permet d&#39;executer son action de fin puis le supprime de la liste." alt="" coords="484,1027,643,1068"/>
+<area shape="rect" id="node3" href="$classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32" title="Verrouille le mutex. Cette méthode doit être appelée avant d&#39;utiliser la ressource associée...." alt="" coords="1471,325,1606,351"/>
+<area shape="rect" id="node4" href="$classITimerListener.html#a746c0ceee4eb354754d2e90c5638454c" title=" " alt="" coords="711,318,897,345"/>
+<area shape="rect" id="node5" href="$classActionManagerTimer.html#a39f4cbb5ddbbe6a40980bb59b8b59b05" title=" " alt="" coords="725,623,883,664"/>
+<area shape="rect" id="node8" href="$classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3" title="Déverrouille le mutex. Cette méthode doit être appelée après avoir utiliser la ressource associée." alt="" coords="1463,645,1614,671"/>
+<area shape="rect" id="node10" href="$classlogs_1_1Logger.html#a8b6a2019233bc44b3c3c86c653910831" title="Trace un message de niveau ERROR." alt="" coords="966,847,1106,874"/>
+<area shape="rect" id="node11" href="$classActionManagerTimer.html#a280846361e5c7e0ebe57972755841c2b" title=" " alt="" coords="957,905,1115,947"/>
+<area shape="rect" id="node7" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#a0e4fd77693fd899ec1b0670354f93a02" title="Cette méthode valide le message en cours de construction et le transmet au Logger de référence." alt="" coords="1167,695,1391,722"/>
+<area shape="rect" id="node9" href="$classlogs_1_1Logger.html#afa535aaf4891e02c4ff7f84d372b5b1b" title="Méthode générique de trace d&#39;un message." alt="" coords="1439,847,1639,874"/>
+<area shape="rect" id="node12" href="$classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e" title="Cette méthode statique retourne un Logger en fonction de son nom." alt="" coords="1205,1161,1353,1203"/>
+<area shape="rect" id="node13" href="$classlogs_1_1LoggerFactory.html#ac89f19c0ffd71aa8cdc1c2d44c03809e" title="Cette méthode ajoute un appender au système." alt="" coords="1449,1110,1628,1137"/>
+<area shape="rect" id="node14" href="$classlogs_1_1LoggerFactory.html#a90478b91d7af2ef8841ded21e3521f69" title="Cette méthode statique retourne l&#39;instance unique de la classe LoggerFactory." alt="" coords="1465,1161,1613,1203"/>
+<area shape="rect" id="node15" href="$classlogs_1_1LoggerFactory.html#a212aa623f4b6bee12cb39e8017dde670" title="Cette méthode retourne le Logger principal qui définit le niveau de trace par défaut." alt="" coords="1465,1227,1613,1268"/>
+<area shape="rect" id="node19" href="$classutils_1_1Thread.html#a61b6c3d0b87570254646120b323b89f7" title="Cette méthode sert de point d&#39;entrée pour l&#39;appel à pcreate_thread." alt="" coords="715,71,893,98"/>
+<area shape="rect" id="node23" href="$namespaceutils.html#ac714339512d6dc1ee14c5b5a92d535be" title="Définit la priorité temps&#45;réel (SCHED_FIFO) du thread spécifié." alt="" coords="734,5,874,47"/>
+<area shape="rect" id="node20" href="$classutils_1_1Thread.html#a202b3fabad41b3be6d996043b262a43a" title="Méthode virtuelle pure à implémenter dans les sous&#45;classes." alt="" coords="955,71,1117,98"/>
+<area shape="rect" id="node21" href="$classutils_1_1Thread.html#a46589324e8fc0735c20268db70d34aa5" title="Modifie l&#39;état du thread (thread&#45;safe)." alt="" coords="953,223,1119,250"/>
+<area shape="rect" id="node22" href="$classutils_1_1Thread.html#ada9233f3e669c925e9ed518201ad31cd" title="Retourne l&#39;état courant du thread." alt="" coords="1207,325,1351,351"/>
+<area shape="rect" id="node25" href="$classActionManagerTimer.html#aea93da8bac8e622881a125ee7506a7ca" title="Arrete tous les timers posix. Permet d&#39;executer leur action de fin puis les supprime de la liste." alt="" coords="484,627,643,668"/>
+<area shape="rect" id="node29" href="$classutils_1_1Thread.html#a29b8cb62f6b5f80ffe5b050167780f97" title="Attend la fin du thread (appelle pthread_join)." alt="" coords="472,575,655,602"/>
+<area shape="rect" id="node26" href="$classITimerListener.html#a0004b567b000eef6df12d9d970909142" title="Actions de fin à executer pour le timer." alt="" coords="703,689,905,715"/>
+<area shape="rect" id="node27" href="$classITimerPosixListener.html#a4df70962b58b13d521f1f7f91ec6fc13" title="Actions de fin à executer pour le timer." alt="" coords="729,841,879,883"/>
+<area shape="rect" id="node28" href="$classITimerPosixListener.html#a80bdf978eda3cfa0d9271a3c2e1d3f3a" title=" " alt="" coords="961,717,1111,759"/>
+<area shape="rect" id="node31" href="$classutils_1_1PointerList.html#a501664b90309db885554d35e89739681" title="Returns a read/write iterator that points to the first element in the list. Iteration is done in ordi..." alt="" coords="741,1161,867,1203"/>
+<area shape="rect" id="node32" href="$classutils_1_1PointerList.html#a9607cdd93b715a838e015452a49f61d5" title="Returns a read/write iterator that points one past the last element in the list. Iteration is done in..." alt="" coords="725,1227,883,1254"/>
+<area shape="rect" id="node33" href="$classITimerPosixListener.html#a56abc90e01e315320b855399b2c0096e" title="Getter sur les infos permettant d&#39;identifier le timer." alt="" coords="729,1279,879,1320"/>
+<area shape="rect" id="node34" href="$classlogs_1_1Logger.html#a240e8d7b58195c85bd7b4e4a3417d955" title="Trace un message de niveau WARN." alt="" coords="1208,1110,1349,1137"/>
+</map>

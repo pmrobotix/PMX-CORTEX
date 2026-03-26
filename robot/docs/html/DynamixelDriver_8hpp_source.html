@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot:  Fichier source de src/driver-arm/old_drivers/DynamixelDriver.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_a369de7a6c9198ab5056a0bc5cf5ea3e.html">driver-arm</a></li><li class="navelem"><a class="el" href="dir_2e42cb51c922d62a18450ece61fb488f.html">old_drivers</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">DynamixelDriver.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="DynamixelDriver_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * DynamixelDriver.hpp</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *  Created on: 3 avr. 2019</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> *      Author: pmx</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef DRIVER_OPOS6UL_ARM_DYNAMIXELDRIVER_HPP_</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define DRIVER_OPOS6UL_ARM_DYNAMIXELDRIVER_HPP_</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="AServoDriver_8hpp.html">interface/AServoDriver.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="LoggerFactory_8hpp.html">log/LoggerFactory.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="CCAx12Adc_8hpp.html">CCAx12Adc.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="classDynamixelDriver.html">   15</a></span>&#160;<span class="keyword">class </span><a class="code" href="classDynamixelDriver.html">DynamixelDriver</a>: <span class="keyword">public</span> <a class="code" href="classAServoDriver.html">AServoDriver</a></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="classDynamixelDriver.html#ae68af606a63d02ee0e7d1eba78efa79f">   22</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a> &amp; <a class="code" href="classDynamixelDriver.html#ae68af606a63d02ee0e7d1eba78efa79f">logger</a>()</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a> &amp; instance = <a class="code" href="classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e">logs::LoggerFactory::logger</a>(<span class="stringliteral">&quot;DynamixelDriver.OPO&quot;</span>);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keywordflow">return</span> instance;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    }</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classDynamixelDriver.html#a146fcfc770af60f8372eca993b594ec2">   28</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classDynamixelDriver.html#a146fcfc770af60f8372eca993b594ec2">connected_</a>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="classDynamixelDriver.html#a6652b8534770759128aa2e77ddf4faa8">DynamixelDriver</a>();</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classDynamixelDriver.html#a647cc62e97cb55795cd685fa674c95a8">   41</a></span>&#160;    <span class="keyword">inline</span> <a class="code" href="classDynamixelDriver.html#a647cc62e97cb55795cd685fa674c95a8">~DynamixelDriver</a>()</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    }</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classDynamixelDriver.html#a4b80dedb87fe1b129aae9a8f42c07850">setType</a>(<span class="keywordtype">int</span> servo, <a class="code" href="classAServoDriver.html#af202d0a72cdde1d9c0c0eba05e253365">ServoType</a> <a class="code" href="namespacebackward_1_1ColorMode.html#aec82452ed7333b210e205aaf6da2d090">type</a>);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classDynamixelDriver.html#a158a5d3216643efd306c036eac270752">hold</a>(<span class="keywordtype">int</span> servo);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="comment">//pos AX12 0-&gt;1023</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classDynamixelDriver.html#ab9d0e9a3d8ef54d7bd1fee238bfb5278">setPulsePos</a>(<span class="keywordtype">int</span> servo, <span class="keywordtype">int</span> pulsewidth);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classDynamixelDriver.html#a16fc2b6f82b30c98bab3d64079f16360">release</a>(<span class="keywordtype">int</span> servo);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classDynamixelDriver.html#a71ddbc9a7a468231b5334e95e9bd1eb3">setRate</a>(<span class="keywordtype">int</span> servo, <span class="keywordtype">int</span> speed);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classDynamixelDriver.html#a0dd50e159c075dc8e09a297501a5e23d">turn</a>(<span class="keywordtype">int</span> servo, <span class="keywordtype">int</span> speed);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classDynamixelDriver.html#a142a774bb716628483fa010727b84cdb">getMoving</a>(<span class="keywordtype">int</span> servo);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classDynamixelDriver.html#ae6a7d5cdcfd4bd372bf2a742b6ecaf4d">getPulsePos</a>(<span class="keywordtype">int</span> servo);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classDynamixelDriver.html#ad97e88d5cb378677264ab8db5c4c9d6a">ping</a>(<span class="keywordtype">int</span> servo);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classDynamixelDriver.html#a0e6d58c5b77563c22aeb5fc1e7ade822">setMinPulse</a>(<span class="keywordtype">int</span> servo, <span class="keywordtype">int</span> value = 0); <span class="comment">//default 0 [0 to 200]</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classDynamixelDriver.html#a61717d5a82e26a80d0a01df34ecf1b6f">setMidPulse</a>(<span class="keywordtype">int</span> servo, <span class="keywordtype">int</span> value = 512); <span class="comment">//default 512 [300 to 700]</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classDynamixelDriver.html#a827e50e566dd6d9e8e867c0db2b7d6c7">setMaxPulse</a>(<span class="keywordtype">int</span> servo, <span class="keywordtype">int</span> value = 1023); <span class="comment">//default 1023 [800 to 1023]</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classDynamixelDriver.html#acb5ea6fee2bdb1ac9dc90c2dc7c027f2">setPolarity</a>(<span class="keywordtype">int</span> servo, <span class="keywordtype">bool</span> inversed);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classDynamixelDriver.html#a3f431b5c398e201834c7b018a726a7c3">getTorque</a>(<span class="keywordtype">int</span> servo);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;};</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* DRIVER_OPOS6UL_ARM_DYNAMIXELDRIVER_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="aAServoDriver_8hpp_html"><div class="ttname"><a href="AServoDriver_8hpp.html">AServoDriver.hpp</a></div><div class="ttdoc">Interface abstraite du driver de servomoteurs.</div></div>
+<div class="ttc" id="aCCAx12Adc_8hpp_html"><div class="ttname"><a href="CCAx12Adc_8hpp.html">CCAx12Adc.hpp</a></div><div class="ttdoc">Définition de la classe CCAx12Adc. Program for the Made by PM-ROBOTIX card to manage servomotor AX12,...</div></div>
+<div class="ttc" id="aLoggerFactory_8hpp_html"><div class="ttname"><a href="LoggerFactory_8hpp.html">LoggerFactory.hpp</a></div><div class="ttdoc">Définition de la classe LoggerFactory.</div></div>
+<div class="ttc" id="aclassAServoDriver_html"><div class="ttname"><a href="classAServoDriver.html">AServoDriver</a></div><div class="ttdoc">Interface abstraite du driver de servomoteurs.</div><div class="ttdef"><b>Definition:</b> AServoDriver.hpp:20</div></div>
+<div class="ttc" id="aclassAServoDriver_html_af202d0a72cdde1d9c0c0eba05e253365"><div class="ttname"><a href="classAServoDriver.html#af202d0a72cdde1d9c0c0eba05e253365">AServoDriver::ServoType</a></div><div class="ttdeci">ServoType</div><div class="ttdoc">Type de servomoteur.</div><div class="ttdef"><b>Definition:</b> AServoDriver.hpp:28</div></div>
+<div class="ttc" id="aclassDynamixelDriver_html"><div class="ttname"><a href="classDynamixelDriver.html">DynamixelDriver</a></div><div class="ttdef"><b>Definition:</b> DynamixelDriver.hpp:16</div></div>
+<div class="ttc" id="aclassDynamixelDriver_html_a0dd50e159c075dc8e09a297501a5e23d"><div class="ttname"><a href="classDynamixelDriver.html#a0dd50e159c075dc8e09a297501a5e23d">DynamixelDriver::turn</a></div><div class="ttdeci">void turn(int servo, int speed)</div><div class="ttdoc">Fait tourner le servo en mode moteur continu.</div><div class="ttdef"><b>Definition:</b> DynamixelDriver.cpp:60</div></div>
+<div class="ttc" id="aclassDynamixelDriver_html_a0e6d58c5b77563c22aeb5fc1e7ade822"><div class="ttname"><a href="classDynamixelDriver.html#a0e6d58c5b77563c22aeb5fc1e7ade822">DynamixelDriver::setMinPulse</a></div><div class="ttdeci">void setMinPulse(int servo, int value=0)</div><div class="ttdoc">Definit la largeur d'impulsion minimale.</div><div class="ttdef"><b>Definition:</b> DynamixelDriver.cpp:124</div></div>
+<div class="ttc" id="aclassDynamixelDriver_html_a142a774bb716628483fa010727b84cdb"><div class="ttname"><a href="classDynamixelDriver.html#a142a774bb716628483fa010727b84cdb">DynamixelDriver::getMoving</a></div><div class="ttdeci">int getMoving(int servo)</div><div class="ttdoc">Verifie si le servo est en mouvement.</div><div class="ttdef"><b>Definition:</b> DynamixelDriver.cpp:91</div></div>
+<div class="ttc" id="aclassDynamixelDriver_html_a146fcfc770af60f8372eca993b594ec2"><div class="ttname"><a href="classDynamixelDriver.html#a146fcfc770af60f8372eca993b594ec2">DynamixelDriver::connected_</a></div><div class="ttdeci">int connected_</div><div class="ttdef"><b>Definition:</b> DynamixelDriver.hpp:28</div></div>
+<div class="ttc" id="aclassDynamixelDriver_html_a158a5d3216643efd306c036eac270752"><div class="ttname"><a href="classDynamixelDriver.html#a158a5d3216643efd306c036eac270752">DynamixelDriver::hold</a></div><div class="ttdeci">void hold(int servo)</div><div class="ttdoc">Maintient la position courante du servo (active le couple).</div><div class="ttdef"><b>Definition:</b> DynamixelDriver.cpp:44</div></div>
+<div class="ttc" id="aclassDynamixelDriver_html_a16fc2b6f82b30c98bab3d64079f16360"><div class="ttname"><a href="classDynamixelDriver.html#a16fc2b6f82b30c98bab3d64079f16360">DynamixelDriver::release</a></div><div class="ttdeci">void release(int servo)</div><div class="ttdoc">Relache le servo (desactive le couple).</div><div class="ttdef"><b>Definition:</b> DynamixelDriver.cpp:74</div></div>
+<div class="ttc" id="aclassDynamixelDriver_html_a3f431b5c398e201834c7b018a726a7c3"><div class="ttname"><a href="classDynamixelDriver.html#a3f431b5c398e201834c7b018a726a7c3">DynamixelDriver::getTorque</a></div><div class="ttdeci">int getTorque(int servo)</div><div class="ttdoc">Lit le couple courant du servo.</div><div class="ttdef"><b>Definition:</b> DynamixelDriver.cpp:140</div></div>
+<div class="ttc" id="aclassDynamixelDriver_html_a4b80dedb87fe1b129aae9a8f42c07850"><div class="ttname"><a href="classDynamixelDriver.html#a4b80dedb87fe1b129aae9a8f42c07850">DynamixelDriver::setType</a></div><div class="ttdeci">void setType(int servo, ServoType type)</div><div class="ttdoc">Definit le type de servo.</div><div class="ttdef"><b>Definition:</b> DynamixelDriver.cpp:38</div></div>
+<div class="ttc" id="aclassDynamixelDriver_html_a61717d5a82e26a80d0a01df34ecf1b6f"><div class="ttname"><a href="classDynamixelDriver.html#a61717d5a82e26a80d0a01df34ecf1b6f">DynamixelDriver::setMidPulse</a></div><div class="ttdeci">void setMidPulse(int servo, int value=512)</div><div class="ttdoc">Definit la largeur d'impulsion centrale (position neutre).</div><div class="ttdef"><b>Definition:</b> DynamixelDriver.cpp:128</div></div>
+<div class="ttc" id="aclassDynamixelDriver_html_a647cc62e97cb55795cd685fa674c95a8"><div class="ttname"><a href="classDynamixelDriver.html#a647cc62e97cb55795cd685fa674c95a8">DynamixelDriver::~DynamixelDriver</a></div><div class="ttdeci">~DynamixelDriver()</div><div class="ttdoc">Destructor.</div><div class="ttdef"><b>Definition:</b> DynamixelDriver.hpp:41</div></div>
+<div class="ttc" id="aclassDynamixelDriver_html_a6652b8534770759128aa2e77ddf4faa8"><div class="ttname"><a href="classDynamixelDriver.html#a6652b8534770759128aa2e77ddf4faa8">DynamixelDriver::DynamixelDriver</a></div><div class="ttdeci">DynamixelDriver()</div><div class="ttdoc">Constructor.</div><div class="ttdef"><b>Definition:</b> DynamixelDriver.cpp:11</div></div>
+<div class="ttc" id="aclassDynamixelDriver_html_a71ddbc9a7a468231b5334e95e9bd1eb3"><div class="ttname"><a href="classDynamixelDriver.html#a71ddbc9a7a468231b5334e95e9bd1eb3">DynamixelDriver::setRate</a></div><div class="ttdeci">void setRate(int servo, int speed)</div><div class="ttdef"><b>Definition:</b> DynamixelDriver.cpp:79</div></div>
+<div class="ttc" id="aclassDynamixelDriver_html_a827e50e566dd6d9e8e867c0db2b7d6c7"><div class="ttname"><a href="classDynamixelDriver.html#a827e50e566dd6d9e8e867c0db2b7d6c7">DynamixelDriver::setMaxPulse</a></div><div class="ttdeci">void setMaxPulse(int servo, int value=1023)</div><div class="ttdoc">Definit la largeur d'impulsion maximale.</div><div class="ttdef"><b>Definition:</b> DynamixelDriver.cpp:132</div></div>
+<div class="ttc" id="aclassDynamixelDriver_html_ab9d0e9a3d8ef54d7bd1fee238bfb5278"><div class="ttname"><a href="classDynamixelDriver.html#ab9d0e9a3d8ef54d7bd1fee238bfb5278">DynamixelDriver::setPulsePos</a></div><div class="ttdeci">void setPulsePos(int servo, int pulsewidth)</div><div class="ttdef"><b>Definition:</b> DynamixelDriver.cpp:49</div></div>
+<div class="ttc" id="aclassDynamixelDriver_html_acb5ea6fee2bdb1ac9dc90c2dc7c027f2"><div class="ttname"><a href="classDynamixelDriver.html#acb5ea6fee2bdb1ac9dc90c2dc7c027f2">DynamixelDriver::setPolarity</a></div><div class="ttdeci">void setPolarity(int servo, bool inversed)</div><div class="ttdoc">Inverse la polarite du servo.</div><div class="ttdef"><b>Definition:</b> DynamixelDriver.cpp:136</div></div>
+<div class="ttc" id="aclassDynamixelDriver_html_ad97e88d5cb378677264ab8db5c4c9d6a"><div class="ttname"><a href="classDynamixelDriver.html#ad97e88d5cb378677264ab8db5c4c9d6a">DynamixelDriver::ping</a></div><div class="ttdeci">int ping(int servo)</div><div class="ttdoc">Envoie un ping au servo pour verifier sa presence.</div><div class="ttdef"><b>Definition:</b> DynamixelDriver.cpp:110</div></div>
+<div class="ttc" id="aclassDynamixelDriver_html_ae68af606a63d02ee0e7d1eba78efa79f"><div class="ttname"><a href="classDynamixelDriver.html#ae68af606a63d02ee0e7d1eba78efa79f">DynamixelDriver::logger</a></div><div class="ttdeci">static const logs::Logger &amp; logger()</div><div class="ttdoc">Retourne le Logger associé à la classe DynamixelDriver(OPOS6UL).</div><div class="ttdef"><b>Definition:</b> DynamixelDriver.hpp:22</div></div>
+<div class="ttc" id="aclassDynamixelDriver_html_ae6a7d5cdcfd4bd372bf2a742b6ecaf4d"><div class="ttname"><a href="classDynamixelDriver.html#ae6a7d5cdcfd4bd372bf2a742b6ecaf4d">DynamixelDriver::getPulsePos</a></div><div class="ttdeci">int getPulsePos(int servo)</div><div class="ttdoc">Lit la position courante du servo.</div><div class="ttdef"><b>Definition:</b> DynamixelDriver.cpp:105</div></div>
+<div class="ttc" id="aclasslogs_1_1LoggerFactory_html_a82585b5de73e471e06cafdccc3b3721e"><div class="ttname"><a href="classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e">logs::LoggerFactory::logger</a></div><div class="ttdeci">static const Logger &amp; logger(const std::string &amp;name)</div><div class="ttdoc">Cette méthode statique retourne un Logger en fonction de son nom.</div><div class="ttdef"><b>Definition:</b> LoggerFactory.cpp:54</div></div>
+<div class="ttc" id="aclasslogs_1_1Logger_html"><div class="ttname"><a href="classlogs_1_1Logger.html">logs::Logger</a></div><div class="ttdoc">Classe de gestion des traces de l'application.</div><div class="ttdef"><b>Definition:</b> Logger.hpp:63</div></div>
+<div class="ttc" id="anamespacebackward_1_1ColorMode_html_aec82452ed7333b210e205aaf6da2d090"><div class="ttname"><a href="namespacebackward_1_1ColorMode.html#aec82452ed7333b210e205aaf6da2d090">backward::ColorMode::type</a></div><div class="ttdeci">type</div><div class="ttdef"><b>Definition:</b> backward.hpp:3906</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Jeudi 26 Mars 2026 23:28:55 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

@@ -1,0 +1,9 @@
+<map id="IAction" name="IAction">
+<area shape="rect" id="node1" title="Cette interface represente une action executee." alt="" coords="366,5,433,32"/>
+<area shape="rect" id="node2" href="$classCountingAction.html" title=" " alt="" coords="5,80,127,107"/>
+<area shape="rect" id="node3" href="$classLedBarAction.html" title="Cette action permet de definir les actions concernant la barre de leds." alt="" coords="151,80,259,107"/>
+<area shape="rect" id="node4" href="$classMockAction.html" title=" " alt="" coords="283,80,382,107"/>
+<area shape="rect" id="node5" href="$classOrderingAction.html" title=" " alt="" coords="407,80,525,107"/>
+<area shape="rect" id="node6" href="$classSoundBarAction.html" title="Cette action permet de definir les actions pour donner des sons." alt="" coords="550,80,675,107"/>
+<area shape="rect" id="node7" href="$classTestAction.html" title="Cette action permet de." alt="" coords="700,80,789,107"/>
+</map>

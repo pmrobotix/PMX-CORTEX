@@ -1,0 +1,13 @@
+<map id="GroveColorSensor::read_i2c" name="GroveColorSensor::read_i2c">
+<area shape="rect" id="node1" title="read using a command on i2c abd using automatic slave address." alt="" coords="1076,139,1279,165"/>
+<area shape="rect" id="node2" href="$classGroveColorSensor.html#aa85f03d535c39540fad1a410ebd8184c" title=" " alt="" coords="545,21,727,48"/>
+<area shape="rect" id="node4" href="$classGroveColorSensor.html#a7632f53d6ad2466cf74a39ba08bbd07e" title="TCS3414 Turns on the sensor and sets integration time." alt="" coords="810,43,1013,85"/>
+<area shape="rect" id="node5" href="$classGroveColorSensor.html#aff6d2790d1b0722f9a93701af3f2571f" title="retrieve blue color." alt="" coords="795,109,1028,136"/>
+<area shape="rect" id="node9" href="$classGroveColorSensor.html#a99ce85e9e60e69dc73271ae9c0cdf190" title="retrieve clear color." alt="" coords="809,161,1013,202"/>
+<area shape="rect" id="node10" href="$classGroveColorSensor.html#a3f2021212497161c52f7a03ad688d52d" title="retrieve green color." alt="" coords="809,226,1013,267"/>
+<area shape="rect" id="node11" href="$classGroveColorSensor.html#a2cff828afbb09c412a4378d00582e10f" title="retrieve red color." alt="" coords="797,292,1026,319"/>
+<area shape="rect" id="node3" href="$classGroveColorSensor.html#a0a57472cf6ba9df600003bf68f7bd557" title="Constructeur de la classe." alt="" coords="257,14,477,55"/>
+<area shape="rect" id="node6" href="$classGroveColorSensor.html#a8e64a0c9360199183fae4c938ace91eb" title="retrieve all colors." alt="" coords="525,201,747,228"/>
+<area shape="rect" id="node7" href="$classGroveColorSensor.html#a681f093bf14d2f9d544eff3c325ac533" title="Calculate the color values [Clear,Red,Green,Blue]." alt="" coords="266,194,469,235"/>
+<area shape="rect" id="node8" href="$classGroveColorSensor.html#acd8fc1fe584b9aa8e51985ba99ad1836" title="Effectue une lecture RGB du capteur." alt="" coords="5,201,209,228"/>
+</map>

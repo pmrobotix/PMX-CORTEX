@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot:  Fichier source de src/common/action/SoundBar.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_fdedb0aba14d44ce9d99bc100e026e6a.html">common</a></li><li class="navelem"><a class="el" href="dir_30dbdc63e017df8039de002a18d107ab.html">action</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">SoundBar.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="SoundBar_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifndef SOUNDBAR_HPP_</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define SOUNDBAR_HPP_</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="LoggerFactory_8hpp.html">log/LoggerFactory.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="AActionsElement_8hpp.html">AActionsElement.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="IAction_8hpp.html">IAction.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">class </span><a class="code" href="classASoundDriver.html">ASoundDriver</a>;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="SoundBar_8hpp.html#a36af987fdd0cc99f4bdd9ec700ec4629">   19</a></span>&#160;<span class="keyword">enum</span> <a class="code" href="SoundBar_8hpp.html#a36af987fdd0cc99f4bdd9ec700ec4629">SoundBarActionName</a></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="SoundBar_8hpp.html#a36af987fdd0cc99f4bdd9ec700ec4629a79fd0a227c307d9ca89348990842fb3d">SOUNDBARBEEP</a></div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="SoundBar_8hpp.html#a36af987fdd0cc99f4bdd9ec700ec4629a79fd0a227c307d9ca89348990842fb3d">   25</a></span>&#160;};</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="classSoundBar.html">   30</a></span>&#160;<span class="keyword">class </span><a class="code" href="classSoundBar.html">SoundBar</a>: <span class="keyword">public</span> <a class="code" href="classAActionsElement.html">AActionsElement</a></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;{</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classSoundBar.html#a26880f8b93ee5135df79f122409cc20f">   37</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a> &amp; <a class="code" href="classSoundBar.html#a26880f8b93ee5135df79f122409cc20f">logger</a>()</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a> &amp; instance = <a class="code" href="classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e">logs::LoggerFactory::logger</a>(<span class="stringliteral">&quot;SoundBar&quot;</span>);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keywordflow">return</span> instance;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    }</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classSoundBar.html#a3d19ad5268ffabd326f469e807d75a1b">   46</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classSoundBar.html#a3d19ad5268ffabd326f469e807d75a1b">actionStopped_</a>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classSoundBar.html#ad36e73a35274ac2f4666cda3b75bd87f">   48</a></span>&#160;    <a class="code" href="classASoundDriver.html">ASoundDriver</a>* <a class="code" href="classSoundBar.html#ad36e73a35274ac2f4666cda3b75bd87f">sounddriver_</a>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="classSoundBar.html#acb269413c6c9d92d763c301ed3aed076">SoundBar</a>(<a class="code" href="classActions.html">Actions</a> &amp; <a class="code" href="classAActionsElement.html#a3fbd5b8201049a59602d8b7201a9ef8a">actions</a>);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="classSoundBar.html#aa5c9a9e653d307e23d40548c9c4bd011">~SoundBar</a>();</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="classSoundBar.html#ae0715c350a52892e8f29335c7237169a">   66</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="classSoundBar.html#ae0715c350a52892e8f29335c7237169a">stop</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classSoundBar.html#a3d19ad5268ffabd326f469e807d75a1b">actionStopped_</a>;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    }</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSoundBar.html#ae664c0358a2940f86b009a5acd6e145d">toneImperialMarchDarthVader</a>();</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSoundBar.html#a9877829561905b08957abcc7ddd22ac9">speakPMX</a>();</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSoundBar.html#a2e65477237a7d48295d638f5b478a72c">beep</a>();</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSoundBar.html#a6ca072c4dc05e392f0c0114b483f8dc2">startBeep</a>();</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;};</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="classSoundBarAction.html">   97</a></span>&#160;<span class="keyword">class </span><a class="code" href="classSoundBarAction.html">SoundBarAction</a>: <span class="keyword">public</span> <a class="code" href="classIAction.html">IAction</a></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;{</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="classSoundBarAction.html#a5d000eaf81cdc69068ea9b16c1462363">  104</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a> &amp; <a class="code" href="classSoundBarAction.html#a5d000eaf81cdc69068ea9b16c1462363">logger</a>()</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    {</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a> &amp; instance = <a class="code" href="classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e">logs::LoggerFactory::logger</a>(<span class="stringliteral">&quot;SoundBarAction&quot;</span>);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="keywordflow">return</span> instance;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    }</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00113"></a><span class="lineno"><a class="line" href="classSoundBarAction.html#aac636c674e2a0cc7bc2596254e9489d4">  113</a></span>&#160;    <a class="code" href="classSoundBar.html">SoundBar</a> &amp; <a class="code" href="classSoundBarAction.html#aac636c674e2a0cc7bc2596254e9489d4">soundBar_</a>;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
+<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="classSoundBarAction.html#aaa624a5bfecb1f624c124d85311df64a">  118</a></span>&#160;    <a class="code" href="SoundBar_8hpp.html#a36af987fdd0cc99f4bdd9ec700ec4629">SoundBarActionName</a> <a class="code" href="classSoundBarAction.html#aaa624a5bfecb1f624c124d85311df64a">action_</a>;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <a class="code" href="classSoundBarAction.html#ab41056739f81ce59ff1eb834901c7ac8">SoundBarAction</a>(<a class="code" href="classSoundBar.html">SoundBar</a> &amp; soundBar, <a class="code" href="SoundBar_8hpp.html#a36af987fdd0cc99f4bdd9ec700ec4629">SoundBarActionName</a> action);</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160; </div>
+<div class="line"><a name="l00132"></a><span class="lineno"><a class="line" href="classSoundBarAction.html#a7e9b6ffb6f470bc388663bd46efec01d">  132</a></span>&#160;    <span class="keyword">virtual</span> <span class="keyword">inline</span> <a class="code" href="classSoundBarAction.html#a7e9b6ffb6f470bc388663bd46efec01d">~SoundBarAction</a>()</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    {</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    }</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classSoundBarAction.html#ad080a35d375a14b912ed5d2625c0b687">execute</a>();</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
+<div class="line"><a name="l00144"></a><span class="lineno"><a class="line" href="classSoundBarAction.html#a97571705989078d384ca586307d98bb7">  144</a></span>&#160;    <span class="keyword">virtual</span> <span class="keyword">inline</span> std::string <a class="code" href="classSoundBarAction.html#a97571705989078d384ca586307d98bb7">info</a>()</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    {</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        <span class="keywordflow">return</span> <span class="stringliteral">&quot;SoundBarAction&quot;</span>;</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    }</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;};</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aAActionsElement_8hpp_html"><div class="ttname"><a href="AActionsElement_8hpp.html">AActionsElement.hpp</a></div><div class="ttdoc">Définition de la classe AActionsElement.</div></div>
+<div class="ttc" id="aIAction_8hpp_html"><div class="ttname"><a href="IAction_8hpp.html">IAction.hpp</a></div><div class="ttdoc">Definition de l'interface IAction.</div></div>
+<div class="ttc" id="aLoggerFactory_8hpp_html"><div class="ttname"><a href="LoggerFactory_8hpp.html">LoggerFactory.hpp</a></div><div class="ttdoc">Définition de la classe LoggerFactory.</div></div>
+<div class="ttc" id="aSoundBar_8hpp_html_a36af987fdd0cc99f4bdd9ec700ec4629"><div class="ttname"><a href="SoundBar_8hpp.html#a36af987fdd0cc99f4bdd9ec700ec4629">SoundBarActionName</a></div><div class="ttdeci">SoundBarActionName</div><div class="ttdoc">Enumération des libellés des actions de la barre de son.</div><div class="ttdef"><b>Definition:</b> SoundBar.hpp:20</div></div>
+<div class="ttc" id="aSoundBar_8hpp_html_a36af987fdd0cc99f4bdd9ec700ec4629a79fd0a227c307d9ca89348990842fb3d"><div class="ttname"><a href="SoundBar_8hpp.html#a36af987fdd0cc99f4bdd9ec700ec4629a79fd0a227c307d9ca89348990842fb3d">SOUNDBARBEEP</a></div><div class="ttdeci">@ SOUNDBARBEEP</div><div class="ttdoc">Libellé de l'action permettant d'effectuer un beep.</div><div class="ttdef"><b>Definition:</b> SoundBar.hpp:24</div></div>
+<div class="ttc" id="aclassAActionsElement_html"><div class="ttname"><a href="classAActionsElement.html">AActionsElement</a></div><div class="ttdoc">Classe abstraite définissant la notion d'élément du robot.</div><div class="ttdef"><b>Definition:</b> AActionsElement.hpp:20</div></div>
+<div class="ttc" id="aclassAActionsElement_html_a3fbd5b8201049a59602d8b7201a9ef8a"><div class="ttname"><a href="classAActionsElement.html#a3fbd5b8201049a59602d8b7201a9ef8a">AActionsElement::actions</a></div><div class="ttdeci">Actions &amp; actions()</div><div class="ttdoc">Retourne une référence sur le Actions associé.</div><div class="ttdef"><b>Definition:</b> AActionsElement.hpp:46</div></div>
+<div class="ttc" id="aclassASoundDriver_html"><div class="ttname"><a href="classASoundDriver.html">ASoundDriver</a></div><div class="ttdoc">Interface abstraite du driver de son.</div><div class="ttdef"><b>Definition:</b> ASoundDriver.hpp:22</div></div>
+<div class="ttc" id="aclassActions_html"><div class="ttname"><a href="classActions.html">Actions</a></div><div class="ttdef"><b>Definition:</b> Actions.hpp:22</div></div>
+<div class="ttc" id="aclassIAction_html"><div class="ttname"><a href="classIAction.html">IAction</a></div><div class="ttdoc">Cette interface represente une action executee.</div><div class="ttdef"><b>Definition:</b> IAction.hpp:14</div></div>
+<div class="ttc" id="aclassSoundBarAction_html"><div class="ttname"><a href="classSoundBarAction.html">SoundBarAction</a></div><div class="ttdoc">Cette action permet de definir les actions pour donner des sons.</div><div class="ttdef"><b>Definition:</b> SoundBar.hpp:98</div></div>
+<div class="ttc" id="aclassSoundBarAction_html_a5d000eaf81cdc69068ea9b16c1462363"><div class="ttname"><a href="classSoundBarAction.html#a5d000eaf81cdc69068ea9b16c1462363">SoundBarAction::logger</a></div><div class="ttdeci">static const logs::Logger &amp; logger()</div><div class="ttdoc">Retourne le Logger associé à la classe SoundBarAction.</div><div class="ttdef"><b>Definition:</b> SoundBar.hpp:104</div></div>
+<div class="ttc" id="aclassSoundBarAction_html_a7e9b6ffb6f470bc388663bd46efec01d"><div class="ttname"><a href="classSoundBarAction.html#a7e9b6ffb6f470bc388663bd46efec01d">SoundBarAction::~SoundBarAction</a></div><div class="ttdeci">virtual ~SoundBarAction()</div><div class="ttdoc">Destructeur de la classe.</div><div class="ttdef"><b>Definition:</b> SoundBar.hpp:132</div></div>
+<div class="ttc" id="aclassSoundBarAction_html_a97571705989078d384ca586307d98bb7"><div class="ttname"><a href="classSoundBarAction.html#a97571705989078d384ca586307d98bb7">SoundBarAction::info</a></div><div class="ttdeci">virtual std::string info()</div><div class="ttdoc">Retourne la description de l'action.</div><div class="ttdef"><b>Definition:</b> SoundBar.hpp:144</div></div>
+<div class="ttc" id="aclassSoundBarAction_html_aaa624a5bfecb1f624c124d85311df64a"><div class="ttname"><a href="classSoundBarAction.html#aaa624a5bfecb1f624c124d85311df64a">SoundBarAction::action_</a></div><div class="ttdeci">SoundBarActionName action_</div><div class="ttdoc">libellé de l'action à exécuter.</div><div class="ttdef"><b>Definition:</b> SoundBar.hpp:118</div></div>
+<div class="ttc" id="aclassSoundBarAction_html_aac636c674e2a0cc7bc2596254e9489d4"><div class="ttname"><a href="classSoundBarAction.html#aac636c674e2a0cc7bc2596254e9489d4">SoundBarAction::soundBar_</a></div><div class="ttdeci">SoundBar &amp; soundBar_</div><div class="ttdoc">Référence vers la SoundBar associée.</div><div class="ttdef"><b>Definition:</b> SoundBar.hpp:113</div></div>
+<div class="ttc" id="aclassSoundBarAction_html_ab41056739f81ce59ff1eb834901c7ac8"><div class="ttname"><a href="classSoundBarAction.html#ab41056739f81ce59ff1eb834901c7ac8">SoundBarAction::SoundBarAction</a></div><div class="ttdeci">SoundBarAction(SoundBar &amp;soundBar, SoundBarActionName action)</div><div class="ttdoc">Constructeur de la classe.</div><div class="ttdef"><b>Definition:</b> SoundBar.cpp:22</div></div>
+<div class="ttc" id="aclassSoundBarAction_html_ad080a35d375a14b912ed5d2625c0b687"><div class="ttname"><a href="classSoundBarAction.html#ad080a35d375a14b912ed5d2625c0b687">SoundBarAction::execute</a></div><div class="ttdeci">virtual bool execute()</div><div class="ttdoc">Execution de l'action.</div><div class="ttdef"><b>Definition:</b> SoundBar.cpp:119</div></div>
+<div class="ttc" id="aclassSoundBar_html"><div class="ttname"><a href="classSoundBar.html">SoundBar</a></div><div class="ttdoc">Gère la barre de son du robot (beeps, mélodies, synthèse vocale).</div><div class="ttdef"><b>Definition:</b> SoundBar.hpp:31</div></div>
+<div class="ttc" id="aclassSoundBar_html_a26880f8b93ee5135df79f122409cc20f"><div class="ttname"><a href="classSoundBar.html#a26880f8b93ee5135df79f122409cc20f">SoundBar::logger</a></div><div class="ttdeci">static const logs::Logger &amp; logger()</div><div class="ttdoc">Retourne le Logger associé à la classe SoundBar.</div><div class="ttdef"><b>Definition:</b> SoundBar.hpp:37</div></div>
+<div class="ttc" id="aclassSoundBar_html_a2e65477237a7d48295d638f5b478a72c"><div class="ttname"><a href="classSoundBar.html#a2e65477237a7d48295d638f5b478a72c">SoundBar::beep</a></div><div class="ttdeci">void beep()</div><div class="ttdoc">Émet un beep sonore.</div><div class="ttdef"><b>Definition:</b> SoundBar.cpp:106</div></div>
+<div class="ttc" id="aclassSoundBar_html_a3d19ad5268ffabd326f469e807d75a1b"><div class="ttname"><a href="classSoundBar.html#a3d19ad5268ffabd326f469e807d75a1b">SoundBar::actionStopped_</a></div><div class="ttdeci">bool actionStopped_</div><div class="ttdoc">Permet de stopper l'action et qu'elle se termine à la prochaine itération des actions.</div><div class="ttdef"><b>Definition:</b> SoundBar.hpp:46</div></div>
+<div class="ttc" id="aclassSoundBar_html_a6ca072c4dc05e392f0c0114b483f8dc2"><div class="ttname"><a href="classSoundBar.html#a6ca072c4dc05e392f0c0114b483f8dc2">SoundBar::startBeep</a></div><div class="ttdeci">void startBeep()</div><div class="ttdoc">Lance l'action asynchrone d'émission d'un beep.</div><div class="ttdef"><b>Definition:</b> SoundBar.cpp:111</div></div>
+<div class="ttc" id="aclassSoundBar_html_a9877829561905b08957abcc7ddd22ac9"><div class="ttname"><a href="classSoundBar.html#a9877829561905b08957abcc7ddd22ac9">SoundBar::speakPMX</a></div><div class="ttdeci">void speakPMX()</div><div class="ttdoc">Prononce &quot;PMX&quot; via la synthèse vocale.</div><div class="ttdef"><b>Definition:</b> SoundBar.cpp:99</div></div>
+<div class="ttc" id="aclassSoundBar_html_aa5c9a9e653d307e23d40548c9c4bd011"><div class="ttname"><a href="classSoundBar.html#aa5c9a9e653d307e23d40548c9c4bd011">SoundBar::~SoundBar</a></div><div class="ttdeci">~SoundBar()</div><div class="ttdoc">Destructor.</div><div class="ttdef"><b>Definition:</b> SoundBar.cpp:17</div></div>
+<div class="ttc" id="aclassSoundBar_html_acb269413c6c9d92d763c301ed3aed076"><div class="ttname"><a href="classSoundBar.html#acb269413c6c9d92d763c301ed3aed076">SoundBar::SoundBar</a></div><div class="ttdeci">SoundBar(Actions &amp;actions)</div><div class="ttdoc">Constructor.</div><div class="ttdef"><b>Definition:</b> SoundBar.cpp:11</div></div>
+<div class="ttc" id="aclassSoundBar_html_ad36e73a35274ac2f4666cda3b75bd87f"><div class="ttname"><a href="classSoundBar.html#ad36e73a35274ac2f4666cda3b75bd87f">SoundBar::sounddriver_</a></div><div class="ttdeci">ASoundDriver * sounddriver_</div><div class="ttdef"><b>Definition:</b> SoundBar.hpp:48</div></div>
+<div class="ttc" id="aclassSoundBar_html_ae0715c350a52892e8f29335c7237169a"><div class="ttname"><a href="classSoundBar.html#ae0715c350a52892e8f29335c7237169a">SoundBar::stop</a></div><div class="ttdeci">bool stop() const</div><div class="ttdoc">Indique si l'action en cours doit être stoppée.</div><div class="ttdef"><b>Definition:</b> SoundBar.hpp:66</div></div>
+<div class="ttc" id="aclassSoundBar_html_ae664c0358a2940f86b009a5acd6e145d"><div class="ttname"><a href="classSoundBar.html#ae664c0358a2940f86b009a5acd6e145d">SoundBar::toneImperialMarchDarthVader</a></div><div class="ttdeci">void toneImperialMarchDarthVader()</div><div class="ttdoc">Joue The Imperial March (thème de Dark Vador).</div><div class="ttdef"><b>Definition:</b> SoundBar.cpp:27</div></div>
+<div class="ttc" id="aclasslogs_1_1LoggerFactory_html_a82585b5de73e471e06cafdccc3b3721e"><div class="ttname"><a href="classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e">logs::LoggerFactory::logger</a></div><div class="ttdeci">static const Logger &amp; logger(const std::string &amp;name)</div><div class="ttdoc">Cette méthode statique retourne un Logger en fonction de son nom.</div><div class="ttdef"><b>Definition:</b> LoggerFactory.cpp:54</div></div>
+<div class="ttc" id="aclasslogs_1_1Logger_html"><div class="ttname"><a href="classlogs_1_1Logger.html">logs::Logger</a></div><div class="ttdoc">Classe de gestion des traces de l'application.</div><div class="ttdef"><b>Definition:</b> Logger.hpp:63</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Jeudi 26 Mars 2026 23:28:54 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

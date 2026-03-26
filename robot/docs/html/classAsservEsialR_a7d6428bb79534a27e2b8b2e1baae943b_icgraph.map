@@ -1,0 +1,52 @@
+<map id="AsservEsialR::logger" name="AsservEsialR::logger">
+<area shape="rect" id="node1" title="Retourne le Logger associe a la classe AsservEsialR." alt="" coords="804,1067,959,1094"/>
+<area shape="rect" id="node2" href="$classAsservEsialR.html#abfd3be9bde7bf8ae887688bf8bc0ca43" title="Méthode virtuelle pure à implémenter dans les sous&#45;classes." alt="" coords="281,158,446,185"/>
+<area shape="rect" id="node3" href="$classAsservEsialR.html#abd83aa700363ae921569e178df53f95d" title="Lit les compteurs externes cumules (ticks)." alt="" coords="521,259,756,286"/>
+<area shape="rect" id="node4" href="$classAsservEsialR.html#aefeb4e45f67c44c3f5a896274ef9da17" title="Lit les compteurs internes cumules." alt="" coords="523,310,754,337"/>
+<area shape="rect" id="node5" href="$classAsservEsialR.html#a085b1191c4b4676c90df1d7ad944f48e" title="Lit le delta des compteurs externes depuis le dernier appel." alt="" coords="531,361,746,403"/>
+<area shape="rect" id="node6" href="$classAsservEsialR.html#a92f56a44000674916dbb398c6a08d75a" title="Lit la valeur de l&#39;encodeur externe gauche." alt="" coords="532,427,745,468"/>
+<area shape="rect" id="node7" href="$classAsservEsialR.html#a12c935ad6369c88f2bbd994a2abbfe16" title="Lit la valeur de l&#39;encodeur interne gauche." alt="" coords="534,492,743,533"/>
+<area shape="rect" id="node8" href="$classAsservEsialR.html#ac80a3f0c2469353e35ec7f735e655249" title="Lit le courant du moteur gauche." alt="" coords="540,557,737,599"/>
+<area shape="rect" id="node9" href="$classAsservEsialR.html#a213883db355e8a7713a324cd634d6e1b" title="Lit le courant du moteur droit." alt="" coords="535,623,742,664"/>
+<area shape="rect" id="node10" href="$classAsservEsialR.html#ab912ed84c7ed08b14e2d5c0765bc9cac" title="Lit la valeur de l&#39;encodeur externe droit." alt="" coords="527,688,750,729"/>
+<area shape="rect" id="node11" href="$classAsservEsialR.html#a522a00c00cccec44db953f195c463927" title="Lit la valeur de l&#39;encodeur interne droit." alt="" coords="529,753,748,795"/>
+<area shape="rect" id="node12" href="$classAsservEsialR.html#a558147f3a68a384944652e810e6491cb" title=" " alt="" coords="549,937,728,963"/>
+<area shape="rect" id="node15" href="$classAsservEsialR.html#ae80fe869f82c06b3e91fb8a783e56185" title=" " alt="" coords="268,987,459,1014"/>
+<area shape="rect" id="node16" href="$classAsservEsialR.html#a571fca7d446ad307c51a37f3323ac187" title=" " alt="" coords="547,1038,730,1065"/>
+<area shape="rect" id="node17" href="$classAsservEsialR.html#a429c9c4a6008e27efe6d41ff0cb97288" title="Effectue une rotation en arc de cercle." alt="" coords="559,1089,719,1131"/>
+<area shape="rect" id="node18" href="$classAsservEsialR.html#a85f69f82c1de14e25189941e7fb41a2b" title="Deplace le robot vers un point sans s&#39;arreter (enchainement)." alt="" coords="559,1155,719,1196"/>
+<area shape="rect" id="node20" href="$classAsservEsialR.html#abda7087d63c03f1a098bc1c4c117b178" title="Deplace le robot vers un point en marche arriere sans s&#39;arreter." alt="" coords="559,1220,719,1261"/>
+<area shape="rect" id="node22" href="$classAsservEsialR.html#a18064f0087aa1cd67cbdd131f99720db" title="Lit la position courante du robot." alt="" coords="529,209,749,235"/>
+<area shape="rect" id="node31" href="$classAsservEsialR.html#a05e8f01586ff447aa362a99ca370cb1c" title="Lit le statut de la derniere commande." alt="" coords="545,1285,732,1327"/>
+<area shape="rect" id="node32" href="$classAsservEsialR.html#a89c3ed56d870037964c23bb657c75a7a" title="Reinitialise l&#39;arret d&#39;urgence pour permettre un nouveau mouvement." alt="" coords="555,1351,723,1392"/>
+<area shape="rect" id="node34" href="$classAsservEsialR.html#aa1b04c8fca6b1fe1d095ed2befdc3b11" title="Remet a zero tous les encodeurs." alt="" coords="535,1417,742,1443"/>
+<area shape="rect" id="node35" href="$classAsservEsialR.html#afce022c3f43439d0d5488fed31a46cc4" title="Remet a zero les encodeurs externes." alt="" coords="538,1468,739,1509"/>
+<area shape="rect" id="node36" href="$classAsservEsialR.html#a098ae002a5455809bde43fd1616f10a3" title="Remet a zero les encodeurs internes." alt="" coords="540,1533,737,1575"/>
+<area shape="rect" id="node37" href="$classAsservEsialR.html#a93642e8abc2116fe8937d2c00f003977" title="Commande le moteur gauche en position." alt="" coords="541,1599,737,1640"/>
+<area shape="rect" id="node38" href="$classAsservEsialR.html#ae3632c60b6f31fc32b514c73f40dd23c" title="Commande le moteur gauche en puissance pendant un temps donne." alt="" coords="541,1664,737,1705"/>
+<area shape="rect" id="node39" href="$classAsservEsialR.html#aad4a4c018d773f75ede78df09aa64bf3" title="Commande le moteur droit en position." alt="" coords="535,1729,742,1771"/>
+<area shape="rect" id="node40" href="$classAsservEsialR.html#ad235409b0ed65c2718c25a7122c69117" title="Commande le moteur droit en puissance pendant un temps donne." alt="" coords="535,1795,742,1836"/>
+<area shape="rect" id="node41" href="$classAsservEsialR.html#a249d968918b3bfecc0467bb476177211" title=" " alt="" coords="541,871,736,912"/>
+<area shape="rect" id="node42" href="$classAsservEsialR.html#a7a808d4593c732619d2d281faf150611" title=" " alt="" coords="269,870,457,897"/>
+<area shape="rect" id="node43" href="$classAsservEsialR.html#a402c8f20afb5fb72549f009867b9f71c" title="Arrete le moteur gauche." alt="" coords="537,1861,741,1887"/>
+<area shape="rect" id="node44" href="$classAsservEsialR.html#a3ef22117ab4bbc5113863599fb0896fe" title="Arrete le moteur droit." alt="" coords="531,1911,746,1938"/>
+<area shape="rect" id="node45" href="$classAsservEsialR.html#a05cd5a747ca05ea8f178588a18aa873f" title="Arrete les deux moteurs." alt="" coords="545,1962,732,1989"/>
+<area shape="rect" id="node46" href="$classAsservEsialR.html#a1cc2e13537bf94f214d94b67a0a39cde" title=" " alt="" coords="537,2013,741,2039"/>
+<area shape="rect" id="node13" href="$classAsservEsialR.html#adf00fba115e602267a590236182094ac" title="Assisted movement mode =)" alt="" coords="283,921,443,963"/>
+<area shape="rect" id="node14" href="$classOPOS6UL__AsservExtended.html#a1f17c09c76670c49c1272676879ef48a" title="Démarre le timer de mouvement et l&#39;odométrie." alt="" coords="8,892,203,933"/>
+<area shape="rect" id="node19" href="$classAsserv.html#a8d3855dc9eddaff07b58a7a01e2024c3" title=" " alt="" coords="294,1162,433,1189"/>
+<area shape="rect" id="node21" href="$classAsserv.html#af02450d4e92f864b844a63ffe6fb16d3" title=" " alt="" coords="267,1227,459,1254"/>
+<area shape="rect" id="node23" href="$classAsserv.html#a02914fbd6c3d2ee03c896cb7a9f86078" title=" " alt="" coords="275,209,451,235"/>
+<area shape="rect" id="node24" href="$classAsserv.html#a314e3ff9a8a538a23d26dcb802386024" title=" " alt="" coords="13,71,197,112"/>
+<area shape="rect" id="node25" href="$classAsserv.html#a9e997a871e745e687a4088103378bae3" title=" " alt="" coords="8,136,203,177"/>
+<area shape="rect" id="node26" href="$classOPOS6UL__AsservExtended.html#a4e96d47def0637c3f6e135a0a3ee3d1c" title="Vérifie si une détection capteur correspond à une position dans le terrain." alt="" coords="8,201,203,243"/>
+<area shape="rect" id="node27" href="$classAsserv.html#a11fc2df956a191f42ab34088a7ae9ce0" title=" " alt="" coords="25,267,186,294"/>
+<area shape="rect" id="node28" href="$classAsserv.html#a871088db63d1a0e20ccbf387c6f895db" title=" " alt="" coords="22,318,189,345"/>
+<area shape="rect" id="node29" href="$classAsserv.html#a2cca6401ccf8cfc7cc927177cba14f4a" title=" " alt="" coords="23,369,188,395"/>
+<area shape="rect" id="node30" href="$classAsserv.html#ae8c86b1f9cfe795e8c9aad3e7e4ea40c" title=" " alt="" coords="5,5,205,47"/>
+<area shape="rect" id="node33" href="$classAsserv.html#a22cbdc18185f0d910473b8a5bb434c84" title=" " alt="" coords="253,1358,473,1385"/>
+<area shape="rect" id="node47" href="$classAsservEsialR.html#a08fc904da0513ea35c524958f8cc6df0" title=" " alt="" coords="283,1907,443,1948"/>
+<area shape="rect" id="node48" href="$classAsservEsialR.html#a18f0ce02a39c7a1cadf7cddf15f875d5" title="Oriente le robot face a un point." alt="" coords="283,1972,443,2013"/>
+<area shape="rect" id="node49" href="$classAsservEsialR.html#a163832308cf0ea6fb9826fd93950c7bf" title="Avance ou recule en ligne droite." alt="" coords="283,2037,443,2079"/>
+<area shape="rect" id="node50" href="$classAsservEsialR.html#a71a6761ebf937db24c35bd559cd9d836" title="Effectue une rotation sur place." alt="" coords="283,2103,443,2144"/>
+</map>

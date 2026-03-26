@@ -1,0 +1,6 @@
+<map id="ButtonBar::waitOneOfAllPressed" name="ButtonBar::waitOneOfAllPressed">
+<area shape="rect" id="node1" title="Attend qu&#39;un des boutons soit appuyé (bloquant)." alt="" coords="5,13,237,39"/>
+<area shape="rect" id="node2" href="$classButtonBar.html#ade20f736d6a4b174817d78630cda6bd4" title="Vérifie si un des boutons est appuyé (non bloquant)." alt="" coords="285,5,476,47"/>
+<area shape="rect" id="node3" href="$classButtonBar.html#a2054f8a32649f17ec6e8929d85a45d76" title="Vérifie si un bouton est actuellement appuyé." alt="" coords="524,13,671,39"/>
+<area shape="rect" id="node4" href="$classAButtonDriver.html#a76900724cd51ab5213273cd2ef4e4918" title="Teste si un bouton est actuellement appuye." alt="" coords="719,13,892,39"/>
+</map>

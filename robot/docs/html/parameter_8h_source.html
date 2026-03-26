@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot:  Fichier source de src/common/asserv.esial/config/parameter.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_fdedb0aba14d44ce9d99bc100e026e6a.html">common</a></li><li class="navelem"><a class="el" href="dir_251413a062b2562b08c5015e69ca7513.html">asserv.esial</a></li><li class="navelem"><a class="el" href="dir_3f9e0bdefd6da561b30fce1eec131977.html">config</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">parameter.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="parameter_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef ASSERV_E_PARAMETER_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define ASSERV_E_PARAMETER_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;sstream&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="structParameter.html">    7</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structParameter.html">Parameter</a> {</div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="structParameter.html#a2e54b19a2f4144b731536400c10c1594">    8</a></span>&#160;    <span class="keyword">enum</span> <a class="code" href="structParameter.html#a2e54b19a2f4144b731536400c10c1594">Type</a> {</div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="structParameter.html#a2e54b19a2f4144b731536400c10c1594ae48eb6457f40c9340ba56e688967ecea">    9</a></span>&#160;        <a class="code" href="structParameter.html#a2e54b19a2f4144b731536400c10c1594ae48eb6457f40c9340ba56e688967ecea">INT32</a>,</div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="structParameter.html#a2e54b19a2f4144b731536400c10c1594a7fb075861b51c8fe0401bff1b0195702">   10</a></span>&#160;        <a class="code" href="structParameter.html#a2e54b19a2f4144b731536400c10c1594a7fb075861b51c8fe0401bff1b0195702">BOOL</a>,</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <a class="code" href="structParameter.html#a2e54b19a2f4144b731536400c10c1594a3c4f88eb124fbca59c8e7198d7a06f8a">FLOAT</a></div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="structParameter.html#a2e54b19a2f4144b731536400c10c1594a3c4f88eb124fbca59c8e7198d7a06f8a">   12</a></span>&#160;    };</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="structParameter.html#a1529a9593f0d6397439cf1f7d4874266">   14</a></span>&#160;    <a class="code" href="structParameter.html#a1529a9593f0d6397439cf1f7d4874266">Parameter</a>(std::string <a class="code" href="structParameter.html#ae8b833b543d3e51c2fbde7bb51a5ec37">name</a>, int32_t *<a class="code" href="structParameter.html#acb8988ef71340c43e086c23a3528a88b">ptr</a>) : <a class="code" href="structParameter.html#ae8b833b543d3e51c2fbde7bb51a5ec37">name</a>(<a class="code" href="structParameter.html#ae8b833b543d3e51c2fbde7bb51a5ec37">name</a>), <a class="code" href="structParameter.html#acb8988ef71340c43e086c23a3528a88b">ptr</a>(<a class="code" href="structParameter.html#acb8988ef71340c43e086c23a3528a88b">ptr</a>), <a class="code" href="structParameter.html#a4cf1aee829f88b530bef0ba50413724a">type</a>(<a class="code" href="structParameter.html#a2e54b19a2f4144b731536400c10c1594ae48eb6457f40c9340ba56e688967ecea">INT32</a>) { *<a class="code" href="structParameter.html#a9eebd70a737896aeb4c2ecfc9f096823">int_ptr</a> = 0; }</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="structParameter.html#a6dccdb5cbbeaf5aa2298b479bb28ab44">   15</a></span>&#160;    <a class="code" href="structParameter.html#a6dccdb5cbbeaf5aa2298b479bb28ab44">Parameter</a>(std::string <a class="code" href="structParameter.html#ae8b833b543d3e51c2fbde7bb51a5ec37">name</a>, <span class="keywordtype">bool</span> *<a class="code" href="structParameter.html#acb8988ef71340c43e086c23a3528a88b">ptr</a>) : <a class="code" href="structParameter.html#ae8b833b543d3e51c2fbde7bb51a5ec37">name</a>(<a class="code" href="structParameter.html#ae8b833b543d3e51c2fbde7bb51a5ec37">name</a>), <a class="code" href="structParameter.html#acb8988ef71340c43e086c23a3528a88b">ptr</a>(<a class="code" href="structParameter.html#acb8988ef71340c43e086c23a3528a88b">ptr</a>), <a class="code" href="structParameter.html#a4cf1aee829f88b530bef0ba50413724a">type</a>(<a class="code" href="structParameter.html#a2e54b19a2f4144b731536400c10c1594a7fb075861b51c8fe0401bff1b0195702">BOOL</a>) { *<a class="code" href="structParameter.html#a007d97babf1aef63a887675c6102b706">bool_ptr</a> = <span class="keyword">false</span>; }</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="structParameter.html#a051e8f7e9a4f99caf62846b669a086d3">   16</a></span>&#160;    <a class="code" href="structParameter.html#a051e8f7e9a4f99caf62846b669a086d3">Parameter</a>(std::string <a class="code" href="structParameter.html#ae8b833b543d3e51c2fbde7bb51a5ec37">name</a>, <span class="keywordtype">float</span> *<a class="code" href="structParameter.html#acb8988ef71340c43e086c23a3528a88b">ptr</a>) : <a class="code" href="structParameter.html#ae8b833b543d3e51c2fbde7bb51a5ec37">name</a>(<a class="code" href="structParameter.html#ae8b833b543d3e51c2fbde7bb51a5ec37">name</a>), <a class="code" href="structParameter.html#acb8988ef71340c43e086c23a3528a88b">ptr</a>(<a class="code" href="structParameter.html#acb8988ef71340c43e086c23a3528a88b">ptr</a>), <a class="code" href="structParameter.html#a4cf1aee829f88b530bef0ba50413724a">type</a>(<a class="code" href="structParameter.html#a2e54b19a2f4144b731536400c10c1594a3c4f88eb124fbca59c8e7198d7a06f8a">FLOAT</a>) { *<a class="code" href="structParameter.html#af0df12a72ececffd111e8865544dba99">float_ptr</a> = 0; }</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="structParameter.html#a8a7228e3493aad31fba8e69dae6f99df">   19</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="structParameter.html#a8a7228e3493aad31fba8e69dae6f99df">set</a>(T val)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        *((T*) <a class="code" href="structParameter.html#acb8988ef71340c43e086c23a3528a88b">ptr</a>) = val;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    }</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="structParameter.html#acbc6eaf8bdc630ccc51dde12aca77d18">   23</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="structParameter.html#acbc6eaf8bdc630ccc51dde12aca77d18">setFromString</a>(std::string value)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keywordflow">switch</span> (<a class="code" href="structParameter.html#a4cf1aee829f88b530bef0ba50413724a">type</a>)  {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            <span class="keywordflow">case</span> <a class="code" href="structParameter.html#a2e54b19a2f4144b731536400c10c1594ae48eb6457f40c9340ba56e688967ecea">INT32</a>:</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                *<a class="code" href="structParameter.html#a9eebd70a737896aeb4c2ecfc9f096823">int_ptr</a> = atoll(value.c_str());</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            <span class="keywordflow">case</span> <a class="code" href="structParameter.html#a2e54b19a2f4144b731536400c10c1594a7fb075861b51c8fe0401bff1b0195702">BOOL</a>:</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                *<a class="code" href="structParameter.html#a007d97babf1aef63a887675c6102b706">bool_ptr</a> = (value == <span class="stringliteral">&quot;true&quot;</span> || value == <span class="stringliteral">&quot;1&quot;</span>);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            <span class="keywordflow">case</span> <a class="code" href="structParameter.html#a2e54b19a2f4144b731536400c10c1594a3c4f88eb124fbca59c8e7198d7a06f8a">FLOAT</a>:</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                *<a class="code" href="structParameter.html#af0df12a72ececffd111e8865544dba99">float_ptr</a> = atof(value.c_str());</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        }</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    }</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="structParameter.html#af212e2c16e2d4de8019138ebde3aa7bf">   37</a></span>&#160;    std::string <a class="code" href="structParameter.html#af212e2c16e2d4de8019138ebde3aa7bf">toString</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        std::stringstream out;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordflow">switch</span> (<a class="code" href="structParameter.html#a4cf1aee829f88b530bef0ba50413724a">type</a>) {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            <span class="keywordflow">case</span> <a class="code" href="structParameter.html#a2e54b19a2f4144b731536400c10c1594ae48eb6457f40c9340ba56e688967ecea">INT32</a>:</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                out &lt;&lt; get&lt;int32_t&gt;();</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            <span class="keywordflow">case</span> <a class="code" href="structParameter.html#a2e54b19a2f4144b731536400c10c1594a7fb075861b51c8fe0401bff1b0195702">BOOL</a>:</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                out &lt;&lt; std::boolalpha &lt;&lt; get&lt;bool&gt;();</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            <span class="keywordflow">case</span> <a class="code" href="structParameter.html#a2e54b19a2f4144b731536400c10c1594a3c4f88eb124fbca59c8e7198d7a06f8a">FLOAT</a>:</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                out &lt;&lt; get&lt;float&gt;();</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        }</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordflow">return</span> out.str();</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="structParameter.html#a18097b115fea4db92ea394f14f3a7aab">   55</a></span>&#160;    <span class="keyword">const</span> std::string&amp; <a class="code" href="structParameter.html#a18097b115fea4db92ea394f14f3a7aab">getName</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="structParameter.html#ae8b833b543d3e51c2fbde7bb51a5ec37">name</a>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    }</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="structParameter.html#afbe10baf73703aa03b24f75c5d7b860a">   60</a></span>&#160;    T <a class="code" href="structParameter.html#afbe10baf73703aa03b24f75c5d7b860a">get</a>(<span class="keywordtype">void</span>)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keywordflow">return</span> *((T*) <a class="code" href="structParameter.html#acb8988ef71340c43e086c23a3528a88b">ptr</a>);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    }</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="structParameter.html#af25a0a7eeab02ad47a5e1a129863ddf9">   64</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="structParameter.html#af25a0a7eeab02ad47a5e1a129863ddf9">is</a>(<span class="keyword">const</span> std::string &amp;other)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordflow">return</span> other == <a class="code" href="structParameter.html#ae8b833b543d3e51c2fbde7bb51a5ec37">name</a>;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="structParameter.html#ae8b833b543d3e51c2fbde7bb51a5ec37">   68</a></span>&#160;    <span class="keyword">const</span> std::string <a class="code" href="structParameter.html#ae8b833b543d3e51c2fbde7bb51a5ec37">name</a>;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keyword">const</span> <span class="keyword">union </span>{</div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="structParameter.html#acb8988ef71340c43e086c23a3528a88b">   70</a></span>&#160;        <span class="keywordtype">void</span> *<a class="code" href="structParameter.html#acb8988ef71340c43e086c23a3528a88b">ptr</a>;</div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="structParameter.html#a9eebd70a737896aeb4c2ecfc9f096823">   71</a></span>&#160;        int32_t *<a class="code" href="structParameter.html#a9eebd70a737896aeb4c2ecfc9f096823">int_ptr</a>;</div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="structParameter.html#a007d97babf1aef63a887675c6102b706">   72</a></span>&#160;        <span class="keywordtype">bool</span> *<a class="code" href="structParameter.html#a007d97babf1aef63a887675c6102b706">bool_ptr</a>;</div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="structParameter.html#af0df12a72ececffd111e8865544dba99">   73</a></span>&#160;        <span class="keywordtype">float</span> *<a class="code" href="structParameter.html#af0df12a72ececffd111e8865544dba99">float_ptr</a>;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    };</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="structParameter.html#a4cf1aee829f88b530bef0ba50413724a">   76</a></span>&#160;    <span class="keyword">const</span> <a class="code" href="structParameter.html#a2e54b19a2f4144b731536400c10c1594">Type</a> <a class="code" href="structParameter.html#a4cf1aee829f88b530bef0ba50413724a">type</a>;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;};</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="astructParameter_html"><div class="ttname"><a href="structParameter.html">Parameter</a></div><div class="ttdef"><b>Definition:</b> parameter.h:7</div></div>
+<div class="ttc" id="astructParameter_html_a007d97babf1aef63a887675c6102b706"><div class="ttname"><a href="structParameter.html#a007d97babf1aef63a887675c6102b706">Parameter::bool_ptr</a></div><div class="ttdeci">bool * bool_ptr</div><div class="ttdef"><b>Definition:</b> parameter.h:72</div></div>
+<div class="ttc" id="astructParameter_html_a051e8f7e9a4f99caf62846b669a086d3"><div class="ttname"><a href="structParameter.html#a051e8f7e9a4f99caf62846b669a086d3">Parameter::Parameter</a></div><div class="ttdeci">Parameter(std::string name, float *ptr)</div><div class="ttdef"><b>Definition:</b> parameter.h:16</div></div>
+<div class="ttc" id="astructParameter_html_a1529a9593f0d6397439cf1f7d4874266"><div class="ttname"><a href="structParameter.html#a1529a9593f0d6397439cf1f7d4874266">Parameter::Parameter</a></div><div class="ttdeci">Parameter(std::string name, int32_t *ptr)</div><div class="ttdef"><b>Definition:</b> parameter.h:14</div></div>
+<div class="ttc" id="astructParameter_html_a18097b115fea4db92ea394f14f3a7aab"><div class="ttname"><a href="structParameter.html#a18097b115fea4db92ea394f14f3a7aab">Parameter::getName</a></div><div class="ttdeci">const std::string &amp; getName() const</div><div class="ttdef"><b>Definition:</b> parameter.h:55</div></div>
+<div class="ttc" id="astructParameter_html_a2e54b19a2f4144b731536400c10c1594"><div class="ttname"><a href="structParameter.html#a2e54b19a2f4144b731536400c10c1594">Parameter::Type</a></div><div class="ttdeci">Type</div><div class="ttdef"><b>Definition:</b> parameter.h:8</div></div>
+<div class="ttc" id="astructParameter_html_a2e54b19a2f4144b731536400c10c1594a3c4f88eb124fbca59c8e7198d7a06f8a"><div class="ttname"><a href="structParameter.html#a2e54b19a2f4144b731536400c10c1594a3c4f88eb124fbca59c8e7198d7a06f8a">Parameter::FLOAT</a></div><div class="ttdeci">@ FLOAT</div><div class="ttdef"><b>Definition:</b> parameter.h:11</div></div>
+<div class="ttc" id="astructParameter_html_a2e54b19a2f4144b731536400c10c1594a7fb075861b51c8fe0401bff1b0195702"><div class="ttname"><a href="structParameter.html#a2e54b19a2f4144b731536400c10c1594a7fb075861b51c8fe0401bff1b0195702">Parameter::BOOL</a></div><div class="ttdeci">@ BOOL</div><div class="ttdef"><b>Definition:</b> parameter.h:10</div></div>
+<div class="ttc" id="astructParameter_html_a2e54b19a2f4144b731536400c10c1594ae48eb6457f40c9340ba56e688967ecea"><div class="ttname"><a href="structParameter.html#a2e54b19a2f4144b731536400c10c1594ae48eb6457f40c9340ba56e688967ecea">Parameter::INT32</a></div><div class="ttdeci">@ INT32</div><div class="ttdef"><b>Definition:</b> parameter.h:9</div></div>
+<div class="ttc" id="astructParameter_html_a4cf1aee829f88b530bef0ba50413724a"><div class="ttname"><a href="structParameter.html#a4cf1aee829f88b530bef0ba50413724a">Parameter::type</a></div><div class="ttdeci">const Type type</div><div class="ttdef"><b>Definition:</b> parameter.h:76</div></div>
+<div class="ttc" id="astructParameter_html_a6dccdb5cbbeaf5aa2298b479bb28ab44"><div class="ttname"><a href="structParameter.html#a6dccdb5cbbeaf5aa2298b479bb28ab44">Parameter::Parameter</a></div><div class="ttdeci">Parameter(std::string name, bool *ptr)</div><div class="ttdef"><b>Definition:</b> parameter.h:15</div></div>
+<div class="ttc" id="astructParameter_html_a8a7228e3493aad31fba8e69dae6f99df"><div class="ttname"><a href="structParameter.html#a8a7228e3493aad31fba8e69dae6f99df">Parameter::set</a></div><div class="ttdeci">void set(T val) const</div><div class="ttdef"><b>Definition:</b> parameter.h:19</div></div>
+<div class="ttc" id="astructParameter_html_a9eebd70a737896aeb4c2ecfc9f096823"><div class="ttname"><a href="structParameter.html#a9eebd70a737896aeb4c2ecfc9f096823">Parameter::int_ptr</a></div><div class="ttdeci">int32_t * int_ptr</div><div class="ttdef"><b>Definition:</b> parameter.h:71</div></div>
+<div class="ttc" id="astructParameter_html_acb8988ef71340c43e086c23a3528a88b"><div class="ttname"><a href="structParameter.html#acb8988ef71340c43e086c23a3528a88b">Parameter::ptr</a></div><div class="ttdeci">void * ptr</div><div class="ttdef"><b>Definition:</b> parameter.h:70</div></div>
+<div class="ttc" id="astructParameter_html_acbc6eaf8bdc630ccc51dde12aca77d18"><div class="ttname"><a href="structParameter.html#acbc6eaf8bdc630ccc51dde12aca77d18">Parameter::setFromString</a></div><div class="ttdeci">void setFromString(std::string value) const</div><div class="ttdef"><b>Definition:</b> parameter.h:23</div></div>
+<div class="ttc" id="astructParameter_html_ae8b833b543d3e51c2fbde7bb51a5ec37"><div class="ttname"><a href="structParameter.html#ae8b833b543d3e51c2fbde7bb51a5ec37">Parameter::name</a></div><div class="ttdeci">const std::string name</div><div class="ttdef"><b>Definition:</b> parameter.h:68</div></div>
+<div class="ttc" id="astructParameter_html_af0df12a72ececffd111e8865544dba99"><div class="ttname"><a href="structParameter.html#af0df12a72ececffd111e8865544dba99">Parameter::float_ptr</a></div><div class="ttdeci">float * float_ptr</div><div class="ttdef"><b>Definition:</b> parameter.h:73</div></div>
+<div class="ttc" id="astructParameter_html_af212e2c16e2d4de8019138ebde3aa7bf"><div class="ttname"><a href="structParameter.html#af212e2c16e2d4de8019138ebde3aa7bf">Parameter::toString</a></div><div class="ttdeci">std::string toString() const</div><div class="ttdef"><b>Definition:</b> parameter.h:37</div></div>
+<div class="ttc" id="astructParameter_html_af25a0a7eeab02ad47a5e1a129863ddf9"><div class="ttname"><a href="structParameter.html#af25a0a7eeab02ad47a5e1a129863ddf9">Parameter::is</a></div><div class="ttdeci">bool is(const std::string &amp;other) const</div><div class="ttdef"><b>Definition:</b> parameter.h:64</div></div>
+<div class="ttc" id="astructParameter_html_afbe10baf73703aa03b24f75c5d7b860a"><div class="ttname"><a href="structParameter.html#afbe10baf73703aa03b24f75c5d7b860a">Parameter::get</a></div><div class="ttdeci">T get(void) const</div><div class="ttdef"><b>Definition:</b> parameter.h:60</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Jeudi 26 Mars 2026 23:28:54 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

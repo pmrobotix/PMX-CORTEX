@@ -1,12 +1,12 @@
 <map id="logs::Logger::name" name="logs::Logger::name">
-<area shape="rect" id="node1" title="Cette méthode retourne le nom associé au Logger." alt="" coords="548,129,695,156"/>
+<area shape="rect" id="node1" title="Cette méthode retourne le nom associé au Logger." alt="" coords="548,163,695,189"/>
 <area shape="rect" id="node2" href="$classlogs_1_1LoggerFactory.html#a4a5dc780d448355be6eb117ed9a42a8b" title="Cette méthode ajoute un logger au système." alt="" coords="305,5,484,32"/>
 <area shape="rect" id="node3" href="$classtest_1_1LoggerTest.html#a76ceb62a27076dd62490d377b09861ab" title="Vérifie la construction par copie d&#39;un logger parent." alt="" coords="293,57,496,98"/>
 <area shape="rect" id="node5" href="$classtest_1_1LoggerTest.html#a25080abab28188bb60904dbfac123252" title="Vérifie le nom et le niveau du logger." alt="" coords="293,122,496,163"/>
-<area shape="rect" id="node6" href="$classlogs_1_1MemoryAppender.html#a478c866b07f63f1f89c347b4465834bc" title="Méthode générique de trace d&#39;un message. Ajoute le nom du log devant chaque entrée." alt="" coords="308,187,481,229"/>
-<area shape="rect" id="node10" href="$classlogs_1_1TelemetryAppender.html#a2021f9d6001dc21de8abb6f7dffce234" title="Enregistre un message au format JSON avec horodatage pour la télémétrie." alt="" coords="289,253,500,294"/>
-<area shape="rect" id="node4" href="$classtest_1_1LoggerTest.html#af4c75dbd29735b88c4aaf349bc9d4caf" title="Execute les tests associés à la classe." alt="" coords="41,68,206,95"/>
-<area shape="rect" id="node7" href="$classlogs_1_1ConsoleAppender.html#a8bc998ae5666863d846b6909207b2fc7" title="Méthode de trace d&#39;un message." alt="" coords="38,122,209,163"/>
-<area shape="rect" id="node8" href="$classlogs_1_1TelemetryAppender.html#ac016e9912989d9550e5f5b42603a793c" title="Trace un message. Les messages TELEM et ERROR sont envoyés en UDP, les autres sont affichés sur la co..." alt="" coords="31,187,215,229"/>
-<area shape="rect" id="node9" href="$classUnitTestAppender.html#a2b69943419d6fe74a7f8a9c6cdcd0c98" title="Méthode générique de trace d&#39;un message." alt="" coords="5,253,241,280"/>
+<area shape="rect" id="node6" href="$classlogs_1_1ConsoleAppender.html#a8bc998ae5666863d846b6909207b2fc7" title="Méthode de trace d&#39;un message." alt="" coords="309,187,480,229"/>
+<area shape="rect" id="node7" href="$classlogs_1_1MemoryAppender.html#a478c866b07f63f1f89c347b4465834bc" title="Méthode générique de trace d&#39;un message. Ajoute le nom du log devant chaque entrée." alt="" coords="308,253,481,294"/>
+<area shape="rect" id="node10" href="$classlogs_1_1TelemetryAppender.html#a2021f9d6001dc21de8abb6f7dffce234" title="Enregistre un message au format JSON avec horodatage pour la télémétrie." alt="" coords="289,318,500,359"/>
+<area shape="rect" id="node4" href="$classtest_1_1LoggerTest.html#af4c75dbd29735b88c4aaf349bc9d4caf" title="Execute les tests associés à la classe." alt="" coords="41,97,206,124"/>
+<area shape="rect" id="node8" href="$classlogs_1_1TelemetryAppender.html#ac016e9912989d9550e5f5b42603a793c" title="Trace un message. Les messages TELEM et ERROR sont envoyés en UDP, les autres sont affichés sur la co..." alt="" coords="31,223,215,265"/>
+<area shape="rect" id="node9" href="$classUnitTestAppender.html#a2b69943419d6fe74a7f8a9c6cdcd0c98" title="Méthode générique de trace d&#39;un message." alt="" coords="5,289,241,316"/>
 </map>

@@ -1,0 +1,6 @@
+<map id="BeaconSensors::getData" name="BeaconSensors::getData">
+<area shape="rect" id="node1" title="get distance in mm. //every 250 ms" alt="" coords="479,31,660,57"/>
+<area shape="rect" id="node2" href="$classBeaconSensors.html#ab5da914e8d5038ecb88bbefe650215d5" title="initialise i2c" alt="" coords="265,5,431,32"/>
+<area shape="rect" id="node4" href="$classSensorsDriver.html#a1bfbcc82461257094ed185fa2017afad" title="Synchronise les donnees de la balise (lecture I2C)." alt="" coords="273,56,423,83"/>
+<area shape="rect" id="node3" href="$classSensorsDriver.html#a93194289387be10d5f26f922e723fa91" title="Constructor." alt="" coords="5,5,217,32"/>
+</map>

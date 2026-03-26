@@ -1,0 +1,11 @@
+<map id="Robot::freeMotion" name="Robot::freeMotion">
+<area shape="rect" id="node1" title=" " alt="" coords="5,144,144,171"/>
+<area shape="rect" id="node2" href="$classAsserv.html#aef3c037b15172c4cc015c47a33f93634" title=" " alt="" coords="192,119,336,145"/>
+<area shape="rect" id="node9" href="$classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" title=" " alt="" coords="205,169,323,196"/>
+<area shape="rect" id="node3" href="$classAsservEsialR.html#a9f1de45d0cbdbd1d827e467b59fd4bc1" title="Passe en roue libre (aucun asservissement)." alt="" coords="389,78,549,119"/>
+<area shape="rect" id="node8" href="$classAAsservDriver.html#aca4741e0e7e11947180f53ba8abe0730" title="Passe en roue libre (aucun asservissement)." alt="" coords="384,143,553,185"/>
+<area shape="rect" id="node4" href="$classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32" title="Verrouille le mutex. Cette méthode doit être appelée avant d&#39;utiliser la ressource associée...." alt="" coords="654,5,789,32"/>
+<area shape="rect" id="node5" href="$classCommandManagerA.html#ae485a84b4549ea2cd01e1687febcebe7" title=" " alt="" coords="601,56,841,83"/>
+<area shape="rect" id="node6" href="$classConsignController.html#adfedf459a0ef4d9eeb8aae541a999869" title=" " alt="" coords="648,107,795,149"/>
+<area shape="rect" id="node7" href="$classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3" title="Déverrouille le mutex. Cette méthode doit être appelée après avoir utiliser la ressource associée." alt="" coords="646,173,797,200"/>
+</map>

@@ -1,0 +1,18 @@
+<map id="CCAx12Adc::logger" name="CCAx12Adc::logger">
+<area shape="rect" id="node1" title="Retourne le Logger associé à la classe CCAx12Adc (OPOS6UL)." alt="" coords="741,157,888,184"/>
+<area shape="rect" id="node2" href="$classCCAx12Adc.html#ad83f5d15bd8068ee822b2d5860f3f0f3" title=" " alt="" coords="523,31,677,57"/>
+<area shape="rect" id="node5" href="$classCCAx12Adc.html#af95b4426fbb54ee143cbe5000d0ca5d8" title=" " alt="" coords="509,107,691,133"/>
+<area shape="rect" id="node9" href="$classCCAx12Adc.html#af2c5e8ac33096b2316d35aad400e3585" title=" " alt="" coords="517,157,683,184"/>
+<area shape="rect" id="node10" href="$classCCAx12Adc.html#a85d21062dfabb83ba1851341464e4ceb" title=" " alt="" coords="517,208,683,235"/>
+<area shape="rect" id="node11" href="$classCCAx12Adc.html#a6a505e9a0944b62ec52f59a9ec8085fe" title=" " alt="" coords="507,284,693,311"/>
+<area shape="rect" id="node3" href="$classIrSensor.html#ad96797601d8975a891996bb19ac7bea6" title=" " alt="" coords="273,5,426,32"/>
+<area shape="rect" id="node4" href="$classIrSensor.html#a5c391d7b0c385a748d2441e56a624498" title=" " alt="" coords="5,5,192,32"/>
+<area shape="rect" id="node6" href="$classDynamixelDriver.html#a142a774bb716628483fa010727b84cdb" title="Verifie si le servo est en mouvement." alt="" coords="245,56,454,83"/>
+<area shape="rect" id="node7" href="$classDynamixelDriver.html#ae6a7d5cdcfd4bd372bf2a742b6ecaf4d" title="Lit la position courante du servo." alt="" coords="240,107,459,133"/>
+<area shape="rect" id="node8" href="$classDynamixelDriver.html#a3f431b5c398e201834c7b018a726a7c3" title="Lit le couple courant du servo." alt="" coords="247,157,451,184"/>
+<area shape="rect" id="node12" href="$classDynamixelDriver.html#a158a5d3216643efd306c036eac270752" title="Maintient la position courante du servo (active le couple)." alt="" coords="265,208,433,235"/>
+<area shape="rect" id="node13" href="$classDynamixelDriver.html#a16fc2b6f82b30c98bab3d64079f16360" title="Relache le servo (desactive le couple)." alt="" coords="255,259,443,285"/>
+<area shape="rect" id="node14" href="$classDynamixelDriver.html#ab9d0e9a3d8ef54d7bd1fee238bfb5278" title=" " alt="" coords="240,309,459,336"/>
+<area shape="rect" id="node15" href="$classDynamixelDriver.html#a71ddbc9a7a468231b5334e95e9bd1eb3" title=" " alt="" coords="254,360,445,387"/>
+<area shape="rect" id="node16" href="$classDynamixelDriver.html#a0dd50e159c075dc8e09a297501a5e23d" title="Fait tourner le servo en mode moteur continu." alt="" coords="266,411,433,437"/>
+</map>

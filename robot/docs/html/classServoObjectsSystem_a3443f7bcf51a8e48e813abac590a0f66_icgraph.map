@@ -1,0 +1,28 @@
+<map id="ServoObjectsSystem::logger" name="ServoObjectsSystem::logger">
+<area shape="rect" id="node1" title="Retourne le Logger associé à la classe ServoObjectsSystem." alt="" coords="1120,365,1277,407"/>
+<area shape="rect" id="node2" href="$classServoObjectsSystem.html#a6df7e1694087d2fa67d41aeef363b3f3" title="Déploie un servo à la position donnée." alt="" coords="915,5,1072,47"/>
+<area shape="rect" id="node3" href="$classServoObjectsSystem.html#a365a1064fe865a6e081294ed124861bb" title="Déploie un servo avec une vitesse contrôlée." alt="" coords="915,71,1072,112"/>
+<area shape="rect" id="node4" href="$classServoObjectsSystem.html#ab56910319decab536a3ebdd2d6ba91e5" title="Détecte un servo spécifique." alt="" coords="915,136,1072,177"/>
+<area shape="rect" id="node5" href="$classServoObjectsSystem.html#a24493ce2c4405cc4df41aa036de09262" title="Détecte tous les servos connectés au bus." alt="" coords="915,201,1072,243"/>
+<area shape="rect" id="node6" href="$classServoObjectsSystem.html#af9900bc699365da539559e7c630f70f2" title="Retourne la vitesse actuelle d&#39;un servo." alt="" coords="915,267,1072,308"/>
+<area shape="rect" id="node7" href="$classServoObjectsSystem.html#a60de17986f65700a7659b22edda2faef" title="move 1 servo." alt="" coords="915,332,1072,373"/>
+<area shape="rect" id="node20" href="$classServoObjectsSystem.html#a209d4e6a24c8cd26c76168c08e330655" title="move 2 servos." alt="" coords="915,397,1072,439"/>
+<area shape="rect" id="node21" href="$classServoObjectsSystem.html#a8d96f5f8ccdfb9ca69a73e523f388191" title="Déplace 3 servos simultanément." alt="" coords="915,463,1072,504"/>
+<area shape="rect" id="node22" href="$classServoObjectsSystem.html#a885ad7b498315c66de65dae7149b3ea1" title="Déplace 4 servos simultanément." alt="" coords="915,528,1072,569"/>
+<area shape="rect" id="node23" href="$classServoObjectsSystem.html#a39f1221512cd050bdfd985c74b39a56a" title="Définit la vitesse d&#39;un servo." alt="" coords="915,593,1072,635"/>
+<area shape="rect" id="node24" href="$classServoObjectsSystem.html#a9c3a5d35163d012d690f80da160b7f25" title="setup 1 servo with type, min, mid, max, inv values." alt="" coords="915,659,1072,700"/>
+<area shape="rect" id="node26" href="$classServoObjectsSystem.html#a5e0e2b1e10cecd6254b3421f564f119d" title="Fait tourner un servo en continu à la vitesse donnée." alt="" coords="915,724,1072,765"/>
+<area shape="rect" id="node8" href="$classOPOS6UL__ActionsExtended.html#a946560d21bc7c1a12be600b16e07c93a" title="Déploie le bras droit en position d&#39;action." alt="" coords="664,5,863,47"/>
+<area shape="rect" id="node12" href="$classOPOS6UL__ActionsExtended.html#a67daef275b861004d118273c7e2564c2" title="Place le bras droit en position initiale (replié)." alt="" coords="664,71,863,112"/>
+<area shape="rect" id="node13" href="$classOPOS6UL__ActionsExtended.html#a5b32b355b6907dda48874f40dc9101eb" title="Déploie le bras gauche en position d&#39;action." alt="" coords="664,136,863,177"/>
+<area shape="rect" id="node14" href="$classOPOS6UL__ActionsExtended.html#ad3b7d5a26040d5780cc43a5a9ead9ad3" title="Place le bras gauche en position initiale (replié)." alt="" coords="664,201,863,243"/>
+<area shape="rect" id="node15" href="$classOPOS6UL__ActionsExtended.html#a44856498aa3839098211785a1fe0b6a3" title="Déploie la banderole (action de fin de match)." alt="" coords="664,332,863,373"/>
+<area shape="rect" id="node16" href="$classOPOS6UL__ActionsExtended.html#ae63e06f334f5095383387aa9ff68c8a3" title="Initialise le servo de la banderole à la position repliée." alt="" coords="664,267,863,308"/>
+<area shape="rect" id="node17" href="$classOPOS6UL__ActionsExtended.html#a565acda2ce4cdd1be8263835465d0fdc" title="Initialise le bras gauche (épaule, coude, poignet) à la position de repos." alt="" coords="664,397,863,439"/>
+<area shape="rect" id="node18" href="$classOPOS6UL__ActionsExtended.html#a50a3db095faaaf15ec9630d9abcfb5d4" title="Initialise les deux bras (gauche et droit) à la position de repos." alt="" coords="664,463,863,504"/>
+<area shape="rect" id="node19" href="$classOPOS6UL__ActionsExtended.html#a298422faffadf81c4350cd47464d3f0a" title="Initialise le bras droit (épaule, coude, poignet) à la position de repos." alt="" coords="664,528,863,569"/>
+<area shape="rect" id="node9" href="$classOPOS6UL__ActionsExtended.html#af04e19802d90a78d82e67b10061521a2" title="Initialise tous les servomoteurs AX12 à leur position de départ." alt="" coords="413,136,612,177"/>
+<area shape="rect" id="node10" href="$classO__State__Init.html#abc19788b7457d1f819245dd28367fe91" title="Exécute l&#39;état d&#39;initialisation." alt="" coords="5,143,165,170"/>
+<area shape="rect" id="node11" href="$classO__State__Init.html#a1980cd82dcb83e88d61f2e7e14dddfa0" title=" " alt="" coords="213,169,365,195"/>
+<area shape="rect" id="node25" href="$classOPOS6UL__ActionsExtended.html#aced00f2c03b0aa9b9eda54e6874bac75" title=" " alt="" coords="660,659,867,700"/>
+</map>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['json_5fpointer_3436',['json_pointer',['../classjson__pointer.html#ab0a623288bc1272870149ad50f799a73',1,'json_pointer']]]
+  ['external_5fconstructor_6420',['external_constructor',['../classbasic__json.html#a6275ed57bae6866cdf5db5370a7ad47c',1,'basic_json']]]
 ];

@@ -1,0 +1,15 @@
+<map id="O_ButtonBarTest::run" name="O_ButtonBarTest::run">
+<area shape="rect" id="node1" title="Execute le test." alt="" coords="5,137,164,163"/>
+<area shape="rect" id="node2" href="$classOPOS6UL__RobotExtended.html#a6468a2bb1fc8de815154a322e038b875" title=" " alt="" coords="217,5,406,47"/>
+<area shape="rect" id="node3" href="$classOPOS6UL__ActionsExtended.html#a1e1b2ca9a7404b1322c8e566de3b3f52" title="Retourne l&#39;objet ButtonBar." alt="" coords="212,71,411,112"/>
+<area shape="rect" id="node4" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="271,137,352,163"/>
+<area shape="rect" id="node9" href="$classOPOS6UL__RobotExtended.html#a514e663cf7537d64d2d0272b8856d6c0" title="Retourne l&#39;instance unique du robot (singleton)." alt="" coords="217,188,406,229"/>
+<area shape="rect" id="node10" href="$classButtonBar.html#aa1baddb8099d0bbdf90f19914119cbb4" title="Attend qu&#39;un bouton soit appuyé (bloquant)." alt="" coords="224,254,399,281"/>
+<area shape="rect" id="node5" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#a0e4fd77693fd899ec1b0670354f93a02" title="Cette méthode valide le message en cours de construction et le transmet au Logger de référence." alt="" coords="459,137,683,163"/>
+<area shape="rect" id="node6" href="$classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32" title="Verrouille le mutex. Cette méthode doit être appelée avant d&#39;utiliser la ressource associée...." alt="" coords="763,86,898,113"/>
+<area shape="rect" id="node7" href="$classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3" title="Déverrouille le mutex. Cette méthode doit être appelée après avoir utiliser la ressource associée." alt="" coords="755,137,906,163"/>
+<area shape="rect" id="node8" href="$classlogs_1_1Logger.html#afa535aaf4891e02c4ff7f84d372b5b1b" title="Méthode générique de trace d&#39;un message." alt="" coords="731,187,931,214"/>
+<area shape="rect" id="node11" href="$classButtonBar.html#a2054f8a32649f17ec6e8929d85a45d76" title="Vérifie si un bouton est actuellement appuyé." alt="" coords="497,246,644,273"/>
+<area shape="rect" id="node13" href="$namespaceutils.html#a4f86fc4c334661a6995538cc080a40c9" title="Met en pause le thread courant pendant usec microsecondes." alt="" coords="486,297,655,323"/>
+<area shape="rect" id="node12" href="$classAButtonDriver.html#a76900724cd51ab5213273cd2ef4e4918" title="Teste si un bouton est actuellement appuye." alt="" coords="744,246,917,273"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="AActionsElement" name="AActionsElement">
+<area shape="rect" id="node1" title="Classe abstraite définissant la notion d&#39;élément du robot." alt="" coords="355,5,489,32"/>
+<area shape="rect" id="node2" href="$classButtonBar.html" title="Gestion de la barre de boutons du robot." alt="" coords="5,80,92,107"/>
+<area shape="rect" id="node3" href="$classLcdShield.html" title="Gestion de l&#39;écran LCD du robot." alt="" coords="116,80,200,107"/>
+<area shape="rect" id="node4" href="$classLedBar.html" title="Gestion d&#39;une barre de LEDs avec actions et timers de clignotement." alt="" coords="225,80,291,107"/>
+<area shape="rect" id="node5" href="$classSensors.html" title="Gestion des capteurs de detection et de distance." alt="" coords="316,80,389,107"/>
+<area shape="rect" id="node6" href="$classServoObjectsSystem.html" title="Système de gestion des servomoteurs (déploiement, positionnement, torque)." alt="" coords="414,80,571,107"/>
+<area shape="rect" id="node7" href="$classServoUsingMotor.html" title="Gère un servomoteur piloté via un driver moteur." alt="" coords="596,80,731,107"/>
+<area shape="rect" id="node8" href="$classSoundBar.html" title="Gère la barre de son du robot (beeps, mélodies, synthèse vocale)." alt="" coords="755,80,839,107"/>
+<area shape="rect" id="node9" href="$classTirette.html" title="Gère la tirette de démarrage du robot (interrupteur de lancement)." alt="" coords="863,80,928,107"/>
+</map>

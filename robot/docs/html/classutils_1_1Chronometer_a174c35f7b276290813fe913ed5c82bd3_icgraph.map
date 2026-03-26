@@ -1,10 +1,39 @@
 <map id="utils::Chronometer::start" name="utils::Chronometer::start">
-<area shape="rect" id="node1" title="Lance ou réinitialise le chronomètre." alt="" coords="463,155,605,197"/>
-<area shape="rect" id="node2" href="$classTimerPosix.html#ab15271c50cd9cc4306fc8a454df1e36f" title=" " alt="" coords="251,5,384,32"/>
-<area shape="rect" id="node3" href="$classITimerPosixListener.html#a89083ecb392fa2f81b4951ba0e2ba824" title=" " alt="" coords="242,57,393,98"/>
-<area shape="rect" id="node4" href="$classtest_1_1ChronometerTest.html#a23da1b885637b6bcebc73325fca0684a" title="Vérifie la mesure du temps écoulé après un sleep." alt="" coords="234,122,401,163"/>
-<area shape="rect" id="node6" href="$classtest_1_1ThreadTest.html#a313e3f9f588d83d238893bd58923ed21" title="Vérifie la précision de sleep_for_millis." alt="" coords="220,187,415,229"/>
-<area shape="rect" id="node7" href="$classtest_1_1ThreadTest.html#a1262fce3aca48dc17dab2ee10a7d5999" title="Vérifie la précision de sleep_for_micros." alt="" coords="220,253,415,294"/>
-<area shape="rect" id="node8" href="$classtest_1_1ChronometerTest.html#a415d1e31bcf8129824fcb03e304021c7" title="Vérifie les transitions start/stop et le flag started()." alt="" coords="234,318,401,359"/>
-<area shape="rect" id="node5" href="$classtest_1_1ChronometerTest.html#a1c7e36190a3c3f415a5547d408883d76" title="Execute les tests associés à la classe." alt="" coords="5,221,172,262"/>
+<area shape="rect" id="node1" title="Lance ou réinitialise le chronomètre." alt="" coords="1156,603,1299,645"/>
+<area shape="rect" id="node2" href="$classAsservDriver.html#af7ab066576413089d8e0977cc6d62864" title="Constructor." alt="" coords="909,5,1108,32"/>
+<area shape="rect" id="node3" href="$classMockAction.html#a28a65ce4424e999f22b2c8787da71e40" title=" " alt="" coords="917,56,1100,83"/>
+<area shape="rect" id="node4" href="$classRobotPositionShared.html#a6cc784d63e5426bb773c2e90b5878713" title="Constructeur." alt="" coords="926,107,1091,149"/>
+<area shape="rect" id="node5" href="$classTestAction.html#a313c6975b35eb2ec170f843caa32bc6f" title="Constructeur de la classe." alt="" coords="927,173,1091,200"/>
+<area shape="rect" id="node6" href="$classActionManagerTimer.html#a8eb81df877c40053d71f659265882058" title="Execute l&#39;ensemble des actions enregistrees." alt="" coords="681,89,840,130"/>
+<area shape="rect" id="node7" href="$classO__State__WaitEndOfMatch.html#aa73613440b37c8dd42181e2e0265ae86" title="Exécute l&#39;état d&#39;attente de fin de match." alt="" coords="915,342,1103,383"/>
+<area shape="rect" id="node8" href="$classAsservDriverWrapper.html#a4d3b337fd6beed104ba60b69213344cc" title=" " alt="" coords="928,407,1089,449"/>
+<area shape="rect" id="node10" href="$classAsservDriverWrapper.html#af356c1725a4b8dac9994dd0d94e12069" title=" " alt="" coords="928,473,1089,514"/>
+<area shape="rect" id="node12" href="$classServoObjectsSystem.html#a60de17986f65700a7659b22edda2faef" title="move 1 servo." alt="" coords="930,538,1087,579"/>
+<area shape="rect" id="node25" href="$classServoObjectsSystem.html#a209d4e6a24c8cd26c76168c08e330655" title="move 2 servos." alt="" coords="930,603,1087,645"/>
+<area shape="rect" id="node26" href="$classServoObjectsSystem.html#a8d96f5f8ccdfb9ca69a73e523f388191" title="Déplace 3 servos simultanément." alt="" coords="930,669,1087,710"/>
+<area shape="rect" id="node27" href="$classServoObjectsSystem.html#a885ad7b498315c66de65dae7149b3ea1" title="Déplace 4 servos simultanément." alt="" coords="930,734,1087,775"/>
+<area shape="rect" id="node28" href="$classO__LedBarTest.html#af9e0e172d13b334cda0fe32bb659b414" title=" " alt="" coords="939,800,1078,827"/>
+<area shape="rect" id="node29" href="$classTimerPosix.html#ab15271c50cd9cc4306fc8a454df1e36f" title=" " alt="" coords="942,851,1075,877"/>
+<area shape="rect" id="node30" href="$classtest_1_1TimerPosixStandaloneBench.html#a71eaba7b9c9cf2dc0384bced04b641f4" title=" " alt="" coords="660,887,861,929"/>
+<area shape="rect" id="node31" href="$classITimerPosixListener.html#a89083ecb392fa2f81b4951ba0e2ba824" title=" " alt="" coords="933,225,1084,266"/>
+<area shape="rect" id="node32" href="$classtest_1_1ChronometerTest.html#a23da1b885637b6bcebc73325fca0684a" title="Vérifie la mesure du temps écoulé après un sleep." alt="" coords="925,1018,1092,1059"/>
+<area shape="rect" id="node34" href="$classtest_1_1AsservDriverManualTest.html#ae216789e8e059e5c854008e32668db82" title=" " alt="" coords="915,1083,1102,1125"/>
+<area shape="rect" id="node35" href="$classtest_1_1ThreadTest.html#a313e3f9f588d83d238893bd58923ed21" title="Vérifie la précision de sleep_for_millis." alt="" coords="911,1149,1106,1190"/>
+<area shape="rect" id="node36" href="$classtest_1_1ThreadTest.html#a1262fce3aca48dc17dab2ee10a7d5999" title="Vérifie la précision de sleep_for_micros." alt="" coords="911,1214,1106,1255"/>
+<area shape="rect" id="node37" href="$classtest_1_1ChronometerTest.html#a415d1e31bcf8129824fcb03e304021c7" title="Vérifie les transitions start/stop et le flag started()." alt="" coords="925,953,1092,994"/>
+<area shape="rect" id="node9" href="$classAsservDriverWrapper.html#a6d2ba86845397e2a65e62660f7d94710" title=" " alt="" coords="680,154,841,195"/>
+<area shape="rect" id="node11" href="$classAsservDriverWrapper.html#af629788681c4e3155c9fc56d6a783d8a" title=" " alt="" coords="679,219,843,261"/>
+<area shape="rect" id="node13" href="$classOPOS6UL__ActionsExtended.html#a946560d21bc7c1a12be600b16e07c93a" title="Déploie le bras droit en position d&#39;action." alt="" coords="661,415,860,457"/>
+<area shape="rect" id="node17" href="$classOPOS6UL__ActionsExtended.html#a67daef275b861004d118273c7e2564c2" title="Place le bras droit en position initiale (replié)." alt="" coords="661,481,860,522"/>
+<area shape="rect" id="node18" href="$classOPOS6UL__ActionsExtended.html#a5b32b355b6907dda48874f40dc9101eb" title="Déploie le bras gauche en position d&#39;action." alt="" coords="661,546,860,587"/>
+<area shape="rect" id="node19" href="$classOPOS6UL__ActionsExtended.html#ad3b7d5a26040d5780cc43a5a9ead9ad3" title="Place le bras gauche en position initiale (replié)." alt="" coords="661,285,860,326"/>
+<area shape="rect" id="node20" href="$classOPOS6UL__ActionsExtended.html#a44856498aa3839098211785a1fe0b6a3" title="Déploie la banderole (action de fin de match)." alt="" coords="661,611,860,653"/>
+<area shape="rect" id="node21" href="$classOPOS6UL__ActionsExtended.html#ae63e06f334f5095383387aa9ff68c8a3" title="Initialise le servo de la banderole à la position repliée." alt="" coords="661,350,860,391"/>
+<area shape="rect" id="node22" href="$classOPOS6UL__ActionsExtended.html#a565acda2ce4cdd1be8263835465d0fdc" title="Initialise le bras gauche (épaule, coude, poignet) à la position de repos." alt="" coords="661,677,860,718"/>
+<area shape="rect" id="node23" href="$classOPOS6UL__ActionsExtended.html#a50a3db095faaaf15ec9630d9abcfb5d4" title="Initialise les deux bras (gauche et droit) à la position de repos." alt="" coords="661,742,860,783"/>
+<area shape="rect" id="node24" href="$classOPOS6UL__ActionsExtended.html#a298422faffadf81c4350cd47464d3f0a" title="Initialise le bras droit (épaule, coude, poignet) à la position de repos." alt="" coords="661,807,860,849"/>
+<area shape="rect" id="node14" href="$classOPOS6UL__ActionsExtended.html#af04e19802d90a78d82e67b10061521a2" title="Initialise tous les servomoteurs AX12 à leur position de départ." alt="" coords="413,415,612,457"/>
+<area shape="rect" id="node15" href="$classO__State__Init.html#abc19788b7457d1f819245dd28367fe91" title="Exécute l&#39;état d&#39;initialisation." alt="" coords="5,423,165,449"/>
+<area shape="rect" id="node16" href="$classO__State__Init.html#a1980cd82dcb83e88d61f2e7e14dddfa0" title=" " alt="" coords="213,448,365,475"/>
+<area shape="rect" id="node33" href="$classtest_1_1ChronometerTest.html#a1c7e36190a3c3f415a5547d408883d76" title="Execute les tests associés à la classe." alt="" coords="677,982,844,1023"/>
 </map>

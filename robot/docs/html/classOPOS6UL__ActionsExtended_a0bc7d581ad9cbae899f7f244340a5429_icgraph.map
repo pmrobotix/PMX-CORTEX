@@ -1,0 +1,7 @@
+<map id="OPOS6UL_ActionsExtended::releaseAll" name="OPOS6UL_ActionsExtended::releaseAll">
+<area shape="rect" id="node1" title="Relâche tous les servomoteurs AX12 (coupe le maintien en position)." alt="" coords="744,5,943,47"/>
+<area shape="rect" id="node2" href="$classO__State__WaitEndOfMatch.html#aa73613440b37c8dd42181e2e0265ae86" title="Exécute l&#39;état d&#39;attente de fin de match." alt="" coords="5,39,193,80"/>
+<area shape="rect" id="node3" href="$classOPOS6UL__ActionsExtended.html#a87bb61d89759101cac844e7c399f2f61" title="Arrête tous les périphériques supplémentaires (capteurs, LEDs, LCD) et relâche les servos." alt="" coords="497,35,696,76"/>
+<area shape="rect" id="node4" href="$classOPOS6UL__RobotExtended.html#ac8ac2be407a78cdd62261f72226162df" title=" " alt="" coords="241,35,449,76"/>
+<area shape="rect" id="node5" href="$classOPOS6UL__RobotExtended.html#a0a997f7fd88abac1efe0083fce633649" title="Arrête toutes les actions supplémentaires (capteurs, LEDs, servos)." alt="" coords="251,100,440,141"/>
+</map>

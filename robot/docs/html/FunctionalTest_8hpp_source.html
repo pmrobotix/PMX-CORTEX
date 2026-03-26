@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot:  Fichier source de src/common/utils/FunctionalTest.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_fdedb0aba14d44ce9d99bc100e026e6a.html">common</a></li><li class="navelem"><a class="el" href="dir_c3d33904e581c7b40f74ea903e639ce2.html">utils</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">FunctionalTest.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="FunctionalTest_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef COMMON_FUNCTIONALTEST_HPP_</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define COMMON_FUNCTIONALTEST_HPP_</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">class </span><a class="code" href="classArguments.html">Arguments</a>;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classFunctionalTest.html">   16</a></span>&#160;<span class="keyword">class </span><a class="code" href="classFunctionalTest.html">FunctionalTest</a></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classFunctionalTest.html#ab5f369c03bc95f0ae3cfe11d5cd85f01">   23</a></span>&#160;    std::string <a class="code" href="classFunctionalTest.html#ab5f369c03bc95f0ae3cfe11d5cd85f01">name_</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="classFunctionalTest.html#a95c9fd06adab58bff4505a4af914693f">   24</a></span>&#160;    std::string <a class="code" href="classFunctionalTest.html#a95c9fd06adab58bff4505a4af914693f">description_</a>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classFunctionalTest.html#a5a2aeca4b5872431f092cacc76ce2a22">   28</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classFunctionalTest.html#a5a2aeca4b5872431f092cacc76ce2a22">num_</a>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classFunctionalTest.html#a2a6a15ddfbeb221b6eedc486138504c3">   37</a></span>&#160;    <a class="code" href="classFunctionalTest.html#a2a6a15ddfbeb221b6eedc486138504c3">FunctionalTest</a>(<span class="keyword">const</span> std::string &amp; <a class="code" href="classFunctionalTest.html#ae40fb49a44014898c3b647e96a485922">name</a>, <span class="keyword">const</span> std::string &amp; <a class="code" href="classFunctionalTest.html#a7b310fa513c607660bf445cc36959eac">desc</a>) :</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            <a class="code" href="classFunctionalTest.html#ab5f369c03bc95f0ae3cfe11d5cd85f01">name_</a>(<a class="code" href="classFunctionalTest.html#ae40fb49a44014898c3b647e96a485922">name</a>), <a class="code" href="classFunctionalTest.html#a95c9fd06adab58bff4505a4af914693f">description_</a>(<a class="code" href="classFunctionalTest.html#a7b310fa513c607660bf445cc36959eac">desc</a>), <a class="code" href="classFunctionalTest.html#a5a2aeca4b5872431f092cacc76ce2a22">num_</a>(0)</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    }</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classFunctionalTest.html#ab3207865c4ba2087ae1611ca92da07d7">   47</a></span>&#160;    <span class="keyword">virtual</span> <span class="keyword">inline</span> <a class="code" href="classFunctionalTest.html#ab3207865c4ba2087ae1611ca92da07d7">~ FunctionalTest</a>()</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    }</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="classFunctionalTest.html#ae40fb49a44014898c3b647e96a485922">   54</a></span>&#160;    <span class="keyword">inline</span> <span class="keyword">const</span> std::string &amp; <a class="code" href="classFunctionalTest.html#ae40fb49a44014898c3b647e96a485922">name</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classFunctionalTest.html#ab5f369c03bc95f0ae3cfe11d5cd85f01">name_</a>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    }</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="classFunctionalTest.html#a7b310fa513c607660bf445cc36959eac">   62</a></span>&#160;    <span class="keyword">inline</span> <span class="keyword">const</span> std::string &amp; <a class="code" href="classFunctionalTest.html#a7b310fa513c607660bf445cc36959eac">desc</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classFunctionalTest.html#a95c9fd06adab58bff4505a4af914693f">description_</a>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    }</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="classFunctionalTest.html#ad12ed2cc723ce1584ff0a5c7dcddcf5e">   70</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="classFunctionalTest.html#ad12ed2cc723ce1584ff0a5c7dcddcf5e">position</a>()</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classFunctionalTest.html#a5a2aeca4b5872431f092cacc76ce2a22">num_</a>;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    }</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="classFunctionalTest.html#add2d19aff8e1754df1f6775abad4b98e">   78</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classFunctionalTest.html#add2d19aff8e1754df1f6775abad4b98e">setPos</a>(<span class="keywordtype">int</span> num)</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    {</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <a class="code" href="classFunctionalTest.html#a5a2aeca4b5872431f092cacc76ce2a22">num_</a> = num;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    }</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="classFunctionalTest.html#a9942d82ed217f8410935d88cd70f64c5">   86</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classFunctionalTest.html#a9942d82ed217f8410935d88cd70f64c5">run</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>** argv) = 0;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="classFunctionalTest.html#ab883801a3de94eb67111f92f494c6aa7">   88</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classFunctionalTest.html#ab883801a3de94eb67111f92f494c6aa7">configureConsoleArgs</a>(<span class="keywordtype">int</span>, <span class="keywordtype">char</span>**) <span class="comment">// A surcharger par le test en question pour ajouter ses parametres specifiques</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    {</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    }</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;};</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassArguments_html"><div class="ttname"><a href="classArguments.html">Arguments</a></div><div class="ttdef"><b>Definition:</b> Arguments.hpp:34</div></div>
+<div class="ttc" id="aclassFunctionalTest_html"><div class="ttname"><a href="classFunctionalTest.html">FunctionalTest</a></div><div class="ttdoc">Abstract class to implement functional tests using ConsoleManager.</div><div class="ttdef"><b>Definition:</b> FunctionalTest.hpp:17</div></div>
+<div class="ttc" id="aclassFunctionalTest_html_a2a6a15ddfbeb221b6eedc486138504c3"><div class="ttname"><a href="classFunctionalTest.html#a2a6a15ddfbeb221b6eedc486138504c3">FunctionalTest::FunctionalTest</a></div><div class="ttdeci">FunctionalTest(const std::string &amp;name, const std::string &amp;desc)</div><div class="ttdoc">Constructeur de la classe.</div><div class="ttdef"><b>Definition:</b> FunctionalTest.hpp:37</div></div>
+<div class="ttc" id="aclassFunctionalTest_html_a5a2aeca4b5872431f092cacc76ce2a22"><div class="ttname"><a href="classFunctionalTest.html#a5a2aeca4b5872431f092cacc76ce2a22">FunctionalTest::num_</a></div><div class="ttdeci">int num_</div><div class="ttdoc">Numero du test dans la liste.</div><div class="ttdef"><b>Definition:</b> FunctionalTest.hpp:28</div></div>
+<div class="ttc" id="aclassFunctionalTest_html_a7b310fa513c607660bf445cc36959eac"><div class="ttname"><a href="classFunctionalTest.html#a7b310fa513c607660bf445cc36959eac">FunctionalTest::desc</a></div><div class="ttdeci">const std::string &amp; desc() const</div><div class="ttdef"><b>Definition:</b> FunctionalTest.hpp:62</div></div>
+<div class="ttc" id="aclassFunctionalTest_html_a95c9fd06adab58bff4505a4af914693f"><div class="ttname"><a href="classFunctionalTest.html#a95c9fd06adab58bff4505a4af914693f">FunctionalTest::description_</a></div><div class="ttdeci">std::string description_</div><div class="ttdef"><b>Definition:</b> FunctionalTest.hpp:24</div></div>
+<div class="ttc" id="aclassFunctionalTest_html_a9942d82ed217f8410935d88cd70f64c5"><div class="ttname"><a href="classFunctionalTest.html#a9942d82ed217f8410935d88cd70f64c5">FunctionalTest::run</a></div><div class="ttdeci">virtual void run(int argc, char **argv)=0</div></div>
+<div class="ttc" id="aclassFunctionalTest_html_ab3207865c4ba2087ae1611ca92da07d7"><div class="ttname"><a href="classFunctionalTest.html#ab3207865c4ba2087ae1611ca92da07d7">FunctionalTest::~ FunctionalTest</a></div><div class="ttdeci">virtual ~ FunctionalTest()</div><div class="ttdef"><b>Definition:</b> FunctionalTest.hpp:47</div></div>
+<div class="ttc" id="aclassFunctionalTest_html_ab5f369c03bc95f0ae3cfe11d5cd85f01"><div class="ttname"><a href="classFunctionalTest.html#ab5f369c03bc95f0ae3cfe11d5cd85f01">FunctionalTest::name_</a></div><div class="ttdeci">std::string name_</div><div class="ttdoc">Nom du test.</div><div class="ttdef"><b>Definition:</b> FunctionalTest.hpp:23</div></div>
+<div class="ttc" id="aclassFunctionalTest_html_ab883801a3de94eb67111f92f494c6aa7"><div class="ttname"><a href="classFunctionalTest.html#ab883801a3de94eb67111f92f494c6aa7">FunctionalTest::configureConsoleArgs</a></div><div class="ttdeci">virtual void configureConsoleArgs(int, char **)</div><div class="ttdef"><b>Definition:</b> FunctionalTest.hpp:88</div></div>
+<div class="ttc" id="aclassFunctionalTest_html_ad12ed2cc723ce1584ff0a5c7dcddcf5e"><div class="ttname"><a href="classFunctionalTest.html#ad12ed2cc723ce1584ff0a5c7dcddcf5e">FunctionalTest::position</a></div><div class="ttdeci">int position()</div><div class="ttdef"><b>Definition:</b> FunctionalTest.hpp:70</div></div>
+<div class="ttc" id="aclassFunctionalTest_html_add2d19aff8e1754df1f6775abad4b98e"><div class="ttname"><a href="classFunctionalTest.html#add2d19aff8e1754df1f6775abad4b98e">FunctionalTest::setPos</a></div><div class="ttdeci">void setPos(int num)</div><div class="ttdef"><b>Definition:</b> FunctionalTest.hpp:78</div></div>
+<div class="ttc" id="aclassFunctionalTest_html_ae40fb49a44014898c3b647e96a485922"><div class="ttname"><a href="classFunctionalTest.html#ae40fb49a44014898c3b647e96a485922">FunctionalTest::name</a></div><div class="ttdeci">const std::string &amp; name() const</div><div class="ttdef"><b>Definition:</b> FunctionalTest.hpp:54</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Jeudi 26 Mars 2026 23:28:54 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

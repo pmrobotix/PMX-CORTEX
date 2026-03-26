@@ -1,0 +1,13 @@
+<map id="Actions::start" name="Actions::start">
+<area shape="rect" id="node1" title="Active les actions." alt="" coords="5,123,113,149"/>
+<area shape="rect" id="node2" href="$classActions.html#a637e05ac19e873621b1e123c2ff29990" title="Indique si le gestionnaire d&#39;actions est démarré." alt="" coords="397,127,539,153"/>
+<area shape="rect" id="node6" href="$namespaceutils.html#a4f86fc4c334661a6995538cc080a40c9" title="Met en pause le thread courant pendant usec microsecondes." alt="" coords="161,173,331,200"/>
+<area shape="rect" id="node7" href="$classutils_1_1Thread.html#a430ee2b8962147b587157fac97932219" title="Lance le thread." alt="" coords="175,68,317,95"/>
+<area shape="rect" id="node3" href="$classutils_1_1Thread.html#ada9233f3e669c925e9ed518201ad31cd" title="Retourne l&#39;état courant du thread." alt="" coords="819,93,963,120"/>
+<area shape="rect" id="node4" href="$classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32" title="Verrouille le mutex. Cette méthode doit être appelée avant d&#39;utiliser la ressource associée...." alt="" coords="1019,68,1153,95"/>
+<area shape="rect" id="node5" href="$classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3" title="Déverrouille le mutex. Cette méthode doit être appelée après avoir utiliser la ressource associée." alt="" coords="1011,5,1161,32"/>
+<area shape="rect" id="node8" href="$classutils_1_1Thread.html#a61b6c3d0b87570254646120b323b89f7" title="Cette méthode sert de point d&#39;entrée pour l&#39;appel à pcreate_thread." alt="" coords="379,9,557,36"/>
+<area shape="rect" id="node11" href="$namespaceutils.html#ac714339512d6dc1ee14c5b5a92d535be" title="Définit la priorité temps&#45;réel (SCHED_FIFO) du thread spécifié." alt="" coords="398,61,538,102"/>
+<area shape="rect" id="node9" href="$classutils_1_1Thread.html#a202b3fabad41b3be6d996043b262a43a" title="Méthode virtuelle pure à implémenter dans les sous&#45;classes." alt="" coords="607,60,769,87"/>
+<area shape="rect" id="node10" href="$classutils_1_1Thread.html#a46589324e8fc0735c20268db70d34aa5" title="Modifie l&#39;état du thread (thread&#45;safe)." alt="" coords="605,9,771,36"/>
+</map>

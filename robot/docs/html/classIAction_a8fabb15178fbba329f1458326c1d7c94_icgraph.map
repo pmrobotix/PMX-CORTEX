@@ -1,0 +1,4 @@
+<map id="IAction::execute" name="IAction::execute">
+<area shape="rect" id="node1" title="Execute une action. Attention toujours renvoyer un bool, sinon seg fault ;)" alt="" coords="212,13,339,39"/>
+<area shape="rect" id="node2" href="$classActionManagerTimer.html#a8eb81df877c40053d71f659265882058" title="Execute l&#39;ensemble des actions enregistrees." alt="" coords="5,5,164,47"/>
+</map>

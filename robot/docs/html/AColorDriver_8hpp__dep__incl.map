@@ -1,0 +1,10 @@
+<map id="src/common/interface/AColorDriver.hpp" name="src/common/interface/AColorDriver.hpp">
+<area shape="rect" id="node1" title="Interface abstraite du driver de capteur couleur." alt="" coords="251,5,415,47"/>
+<area shape="rect" id="node2" href="$GroveColorSensor_8hpp.html" title="Définition de la classe GroveColorSensor. http://wiki.seeed.cc/Grove&#45;I2C_Color_Sensor/." alt="" coords="5,95,196,136"/>
+<area shape="rect" id="node4" href="$ColorDriver_8hpp.html" title="Implementation SIMU du driver de capteur couleur." alt="" coords="220,102,445,129"/>
+<area shape="rect" id="node6" href="$ColorDriverManualTest_8hpp.html" title="Définition de la classe ColorDriverManualTest." alt="" coords="470,95,697,136"/>
+<area shape="rect" id="node3" href="$GroveColorSensor_8cpp.html" title="Implémentation de la classe GroveColorSensor concernant l&#39;utilisation du détecteur Grove TSC3414." alt="" coords="5,184,196,225"/>
+<area shape="rect" id="node5" href="$ColorDriver_8cpp.html" title="Implementation SIMU du driver de capteur couleur." alt="" coords="221,191,445,218"/>
+<area shape="rect" id="node7" href="$ColorDriverManualTest_8cpp.html" title="Implémentation de la classe ColorDriverManualTest." alt="" coords="469,184,695,225"/>
+<area shape="rect" id="node8" href="$test_2manual_2Main_8cpp.html" title="Point d&#39;entree des tests manuels (verification visuelle/physique)." alt="" coords="719,191,882,218"/>
+</map>

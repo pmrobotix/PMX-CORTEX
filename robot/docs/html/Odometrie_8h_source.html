@@ -1,0 +1,216 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot:  Fichier source de src/common/asserv.esial/odometrie/Odometrie.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_fdedb0aba14d44ce9d99bc100e026e6a.html">common</a></li><li class="navelem"><a class="el" href="dir_251413a062b2562b08c5015e69ca7513.html">asserv.esial</a></li><li class="navelem"><a class="el" href="dir_96e38f339f147df9df15700c2daa6eb1.html">odometrie</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Odometrie.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="Odometrie_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef ASSERV_E_ODOMETRIE</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define ASSERV_E_ODOMETRIE</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;../config/config.h&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;../Utils/Utils.h&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;../codeurs/CodeursInterface.h&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="classOdometrie.html">   11</a></span>&#160;<span class="keyword">class </span><a class="code" href="classOdometrie.html">Odometrie</a></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="comment">// Constructeur</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">     * Lors de la création de l&#39;objet, on calcul la distance entre les roues en UO et le nombre d&#39;UO par front</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">     * Les infos nécessaires au calcul sont dans config.h</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="classOdometrie.html#aad0b9564faf2e09c531bb65100ae3c98">Odometrie</a>(<a class="code" href="classCodeursInterface.html">CodeursInterface</a> *cdrs);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="classOdometrie.html#a6e98639e42804e50187115e616e314e8">~Odometrie</a>();</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="comment">// Paramétrage de la position du robot</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classOdometrie.html#a182a36acd6ada0cc666ffed7cb63ecce">setX</a>(int64_t xval); <span class="comment">// En UO</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classOdometrie.html#a3543e2a17fce781aae27247a93597c9a">setY</a>(int64_t yval); <span class="comment">// En UO</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classOdometrie.html#a1d519f6e29460da12962ad32ed68b600">setTheta</a>(<span class="keywordtype">float</span> thetaVal); <span class="comment">// En radians</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="comment">// Mise à jour de la position du robot</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classOdometrie.html#ae85189a1bf1b195430f93252d00c47d5">refresh</a>();</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="comment">//Position en unités arbritraires ( Unite Odometrie [UO] pour les distances, et rad pour l&#39;angle)</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="comment">/*</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">     * La classe Utils contient les méthodes de conversions pour que les mesures soient humainement compréhensible</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">     */</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classOdometrie.html#a4308ec860b9fd7bb0a47bcf9e6a10620">   35</a></span>&#160;    int64_t <a class="code" href="classOdometrie.html#a4308ec860b9fd7bb0a47bcf9e6a10620">getX</a>()</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    {</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="comment">//printf(&quot;\ngetXmm()= %d \n&quot;, getXmm());</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classOdometrie.html#a1523ae4d84cd17fd01d268756e85f6b1">x</a>;   <span class="comment">// Renvoie la position en X en UO par rapport au point de départ</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    }</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classOdometrie.html#a6919b090ea8dc11eb29a166d2697c659">   40</a></span>&#160;    int64_t <a class="code" href="classOdometrie.html#a6919b090ea8dc11eb29a166d2697c659">getY</a>()</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classOdometrie.html#abd8482df05ec02fb70a6ce3788e9d04c">y</a>;   <span class="comment">// Renvoie la position en Y en UO par rapport au point de départ</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    }</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classOdometrie.html#abc6576337993c68f587df8ca4b3602f9">   44</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classOdometrie.html#abc6576337993c68f587df8ca4b3602f9">getTheta</a>()</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classOdometrie.html#acaeee1cf59cdd614599ccb94cb95ad37">theta</a>;   <span class="comment">// Renvoie l&#39;angle en radians par rapport au cap de départ</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    }</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classOdometrie.html#a4e35405c76f7c939f143f2d07a969e23">   49</a></span>&#160;    int32_t <a class="code" href="classOdometrie.html#a4e35405c76f7c939f143f2d07a969e23">getXmm</a>()</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    {</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classUtils.html#a2609842761c1ddb62fa9e06f92ad9099">Utils::UOTomm</a>(<span class="keyword">this</span>, <a class="code" href="classOdometrie.html#a1523ae4d84cd17fd01d268756e85f6b1">x</a>); <span class="comment">// Renvoie la position en X en mm par rapport au point de départ</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    }</div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="classOdometrie.html#a349119b93cb97e0ef586fbf78e43b823">   53</a></span>&#160;    int32_t <a class="code" href="classOdometrie.html#a349119b93cb97e0ef586fbf78e43b823">getYmm</a>()</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classUtils.html#a2609842761c1ddb62fa9e06f92ad9099">Utils::UOTomm</a>(<span class="keyword">this</span>, <a class="code" href="classOdometrie.html#abd8482df05ec02fb70a6ce3788e9d04c">y</a>);   <span class="comment">// Renvoie la position en Y en mm par rapport au point de départ</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    }</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="comment">// Variation de la position depuis la derniàre mise à jour</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classOdometrie.html#aa528fd785ccf2f4faa6cfc1ad8d5916f">   59</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classOdometrie.html#aa528fd785ccf2f4faa6cfc1ad8d5916f">getDeltaTheta</a>()</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    {</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classOdometrie.html#a326df033f7baab4ade408b0d06af0057">deltaTheta</a>;    <span class="comment">// Variation du cap du robot</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    }</div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="classOdometrie.html#a41602c3f4da53800fde1604c87bb7ab6">   63</a></span>&#160;    int64_t <a class="code" href="classOdometrie.html#a41602c3f4da53800fde1604c87bb7ab6">getDeltaDist</a>()</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    {</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classOdometrie.html#aca1c9775f328f5d76576a9b2417e8a8b">deltaDist</a>;    <span class="comment">// Variation de la distance du robot en UO</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="classOdometrie.html#a3a12ffc1a045e0623f9e7f45091af603">   67</a></span>&#160;    int64_t <a class="code" href="classOdometrie.html#a3a12ffc1a045e0623f9e7f45091af603">getDeltaThetaBrut</a>()</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classOdometrie.html#ac7a646f63d441a8ca771e05b94816215">compteurD</a> - <a class="code" href="classOdometrie.html#a0006d84ce525617b57531aa5108c2e64">compteurG</a>; <span class="comment">// Variation d&#39;angle en UO donnée par la différence de compte entre les codeurs</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    }</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="comment">// Getteurs config</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="classOdometrie.html#a97f3023787b53a05f789770a56a791be">   73</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classOdometrie.html#a97f3023787b53a05f789770a56a791be">getFrontParMetre</a>()</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    {</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classOdometrie.html#a787df73ae6cc61b21d0c89fa56de9d2f">frontParMetre</a>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    }</div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="classOdometrie.html#a883791d5ea44c7d36d8e3ce3766164b4">   77</a></span>&#160;    int64_t <a class="code" href="classOdometrie.html#a883791d5ea44c7d36d8e3ce3766164b4">getDistanceRouesUO</a>()</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    {</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classOdometrie.html#a277efc48420e37400263c29fbb5a8ff8">distanceRouesUO</a>;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    }</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="comment">// Données sur les codeurs</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="classOdometrie.html#a787df73ae6cc61b21d0c89fa56de9d2f">   85</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classOdometrie.html#a787df73ae6cc61b21d0c89fa56de9d2f">frontParMetre</a>; <span class="comment">// Nombre de tics codeurs pour un mètre parcouru</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="classOdometrie.html#a277efc48420e37400263c29fbb5a8ff8">   86</a></span>&#160;    int64_t <a class="code" href="classOdometrie.html#a277efc48420e37400263c29fbb5a8ff8">distanceRouesUO</a>; <span class="comment">// Distance entre les roues en UO</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="classOdometrie.html#af2552ce199f28e52be01776c95dd146a">   87</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classOdometrie.html#af2552ce199f28e52be01776c95dd146a">ratioCodeurs</a>; <span class="comment">// Ratio frontParMetreCodeurMax / frontParMetreCodeurMin pour compenser la différence physique entre codeur</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="classOdometrie.html#a645a7a692970dd44e35823100e0eb0eb">   88</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classOdometrie.html#a645a7a692970dd44e35823100e0eb0eb">applyRatioOnG</a>; <span class="comment">// Si vrai, le ratio s&#39;applique au codeur Gauche, sinon le Droit</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="comment">// Position actuelle</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="classOdometrie.html#a1523ae4d84cd17fd01d268756e85f6b1">   91</a></span>&#160;    int64_t <a class="code" href="classOdometrie.html#a1523ae4d84cd17fd01d268756e85f6b1">x</a>, <a class="code" href="classOdometrie.html#abd8482df05ec02fb70a6ce3788e9d04c">y</a>; <span class="comment">//En UO</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="classOdometrie.html#acaeee1cf59cdd614599ccb94cb95ad37">   92</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classOdometrie.html#acaeee1cf59cdd614599ccb94cb95ad37">theta</a>; <span class="comment">//En radian</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="comment">// Variation pour la mise a jour en cours</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="classOdometrie.html#aca1c9775f328f5d76576a9b2417e8a8b">   95</a></span>&#160;    int64_t <a class="code" href="classOdometrie.html#aca1c9775f328f5d76576a9b2417e8a8b">deltaDist</a>; <span class="comment">// En UO</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="classOdometrie.html#a326df033f7baab4ade408b0d06af0057">   96</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="classOdometrie.html#a326df033f7baab4ade408b0d06af0057">deltaTheta</a>; <span class="comment">//En radian</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="classOdometrie.html#a0006d84ce525617b57531aa5108c2e64">   97</a></span>&#160;    int64_t <a class="code" href="classOdometrie.html#a0006d84ce525617b57531aa5108c2e64">compteurG</a>; <span class="comment">// Nombre de tics codeur G depuis dernier refresh * UO par front</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="classOdometrie.html#ac7a646f63d441a8ca771e05b94816215">   98</a></span>&#160;    int64_t <a class="code" href="classOdometrie.html#ac7a646f63d441a8ca771e05b94816215">compteurD</a>; <span class="comment">// Nombre de tics codeur D depuis dernier refresh * UO par front</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="comment">//Codeurs</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="classOdometrie.html#a971ffd0775535446a966fef75dedae4b">  101</a></span>&#160;    <a class="code" href="classCodeursInterface.html">CodeursInterface</a>* <a class="code" href="classOdometrie.html#a971ffd0775535446a966fef75dedae4b">codeurs</a>;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;};</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassCodeursInterface_html"><div class="ttname"><a href="classCodeursInterface.html">CodeursInterface</a></div><div class="ttdef"><b>Definition:</b> CodeursInterface.h:8</div></div>
+<div class="ttc" id="aclassOdometrie_html"><div class="ttname"><a href="classOdometrie.html">Odometrie</a></div><div class="ttdef"><b>Definition:</b> Odometrie.h:12</div></div>
+<div class="ttc" id="aclassOdometrie_html_a0006d84ce525617b57531aa5108c2e64"><div class="ttname"><a href="classOdometrie.html#a0006d84ce525617b57531aa5108c2e64">Odometrie::compteurG</a></div><div class="ttdeci">int64_t compteurG</div><div class="ttdef"><b>Definition:</b> Odometrie.h:97</div></div>
+<div class="ttc" id="aclassOdometrie_html_a1523ae4d84cd17fd01d268756e85f6b1"><div class="ttname"><a href="classOdometrie.html#a1523ae4d84cd17fd01d268756e85f6b1">Odometrie::x</a></div><div class="ttdeci">int64_t x</div><div class="ttdef"><b>Definition:</b> Odometrie.h:91</div></div>
+<div class="ttc" id="aclassOdometrie_html_a182a36acd6ada0cc666ffed7cb63ecce"><div class="ttname"><a href="classOdometrie.html#a182a36acd6ada0cc666ffed7cb63ecce">Odometrie::setX</a></div><div class="ttdeci">void setX(int64_t xval)</div><div class="ttdef"><b>Definition:</b> Odometrie.cpp:61</div></div>
+<div class="ttc" id="aclassOdometrie_html_a1d519f6e29460da12962ad32ed68b600"><div class="ttname"><a href="classOdometrie.html#a1d519f6e29460da12962ad32ed68b600">Odometrie::setTheta</a></div><div class="ttdeci">void setTheta(float thetaVal)</div><div class="ttdef"><b>Definition:</b> Odometrie.cpp:71</div></div>
+<div class="ttc" id="aclassOdometrie_html_a277efc48420e37400263c29fbb5a8ff8"><div class="ttname"><a href="classOdometrie.html#a277efc48420e37400263c29fbb5a8ff8">Odometrie::distanceRouesUO</a></div><div class="ttdeci">int64_t distanceRouesUO</div><div class="ttdef"><b>Definition:</b> Odometrie.h:86</div></div>
+<div class="ttc" id="aclassOdometrie_html_a326df033f7baab4ade408b0d06af0057"><div class="ttname"><a href="classOdometrie.html#a326df033f7baab4ade408b0d06af0057">Odometrie::deltaTheta</a></div><div class="ttdeci">float deltaTheta</div><div class="ttdef"><b>Definition:</b> Odometrie.h:96</div></div>
+<div class="ttc" id="aclassOdometrie_html_a349119b93cb97e0ef586fbf78e43b823"><div class="ttname"><a href="classOdometrie.html#a349119b93cb97e0ef586fbf78e43b823">Odometrie::getYmm</a></div><div class="ttdeci">int32_t getYmm()</div><div class="ttdef"><b>Definition:</b> Odometrie.h:53</div></div>
+<div class="ttc" id="aclassOdometrie_html_a3543e2a17fce781aae27247a93597c9a"><div class="ttname"><a href="classOdometrie.html#a3543e2a17fce781aae27247a93597c9a">Odometrie::setY</a></div><div class="ttdeci">void setY(int64_t yval)</div><div class="ttdef"><b>Definition:</b> Odometrie.cpp:66</div></div>
+<div class="ttc" id="aclassOdometrie_html_a3a12ffc1a045e0623f9e7f45091af603"><div class="ttname"><a href="classOdometrie.html#a3a12ffc1a045e0623f9e7f45091af603">Odometrie::getDeltaThetaBrut</a></div><div class="ttdeci">int64_t getDeltaThetaBrut()</div><div class="ttdef"><b>Definition:</b> Odometrie.h:67</div></div>
+<div class="ttc" id="aclassOdometrie_html_a41602c3f4da53800fde1604c87bb7ab6"><div class="ttname"><a href="classOdometrie.html#a41602c3f4da53800fde1604c87bb7ab6">Odometrie::getDeltaDist</a></div><div class="ttdeci">int64_t getDeltaDist()</div><div class="ttdef"><b>Definition:</b> Odometrie.h:63</div></div>
+<div class="ttc" id="aclassOdometrie_html_a4308ec860b9fd7bb0a47bcf9e6a10620"><div class="ttname"><a href="classOdometrie.html#a4308ec860b9fd7bb0a47bcf9e6a10620">Odometrie::getX</a></div><div class="ttdeci">int64_t getX()</div><div class="ttdef"><b>Definition:</b> Odometrie.h:35</div></div>
+<div class="ttc" id="aclassOdometrie_html_a4e35405c76f7c939f143f2d07a969e23"><div class="ttname"><a href="classOdometrie.html#a4e35405c76f7c939f143f2d07a969e23">Odometrie::getXmm</a></div><div class="ttdeci">int32_t getXmm()</div><div class="ttdef"><b>Definition:</b> Odometrie.h:49</div></div>
+<div class="ttc" id="aclassOdometrie_html_a645a7a692970dd44e35823100e0eb0eb"><div class="ttname"><a href="classOdometrie.html#a645a7a692970dd44e35823100e0eb0eb">Odometrie::applyRatioOnG</a></div><div class="ttdeci">bool applyRatioOnG</div><div class="ttdef"><b>Definition:</b> Odometrie.h:88</div></div>
+<div class="ttc" id="aclassOdometrie_html_a6919b090ea8dc11eb29a166d2697c659"><div class="ttname"><a href="classOdometrie.html#a6919b090ea8dc11eb29a166d2697c659">Odometrie::getY</a></div><div class="ttdeci">int64_t getY()</div><div class="ttdef"><b>Definition:</b> Odometrie.h:40</div></div>
+<div class="ttc" id="aclassOdometrie_html_a6e98639e42804e50187115e616e314e8"><div class="ttname"><a href="classOdometrie.html#a6e98639e42804e50187115e616e314e8">Odometrie::~Odometrie</a></div><div class="ttdeci">~Odometrie()</div><div class="ttdef"><b>Definition:</b> Odometrie.cpp:59</div></div>
+<div class="ttc" id="aclassOdometrie_html_a787df73ae6cc61b21d0c89fa56de9d2f"><div class="ttname"><a href="classOdometrie.html#a787df73ae6cc61b21d0c89fa56de9d2f">Odometrie::frontParMetre</a></div><div class="ttdeci">int frontParMetre</div><div class="ttdef"><b>Definition:</b> Odometrie.h:85</div></div>
+<div class="ttc" id="aclassOdometrie_html_a883791d5ea44c7d36d8e3ce3766164b4"><div class="ttname"><a href="classOdometrie.html#a883791d5ea44c7d36d8e3ce3766164b4">Odometrie::getDistanceRouesUO</a></div><div class="ttdeci">int64_t getDistanceRouesUO()</div><div class="ttdef"><b>Definition:</b> Odometrie.h:77</div></div>
+<div class="ttc" id="aclassOdometrie_html_a971ffd0775535446a966fef75dedae4b"><div class="ttname"><a href="classOdometrie.html#a971ffd0775535446a966fef75dedae4b">Odometrie::codeurs</a></div><div class="ttdeci">CodeursInterface * codeurs</div><div class="ttdef"><b>Definition:</b> Odometrie.h:101</div></div>
+<div class="ttc" id="aclassOdometrie_html_a97f3023787b53a05f789770a56a791be"><div class="ttname"><a href="classOdometrie.html#a97f3023787b53a05f789770a56a791be">Odometrie::getFrontParMetre</a></div><div class="ttdeci">int getFrontParMetre()</div><div class="ttdef"><b>Definition:</b> Odometrie.h:73</div></div>
+<div class="ttc" id="aclassOdometrie_html_aa528fd785ccf2f4faa6cfc1ad8d5916f"><div class="ttname"><a href="classOdometrie.html#aa528fd785ccf2f4faa6cfc1ad8d5916f">Odometrie::getDeltaTheta</a></div><div class="ttdeci">float getDeltaTheta()</div><div class="ttdef"><b>Definition:</b> Odometrie.h:59</div></div>
+<div class="ttc" id="aclassOdometrie_html_aad0b9564faf2e09c531bb65100ae3c98"><div class="ttname"><a href="classOdometrie.html#aad0b9564faf2e09c531bb65100ae3c98">Odometrie::Odometrie</a></div><div class="ttdeci">Odometrie(CodeursInterface *cdrs)</div><div class="ttdef"><b>Definition:</b> Odometrie.cpp:15</div></div>
+<div class="ttc" id="aclassOdometrie_html_abc6576337993c68f587df8ca4b3602f9"><div class="ttname"><a href="classOdometrie.html#abc6576337993c68f587df8ca4b3602f9">Odometrie::getTheta</a></div><div class="ttdeci">float getTheta()</div><div class="ttdef"><b>Definition:</b> Odometrie.h:44</div></div>
+<div class="ttc" id="aclassOdometrie_html_abd8482df05ec02fb70a6ce3788e9d04c"><div class="ttname"><a href="classOdometrie.html#abd8482df05ec02fb70a6ce3788e9d04c">Odometrie::y</a></div><div class="ttdeci">int64_t y</div><div class="ttdef"><b>Definition:</b> Odometrie.h:91</div></div>
+<div class="ttc" id="aclassOdometrie_html_ac7a646f63d441a8ca771e05b94816215"><div class="ttname"><a href="classOdometrie.html#ac7a646f63d441a8ca771e05b94816215">Odometrie::compteurD</a></div><div class="ttdeci">int64_t compteurD</div><div class="ttdef"><b>Definition:</b> Odometrie.h:98</div></div>
+<div class="ttc" id="aclassOdometrie_html_aca1c9775f328f5d76576a9b2417e8a8b"><div class="ttname"><a href="classOdometrie.html#aca1c9775f328f5d76576a9b2417e8a8b">Odometrie::deltaDist</a></div><div class="ttdeci">int64_t deltaDist</div><div class="ttdef"><b>Definition:</b> Odometrie.h:95</div></div>
+<div class="ttc" id="aclassOdometrie_html_acaeee1cf59cdd614599ccb94cb95ad37"><div class="ttname"><a href="classOdometrie.html#acaeee1cf59cdd614599ccb94cb95ad37">Odometrie::theta</a></div><div class="ttdeci">float theta</div><div class="ttdef"><b>Definition:</b> Odometrie.h:92</div></div>
+<div class="ttc" id="aclassOdometrie_html_ae85189a1bf1b195430f93252d00c47d5"><div class="ttname"><a href="classOdometrie.html#ae85189a1bf1b195430f93252d00c47d5">Odometrie::refresh</a></div><div class="ttdeci">void refresh()</div><div class="ttdef"><b>Definition:</b> Odometrie.cpp:76</div></div>
+<div class="ttc" id="aclassOdometrie_html_af2552ce199f28e52be01776c95dd146a"><div class="ttname"><a href="classOdometrie.html#af2552ce199f28e52be01776c95dd146a">Odometrie::ratioCodeurs</a></div><div class="ttdeci">float ratioCodeurs</div><div class="ttdef"><b>Definition:</b> Odometrie.h:87</div></div>
+<div class="ttc" id="aclassUtils_html_a2609842761c1ddb62fa9e06f92ad9099"><div class="ttname"><a href="classUtils.html#a2609842761c1ddb62fa9e06f92ad9099">Utils::UOTomm</a></div><div class="ttdeci">static int32_t UOTomm(Odometrie *odo, int64_t valeur)</div><div class="ttdef"><b>Definition:</b> Utils.cpp:26</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Jeudi 26 Mars 2026 23:28:54 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

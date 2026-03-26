@@ -1,7 +1,9 @@
 <map id="utils::Chronometer::started" name="utils::Chronometer::started">
-<area shape="rect" id="node1" title="Indique si le chronomètre est en cours." alt="" coords="435,57,577,98"/>
-<area shape="rect" id="node2" href="$classTimerPosix.html#ab15271c50cd9cc4306fc8a454df1e36f" title=" " alt="" coords="237,5,370,32"/>
-<area shape="rect" id="node3" href="$classITimerPosixListener.html#a89083ecb392fa2f81b4951ba0e2ba824" title=" " alt="" coords="228,57,379,98"/>
-<area shape="rect" id="node4" href="$classtest_1_1ChronometerTest.html#a415d1e31bcf8129824fcb03e304021c7" title="Vérifie les transitions start/stop et le flag started()." alt="" coords="220,122,387,163"/>
-<area shape="rect" id="node5" href="$classtest_1_1ChronometerTest.html#a1c7e36190a3c3f415a5547d408883d76" title="Execute les tests associés à la classe." alt="" coords="5,122,172,163"/>
+<area shape="rect" id="node1" title="Indique si le chronomètre est en cours." alt="" coords="469,71,612,112"/>
+<area shape="rect" id="node2" href="$classTimerPosix.html#ab15271c50cd9cc4306fc8a454df1e36f" title=" " alt="" coords="271,17,405,43"/>
+<area shape="rect" id="node4" href="$classITimerPosixListener.html#a89083ecb392fa2f81b4951ba0e2ba824" title=" " alt="" coords="263,71,413,112"/>
+<area shape="rect" id="node6" href="$classtest_1_1ChronometerTest.html#a415d1e31bcf8129824fcb03e304021c7" title="Vérifie les transitions start/stop et le flag started()." alt="" coords="255,136,421,177"/>
+<area shape="rect" id="node3" href="$classtest_1_1TimerPosixStandaloneBench.html#a71eaba7b9c9cf2dc0384bced04b641f4" title=" " alt="" coords="5,5,207,47"/>
+<area shape="rect" id="node5" href="$classActionManagerTimer.html#a8eb81df877c40053d71f659265882058" title="Execute l&#39;ensemble des actions enregistrees." alt="" coords="27,71,185,112"/>
+<area shape="rect" id="node7" href="$classtest_1_1ChronometerTest.html#a1c7e36190a3c3f415a5547d408883d76" title="Execute les tests associés à la classe." alt="" coords="23,136,189,177"/>
 </map>

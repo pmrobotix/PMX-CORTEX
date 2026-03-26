@@ -1,0 +1,431 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot:  Fichier source de src/common/action/LedBar.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_fdedb0aba14d44ce9d99bc100e026e6a.html">common</a></li><li class="navelem"><a class="el" href="dir_30dbdc63e017df8039de002a18d107ab.html">action</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">LedBar.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="LedBar_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#ifndef LEDBAR_HPP_</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#define LEDBAR_HPP_</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;sys/types.h&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;sstream&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="LoggerFactory_8hpp.html">log/LoggerFactory.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ALedDriver_8hpp.html">interface/ALedDriver.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Chronometer_8hpp.html">utils/Chronometer.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ITimerListener_8hpp.html">timer/ITimerListener.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ITimerPosixListener_8hpp.html">timer/ITimerPosixListener.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="AActionsElement_8hpp.html">AActionsElement.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="IAction_8hpp.html">IAction.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="LedBar_8hpp.html#a2b3fb0f60b9a943ea82abbd01546c15d">   22</a></span>&#160;<span class="keyword">enum</span> <a class="code" href="LedBar_8hpp.html#a2b3fb0f60b9a943ea82abbd01546c15d">LedBarTimerName</a> {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="LedBar_8hpp.html#a2b3fb0f60b9a943ea82abbd01546c15daa0e745fabc3cbdec14ee5bb86f950711">   27</a></span>&#160;    <a class="code" href="LedBar_8hpp.html#a2b3fb0f60b9a943ea82abbd01546c15daa0e745fabc3cbdec14ee5bb86f950711">LEDBARK2MIL</a>,</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="LedBar_8hpp.html#a2b3fb0f60b9a943ea82abbd01546c15dac61afff4d7d03af280878015efeb173a">   32</a></span>&#160;    <a class="code" href="LedBar_8hpp.html#a2b3fb0f60b9a943ea82abbd01546c15dac61afff4d7d03af280878015efeb173a">LEDBARBLINK</a>,</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="LedBar_8hpp.html#a2b3fb0f60b9a943ea82abbd01546c15daec15bd862ec6dc67d247f23507c9a3bb">   36</a></span>&#160;    <a class="code" href="LedBar_8hpp.html#a2b3fb0f60b9a943ea82abbd01546c15daec15bd862ec6dc67d247f23507c9a3bb">LEDBARBLINKPIN</a>,</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="LedBar_8hpp.html#a2b3fb0f60b9a943ea82abbd01546c15da92b98c6fb92585b9c7b481cef87e79d6">LEDBARALTERNATE</a></div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="LedBar_8hpp.html#a2b3fb0f60b9a943ea82abbd01546c15da92b98c6fb92585b9c7b481cef87e79d6">   41</a></span>&#160;};</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="LedBar_8hpp.html#ac9f3ea6fd1e064167558d4d30adb4aac">   46</a></span>&#160;<span class="keyword">enum</span> <a class="code" href="LedBar_8hpp.html#ac9f3ea6fd1e064167558d4d30adb4aac">LedBarActionName</a> {</div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="LedBar_8hpp.html#ac9f3ea6fd1e064167558d4d30adb4aacad868dd88f3be96ffa3549abc9fc1ac0e">   50</a></span>&#160;    <a class="code" href="LedBar_8hpp.html#ac9f3ea6fd1e064167558d4d30adb4aacad868dd88f3be96ffa3549abc9fc1ac0e">LEDBARSET</a>,</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="LedBar_8hpp.html#ac9f3ea6fd1e064167558d4d30adb4aaca5fcf73074cd27b9fb2fa354433d91257">   55</a></span>&#160;    <a class="code" href="LedBar_8hpp.html#ac9f3ea6fd1e064167558d4d30adb4aaca5fcf73074cd27b9fb2fa354433d91257">LEDBARRESET</a>,</div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="LedBar_8hpp.html#ac9f3ea6fd1e064167558d4d30adb4aaca8afa7f2241fd72cce2e93b411b5e023f">   59</a></span>&#160;    <a class="code" href="LedBar_8hpp.html#ac9f3ea6fd1e064167558d4d30adb4aaca8afa7f2241fd72cce2e93b411b5e023f">LEDBARFLASH</a>,</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="LedBar_8hpp.html#ac9f3ea6fd1e064167558d4d30adb4aacaa838504b7eff42e3a663d65acef804b1">LEDBARFLASHVALUE</a></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="LedBar_8hpp.html#ac9f3ea6fd1e064167558d4d30adb4aacaa838504b7eff42e3a663d65acef804b1">   65</a></span>&#160;};</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="classLedBar.html">   70</a></span>&#160;<span class="keyword">class </span><a class="code" href="classLedBar.html">LedBar</a>: <span class="keyword">public</span> <a class="code" href="classAActionsElement.html">AActionsElement</a> {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="classLedBar.html#a349f726f4e7cd0058f95b6c9d9453b18">   76</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a> &amp; <a class="code" href="classLedBar.html#a349f726f4e7cd0058f95b6c9d9453b18">logger</a>() {</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a> &amp; instance = <a class="code" href="classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e">logs::LoggerFactory::logger</a>(<span class="stringliteral">&quot;LedBar&quot;</span>);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">return</span> instance;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    }</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="classLedBar.html#ab5e71230035c4698e3b764eade3e7e24">   84</a></span>&#160;    std::string <a class="code" href="classLedBar.html#ab5e71230035c4698e3b764eade3e7e24">botId_</a>;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="classLedBar.html#afb9c92ef758de87160f858ec64292d0c">   89</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classLedBar.html#afb9c92ef758de87160f858ec64292d0c">nbLed_</a>;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">//    /*!</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">//     * \brief Permet de stopper l&#39;action et qu&#39;elle se termine à la prochaine itération des actions.</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">//     */</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">//    bool actionStopped_;</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="classLedBar.html#af6f43d060ec4f62dfe7c9f1a438a104c">   99</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classLedBar.html#af6f43d060ec4f62dfe7c9f1a438a104c">running_</a>;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">//    /*!</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment">//     * \brief Position de la led.</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">//     */</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment">//    ushort position_;</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment">//    /*!</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment">//     * \brief Color de la led a appliquer.</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment">//     */</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment">//    LedColor color_;</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">//    /*!</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment">//     * \brief Nombre de clignotement à faire.</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment">//     */</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment">//    uint nb_;</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment">//    /*!</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment">//     * \brief Temps de pause (en us).</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment">//     */</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment">//    uint timeus_;</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="comment">//    /*!</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="comment">//     * \brief Première Valeur de clignotement.</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="comment">//     */</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="comment">//    uint hex_;</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="comment">//    /*!</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment">//     * \brief 2ème valeur de clignotement.</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="comment">//     */</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment">//    uint hexNext_;</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keywordtype">bool</span> a_requestToStop_;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    <span class="keywordtype">bool</span> t_requestToStop_;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <a class="code" href="classALedDriver.html">ALedDriver</a>* leddriver_;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLedBar.html#a443827fdcb184f64cd2f71861564faed">waiting</a>(<span class="keywordtype">bool</span> wait, uint limit_ms = 10000);</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160; </div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160; </div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <a class="code" href="classLedBar.html#a4f2e86893b6d174c1dd11a46c3dcf480">LedBar</a>(std::string botId, <a class="code" href="classActions.html">Actions</a> &amp; <a class="code" href="classAActionsElement.html#a3fbd5b8201049a59602d8b7201a9ef8a">actions</a>, <span class="keywordtype">int</span> nb);</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160; </div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    <a class="code" href="classLedBar.html#a8839ddd7f8500315818ab31d8b9aa0d9">~LedBar</a>();</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160; </div>
+<div class="line"><a name="l00159"></a><span class="lineno"><a class="line" href="classLedBar.html#a94f27bc744c6cfa97c2e9392c3b59182">  159</a></span>&#160;    std::string <a class="code" href="classLedBar.html#a94f27bc744c6cfa97c2e9392c3b59182">id</a>() {</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classLedBar.html#ab5e71230035c4698e3b764eade3e7e24">botId_</a>;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    }</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
+<div class="line"><a name="l00166"></a><span class="lineno"><a class="line" href="classLedBar.html#a6c7139e1a581510c85c11a318c7a0cf7">  166</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLedBar.html#a6c7139e1a581510c85c11a318c7a0cf7">resetStop</a>() {</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        t_requestToStop_ = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        a_requestToStop_ = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    }</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
+<div class="line"><a name="l00174"></a><span class="lineno"><a class="line" href="classLedBar.html#ae24456e9bb03e44adff5e4d9b6efed59">  174</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classLedBar.html#ae24456e9bb03e44adff5e4d9b6efed59">hasToStop</a>() {</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        <span class="keywordflow">return</span> t_requestToStop_;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    }</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160; </div>
+<div class="line"><a name="l00181"></a><span class="lineno"><a class="line" href="classLedBar.html#a67de658c61e05e5b4d13f2c9bf8eb7ed">  181</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLedBar.html#a67de658c61e05e5b4d13f2c9bf8eb7ed">running</a>(<span class="keywordtype">bool</span> value) {</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        this-&gt;running_ = value;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160; </div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    }</div>
+<div class="line"><a name="l00188"></a><span class="lineno"><a class="line" href="classLedBar.html#a2e77350f53c4579d7f71cc00d4f26dad">  188</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classLedBar.html#a2e77350f53c4579d7f71cc00d4f26dad">running</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classLedBar.html#af6f43d060ec4f62dfe7c9f1a438a104c">running_</a>;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    }</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160; </div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160; </div>
+<div class="line"><a name="l00196"></a><span class="lineno"><a class="line" href="classLedBar.html#a15e2f8d21596686ea1a6938899fe4251">  196</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classLedBar.html#a15e2f8d21596686ea1a6938899fe4251">nbLed</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classLedBar.html#afb9c92ef758de87160f858ec64292d0c">nbLed_</a>;</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    }</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160; </div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLedBar.html#a0c1e129df2b8cec98a190bf3c9aa18d3">stop</a>(<span class="keywordtype">bool</span> wait = <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160; </div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLedBar.html#a4f6f26d47d0ea82380cebb8c2b9ea7c3">set</a>(<span class="keywordtype">int</span> position, <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbde">LedColor</a> color);</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160; </div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLedBar.html#a7bb1b0cf26c7202807bdc3e68e1f2e48">rainbow</a>(uint nb, uint timeus);</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160; </div>
+<div class="line"><a name="l00218"></a><span class="lineno"><a class="line" href="classLedBar.html#aebfc6c5221a223364044fc5c6efacd7a">  218</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classLedBar.html#aebfc6c5221a223364044fc5c6efacd7a">setOn</a>(<span class="keywordtype">int</span> position) {</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;        this-&gt;<a class="code" href="classLedBar.html#a4f6f26d47d0ea82380cebb8c2b9ea7c3">set</a>(position, <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdea0ad916c7f80666dc88f6b5b22a72e742">LED_GREEN</a>);</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    }</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160; </div>
+<div class="line"><a name="l00226"></a><span class="lineno"><a class="line" href="classLedBar.html#a3069414fedb0a97740ffd3ff819d63f1">  226</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classLedBar.html#a3069414fedb0a97740ffd3ff819d63f1">setOff</a>(<span class="keywordtype">int</span> position) {</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        this-&gt;<a class="code" href="classLedBar.html#a4f6f26d47d0ea82380cebb8c2b9ea7c3">set</a>(position, <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdeafc0ca8cc6cbe215fd3f1ae6d40255b40">LED_OFF</a>);</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    }</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160; </div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLedBar.html#a31ff074dd2184f11b0fc4858542a8050">flash</a>(uint hexPosition, <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbde">LedColor</a> color = <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdea0ad916c7f80666dc88f6b5b22a72e742">LED_GREEN</a>);</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160; </div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLedBar.html#aa771bd13ff72b872ec4c34e9ef68ea1b">resetAll</a>();</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160; </div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLedBar.html#ad91d62f821e6b1eb6689a0d23f021097">flashAll</a>(<a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbde">LedColor</a> color = <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdea0ad916c7f80666dc88f6b5b22a72e742">LED_GREEN</a>);</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160; </div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLedBar.html#afad90556b784654b618c527eb19c50dd">blink</a>(uint nb, uint timeus, <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbde">LedColor</a> color = <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdea0ad916c7f80666dc88f6b5b22a72e742">LED_GREEN</a>);</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160; </div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLedBar.html#abc84af9e1f24d8e7a0c9a7f67767c34f">blinkPin</a>(uint nb, uint timeus, <span class="keywordtype">int</span> position, <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbde">LedColor</a> color = <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdea0ad916c7f80666dc88f6b5b22a72e742">LED_GREEN</a>);</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160; </div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLedBar.html#ab34bee22db4d68f6c6057e2fbb3b33cd">alternate</a>(uint nb, uint timeus, uint beginVal, uint endVal, <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbde">LedColor</a> color = <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdea0ad916c7f80666dc88f6b5b22a72e742">LED_GREEN</a>);</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160; </div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLedBar.html#a5272d702b081c2fe6288a690e92cc488">k2mil</a>(uint nb, uint timeus, <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbde">LedColor</a> color = <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdea0ad916c7f80666dc88f6b5b22a72e742">LED_GREEN</a>);</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160; </div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLedBar.html#a985018b17b5051935a30d19e32880e11">startSet</a>(uint position, <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbde">LedColor</a> color = <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdea0ad916c7f80666dc88f6b5b22a72e742">LED_GREEN</a>);</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160; </div>
+<div class="line"><a name="l00277"></a><span class="lineno"><a class="line" href="classLedBar.html#af2eb11c44122b3206a657eb3b0b6f05e">  277</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classLedBar.html#af2eb11c44122b3206a657eb3b0b6f05e">startSetOn</a>(uint position) {</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;        this-&gt;<a class="code" href="classLedBar.html#a985018b17b5051935a30d19e32880e11">startSet</a>(position, <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdea0ad916c7f80666dc88f6b5b22a72e742">LED_GREEN</a>);</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;    }</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160; </div>
+<div class="line"><a name="l00285"></a><span class="lineno"><a class="line" href="classLedBar.html#ad37f92ef4b6487afc785d739a59a32aa">  285</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classLedBar.html#ad37f92ef4b6487afc785d739a59a32aa">startSetOff</a>(uint position) {</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;        this-&gt;<a class="code" href="classLedBar.html#a985018b17b5051935a30d19e32880e11">startSet</a>(position, <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdeafc0ca8cc6cbe215fd3f1ae6d40255b40">LED_OFF</a>);</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;    }</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160; </div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLedBar.html#a77df047f6a8fadf44a3d24d51eb27f68">startReset</a>();</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160; </div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLedBar.html#a76595197ac9045d04f108bed1f3ac4fd">startFlash</a>();</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160; </div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLedBar.html#a714ebd39a178ddd3d602deed7af0bf56">startFlashValue</a>(uint hexValue, <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbde">LedColor</a> color);</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160; </div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLedBar.html#ac680352e575b6a86e40e0d9143db38d7">startTimerAlternate</a>(uint nb, uint timeus, uint hexValue, uint hexValueNext, <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbde">LedColor</a> color = <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdea0ad916c7f80666dc88f6b5b22a72e742">LED_GREEN</a>, <span class="keywordtype">bool</span> wait = <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160; </div>
+<div class="line"><a name="l00313"></a><span class="lineno"><a class="line" href="classLedBar.html#ac7514d41eb32a1a7a47d742ca4892a50">  313</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLedBar.html#ac7514d41eb32a1a7a47d742ca4892a50">startTimerBlink</a>(uint nb, uint timeus, <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbde">LedColor</a> color = <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdea0ad916c7f80666dc88f6b5b22a72e742">LED_GREEN</a>, <span class="keywordtype">bool</span> wait = <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160; </div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLedBar.html#a2fb2bd9ec3e7fcb7451cb859db3a6846">startTimerBlinkPin</a>(uint nb, uint timeus, <span class="keywordtype">int</span> position, <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbde">LedColor</a> color = <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdea0ad916c7f80666dc88f6b5b22a72e742">LED_GREEN</a>, <span class="keywordtype">bool</span> wait = <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160; </div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLedBar.html#a4e3205aef3a0d44b623d4f8434235cbb">startTimerK2mil</a>(uint nb, uint timeus, <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbde">LedColor</a> color = <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdea0ad916c7f80666dc88f6b5b22a72e742">LED_GREEN</a>, <span class="keywordtype">bool</span> wait = <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160; </div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;};</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160; </div>
+<div class="line"><a name="l00331"></a><span class="lineno"><a class="line" href="classLedBarTimer.html">  331</a></span>&#160;<span class="keyword">class </span><a class="code" href="classLedBarTimer.html">LedBarTimer</a>: <span class="keyword">public</span> <a class="code" href="classITimerPosixListener.html">ITimerPosixListener</a> <span class="comment">//ITimerListener</span></div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;{</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160; </div>
+<div class="line"><a name="l00338"></a><span class="lineno"><a class="line" href="classLedBarTimer.html#abb0c54240b3a0b9d35ed6e9995f94b36">  338</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a> &amp; <a class="code" href="classLedBarTimer.html#abb0c54240b3a0b9d35ed6e9995f94b36">logger</a>() {</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;        <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a> &amp; instance = <a class="code" href="classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e">logs::LoggerFactory::logger</a>(<span class="stringliteral">&quot;LedBarTimer&quot;</span>);</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;        <span class="keywordflow">return</span> instance;</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;    }</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160; </div>
+<div class="line"><a name="l00346"></a><span class="lineno"><a class="line" href="classLedBarTimer.html#a2bf56d808fca4cd869bb25b2e488c329">  346</a></span>&#160;    <a class="code" href="classLedBar.html">LedBar</a> &amp; <a class="code" href="classLedBarTimer.html#a2bf56d808fca4cd869bb25b2e488c329">ledBar_</a>;</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160; </div>
+<div class="line"><a name="l00351"></a><span class="lineno"><a class="line" href="classLedBarTimer.html#a5411972d02e273dff2fc94acb07ea151">  351</a></span>&#160;    <a class="code" href="LedBar_8hpp.html#a2b3fb0f60b9a943ea82abbd01546c15d">LedBarTimerName</a> <a class="code" href="classLedBarTimer.html#a5411972d02e273dff2fc94acb07ea151">timerAction_</a>;</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160; </div>
+<div class="line"><a name="l00356"></a><span class="lineno"><a class="line" href="classLedBarTimer.html#acbf6f7eacc83657d1345f90cf2a75abf">  356</a></span>&#160;    uint <a class="code" href="classLedBarTimer.html#acbf6f7eacc83657d1345f90cf2a75abf">timeus_</a>;</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160; </div>
+<div class="line"><a name="l00361"></a><span class="lineno"><a class="line" href="classLedBarTimer.html#adae0c5ff2b93d1d0a86fe4b95e419451">  361</a></span>&#160;    uint <a class="code" href="classLedBarTimer.html#adae0c5ff2b93d1d0a86fe4b95e419451">nb_</a>;</div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160; </div>
+<div class="line"><a name="l00366"></a><span class="lineno"><a class="line" href="classLedBarTimer.html#a8256c57cf01bb992e224bd6ad88b6447">  366</a></span>&#160;    <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbde">LedColor</a> <a class="code" href="classLedBarTimer.html#a8256c57cf01bb992e224bd6ad88b6447">color_</a>;</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160; </div>
+<div class="line"><a name="l00371"></a><span class="lineno"><a class="line" href="classLedBarTimer.html#aaeb6a7409c117de975837a43d28692e9">  371</a></span>&#160;    uint <a class="code" href="classLedBarTimer.html#aaeb6a7409c117de975837a43d28692e9">hex_</a>;</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160; </div>
+<div class="line"><a name="l00376"></a><span class="lineno"><a class="line" href="classLedBarTimer.html#a6a9159723cf7b8d392d516b6e0b19385">  376</a></span>&#160;    uint <a class="code" href="classLedBarTimer.html#a6a9159723cf7b8d392d516b6e0b19385">hexNext_</a>;</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160; </div>
+<div class="line"><a name="l00381"></a><span class="lineno"><a class="line" href="classLedBarTimer.html#a183f23935645585fe5d28b23a68e7612">  381</a></span>&#160;    uint <a class="code" href="classLedBarTimer.html#a183f23935645585fe5d28b23a68e7612">tmp_nb_current_</a>;</div>
+<div class="line"><a name="l00382"></a><span class="lineno"><a class="line" href="classLedBarTimer.html#a7611cf41de66c0f1a955f30a143da288">  382</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classLedBarTimer.html#a7611cf41de66c0f1a955f30a143da288">tmp_pos_current_</a>;</div>
+<div class="line"><a name="l00383"></a><span class="lineno"><a class="line" href="classLedBarTimer.html#ad903d071b2eb55057d9e74c3efe94786">  383</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classLedBarTimer.html#ad903d071b2eb55057d9e74c3efe94786">tmp_pos_inc_</a>;</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160; </div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160; </div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;    <a class="code" href="classLedBarTimer.html#a638a87499a35e7ce5e2423bb0696374a">LedBarTimer</a>(<a class="code" href="classLedBar.html">LedBar</a> &amp; ledBar, <a class="code" href="LedBar_8hpp.html#a2b3fb0f60b9a943ea82abbd01546c15d">LedBarTimerName</a> <a class="code" href="classITimerPosixListener.html#a56abc90e01e315320b855399b2c0096e">name</a>, uint <a class="code" href="classITimerPosixListener.html#a68a996ffa95155e824dec8653fbc8e40">timeSpan_us</a>, uint nb, <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbde">LedColor</a> color, uint hexValue, uint hexValueNext);</div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160; </div>
+<div class="line"><a name="l00409"></a><span class="lineno"><a class="line" href="classLedBarTimer.html#ab27ba0f3d359d6b8a3d3f266eebeb0e1">  409</a></span>&#160;    <span class="keyword">virtual</span> <span class="keyword">inline</span> <a class="code" href="classLedBarTimer.html#ab27ba0f3d359d6b8a3d3f266eebeb0e1">~LedBarTimer</a>() {</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;    }</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160; </div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classLedBarTimer.html#a508f0c79e394a111d211f457fd589870">onTimer</a>(<a class="code" href="classutils_1_1Chronometer.html">utils::Chronometer</a> <a class="code" href="classITimerPosixListener.html#a8de2755092a5cdfff6474856de2db24d">chrono</a>);</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160; </div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classLedBarTimer.html#a7836430e649650253638c3c1c95d20ad">onTimerEnd</a>(<a class="code" href="classutils_1_1Chronometer.html">utils::Chronometer</a> <a class="code" href="classITimerPosixListener.html#a8de2755092a5cdfff6474856de2db24d">chrono</a>);</div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160; </div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;    <span class="keyword">virtual</span> std::string <a class="code" href="classLedBarTimer.html#aac6060f16bfc4fac7aba78c0463c24bf">info</a>();</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160; </div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;};</div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160; </div>
+<div class="line"><a name="l00433"></a><span class="lineno"><a class="line" href="classLedBarAction.html">  433</a></span>&#160;<span class="keyword">class </span><a class="code" href="classLedBarAction.html">LedBarAction</a>: <span class="keyword">public</span> <a class="code" href="classIAction.html">IAction</a> {</div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160; </div>
+<div class="line"><a name="l00439"></a><span class="lineno"><a class="line" href="classLedBarAction.html#ad1338cf51583f175735dbcae831404af">  439</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a> &amp; <a class="code" href="classLedBarAction.html#ad1338cf51583f175735dbcae831404af">logger</a>() {</div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;        <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a> &amp; instance = <a class="code" href="classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e">logs::LoggerFactory::logger</a>(<span class="stringliteral">&quot;LedBarAction&quot;</span>);</div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;        <span class="keywordflow">return</span> instance;</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;    }</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160; </div>
+<div class="line"><a name="l00447"></a><span class="lineno"><a class="line" href="classLedBarAction.html#ab34b3cd8bafe48e52e4989b8701762f0">  447</a></span>&#160;    <a class="code" href="classLedBar.html">LedBar</a> &amp; <a class="code" href="classLedBarAction.html#ab34b3cd8bafe48e52e4989b8701762f0">ledBar_</a>;</div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160; </div>
+<div class="line"><a name="l00452"></a><span class="lineno"><a class="line" href="classLedBarAction.html#ac33bf29b336375759ab32283349f9f12">  452</a></span>&#160;    <a class="code" href="LedBar_8hpp.html#ac9f3ea6fd1e064167558d4d30adb4aac">LedBarActionName</a> <a class="code" href="classLedBarAction.html#ac33bf29b336375759ab32283349f9f12">action_</a>;</div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160; </div>
+<div class="line"><a name="l00457"></a><span class="lineno"><a class="line" href="classLedBarAction.html#ac9260a121fb93b6b817670e906985dfa">  457</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classLedBarAction.html#ac9260a121fb93b6b817670e906985dfa">inc_</a>;</div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160; </div>
+<div class="line"><a name="l00462"></a><span class="lineno"><a class="line" href="classLedBarAction.html#af44697ca67d36207f23f0e9db0c8ec85">  462</a></span>&#160;    ushort <a class="code" href="classLedBarAction.html#af44697ca67d36207f23f0e9db0c8ec85">position_</a>;</div>
+<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160; </div>
+<div class="line"><a name="l00467"></a><span class="lineno"><a class="line" href="classLedBarAction.html#a1531a9448c747d2e1afdf11cdad48fab">  467</a></span>&#160;    <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbde">LedColor</a> <a class="code" href="classLedBarAction.html#a1531a9448c747d2e1afdf11cdad48fab">color_</a>;</div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160; </div>
+<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160; </div>
+<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;    <a class="code" href="classLedBarAction.html#adcaf979c06f6f0db45ebc191526bbcf5">LedBarAction</a>(<a class="code" href="classLedBar.html">LedBar</a> &amp; ledBar, <a class="code" href="LedBar_8hpp.html#ac9f3ea6fd1e064167558d4d30adb4aac">LedBarActionName</a> action, uint hex_pos, <a class="code" href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbde">LedColor</a> color);</div>
+<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160; </div>
+<div class="line"><a name="l00481"></a><span class="lineno"><a class="line" href="classLedBarAction.html#a8d096b40a25f81b4b7a3f6180b8bab8d">  481</a></span>&#160;    <span class="keyword">virtual</span> <span class="keyword">inline</span> <a class="code" href="classLedBarAction.html#a8d096b40a25f81b4b7a3f6180b8bab8d">~LedBarAction</a>() {</div>
+<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;        <span class="comment">//logger().debug() &lt;&lt; &quot;~LedBarAction() for &quot; &lt;&lt; ledBar_.id() &lt;&lt; logs::end;</span></div>
+<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;    }</div>
+<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160; </div>
+<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classLedBarAction.html#a67bc2c636064156c80319623b88ec5e8">execute</a>();</div>
+<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160; </div>
+<div class="line"><a name="l00493"></a><span class="lineno"><a class="line" href="classLedBarAction.html#a58501cb3d64b6ceaea8a83cefc230f42">  493</a></span>&#160;    <span class="keyword">virtual</span> <span class="keyword">inline</span> std::string <a class="code" href="classLedBarAction.html#a58501cb3d64b6ceaea8a83cefc230f42">info</a>() {</div>
+<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;        std::ostringstream oss;</div>
+<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;        oss &lt;&lt; <span class="stringliteral">&quot;LedBarAction for &quot;</span> &lt;&lt; <a class="code" href="classLedBarAction.html#ab34b3cd8bafe48e52e4989b8701762f0">ledBar_</a>.<a class="code" href="classLedBar.html#a94f27bc744c6cfa97c2e9392c3b59182">id</a>();</div>
+<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;        <span class="keywordflow">return</span> oss.str();</div>
+<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;    }</div>
+<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;};</div>
+<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160; </div>
+<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aAActionsElement_8hpp_html"><div class="ttname"><a href="AActionsElement_8hpp.html">AActionsElement.hpp</a></div><div class="ttdoc">Définition de la classe AActionsElement.</div></div>
+<div class="ttc" id="aALedDriver_8hpp_html"><div class="ttname"><a href="ALedDriver_8hpp.html">ALedDriver.hpp</a></div><div class="ttdoc">Interface abstraite du driver de LEDs.</div></div>
+<div class="ttc" id="aALedDriver_8hpp_html_a81ea3de5b76240d46410f8b9acf4cbde"><div class="ttname"><a href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbde">LedColor</a></div><div class="ttdeci">LedColor</div><div class="ttdoc">Couleurs disponibles pour les LEDs.</div><div class="ttdef"><b>Definition:</b> ALedDriver.hpp:19</div></div>
+<div class="ttc" id="aALedDriver_8hpp_html_a81ea3de5b76240d46410f8b9acf4cbdea0ad916c7f80666dc88f6b5b22a72e742"><div class="ttname"><a href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdea0ad916c7f80666dc88f6b5b22a72e742">LED_GREEN</a></div><div class="ttdeci">@ LED_GREEN</div><div class="ttdoc">Vert.</div><div class="ttdef"><b>Definition:</b> ALedDriver.hpp:21</div></div>
+<div class="ttc" id="aALedDriver_8hpp_html_a81ea3de5b76240d46410f8b9acf4cbdeafc0ca8cc6cbe215fd3f1ae6d40255b40"><div class="ttname"><a href="ALedDriver_8hpp.html#a81ea3de5b76240d46410f8b9acf4cbdeafc0ca8cc6cbe215fd3f1ae6d40255b40">LED_OFF</a></div><div class="ttdeci">@ LED_OFF</div><div class="ttdoc">Sentinelle de fin d'enumeration.</div><div class="ttdef"><b>Definition:</b> ALedDriver.hpp:26</div></div>
+<div class="ttc" id="aChronometer_8hpp_html"><div class="ttname"><a href="Chronometer_8hpp.html">Chronometer.hpp</a></div><div class="ttdoc">Définition de la classe Chronometer.</div></div>
+<div class="ttc" id="aIAction_8hpp_html"><div class="ttname"><a href="IAction_8hpp.html">IAction.hpp</a></div><div class="ttdoc">Definition de l'interface IAction.</div></div>
+<div class="ttc" id="aITimerListener_8hpp_html"><div class="ttname"><a href="ITimerListener_8hpp.html">ITimerListener.hpp</a></div><div class="ttdoc">Définition de l'interface ITimerListener.</div></div>
+<div class="ttc" id="aITimerPosixListener_8hpp_html"><div class="ttname"><a href="ITimerPosixListener_8hpp.html">ITimerPosixListener.hpp</a></div><div class="ttdoc">Définition de l'interface ITimerPosixListener.</div></div>
+<div class="ttc" id="aLedBar_8hpp_html_a2b3fb0f60b9a943ea82abbd01546c15d"><div class="ttname"><a href="LedBar_8hpp.html#a2b3fb0f60b9a943ea82abbd01546c15d">LedBarTimerName</a></div><div class="ttdeci">LedBarTimerName</div><div class="ttdoc">Enumération des libellés des actions de la barre de leds.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:22</div></div>
+<div class="ttc" id="aLedBar_8hpp_html_a2b3fb0f60b9a943ea82abbd01546c15da92b98c6fb92585b9c7b481cef87e79d6"><div class="ttname"><a href="LedBar_8hpp.html#a2b3fb0f60b9a943ea82abbd01546c15da92b98c6fb92585b9c7b481cef87e79d6">LEDBARALTERNATE</a></div><div class="ttdeci">@ LEDBARALTERNATE</div><div class="ttdoc">Libellé de l'action permettant un clignotement alternatif sur 2 valeurs définies de la barre de led.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:40</div></div>
+<div class="ttc" id="aLedBar_8hpp_html_a2b3fb0f60b9a943ea82abbd01546c15daa0e745fabc3cbdec14ee5bb86f950711"><div class="ttname"><a href="LedBar_8hpp.html#a2b3fb0f60b9a943ea82abbd01546c15daa0e745fabc3cbdec14ee5bb86f950711">LEDBARK2MIL</a></div><div class="ttdeci">@ LEDBARK2MIL</div><div class="ttdoc">Libellé de l'action permettant un clignotement à la &quot;K2000&quot;.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:27</div></div>
+<div class="ttc" id="aLedBar_8hpp_html_a2b3fb0f60b9a943ea82abbd01546c15dac61afff4d7d03af280878015efeb173a"><div class="ttname"><a href="LedBar_8hpp.html#a2b3fb0f60b9a943ea82abbd01546c15dac61afff4d7d03af280878015efeb173a">LEDBARBLINK</a></div><div class="ttdeci">@ LEDBARBLINK</div><div class="ttdoc">Libellé de l'action permettant un clignotement de la barre de led.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:32</div></div>
+<div class="ttc" id="aLedBar_8hpp_html_a2b3fb0f60b9a943ea82abbd01546c15daec15bd862ec6dc67d247f23507c9a3bb"><div class="ttname"><a href="LedBar_8hpp.html#a2b3fb0f60b9a943ea82abbd01546c15daec15bd862ec6dc67d247f23507c9a3bb">LEDBARBLINKPIN</a></div><div class="ttdeci">@ LEDBARBLINKPIN</div><div class="ttdoc">Libellé de l'action permettant un clignotement d'un pin de la barre de led.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:36</div></div>
+<div class="ttc" id="aLedBar_8hpp_html_ac9f3ea6fd1e064167558d4d30adb4aac"><div class="ttname"><a href="LedBar_8hpp.html#ac9f3ea6fd1e064167558d4d30adb4aac">LedBarActionName</a></div><div class="ttdeci">LedBarActionName</div><div class="ttdoc">Enumération des libellés des actions de la barre de leds.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:46</div></div>
+<div class="ttc" id="aLedBar_8hpp_html_ac9f3ea6fd1e064167558d4d30adb4aaca5fcf73074cd27b9fb2fa354433d91257"><div class="ttname"><a href="LedBar_8hpp.html#ac9f3ea6fd1e064167558d4d30adb4aaca5fcf73074cd27b9fb2fa354433d91257">LEDBARRESET</a></div><div class="ttdeci">@ LEDBARRESET</div><div class="ttdoc">Libellé de l'action permettant un reset de toute la barre de led.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:55</div></div>
+<div class="ttc" id="aLedBar_8hpp_html_ac9f3ea6fd1e064167558d4d30adb4aaca8afa7f2241fd72cce2e93b411b5e023f"><div class="ttname"><a href="LedBar_8hpp.html#ac9f3ea6fd1e064167558d4d30adb4aaca8afa7f2241fd72cce2e93b411b5e023f">LEDBARFLASH</a></div><div class="ttdeci">@ LEDBARFLASH</div><div class="ttdoc">Libellé de l'action permettant d'allumer toutes les leds.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:59</div></div>
+<div class="ttc" id="aLedBar_8hpp_html_ac9f3ea6fd1e064167558d4d30adb4aacaa838504b7eff42e3a663d65acef804b1"><div class="ttname"><a href="LedBar_8hpp.html#ac9f3ea6fd1e064167558d4d30adb4aacaa838504b7eff42e3a663d65acef804b1">LEDBARFLASHVALUE</a></div><div class="ttdeci">@ LEDBARFLASHVALUE</div><div class="ttdoc">Libellé de l'action permettant d'allumer les leds par rapport à une valeur hexa.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:63</div></div>
+<div class="ttc" id="aLedBar_8hpp_html_ac9f3ea6fd1e064167558d4d30adb4aacad868dd88f3be96ffa3549abc9fc1ac0e"><div class="ttname"><a href="LedBar_8hpp.html#ac9f3ea6fd1e064167558d4d30adb4aacad868dd88f3be96ffa3549abc9fc1ac0e">LEDBARSET</a></div><div class="ttdeci">@ LEDBARSET</div><div class="ttdoc">Libellé de l'action permettant d'allumer/eteindre une led.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:50</div></div>
+<div class="ttc" id="aLoggerFactory_8hpp_html"><div class="ttname"><a href="LoggerFactory_8hpp.html">LoggerFactory.hpp</a></div><div class="ttdoc">Définition de la classe LoggerFactory.</div></div>
+<div class="ttc" id="aclassAActionsElement_html"><div class="ttname"><a href="classAActionsElement.html">AActionsElement</a></div><div class="ttdoc">Classe abstraite définissant la notion d'élément du robot.</div><div class="ttdef"><b>Definition:</b> AActionsElement.hpp:20</div></div>
+<div class="ttc" id="aclassAActionsElement_html_a3fbd5b8201049a59602d8b7201a9ef8a"><div class="ttname"><a href="classAActionsElement.html#a3fbd5b8201049a59602d8b7201a9ef8a">AActionsElement::actions</a></div><div class="ttdeci">Actions &amp; actions()</div><div class="ttdoc">Retourne une référence sur le Actions associé.</div><div class="ttdef"><b>Definition:</b> AActionsElement.hpp:46</div></div>
+<div class="ttc" id="aclassALedDriver_html"><div class="ttname"><a href="classALedDriver.html">ALedDriver</a></div><div class="ttdoc">Interface abstraite du driver de LEDs.</div><div class="ttdef"><b>Definition:</b> ALedDriver.hpp:37</div></div>
+<div class="ttc" id="aclassActions_html"><div class="ttname"><a href="classActions.html">Actions</a></div><div class="ttdef"><b>Definition:</b> Actions.hpp:22</div></div>
+<div class="ttc" id="aclassIAction_html"><div class="ttname"><a href="classIAction.html">IAction</a></div><div class="ttdoc">Cette interface represente une action executee.</div><div class="ttdef"><b>Definition:</b> IAction.hpp:14</div></div>
+<div class="ttc" id="aclassITimerPosixListener_html"><div class="ttname"><a href="classITimerPosixListener.html">ITimerPosixListener</a></div><div class="ttdoc">Cette interface représente une action executée par un timer lorsqu'il atteint son seuil d'execution.</div><div class="ttdef"><b>Definition:</b> ITimerPosixListener.hpp:31</div></div>
+<div class="ttc" id="aclassITimerPosixListener_html_a56abc90e01e315320b855399b2c0096e"><div class="ttname"><a href="classITimerPosixListener.html#a56abc90e01e315320b855399b2c0096e">ITimerPosixListener::name</a></div><div class="ttdeci">virtual std::string name()</div><div class="ttdoc">Getter sur les infos permettant d'identifier le timer.</div><div class="ttdef"><b>Definition:</b> ITimerPosixListener.hpp:50</div></div>
+<div class="ttc" id="aclassITimerPosixListener_html_a68a996ffa95155e824dec8653fbc8e40"><div class="ttname"><a href="classITimerPosixListener.html#a68a996ffa95155e824dec8653fbc8e40">ITimerPosixListener::timeSpan_us</a></div><div class="ttdeci">int timeSpan_us()</div><div class="ttdoc">Getter sur le temps interval du timer.</div><div class="ttdef"><b>Definition:</b> ITimerPosixListener.hpp:58</div></div>
+<div class="ttc" id="aclassITimerPosixListener_html_a8de2755092a5cdfff6474856de2db24d"><div class="ttname"><a href="classITimerPosixListener.html#a8de2755092a5cdfff6474856de2db24d">ITimerPosixListener::chrono</a></div><div class="ttdeci">utils::Chronometer chrono</div><div class="ttdef"><b>Definition:</b> ITimerPosixListener.hpp:211</div></div>
+<div class="ttc" id="aclassLedBarAction_html"><div class="ttname"><a href="classLedBarAction.html">LedBarAction</a></div><div class="ttdoc">Cette action permet de definir les actions concernant la barre de leds.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:433</div></div>
+<div class="ttc" id="aclassLedBarAction_html_a1531a9448c747d2e1afdf11cdad48fab"><div class="ttname"><a href="classLedBarAction.html#a1531a9448c747d2e1afdf11cdad48fab">LedBarAction::color_</a></div><div class="ttdeci">LedColor color_</div><div class="ttdoc">Coleur de la led a setter.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:467</div></div>
+<div class="ttc" id="aclassLedBarAction_html_a58501cb3d64b6ceaea8a83cefc230f42"><div class="ttname"><a href="classLedBarAction.html#a58501cb3d64b6ceaea8a83cefc230f42">LedBarAction::info</a></div><div class="ttdeci">virtual std::string info()</div><div class="ttdoc">Retourne la description du timer.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:493</div></div>
+<div class="ttc" id="aclassLedBarAction_html_a67bc2c636064156c80319623b88ec5e8"><div class="ttname"><a href="classLedBarAction.html#a67bc2c636064156c80319623b88ec5e8">LedBarAction::execute</a></div><div class="ttdeci">virtual bool execute()</div><div class="ttdoc">Execution de l'action.</div><div class="ttdef"><b>Definition:</b> LedBar.cpp:214</div></div>
+<div class="ttc" id="aclassLedBarAction_html_a8d096b40a25f81b4b7a3f6180b8bab8d"><div class="ttname"><a href="classLedBarAction.html#a8d096b40a25f81b4b7a3f6180b8bab8d">LedBarAction::~LedBarAction</a></div><div class="ttdeci">virtual ~LedBarAction()</div><div class="ttdoc">Destructeur de la classe.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:481</div></div>
+<div class="ttc" id="aclassLedBarAction_html_ab34b3cd8bafe48e52e4989b8701762f0"><div class="ttname"><a href="classLedBarAction.html#ab34b3cd8bafe48e52e4989b8701762f0">LedBarAction::ledBar_</a></div><div class="ttdeci">LedBar &amp; ledBar_</div><div class="ttdoc">Référence vers la barre de Leds associée.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:447</div></div>
+<div class="ttc" id="aclassLedBarAction_html_ac33bf29b336375759ab32283349f9f12"><div class="ttname"><a href="classLedBarAction.html#ac33bf29b336375759ab32283349f9f12">LedBarAction::action_</a></div><div class="ttdeci">LedBarActionName action_</div><div class="ttdoc">libellé de l'action à exécuter et en cours.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:452</div></div>
+<div class="ttc" id="aclassLedBarAction_html_ac9260a121fb93b6b817670e906985dfa"><div class="ttname"><a href="classLedBarAction.html#ac9260a121fb93b6b817670e906985dfa">LedBarAction::inc_</a></div><div class="ttdeci">bool inc_</div><div class="ttdoc">valeur temporaire d'incrementation ou decrémentation .</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:457</div></div>
+<div class="ttc" id="aclassLedBarAction_html_ad1338cf51583f175735dbcae831404af"><div class="ttname"><a href="classLedBarAction.html#ad1338cf51583f175735dbcae831404af">LedBarAction::logger</a></div><div class="ttdeci">static const logs::Logger &amp; logger()</div><div class="ttdoc">Retourne le Logger associé à la classe LedBarAction.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:439</div></div>
+<div class="ttc" id="aclassLedBarAction_html_adcaf979c06f6f0db45ebc191526bbcf5"><div class="ttname"><a href="classLedBarAction.html#adcaf979c06f6f0db45ebc191526bbcf5">LedBarAction::LedBarAction</a></div><div class="ttdeci">LedBarAction(LedBar &amp;ledBar, LedBarActionName action, uint hex_pos, LedColor color)</div><div class="ttdoc">Constructeur de la classe.</div><div class="ttdef"><b>Definition:</b> LedBar.cpp:209</div></div>
+<div class="ttc" id="aclassLedBarAction_html_af44697ca67d36207f23f0e9db0c8ec85"><div class="ttname"><a href="classLedBarAction.html#af44697ca67d36207f23f0e9db0c8ec85">LedBarAction::position_</a></div><div class="ttdeci">ushort position_</div><div class="ttdoc">Position de la led à setter.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:462</div></div>
+<div class="ttc" id="aclassLedBarTimer_html"><div class="ttname"><a href="classLedBarTimer.html">LedBarTimer</a></div><div class="ttdoc">Cette action permet de definir les timers concernant la barre de leds.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:332</div></div>
+<div class="ttc" id="aclassLedBarTimer_html_a183f23935645585fe5d28b23a68e7612"><div class="ttname"><a href="classLedBarTimer.html#a183f23935645585fe5d28b23a68e7612">LedBarTimer::tmp_nb_current_</a></div><div class="ttdeci">uint tmp_nb_current_</div><div class="ttdoc">valeurs temporaire durant le clignotement.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:381</div></div>
+<div class="ttc" id="aclassLedBarTimer_html_a2bf56d808fca4cd869bb25b2e488c329"><div class="ttname"><a href="classLedBarTimer.html#a2bf56d808fca4cd869bb25b2e488c329">LedBarTimer::ledBar_</a></div><div class="ttdeci">LedBar &amp; ledBar_</div><div class="ttdoc">Référence vers le ledbar.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:346</div></div>
+<div class="ttc" id="aclassLedBarTimer_html_a508f0c79e394a111d211f457fd589870"><div class="ttname"><a href="classLedBarTimer.html#a508f0c79e394a111d211f457fd589870">LedBarTimer::onTimer</a></div><div class="ttdeci">virtual void onTimer(utils::Chronometer chrono)</div><div class="ttdoc">fonction qui sera executer à chaque traitement du timer.</div><div class="ttdef"><b>Definition:</b> LedBar.cpp:256</div></div>
+<div class="ttc" id="aclassLedBarTimer_html_a5411972d02e273dff2fc94acb07ea151"><div class="ttname"><a href="classLedBarTimer.html#a5411972d02e273dff2fc94acb07ea151">LedBarTimer::timerAction_</a></div><div class="ttdeci">LedBarTimerName timerAction_</div><div class="ttdoc">libellé de l'action à exécuter sur le timer.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:351</div></div>
+<div class="ttc" id="aclassLedBarTimer_html_a638a87499a35e7ce5e2423bb0696374a"><div class="ttname"><a href="classLedBarTimer.html#a638a87499a35e7ce5e2423bb0696374a">LedBarTimer::LedBarTimer</a></div><div class="ttdeci">LedBarTimer(LedBar &amp;ledBar, LedBarTimerName name, uint timeSpan_us, uint nb, LedColor color, uint hexValue, uint hexValueNext)</div><div class="ttdoc">Constructeur de la classe.</div><div class="ttdef"><b>Definition:</b> LedBar.cpp:247</div></div>
+<div class="ttc" id="aclassLedBarTimer_html_a6a9159723cf7b8d392d516b6e0b19385"><div class="ttname"><a href="classLedBarTimer.html#a6a9159723cf7b8d392d516b6e0b19385">LedBarTimer::hexNext_</a></div><div class="ttdeci">uint hexNext_</div><div class="ttdoc">2ème valeur de clignotement.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:376</div></div>
+<div class="ttc" id="aclassLedBarTimer_html_a7611cf41de66c0f1a955f30a143da288"><div class="ttname"><a href="classLedBarTimer.html#a7611cf41de66c0f1a955f30a143da288">LedBarTimer::tmp_pos_current_</a></div><div class="ttdeci">int tmp_pos_current_</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:382</div></div>
+<div class="ttc" id="aclassLedBarTimer_html_a7836430e649650253638c3c1c95d20ad"><div class="ttname"><a href="classLedBarTimer.html#a7836430e649650253638c3c1c95d20ad">LedBarTimer::onTimerEnd</a></div><div class="ttdeci">virtual void onTimerEnd(utils::Chronometer chrono)</div><div class="ttdoc">fonction qui sera executer en dernière action à faire pour ce timer.</div><div class="ttdef"><b>Definition:</b> LedBar.cpp:334</div></div>
+<div class="ttc" id="aclassLedBarTimer_html_a8256c57cf01bb992e224bd6ad88b6447"><div class="ttname"><a href="classLedBarTimer.html#a8256c57cf01bb992e224bd6ad88b6447">LedBarTimer::color_</a></div><div class="ttdeci">LedColor color_</div><div class="ttdoc">Coleur de la led a setter.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:366</div></div>
+<div class="ttc" id="aclassLedBarTimer_html_aac6060f16bfc4fac7aba78c0463c24bf"><div class="ttname"><a href="classLedBarTimer.html#aac6060f16bfc4fac7aba78c0463c24bf">LedBarTimer::info</a></div><div class="ttdeci">virtual std::string info()</div><div class="ttdoc">nom du timer.</div><div class="ttdef"><b>Definition:</b> LedBar.cpp:340</div></div>
+<div class="ttc" id="aclassLedBarTimer_html_aaeb6a7409c117de975837a43d28692e9"><div class="ttname"><a href="classLedBarTimer.html#aaeb6a7409c117de975837a43d28692e9">LedBarTimer::hex_</a></div><div class="ttdeci">uint hex_</div><div class="ttdoc">Première Valeur de clignotement ou de position.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:371</div></div>
+<div class="ttc" id="aclassLedBarTimer_html_ab27ba0f3d359d6b8a3d3f266eebeb0e1"><div class="ttname"><a href="classLedBarTimer.html#ab27ba0f3d359d6b8a3d3f266eebeb0e1">LedBarTimer::~LedBarTimer</a></div><div class="ttdeci">virtual ~LedBarTimer()</div><div class="ttdoc">Destructeur de la classe.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:409</div></div>
+<div class="ttc" id="aclassLedBarTimer_html_abb0c54240b3a0b9d35ed6e9995f94b36"><div class="ttname"><a href="classLedBarTimer.html#abb0c54240b3a0b9d35ed6e9995f94b36">LedBarTimer::logger</a></div><div class="ttdeci">static const logs::Logger &amp; logger()</div><div class="ttdoc">Retourne le Logger associé à la classe LedBarTimer.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:338</div></div>
+<div class="ttc" id="aclassLedBarTimer_html_acbf6f7eacc83657d1345f90cf2a75abf"><div class="ttname"><a href="classLedBarTimer.html#acbf6f7eacc83657d1345f90cf2a75abf">LedBarTimer::timeus_</a></div><div class="ttdeci">uint timeus_</div><div class="ttdoc">Temps de pause (en us).</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:356</div></div>
+<div class="ttc" id="aclassLedBarTimer_html_ad903d071b2eb55057d9e74c3efe94786"><div class="ttname"><a href="classLedBarTimer.html#ad903d071b2eb55057d9e74c3efe94786">LedBarTimer::tmp_pos_inc_</a></div><div class="ttdeci">bool tmp_pos_inc_</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:383</div></div>
+<div class="ttc" id="aclassLedBarTimer_html_adae0c5ff2b93d1d0a86fe4b95e419451"><div class="ttname"><a href="classLedBarTimer.html#adae0c5ff2b93d1d0a86fe4b95e419451">LedBarTimer::nb_</a></div><div class="ttdeci">uint nb_</div><div class="ttdoc">Nombre de clignotement à faire.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:361</div></div>
+<div class="ttc" id="aclassLedBar_html"><div class="ttname"><a href="classLedBar.html">LedBar</a></div><div class="ttdoc">Gestion d'une barre de LEDs avec actions et timers de clignotement.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:70</div></div>
+<div class="ttc" id="aclassLedBar_html_a0c1e129df2b8cec98a190bf3c9aa18d3"><div class="ttname"><a href="classLedBar.html#a0c1e129df2b8cec98a190bf3c9aa18d3">LedBar::stop</a></div><div class="ttdeci">void stop(bool wait=true)</div><div class="ttdoc">Donne l'ordre d'arreter et attend au moins 1 ms.</div><div class="ttdef"><b>Definition:</b> LedBar.cpp:23</div></div>
+<div class="ttc" id="aclassLedBar_html_a15e2f8d21596686ea1a6938899fe4251"><div class="ttname"><a href="classLedBar.html#a15e2f8d21596686ea1a6938899fe4251">LedBar::nbLed</a></div><div class="ttdeci">int nbLed() const</div><div class="ttdoc">Retourne le nombre de LEDs de la barre.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:196</div></div>
+<div class="ttc" id="aclassLedBar_html_a2e77350f53c4579d7f71cc00d4f26dad"><div class="ttname"><a href="classLedBar.html#a2e77350f53c4579d7f71cc00d4f26dad">LedBar::running</a></div><div class="ttdeci">bool running() const</div><div class="ttdoc">Retourne vrai si une action ou un timer est en cours.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:188</div></div>
+<div class="ttc" id="aclassLedBar_html_a2fb2bd9ec3e7fcb7451cb859db3a6846"><div class="ttname"><a href="classLedBar.html#a2fb2bd9ec3e7fcb7451cb859db3a6846">LedBar::startTimerBlinkPin</a></div><div class="ttdeci">void startTimerBlinkPin(uint nb, uint timeus, int position, LedColor color=LED_GREEN, bool wait=false)</div><div class="ttdoc">Lance l'action de faire clignoter une led nb fois tous les timeus.</div><div class="ttdef"><b>Definition:</b> LedBar.cpp:178</div></div>
+<div class="ttc" id="aclassLedBar_html_a3069414fedb0a97740ffd3ff819d63f1"><div class="ttname"><a href="classLedBar.html#a3069414fedb0a97740ffd3ff819d63f1">LedBar::setOff</a></div><div class="ttdeci">void setOff(int position)</div><div class="ttdoc">Désactive une led spécifique.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:226</div></div>
+<div class="ttc" id="aclassLedBar_html_a31ff074dd2184f11b0fc4858542a8050"><div class="ttname"><a href="classLedBar.html#a31ff074dd2184f11b0fc4858542a8050">LedBar::flash</a></div><div class="ttdeci">void flash(uint hexPosition, LedColor color=LED_GREEN)</div><div class="ttdoc">Allume/eteint les leds définit par hexValue, max = 0xFF.</div><div class="ttdef"><b>Definition:</b> LedBar.cpp:45</div></div>
+<div class="ttc" id="aclassLedBar_html_a349f726f4e7cd0058f95b6c9d9453b18"><div class="ttname"><a href="classLedBar.html#a349f726f4e7cd0058f95b6c9d9453b18">LedBar::logger</a></div><div class="ttdeci">static const logs::Logger &amp; logger()</div><div class="ttdoc">Retourne le Logger associé à la classe LedBar.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:76</div></div>
+<div class="ttc" id="aclassLedBar_html_a443827fdcb184f64cd2f71861564faed"><div class="ttname"><a href="classLedBar.html#a443827fdcb184f64cd2f71861564faed">LedBar::waiting</a></div><div class="ttdeci">void waiting(bool wait, uint limit_ms=10000)</div><div class="ttdoc">Color de la led a appliquer. ‍/ LedColor color_;.</div><div class="ttdef"><b>Definition:</b> LedBar.cpp:192</div></div>
+<div class="ttc" id="aclassLedBar_html_a4e3205aef3a0d44b623d4f8434235cbb"><div class="ttname"><a href="classLedBar.html#a4e3205aef3a0d44b623d4f8434235cbb">LedBar::startTimerK2mil</a></div><div class="ttdeci">void startTimerK2mil(uint nb, uint timeus, LedColor color=LED_GREEN, bool wait=false)</div><div class="ttdoc">Lance l'action d'allumer alternativement les leds à la &quot;K2000&quot;.</div><div class="ttdef"><b>Definition:</b> LedBar.cpp:185</div></div>
+<div class="ttc" id="aclassLedBar_html_a4f2e86893b6d174c1dd11a46c3dcf480"><div class="ttname"><a href="classLedBar.html#a4f2e86893b6d174c1dd11a46c3dcf480">LedBar::LedBar</a></div><div class="ttdeci">LedBar(std::string botId, Actions &amp;actions, int nb)</div><div class="ttdoc">Constructor.</div><div class="ttdef"><b>Definition:</b> LedBar.cpp:11</div></div>
+<div class="ttc" id="aclassLedBar_html_a4f6f26d47d0ea82380cebb8c2b9ea7c3"><div class="ttname"><a href="classLedBar.html#a4f6f26d47d0ea82380cebb8c2b9ea7c3">LedBar::set</a></div><div class="ttdeci">void set(int position, LedColor color)</div><div class="ttdoc">Change le statut d'une led.</div><div class="ttdef"><b>Definition:</b> LedBar.cpp:35</div></div>
+<div class="ttc" id="aclassLedBar_html_a5272d702b081c2fe6288a690e92cc488"><div class="ttname"><a href="classLedBar.html#a5272d702b081c2fe6288a690e92cc488">LedBar::k2mil</a></div><div class="ttdeci">void k2mil(uint nb, uint timeus, LedColor color=LED_GREEN)</div><div class="ttdoc">Clignote toutes les leds nb fois sur les 2 valeurs hex val1 et val2.</div><div class="ttdef"><b>Definition:</b> LedBar.cpp:129</div></div>
+<div class="ttc" id="aclassLedBar_html_a67de658c61e05e5b4d13f2c9bf8eb7ed"><div class="ttname"><a href="classLedBar.html#a67de658c61e05e5b4d13f2c9bf8eb7ed">LedBar::running</a></div><div class="ttdeci">void running(bool value)</div><div class="ttdoc">Définit l'état d'exécution en cours.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:181</div></div>
+<div class="ttc" id="aclassLedBar_html_a6c7139e1a581510c85c11a318c7a0cf7"><div class="ttname"><a href="classLedBar.html#a6c7139e1a581510c85c11a318c7a0cf7">LedBar::resetStop</a></div><div class="ttdeci">void resetStop()</div><div class="ttdoc">Réinitialise les demandes d'arrêt des timers et actions.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:166</div></div>
+<div class="ttc" id="aclassLedBar_html_a714ebd39a178ddd3d602deed7af0bf56"><div class="ttname"><a href="classLedBar.html#a714ebd39a178ddd3d602deed7af0bf56">LedBar::startFlashValue</a></div><div class="ttdeci">void startFlashValue(uint hexValue, LedColor color)</div><div class="ttdoc">Lance l'action d'allumer les leds selon la valeur hexValue.</div><div class="ttdef"><b>Definition:</b> LedBar.cpp:167</div></div>
+<div class="ttc" id="aclassLedBar_html_a76595197ac9045d04f108bed1f3ac4fd"><div class="ttname"><a href="classLedBar.html#a76595197ac9045d04f108bed1f3ac4fd">LedBar::startFlash</a></div><div class="ttdeci">void startFlash()</div><div class="ttdoc">Lance l'action d'allumer toutes les leds.</div><div class="ttdef"><b>Definition:</b> LedBar.cpp:163</div></div>
+<div class="ttc" id="aclassLedBar_html_a77df047f6a8fadf44a3d24d51eb27f68"><div class="ttname"><a href="classLedBar.html#a77df047f6a8fadf44a3d24d51eb27f68">LedBar::startReset</a></div><div class="ttdeci">void startReset()</div><div class="ttdoc">Lance l'action d'éteindre toutes les leds.</div><div class="ttdef"><b>Definition:</b> LedBar.cpp:159</div></div>
+<div class="ttc" id="aclassLedBar_html_a7bb1b0cf26c7202807bdc3e68e1f2e48"><div class="ttname"><a href="classLedBar.html#a7bb1b0cf26c7202807bdc3e68e1f2e48">LedBar::rainbow</a></div><div class="ttdeci">void rainbow(uint nb, uint timeus)</div><div class="ttdef"><b>Definition:</b> LedBar.cpp:55</div></div>
+<div class="ttc" id="aclassLedBar_html_a8839ddd7f8500315818ab31d8b9aa0d9"><div class="ttname"><a href="classLedBar.html#a8839ddd7f8500315818ab31d8b9aa0d9">LedBar::~LedBar</a></div><div class="ttdeci">~LedBar()</div><div class="ttdoc">Destructor.</div><div class="ttdef"><b>Definition:</b> LedBar.cpp:18</div></div>
+<div class="ttc" id="aclassLedBar_html_a94f27bc744c6cfa97c2e9392c3b59182"><div class="ttname"><a href="classLedBar.html#a94f27bc744c6cfa97c2e9392c3b59182">LedBar::id</a></div><div class="ttdeci">std::string id()</div><div class="ttdoc">Retourne l'identifiant du robot.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:159</div></div>
+<div class="ttc" id="aclassLedBar_html_a985018b17b5051935a30d19e32880e11"><div class="ttname"><a href="classLedBar.html#a985018b17b5051935a30d19e32880e11">LedBar::startSet</a></div><div class="ttdeci">void startSet(uint position, LedColor color=LED_GREEN)</div><div class="ttdoc">Lance l'action de changer le statut d'une led en tache parallele sur l'actionmanager.</div><div class="ttdef"><b>Definition:</b> LedBar.cpp:155</div></div>
+<div class="ttc" id="aclassLedBar_html_aa771bd13ff72b872ec4c34e9ef68ea1b"><div class="ttname"><a href="classLedBar.html#aa771bd13ff72b872ec4c34e9ef68ea1b">LedBar::resetAll</a></div><div class="ttdeci">void resetAll()</div><div class="ttdoc">Eteint toutes leds.</div><div class="ttdef"><b>Definition:</b> LedBar.cpp:87</div></div>
+<div class="ttc" id="aclassLedBar_html_ab34bee22db4d68f6c6057e2fbb3b33cd"><div class="ttname"><a href="classLedBar.html#ab34bee22db4d68f6c6057e2fbb3b33cd">LedBar::alternate</a></div><div class="ttdeci">void alternate(uint nb, uint timeus, uint beginVal, uint endVal, LedColor color=LED_GREEN)</div><div class="ttdoc">Clignote toutes les leds nb fois sur les 2 valeurs hex val1 et val2.</div><div class="ttdef"><b>Definition:</b> LedBar.cpp:112</div></div>
+<div class="ttc" id="aclassLedBar_html_ab5e71230035c4698e3b764eade3e7e24"><div class="ttname"><a href="classLedBar.html#ab5e71230035c4698e3b764eade3e7e24">LedBar::botId_</a></div><div class="ttdeci">std::string botId_</div><div class="ttdoc">ID du robot.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:84</div></div>
+<div class="ttc" id="aclassLedBar_html_abc84af9e1f24d8e7a0c9a7f67767c34f"><div class="ttname"><a href="classLedBar.html#abc84af9e1f24d8e7a0c9a7f67767c34f">LedBar::blinkPin</a></div><div class="ttdeci">void blinkPin(uint nb, uint timeus, int position, LedColor color=LED_GREEN)</div><div class="ttdoc">Clignote une led nb fois pendant timeus.</div><div class="ttdef"><b>Definition:</b> LedBar.cpp:95</div></div>
+<div class="ttc" id="aclassLedBar_html_ac680352e575b6a86e40e0d9143db38d7"><div class="ttname"><a href="classLedBar.html#ac680352e575b6a86e40e0d9143db38d7">LedBar::startTimerAlternate</a></div><div class="ttdeci">void startTimerAlternate(uint nb, uint timeus, uint hexValue, uint hexValueNext, LedColor color=LED_GREEN, bool wait=false)</div><div class="ttdoc">Lance l'action de faire alterner les leds selon les valeurs hexValue et hexValueNext.</div><div class="ttdef"><b>Definition:</b> LedBar.cpp:171</div></div>
+<div class="ttc" id="aclassLedBar_html_ac7514d41eb32a1a7a47d742ca4892a50"><div class="ttname"><a href="classLedBar.html#ac7514d41eb32a1a7a47d742ca4892a50">LedBar::startTimerBlink</a></div><div class="ttdeci">void startTimerBlink(uint nb, uint timeus, LedColor color=LED_GREEN, bool wait=false)</div><div class="ttdoc">Lance l'action de faire clignoter toutes les leds nb fois tous les timeus.</div></div>
+<div class="ttc" id="aclassLedBar_html_ad37f92ef4b6487afc785d739a59a32aa"><div class="ttname"><a href="classLedBar.html#ad37f92ef4b6487afc785d739a59a32aa">LedBar::startSetOff</a></div><div class="ttdeci">void startSetOff(uint position)</div><div class="ttdoc">Désactive une led spécifique.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:285</div></div>
+<div class="ttc" id="aclassLedBar_html_ad91d62f821e6b1eb6689a0d23f021097"><div class="ttname"><a href="classLedBar.html#ad91d62f821e6b1eb6689a0d23f021097">LedBar::flashAll</a></div><div class="ttdeci">void flashAll(LedColor color=LED_GREEN)</div><div class="ttdoc">Allume toutes leds.</div><div class="ttdef"><b>Definition:</b> LedBar.cpp:91</div></div>
+<div class="ttc" id="aclassLedBar_html_ae24456e9bb03e44adff5e4d9b6efed59"><div class="ttname"><a href="classLedBar.html#ae24456e9bb03e44adff5e4d9b6efed59">LedBar::hasToStop</a></div><div class="ttdeci">bool hasToStop()</div><div class="ttdoc">Indique si un arrêt du timer a été demandé.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:174</div></div>
+<div class="ttc" id="aclassLedBar_html_aebfc6c5221a223364044fc5c6efacd7a"><div class="ttname"><a href="classLedBar.html#aebfc6c5221a223364044fc5c6efacd7a">LedBar::setOn</a></div><div class="ttdeci">void setOn(int position)</div><div class="ttdoc">Active une led spécifique.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:218</div></div>
+<div class="ttc" id="aclassLedBar_html_af2eb11c44122b3206a657eb3b0b6f05e"><div class="ttname"><a href="classLedBar.html#af2eb11c44122b3206a657eb3b0b6f05e">LedBar::startSetOn</a></div><div class="ttdeci">void startSetOn(uint position)</div><div class="ttdoc">Active une led spécifique.</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:277</div></div>
+<div class="ttc" id="aclassLedBar_html_af6f43d060ec4f62dfe7c9f1a438a104c"><div class="ttname"><a href="classLedBar.html#af6f43d060ec4f62dfe7c9f1a438a104c">LedBar::running_</a></div><div class="ttdeci">bool running_</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:99</div></div>
+<div class="ttc" id="aclassLedBar_html_afad90556b784654b618c527eb19c50dd"><div class="ttname"><a href="classLedBar.html#afad90556b784654b618c527eb19c50dd">LedBar::blink</a></div><div class="ttdeci">void blink(uint nb, uint timeus, LedColor color=LED_GREEN)</div><div class="ttdoc">Clignote toutes les leds nb fois.</div><div class="ttdef"><b>Definition:</b> LedBar.cpp:72</div></div>
+<div class="ttc" id="aclassLedBar_html_afb9c92ef758de87160f858ec64292d0c"><div class="ttname"><a href="classLedBar.html#afb9c92ef758de87160f858ec64292d0c">LedBar::nbLed_</a></div><div class="ttdeci">int nbLed_</div><div class="ttdef"><b>Definition:</b> LedBar.hpp:89</div></div>
+<div class="ttc" id="aclasslogs_1_1LoggerFactory_html_a82585b5de73e471e06cafdccc3b3721e"><div class="ttname"><a href="classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e">logs::LoggerFactory::logger</a></div><div class="ttdeci">static const Logger &amp; logger(const std::string &amp;name)</div><div class="ttdoc">Cette méthode statique retourne un Logger en fonction de son nom.</div><div class="ttdef"><b>Definition:</b> LoggerFactory.cpp:54</div></div>
+<div class="ttc" id="aclasslogs_1_1Logger_html"><div class="ttname"><a href="classlogs_1_1Logger.html">logs::Logger</a></div><div class="ttdoc">Classe de gestion des traces de l'application.</div><div class="ttdef"><b>Definition:</b> Logger.hpp:63</div></div>
+<div class="ttc" id="aclassutils_1_1Chronometer_html"><div class="ttname"><a href="classutils_1_1Chronometer.html">utils::Chronometer</a></div><div class="ttdoc">Gestion d'un chronomètre.</div><div class="ttdef"><b>Definition:</b> Chronometer.hpp:28</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Jeudi 26 Mars 2026 23:28:54 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

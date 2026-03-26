@@ -1,0 +1,24 @@
+<map id="Sensors::addTimerSensors" name="Sensors::addTimerSensors">
+<area shape="rect" id="node1" title=" " alt="" coords="5,420,200,447"/>
+<area shape="rect" id="node2" href="$classAActionsElement.html#a3fbd5b8201049a59602d8b7201a9ef8a" title="Retourne une référence sur le Actions associé." alt="" coords="248,268,436,295"/>
+<area shape="rect" id="node3" href="$classActions.html#a173e3bb37b9cbb0e5ef423b1719b7afd" title="Ajout d&#39;un timer standard." alt="" coords="272,319,412,345"/>
+<area shape="rect" id="node8" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="964,319,1045,345"/>
+<area shape="rect" id="node21" href="$classlogs_1_1Logger.html#a7dffc8f610014ec59b63392da16140e4" title="Trace un message de niveau DEBUG." alt="" coords="489,471,638,497"/>
+<area shape="rect" id="node22" href="$classSensors.html#a445b086f263ac98b47cb545d11b73ab1" title=" " alt="" coords="723,521,845,548"/>
+<area shape="rect" id="node4" href="$classActionManagerTimer.html#a37abad611ac11d81f2ebcb8d9d5766f8" title="Ajout d&#39;un timer. deprecated." alt="" coords="484,151,643,193"/>
+<area shape="rect" id="node12" href="$classlogs_1_1Logger.html#a8b6a2019233bc44b3c3c86c653910831" title="Trace un message de niveau ERROR." alt="" coords="935,369,1075,396"/>
+<area shape="rect" id="node18" href="$classActions.html#a637e05ac19e873621b1e123c2ff29990" title="Indique si le gestionnaire d&#39;actions est démarré." alt="" coords="492,24,635,51"/>
+<area shape="rect" id="node20" href="$classActions.html#a9cc6c9bd885d6e03234b0cf5061a5ca1" title="Return Logger linked to Actions." alt="" coords="504,369,623,396"/>
+<area shape="rect" id="node5" href="$classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32" title="Verrouille le mutex. Cette méthode doit être appelée avant d&#39;utiliser la ressource associée...." alt="" coords="1437,100,1571,127"/>
+<area shape="rect" id="node6" href="$classITimerListener.html#a746c0ceee4eb354754d2e90c5638454c" title=" " alt="" coords="691,217,877,244"/>
+<area shape="rect" id="node7" href="$classActionManagerTimer.html#a39f4cbb5ddbbe6a40980bb59b8b59b05" title=" " alt="" coords="705,151,863,193"/>
+<area shape="rect" id="node10" href="$classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3" title="Déverrouille le mutex. Cette méthode doit être appelée après avoir utiliser la ressource associée." alt="" coords="1429,151,1579,177"/>
+<area shape="rect" id="node13" href="$classActionManagerTimer.html#a280846361e5c7e0ebe57972755841c2b" title=" " alt="" coords="925,253,1084,294"/>
+<area shape="rect" id="node9" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#a0e4fd77693fd899ec1b0670354f93a02" title="Cette méthode valide le message en cours de construction et le transmet au Logger de référence." alt="" coords="1132,285,1356,312"/>
+<area shape="rect" id="node11" href="$classlogs_1_1Logger.html#afa535aaf4891e02c4ff7f84d372b5b1b" title="Méthode générique de trace d&#39;un message." alt="" coords="1404,369,1604,396"/>
+<area shape="rect" id="node14" href="$classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e" title="Cette méthode statique retourne un Logger en fonction de son nom." alt="" coords="1170,471,1318,513"/>
+<area shape="rect" id="node15" href="$classlogs_1_1LoggerFactory.html#ac89f19c0ffd71aa8cdc1c2d44c03809e" title="Cette méthode ajoute un appender au système." alt="" coords="1415,420,1593,447"/>
+<area shape="rect" id="node16" href="$classlogs_1_1LoggerFactory.html#a90478b91d7af2ef8841ded21e3521f69" title="Cette méthode statique retourne l&#39;instance unique de la classe LoggerFactory." alt="" coords="1430,471,1578,513"/>
+<area shape="rect" id="node17" href="$classlogs_1_1LoggerFactory.html#a212aa623f4b6bee12cb39e8017dde670" title="Cette méthode retourne le Logger principal qui définit le niveau de trace par défaut." alt="" coords="1430,537,1578,578"/>
+<area shape="rect" id="node19" href="$classutils_1_1Thread.html#ada9233f3e669c925e9ed518201ad31cd" title="Retourne l&#39;état courant du thread." alt="" coords="1172,49,1316,76"/>
+</map>

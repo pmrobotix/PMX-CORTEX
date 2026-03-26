@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot:  Fichier source de src/bot-opos6ul/OPOS6UL_SvgWriterExtended.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_d465e8d31fb80e2931b929fe23883031.html">bot-opos6ul</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">OPOS6UL_SvgWriterExtended.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="OPOS6UL__SvgWriterExtended_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef OPOS6UL_SVGWRITEREXTENDED_HPP_</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define OPOS6UL_SVGWRITEREXTENDED_HPP_</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Logger_8hpp.html">log/Logger.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="SvgWriter_8hpp.html">log/SvgWriter.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="classOPOS6UL__SvgWriterExtended.html">   19</a></span>&#160;<span class="keyword">class </span><a class="code" href="classOPOS6UL__SvgWriterExtended.html">OPOS6UL_SvgWriterExtended</a>: <span class="keyword">public</span> <a class="code" href="classSvgWriter.html">SvgWriter</a></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="classOPOS6UL__SvgWriterExtended.html#aa28d1371278a322b8b21864a7f9eb0a0">   22</a></span>&#160;    <a class="code" href="classlogs_1_1Logger_1_1LoggerBuffer.html">logs::Logger::LoggerBuffer</a> *<a class="code" href="classOPOS6UL__SvgWriterExtended.html#aa28d1371278a322b8b21864a7f9eb0a0">fLogBuffer</a>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classOPOS6UL__SvgWriterExtended.html#aa2085e1be2c813feb8a5073ff0a960ac">   23</a></span>&#160;    <a class="code" href="classlogs_1_1Logger_1_1LoggerBuffer.html">logs::Logger::LoggerBuffer</a> *<a class="code" href="classOPOS6UL__SvgWriterExtended.html#aa2085e1be2c813feb8a5073ff0a960ac">fLogBufferSensors</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="classOPOS6UL__SvgWriterExtended.html#a3ee48528831cdb47824b43a72df5cc66">OPOS6UL_SvgWriterExtended</a>(std::string botId);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classOPOS6UL__SvgWriterExtended.html#a8b7dd0c6c4a4a17ff4d72db90b8d3034">   28</a></span>&#160;    <a class="code" href="classOPOS6UL__SvgWriterExtended.html#a8b7dd0c6c4a4a17ff4d72db90b8d3034">~OPOS6UL_SvgWriterExtended</a>()</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    }</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classOPOS6UL__SvgWriterExtended.html#aeceee32c5ab2bf9645f564d7f9a3e816">writePosition_AdvPos</a>(<span class="keywordtype">float</span> x_adv_mm, <span class="keywordtype">float</span> y_adv_mm, <span class="keywordtype">float</span> x_pos_mm, <span class="keywordtype">float</span> y_pos_mm, <span class="keywordtype">int</span> color = 0);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classOPOS6UL__SvgWriterExtended.html#a65a0d17d68ed6d3e6e0ae729aba0b331">writePosition_Bot</a>(<span class="keywordtype">float</span> x_mm, <span class="keywordtype">float</span> y_mm, <span class="keywordtype">float</span> angle_rad, <span class="keywordtype">int</span> color = 0);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classOPOS6UL__SvgWriterExtended.html#a71b6df762de5209686945a62c88754e6">writePosition_BotPos</a>(<span class="keywordtype">float</span> x_mm, <span class="keywordtype">float</span> y_mm, <span class="keywordtype">float</span> angle_rad);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classOPOS6UL__SvgWriterExtended.html#a07c9d0f975a6370f2b788036fdc68727">writeZone</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* name, <span class="keywordtype">float</span> minX, <span class="keywordtype">float</span> minY, <span class="keywordtype">float</span> width, <span class="keywordtype">float</span> height, <span class="keywordtype">float</span> startX, <span class="keywordtype">float</span> startY,</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="keywordtype">float</span> startAngle_rad);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classOPOS6UL__SvgWriterExtended.html#a207a264f4fa318a7773394db2a91e03d">writeIaPath</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* zone1Name, <span class="keyword">const</span> <span class="keywordtype">char</span>* zone2Name, <span class="keywordtype">float</span> x_mm, <span class="keywordtype">float</span> y_mm);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classOPOS6UL__SvgWriterExtended.html#a8c32a8f3863f7fadfff4076513524fc2">pathPolyline</a>(std::string points);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;};</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aLogger_8hpp_html"><div class="ttname"><a href="Logger_8hpp.html">Logger.hpp</a></div><div class="ttdoc">Définition de la classe Logger.</div></div>
+<div class="ttc" id="aSvgWriter_8hpp_html"><div class="ttname"><a href="SvgWriter_8hpp.html">SvgWriter.hpp</a></div><div class="ttdoc">Définition de la classe SvgWriter.</div></div>
+<div class="ttc" id="aclassOPOS6UL__SvgWriterExtended_html"><div class="ttname"><a href="classOPOS6UL__SvgWriterExtended.html">OPOS6UL_SvgWriterExtended</a></div><div class="ttdoc">Génération de fichiers SVG pour la visualisation du robot et du terrain.</div><div class="ttdef"><b>Definition:</b> OPOS6UL_SvgWriterExtended.hpp:20</div></div>
+<div class="ttc" id="aclassOPOS6UL__SvgWriterExtended_html_a07c9d0f975a6370f2b788036fdc68727"><div class="ttname"><a href="classOPOS6UL__SvgWriterExtended.html#a07c9d0f975a6370f2b788036fdc68727">OPOS6UL_SvgWriterExtended::writeZone</a></div><div class="ttdeci">void writeZone(const char *name, float minX, float minY, float width, float height, float startX, float startY, float startAngle_rad)</div><div class="ttdoc">Écrit une zone d'action sur le terrain dans le SVG.</div><div class="ttdef"><b>Definition:</b> OPOS6UL_SvgWriterExtended.cpp:248</div></div>
+<div class="ttc" id="aclassOPOS6UL__SvgWriterExtended_html_a207a264f4fa318a7773394db2a91e03d"><div class="ttname"><a href="classOPOS6UL__SvgWriterExtended.html#a207a264f4fa318a7773394db2a91e03d">OPOS6UL_SvgWriterExtended::writeIaPath</a></div><div class="ttdeci">void writeIaPath(const char *zone1Name, const char *zone2Name, float x_mm, float y_mm)</div><div class="ttdoc">Écrit un chemin IA entre deux zones dans le SVG.</div><div class="ttdef"><b>Definition:</b> OPOS6UL_SvgWriterExtended.cpp:301</div></div>
+<div class="ttc" id="aclassOPOS6UL__SvgWriterExtended_html_a3ee48528831cdb47824b43a72df5cc66"><div class="ttname"><a href="classOPOS6UL__SvgWriterExtended.html#a3ee48528831cdb47824b43a72df5cc66">OPOS6UL_SvgWriterExtended::OPOS6UL_SvgWriterExtended</a></div><div class="ttdeci">OPOS6UL_SvgWriterExtended(std::string botId)</div><div class="ttdef"><b>Definition:</b> OPOS6UL_SvgWriterExtended.cpp:8</div></div>
+<div class="ttc" id="aclassOPOS6UL__SvgWriterExtended_html_a65a0d17d68ed6d3e6e0ae729aba0b331"><div class="ttname"><a href="classOPOS6UL__SvgWriterExtended.html#a65a0d17d68ed6d3e6e0ae729aba0b331">OPOS6UL_SvgWriterExtended::writePosition_Bot</a></div><div class="ttdeci">void writePosition_Bot(float x_mm, float y_mm, float angle_rad, int color=0)</div><div class="ttdoc">Écrit la position et l'orientation du robot dans le SVG.</div><div class="ttdef"><b>Definition:</b> OPOS6UL_SvgWriterExtended.cpp:195</div></div>
+<div class="ttc" id="aclassOPOS6UL__SvgWriterExtended_html_a71b6df762de5209686945a62c88754e6"><div class="ttname"><a href="classOPOS6UL__SvgWriterExtended.html#a71b6df762de5209686945a62c88754e6">OPOS6UL_SvgWriterExtended::writePosition_BotPos</a></div><div class="ttdeci">void writePosition_BotPos(float x_mm, float y_mm, float angle_rad)</div><div class="ttdoc">Écrit la position du robot avec orientation (version simplifiée).</div><div class="ttdef"><b>Definition:</b> OPOS6UL_SvgWriterExtended.cpp:230</div></div>
+<div class="ttc" id="aclassOPOS6UL__SvgWriterExtended_html_a8b7dd0c6c4a4a17ff4d72db90b8d3034"><div class="ttname"><a href="classOPOS6UL__SvgWriterExtended.html#a8b7dd0c6c4a4a17ff4d72db90b8d3034">OPOS6UL_SvgWriterExtended::~OPOS6UL_SvgWriterExtended</a></div><div class="ttdeci">~OPOS6UL_SvgWriterExtended()</div><div class="ttdef"><b>Definition:</b> OPOS6UL_SvgWriterExtended.hpp:28</div></div>
+<div class="ttc" id="aclassOPOS6UL__SvgWriterExtended_html_a8c32a8f3863f7fadfff4076513524fc2"><div class="ttname"><a href="classOPOS6UL__SvgWriterExtended.html#a8c32a8f3863f7fadfff4076513524fc2">OPOS6UL_SvgWriterExtended::pathPolyline</a></div><div class="ttdeci">void pathPolyline(std::string points)</div><div class="ttdoc">Écrit un chemin polyline (suite de points) dans le SVG.</div><div class="ttdef"><b>Definition:</b> OPOS6UL_SvgWriterExtended.cpp:312</div></div>
+<div class="ttc" id="aclassOPOS6UL__SvgWriterExtended_html_aa2085e1be2c813feb8a5073ff0a960ac"><div class="ttname"><a href="classOPOS6UL__SvgWriterExtended.html#aa2085e1be2c813feb8a5073ff0a960ac">OPOS6UL_SvgWriterExtended::fLogBufferSensors</a></div><div class="ttdeci">logs::Logger::LoggerBuffer * fLogBufferSensors</div><div class="ttdef"><b>Definition:</b> OPOS6UL_SvgWriterExtended.hpp:23</div></div>
+<div class="ttc" id="aclassOPOS6UL__SvgWriterExtended_html_aa28d1371278a322b8b21864a7f9eb0a0"><div class="ttname"><a href="classOPOS6UL__SvgWriterExtended.html#aa28d1371278a322b8b21864a7f9eb0a0">OPOS6UL_SvgWriterExtended::fLogBuffer</a></div><div class="ttdeci">logs::Logger::LoggerBuffer * fLogBuffer</div><div class="ttdef"><b>Definition:</b> OPOS6UL_SvgWriterExtended.hpp:22</div></div>
+<div class="ttc" id="aclassOPOS6UL__SvgWriterExtended_html_aeceee32c5ab2bf9645f564d7f9a3e816"><div class="ttname"><a href="classOPOS6UL__SvgWriterExtended.html#aeceee32c5ab2bf9645f564d7f9a3e816">OPOS6UL_SvgWriterExtended::writePosition_AdvPos</a></div><div class="ttdeci">void writePosition_AdvPos(float x_adv_mm, float y_adv_mm, float x_pos_mm, float y_pos_mm, int color=0)</div><div class="ttdoc">Écrit la position de l'adversaire et du robot dans le SVG.</div><div class="ttdef"><b>Definition:</b> OPOS6UL_SvgWriterExtended.cpp:121</div></div>
+<div class="ttc" id="aclassSvgWriter_html"><div class="ttname"><a href="classSvgWriter.html">SvgWriter</a></div><div class="ttdoc">Wrapper pour la génération de fichier svg via le système de log.</div><div class="ttdef"><b>Definition:</b> SvgWriter.hpp:23</div></div>
+<div class="ttc" id="aclasslogs_1_1Logger_1_1LoggerBuffer_html"><div class="ttname"><a href="classlogs_1_1Logger_1_1LoggerBuffer.html">logs::Logger::LoggerBuffer</a></div><div class="ttdoc">Classe de délégation pour faciliter la création des traces.</div><div class="ttdef"><b>Definition:</b> Logger.hpp:79</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Jeudi 26 Mars 2026 23:28:54 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

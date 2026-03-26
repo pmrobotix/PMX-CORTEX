@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot:  Fichier source de src/bot-opos6ul/OPOS6UL_RobotExtended.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_d465e8d31fb80e2931b929fe23883031.html">bot-opos6ul</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">OPOS6UL_RobotExtended.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="OPOS6UL__RobotExtended_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef OPOS6UL_ROBOTEXTENDED_HPP_</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define OPOS6UL_ROBOTEXTENDED_HPP_</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">//#include &quot;interface/AAsservDriver.hpp&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Robot_8hpp.html">Robot.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="LoggerFactory_8hpp.html">log/LoggerFactory.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">class </span><a class="code" href="classO__State__DecisionMakerIA.html">O_State_DecisionMakerIA</a>;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">class </span><a class="code" href="classOPOS6UL__ActionsExtended.html">OPOS6UL_ActionsExtended</a>;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">class </span><a class="code" href="classOPOS6UL__AsservExtended.html">OPOS6UL_AsservExtended</a>;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">class </span><a class="code" href="classOPOS6UL__IAExtended.html">OPOS6UL_IAExtended</a>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">class </span><a class="code" href="classOPOS6UL__SvgWriterExtended.html">OPOS6UL_SvgWriterExtended</a>;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="classOPOS6UL__RobotExtended.html">   24</a></span>&#160;<span class="keyword">class </span><a class="code" href="classOPOS6UL__RobotExtended.html">OPOS6UL_RobotExtended</a>: <span class="keyword">public</span> <a class="code" href="classRobot.html">Robot</a></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;{</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classOPOS6UL__RobotExtended.html#a514e663cf7537d64d2d0272b8856d6c0">   32</a></span>&#160;    <span class="keyword">static</span> <a class="code" href="classOPOS6UL__RobotExtended.html">OPOS6UL_RobotExtended</a>&amp; <a class="code" href="classOPOS6UL__RobotExtended.html#a514e663cf7537d64d2d0272b8856d6c0">instance</a>()</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    {</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keyword">static</span> <a class="code" href="classOPOS6UL__RobotExtended.html">OPOS6UL_RobotExtended</a> <a class="code" href="classOPOS6UL__RobotExtended.html#a514e663cf7537d64d2d0272b8856d6c0">instance</a>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classOPOS6UL__RobotExtended.html#a514e663cf7537d64d2d0272b8856d6c0">instance</a>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    }</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classOPOS6UL__RobotExtended.html#a096aea03c751e0cfdc4ce25741fdbe67">   38</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a>&amp; <a class="code" href="classOPOS6UL__RobotExtended.html#a096aea03c751e0cfdc4ce25741fdbe67">logger</a>()</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a> &amp;<a class="code" href="classOPOS6UL__RobotExtended.html#a514e663cf7537d64d2d0272b8856d6c0">instance</a> = <a class="code" href="classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e">logs::LoggerFactory::logger</a>(<span class="stringliteral">&quot;OPOS6UL_RobotExtended&quot;</span>);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classOPOS6UL__RobotExtended.html#a514e663cf7537d64d2d0272b8856d6c0">instance</a>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    }</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="classOPOS6UL__RobotExtended.html#ac8ac2be407a78cdd62261f72226162df">~OPOS6UL_RobotExtended</a>();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classOPOS6UL__RobotExtended.html#a6468a2bb1fc8de815154a322e038b875">   46</a></span>&#160;    <span class="keyword">inline</span> <a class="code" href="classOPOS6UL__ActionsExtended.html">OPOS6UL_ActionsExtended</a>&amp; <a class="code" href="classOPOS6UL__RobotExtended.html#a6468a2bb1fc8de815154a322e038b875">actions</a>()</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <a class="code" href="classOPOS6UL__ActionsExtended.html">OPOS6UL_ActionsExtended</a> &amp;r_actions = *<a class="code" href="classOPOS6UL__RobotExtended.html#ae34e2ce3a6cbc6ce09a9872066066048">p_actions_</a>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordflow">return</span> r_actions;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    }</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">//    inline OPOS6UL_ActionsExtended&amp; actions()</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">//    {</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">//        OPOS6UL_ActionsExtended&amp; r_actions = *p_actions_;</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">//        return r_actions;</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">//    }</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">//    inline OPOS6UL_AsservExtended&amp; asserv()</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">//    {</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">//        OPOS6UL_AsservExtended&amp; r_asserv = *p_asserv_;</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">//        return r_asserv;</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">//    }</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="classOPOS6UL__RobotExtended.html#aece92ee3684b32eab5bbebba812e1c6b">   64</a></span>&#160;    <span class="keyword">inline</span> <a class="code" href="classOPOS6UL__IAExtended.html">OPOS6UL_IAExtended</a>&amp; <a class="code" href="classOPOS6UL__RobotExtended.html#aece92ee3684b32eab5bbebba812e1c6b">ia</a>()</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <a class="code" href="classOPOS6UL__IAExtended.html">OPOS6UL_IAExtended</a> &amp;r_ia = *<a class="code" href="classOPOS6UL__RobotExtended.html#aab4f8ff93998c0682c05052572d6ee5f">p_ia_</a>;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordflow">return</span> r_ia;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    }</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classOPOS6UL__RobotExtended.html#a3af6cff5115c7ae70f7a797d9e90e66a">begin</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classOPOS6UL__RobotExtended.html#a73821b0ec83f0ebcdccf8c9e999616a0">displayPoints</a>();</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classOPOS6UL__RobotExtended.html#a0a997f7fd88abac1efe0083fce633649">stopExtraActions</a>();</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classOPOS6UL__RobotExtended.html#a5297c0c8c1c9b4f25effe72b71ace570">resetDisplayTS</a>();</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classOPOS6UL__RobotExtended.html#a4c7e16c32c1eaa463f577c100f63f618">displayTS</a>(<a class="code" href="AAsservDriver_8hpp.html#adb3360abeb29758da93865c8afcb80eb">TRAJ_STATE</a> ts);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classOPOS6UL__RobotExtended.html#a819ce5f4225f7082d6ce8cf19466dc33">resetDisplayObstacle</a>();</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classOPOS6UL__RobotExtended.html#a9b3f31797fc1916741d6bc61eaf3d1b7">displayObstacle</a>(<span class="keywordtype">int</span> level);</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
+<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="classOPOS6UL__RobotExtended.html#ae7e85a7cc8a5002c193e87bcc51dd922">  109</a></span>&#160;    <a class="code" href="classO__State__DecisionMakerIA.html">O_State_DecisionMakerIA</a> *<a class="code" href="classOPOS6UL__RobotExtended.html#ae7e85a7cc8a5002c193e87bcc51dd922">decisionMaker_</a>; </div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="classOPOS6UL__RobotExtended.html#a23abbdceaaeda085b37d79c433622681">  111</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classOPOS6UL__RobotExtended.html#a23abbdceaaeda085b37d79c433622681">force_end_of_match</a>; </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="classOPOS6UL__RobotExtended.html#ae34e2ce3a6cbc6ce09a9872066066048">  115</a></span>&#160;    <a class="code" href="classOPOS6UL__ActionsExtended.html">OPOS6UL_ActionsExtended</a> *<a class="code" href="classOPOS6UL__RobotExtended.html#ae34e2ce3a6cbc6ce09a9872066066048">p_actions_</a>;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="comment">//OPOS6UL_AsservExtended *p_asserv_;</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="classOPOS6UL__RobotExtended.html#aab4f8ff93998c0682c05052572d6ee5f">  119</a></span>&#160;    <a class="code" href="classOPOS6UL__IAExtended.html">OPOS6UL_IAExtended</a> *<a class="code" href="classOPOS6UL__RobotExtended.html#aab4f8ff93998c0682c05052572d6ee5f">p_ia_</a>;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="comment">//OPOS6UL_SvgWriterExtended *p_svg_;</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <a class="code" href="classOPOS6UL__RobotExtended.html#ab47e33e026160cbb65bbff6129a01597">OPOS6UL_RobotExtended</a>();</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;};</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aAAsservDriver_8hpp_html_adb3360abeb29758da93865c8afcb80eb"><div class="ttname"><a href="AAsservDriver_8hpp.html#adb3360abeb29758da93865c8afcb80eb">TRAJ_STATE</a></div><div class="ttdeci">TRAJ_STATE</div><div class="ttdoc">Etat de retour d'une trajectoire.</div><div class="ttdef"><b>Definition:</b> AAsservDriver.hpp:22</div></div>
+<div class="ttc" id="aLoggerFactory_8hpp_html"><div class="ttname"><a href="LoggerFactory_8hpp.html">LoggerFactory.hpp</a></div><div class="ttdoc">Définition de la classe LoggerFactory.</div></div>
+<div class="ttc" id="aRobot_8hpp_html"><div class="ttname"><a href="Robot_8hpp.html">Robot.hpp</a></div></div>
+<div class="ttc" id="aclassOPOS6UL__ActionsExtended_html"><div class="ttname"><a href="classOPOS6UL__ActionsExtended.html">OPOS6UL_ActionsExtended</a></div><div class="ttdoc">Gestion des actions étendues du robot OPOS6UL (servos, capteurs, LEDs, LCD).</div><div class="ttdef"><b>Definition:</b> OPOS6UL_ActionsExtended.hpp:27</div></div>
+<div class="ttc" id="aclassOPOS6UL__AsservExtended_html"><div class="ttname"><a href="classOPOS6UL__AsservExtended.html">OPOS6UL_AsservExtended</a></div><div class="ttdoc">Gestion de l'asservissement étendu pour le robot OPOS6UL.</div><div class="ttdef"><b>Definition:</b> OPOS6UL_AsservExtended.hpp:22</div></div>
+<div class="ttc" id="aclassOPOS6UL__IAExtended_html"><div class="ttname"><a href="classOPOS6UL__IAExtended.html">OPOS6UL_IAExtended</a></div><div class="ttdoc">Gestion de l'IA étendue du robot OPOS6UL (terrain de jeu, déplacement adverse).</div><div class="ttdef"><b>Definition:</b> OPOS6UL_IAExtended.hpp:21</div></div>
+<div class="ttc" id="aclassOPOS6UL__RobotExtended_html"><div class="ttname"><a href="classOPOS6UL__RobotExtended.html">OPOS6UL_RobotExtended</a></div><div class="ttdoc">Classe principale du robot étendu pour OPOS6UL (singleton).</div><div class="ttdef"><b>Definition:</b> OPOS6UL_RobotExtended.hpp:25</div></div>
+<div class="ttc" id="aclassOPOS6UL__RobotExtended_html_a096aea03c751e0cfdc4ce25741fdbe67"><div class="ttname"><a href="classOPOS6UL__RobotExtended.html#a096aea03c751e0cfdc4ce25741fdbe67">OPOS6UL_RobotExtended::logger</a></div><div class="ttdeci">static const logs::Logger &amp; logger()</div><div class="ttdef"><b>Definition:</b> OPOS6UL_RobotExtended.hpp:38</div></div>
+<div class="ttc" id="aclassOPOS6UL__RobotExtended_html_a0a997f7fd88abac1efe0083fce633649"><div class="ttname"><a href="classOPOS6UL__RobotExtended.html#a0a997f7fd88abac1efe0083fce633649">OPOS6UL_RobotExtended::stopExtraActions</a></div><div class="ttdeci">void stopExtraActions()</div><div class="ttdoc">Arrête toutes les actions supplémentaires (capteurs, LEDs, servos).</div><div class="ttdef"><b>Definition:</b> OPOS6UL_RobotExtended.cpp:64</div></div>
+<div class="ttc" id="aclassOPOS6UL__RobotExtended_html_a23abbdceaaeda085b37d79c433622681"><div class="ttname"><a href="classOPOS6UL__RobotExtended.html#a23abbdceaaeda085b37d79c433622681">OPOS6UL_RobotExtended::force_end_of_match</a></div><div class="ttdeci">bool force_end_of_match</div><div class="ttdoc">Force la fin du match (arrêt d'urgence).</div><div class="ttdef"><b>Definition:</b> OPOS6UL_RobotExtended.hpp:111</div></div>
+<div class="ttc" id="aclassOPOS6UL__RobotExtended_html_a3af6cff5115c7ae70f7a797d9e90e66a"><div class="ttname"><a href="classOPOS6UL__RobotExtended.html#a3af6cff5115c7ae70f7a797d9e90e66a">OPOS6UL_RobotExtended::begin</a></div><div class="ttdeci">void begin(int argc, char **argv)</div><div class="ttdoc">Initialise l'état du robot et le décisionmaker IA.</div><div class="ttdef"><b>Definition:</b> OPOS6UL_RobotExtended.cpp:68</div></div>
+<div class="ttc" id="aclassOPOS6UL__RobotExtended_html_a4c7e16c32c1eaa463f577c100f63f618"><div class="ttname"><a href="classOPOS6UL__RobotExtended.html#a4c7e16c32c1eaa463f577c100f63f618">OPOS6UL_RobotExtended::displayTS</a></div><div class="ttdeci">void displayTS(TRAJ_STATE ts)</div><div class="ttdoc">Affiche le statut de trajectoire courant.</div><div class="ttdef"><b>Definition:</b> OPOS6UL_RobotExtended.cpp:101</div></div>
+<div class="ttc" id="aclassOPOS6UL__RobotExtended_html_a514e663cf7537d64d2d0272b8856d6c0"><div class="ttname"><a href="classOPOS6UL__RobotExtended.html#a514e663cf7537d64d2d0272b8856d6c0">OPOS6UL_RobotExtended::instance</a></div><div class="ttdeci">static OPOS6UL_RobotExtended &amp; instance()</div><div class="ttdoc">Retourne l'instance unique du robot (singleton).</div><div class="ttdef"><b>Definition:</b> OPOS6UL_RobotExtended.hpp:32</div></div>
+<div class="ttc" id="aclassOPOS6UL__RobotExtended_html_a5297c0c8c1c9b4f25effe72b71ace570"><div class="ttname"><a href="classOPOS6UL__RobotExtended.html#a5297c0c8c1c9b4f25effe72b71ace570">OPOS6UL_RobotExtended::resetDisplayTS</a></div><div class="ttdeci">void resetDisplayTS()</div><div class="ttdoc">Réinitialise l'affichage du statut de trajectoire.</div><div class="ttdef"><b>Definition:</b> OPOS6UL_RobotExtended.cpp:96</div></div>
+<div class="ttc" id="aclassOPOS6UL__RobotExtended_html_a6468a2bb1fc8de815154a322e038b875"><div class="ttname"><a href="classOPOS6UL__RobotExtended.html#a6468a2bb1fc8de815154a322e038b875">OPOS6UL_RobotExtended::actions</a></div><div class="ttdeci">OPOS6UL_ActionsExtended &amp; actions()</div><div class="ttdef"><b>Definition:</b> OPOS6UL_RobotExtended.hpp:46</div></div>
+<div class="ttc" id="aclassOPOS6UL__RobotExtended_html_a73821b0ec83f0ebcdccf8c9e999616a0"><div class="ttname"><a href="classOPOS6UL__RobotExtended.html#a73821b0ec83f0ebcdccf8c9e999616a0">OPOS6UL_RobotExtended::displayPoints</a></div><div class="ttdeci">void displayPoints()</div><div class="ttdoc">Affiche les points accumulés pendant le match.</div><div class="ttdef"><b>Definition:</b> OPOS6UL_RobotExtended.cpp:53</div></div>
+<div class="ttc" id="aclassOPOS6UL__RobotExtended_html_a819ce5f4225f7082d6ce8cf19466dc33"><div class="ttname"><a href="classOPOS6UL__RobotExtended.html#a819ce5f4225f7082d6ce8cf19466dc33">OPOS6UL_RobotExtended::resetDisplayObstacle</a></div><div class="ttdeci">void resetDisplayObstacle()</div><div class="ttdoc">Réinitialise l'affichage de détection d'obstacle.</div><div class="ttdef"><b>Definition:</b> OPOS6UL_RobotExtended.cpp:120</div></div>
+<div class="ttc" id="aclassOPOS6UL__RobotExtended_html_a9b3f31797fc1916741d6bc61eaf3d1b7"><div class="ttname"><a href="classOPOS6UL__RobotExtended.html#a9b3f31797fc1916741d6bc61eaf3d1b7">OPOS6UL_RobotExtended::displayObstacle</a></div><div class="ttdeci">void displayObstacle(int level)</div><div class="ttdoc">Affiche le niveau de détection d'obstacle.</div><div class="ttdef"><b>Definition:</b> OPOS6UL_RobotExtended.cpp:126</div></div>
+<div class="ttc" id="aclassOPOS6UL__RobotExtended_html_aab4f8ff93998c0682c05052572d6ee5f"><div class="ttname"><a href="classOPOS6UL__RobotExtended.html#aab4f8ff93998c0682c05052572d6ee5f">OPOS6UL_RobotExtended::p_ia_</a></div><div class="ttdeci">OPOS6UL_IAExtended * p_ia_</div><div class="ttdef"><b>Definition:</b> OPOS6UL_RobotExtended.hpp:119</div></div>
+<div class="ttc" id="aclassOPOS6UL__RobotExtended_html_ab47e33e026160cbb65bbff6129a01597"><div class="ttname"><a href="classOPOS6UL__RobotExtended.html#ab47e33e026160cbb65bbff6129a01597">OPOS6UL_RobotExtended::OPOS6UL_RobotExtended</a></div><div class="ttdeci">OPOS6UL_RobotExtended()</div><div class="ttdef"><b>Definition:</b> OPOS6UL_RobotExtended.cpp:18</div></div>
+<div class="ttc" id="aclassOPOS6UL__RobotExtended_html_ac8ac2be407a78cdd62261f72226162df"><div class="ttname"><a href="classOPOS6UL__RobotExtended.html#ac8ac2be407a78cdd62261f72226162df">OPOS6UL_RobotExtended::~OPOS6UL_RobotExtended</a></div><div class="ttdeci">~OPOS6UL_RobotExtended()</div><div class="ttdef"><b>Definition:</b> OPOS6UL_RobotExtended.cpp:47</div></div>
+<div class="ttc" id="aclassOPOS6UL__RobotExtended_html_ae34e2ce3a6cbc6ce09a9872066066048"><div class="ttname"><a href="classOPOS6UL__RobotExtended.html#ae34e2ce3a6cbc6ce09a9872066066048">OPOS6UL_RobotExtended::p_actions_</a></div><div class="ttdeci">OPOS6UL_ActionsExtended * p_actions_</div><div class="ttdef"><b>Definition:</b> OPOS6UL_RobotExtended.hpp:115</div></div>
+<div class="ttc" id="aclassOPOS6UL__RobotExtended_html_ae7e85a7cc8a5002c193e87bcc51dd922"><div class="ttname"><a href="classOPOS6UL__RobotExtended.html#ae7e85a7cc8a5002c193e87bcc51dd922">OPOS6UL_RobotExtended::decisionMaker_</a></div><div class="ttdeci">O_State_DecisionMakerIA * decisionMaker_</div><div class="ttdoc">Pointeur vers le décisionmaker IA.</div><div class="ttdef"><b>Definition:</b> OPOS6UL_RobotExtended.hpp:109</div></div>
+<div class="ttc" id="aclassOPOS6UL__RobotExtended_html_aece92ee3684b32eab5bbebba812e1c6b"><div class="ttname"><a href="classOPOS6UL__RobotExtended.html#aece92ee3684b32eab5bbebba812e1c6b">OPOS6UL_RobotExtended::ia</a></div><div class="ttdeci">OPOS6UL_IAExtended &amp; ia()</div><div class="ttdef"><b>Definition:</b> OPOS6UL_RobotExtended.hpp:64</div></div>
+<div class="ttc" id="aclassOPOS6UL__SvgWriterExtended_html"><div class="ttname"><a href="classOPOS6UL__SvgWriterExtended.html">OPOS6UL_SvgWriterExtended</a></div><div class="ttdoc">Génération de fichiers SVG pour la visualisation du robot et du terrain.</div><div class="ttdef"><b>Definition:</b> OPOS6UL_SvgWriterExtended.hpp:20</div></div>
+<div class="ttc" id="aclassO__State__DecisionMakerIA_html"><div class="ttname"><a href="classO__State__DecisionMakerIA.html">O_State_DecisionMakerIA</a></div><div class="ttdoc">Moteur de décision IA du robot.</div><div class="ttdef"><b>Definition:</b> O_State_DecisionMakerIA.hpp:35</div></div>
+<div class="ttc" id="aclassRobot_html"><div class="ttname"><a href="classRobot.html">Robot</a></div><div class="ttdef"><b>Definition:</b> Robot.hpp:26</div></div>
+<div class="ttc" id="aclasslogs_1_1LoggerFactory_html_a82585b5de73e471e06cafdccc3b3721e"><div class="ttname"><a href="classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e">logs::LoggerFactory::logger</a></div><div class="ttdeci">static const Logger &amp; logger(const std::string &amp;name)</div><div class="ttdoc">Cette méthode statique retourne un Logger en fonction de son nom.</div><div class="ttdef"><b>Definition:</b> LoggerFactory.cpp:54</div></div>
+<div class="ttc" id="aclasslogs_1_1Logger_html"><div class="ttname"><a href="classlogs_1_1Logger.html">logs::Logger</a></div><div class="ttdoc">Classe de gestion des traces de l'application.</div><div class="ttdef"><b>Definition:</b> Logger.hpp:63</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Jeudi 26 Mars 2026 23:28:54 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

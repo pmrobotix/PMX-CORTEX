@@ -1,0 +1,23 @@
+<map id="O_LcdBoardTest::run" name="O_LcdBoardTest::run">
+<area shape="rect" id="node1" title="Execute le test." alt="" coords="5,282,160,309"/>
+<area shape="rect" id="node2" href="$classOPOS6UL__RobotExtended.html#a6468a2bb1fc8de815154a322e038b875" title=" " alt="" coords="213,5,402,47"/>
+<area shape="rect" id="node3" href="$classLcdShield.html#a9a329fba00c24f56f24266225dcb6a16" title="Efface le contenu de l&#39;écran." alt="" coords="245,71,369,98"/>
+<area shape="rect" id="node5" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="267,122,348,149"/>
+<area shape="rect" id="node10" href="$classRobot.html#a36b66143430e84b730555cf497b89774" title=" " alt="" coords="256,173,359,199"/>
+<area shape="rect" id="node11" href="$classLcdShield.html#acc5bf1b9f43c50c7ef008462343c19c6" title="Positionne le curseur en haut à gauche." alt="" coords="243,223,372,250"/>
+<area shape="rect" id="node13" href="$classOPOS6UL__RobotExtended.html#a514e663cf7537d64d2d0272b8856d6c0" title="Retourne l&#39;instance unique du robot (singleton)." alt="" coords="213,275,402,316"/>
+<area shape="rect" id="node14" href="$classOPOS6UL__ActionsExtended.html#a92c4b04808832f55fa7b68a9678307b1" title="Cette methode retourne l&#39;objet LcdShield." alt="" coords="208,340,407,381"/>
+<area shape="rect" id="node15" href="$classPrint.html#aa4158dd94bc1741f92d99c427261d7c0" title=" " alt="" coords="262,406,353,433"/>
+<area shape="rect" id="node16" href="$classLcdShield.html#a5fcfa31aff341194a6eebe280263e4ee" title="Désactive le rétroéclairage." alt="" coords="211,457,403,483"/>
+<area shape="rect" id="node18" href="$classLcdShield.html#a7e248adbf31034c0ce7a6a2565852073" title="Active le rétroéclairage." alt="" coords="212,507,403,534"/>
+<area shape="rect" id="node20" href="$classLcdShield.html#afb23b41227f1de62c1ac3ce853da71e4" title="Positionne le curseur à une position donnée." alt="" coords="230,558,385,585"/>
+<area shape="rect" id="node4" href="$classALcdShieldDriver.html#abffade6296456b829c9ad18571d9e2eb" title="Efface tout le contenu de l&#39;ecran." alt="" coords="489,71,662,98"/>
+<area shape="rect" id="node6" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#a0e4fd77693fd899ec1b0670354f93a02" title="Cette méthode valide le message en cours de construction et le transmet au Logger de référence." alt="" coords="463,122,687,149"/>
+<area shape="rect" id="node7" href="$classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32" title="Verrouille le mutex. Cette méthode doit être appelée avant d&#39;utiliser la ressource associée...." alt="" coords="777,71,911,98"/>
+<area shape="rect" id="node8" href="$classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3" title="Déverrouille le mutex. Cette méthode doit être appelée après avoir utiliser la ressource associée." alt="" coords="769,122,919,149"/>
+<area shape="rect" id="node9" href="$classlogs_1_1Logger.html#afa535aaf4891e02c4ff7f84d372b5b1b" title="Méthode générique de trace d&#39;un message." alt="" coords="744,173,944,199"/>
+<area shape="rect" id="node12" href="$classALcdShieldDriver.html#a2ceb8e450d1a8ddcb8d43cebbe3b68af" title="Remet le curseur en position (0, 0)." alt="" coords="486,223,665,250"/>
+<area shape="rect" id="node17" href="$classALcdShieldDriver.html#ab20d8aa30febd806f37525a9b1dfaa5c" title="Eteint le retro&#45;eclairage." alt="" coords="455,457,696,483"/>
+<area shape="rect" id="node19" href="$classALcdShieldDriver.html#a26cb0e3a05c6a6ed614230fb2498aeb9" title="Allume le retro&#45;eclairage." alt="" coords="455,507,695,534"/>
+<area shape="rect" id="node21" href="$classALcdShieldDriver.html#a407f5e535c0f8abf95efff43951f4ae4" title="Positionne le curseur." alt="" coords="474,558,677,585"/>
+</map>

@@ -1,0 +1,819 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot: Référence du fichier src/driver-arm/old_drivers/CCAx12Adc.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_a369de7a6c9198ab5056a0bc5cf5ea3e.html">driver-arm</a></li><li class="navelem"><a class="el" href="dir_2e42cb51c922d62a18450ece61fb488f.html">old_drivers</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#define-members">Macros</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier CCAx12Adc.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Définition de la classe <a class="el" href="classCCAx12Adc.html" title="Implementation for CCAx12Adc card.">CCAx12Adc</a>. Program for the Made by PM-ROBOTIX card to manage servomotor AX12, LED board, and ADC.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &lt;as_devices/cpp/as_i2c.hpp&gt;</code><br />
+<code>#include &quot;<a class="el" href="LoggerFactory_8hpp_source.html">log/LoggerFactory.hpp</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Graphe des dépendances par inclusion de CCAx12Adc.hpp:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="CCAx12Adc_8hpp__incl.svg" width="100%" height="563"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+</div><div class="textblock"><div class="dynheader">
+Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier :</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="CCAx12Adc_8hpp__dep__incl.svg" width="612" height="231"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+</div>
+<p><a href="CCAx12Adc_8hpp_source.html">Aller au code source de ce fichier.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCAx12Adc.html">CCAx12Adc</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementation for <a class="el" href="classCCAx12Adc.html" title="Implementation for CCAx12Adc card.">CCAx12Adc</a> card.  <a href="classCCAx12Adc.html#details">Plus de détails...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a11c3429ef5816ff9292ff4891e1e9f0f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#a11c3429ef5816ff9292ff4891e1e9f0f">AX12ADC_ADDR</a>&#160;&#160;&#160;0x08</td></tr>
+<tr class="separator:a11c3429ef5816ff9292ff4891e1e9f0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8f637de49c5f4c0422b1c3d8c2449a6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#ad8f637de49c5f4c0422b1c3d8c2449a6">CMD_GET_ADC</a>&#160;&#160;&#160;12</td></tr>
+<tr class="separator:ad8f637de49c5f4c0422b1c3d8c2449a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e1dd6cd734aa509f3518fe45a266079"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#a4e1dd6cd734aa509f3518fe45a266079">CMD_PING_AX</a>&#160;&#160;&#160;20</td></tr>
+<tr class="separator:a4e1dd6cd734aa509f3518fe45a266079"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b73ec7cfd5c16a0341e5a4771fbc137"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#a1b73ec7cfd5c16a0341e5a4771fbc137">CMD_READ_AX</a>&#160;&#160;&#160;21</td></tr>
+<tr class="separator:a1b73ec7cfd5c16a0341e5a4771fbc137"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec01094e11fafc299dd60d0a09944aa7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#aec01094e11fafc299dd60d0a09944aa7">CMD_SET_LED_OFF</a>&#160;&#160;&#160;11</td></tr>
+<tr class="separator:aec01094e11fafc299dd60d0a09944aa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e1515949622498f9414659f0c8f1f28"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#a7e1515949622498f9414659f0c8f1f28">CMD_SET_LED_ON</a>&#160;&#160;&#160;10</td></tr>
+<tr class="separator:a7e1515949622498f9414659f0c8f1f28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd44c9c75f7aaf33735d052e708fc442"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#afd44c9c75f7aaf33735d052e708fc442">CMD_WRITE_AX</a>&#160;&#160;&#160;22</td></tr>
+<tr class="separator:afd44c9c75f7aaf33735d052e708fc442"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a470c14c661946ba50f2e078f3270e7a0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#a470c14c661946ba50f2e078f3270e7a0">P_ALARM_LED</a>&#160;&#160;&#160;17</td></tr>
+<tr class="separator:a470c14c661946ba50f2e078f3270e7a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a500429f30b18feb957cc05686840f321"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#a500429f30b18feb957cc05686840f321">P_ALARM_SHUTDOWN</a>&#160;&#160;&#160;18</td></tr>
+<tr class="separator:a500429f30b18feb957cc05686840f321"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55f27821ea3d2684df0d0c00e404aaf1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#a55f27821ea3d2684df0d0c00e404aaf1">P_BAUD_RATE</a>&#160;&#160;&#160;4</td></tr>
+<tr class="separator:a55f27821ea3d2684df0d0c00e404aaf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f74d626bd882caaeec0f74266c30183"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#a0f74d626bd882caaeec0f74266c30183">P_CCW_ANGLE_LIMIT</a>&#160;&#160;&#160;8</td></tr>
+<tr class="separator:a0f74d626bd882caaeec0f74266c30183"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96e0f467f0bd47aa1139781962c251b0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#a96e0f467f0bd47aa1139781962c251b0">P_CCW_COMPLIANCE_MARGIN</a>&#160;&#160;&#160;27</td></tr>
+<tr class="separator:a96e0f467f0bd47aa1139781962c251b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac723a13db94280ea187027f6605b07ca"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#ac723a13db94280ea187027f6605b07ca">P_CCW_COMPLIANCE_SLOPE</a>&#160;&#160;&#160;29</td></tr>
+<tr class="separator:ac723a13db94280ea187027f6605b07ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5271d1bc34008b029c75b9550b321dda"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#a5271d1bc34008b029c75b9550b321dda">P_CW_ANGLE_LIMIT</a>&#160;&#160;&#160;6</td></tr>
+<tr class="separator:a5271d1bc34008b029c75b9550b321dda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a132467237fdf52965f65576e558e9c9f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#a132467237fdf52965f65576e558e9c9f">P_CW_COMPLIANCE_MARGIN</a>&#160;&#160;&#160;26</td></tr>
+<tr class="separator:a132467237fdf52965f65576e558e9c9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3c4f1f33ef774cab9af68d1eafa5037"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#aa3c4f1f33ef774cab9af68d1eafa5037">P_CW_COMPLIANCE_SLOPE</a>&#160;&#160;&#160;28</td></tr>
+<tr class="separator:aa3c4f1f33ef774cab9af68d1eafa5037"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bcf69616de4ced37de6050882a8a792"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#a3bcf69616de4ced37de6050882a8a792">P_DOWN_CALIBRATION</a>&#160;&#160;&#160;20</td></tr>
+<tr class="separator:a3bcf69616de4ced37de6050882a8a792"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9197761b9acb34bbccde863a8029c463"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#a9197761b9acb34bbccde863a8029c463">P_DOWN_LIMIT_VOLTAGE</a>&#160;&#160;&#160;12</td></tr>
+<tr class="separator:a9197761b9acb34bbccde863a8029c463"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a262fb90b6c0853b6187e2743a7b37094"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#a262fb90b6c0853b6187e2743a7b37094">P_GOAL_POSITION</a>&#160;&#160;&#160;30</td></tr>
+<tr class="separator:a262fb90b6c0853b6187e2743a7b37094"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a094032aec29139fd73d7018ffe2043f4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#a094032aec29139fd73d7018ffe2043f4">P_GOAL_SPEED</a>&#160;&#160;&#160;32</td></tr>
+<tr class="separator:a094032aec29139fd73d7018ffe2043f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e735d62f2712a0def4b586c096ed858"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#a0e735d62f2712a0def4b586c096ed858">P_ID</a>&#160;&#160;&#160;3</td></tr>
+<tr class="separator:a0e735d62f2712a0def4b586c096ed858"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf7913c665138d1364148aa39afafa31"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#abf7913c665138d1364148aa39afafa31">P_LED</a>&#160;&#160;&#160;25</td></tr>
+<tr class="separator:abf7913c665138d1364148aa39afafa31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1f582b29f9ddfeff6577402f99b5d7d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#ac1f582b29f9ddfeff6577402f99b5d7d">P_LIMIT_TEMPERATURE</a>&#160;&#160;&#160;11</td></tr>
+<tr class="separator:ac1f582b29f9ddfeff6577402f99b5d7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f3d3d6df8c4b9c22d65b4dc360637f6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#a0f3d3d6df8c4b9c22d65b4dc360637f6">P_LOCK</a>&#160;&#160;&#160;47</td></tr>
+<tr class="separator:a0f3d3d6df8c4b9c22d65b4dc360637f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a709eef1422a15a208d8fd65c029cebf8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#a709eef1422a15a208d8fd65c029cebf8">P_MAX_TORQUE</a>&#160;&#160;&#160;14</td></tr>
+<tr class="separator:a709eef1422a15a208d8fd65c029cebf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2f7a4da8e79ba52331a444d4dd8a836"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#ad2f7a4da8e79ba52331a444d4dd8a836">P_MODEL_NUMBER</a>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:ad2f7a4da8e79ba52331a444d4dd8a836"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1f378b35a62ab2aab94ae90d4e940c6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#af1f378b35a62ab2aab94ae90d4e940c6">P_MOVING</a>&#160;&#160;&#160;46</td></tr>
+<tr class="separator:af1f378b35a62ab2aab94ae90d4e940c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5591ccb6be29d6492ddd295ce6a5e78a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#a5591ccb6be29d6492ddd295ce6a5e78a">P_OPERATING_MODE</a>&#160;&#160;&#160;19</td></tr>
+<tr class="separator:a5591ccb6be29d6492ddd295ce6a5e78a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9de5952e72d14d43c2a24acc83801ba"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#ad9de5952e72d14d43c2a24acc83801ba">P_PAUSE_TIME</a>&#160;&#160;&#160;45</td></tr>
+<tr class="separator:ad9de5952e72d14d43c2a24acc83801ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e52f36cffc7ef4a175a0af0e2e76ffe"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#a7e52f36cffc7ef4a175a0af0e2e76ffe">P_PRESENT_LOAD</a>&#160;&#160;&#160;40</td></tr>
+<tr class="separator:a7e52f36cffc7ef4a175a0af0e2e76ffe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcad901941fd2d417d60115ed1a3d55d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#abcad901941fd2d417d60115ed1a3d55d">P_PRESENT_POSITION</a>&#160;&#160;&#160;36</td></tr>
+<tr class="separator:abcad901941fd2d417d60115ed1a3d55d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac72fc9a76224e1c10adcbc2d159f1ce6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#ac72fc9a76224e1c10adcbc2d159f1ce6">P_PRESENT_SPEED</a>&#160;&#160;&#160;38</td></tr>
+<tr class="separator:ac72fc9a76224e1c10adcbc2d159f1ce6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab029ba61a7bff3225e3914f77294c74e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#ab029ba61a7bff3225e3914f77294c74e">P_PRESENT_TEMPERATURE</a>&#160;&#160;&#160;43</td></tr>
+<tr class="separator:ab029ba61a7bff3225e3914f77294c74e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43da4c4e7fa482dffa4b9dbd277d391b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#a43da4c4e7fa482dffa4b9dbd277d391b">P_PRESENT_VOLTAGE</a>&#160;&#160;&#160;42</td></tr>
+<tr class="separator:a43da4c4e7fa482dffa4b9dbd277d391b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3a4723d4f1ae9e827ba87849f662260"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#ae3a4723d4f1ae9e827ba87849f662260">P_PUNCH</a>&#160;&#160;&#160;48</td></tr>
+<tr class="separator:ae3a4723d4f1ae9e827ba87849f662260"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55d74e0a821481527c5fbd43a559585b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#a55d74e0a821481527c5fbd43a559585b">P_REGISTERED_INSTRUCTION</a>&#160;&#160;&#160;44</td></tr>
+<tr class="separator:a55d74e0a821481527c5fbd43a559585b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a762a772ae9e0ac8505f749d2565da2f6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#a762a772ae9e0ac8505f749d2565da2f6">P_RETURN_DELAY_TIME</a>&#160;&#160;&#160;5</td></tr>
+<tr class="separator:a762a772ae9e0ac8505f749d2565da2f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0774c8d6a46dce6b3d6414579a67f152"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#a0774c8d6a46dce6b3d6414579a67f152">P_RETURN_LEVEL</a>&#160;&#160;&#160;16</td></tr>
+<tr class="separator:a0774c8d6a46dce6b3d6414579a67f152"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94243476f74ceb9b5d97ae26cc955c04"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#a94243476f74ceb9b5d97ae26cc955c04">P_SYSTEM_DATA2</a>&#160;&#160;&#160;10</td></tr>
+<tr class="separator:a94243476f74ceb9b5d97ae26cc955c04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73ebe5f1f41f614378aa2103cb4367d5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#a73ebe5f1f41f614378aa2103cb4367d5">P_TORQUE_ENABLE</a>&#160;&#160;&#160;24</td></tr>
+<tr class="separator:a73ebe5f1f41f614378aa2103cb4367d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae56a723cb417bb70b1855a207e314215"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#ae56a723cb417bb70b1855a207e314215">P_TORQUE_LIMIT</a>&#160;&#160;&#160;34</td></tr>
+<tr class="separator:ae56a723cb417bb70b1855a207e314215"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcf41a3f4d0c883fc8aab3bad3bd6cce"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#adcf41a3f4d0c883fc8aab3bad3bd6cce">P_UP_CALIBRATION</a>&#160;&#160;&#160;22</td></tr>
+<tr class="separator:adcf41a3f4d0c883fc8aab3bad3bd6cce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2dfa08748ba0fa9eeb49177817fcac58"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#a2dfa08748ba0fa9eeb49177817fcac58">P_UP_LIMIT_VOLTAGE</a>&#160;&#160;&#160;13</td></tr>
+<tr class="separator:a2dfa08748ba0fa9eeb49177817fcac58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab85b8d668595989b505586b7b46e6f88"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CCAx12Adc_8hpp.html#ab85b8d668595989b505586b7b46e6f88">P_VERSION</a>&#160;&#160;&#160;2</td></tr>
+<tr class="separator:ab85b8d668595989b505586b7b46e6f88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Définition de la classe <a class="el" href="classCCAx12Adc.html" title="Implementation for CCAx12Adc card.">CCAx12Adc</a>. Program for the Made by PM-ROBOTIX card to manage servomotor AX12, LED board, and ADC. </p>
+</div><h2 class="groupheader">Documentation des macros</h2>
+<a id="a11c3429ef5816ff9292ff4891e1e9f0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11c3429ef5816ff9292ff4891e1e9f0f">&#9670;&nbsp;</a></span>AX12ADC_ADDR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define AX12ADC_ADDR&#160;&#160;&#160;0x08</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad8f637de49c5f4c0422b1c3d8c2449a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8f637de49c5f4c0422b1c3d8c2449a6">&#9670;&nbsp;</a></span>CMD_GET_ADC</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_GET_ADC&#160;&#160;&#160;12</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4e1dd6cd734aa509f3518fe45a266079"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e1dd6cd734aa509f3518fe45a266079">&#9670;&nbsp;</a></span>CMD_PING_AX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_PING_AX&#160;&#160;&#160;20</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1b73ec7cfd5c16a0341e5a4771fbc137"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b73ec7cfd5c16a0341e5a4771fbc137">&#9670;&nbsp;</a></span>CMD_READ_AX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_READ_AX&#160;&#160;&#160;21</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aec01094e11fafc299dd60d0a09944aa7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec01094e11fafc299dd60d0a09944aa7">&#9670;&nbsp;</a></span>CMD_SET_LED_OFF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_SET_LED_OFF&#160;&#160;&#160;11</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7e1515949622498f9414659f0c8f1f28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e1515949622498f9414659f0c8f1f28">&#9670;&nbsp;</a></span>CMD_SET_LED_ON</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_SET_LED_ON&#160;&#160;&#160;10</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afd44c9c75f7aaf33735d052e708fc442"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd44c9c75f7aaf33735d052e708fc442">&#9670;&nbsp;</a></span>CMD_WRITE_AX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CMD_WRITE_AX&#160;&#160;&#160;22</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a470c14c661946ba50f2e078f3270e7a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a470c14c661946ba50f2e078f3270e7a0">&#9670;&nbsp;</a></span>P_ALARM_LED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define P_ALARM_LED&#160;&#160;&#160;17</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a500429f30b18feb957cc05686840f321"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a500429f30b18feb957cc05686840f321">&#9670;&nbsp;</a></span>P_ALARM_SHUTDOWN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define P_ALARM_SHUTDOWN&#160;&#160;&#160;18</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a55f27821ea3d2684df0d0c00e404aaf1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55f27821ea3d2684df0d0c00e404aaf1">&#9670;&nbsp;</a></span>P_BAUD_RATE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define P_BAUD_RATE&#160;&#160;&#160;4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0f74d626bd882caaeec0f74266c30183"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f74d626bd882caaeec0f74266c30183">&#9670;&nbsp;</a></span>P_CCW_ANGLE_LIMIT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define P_CCW_ANGLE_LIMIT&#160;&#160;&#160;8</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a96e0f467f0bd47aa1139781962c251b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96e0f467f0bd47aa1139781962c251b0">&#9670;&nbsp;</a></span>P_CCW_COMPLIANCE_MARGIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define P_CCW_COMPLIANCE_MARGIN&#160;&#160;&#160;27</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac723a13db94280ea187027f6605b07ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac723a13db94280ea187027f6605b07ca">&#9670;&nbsp;</a></span>P_CCW_COMPLIANCE_SLOPE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define P_CCW_COMPLIANCE_SLOPE&#160;&#160;&#160;29</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5271d1bc34008b029c75b9550b321dda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5271d1bc34008b029c75b9550b321dda">&#9670;&nbsp;</a></span>P_CW_ANGLE_LIMIT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define P_CW_ANGLE_LIMIT&#160;&#160;&#160;6</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a132467237fdf52965f65576e558e9c9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a132467237fdf52965f65576e558e9c9f">&#9670;&nbsp;</a></span>P_CW_COMPLIANCE_MARGIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define P_CW_COMPLIANCE_MARGIN&#160;&#160;&#160;26</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa3c4f1f33ef774cab9af68d1eafa5037"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3c4f1f33ef774cab9af68d1eafa5037">&#9670;&nbsp;</a></span>P_CW_COMPLIANCE_SLOPE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define P_CW_COMPLIANCE_SLOPE&#160;&#160;&#160;28</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3bcf69616de4ced37de6050882a8a792"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3bcf69616de4ced37de6050882a8a792">&#9670;&nbsp;</a></span>P_DOWN_CALIBRATION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define P_DOWN_CALIBRATION&#160;&#160;&#160;20</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9197761b9acb34bbccde863a8029c463"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9197761b9acb34bbccde863a8029c463">&#9670;&nbsp;</a></span>P_DOWN_LIMIT_VOLTAGE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define P_DOWN_LIMIT_VOLTAGE&#160;&#160;&#160;12</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a262fb90b6c0853b6187e2743a7b37094"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a262fb90b6c0853b6187e2743a7b37094">&#9670;&nbsp;</a></span>P_GOAL_POSITION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define P_GOAL_POSITION&#160;&#160;&#160;30</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a094032aec29139fd73d7018ffe2043f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a094032aec29139fd73d7018ffe2043f4">&#9670;&nbsp;</a></span>P_GOAL_SPEED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define P_GOAL_SPEED&#160;&#160;&#160;32</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0e735d62f2712a0def4b586c096ed858"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e735d62f2712a0def4b586c096ed858">&#9670;&nbsp;</a></span>P_ID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define P_ID&#160;&#160;&#160;3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abf7913c665138d1364148aa39afafa31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf7913c665138d1364148aa39afafa31">&#9670;&nbsp;</a></span>P_LED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define P_LED&#160;&#160;&#160;25</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac1f582b29f9ddfeff6577402f99b5d7d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1f582b29f9ddfeff6577402f99b5d7d">&#9670;&nbsp;</a></span>P_LIMIT_TEMPERATURE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define P_LIMIT_TEMPERATURE&#160;&#160;&#160;11</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0f3d3d6df8c4b9c22d65b4dc360637f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f3d3d6df8c4b9c22d65b4dc360637f6">&#9670;&nbsp;</a></span>P_LOCK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define P_LOCK&#160;&#160;&#160;47</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a709eef1422a15a208d8fd65c029cebf8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a709eef1422a15a208d8fd65c029cebf8">&#9670;&nbsp;</a></span>P_MAX_TORQUE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define P_MAX_TORQUE&#160;&#160;&#160;14</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad2f7a4da8e79ba52331a444d4dd8a836"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2f7a4da8e79ba52331a444d4dd8a836">&#9670;&nbsp;</a></span>P_MODEL_NUMBER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define P_MODEL_NUMBER&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af1f378b35a62ab2aab94ae90d4e940c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1f378b35a62ab2aab94ae90d4e940c6">&#9670;&nbsp;</a></span>P_MOVING</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define P_MOVING&#160;&#160;&#160;46</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5591ccb6be29d6492ddd295ce6a5e78a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5591ccb6be29d6492ddd295ce6a5e78a">&#9670;&nbsp;</a></span>P_OPERATING_MODE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define P_OPERATING_MODE&#160;&#160;&#160;19</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad9de5952e72d14d43c2a24acc83801ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9de5952e72d14d43c2a24acc83801ba">&#9670;&nbsp;</a></span>P_PAUSE_TIME</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define P_PAUSE_TIME&#160;&#160;&#160;45</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7e52f36cffc7ef4a175a0af0e2e76ffe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e52f36cffc7ef4a175a0af0e2e76ffe">&#9670;&nbsp;</a></span>P_PRESENT_LOAD</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define P_PRESENT_LOAD&#160;&#160;&#160;40</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abcad901941fd2d417d60115ed1a3d55d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abcad901941fd2d417d60115ed1a3d55d">&#9670;&nbsp;</a></span>P_PRESENT_POSITION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define P_PRESENT_POSITION&#160;&#160;&#160;36</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac72fc9a76224e1c10adcbc2d159f1ce6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac72fc9a76224e1c10adcbc2d159f1ce6">&#9670;&nbsp;</a></span>P_PRESENT_SPEED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define P_PRESENT_SPEED&#160;&#160;&#160;38</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab029ba61a7bff3225e3914f77294c74e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab029ba61a7bff3225e3914f77294c74e">&#9670;&nbsp;</a></span>P_PRESENT_TEMPERATURE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define P_PRESENT_TEMPERATURE&#160;&#160;&#160;43</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a43da4c4e7fa482dffa4b9dbd277d391b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43da4c4e7fa482dffa4b9dbd277d391b">&#9670;&nbsp;</a></span>P_PRESENT_VOLTAGE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define P_PRESENT_VOLTAGE&#160;&#160;&#160;42</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae3a4723d4f1ae9e827ba87849f662260"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3a4723d4f1ae9e827ba87849f662260">&#9670;&nbsp;</a></span>P_PUNCH</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define P_PUNCH&#160;&#160;&#160;48</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a55d74e0a821481527c5fbd43a559585b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55d74e0a821481527c5fbd43a559585b">&#9670;&nbsp;</a></span>P_REGISTERED_INSTRUCTION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define P_REGISTERED_INSTRUCTION&#160;&#160;&#160;44</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a762a772ae9e0ac8505f749d2565da2f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a762a772ae9e0ac8505f749d2565da2f6">&#9670;&nbsp;</a></span>P_RETURN_DELAY_TIME</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define P_RETURN_DELAY_TIME&#160;&#160;&#160;5</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0774c8d6a46dce6b3d6414579a67f152"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0774c8d6a46dce6b3d6414579a67f152">&#9670;&nbsp;</a></span>P_RETURN_LEVEL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define P_RETURN_LEVEL&#160;&#160;&#160;16</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a94243476f74ceb9b5d97ae26cc955c04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94243476f74ceb9b5d97ae26cc955c04">&#9670;&nbsp;</a></span>P_SYSTEM_DATA2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define P_SYSTEM_DATA2&#160;&#160;&#160;10</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a73ebe5f1f41f614378aa2103cb4367d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73ebe5f1f41f614378aa2103cb4367d5">&#9670;&nbsp;</a></span>P_TORQUE_ENABLE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define P_TORQUE_ENABLE&#160;&#160;&#160;24</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae56a723cb417bb70b1855a207e314215"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae56a723cb417bb70b1855a207e314215">&#9670;&nbsp;</a></span>P_TORQUE_LIMIT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define P_TORQUE_LIMIT&#160;&#160;&#160;34</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adcf41a3f4d0c883fc8aab3bad3bd6cce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcf41a3f4d0c883fc8aab3bad3bd6cce">&#9670;&nbsp;</a></span>P_UP_CALIBRATION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define P_UP_CALIBRATION&#160;&#160;&#160;22</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2dfa08748ba0fa9eeb49177817fcac58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2dfa08748ba0fa9eeb49177817fcac58">&#9670;&nbsp;</a></span>P_UP_LIMIT_VOLTAGE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define P_UP_LIMIT_VOLTAGE&#160;&#160;&#160;13</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab85b8d668595989b505586b7b46e6f88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab85b8d668595989b505586b7b46e6f88">&#9670;&nbsp;</a></span>P_VERSION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define P_VERSION&#160;&#160;&#160;2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Jeudi 26 Mars 2026 23:28:57 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

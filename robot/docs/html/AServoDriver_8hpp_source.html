@@ -86,7 +86,7 @@ $(function() {
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <a class="code" href="classAServoDriver.html#af202d0a72cdde1d9c0c0eba05e253365a4397a48ac192183b8bf8b98727ca0978">SERVO_DYNAMIXEL</a>  </div>
 <div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="classAServoDriver.html#af202d0a72cdde1d9c0c0eba05e253365a4397a48ac192183b8bf8b98727ca0978">   31</a></span>&#160;    };</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classAServoDriver.html#a636e9fd1bd8ed8e6a2914d561ee1e804">   37</a></span>&#160;    <span class="keyword">static</span> <a class="code" href="classAServoDriver.html">AServoDriver</a>* <a class="code" href="classAServoDriver.html#a636e9fd1bd8ed8e6a2914d561ee1e804">create</a>();</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">static</span> <a class="code" href="classAServoDriver.html">AServoDriver</a>* <a class="code" href="classAServoDriver.html#a82847339a8d4bf66b8bcd372ef0f2f4a">create</a>();</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
 <div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classAServoDriver.html#a3dbde2c92b140d02e520cf646bdd47f4">   39</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classAServoDriver.html#a3dbde2c92b140d02e520cf646bdd47f4">~AServoDriver</a>()</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    {</div>
@@ -144,9 +144,9 @@ $(function() {
 <div class="ttc" id="aclassAServoDriver_html_a3db6d14f3d23fdbd96e95add6a552b0c"><div class="ttname"><a href="classAServoDriver.html#a3db6d14f3d23fdbd96e95add6a552b0c">AServoDriver::setPulsePos</a></div><div class="ttdeci">virtual void setPulsePos(int servo, int pulse, int velocity=0)=0</div><div class="ttdoc">Definit la position du servo par largeur d'impulsion PWM.</div></div>
 <div class="ttc" id="aclassAServoDriver_html_a3dbde2c92b140d02e520cf646bdd47f4"><div class="ttname"><a href="classAServoDriver.html#a3dbde2c92b140d02e520cf646bdd47f4">AServoDriver::~AServoDriver</a></div><div class="ttdeci">virtual ~AServoDriver()</div><div class="ttdef"><b>Definition:</b> AServoDriver.hpp:39</div></div>
 <div class="ttc" id="aclassAServoDriver_html_a478684e583054bdff2d31ee2c7aa944d"><div class="ttname"><a href="classAServoDriver.html#a478684e583054bdff2d31ee2c7aa944d">AServoDriver::getPulsePos</a></div><div class="ttdeci">virtual int getPulsePos(int servo)=0</div><div class="ttdoc">Lit la position courante du servo.</div></div>
-<div class="ttc" id="aclassAServoDriver_html_a636e9fd1bd8ed8e6a2914d561ee1e804"><div class="ttname"><a href="classAServoDriver.html#a636e9fd1bd8ed8e6a2914d561ee1e804">AServoDriver::create</a></div><div class="ttdeci">static AServoDriver * create()</div><div class="ttdoc">Cree l'instance concrete selon la plateforme.</div></div>
 <div class="ttc" id="aclassAServoDriver_html_a6f11bdbeabd16744ddfd24edcf24db3d"><div class="ttname"><a href="classAServoDriver.html#a6f11bdbeabd16744ddfd24edcf24db3d">AServoDriver::AServoDriver</a></div><div class="ttdeci">AServoDriver()</div><div class="ttdef"><b>Definition:</b> AServoDriver.hpp:43</div></div>
 <div class="ttc" id="aclassAServoDriver_html_a75ffc42390ff51d5d8b56985d3c93a47"><div class="ttname"><a href="classAServoDriver.html#a75ffc42390ff51d5d8b56985d3c93a47">AServoDriver::ping</a></div><div class="ttdeci">virtual int ping(int servo)=0</div><div class="ttdoc">Envoie un ping au servo pour verifier sa presence.</div></div>
+<div class="ttc" id="aclassAServoDriver_html_a82847339a8d4bf66b8bcd372ef0f2f4a"><div class="ttname"><a href="classAServoDriver.html#a82847339a8d4bf66b8bcd372ef0f2f4a">AServoDriver::create</a></div><div class="ttdeci">static AServoDriver * create()</div><div class="ttdoc">Cree l'instance concrete selon la plateforme.</div><div class="ttdef"><b>Definition:</b> ServoDriver.cpp:13</div></div>
 <div class="ttc" id="aclassAServoDriver_html_a9005ceeeecc056474f1ae6e54ce8ba23"><div class="ttname"><a href="classAServoDriver.html#a9005ceeeecc056474f1ae6e54ce8ba23">AServoDriver::release</a></div><div class="ttdeci">virtual void release(int servo)=0</div><div class="ttdoc">Relache le servo (desactive le couple).</div></div>
 <div class="ttc" id="aclassAServoDriver_html_a954ac7340407b997387d84d7059ed32b"><div class="ttname"><a href="classAServoDriver.html#a954ac7340407b997387d84d7059ed32b">AServoDriver::getMoving</a></div><div class="ttdeci">virtual int getMoving(int servo)=0</div><div class="ttdoc">Verifie si le servo est en mouvement.</div></div>
 <div class="ttc" id="aclassAServoDriver_html_a9a95b8efce958c283fb4ef65649a38cd"><div class="ttname"><a href="classAServoDriver.html#a9a95b8efce958c283fb4ef65649a38cd">AServoDriver::getTorque</a></div><div class="ttdeci">virtual int getTorque(int servo)=0</div><div class="ttdoc">Lit le couple courant du servo.</div></div>
@@ -165,7 +165,7 @@ $(function() {
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Généré le Mercredi 25 Mars 2026 00:56:56 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Généré le Jeudi 26 Mars 2026 23:28:54 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

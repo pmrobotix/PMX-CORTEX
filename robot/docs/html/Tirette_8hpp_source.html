@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot:  Fichier source de src/common/action/Tirette.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_fdedb0aba14d44ce9d99bc100e026e6a.html">common</a></li><li class="navelem"><a class="el" href="dir_30dbdc63e017df8039de002a18d107ab.html">action</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Tirette.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="Tirette_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifndef TIRETTE_HPP_</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define TIRETTE_HPP_</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="LoggerFactory_8hpp.html">log/LoggerFactory.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="AActionsElement_8hpp.html">AActionsElement.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ASwitchDriver_8hpp.html">interface/ASwitchDriver.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classTirette.html">   16</a></span>&#160;<span class="keyword">class </span><a class="code" href="classTirette.html">Tirette</a>: <span class="keyword">public</span> <a class="code" href="classAActionsElement.html">AActionsElement</a></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classTirette.html#ae3ad64cb17f5a3e5424280d971111365">   23</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a> &amp; <a class="code" href="classTirette.html#ae3ad64cb17f5a3e5424280d971111365">logger</a>()</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a> &amp; instance = <a class="code" href="classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e">logs::LoggerFactory::logger</a>(<span class="stringliteral">&quot;Tirette&quot;</span>);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keywordflow">return</span> instance;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    }</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classTirette.html#a3d6fafd35af35b68075d2839e5ea75a8">   29</a></span>&#160;    <a class="code" href="classASwitchDriver.html">ASwitchDriver</a>* <a class="code" href="classTirette.html#a3d6fafd35af35b68075d2839e5ea75a8">switchdriver_</a>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="classTirette.html#a0e3159f80f9bdd63062fdc3b327e55f7">Tirette</a>(<a class="code" href="classActions.html">Actions</a> &amp; <a class="code" href="classAActionsElement.html#a3fbd5b8201049a59602d8b7201a9ef8a">actions</a>);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="classTirette.html#abb879cb3df78e287a988ea8b471b31be">~Tirette</a>();</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classTirette.html#acac09ffcf07680943c9e16f21c7bc36b">is_connected</a>();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classTirette.html#ad8f33a558301b69774f648a5dc3ac925">pressed</a>();</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classTirette.html#afeb2d5ec3cadb1cc76ae203159495408">monitor</a>(<span class="keywordtype">int</span> nb);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classTirette.html#aff648839d9bf4cb4d814c0b45b93fc1c">waitPressed</a>();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classTirette.html#afbe05aa7c5733bdda2a251b2ca35e14d">waitUnpressed</a>();</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classTirette.html#a218fc478076a6d7952163eeb6a6d07a5">setGPIO</a>(<span class="keywordtype">int</span> p, <span class="keywordtype">bool</span> activate);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;};</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aAActionsElement_8hpp_html"><div class="ttname"><a href="AActionsElement_8hpp.html">AActionsElement.hpp</a></div><div class="ttdoc">Définition de la classe AActionsElement.</div></div>
+<div class="ttc" id="aASwitchDriver_8hpp_html"><div class="ttname"><a href="ASwitchDriver_8hpp.html">ASwitchDriver.hpp</a></div><div class="ttdoc">Interface abstraite du driver de switchs et tirette.</div></div>
+<div class="ttc" id="aLoggerFactory_8hpp_html"><div class="ttname"><a href="LoggerFactory_8hpp.html">LoggerFactory.hpp</a></div><div class="ttdoc">Définition de la classe LoggerFactory.</div></div>
+<div class="ttc" id="aclassAActionsElement_html"><div class="ttname"><a href="classAActionsElement.html">AActionsElement</a></div><div class="ttdoc">Classe abstraite définissant la notion d'élément du robot.</div><div class="ttdef"><b>Definition:</b> AActionsElement.hpp:20</div></div>
+<div class="ttc" id="aclassAActionsElement_html_a3fbd5b8201049a59602d8b7201a9ef8a"><div class="ttname"><a href="classAActionsElement.html#a3fbd5b8201049a59602d8b7201a9ef8a">AActionsElement::actions</a></div><div class="ttdeci">Actions &amp; actions()</div><div class="ttdoc">Retourne une référence sur le Actions associé.</div><div class="ttdef"><b>Definition:</b> AActionsElement.hpp:46</div></div>
+<div class="ttc" id="aclassASwitchDriver_html"><div class="ttname"><a href="classASwitchDriver.html">ASwitchDriver</a></div><div class="ttdoc">Interface abstraite du driver de switchs.</div><div class="ttdef"><b>Definition:</b> ASwitchDriver.hpp:22</div></div>
+<div class="ttc" id="aclassActions_html"><div class="ttname"><a href="classActions.html">Actions</a></div><div class="ttdef"><b>Definition:</b> Actions.hpp:22</div></div>
+<div class="ttc" id="aclassTirette_html"><div class="ttname"><a href="classTirette.html">Tirette</a></div><div class="ttdoc">Gère la tirette de démarrage du robot (interrupteur de lancement).</div><div class="ttdef"><b>Definition:</b> Tirette.hpp:17</div></div>
+<div class="ttc" id="aclassTirette_html_a0e3159f80f9bdd63062fdc3b327e55f7"><div class="ttname"><a href="classTirette.html#a0e3159f80f9bdd63062fdc3b327e55f7">Tirette::Tirette</a></div><div class="ttdeci">Tirette(Actions &amp;actions)</div><div class="ttdoc">Constructor.</div><div class="ttdef"><b>Definition:</b> Tirette.cpp:10</div></div>
+<div class="ttc" id="aclassTirette_html_a218fc478076a6d7952163eeb6a6d07a5"><div class="ttname"><a href="classTirette.html#a218fc478076a6d7952163eeb6a6d07a5">Tirette::setGPIO</a></div><div class="ttdeci">void setGPIO(int p, bool activate)</div><div class="ttdoc">Configure un GPIO associé à la tirette.</div><div class="ttdef"><b>Definition:</b> Tirette.cpp:85</div></div>
+<div class="ttc" id="aclassTirette_html_a3d6fafd35af35b68075d2839e5ea75a8"><div class="ttname"><a href="classTirette.html#a3d6fafd35af35b68075d2839e5ea75a8">Tirette::switchdriver_</a></div><div class="ttdeci">ASwitchDriver * switchdriver_</div><div class="ttdef"><b>Definition:</b> Tirette.hpp:29</div></div>
+<div class="ttc" id="aclassTirette_html_abb879cb3df78e287a988ea8b471b31be"><div class="ttname"><a href="classTirette.html#abb879cb3df78e287a988ea8b471b31be">Tirette::~Tirette</a></div><div class="ttdeci">~Tirette()</div><div class="ttdoc">Destructor.</div><div class="ttdef"><b>Definition:</b> Tirette.cpp:17</div></div>
+<div class="ttc" id="aclassTirette_html_acac09ffcf07680943c9e16f21c7bc36b"><div class="ttname"><a href="classTirette.html#acac09ffcf07680943c9e16f21c7bc36b">Tirette::is_connected</a></div><div class="ttdeci">bool is_connected()</div><div class="ttdoc">Vérifie si la tirette est connectée.</div><div class="ttdef"><b>Definition:</b> Tirette.cpp:23</div></div>
+<div class="ttc" id="aclassTirette_html_ad8f33a558301b69774f648a5dc3ac925"><div class="ttname"><a href="classTirette.html#ad8f33a558301b69774f648a5dc3ac925">Tirette::pressed</a></div><div class="ttdeci">int pressed()</div><div class="ttdoc">Retourne l'état de la tirette (appuyée ou non).</div><div class="ttdef"><b>Definition:</b> Tirette.cpp:29</div></div>
+<div class="ttc" id="aclassTirette_html_ae3ad64cb17f5a3e5424280d971111365"><div class="ttname"><a href="classTirette.html#ae3ad64cb17f5a3e5424280d971111365">Tirette::logger</a></div><div class="ttdeci">static const logs::Logger &amp; logger()</div><div class="ttdoc">Retourne le Logger associé à la classe Tirette.</div><div class="ttdef"><b>Definition:</b> Tirette.hpp:23</div></div>
+<div class="ttc" id="aclassTirette_html_afbe05aa7c5733bdda2a251b2ca35e14d"><div class="ttname"><a href="classTirette.html#afbe05aa7c5733bdda2a251b2ca35e14d">Tirette::waitUnpressed</a></div><div class="ttdeci">bool waitUnpressed()</div><div class="ttdoc">Attend que la tirette soit retirée (bloquant).</div><div class="ttdef"><b>Definition:</b> Tirette.cpp:76</div></div>
+<div class="ttc" id="aclassTirette_html_afeb2d5ec3cadb1cc76ae203159495408"><div class="ttname"><a href="classTirette.html#afeb2d5ec3cadb1cc76ae203159495408">Tirette::monitor</a></div><div class="ttdeci">void monitor(int nb)</div><div class="ttdoc">Affiche l'état de la tirette pendant nb itérations (debug).</div><div class="ttdef"><b>Definition:</b> Tirette.cpp:46</div></div>
+<div class="ttc" id="aclassTirette_html_aff648839d9bf4cb4d814c0b45b93fc1c"><div class="ttname"><a href="classTirette.html#aff648839d9bf4cb4d814c0b45b93fc1c">Tirette::waitPressed</a></div><div class="ttdeci">bool waitPressed()</div><div class="ttdoc">Attend que la tirette soit enfoncée (bloquant).</div><div class="ttdef"><b>Definition:</b> Tirette.cpp:67</div></div>
+<div class="ttc" id="aclasslogs_1_1LoggerFactory_html_a82585b5de73e471e06cafdccc3b3721e"><div class="ttname"><a href="classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e">logs::LoggerFactory::logger</a></div><div class="ttdeci">static const Logger &amp; logger(const std::string &amp;name)</div><div class="ttdoc">Cette méthode statique retourne un Logger en fonction de son nom.</div><div class="ttdef"><b>Definition:</b> LoggerFactory.cpp:54</div></div>
+<div class="ttc" id="aclasslogs_1_1Logger_html"><div class="ttname"><a href="classlogs_1_1Logger.html">logs::Logger</a></div><div class="ttdoc">Classe de gestion des traces de l'application.</div><div class="ttdef"><b>Definition:</b> Logger.hpp:63</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Jeudi 26 Mars 2026 23:28:54 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

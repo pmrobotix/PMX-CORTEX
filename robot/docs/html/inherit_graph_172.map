@@ -1,6 +1,6 @@
 <map id="Graphe hiérarchique des classes" name="Graphe hiérarchique des classes">
-<area shape="rect" id="node1" title=" " alt="" coords="5,78,76,105"/>
-<area shape="rect" id="node2" href="$classutils_1_1PointerList.html" title=" " alt="" coords="124,5,251,47"/>
-<area shape="rect" id="node3" href="$classutils_1_1PointerList.html" title=" " alt="" coords="124,71,251,112"/>
-<area shape="rect" id="node4" href="$classutils_1_1PointerList.html" title="This list implements the standard list class to manage some pointer and their destruction." alt="" coords="124,136,251,177"/>
+<area shape="rect" id="node1" href="$classIAutomateState.html" title="Définit l&#39;état d&#39;un automate." alt="" coords="5,31,129,57"/>
+<area shape="rect" id="node2" href="$classAAutomateState.html" title="Définit les méthodes communes à tous les états." alt="" coords="177,31,307,57"/>
+<area shape="rect" id="node3" href="$classO__State__Init.html" title="État d&#39;initialisation du robot." alt="" coords="398,5,499,32"/>
+<area shape="rect" id="node4" href="$classO__State__WaitEndOfMatch.html" title="Cette classe est la tache principale du robot." alt="" coords="355,56,543,83"/>
 </map>

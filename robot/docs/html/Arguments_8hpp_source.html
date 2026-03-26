@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot:  Fichier source de src/common/utils/Arguments.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_fdedb0aba14d44ce9d99bc100e026e6a.html">common</a></li><li class="navelem"><a class="el" href="dir_c3d33904e581c7b40f74ea903e639ce2.html">utils</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Arguments.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="Arguments_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Arguments.h: interface for the Arguments class.</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// (C) 2001 NOVACOM GmbH, Berlin, www.novacom.net</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// Author: Patrick Hoffmann, 03/21/2001</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">// http://www.codeproject.com/Articles/1242/Managing-argc-and-argv-with-STL-in-a-simple-way</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">// Modified by pmx</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#ifndef COMMON_ARGUMENTS_HPP_</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#define COMMON_ARGUMENTS_HPP_</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;functional&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#ifndef TCHAR</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="Arguments_8hpp.html#a03bdb8ce5895c7e261aadc2529637546">   20</a></span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">char</span> <a class="code" href="Arguments_8hpp.html#a03bdb8ce5895c7e261aadc2529637546">TCHAR</a>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="Arguments_8hpp.html#ae93e0f551028e6dbd780cb5f21e7aa61">   21</a></span>&#160;<span class="preprocessor">#define _T(a) a</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="Arguments_8hpp.html#a816fa58fd77499b0edb2c69ebe803d5c">   22</a></span>&#160;<span class="keyword">typedef</span> std::string <a class="code" href="Arguments_8hpp.html#a816fa58fd77499b0edb2c69ebe803d5c">tstring</a>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">typedef</span> std::basic_string&lt;TCHAR&gt; <a class="code" href="Arguments_8hpp.html#a816fa58fd77499b0edb2c69ebe803d5c">tstring</a>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="Arguments_8hpp.html#a078de6328f5d4801473979e065f97382">   27</a></span>&#160;<span class="keyword">inline</span> std::ostream &amp;<a class="code" href="Arguments_8hpp.html#a078de6328f5d4801473979e065f97382">operator&lt;&lt;</a>(std::ostream&amp; ostr, <a class="code" href="Arguments_8hpp.html#a816fa58fd77499b0edb2c69ebe803d5c">tstring</a>&amp; tstr)</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;{</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    ostr &lt;&lt; tstr.c_str();</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordflow">return</span> ostr;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;}</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="classArguments.html">   33</a></span>&#160;<span class="keyword">class </span><a class="code" href="classArguments.html">Arguments</a></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;{</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classArguments.html#a0d15065a8f621452474e64b3ac11c55a">   35</a></span>&#160;    <a class="code" href="Arguments_8hpp.html#a816fa58fd77499b0edb2c69ebe803d5c">tstring</a> <a class="code" href="classArguments.html#a0d15065a8f621452474e64b3ac11c55a">m_strCommandName</a>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classArguments.html#ad7e8e8a9bab9487a3e4f4c9fe052ee4d">   36</a></span>&#160;    <a class="code" href="Arguments_8hpp.html#a816fa58fd77499b0edb2c69ebe803d5c">tstring</a> <a class="code" href="classArguments.html#ad7e8e8a9bab9487a3e4f4c9fe052ee4d">m_strDescription</a>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classArguments.html#a9b474f98c8038a1c6e7f07decb84b0c8">   37</a></span>&#160;    <a class="code" href="Arguments_8hpp.html#a816fa58fd77499b0edb2c69ebe803d5c">tstring</a> <a class="code" href="classArguments.html#a9b474f98c8038a1c6e7f07decb84b0c8">m_strOptionmarkers</a>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classArguments.html#ae05c050ed337371073540239a4d43bd3">   40</a></span>&#160;    <span class="keyword">static</span> <a class="code" href="Arguments_8hpp.html#a816fa58fd77499b0edb2c69ebe803d5c">tstring</a> <a class="code" href="classArguments.html#ae05c050ed337371073540239a4d43bd3">UnknownArgument</a>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">class </span><a class="code" href="classArguments_1_1Option.html">Option</a>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classArguments_1_1Argument.html">   44</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classArguments_1_1Argument.html">Argument</a></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    {</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classArguments_1_1Argument.html#acbd2a21b98cd2cb694fd02340724b625">   46</a></span>&#160;        <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classArguments.html">Arguments</a>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classArguments_1_1Argument.html#abd6e6c0003d4ecf9ff0385ab131dcc0e">   47</a></span>&#160;        <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classArguments_1_1Option.html">Option</a>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classArguments_1_1Argument.html#a864f4c4f40b42bfcbcbd95ba8df5dc9e">   49</a></span>&#160;        <a class="code" href="Arguments_8hpp.html#a816fa58fd77499b0edb2c69ebe803d5c">tstring</a> <a class="code" href="classArguments_1_1Argument.html#a864f4c4f40b42bfcbcbd95ba8df5dc9e">m_strName</a>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="classArguments_1_1Argument.html#ac9c93c08f39c1476d70a824edaaaa2e3">   50</a></span>&#160;        <a class="code" href="Arguments_8hpp.html#a816fa58fd77499b0edb2c69ebe803d5c">tstring</a> <a class="code" href="classArguments_1_1Argument.html#ac9c93c08f39c1476d70a824edaaaa2e3">m_strDescription</a>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="classArguments_1_1Argument.html#a3655056837aba30c48c744c5013c89ea">   51</a></span>&#160;        <a class="code" href="Arguments_8hpp.html#a816fa58fd77499b0edb2c69ebe803d5c">tstring</a> <a class="code" href="classArguments_1_1Argument.html#a3655056837aba30c48c744c5013c89ea">m_strValue</a>;</div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classArguments_1_1Argument.html#ab1dab212e6e2688557721d49ad69e52b">   52</a></span>&#160;        <a class="code" href="Arguments_8hpp.html#a816fa58fd77499b0edb2c69ebe803d5c">tstring</a> <a class="code" href="classArguments_1_1Argument.html#ab1dab212e6e2688557721d49ad69e52b">m_strDefault</a>;</div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="classArguments_1_1Argument.html#a5b874c7e77b5c01b6a159817bcae1387">   53</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classArguments_1_1Argument.html#a5b874c7e77b5c01b6a159817bcae1387">m_bOptional</a>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <a class="code" href="classArguments_1_1Argument.html#a63994b9ef997efd8a851f793d7ffa63e">Argument</a>(<a class="code" href="Arguments_8hpp.html#a816fa58fd77499b0edb2c69ebe803d5c">tstring</a> strName, <a class="code" href="Arguments_8hpp.html#a816fa58fd77499b0edb2c69ebe803d5c">tstring</a> strDescription = <a class="code" href="Arguments_8hpp.html#ae93e0f551028e6dbd780cb5f21e7aa61">_T</a>(<span class="stringliteral">&quot;&quot;</span>), <a class="code" href="Arguments_8hpp.html#a816fa58fd77499b0edb2c69ebe803d5c">tstring</a> strDefault = <a class="code" href="Arguments_8hpp.html#ae93e0f551028e6dbd780cb5f21e7aa61">_T</a>(<span class="stringliteral">&quot;&quot;</span>));</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    };</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classArguments.html#a17392b93b64f4e2e1799bd519d28d00e">   59</a></span>&#160;    <span class="keyword">typedef</span> std::vector&lt;Argument&gt; <a class="code" href="classArguments.html#a17392b93b64f4e2e1799bd519d28d00e">ArgVector</a>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="classArguments_1_1Option.html">   61</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classArguments_1_1Option.html">Option</a></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    {</div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="classArguments_1_1Option.html#acbd2a21b98cd2cb694fd02340724b625">   63</a></span>&#160;        <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classArguments.html">Arguments</a>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="classArguments_1_1Option.html#a8ecc1a4c7a24709b637873d93f1f9257">   64</a></span>&#160;        <span class="keyword">static</span> <a class="code" href="classArguments_1_1Option.html">Option</a> <a class="code" href="classArguments_1_1Option.html#a8ecc1a4c7a24709b637873d93f1f9257">Empty</a>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="classArguments_1_1Option.html#aa3e1c21445ff100e4738894fde52a0a6">   66</a></span>&#160;        <a class="code" href="Arguments_8hpp.html#a03bdb8ce5895c7e261aadc2529637546">TCHAR</a> <a class="code" href="classArguments_1_1Option.html#aa3e1c21445ff100e4738894fde52a0a6">m_chName</a>;</div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="classArguments_1_1Option.html#a63c922bb2062b466880852f06318a6e7">   67</a></span>&#160;        <a class="code" href="classArguments.html#a17392b93b64f4e2e1799bd519d28d00e">ArgVector</a> <a class="code" href="classArguments_1_1Option.html#a63c922bb2062b466880852f06318a6e7">m_vArguments</a>;</div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="classArguments_1_1Option.html#a0be75f055ac88273e93e39a7ae1b0b87">   68</a></span>&#160;        <a class="code" href="Arguments_8hpp.html#a816fa58fd77499b0edb2c69ebe803d5c">tstring</a> <a class="code" href="classArguments_1_1Option.html#a0be75f055ac88273e93e39a7ae1b0b87">m_strDescription</a>;</div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="classArguments_1_1Option.html#aaa7ab8e62813ce6e8a883fbf11e4a003">   69</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classArguments_1_1Option.html#aaa7ab8e62813ce6e8a883fbf11e4a003">m_bSet</a>;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <a class="code" href="classArguments_1_1Option.html#ab0c3c863ae5073d26fc6a429cb9e9e8f">Option</a>(<a class="code" href="Arguments_8hpp.html#a03bdb8ce5895c7e261aadc2529637546">TCHAR</a> chName, <a class="code" href="Arguments_8hpp.html#a816fa58fd77499b0edb2c69ebe803d5c">tstring</a> strDescription = <a class="code" href="Arguments_8hpp.html#ae93e0f551028e6dbd780cb5f21e7aa61">_T</a>(<span class="stringliteral">&quot;&quot;</span>));</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classArguments_1_1Option.html#a725edb431ee73e82b11c0a66a37c68d7">addArgument</a>(<a class="code" href="Arguments_8hpp.html#a816fa58fd77499b0edb2c69ebe803d5c">tstring</a> strName, <a class="code" href="Arguments_8hpp.html#a816fa58fd77499b0edb2c69ebe803d5c">tstring</a> strDescription = <a class="code" href="Arguments_8hpp.html#ae93e0f551028e6dbd780cb5f21e7aa61">_T</a>(<span class="stringliteral">&quot;&quot;</span>), <a class="code" href="Arguments_8hpp.html#a816fa58fd77499b0edb2c69ebe803d5c">tstring</a> strDefault = <a class="code" href="Arguments_8hpp.html#ae93e0f551028e6dbd780cb5f21e7aa61">_T</a>(<span class="stringliteral">&quot;&quot;</span>));</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <a class="code" href="Arguments_8hpp.html#a816fa58fd77499b0edb2c69ebe803d5c">tstring</a> &amp;<a class="code" href="classArguments_1_1Option.html#aa743dc570bc8e8a5cd7029b010ca9d5c">operator[]</a>(<span class="keywordtype">int</span> n);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <a class="code" href="Arguments_8hpp.html#a816fa58fd77499b0edb2c69ebe803d5c">tstring</a> &amp;<a class="code" href="classArguments_1_1Option.html#aa743dc570bc8e8a5cd7029b010ca9d5c">operator[]</a>(<a class="code" href="Arguments_8hpp.html#a816fa58fd77499b0edb2c69ebe803d5c">tstring</a> strArgumentName);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <a class="code" href="Arguments_8hpp.html#a816fa58fd77499b0edb2c69ebe803d5c">tstring</a> &amp;<a class="code" href="classArguments_1_1Option.html#aa743dc570bc8e8a5cd7029b010ca9d5c">operator[]</a>(<span class="keyword">const</span> <a class="code" href="Arguments_8hpp.html#a03bdb8ce5895c7e261aadc2529637546">TCHAR</a> *pszArgumentName);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keyword">operator</span> bool();</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classArguments_1_1Option.html#af706653ec399fb385f7d161c0c2b1dd5">set</a>(<span class="keywordtype">bool</span> bSet = <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <a class="code" href="Arguments_8hpp.html#a816fa58fd77499b0edb2c69ebe803d5c">tstring</a> <a class="code" href="classArguments_1_1Option.html#af594ef3af4f7740a18a7b5f38515e08a">getName</a>();</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    };</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="classArguments.html#a82c936c5ef98c051285086c0f8704080">   83</a></span>&#160;    <span class="keyword">typedef</span> std::map&lt;TCHAR, Option, std::less&lt;TCHAR&gt;, std::allocator&lt;std::map&lt;TCHAR, Option&gt;::value_type &gt; &gt; <a class="code" href="classArguments.html#a82c936c5ef98c051285086c0f8704080">OptionMap</a>;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="classArguments.html#a0c3b04fea7b90c057555b939c13136ea">   85</a></span>&#160;    <a class="code" href="classArguments.html#a82c936c5ef98c051285086c0f8704080">OptionMap</a> <a class="code" href="classArguments.html#a0c3b04fea7b90c057555b939c13136ea">m_mOptions</a>;</div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="classArguments.html#adcbe705154bec012f85560db49d5c3c4">   86</a></span>&#160;    <a class="code" href="classArguments.html#a17392b93b64f4e2e1799bd519d28d00e">ArgVector</a> <a class="code" href="classArguments.html#adcbe705154bec012f85560db49d5c3c4">m_vArguments</a>;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classArguments.html#a606a2390080ac2130bb04a9625b262f9">isOption</a>(<a class="code" href="Arguments_8hpp.html#a03bdb8ce5895c7e261aadc2529637546">TCHAR</a> chOptionName);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classArguments.html#a255619dfd905699c2736d80b53e34e0a">usage</a>();</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classArguments.html#a52ee036641dc209e97bf1a0915f771f2">addOption</a>(<a class="code" href="Arguments_8hpp.html#a03bdb8ce5895c7e261aadc2529637546">TCHAR</a> chOptionName, <a class="code" href="Arguments_8hpp.html#a816fa58fd77499b0edb2c69ebe803d5c">tstring</a> strDescription = <a class="code" href="Arguments_8hpp.html#ae93e0f551028e6dbd780cb5f21e7aa61">_T</a>(<span class="stringliteral">&quot;&quot;</span>));</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classArguments.html#a52ee036641dc209e97bf1a0915f771f2">addOption</a>(<a class="code" href="classArguments_1_1Option.html">Option</a> &amp;option);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classArguments.html#a220d65e34c94f3ac46c8a228b0617a9c">addArgument</a>(<a class="code" href="Arguments_8hpp.html#a816fa58fd77499b0edb2c69ebe803d5c">tstring</a> strName, <a class="code" href="Arguments_8hpp.html#a816fa58fd77499b0edb2c69ebe803d5c">tstring</a> strDescription = <a class="code" href="Arguments_8hpp.html#ae93e0f551028e6dbd780cb5f21e7aa61">_T</a>(<span class="stringliteral">&quot;&quot;</span>), <a class="code" href="Arguments_8hpp.html#a816fa58fd77499b0edb2c69ebe803d5c">tstring</a> strDefault = <a class="code" href="Arguments_8hpp.html#ae93e0f551028e6dbd780cb5f21e7aa61">_T</a>(<span class="stringliteral">&quot;&quot;</span>));</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classArguments.html#a4896d0a63a43b8eeba25167989341a33">parse</a>(<span class="keywordtype">int</span> argc, <a class="code" href="Arguments_8hpp.html#a03bdb8ce5895c7e261aadc2529637546">TCHAR</a>* argv[], <span class="keywordtype">bool</span> stopWithErrors = <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classArguments.html#a2fa3a4276b81ede1b9d7fb48d3b1e6fe">setDescription</a>(<a class="code" href="Arguments_8hpp.html#a816fa58fd77499b0edb2c69ebe803d5c">tstring</a> desc);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <a class="code" href="Arguments_8hpp.html#a816fa58fd77499b0edb2c69ebe803d5c">tstring</a> &amp;<a class="code" href="classArguments.html#a5be695c6c17e6bbce1167ed87503b383">operator[]</a>(<span class="keywordtype">int</span> n);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <a class="code" href="Arguments_8hpp.html#a816fa58fd77499b0edb2c69ebe803d5c">tstring</a> &amp;<a class="code" href="classArguments.html#a5be695c6c17e6bbce1167ed87503b383">operator[]</a>(<a class="code" href="Arguments_8hpp.html#a816fa58fd77499b0edb2c69ebe803d5c">tstring</a> strArgumentName);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <a class="code" href="classArguments_1_1Option.html">Option</a> &amp;<a class="code" href="classArguments.html#a5be695c6c17e6bbce1167ed87503b383">operator[]</a>(<a class="code" href="Arguments_8hpp.html#a03bdb8ce5895c7e261aadc2529637546">TCHAR</a> chOptionName);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <a class="code" href="classArguments.html#aded5ead61dda27d46587d4ca59c7a27e">Arguments</a>(<a class="code" href="Arguments_8hpp.html#a816fa58fd77499b0edb2c69ebe803d5c">tstring</a> strCommandName, <a class="code" href="Arguments_8hpp.html#a816fa58fd77499b0edb2c69ebe803d5c">tstring</a> strDescription = <a class="code" href="Arguments_8hpp.html#ae93e0f551028e6dbd780cb5f21e7aa61">_T</a>(<span class="stringliteral">&quot;&quot;</span>), <a class="code" href="Arguments_8hpp.html#a816fa58fd77499b0edb2c69ebe803d5c">tstring</a> strOptionmarkers = <a class="code" href="Arguments_8hpp.html#ae93e0f551028e6dbd780cb5f21e7aa61">_T</a>(<span class="stringliteral">&quot;-/&quot;</span>));</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classArguments.html#a97b9ddc9cc652310880db4d6f1f175f2">~Arguments</a>();</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;};</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment">//#pragma warning (disable : 4786)</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aArguments_8hpp_html_a03bdb8ce5895c7e261aadc2529637546"><div class="ttname"><a href="Arguments_8hpp.html#a03bdb8ce5895c7e261aadc2529637546">TCHAR</a></div><div class="ttdeci">char TCHAR</div><div class="ttdef"><b>Definition:</b> Arguments.hpp:20</div></div>
+<div class="ttc" id="aArguments_8hpp_html_a078de6328f5d4801473979e065f97382"><div class="ttname"><a href="Arguments_8hpp.html#a078de6328f5d4801473979e065f97382">operator&lt;&lt;</a></div><div class="ttdeci">std::ostream &amp; operator&lt;&lt;(std::ostream &amp;ostr, tstring &amp;tstr)</div><div class="ttdef"><b>Definition:</b> Arguments.hpp:27</div></div>
+<div class="ttc" id="aArguments_8hpp_html_a816fa58fd77499b0edb2c69ebe803d5c"><div class="ttname"><a href="Arguments_8hpp.html#a816fa58fd77499b0edb2c69ebe803d5c">tstring</a></div><div class="ttdeci">std::string tstring</div><div class="ttdef"><b>Definition:</b> Arguments.hpp:22</div></div>
+<div class="ttc" id="aArguments_8hpp_html_ae93e0f551028e6dbd780cb5f21e7aa61"><div class="ttname"><a href="Arguments_8hpp.html#ae93e0f551028e6dbd780cb5f21e7aa61">_T</a></div><div class="ttdeci">#define _T(a)</div><div class="ttdef"><b>Definition:</b> Arguments.hpp:21</div></div>
+<div class="ttc" id="aclassArguments_1_1Argument_html"><div class="ttname"><a href="classArguments_1_1Argument.html">Arguments::Argument</a></div><div class="ttdef"><b>Definition:</b> Arguments.hpp:45</div></div>
+<div class="ttc" id="aclassArguments_1_1Argument_html_a3655056837aba30c48c744c5013c89ea"><div class="ttname"><a href="classArguments_1_1Argument.html#a3655056837aba30c48c744c5013c89ea">Arguments::Argument::m_strValue</a></div><div class="ttdeci">tstring m_strValue</div><div class="ttdef"><b>Definition:</b> Arguments.hpp:51</div></div>
+<div class="ttc" id="aclassArguments_1_1Argument_html_a5b874c7e77b5c01b6a159817bcae1387"><div class="ttname"><a href="classArguments_1_1Argument.html#a5b874c7e77b5c01b6a159817bcae1387">Arguments::Argument::m_bOptional</a></div><div class="ttdeci">bool m_bOptional</div><div class="ttdef"><b>Definition:</b> Arguments.hpp:53</div></div>
+<div class="ttc" id="aclassArguments_1_1Argument_html_a63994b9ef997efd8a851f793d7ffa63e"><div class="ttname"><a href="classArguments_1_1Argument.html#a63994b9ef997efd8a851f793d7ffa63e">Arguments::Argument::Argument</a></div><div class="ttdeci">Argument(tstring strName, tstring strDescription=_T(&quot;&quot;), tstring strDefault=_T(&quot;&quot;))</div><div class="ttdef"><b>Definition:</b> Arguments.cpp:215</div></div>
+<div class="ttc" id="aclassArguments_1_1Argument_html_a864f4c4f40b42bfcbcbd95ba8df5dc9e"><div class="ttname"><a href="classArguments_1_1Argument.html#a864f4c4f40b42bfcbcbd95ba8df5dc9e">Arguments::Argument::m_strName</a></div><div class="ttdeci">tstring m_strName</div><div class="ttdef"><b>Definition:</b> Arguments.hpp:49</div></div>
+<div class="ttc" id="aclassArguments_1_1Argument_html_ab1dab212e6e2688557721d49ad69e52b"><div class="ttname"><a href="classArguments_1_1Argument.html#ab1dab212e6e2688557721d49ad69e52b">Arguments::Argument::m_strDefault</a></div><div class="ttdeci">tstring m_strDefault</div><div class="ttdef"><b>Definition:</b> Arguments.hpp:52</div></div>
+<div class="ttc" id="aclassArguments_1_1Argument_html_ac9c93c08f39c1476d70a824edaaaa2e3"><div class="ttname"><a href="classArguments_1_1Argument.html#ac9c93c08f39c1476d70a824edaaaa2e3">Arguments::Argument::m_strDescription</a></div><div class="ttdeci">tstring m_strDescription</div><div class="ttdef"><b>Definition:</b> Arguments.hpp:50</div></div>
+<div class="ttc" id="aclassArguments_1_1Option_html"><div class="ttname"><a href="classArguments_1_1Option.html">Arguments::Option</a></div><div class="ttdef"><b>Definition:</b> Arguments.hpp:62</div></div>
+<div class="ttc" id="aclassArguments_1_1Option_html_a0be75f055ac88273e93e39a7ae1b0b87"><div class="ttname"><a href="classArguments_1_1Option.html#a0be75f055ac88273e93e39a7ae1b0b87">Arguments::Option::m_strDescription</a></div><div class="ttdeci">tstring m_strDescription</div><div class="ttdef"><b>Definition:</b> Arguments.hpp:68</div></div>
+<div class="ttc" id="aclassArguments_1_1Option_html_a63c922bb2062b466880852f06318a6e7"><div class="ttname"><a href="classArguments_1_1Option.html#a63c922bb2062b466880852f06318a6e7">Arguments::Option::m_vArguments</a></div><div class="ttdeci">ArgVector m_vArguments</div><div class="ttdef"><b>Definition:</b> Arguments.hpp:67</div></div>
+<div class="ttc" id="aclassArguments_1_1Option_html_a725edb431ee73e82b11c0a66a37c68d7"><div class="ttname"><a href="classArguments_1_1Option.html#a725edb431ee73e82b11c0a66a37c68d7">Arguments::Option::addArgument</a></div><div class="ttdeci">bool addArgument(tstring strName, tstring strDescription=_T(&quot;&quot;), tstring strDefault=_T(&quot;&quot;))</div><div class="ttdef"><b>Definition:</b> Arguments.cpp:209</div></div>
+<div class="ttc" id="aclassArguments_1_1Option_html_a8ecc1a4c7a24709b637873d93f1f9257"><div class="ttname"><a href="classArguments_1_1Option.html#a8ecc1a4c7a24709b637873d93f1f9257">Arguments::Option::Empty</a></div><div class="ttdeci">static Option Empty</div><div class="ttdef"><b>Definition:</b> Arguments.hpp:64</div></div>
+<div class="ttc" id="aclassArguments_1_1Option_html_aa3e1c21445ff100e4738894fde52a0a6"><div class="ttname"><a href="classArguments_1_1Option.html#aa3e1c21445ff100e4738894fde52a0a6">Arguments::Option::m_chName</a></div><div class="ttdeci">TCHAR m_chName</div><div class="ttdef"><b>Definition:</b> Arguments.hpp:66</div></div>
+<div class="ttc" id="aclassArguments_1_1Option_html_aa743dc570bc8e8a5cd7029b010ca9d5c"><div class="ttname"><a href="classArguments_1_1Option.html#aa743dc570bc8e8a5cd7029b010ca9d5c">Arguments::Option::operator[]</a></div><div class="ttdeci">tstring &amp; operator[](int n)</div><div class="ttdef"><b>Definition:</b> Arguments.cpp:257</div></div>
+<div class="ttc" id="aclassArguments_1_1Option_html_aaa7ab8e62813ce6e8a883fbf11e4a003"><div class="ttname"><a href="classArguments_1_1Option.html#aaa7ab8e62813ce6e8a883fbf11e4a003">Arguments::Option::m_bSet</a></div><div class="ttdeci">bool m_bSet</div><div class="ttdef"><b>Definition:</b> Arguments.hpp:69</div></div>
+<div class="ttc" id="aclassArguments_1_1Option_html_ab0c3c863ae5073d26fc6a429cb9e9e8f"><div class="ttname"><a href="classArguments_1_1Option.html#ab0c3c863ae5073d26fc6a429cb9e9e8f">Arguments::Option::Option</a></div><div class="ttdeci">Option(TCHAR chName, tstring strDescription=_T(&quot;&quot;))</div><div class="ttdef"><b>Definition:</b> Arguments.cpp:198</div></div>
+<div class="ttc" id="aclassArguments_1_1Option_html_af594ef3af4f7740a18a7b5f38515e08a"><div class="ttname"><a href="classArguments_1_1Option.html#af594ef3af4f7740a18a7b5f38515e08a">Arguments::Option::getName</a></div><div class="ttdeci">tstring getName()</div><div class="ttdef"><b>Definition:</b> Arguments.cpp:287</div></div>
+<div class="ttc" id="aclassArguments_1_1Option_html_af706653ec399fb385f7d161c0c2b1dd5"><div class="ttname"><a href="classArguments_1_1Option.html#af706653ec399fb385f7d161c0c2b1dd5">Arguments::Option::set</a></div><div class="ttdeci">void set(bool bSet=true)</div><div class="ttdef"><b>Definition:</b> Arguments.cpp:237</div></div>
+<div class="ttc" id="aclassArguments_html"><div class="ttname"><a href="classArguments.html">Arguments</a></div><div class="ttdef"><b>Definition:</b> Arguments.hpp:34</div></div>
+<div class="ttc" id="aclassArguments_html_a0c3b04fea7b90c057555b939c13136ea"><div class="ttname"><a href="classArguments.html#a0c3b04fea7b90c057555b939c13136ea">Arguments::m_mOptions</a></div><div class="ttdeci">OptionMap m_mOptions</div><div class="ttdef"><b>Definition:</b> Arguments.hpp:85</div></div>
+<div class="ttc" id="aclassArguments_html_a0d15065a8f621452474e64b3ac11c55a"><div class="ttname"><a href="classArguments.html#a0d15065a8f621452474e64b3ac11c55a">Arguments::m_strCommandName</a></div><div class="ttdeci">tstring m_strCommandName</div><div class="ttdef"><b>Definition:</b> Arguments.hpp:35</div></div>
+<div class="ttc" id="aclassArguments_html_a17392b93b64f4e2e1799bd519d28d00e"><div class="ttname"><a href="classArguments.html#a17392b93b64f4e2e1799bd519d28d00e">Arguments::ArgVector</a></div><div class="ttdeci">std::vector&lt; Argument &gt; ArgVector</div><div class="ttdef"><b>Definition:</b> Arguments.hpp:59</div></div>
+<div class="ttc" id="aclassArguments_html_a220d65e34c94f3ac46c8a228b0617a9c"><div class="ttname"><a href="classArguments.html#a220d65e34c94f3ac46c8a228b0617a9c">Arguments::addArgument</a></div><div class="ttdeci">bool addArgument(tstring strName, tstring strDescription=_T(&quot;&quot;), tstring strDefault=_T(&quot;&quot;))</div><div class="ttdef"><b>Definition:</b> Arguments.cpp:203</div></div>
+<div class="ttc" id="aclassArguments_html_a255619dfd905699c2736d80b53e34e0a"><div class="ttname"><a href="classArguments.html#a255619dfd905699c2736d80b53e34e0a">Arguments::usage</a></div><div class="ttdeci">bool usage()</div><div class="ttdef"><b>Definition:</b> Arguments.cpp:139</div></div>
+<div class="ttc" id="aclassArguments_html_a2fa3a4276b81ede1b9d7fb48d3b1e6fe"><div class="ttname"><a href="classArguments.html#a2fa3a4276b81ede1b9d7fb48d3b1e6fe">Arguments::setDescription</a></div><div class="ttdeci">void setDescription(tstring desc)</div><div class="ttdef"><b>Definition:</b> Arguments.cpp:296</div></div>
+<div class="ttc" id="aclassArguments_html_a4896d0a63a43b8eeba25167989341a33"><div class="ttname"><a href="classArguments.html#a4896d0a63a43b8eeba25167989341a33">Arguments::parse</a></div><div class="ttdeci">bool parse(int argc, TCHAR *argv[], bool stopWithErrors=true)</div><div class="ttdef"><b>Definition:</b> Arguments.cpp:34</div></div>
+<div class="ttc" id="aclassArguments_html_a52ee036641dc209e97bf1a0915f771f2"><div class="ttname"><a href="classArguments.html#a52ee036641dc209e97bf1a0915f771f2">Arguments::addOption</a></div><div class="ttdeci">bool addOption(TCHAR chOptionName, tstring strDescription=_T(&quot;&quot;))</div><div class="ttdef"><b>Definition:</b> Arguments.cpp:125</div></div>
+<div class="ttc" id="aclassArguments_html_a5be695c6c17e6bbce1167ed87503b383"><div class="ttname"><a href="classArguments.html#a5be695c6c17e6bbce1167ed87503b383">Arguments::operator[]</a></div><div class="ttdeci">tstring &amp; operator[](int n)</div><div class="ttdef"><b>Definition:</b> Arguments.cpp:242</div></div>
+<div class="ttc" id="aclassArguments_html_a606a2390080ac2130bb04a9625b262f9"><div class="ttname"><a href="classArguments.html#a606a2390080ac2130bb04a9625b262f9">Arguments::isOption</a></div><div class="ttdeci">bool isOption(TCHAR chOptionName)</div><div class="ttdef"><b>Definition:</b> Arguments.cpp:222</div></div>
+<div class="ttc" id="aclassArguments_html_a82c936c5ef98c051285086c0f8704080"><div class="ttname"><a href="classArguments.html#a82c936c5ef98c051285086c0f8704080">Arguments::OptionMap</a></div><div class="ttdeci">std::map&lt; TCHAR, Option, std::less&lt; TCHAR &gt;, std::allocator&lt; std::map&lt; TCHAR, Option &gt;::value_type &gt; &gt; OptionMap</div><div class="ttdef"><b>Definition:</b> Arguments.hpp:83</div></div>
+<div class="ttc" id="aclassArguments_html_a97b9ddc9cc652310880db4d6f1f175f2"><div class="ttname"><a href="classArguments.html#a97b9ddc9cc652310880db4d6f1f175f2">Arguments::~Arguments</a></div><div class="ttdeci">virtual ~Arguments()</div><div class="ttdef"><b>Definition:</b> Arguments.cpp:30</div></div>
+<div class="ttc" id="aclassArguments_html_a9b474f98c8038a1c6e7f07decb84b0c8"><div class="ttname"><a href="classArguments.html#a9b474f98c8038a1c6e7f07decb84b0c8">Arguments::m_strOptionmarkers</a></div><div class="ttdeci">tstring m_strOptionmarkers</div><div class="ttdef"><b>Definition:</b> Arguments.hpp:37</div></div>
+<div class="ttc" id="aclassArguments_html_ad7e8e8a9bab9487a3e4f4c9fe052ee4d"><div class="ttname"><a href="classArguments.html#ad7e8e8a9bab9487a3e4f4c9fe052ee4d">Arguments::m_strDescription</a></div><div class="ttdeci">tstring m_strDescription</div><div class="ttdef"><b>Definition:</b> Arguments.hpp:36</div></div>
+<div class="ttc" id="aclassArguments_html_adcbe705154bec012f85560db49d5c3c4"><div class="ttname"><a href="classArguments.html#adcbe705154bec012f85560db49d5c3c4">Arguments::m_vArguments</a></div><div class="ttdeci">ArgVector m_vArguments</div><div class="ttdef"><b>Definition:</b> Arguments.hpp:86</div></div>
+<div class="ttc" id="aclassArguments_html_aded5ead61dda27d46587d4ca59c7a27e"><div class="ttname"><a href="classArguments.html#aded5ead61dda27d46587d4ca59c7a27e">Arguments::Arguments</a></div><div class="ttdeci">Arguments(tstring strCommandName, tstring strDescription=_T(&quot;&quot;), tstring strOptionmarkers=_T(&quot;-/&quot;))</div><div class="ttdef"><b>Definition:</b> Arguments.cpp:25</div></div>
+<div class="ttc" id="aclassArguments_html_ae05c050ed337371073540239a4d43bd3"><div class="ttname"><a href="classArguments.html#ae05c050ed337371073540239a4d43bd3">Arguments::UnknownArgument</a></div><div class="ttdeci">static tstring UnknownArgument</div><div class="ttdef"><b>Definition:</b> Arguments.hpp:40</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Jeudi 26 Mars 2026 23:28:54 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

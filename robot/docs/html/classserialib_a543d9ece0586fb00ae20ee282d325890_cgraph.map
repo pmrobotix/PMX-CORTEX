@@ -1,0 +1,6 @@
+<map id="serialib::readStringNoTimeOut" name="serialib::readStringNoTimeOut">
+<area shape="rect" id="node1" title="Read a string from the serial device (without TimeOut)" alt="" coords="5,31,224,57"/>
+<area shape="rect" id="node2" href="$classserialib.html#a6c78b8a11ae7b8af57eea3dbc7fa237b" title="Wait for a byte from the serial device and return the data read." alt="" coords="272,31,409,57"/>
+<area shape="rect" id="node3" href="$classtimeOut.html#af5db5b5f0db4f6ada19187ef8f214214" title="Returns the time elapsed since initialization. It write the current time of the day in the structure ..." alt="" coords="457,5,652,32"/>
+<area shape="rect" id="node4" href="$classtimeOut.html#a88b4caef4ce7bfc42b73a61589c098e8" title="Initialise the timer. It writes the current time of the day in the structure PreviousTime." alt="" coords="483,56,626,83"/>
+</map>

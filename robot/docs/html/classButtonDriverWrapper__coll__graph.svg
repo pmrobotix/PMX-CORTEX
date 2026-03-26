@@ -21,7 +21,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="classButtonDriver.html" target="_top" xlink:title="Implementation simulation du driver de boutons.">
+<g id="a_node2"><a xlink:href="classButtonDriver.html" target="_top" xlink:title="Implementation ARM du driver de boutons.">
 <polygon fill="white" stroke="black" points="20.5,-67.5 20.5,-86.5 99.5,-86.5 99.5,-67.5 20.5,-67.5"/>
 <text text-anchor="middle" x="60" y="-74.5" font-family="Helvetica,sans-Serif" font-size="10.00">ButtonDriver</text>
 </a>
@@ -46,8 +46,14 @@
 <!-- Node3&#45;&gt;Node2 -->
 <g id="edge2" class="edge">
 <title>Node3&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M60,-114.12C60,-104.82 60,-94.06 60,-86.71"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="56.5,-114.41 60,-124.41 63.5,-114.41 56.5,-114.41"/>
+<path fill="none" stroke="midnightblue" d="M53.58,-114.42C52.87,-105.05 53.31,-94.14 54.91,-86.71"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="50.12,-114.97 54.94,-124.41 57.05,-114.03 50.12,-114.97"/>
+</g>
+<!-- Node3&#45;&gt;Node2 -->
+<g id="edge3" class="edge">
+<title>Node3&#45;&gt;Node2</title>
+<path fill="none" stroke="midnightblue" d="M66.42,-114.42C67.13,-105.05 66.69,-94.14 65.09,-86.71"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="62.95,-114.03 65.06,-124.41 69.88,-114.97 62.95,-114.03"/>
 </g>
 </g>
 </svg>

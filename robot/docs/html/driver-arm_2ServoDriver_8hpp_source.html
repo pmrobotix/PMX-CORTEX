@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot:  Fichier source de src/driver-arm/ServoDriver.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_a369de7a6c9198ab5056a0bc5cf5ea3e.html">driver-arm</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">ServoDriver.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="driver-arm_2ServoDriver_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef OPOS6UL_SERVODRIVER_HPP_</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define OPOS6UL_SERVODRIVER_HPP_</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="AServoDriver_8hpp.html">interface/AServoDriver.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="LoggerFactory_8hpp.html">log/LoggerFactory.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">//#define NB_SERVO_DYN 255</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="driver-arm_2ServoDriver_8hpp.html#ac430bc6bfe8a32cd49cc3601c868a0b6">    8</a></span>&#160;<span class="preprocessor">#define MAX_POS 1023</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="driver-arm_2ServoDriver_8hpp.html#a26e8f183e80b0ca050944786ecd7b3e4">    9</a></span>&#160;<span class="preprocessor">#define MAXPORTNUM 4255</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="classServoDriver.html">   11</a></span>&#160;<span class="keyword">class </span><a class="code" href="classServoDriver.html">ServoDriver</a>: <span class="keyword">public</span> <a class="code" href="classAServoDriver.html">AServoDriver</a></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="classServoDriver.html#a037af9120c18d7febfaeaed1345ab5e3">   18</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a> &amp; <a class="code" href="classServoDriver.html#a037af9120c18d7febfaeaed1345ab5e3">logger</a>()</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    {</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a> &amp; instance = <a class="code" href="classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e">logs::LoggerFactory::logger</a>(<span class="stringliteral">&quot;ServoDriver.OPO&quot;</span>);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keywordflow">return</span> instance;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    }</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classServoDriver.html#a1717fa8a917f761fa8a859636609052c">testIf</a>(<span class="keywordtype">long</span> value, <span class="keywordtype">long</span> valeurMin, <span class="keywordtype">long</span> valeurMax);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classServoDriver.html#a8b9cdb1668c0498f4f21e47eac34f4c3">   26</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classServoDriver.html#a8b9cdb1668c0498f4f21e47eac34f4c3">connected_</a>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="comment">//ServoType servo_type_[NB_SERVO_DYN];</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="classServoDriver.html#a2076bae148e26ee3f854f1f1984d9714">ServoDriver</a>();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classServoDriver.html#acf6cad7d5b891fbe4ff44eaec8409db7">   40</a></span>&#160;    <span class="keyword">inline</span> <a class="code" href="classServoDriver.html#acf6cad7d5b891fbe4ff44eaec8409db7">~ServoDriver</a>()</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    }</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classServoDriver.html#a1ecbb624b976bd01414b4220e5403442">is_connected</a>();</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classServoDriver.html#af580283b3d1765c9a27276e9a870cf88">hold</a>(<span class="keywordtype">int</span> servo);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">//DEPRECATED</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classServoDriver.html#abf685dbc27150bf205fd1e4fc8a7ed0d">setType</a>(<span class="keywordtype">int</span> servo, <a class="code" href="classAServoDriver.html#af202d0a72cdde1d9c0c0eba05e253365">ServoType</a> <a class="code" href="namespacebackward_1_1ColorMode.html#aec82452ed7333b210e205aaf6da2d090">type</a>);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">//pos AX12 0-&gt;1023</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classServoDriver.html#a890b9aa751fc70c3dae6fa3fcb2a2ab1">setPulsePos</a>(<span class="keywordtype">int</span> servo, <span class="keywordtype">int</span> pulsewith, <span class="keywordtype">int</span> velocity = 0);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classServoDriver.html#aa1040b0db7ed851aec70a122301fe665">release</a>(<span class="keywordtype">int</span> servo);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classServoDriver.html#ad68ebde8a710451c8fea2cd03cfa4bc0">turn</a>(<span class="keywordtype">int</span> servo, <span class="keywordtype">int</span> speed);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="comment">//return 1 when in progress, 0 when idle, -1 on error</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classServoDriver.html#a0a8e84f0bbcff39549ddfc239f1a6237">getMoving</a>(<span class="keywordtype">int</span> servo);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classServoDriver.html#a716d64d7b2203c9cb8dff5c90d0a5dd9">getPulsePos</a>(<span class="keywordtype">int</span> servo);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classServoDriver.html#a952fbbfdbf9d0b57d5c6d6c09019b366">ping</a>(<span class="keywordtype">int</span> servo);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classServoDriver.html#a40ec259cb0ced3154b1e73cc52d48938">setMinPulse</a>(<span class="keywordtype">int</span> servo, <span class="keywordtype">int</span> value = 600); <span class="comment">//default 600 [300 to 700]</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classServoDriver.html#a92d53f7f50a7eb95e14ae358ad0b7d23">setMidPulse</a>(<span class="keywordtype">int</span> servo, <span class="keywordtype">int</span> value = 1500); <span class="comment">//default 1500 [1300 to 1700]</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classServoDriver.html#aaaeaab97cef5c2ebcd05c265fdff747f">setMaxPulse</a>(<span class="keywordtype">int</span> servo, <span class="keywordtype">int</span> value = 2400); <span class="comment">//default 2400 [2300 to 2700]</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classServoDriver.html#a89b2add38109f20260369e0a0d747bf2">setPolarity</a>(<span class="keywordtype">int</span> servo, <span class="keywordtype">bool</span> inversed);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classServoDriver.html#a108cce4f0dcf60bf443ee932621bc89c">getTorque</a>(<span class="keywordtype">int</span> servo);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classServoDriver.html#a765f9895c457eb0c5dd385ece0416cc7">setTorque</a>(<span class="keywordtype">int</span> servo, <span class="keywordtype">int</span> torque);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;};</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aAServoDriver_8hpp_html"><div class="ttname"><a href="AServoDriver_8hpp.html">AServoDriver.hpp</a></div><div class="ttdoc">Interface abstraite du driver de servomoteurs.</div></div>
+<div class="ttc" id="aLoggerFactory_8hpp_html"><div class="ttname"><a href="LoggerFactory_8hpp.html">LoggerFactory.hpp</a></div><div class="ttdoc">Définition de la classe LoggerFactory.</div></div>
+<div class="ttc" id="aclassAServoDriver_html"><div class="ttname"><a href="classAServoDriver.html">AServoDriver</a></div><div class="ttdoc">Interface abstraite du driver de servomoteurs.</div><div class="ttdef"><b>Definition:</b> AServoDriver.hpp:20</div></div>
+<div class="ttc" id="aclassAServoDriver_html_af202d0a72cdde1d9c0c0eba05e253365"><div class="ttname"><a href="classAServoDriver.html#af202d0a72cdde1d9c0c0eba05e253365">AServoDriver::ServoType</a></div><div class="ttdeci">ServoType</div><div class="ttdoc">Type de servomoteur.</div><div class="ttdef"><b>Definition:</b> AServoDriver.hpp:28</div></div>
+<div class="ttc" id="aclassServoDriver_html"><div class="ttname"><a href="classServoDriver.html">ServoDriver</a></div><div class="ttdef"><b>Definition:</b> ServoDriver.hpp:12</div></div>
+<div class="ttc" id="aclassServoDriver_html_a037af9120c18d7febfaeaed1345ab5e3"><div class="ttname"><a href="classServoDriver.html#a037af9120c18d7febfaeaed1345ab5e3">ServoDriver::logger</a></div><div class="ttdeci">static const logs::Logger &amp; logger()</div><div class="ttdoc">Retourne le Logger associé à la classe ServoDriver(OPOS6UL).</div><div class="ttdef"><b>Definition:</b> ServoDriver.hpp:18</div></div>
+<div class="ttc" id="aclassServoDriver_html_a0a8e84f0bbcff39549ddfc239f1a6237"><div class="ttname"><a href="classServoDriver.html#a0a8e84f0bbcff39549ddfc239f1a6237">ServoDriver::getMoving</a></div><div class="ttdeci">int getMoving(int servo)</div><div class="ttdoc">Verifie si le servo est en mouvement.</div><div class="ttdef"><b>Definition:</b> ServoDriver.cpp:150</div></div>
+<div class="ttc" id="aclassServoDriver_html_a108cce4f0dcf60bf443ee932621bc89c"><div class="ttname"><a href="classServoDriver.html#a108cce4f0dcf60bf443ee932621bc89c">ServoDriver::getTorque</a></div><div class="ttdeci">int getTorque(int servo)</div><div class="ttdoc">Lit le couple courant du servo.</div><div class="ttdef"><b>Definition:</b> ServoDriver.cpp:240</div></div>
+<div class="ttc" id="aclassServoDriver_html_a1717fa8a917f761fa8a859636609052c"><div class="ttname"><a href="classServoDriver.html#a1717fa8a917f761fa8a859636609052c">ServoDriver::testIf</a></div><div class="ttdeci">bool testIf(long value, long valeurMin, long valeurMax)</div><div class="ttdef"><b>Definition:</b> ServoDriver.cpp:284</div></div>
+<div class="ttc" id="aclassServoDriver_html_a1ecbb624b976bd01414b4220e5403442"><div class="ttname"><a href="classServoDriver.html#a1ecbb624b976bd01414b4220e5403442">ServoDriver::is_connected</a></div><div class="ttdeci">bool is_connected()</div><div class="ttdoc">Verifie si la carte servo est connectee.</div><div class="ttdef"><b>Definition:</b> ServoDriver.cpp:43</div></div>
+<div class="ttc" id="aclassServoDriver_html_a2076bae148e26ee3f854f1f1984d9714"><div class="ttname"><a href="classServoDriver.html#a2076bae148e26ee3f854f1f1984d9714">ServoDriver::ServoDriver</a></div><div class="ttdeci">ServoDriver()</div><div class="ttdoc">Constructor.</div><div class="ttdef"><b>Definition:</b> ServoDriver.cpp:20</div></div>
+<div class="ttc" id="aclassServoDriver_html_a40ec259cb0ced3154b1e73cc52d48938"><div class="ttname"><a href="classServoDriver.html#a40ec259cb0ced3154b1e73cc52d48938">ServoDriver::setMinPulse</a></div><div class="ttdeci">void setMinPulse(int servo, int value=600)</div><div class="ttdoc">Definit la largeur d'impulsion minimale.</div><div class="ttdef"><b>Definition:</b> ServoDriver.cpp:220</div></div>
+<div class="ttc" id="aclassServoDriver_html_a716d64d7b2203c9cb8dff5c90d0a5dd9"><div class="ttname"><a href="classServoDriver.html#a716d64d7b2203c9cb8dff5c90d0a5dd9">ServoDriver::getPulsePos</a></div><div class="ttdeci">int getPulsePos(int servo)</div><div class="ttdoc">Lit la position courante du servo.</div><div class="ttdef"><b>Definition:</b> ServoDriver.cpp:171</div></div>
+<div class="ttc" id="aclassServoDriver_html_a765f9895c457eb0c5dd385ece0416cc7"><div class="ttname"><a href="classServoDriver.html#a765f9895c457eb0c5dd385ece0416cc7">ServoDriver::setTorque</a></div><div class="ttdeci">void setTorque(int servo, int torque)</div><div class="ttdoc">Definit le couple maximal du servo.</div><div class="ttdef"><b>Definition:</b> ServoDriver.cpp:131</div></div>
+<div class="ttc" id="aclassServoDriver_html_a890b9aa751fc70c3dae6fa3fcb2a2ab1"><div class="ttname"><a href="classServoDriver.html#a890b9aa751fc70c3dae6fa3fcb2a2ab1">ServoDriver::setPulsePos</a></div><div class="ttdeci">void setPulsePos(int servo, int pulsewith, int velocity=0)</div><div class="ttdoc">Definit la position du servo par largeur d'impulsion PWM.</div><div class="ttdef"><b>Definition:</b> ServoDriver.cpp:79</div></div>
+<div class="ttc" id="aclassServoDriver_html_a89b2add38109f20260369e0a0d747bf2"><div class="ttname"><a href="classServoDriver.html#a89b2add38109f20260369e0a0d747bf2">ServoDriver::setPolarity</a></div><div class="ttdeci">void setPolarity(int servo, bool inversed)</div><div class="ttdoc">Inverse la polarite du servo.</div><div class="ttdef"><b>Definition:</b> ServoDriver.cpp:235</div></div>
+<div class="ttc" id="aclassServoDriver_html_a8b9cdb1668c0498f4f21e47eac34f4c3"><div class="ttname"><a href="classServoDriver.html#a8b9cdb1668c0498f4f21e47eac34f4c3">ServoDriver::connected_</a></div><div class="ttdeci">bool connected_</div><div class="ttdef"><b>Definition:</b> ServoDriver.hpp:26</div></div>
+<div class="ttc" id="aclassServoDriver_html_a92d53f7f50a7eb95e14ae358ad0b7d23"><div class="ttname"><a href="classServoDriver.html#a92d53f7f50a7eb95e14ae358ad0b7d23">ServoDriver::setMidPulse</a></div><div class="ttdeci">void setMidPulse(int servo, int value=1500)</div><div class="ttdoc">Definit la largeur d'impulsion centrale (position neutre).</div><div class="ttdef"><b>Definition:</b> ServoDriver.cpp:225</div></div>
+<div class="ttc" id="aclassServoDriver_html_a952fbbfdbf9d0b57d5c6d6c09019b366"><div class="ttname"><a href="classServoDriver.html#a952fbbfdbf9d0b57d5c6d6c09019b366">ServoDriver::ping</a></div><div class="ttdeci">int ping(int servo)</div><div class="ttdoc">Envoie un ping au servo pour verifier sa presence.</div><div class="ttdef"><b>Definition:</b> ServoDriver.cpp:192</div></div>
+<div class="ttc" id="aclassServoDriver_html_aa1040b0db7ed851aec70a122301fe665"><div class="ttname"><a href="classServoDriver.html#aa1040b0db7ed851aec70a122301fe665">ServoDriver::release</a></div><div class="ttdeci">void release(int servo)</div><div class="ttdoc">Relache le servo (desactive le couple).</div><div class="ttdef"><b>Definition:</b> ServoDriver.cpp:115</div></div>
+<div class="ttc" id="aclassServoDriver_html_aaaeaab97cef5c2ebcd05c265fdff747f"><div class="ttname"><a href="classServoDriver.html#aaaeaab97cef5c2ebcd05c265fdff747f">ServoDriver::setMaxPulse</a></div><div class="ttdeci">void setMaxPulse(int servo, int value=2400)</div><div class="ttdoc">Definit la largeur d'impulsion maximale.</div><div class="ttdef"><b>Definition:</b> ServoDriver.cpp:230</div></div>
+<div class="ttc" id="aclassServoDriver_html_abf685dbc27150bf205fd1e4fc8a7ed0d"><div class="ttname"><a href="classServoDriver.html#abf685dbc27150bf205fd1e4fc8a7ed0d">ServoDriver::setType</a></div><div class="ttdeci">void setType(int servo, ServoType type)</div><div class="ttdoc">Definit le type de servo.</div><div class="ttdef"><b>Definition:</b> ServoDriver.cpp:50</div></div>
+<div class="ttc" id="aclassServoDriver_html_acf6cad7d5b891fbe4ff44eaec8409db7"><div class="ttname"><a href="classServoDriver.html#acf6cad7d5b891fbe4ff44eaec8409db7">ServoDriver::~ServoDriver</a></div><div class="ttdeci">~ServoDriver()</div><div class="ttdoc">Destructor.</div><div class="ttdef"><b>Definition:</b> ServoDriver.hpp:40</div></div>
+<div class="ttc" id="aclassServoDriver_html_ad68ebde8a710451c8fea2cd03cfa4bc0"><div class="ttname"><a href="classServoDriver.html#ad68ebde8a710451c8fea2cd03cfa4bc0">ServoDriver::turn</a></div><div class="ttdeci">void turn(int servo, int speed)</div><div class="ttdoc">Fait tourner le servo en mode moteur continu.</div><div class="ttdef"><b>Definition:</b> ServoDriver.cpp:108</div></div>
+<div class="ttc" id="aclassServoDriver_html_af580283b3d1765c9a27276e9a870cf88"><div class="ttname"><a href="classServoDriver.html#af580283b3d1765c9a27276e9a870cf88">ServoDriver::hold</a></div><div class="ttdeci">void hold(int servo)</div><div class="ttdoc">Maintient la position courante du servo (active le couple).</div><div class="ttdef"><b>Definition:</b> ServoDriver.cpp:56</div></div>
+<div class="ttc" id="aclasslogs_1_1LoggerFactory_html_a82585b5de73e471e06cafdccc3b3721e"><div class="ttname"><a href="classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e">logs::LoggerFactory::logger</a></div><div class="ttdeci">static const Logger &amp; logger(const std::string &amp;name)</div><div class="ttdoc">Cette méthode statique retourne un Logger en fonction de son nom.</div><div class="ttdef"><b>Definition:</b> LoggerFactory.cpp:54</div></div>
+<div class="ttc" id="aclasslogs_1_1Logger_html"><div class="ttname"><a href="classlogs_1_1Logger.html">logs::Logger</a></div><div class="ttdoc">Classe de gestion des traces de l'application.</div><div class="ttdef"><b>Definition:</b> Logger.hpp:63</div></div>
+<div class="ttc" id="anamespacebackward_1_1ColorMode_html_aec82452ed7333b210e205aaf6da2d090"><div class="ttname"><a href="namespacebackward_1_1ColorMode.html#aec82452ed7333b210e205aaf6da2d090">backward::ColorMode::type</a></div><div class="ttdeci">type</div><div class="ttdef"><b>Definition:</b> backward.hpp:3906</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Jeudi 26 Mars 2026 23:28:55 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

@@ -1,0 +1,6 @@
+<map id="IAutomateState" name="IAutomateState">
+<area shape="rect" id="node1" title="Définit l&#39;état d&#39;un automate." alt="" coords="78,5,202,32"/>
+<area shape="rect" id="node2" href="$classAAutomateState.html" title="Définit les méthodes communes à tous les états." alt="" coords="75,80,205,107"/>
+<area shape="rect" id="node3" href="$classO__State__Init.html" title="État d&#39;initialisation du robot." alt="" coords="5,155,107,181"/>
+<area shape="rect" id="node4" href="$classO__State__WaitEndOfMatch.html" title="Cette classe est la tache principale du robot." alt="" coords="131,155,319,181"/>
+</map>
