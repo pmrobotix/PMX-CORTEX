@@ -802,91 +802,105 @@ Cette approche reste à affiner. Questions ouvertes :
 Chaque classe est migrée avec son test. Pour les drivers, on migre toujours le couple
 SIMU + ARM + test unitaire via l'interface abstraite.
 
-### Étape 1 — Briques de base (aucune dépendance)
+### Étape 1 — Briques de base (aucune dépendance) ✅
 
-| Classe | Dossier cible | Test | Dépendances |
+| Classe | Dossier cible | Test | Statut |
 |---|---|---|---|
-| Thread / Mutex | `common/thread/` | ThreadTest | pthread |
-| Chronometer | `common/utils/` | ChronometerTest | aucune |
-| Logger / LoggerFactory | `common/log/` | LoggerTest | Thread, Chronometer |
+| Thread / Mutex | `common/thread/` | ThreadTest | ✅ |
+| Chronometer | `common/utils/` | ChronometerTest | ✅ |
+| Logger / LoggerFactory | `common/log/` | LoggerTest | ✅ |
 
-### Étape 2 — Framework de test
+### Étape 2 — Framework de test ✅
 
-| Classe | Dossier cible | Dépendances |
+| Classe | Dossier cible | Statut |
 |---|---|---|
-| UnitTest | `test/suite/` | Logger |
-| UnitTestSuite | `test/suite/` | Logger |
-| UnitTestAppender | `test/suite/` | Logger |
+| UnitTest | `test/suite/` | ✅ |
+| UnitTestSuite | `test/suite/` | ✅ |
+| UnitTestAppender | `test/suite/` | ✅ (+ colorisation ANSI) |
 
-→ À ce stade, le framework de test maison tourne en SIMU.
+### Étape 3 — Interfaces abstraites drivers ✅
 
-### Étape 3 — Interfaces abstraites drivers
-
-| Classe | Dossier cible | Dépendances |
+| Classe | Dossier cible | Statut |
 |---|---|---|
-| AAsservDriver | `common/interface/` | aucune (pure virtual) |
-| ASensorsDriver | `common/interface/` | aucune |
-| ALedDriver | `common/interface/` | aucune |
-| AButtonDriver | `common/interface/` | aucune |
-| ASwitchDriver | `common/interface/` | aucune |
-| AServoDriver | `common/interface/` | aucune |
-| ALcdShieldDriver | `common/interface/` | aucune |
-| ASoundDriver | `common/interface/` | aucune |
-| AColorDriver | `common/interface/` | aucune |
-| AServoUsingMotorDriver | `common/interface/` | aucune |
-| AActionDriver | `common/interface/` | aucune |
-| ARobotPositionShared | `common/interface/` | aucune |
+| AAsservDriver | `common/interface/` | ✅ |
+| ASensorsDriver | `common/interface/` | ✅ |
+| ALedDriver | `common/interface/` | ✅ |
+| AButtonDriver | `common/interface/` | ✅ |
+| ASwitchDriver | `common/interface/` | ✅ |
+| AServoDriver | `common/interface/` | ✅ |
+| ALcdShieldDriver | `common/interface/` | ✅ |
+| ASoundDriver | `common/interface/` | ✅ |
+| AColorDriver | `common/interface/` | ✅ |
+| AServoUsingMotorDriver | `common/interface/` | ✅ |
+| AActionDriver | `common/interface/` | ✅ |
+| ARobotPositionShared | `common/interface/` | ✅ |
 
-### Étape 4 — Drivers un par un (SIMU + ARM + test)
+### Étape 4 — Drivers (SIMU + ARM + test) ✅
 
-| Driver | SIMU | ARM | Test |
+| Driver | SIMU | ARM | Test | Statut |
+|---|---|---|---|---|
+| LedDriver | ✅ | ✅ | LedDriverTest | ✅ |
+| ButtonDriver | ✅ | ✅ | ButtonDriverManualTest | ✅ |
+| SwitchDriver | ✅ | ✅ | SwitchDriverTest | ✅ |
+| SoundDriver | ✅ | ✅ | — | ✅ |
+| LcdShieldDriver | ✅ | ✅ | LcdShieldDriverManualTest | ✅ |
+| ServoDriver | ✅ | ✅ | ServoDriverManualTest | ✅ |
+| ServoUsingMotorDriver | ✅ | ✅ | — | ✅ |
+| SensorsDriver | ✅ | ✅ | SensorDriverManualTest | ✅ |
+| RobotPositionShared | ✅ | ✅ | — | ✅ |
+| ColorDriver | ✅ | ✅ | ColorDriverManualTest | ✅ |
+| AsservDriver | ✅ | ✅ | AsservDriverManualTest | ✅ |
+| ActionDriver | ✅ | ✅ | — | ✅ |
+
+### Étape 5 — Actions et timers ✅
+
+| Classe | Dossier cible | Test | Statut |
 |---|---|---|---|
-| LedDriver | `driver-simu/` | `driver-arm/` | LedDriverTest |
-| ButtonDriver | `driver-simu/` | `driver-arm/` | ButtonDriverTest |
-| SwitchDriver | `driver-simu/` | `driver-arm/` | SwitchDriverTest |
-| SoundDriver | `driver-simu/` | `driver-arm/` | (pas de test existant) |
-| LcdShieldDriver | `driver-simu/` | `driver-arm/` | LcdShieldDriverTest |
-| ServoDriver | `driver-simu/` | `driver-arm/` | ServoDriverTest |
-| ServoUsingMotorDriver | `driver-simu/` | `driver-arm/` | (pas de test existant) |
-| SensorsDriver | `driver-simu/` | `driver-arm/` | SensorDriverTest |
-| RobotPositionShared | `driver-simu/` | `driver-arm/` | (pas de test existant) |
-| ColorDriver | — | `driver-arm/` | ColorDriverTest (ARM seulement) |
-| AsservDriver | `driver-simu/` | `driver-arm/` | AsservDriverTest |
+| IAction, ITimerListener, ITimerPosixListener | `common/timer/` | — | ✅ |
+| ActionManagerTimer | `common/timer/` | ActionManagerTimerTest (13 UT) + bench | ✅ |
+| AActionsElement | `common/action/` | — | ✅ |
+| Actions | `common/action/` | — | ✅ |
+| LedBar | `common/action/` | O_LedBarTest | ✅ |
+| ButtonBar | `common/action/` | O_ButtonBarTest | ✅ |
+| Sensors | `common/action/` | O_SensorsTest | ✅ (test non migré) |
+| ServoObjectsSystem | `common/action/` | O_ServoObjectsTest | ✅ (test non migré) |
+| ServoUsingMotor | `common/action/` | — | ✅ |
+| Tirette | `common/action/` | O_TiretteTest | ✅ |
+| LcdShield | `common/action/` | O_LcdBoardTest | ✅ |
+| SoundBar | `common/action/` | — | ✅ |
 
-### Étape 5 — Actions (utilisent les drivers)
+### Étape 6 — Asserv, Robot et mouvement
 
-| Classe | Dossier cible | Test | Dépendances |
+| Classe | Dossier cible | Test | Statut |
 |---|---|---|---|
-| TimerPosix | `common/action/` | TimerFactoryTest | Thread, Logger |
-| ActionManagerTimer | `common/action/` | ActionManagerTimerTest | TimerPosix, Thread |
-| LedBar | `common/action/` | O_LedBarTest | ALedDriver |
-| ButtonBar | `common/action/` | O_ButtonBarTest | AButtonDriver |
-| Sensors | `common/action/` | O_SensorsTest | ASensorsDriver |
-| ServoObjectsSystem | `common/action/` | O_ServoObjectsTest | AServoDriver |
-| Tirette | `common/action/` | O_TiretteTest | ASwitchDriver |
-| LcdShield | `common/action/` | O_LcdBoardTest | ALcdShieldDriver |
-| SoundBar | `common/action/` | (pas de test existant) | ASoundDriver |
-
-### Étape 6 — Asserv et mouvement
-
-| Classe | Dossier cible | Test | Dépendances |
-|---|---|---|---|
-| Asserv / MovingBase | `common/asserv/` | O_AsservTest | AAsservDriver |
-| MotorControl / EncoderControl | `common/asserv/` | O_AsservTest | AAsservDriver |
-| AsservEsialR (+ sous-modules) | `common/asserv-esial/` | O_AsservEsialTest | Asserv, Thread |
-| IA / IAbyPath / IAbyZone | `common/ia/` | O_IAbyPathTest | Asserv |
-| Automate / AAutomateState | `common/state/` | (via bot) | aucune |
+| Asserv | `common/asserv/` | — | ✅ |
+| AsservEsialR (+ sous-modules) | `common/asserv.esial/` | O_AsservEsialTest | ✅ (test non migré) |
+| Automate / AAutomateState | `common/state/` | — | ✅ |
+| Arguments / ConsoleManager | `common/utils/` | — | ✅ |
+| Robot | `common/` | — | ✅ |
+| MotorControl / EncoderControl / MovingBase | — | — | ⬜ Non utilisés, non migrés |
+| IA / IAbyPath / IAbyZone | `common/ia/` | O_IAbyPathTest | ⬜ À migrer |
 
 ### Étape 7 — Bot OPOS6UL
 
-| Classe | Dossier cible | Test |
-|---|---|---|
-| OPOS6UL_RobotExtended | `bot/opos6ul/` | (intégration) |
-| OPOS6UL_ActionsExtended | `bot/opos6ul/` | (intégration) |
-| OPOS6UL_AsservExtended | `bot/opos6ul/` | O_AsservLineRotateTest, O_Asserv_SquareTest, O_Asserv_CalageTest |
-| OPOS6UL_IAExtended | `bot/opos6ul/` | (intégration) |
-| O_State_* | `bot/opos6ul/states/` | (match) |
-| config_OPOS6UL_Robot.txt | `bot/opos6ul/` | — |
+| Classe | Dossier cible | Test | Statut |
+|---|---|---|---|
+| OPOS6UL_RobotExtended | `bot-opos6ul/` | — | ✅ |
+| OPOS6UL_ActionsExtended | `bot-opos6ul/` | — | ✅ |
+| OPOS6UL_AsservExtended | `bot-opos6ul/` | O_AsservLineRotateTest | ✅ (test non migré) |
+| OPOS6UL_IAExtended | `bot-opos6ul/` | — | ✅ |
+| OPOS6UL_SvgWriterExtended | `bot-opos6ul/` | — | ✅ |
+| O_State_Init / DecisionMaker / WaitEnd | `bot-opos6ul/` | — | ✅ |
+| O_LedBarTest | `bot-opos6ul/` | — | ✅ |
+| O_TiretteTest | `bot-opos6ul/` | — | ✅ |
+| O_ButtonBarTest | `bot-opos6ul/` | — | ✅ |
+| O_LcdBoardTest | `bot-opos6ul/` | — | ✅ |
+| O_ActionManagerTimerTest | `bot-opos6ul/` | — | ✅ |
+| O_IAByPathTest | `bot-opos6ul/` | — | ✅ |
+| O_ServoStepTest | `bot-opos6ul/` | — | ✅ |
+| O_ServoObjectsTest | `bot-opos6ul/` | — | ✅ |
+| O_SensorsTest | `bot-opos6ul/` | — | ✅ |
+| Tests fonctionnels asserv (6) | `bot-opos6ul/` | — | ⬜ À migrer |
 
 ## Organisation des tests
 
@@ -1073,6 +1087,21 @@ Chaque méthode publique doit être documentée :
 
 ## TODO
 
-- [ ] SlowMotionServo : tester la lib de motion progressive des servos (portage Arduino → Linux, source dans PMX/src/Common/Action/SlowMotionServo/)
-- [ ] Renommer `interface/` → `driver_interface/` et `timer/` → `action_interface/` (+ déplacer IAction.hpp dans action_interface/)
-- [ ] Renommer `Actions.hpp/cpp` → `TaskManager.hpp/cpp` (classe Actions → TaskManager)
+### Migration PMX → PMX-CORTEX
+
+- ✅ Module IA : migrer IAbyPath, IAbyZone, IACommon, IA (+ débloque O_IAByPathTest et O_State_DecisionMakerIA)
+- ⬜ Tests fonctionnels asserv : O_AsservEsialTest, O_AsservLineRotateTest, O_AsservXYRotateTest, O_AsservTest, O_Asserv_SquareTest, O_Asserv_CalageTest
+- ✅ Tests fonctionnels autres : O_ServoStepTest, O_ServoObjectsTest, O_SensorsTest
+- ✅ O_IAByPathTest : activé, module IA migré
+- ⬜ SlowMotionServo : tester la lib de motion progressive des servos (portage Arduino → Linux)
+
+### Refactoring architecture
+
+- ⬜ Renommer `interface/` → `driver_interface/` et `timer/` → `action_interface/` (+ déplacer IAction.hpp dans action_interface/)
+- ⬜ Renommer `Actions.hpp/cpp` → `TaskManager.hpp/cpp` (classe Actions → TaskManager)
+- ⬜ Découpler Sensors de Asserv : Sensors ne devrait pas dépendre directement de Asserv.hpp, passer par une interface de position
+- ⬜ Revoir l'architecture detection/capteurs : séparer la logique de filtrage des capteurs (seuils, niveaux) de la stratégie d'évitement
+- ⬜ Supprimer la dépendance circulaire Robot ↔ Asserv (Asserv.cpp inclut Robot.hpp et Robot.hpp forward-declare Asserv)
+- ⬜ Remplacer les `exit(-1)` dans les drivers par des exceptions ou des codes retour (pas de exit() dans du code embarqué)
+- ⬜ Uniformiser les botId (OPOS6UL_Robot vs PMX) — un seul identifiant par robot
+- ⬜ Changer le SVG pour celui de 2026
