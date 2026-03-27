@@ -1,35 +1,36 @@
 <map id="utils::Chronometer::getElapsedTimeInMicroSec" name="utils::Chronometer::getElapsedTimeInMicroSec">
-<area shape="rect" id="node1" title="Retourne le temps écoulé en microsecondes." alt="" coords="1207,609,1413,650"/>
-<area shape="rect" id="node2" href="$classTestAction.html#abc2406605ef5655ea05fb3eaf2a74051" title="Execution de l&#39;action." alt="" coords="959,113,1107,140"/>
-<area shape="rect" id="node3" href="$classAsservEsialR.html#abfd3be9bde7bf8ae887688bf8bc0ca43" title="Méthode virtuelle pure à implémenter dans les sous&#45;classes." alt="" coords="950,164,1115,191"/>
-<area shape="rect" id="node4" href="$classMockAction.html#ad7f3909b21271f52aaa5205458925b8b" title="Execute une action. Attention toujours renvoyer un bool, sinon seg fault ;)" alt="" coords="954,215,1111,241"/>
-<area shape="rect" id="node5" href="$classRobotPositionShared.html#a6f25e22c3cc00dc3f4c826d907677fd9" title="Lit la position courante du robot." alt="" coords="954,266,1111,307"/>
-<area shape="rect" id="node6" href="$classTimerPosix.html#a9ae8ed2d03d7f4b025bc82b7eeec4365" title=" " alt="" coords="907,332,1159,359"/>
-<area shape="rect" id="node9" href="$classServoObjectsSystem.html#a60de17986f65700a7659b22edda2faef" title="move 1 servo." alt="" coords="954,383,1111,425"/>
-<area shape="rect" id="node22" href="$classServoObjectsSystem.html#a209d4e6a24c8cd26c76168c08e330655" title="move 2 servos." alt="" coords="954,449,1111,490"/>
-<area shape="rect" id="node23" href="$classServoObjectsSystem.html#a8d96f5f8ccdfb9ca69a73e523f388191" title="Déplace 3 servos simultanément." alt="" coords="954,514,1111,555"/>
-<area shape="rect" id="node24" href="$classServoObjectsSystem.html#a885ad7b498315c66de65dae7149b3ea1" title="Déplace 4 servos simultanément." alt="" coords="954,579,1111,621"/>
-<area shape="rect" id="node25" href="$classTestTimer.html#a532e1125be7feedfba995aa8cf48cff1" title="Actions à executer pour le timer." alt="" coords="959,645,1107,672"/>
-<area shape="rect" id="node26" href="$classTimingPosixTimer.html#ae164acb8044885749a00599e2eeff2b4" title="Actions à executer pour le timer." alt="" coords="931,696,1134,723"/>
-<area shape="rect" id="node27" href="$classMockPosixTimer.html#aa603c75c81bc9d11ac113c8804709ced" title="Actions à executer pour le timer." alt="" coords="937,747,1129,773"/>
-<area shape="rect" id="node28" href="$classMockTimer.html#ab27dbe205304fa9f8ea18483b913b3ad" title="Actions à executer pour le timer." alt="" coords="954,797,1111,824"/>
-<area shape="rect" id="node29" href="$classTestTimer.html#ade578a88b83d5cf626b1882195ac3fcb" title="Actions de fin à executer pour le timer." alt="" coords="947,848,1119,875"/>
-<area shape="rect" id="node30" href="$classMockPosixTimer.html#a252e0236bd9baaed52df865e86a1dc64" title="Actions de fin à executer pour le timer." alt="" coords="925,899,1141,925"/>
-<area shape="rect" id="node31" href="$classMockTimer.html#ac01d1b1a9937f862b3c7669fc31e0db7" title="Actions de fin à executer pour le timer." alt="" coords="942,949,1123,976"/>
-<area shape="rect" id="node32" href="$classRobotPositionShared.html#a2e6ce171239955faeccdb5797b4d47fa" title="Met a jour la position du robot." alt="" coords="954,1001,1111,1042"/>
-<area shape="rect" id="node33" href="$classtest_1_1TimerPosixStandaloneBench.html#a71eaba7b9c9cf2dc0384bced04b641f4" title=" " alt="" coords="932,1066,1133,1107"/>
-<area shape="rect" id="node7" href="$classTimerPosix.html#af7cfc4df52fb786aac3ceb435e32c0bf" title=" " alt="" coords="661,5,857,32"/>
-<area shape="rect" id="node8" href="$classTimerPosix.html#ae358f5c54efabea8f110b9476e747951" title=" " alt="" coords="425,5,601,32"/>
-<area shape="rect" id="node10" href="$classOPOS6UL__ActionsExtended.html#a946560d21bc7c1a12be600b16e07c93a" title="Déploie le bras droit en position d&#39;action." alt="" coords="660,57,859,98"/>
-<area shape="rect" id="node14" href="$classOPOS6UL__ActionsExtended.html#a67daef275b861004d118273c7e2564c2" title="Place le bras droit en position initiale (replié)." alt="" coords="660,122,859,163"/>
-<area shape="rect" id="node15" href="$classOPOS6UL__ActionsExtended.html#a5b32b355b6907dda48874f40dc9101eb" title="Déploie le bras gauche en position d&#39;action." alt="" coords="660,187,859,229"/>
-<area shape="rect" id="node16" href="$classOPOS6UL__ActionsExtended.html#ad3b7d5a26040d5780cc43a5a9ead9ad3" title="Place le bras gauche en position initiale (replié)." alt="" coords="660,253,859,294"/>
-<area shape="rect" id="node17" href="$classOPOS6UL__ActionsExtended.html#a44856498aa3839098211785a1fe0b6a3" title="Déploie la banderole (action de fin de match)." alt="" coords="660,383,859,425"/>
-<area shape="rect" id="node18" href="$classOPOS6UL__ActionsExtended.html#ae63e06f334f5095383387aa9ff68c8a3" title="Initialise le servo de la banderole à la position repliée." alt="" coords="660,318,859,359"/>
-<area shape="rect" id="node19" href="$classOPOS6UL__ActionsExtended.html#a565acda2ce4cdd1be8263835465d0fdc" title="Initialise le bras gauche (épaule, coude, poignet) à la position de repos." alt="" coords="660,449,859,490"/>
-<area shape="rect" id="node20" href="$classOPOS6UL__ActionsExtended.html#a50a3db095faaaf15ec9630d9abcfb5d4" title="Initialise les deux bras (gauche et droit) à la position de repos." alt="" coords="660,514,859,555"/>
-<area shape="rect" id="node21" href="$classOPOS6UL__ActionsExtended.html#a298422faffadf81c4350cd47464d3f0a" title="Initialise le bras droit (épaule, coude, poignet) à la position de repos." alt="" coords="660,579,859,621"/>
-<area shape="rect" id="node11" href="$classOPOS6UL__ActionsExtended.html#af04e19802d90a78d82e67b10061521a2" title="Initialise tous les servomoteurs AX12 à leur position de départ." alt="" coords="413,187,612,229"/>
-<area shape="rect" id="node12" href="$classO__State__Init.html#abc19788b7457d1f819245dd28367fe91" title="Exécute l&#39;état d&#39;initialisation." alt="" coords="5,195,165,221"/>
-<area shape="rect" id="node13" href="$classO__State__Init.html#a1980cd82dcb83e88d61f2e7e14dddfa0" title=" " alt="" coords="213,220,365,247"/>
+<area shape="rect" id="node1" title="Retourne le temps écoulé en microsecondes." alt="" coords="1235,595,1441,637"/>
+<area shape="rect" id="node2" href="$classTestAction.html#abc2406605ef5655ea05fb3eaf2a74051" title="Execution de l&#39;action." alt="" coords="987,100,1135,127"/>
+<area shape="rect" id="node3" href="$classAsservEsialR.html#abfd3be9bde7bf8ae887688bf8bc0ca43" title="Méthode virtuelle pure à implémenter dans les sous&#45;classes." alt="" coords="978,151,1143,177"/>
+<area shape="rect" id="node4" href="$classMockAction.html#ad7f3909b21271f52aaa5205458925b8b" title="Execute une action. Attention toujours renvoyer un bool, sinon seg fault ;)" alt="" coords="982,201,1139,228"/>
+<area shape="rect" id="node5" href="$classRobotPositionShared.html#a6f25e22c3cc00dc3f4c826d907677fd9" title="Lit la position courante du robot." alt="" coords="982,253,1139,294"/>
+<area shape="rect" id="node6" href="$classTimerPosix.html#a9ae8ed2d03d7f4b025bc82b7eeec4365" title=" " alt="" coords="935,319,1187,345"/>
+<area shape="rect" id="node9" href="$classServoObjectsSystem.html#a60de17986f65700a7659b22edda2faef" title="move 1 servo." alt="" coords="982,370,1139,411"/>
+<area shape="rect" id="node23" href="$classServoObjectsSystem.html#a209d4e6a24c8cd26c76168c08e330655" title="move 2 servos." alt="" coords="982,435,1139,477"/>
+<area shape="rect" id="node24" href="$classServoObjectsSystem.html#a8d96f5f8ccdfb9ca69a73e523f388191" title="Déplace 3 servos simultanément." alt="" coords="982,501,1139,542"/>
+<area shape="rect" id="node25" href="$classServoObjectsSystem.html#a885ad7b498315c66de65dae7149b3ea1" title="Déplace 4 servos simultanément." alt="" coords="982,566,1139,607"/>
+<area shape="rect" id="node26" href="$classTestTimer.html#a532e1125be7feedfba995aa8cf48cff1" title="Actions à executer pour le timer." alt="" coords="987,632,1135,659"/>
+<area shape="rect" id="node27" href="$classTimingPosixTimer.html#ae164acb8044885749a00599e2eeff2b4" title="Actions à executer pour le timer." alt="" coords="959,683,1162,709"/>
+<area shape="rect" id="node28" href="$classMockPosixTimer.html#aa603c75c81bc9d11ac113c8804709ced" title="Actions à executer pour le timer." alt="" coords="965,733,1157,760"/>
+<area shape="rect" id="node29" href="$classMockTimer.html#ab27dbe205304fa9f8ea18483b913b3ad" title="Actions à executer pour le timer." alt="" coords="982,784,1139,811"/>
+<area shape="rect" id="node30" href="$classTestTimer.html#ade578a88b83d5cf626b1882195ac3fcb" title="Actions de fin à executer pour le timer." alt="" coords="975,835,1147,861"/>
+<area shape="rect" id="node31" href="$classMockPosixTimer.html#a252e0236bd9baaed52df865e86a1dc64" title="Actions de fin à executer pour le timer." alt="" coords="953,885,1169,912"/>
+<area shape="rect" id="node32" href="$classMockTimer.html#ac01d1b1a9937f862b3c7669fc31e0db7" title="Actions de fin à executer pour le timer." alt="" coords="970,936,1151,963"/>
+<area shape="rect" id="node33" href="$classRobotPositionShared.html#a2e6ce171239955faeccdb5797b4d47fa" title="Met a jour la position du robot." alt="" coords="982,987,1139,1029"/>
+<area shape="rect" id="node34" href="$classtest_1_1TimerPosixStandaloneBench.html#a71eaba7b9c9cf2dc0384bced04b641f4" title=" " alt="" coords="960,1053,1161,1094"/>
+<area shape="rect" id="node7" href="$classTimerPosix.html#af7cfc4df52fb786aac3ceb435e32c0bf" title=" " alt="" coords="689,5,885,32"/>
+<area shape="rect" id="node8" href="$classTimerPosix.html#ae358f5c54efabea8f110b9476e747951" title=" " alt="" coords="453,5,629,32"/>
+<area shape="rect" id="node10" href="$classOPOS6UL__ActionsExtended.html#a946560d21bc7c1a12be600b16e07c93a" title="Déploie le bras droit en position d&#39;action." alt="" coords="688,57,887,98"/>
+<area shape="rect" id="node15" href="$classOPOS6UL__ActionsExtended.html#a67daef275b861004d118273c7e2564c2" title="Place le bras droit en position initiale (replié)." alt="" coords="688,122,887,163"/>
+<area shape="rect" id="node16" href="$classOPOS6UL__ActionsExtended.html#a5b32b355b6907dda48874f40dc9101eb" title="Déploie le bras gauche en position d&#39;action." alt="" coords="688,187,887,229"/>
+<area shape="rect" id="node17" href="$classOPOS6UL__ActionsExtended.html#ad3b7d5a26040d5780cc43a5a9ead9ad3" title="Place le bras gauche en position initiale (replié)." alt="" coords="688,253,887,294"/>
+<area shape="rect" id="node18" href="$classOPOS6UL__ActionsExtended.html#a44856498aa3839098211785a1fe0b6a3" title="Déploie la banderole (action de fin de match)." alt="" coords="441,377,640,418"/>
+<area shape="rect" id="node19" href="$classOPOS6UL__ActionsExtended.html#ae63e06f334f5095383387aa9ff68c8a3" title="Initialise le servo de la banderole à la position repliée." alt="" coords="688,318,887,359"/>
+<area shape="rect" id="node20" href="$classOPOS6UL__ActionsExtended.html#a565acda2ce4cdd1be8263835465d0fdc" title="Initialise le bras gauche (épaule, coude, poignet) à la position de repos." alt="" coords="688,435,887,477"/>
+<area shape="rect" id="node21" href="$classOPOS6UL__ActionsExtended.html#a50a3db095faaaf15ec9630d9abcfb5d4" title="Initialise les deux bras (gauche et droit) à la position de repos." alt="" coords="688,501,887,542"/>
+<area shape="rect" id="node22" href="$classOPOS6UL__ActionsExtended.html#a298422faffadf81c4350cd47464d3f0a" title="Initialise le bras droit (épaule, coude, poignet) à la position de repos." alt="" coords="688,566,887,607"/>
+<area shape="rect" id="node11" href="$classOPOS6UL__ActionsExtended.html#af04e19802d90a78d82e67b10061521a2" title="Initialise tous les servomoteurs AX12 à leur position de départ." alt="" coords="441,158,640,199"/>
+<area shape="rect" id="node13" href="$classO__ServoObjectsTest.html#aabfa9ba518070128940062ed11028ca7" title="Execute le test." alt="" coords="213,224,393,251"/>
+<area shape="rect" id="node12" href="$classO__State__Init.html#abc19788b7457d1f819245dd28367fe91" title="Exécute l&#39;état d&#39;initialisation." alt="" coords="5,144,165,171"/>
+<area shape="rect" id="node14" href="$classO__State__Init.html#a1980cd82dcb83e88d61f2e7e14dddfa0" title=" " alt="" coords="227,169,379,196"/>
 </map>

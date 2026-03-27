@@ -1,21 +1,26 @@
 <map id="utils::Chronometer::getElapsedTimeInMilliSec" name="utils::Chronometer::getElapsedTimeInMilliSec">
-<area shape="rect" id="node1" title="Retourne le temps écoulé en millisecondes." alt="" coords="711,292,909,333"/>
-<area shape="rect" id="node2" href="$classAsservDriver.html#a8b02e6ec0a124ca9178f17c829d48513" title=" " alt="" coords="433,74,662,101"/>
-<area shape="rect" id="node3" href="$classAsservDriverWrapper.html#a4d3b337fd6beed104ba60b69213344cc" title=" " alt="" coords="220,5,381,47"/>
-<area shape="rect" id="node7" href="$classAsservDriver.html#af852b42fef0dbd773141d5e5fd0a74f6" title=" " alt="" coords="432,175,663,202"/>
-<area shape="rect" id="node8" href="$classAsservDriverWrapper.html#af356c1725a4b8dac9994dd0d94e12069" title=" " alt="" coords="220,136,381,177"/>
-<area shape="rect" id="node12" href="$classServoObjectsTimer.html#a678b5b8c91a359ee1fc44c314e6d547e" title="fonction qui sera executer à chaque traitement du timer." alt="" coords="470,227,625,268"/>
-<area shape="rect" id="node13" href="$classServoObjectsTimer.html#abb55f255d6ddbd31e94f1036bce541a9" title="fonction qui sera executer en dernière action à faire pour ce timer." alt="" coords="470,292,625,333"/>
-<area shape="rect" id="node14" href="$classtest_1_1ChronometerTest.html#a23da1b885637b6bcebc73325fca0684a" title="Vérifie la mesure du temps écoulé après un sleep." alt="" coords="464,357,631,399"/>
-<area shape="rect" id="node16" href="$classtest_1_1AsservDriverManualTest.html#ae216789e8e059e5c854008e32668db82" title=" " alt="" coords="454,423,641,464"/>
-<area shape="rect" id="node17" href="$classtest_1_1ThreadTest.html#a313e3f9f588d83d238893bd58923ed21" title="Vérifie la précision de sleep_for_millis." alt="" coords="450,488,645,529"/>
-<area shape="rect" id="node18" href="$classtest_1_1ThreadTest.html#a1262fce3aca48dc17dab2ee10a7d5999" title="Vérifie la précision de sleep_for_micros." alt="" coords="450,553,645,595"/>
-<area shape="rect" id="node19" href="$classRobot.html#a7c2c32badf138c2a26b82068447c3c98" title="Fonctions de motion intelligente en plusieurs essais." alt="" coords="473,619,621,646"/>
-<area shape="rect" id="node5" href="$classAsservDriverWrapper.html#aad45be064ecfd5eed9c687875f0e92e5" title=" " alt="" coords="220,71,381,112"/>
-<area shape="rect" id="node4" href="$classAsservDriverWrapper.html#a6d2ba86845397e2a65e62660f7d94710" title=" " alt="" coords="7,5,168,47"/>
-<area shape="rect" id="node6" href="$classAsservDriverWrapper.html#a8c951da2eafa9448971f7f68088edec8" title=" " alt="" coords="7,71,168,112"/>
-<area shape="rect" id="node10" href="$classAsservDriverWrapper.html#a4642069f82e26bf54045931a819a4d84" title=" " alt="" coords="220,201,381,243"/>
-<area shape="rect" id="node9" href="$classAsservDriverWrapper.html#af629788681c4e3155c9fc56d6a783d8a" title=" " alt="" coords="5,136,169,177"/>
-<area shape="rect" id="node11" href="$classAsservDriverWrapper.html#a0851aa582a82bf4cf9de2dcf240d585e" title=" " alt="" coords="7,201,168,243"/>
-<area shape="rect" id="node15" href="$classtest_1_1ChronometerTest.html#a1c7e36190a3c3f415a5547d408883d76" title="Execute les tests associés à la classe." alt="" coords="217,357,384,399"/>
+<area shape="rect" id="node1" title="Retourne le temps écoulé en millisecondes." alt="" coords="772,392,971,434"/>
+<area shape="rect" id="node2" href="$classAsservDriver.html#a8b02e6ec0a124ca9178f17c829d48513" title=" " alt="" coords="491,76,721,102"/>
+<area shape="rect" id="node3" href="$classAsservDriverWrapper.html#a4d3b337fd6beed104ba60b69213344cc" title=" " alt="" coords="248,7,409,48"/>
+<area shape="rect" id="node7" href="$classAsservDriver.html#af852b42fef0dbd773141d5e5fd0a74f6" title=" " alt="" coords="491,177,721,204"/>
+<area shape="rect" id="node8" href="$classAsservDriverWrapper.html#af356c1725a4b8dac9994dd0d94e12069" title=" " alt="" coords="248,138,409,179"/>
+<area shape="rect" id="node12" href="$classServoObjectsTimer.html#a678b5b8c91a359ee1fc44c314e6d547e" title="fonction qui sera executer à chaque traitement du timer." alt="" coords="529,228,683,270"/>
+<area shape="rect" id="node13" href="$classServoObjectsTimer.html#abb55f255d6ddbd31e94f1036bce541a9" title="fonction qui sera executer en dernière action à faire pour ce timer." alt="" coords="529,294,683,335"/>
+<area shape="rect" id="node14" href="$classtest_1_1ChronometerTest.html#a23da1b885637b6bcebc73325fca0684a" title="Vérifie la mesure du temps écoulé après un sleep." alt="" coords="523,359,689,400"/>
+<area shape="rect" id="node16" href="$classtest_1_1AsservDriverManualTest.html#ae216789e8e059e5c854008e32668db82" title=" " alt="" coords="513,424,699,466"/>
+<area shape="rect" id="node17" href="$classtest_1_1ThreadTest.html#a313e3f9f588d83d238893bd58923ed21" title="Vérifie la précision de sleep_for_millis." alt="" coords="509,490,703,531"/>
+<area shape="rect" id="node18" href="$classtest_1_1ThreadTest.html#a1262fce3aca48dc17dab2ee10a7d5999" title="Vérifie la précision de sleep_for_micros." alt="" coords="509,555,703,596"/>
+<area shape="rect" id="node19" href="$classRobot.html#a7c2c32badf138c2a26b82068447c3c98" title="Fonctions de motion intelligente en plusieurs essais." alt="" coords="532,621,680,648"/>
+<area shape="rect" id="node20" href="$classIAbyPath.html#acc586e1ba62ffb7a21087a5ca4d2f131" title=" " alt="" coords="488,672,724,698"/>
+<area shape="rect" id="node22" href="$classIAbyPath.html#aa2a96904ea74078d56dad53979b1d999" title=" " alt="" coords="494,773,718,800"/>
+<area shape="rect" id="node24" href="$classIAbyPath.html#a42570f6bc87216c2ac5d028ad596fe02" title=" " alt="" coords="499,722,713,749"/>
+<area shape="rect" id="node5" href="$classAsservDriverWrapper.html#aad45be064ecfd5eed9c687875f0e92e5" title=" " alt="" coords="248,72,409,114"/>
+<area shape="rect" id="node4" href="$classAsservDriverWrapper.html#a6d2ba86845397e2a65e62660f7d94710" title=" " alt="" coords="7,7,168,48"/>
+<area shape="rect" id="node6" href="$classAsservDriverWrapper.html#a8c951da2eafa9448971f7f68088edec8" title=" " alt="" coords="7,72,168,114"/>
+<area shape="rect" id="node10" href="$classAsservDriverWrapper.html#a4642069f82e26bf54045931a819a4d84" title=" " alt="" coords="248,203,409,244"/>
+<area shape="rect" id="node9" href="$classAsservDriverWrapper.html#af629788681c4e3155c9fc56d6a783d8a" title=" " alt="" coords="5,138,169,179"/>
+<area shape="rect" id="node11" href="$classAsservDriverWrapper.html#a0851aa582a82bf4cf9de2dcf240d585e" title=" " alt="" coords="7,203,168,244"/>
+<area shape="rect" id="node15" href="$classtest_1_1ChronometerTest.html#a1c7e36190a3c3f415a5547d408883d76" title="Execute les tests associés à la classe." alt="" coords="245,359,412,400"/>
+<area shape="rect" id="node21" href="$classIAbyPath.html#a9535c82f137778cc6cd4b159fe3d58ea" title=" " alt="" coords="217,682,440,723"/>
+<area shape="rect" id="node23" href="$classIAbyPath.html#a3f27b793f84340c99ca33e12c2380bb4" title=" " alt="" coords="223,756,434,798"/>
 </map>

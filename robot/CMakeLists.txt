@@ -86,6 +86,10 @@ add_library(pmx-common STATIC
     src/common/asserv.esial/odometrie/Odometrie.cpp
     src/common/asserv.esial/regulateur/Regulateur.cpp
     src/common/asserv.esial/Utils/Utils.cpp
+    # ia
+    src/common/ia/IA.cpp
+    src/common/ia/IAbyPath.cpp
+    src/common/ia/IAbyZone.cpp
     # utils
     src/common/utils/Arguments.cpp
     src/common/utils/ConsoleManager.cpp
@@ -110,7 +114,7 @@ target_include_directories(pmx-common PUBLIC
     src/common/asserv.esial
 )
 
-target_link_libraries(pmx-common PUBLIC pthread rt simple-svg)
+target_link_libraries(pmx-common PUBLIC pthread rt simple-svg pmr-pathfinding)
 
 # =============================================
 # Bibliothèque driver : sélection automatique
@@ -193,6 +197,10 @@ if(DRIVER_LIB)
         src/bot-opos6ul/O_ButtonBarTest.cpp
         src/bot-opos6ul/O_LcdBoardTest.cpp
         src/bot-opos6ul/O_ActionManagerTimerTest.cpp
+        src/bot-opos6ul/O_IAbyPathTest.cpp
+        src/bot-opos6ul/O_ServoStepTest.cpp
+        src/bot-opos6ul/O_ServoObjectsTest.cpp
+        src/bot-opos6ul/O_SensorsTest.cpp
     )
 
     target_include_directories(bot-opos6ul PRIVATE

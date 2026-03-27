@@ -377,25 +377,25 @@ var sectionId = 'dynsection-20';
 <polygon fill="midnightblue" stroke="midnightblue" points="1016.85,-395.18 1021.54,-385.68 1011.95,-390.18 1016.85,-395.18"/>
 </g>
 <!-- Node18&#45;&gt;Node3 -->
-<g id="edge29" class="edge">
+<g id="edge31" class="edge">
 <title>Node18&#45;&gt;Node3</title>
 <path fill="none" stroke="midnightblue" d="M493.09,-217.16C513.76,-226.61 540.92,-239.03 565,-250 632.51,-280.76 656.59,-275.94 717,-319 735.94,-332.5 734.31,-343.14 753,-357 832.16,-415.7 939.86,-461.39 995.09,-482.76"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="994.19,-486.16 1004.78,-486.46 996.69,-479.62 994.19,-486.16"/>
 </g>
 <!-- Node18&#45;&gt;Node6 -->
-<g id="edge28" class="edge">
+<g id="edge30" class="edge">
 <title>Node18&#45;&gt;Node6</title>
 <path fill="none" stroke="midnightblue" d="M470.41,-217.38C487.44,-241.4 523.55,-287.8 565,-314 575.74,-320.79 588.58,-325.81 600.56,-329.46"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="599.79,-332.88 610.37,-332.2 601.68,-326.14 599.79,-332.88"/>
 </g>
 <!-- Node18&#45;&gt;Node8 -->
-<g id="edge33" class="edge">
+<g id="edge35" class="edge">
 <title>Node18&#45;&gt;Node8</title>
 <path fill="none" stroke="midnightblue" d="M518.68,-216.88C533.72,-220.45 549.92,-224.07 565,-227 643.54,-242.28 850.08,-243.95 921,-281 941.62,-291.77 939.73,-303.41 957,-319 973.6,-333.99 993.8,-349.37 1008.89,-360.38"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="1006.97,-363.3 1017.12,-366.31 1011.06,-357.62 1006.97,-363.3"/>
 </g>
 <!-- Node18&#45;&gt;Node11 -->
-<g id="edge30" class="edge">
+<g id="edge32" class="edge">
 <title>Node18&#45;&gt;Node11</title>
 <path fill="none" stroke="midnightblue" d="M518.94,-194.8C535.65,-192.75 553.99,-190.51 571.23,-188.4"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="571.73,-191.87 581.24,-187.18 570.89,-184.92 571.73,-191.87"/>
@@ -404,44 +404,44 @@ var sectionId = 'dynsection-20';
 <g id="node19" class="node">
 <title>Node19</title>
 <g id="a_node19"><a xlink:href="classutils_1_1PointerList.html#a501664b90309db885554d35e89739681" target="_top" xlink:title="Returns a read/write iterator that points to the first element in the list. Iteration is done in ordi...">
-<polygon fill="white" stroke="black" points="593.5,-77 593.5,-107 688.5,-107 688.5,-77 593.5,-77"/>
-<text text-anchor="start" x="601.5" y="-95" font-family="Helvetica,sans-Serif" font-size="10.00">utils::PointerList</text>
-<text text-anchor="middle" x="641" y="-84" font-family="Helvetica,sans-Serif" font-size="10.00">::begin</text>
+<polygon fill="white" stroke="black" points="593.5,-39 593.5,-69 688.5,-69 688.5,-39 593.5,-39"/>
+<text text-anchor="start" x="601.5" y="-57" font-family="Helvetica,sans-Serif" font-size="10.00">utils::PointerList</text>
+<text text-anchor="middle" x="641" y="-46" font-family="Helvetica,sans-Serif" font-size="10.00">::begin</text>
 </a>
 </g>
 </g>
 <!-- Node18&#45;&gt;Node19 -->
 <g id="edge26" class="edge">
 <title>Node18&#45;&gt;Node19</title>
-<path fill="none" stroke="midnightblue" d="M475.07,-186.81C494.38,-168.09 529.62,-136.38 565,-117 570.9,-113.77 577.3,-110.85 583.78,-108.26"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="585.16,-111.48 593.29,-104.68 582.7,-104.93 585.16,-111.48"/>
+<path fill="none" stroke="midnightblue" d="M469.02,-186.82C485.12,-161.01 521.23,-108.5 565,-79 570.74,-75.14 577.12,-71.82 583.67,-69"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="585.32,-72.11 593.34,-65.19 582.75,-65.6 585.32,-72.11"/>
 </g>
 <!-- Node20 -->
 <g id="node20" class="node">
 <title>Node20</title>
-<g id="a_node20"><a xlink:href="classutils_1_1PointerList.html#a9607cdd93b715a838e015452a49f61d5" target="_top" xlink:title="Returns a read/write iterator that points one past the last element in the list. Iteration is done in...">
-<polygon fill="white" stroke="black" points="581.5,-38.5 581.5,-57.5 700.5,-57.5 700.5,-38.5 581.5,-38.5"/>
-<text text-anchor="middle" x="641" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">utils::PointerList::end</text>
+<g id="a_node20"><a xlink:href="classlogs_1_1Logger.html#a7dffc8f610014ec59b63392da16140e4" target="_top" xlink:title="Trace un message de niveau DEBUG.">
+<polygon fill="white" stroke="black" points="781,-214.5 781,-233.5 893,-233.5 893,-214.5 781,-214.5"/>
+<text text-anchor="middle" x="837" y="-221.5" font-family="Helvetica,sans-Serif" font-size="10.00">logs::Logger::debug</text>
 </a>
 </g>
 </g>
 <!-- Node18&#45;&gt;Node20 -->
 <g id="edge27" class="edge">
 <title>Node18&#45;&gt;Node20</title>
-<path fill="none" stroke="midnightblue" d="M467.46,-186.75C482.08,-158.53 517.28,-98.19 565,-67 568.17,-64.93 571.54,-63.09 575.05,-61.44"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="576.63,-64.58 584.55,-57.55 573.97,-58.1 576.63,-64.58"/>
+<path fill="none" stroke="midnightblue" d="M518.75,-205.44C587.06,-209.43 699.5,-216.01 770.55,-220.17"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="770.53,-223.68 780.72,-220.77 770.94,-216.69 770.53,-223.68"/>
 </g>
 <!-- Node21 -->
 <g id="node21" class="node">
 <title>Node21</title>
-<g id="a_node21"><a xlink:href="classITimerListener.html#a1fb13795b7ae788210f5e6bce5a9aeb0" target="_top" xlink:title="Getter sur les infos permettant d&#39;identifier le timer.">
-<polygon fill="white" stroke="black" points="580.5,-0.5 580.5,-19.5 701.5,-19.5 701.5,-0.5 580.5,-0.5"/>
-<text text-anchor="middle" x="641" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">ITimerListener::name</text>
+<g id="a_node21"><a xlink:href="classutils_1_1PointerList.html#a9607cdd93b715a838e015452a49f61d5" target="_top" xlink:title="Returns a read/write iterator that points one past the last element in the list. Iteration is done in...">
+<polygon fill="white" stroke="black" points="581.5,-0.5 581.5,-19.5 700.5,-19.5 700.5,-0.5 581.5,-0.5"/>
+<text text-anchor="middle" x="641" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">utils::PointerList::end</text>
 </a>
 </g>
 </g>
 <!-- Node18&#45;&gt;Node21 -->
-<g id="edge31" class="edge">
+<g id="edge29" class="edge">
 <title>Node18&#45;&gt;Node21</title>
 <path fill="none" stroke="midnightblue" d="M464.76,-186.78C476.19,-152.87 508.5,-70.78 565,-29 567.65,-27.04 570.47,-25.29 573.42,-23.71"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="574.95,-26.86 582.57,-19.5 572.02,-20.5 574.95,-26.86"/>
@@ -449,14 +449,14 @@ var sectionId = 'dynsection-20';
 <!-- Node22 -->
 <g id="node22" class="node">
 <title>Node22</title>
-<g id="a_node22"><a xlink:href="classITimerListener.html#a0004b567b000eef6df12d9d970909142" target="_top" xlink:title="Actions de fin à executer pour le timer.">
-<polygon fill="white" stroke="black" points="565,-126.5 565,-145.5 717,-145.5 717,-126.5 565,-126.5"/>
-<text text-anchor="middle" x="641" y="-133.5" font-family="Helvetica,sans-Serif" font-size="10.00">ITimerListener::onTimerEnd</text>
+<g id="a_node22"><a xlink:href="classITimerListener.html#a1fb13795b7ae788210f5e6bce5a9aeb0" target="_top" xlink:title="Getter sur les infos permettant d&#39;identifier le timer.">
+<polygon fill="white" stroke="black" points="580.5,-126.5 580.5,-145.5 701.5,-145.5 701.5,-126.5 580.5,-126.5"/>
+<text text-anchor="middle" x="641" y="-133.5" font-family="Helvetica,sans-Serif" font-size="10.00">ITimerListener::name</text>
 </a>
 </g>
 </g>
 <!-- Node18&#45;&gt;Node22 -->
-<g id="edge32" class="edge">
+<g id="edge33" class="edge">
 <title>Node18&#45;&gt;Node22</title>
 <path fill="none" stroke="midnightblue" d="M490.22,-186.8C510.9,-176.81 539.15,-163.98 565,-155 572.06,-152.55 579.59,-150.26 587.06,-148.19"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="588.03,-151.55 596.79,-145.59 586.22,-144.79 588.03,-151.55"/>
@@ -464,21 +464,21 @@ var sectionId = 'dynsection-20';
 <!-- Node23 -->
 <g id="node23" class="node">
 <title>Node23</title>
-<g id="a_node23"><a xlink:href="classlogs_1_1Logger.html#a240e8d7b58195c85bd7b4e4a3417d955" target="_top" xlink:title="Trace un message de niveau WARN.">
-<polygon fill="white" stroke="black" points="784,-214.5 784,-233.5 890,-233.5 890,-214.5 784,-214.5"/>
-<text text-anchor="middle" x="837" y="-221.5" font-family="Helvetica,sans-Serif" font-size="10.00">logs::Logger::warn</text>
+<g id="a_node23"><a xlink:href="classITimerListener.html#a0004b567b000eef6df12d9d970909142" target="_top" xlink:title="Actions de fin à executer pour le timer.">
+<polygon fill="white" stroke="black" points="565,-88.5 565,-107.5 717,-107.5 717,-88.5 565,-88.5"/>
+<text text-anchor="middle" x="641" y="-95.5" font-family="Helvetica,sans-Serif" font-size="10.00">ITimerListener::onTimerEnd</text>
 </a>
 </g>
 </g>
 <!-- Node18&#45;&gt;Node23 -->
 <g id="edge34" class="edge">
 <title>Node18&#45;&gt;Node23</title>
-<path fill="none" stroke="midnightblue" d="M518.75,-205.44C588.05,-209.49 702.75,-216.2 773.59,-220.35"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="773.53,-223.85 783.72,-220.94 773.94,-216.86 773.53,-223.85"/>
+<path fill="none" stroke="midnightblue" d="M474.51,-186.72C493.52,-167.6 528.72,-135.17 565,-117 569.68,-114.65 574.68,-112.58 579.79,-110.75"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="581.26,-113.96 589.69,-107.53 579.1,-107.3 581.26,-113.96"/>
 </g>
-<!-- Node23&#45;&gt;Node9 -->
-<g id="edge35" class="edge">
-<title>Node23&#45;&gt;Node9</title>
+<!-- Node20&#45;&gt;Node9 -->
+<g id="edge28" class="edge">
+<title>Node20&#45;&gt;Node9</title>
 <path fill="none" stroke="midnightblue" d="M876.02,-233.61C890.29,-237.58 906.55,-242.54 921,-248 950.09,-259 982.1,-274.54 1004.05,-285.77"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="1002.6,-288.96 1013.09,-290.44 1005.81,-282.74 1002.6,-288.96"/>
 </g>

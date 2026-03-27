@@ -1,4 +1,7 @@
 <map id="AAsservDriver::motion_GotoReverse" name="AAsservDriver::motion_GotoReverse">
-<area shape="rect" id="node1" title="Deplace le robot vers un point (marche arriere)." alt="" coords="208,5,377,47"/>
-<area shape="rect" id="node2" href="$classAsserv.html#ade31f4182c755e3ee09092fe9bf3d5d0" title=" " alt="" coords="5,13,160,39"/>
+<area shape="rect" id="node1" title="Deplace le robot vers un point (marche arriere)." alt="" coords="1020,5,1189,47"/>
+<area shape="rect" id="node2" href="$classAsserv.html#ade31f4182c755e3ee09092fe9bf3d5d0" title=" " alt="" coords="817,13,972,39"/>
+<area shape="rect" id="node3" href="$classIAbyPath.html#a36763cca0b7005fddde021c35f054dc7" title=" " alt="" coords="560,13,769,39"/>
+<area shape="rect" id="node4" href="$classIAbyPath.html#acc586e1ba62ffb7a21087a5ca4d2f131" title=" " alt="" coords="276,13,512,39"/>
+<area shape="rect" id="node5" href="$classIAbyPath.html#a9535c82f137778cc6cd4b159fe3d58ea" title=" " alt="" coords="5,5,228,47"/>
 </map>

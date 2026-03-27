@@ -1,11 +1,13 @@
 <map id="Odometrie::setY" name="Odometrie::setY">
-<area shape="rect" id="node1" title=" " alt="" coords="1197,53,1324,79"/>
-<area shape="rect" id="node2" href="$classAsservEsialR.html#a9b3d60c1cb5f5eabe0857b16c46432d6" title="Definit la position courante du robot (recalage)." alt="" coords="931,53,1149,79"/>
-<area shape="rect" id="node3" href="$classAsserv.html#abe526ad31d80f46598cdbb031a83a906" title=" " alt="" coords="708,53,883,79"/>
-<area shape="rect" id="node4" href="$classAsserv.html#a3a481367962ccacd1a378c3bb5df3b25" title=" " alt="" coords="461,27,655,54"/>
-<area shape="rect" id="node5" href="$classAsserv.html#a050645863c2a40f3116ee0847d1d3732" title=" " alt="" coords="456,78,660,105"/>
+<area shape="rect" id="node1" title=" " alt="" coords="1197,111,1324,138"/>
+<area shape="rect" id="node2" href="$classAsservEsialR.html#a9b3d60c1cb5f5eabe0857b16c46432d6" title="Definit la position courante du robot (recalage)." alt="" coords="931,111,1149,138"/>
+<area shape="rect" id="node3" href="$classAsserv.html#abe526ad31d80f46598cdbb031a83a906" title=" " alt="" coords="708,111,883,138"/>
+<area shape="rect" id="node4" href="$classAsserv.html#a3a481367962ccacd1a378c3bb5df3b25" title=" " alt="" coords="461,86,655,113"/>
+<area shape="rect" id="node5" href="$classAsserv.html#a050645863c2a40f3116ee0847d1d3732" title=" " alt="" coords="456,137,660,163"/>
 <area shape="rect" id="node6" href="$classAsserv.html#a314e3ff9a8a538a23d26dcb802386024" title=" " alt="" coords="219,5,403,47"/>
 <area shape="rect" id="node7" href="$classAsserv.html#a9e997a871e745e687a4088103378bae3" title=" " alt="" coords="213,71,408,112"/>
-<area shape="rect" id="node8" href="$classO__State__Init.html#a1980cd82dcb83e88d61f2e7e14dddfa0" title=" " alt="" coords="235,137,387,163"/>
-<area shape="rect" id="node9" href="$classO__State__Init.html#abc19788b7457d1f819245dd28367fe91" title="Exécute l&#39;état d&#39;initialisation." alt="" coords="5,137,165,163"/>
+<area shape="rect" id="node8" href="$classO__IAByPathTest.html#a3f57f585ff1382a52bf7f79a28d43629" title=" " alt="" coords="235,137,387,163"/>
+<area shape="rect" id="node9" href="$classO__SensorsTest.html#ae3b998034225e16586ded4ba3bd419e5" title="Execute le test." alt="" coords="238,187,383,214"/>
+<area shape="rect" id="node10" href="$classO__State__Init.html#a1980cd82dcb83e88d61f2e7e14dddfa0" title=" " alt="" coords="235,238,387,265"/>
+<area shape="rect" id="node11" href="$classO__State__Init.html#abc19788b7457d1f819245dd28367fe91" title="Exécute l&#39;état d&#39;initialisation." alt="" coords="5,238,165,265"/>
 </map>

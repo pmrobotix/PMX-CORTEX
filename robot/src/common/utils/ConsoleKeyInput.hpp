@@ -55,7 +55,8 @@ public:
 	 */
 	static void clearScreen()
 	{
-		std::cout << "\033[2J\033[1;1H";
+		//std::cout << "\033[2J\033[1;1H"; //ne prend pas en compte la scrollbar buffer
+		std::cout << "\033[2J\033[3J\033[1;1H"; //  efface aussi le scrollback buffer.
 	}
 
 	/*!

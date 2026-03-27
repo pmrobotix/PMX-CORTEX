@@ -1,52 +1,52 @@
 <map id="logs::Logger::writeMessage" name="logs::Logger::writeMessage">
-<area shape="rect" id="node1" title="Méthode générique de trace d&#39;un message." alt="" coords="1044,1349,1244,1376"/>
-<area shape="rect" id="node2" href="$classlogs_1_1Logger.html#a7dffc8f610014ec59b63392da16140e4" title="Trace un message de niveau DEBUG." alt="" coords="809,1298,959,1325"/>
-<area shape="rect" id="node45" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#a0e4fd77693fd899ec1b0670354f93a02" title="Cette méthode valide le message en cours de construction et le transmet au Logger de référence." alt="" coords="772,1349,996,1376"/>
-<area shape="rect" id="node46" href="$classlogs_1_1Logger.html#a8b6a2019233bc44b3c3c86c653910831" title="Trace un message de niveau ERROR." alt="" coords="814,289,954,316"/>
-<area shape="rect" id="node47" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#aee16dd078779a8154f1b3d7238748a6f" title=" " alt="" coords="788,1400,980,1442"/>
-<area shape="rect" id="node48" href="$classlogs_1_1Logger.html#aa381165771d00a6a1e3aa9664bf6467f" title="Trace un message de niveau INFO." alt="" coords="817,137,951,164"/>
-<area shape="rect" id="node49" href="$classlogs_1_1Logger.html#ae55afdeeb1bc9acb6dc02a3e2d06062f" title="Trace un message de niveau TELEM." alt="" coords="797,1466,971,1493"/>
-<area shape="rect" id="node50" href="$classlogs_1_1Logger.html#a240e8d7b58195c85bd7b4e4a3417d955" title="Trace un message de niveau WARN." alt="" coords="813,1517,955,1544"/>
-<area shape="rect" id="node3" href="$classAsservEsialR.html#adf4da92cf4d885cc744c970c7626fa0d" title=" " alt="" coords="511,725,709,752"/>
-<area shape="rect" id="node4" href="$classBeaconSensors.html#ae88c123cdeac6ee17c034a239bd38705" title="Constructor." alt="" coords="496,776,724,802"/>
-<area shape="rect" id="node5" href="$classDynamixelDriver.html#a6652b8534770759128aa2e77ddf4faa8" title="Constructor." alt="" coords="505,827,715,868"/>
-<area shape="rect" id="node6" href="$classGp2y0e02b.html#a3b3fe74d902e2b2d0447e9265c246ec6" title="Constructor." alt="" coords="521,238,699,265"/>
-<area shape="rect" id="node7" href="$classLcdShield.html#adf69aee9cba76742905ec98b0c3902d5" title="Constructor." alt="" coords="533,1440,687,1466"/>
-<area shape="rect" id="node8" href="$classServoUsingMotorDriver.html#acc8ccf92143efa853b83940d2d690817" title="Constructor." alt="" coords="257,1508,439,1550"/>
-<area shape="rect" id="node9" href="$classSwitchDriver.html#a318f2cc1988d9ddfae71131fcf39d929" title="Constructeur. Initialise le PCA9555." alt="" coords="512,1592,708,1618"/>
-<area shape="rect" id="node10" href="$classTestTimer.html#a7bd3bc501eab8acb36c03dffc677bf32" title="Constructeur de la classe." alt="" coords="531,1642,689,1669"/>
-<area shape="rect" id="node11" href="$classTestAction.html#ae3f7cc56414d35d8160f482efdf806fb" title="Destructeur de la classe." alt="" coords="523,1693,697,1720"/>
-<area shape="rect" id="node12" href="$classAdafruit__RGBLCDShield.html#aead28395830ccd7e74041736aba46e03" title=" " alt="" coords="523,1927,697,1968"/>
-<area shape="rect" id="node13" href="$classAdafruit__RGBLCDShield.html#a441c8fb704534e39e8716f8e43797523" title=" " alt="" coords="261,1839,435,1880"/>
-<area shape="rect" id="node14" href="$classAdafruit__RGBLCDShield.html#a1668a3877e0d9960df698b68195b3d27" title=" " alt="" coords="523,1992,697,2034"/>
-<area shape="rect" id="node15" href="$classSensors.html#a1ef07aeea0536ccf34e310d831e71ef0" title=" " alt="" coords="513,2058,707,2085"/>
-<area shape="rect" id="node16" href="$classAsserv.html#a3a481367962ccacd1a378c3bb5df3b25" title=" " alt="" coords="5,2197,200,2224"/>
-<area shape="rect" id="node17" href="$classAdafruit__RGBLCDShield.html#a265d1ecc4335973e71b12c05fb038673" title=" " alt="" coords="523,2278,697,2319"/>
-<area shape="rect" id="node18" href="$classSensors.html#a7c1612f78d78562aa12322638a74140f" title=" " alt="" coords="292,344,404,370"/>
-<area shape="rect" id="node19" href="$classMD25.html#a935ef31b09c463fead4abab0accbbb6c" title=" " alt="" coords="558,1541,662,1568"/>
-<area shape="rect" id="node20" href="$classOPOS6UL__RobotExtended.html#a3af6cff5115c7ae70f7a797d9e90e66a" title="Initialise l&#39;état du robot et le décisionmaker IA." alt="" coords="253,130,443,171"/>
-<area shape="rect" id="node21" href="$classRobot.html#ae8cede2564e5b9229da095991c064ae4" title="Start the robot (console for tests or main program).." alt="" coords="558,137,662,164"/>
-<area shape="rect" id="node22" href="$classBeaconSensors.html#ab5da914e8d5038ecb88bbefe650215d5" title="initialise i2c" alt="" coords="527,2344,693,2370"/>
-<area shape="rect" id="node23" href="$classAdafruit__RGBLCDShield.html#a5a9697632b6ded2d3d76cf903f9fd3a9" title=" " alt="" coords="523,2395,697,2436"/>
-<area shape="rect" id="node24" href="$classLedBar.html#abc84af9e1f24d8e7a0c9a7f67767c34f" title="Clignote une led nb fois pendant timeus." alt="" coords="547,2461,673,2488"/>
-<area shape="rect" id="node25" href="$classGroveColorSensor.html#a7c3b429a3541802917165ec053f63153" title="Takes the raw values from the sensors and converts them to Correlated Color Temperature." alt="" coords="510,2512,710,2538"/>
-<area shape="rect" id="node26" href="$classAdafruit__RGBLCDShield.html#ad203e22075b6a8b63e9e206105bcc433" title=" " alt="" coords="523,1744,697,1786"/>
-<area shape="rect" id="node27" href="$classGroveColorSensor.html#aaca3a16d1b12b867cfd9de6d4f1e05ae" title="Log the parameters." alt="" coords="521,542,699,569"/>
-<area shape="rect" id="node28" href="$classAsservDriver.html#a05bd91c77a979511dda5d0e901ddf6e6" title=" " alt="" coords="509,594,711,635"/>
-<area shape="rect" id="node29" href="$classAdafruit__RGBLCDShield.html#a3865353c3a27760ec7ca874c47ba2a07" title=" " alt="" coords="523,659,697,700"/>
-<area shape="rect" id="node30" href="$classAdafruit__RGBLCDShield.html#a3b041610ba67c0c0e343a7b18b6e668e" title=" " alt="" coords="523,944,697,986"/>
-<area shape="rect" id="node31" href="$classActionManagerTimer.html#a40e5f9d8c2706434376d416d3e43fd3b" title="Affiche via le logger les actions en cours." alt="" coords="531,1062,689,1103"/>
-<area shape="rect" id="node32" href="$classActionManagerTimer.html#a17c6563c7a6c0955c7ca2230b038d832" title="Affiche via le logger les timers posix en cours et en attente." alt="" coords="531,1127,689,1168"/>
-<area shape="rect" id="node33" href="$classActionManagerTimer.html#aef6be0b68f6595c8ac5ce89c66b9333a" title="Affiche via le logger les timers classiques en cours. Deprecated." alt="" coords="531,1192,689,1234"/>
-<area shape="rect" id="node34" href="$classServoObjectsSystem.html#a6df7e1694087d2fa67d41aeef363b3f3" title="Déploie un servo à la position donnée." alt="" coords="531,1258,689,1299"/>
-<area shape="rect" id="node35" href="$classAdafruit__RGBLCDShield.html#aa721251c365c8033ac872c18ad64b93f" title=" " alt="" coords="523,1810,697,1851"/>
-<area shape="rect" id="node36" href="$classAsserv.html#a31cb7196e12282ed27c45e8f58b4db04" title=" " alt="" coords="509,1010,711,1037"/>
-<area shape="rect" id="node37" href="$classAsserv.html#a960679fed5ab18f631d7847c95fc1f85" title=" " alt="" coords="253,1010,443,1037"/>
-<area shape="rect" id="node38" href="$classAsserv.html#a9ae528690268f84726565305c42718e5" title=" " alt="" coords="248,2160,448,2202"/>
-<area shape="rect" id="node39" href="$classAsserv.html#a744a8285ae7c6339252458a9c94fd602" title=" " alt="" coords="535,2160,685,2202"/>
-<area shape="rect" id="node40" href="$classSoundBarAction.html#ad080a35d375a14b912ed5d2625c0b687" title="Execution de l&#39;action." alt="" coords="518,390,702,417"/>
-<area shape="rect" id="node41" href="$classAsservEsialR.html#abfd3be9bde7bf8ae887688bf8bc0ca43" title="Méthode virtuelle pure à implémenter dans les sous&#45;classes." alt="" coords="527,289,693,316"/>
-<area shape="rect" id="node42" href="$classAsservDriver.html#ae2fdf0d75abab4e2cc974706c8a81867" title="Méthode virtuelle pure à implémenter dans les sous&#45;classes." alt="" coords="527,340,693,366"/>
-<area shape="rect" id="node43" href="$classOPOS6UL__AsservExtended.html#a4e96d47def0637c3f6e135a0a3ee3d1c" title="Vérifie si une détection capteur correspond à une position dans le terrain." alt="" coords="513,1323,707,1364"/>
-<area shape="rect" id="node44" href="$classAsserv.html#acc337a9f3d054ba09e3043a560a457a7" title=" " alt="" coords="513,492,707,518"/>
+<area shape="rect" id="node1" title="Méthode générique de trace d&#39;un message." alt="" coords="1044,1224,1244,1251"/>
+<area shape="rect" id="node2" href="$classlogs_1_1Logger.html#a7dffc8f610014ec59b63392da16140e4" title="Trace un message de niveau DEBUG." alt="" coords="809,1174,959,1200"/>
+<area shape="rect" id="node45" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#a0e4fd77693fd899ec1b0670354f93a02" title="Cette méthode valide le message en cours de construction et le transmet au Logger de référence." alt="" coords="772,1224,996,1251"/>
+<area shape="rect" id="node46" href="$classlogs_1_1Logger.html#a8b6a2019233bc44b3c3c86c653910831" title="Trace un message de niveau ERROR." alt="" coords="814,324,954,351"/>
+<area shape="rect" id="node47" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#aee16dd078779a8154f1b3d7238748a6f" title=" " alt="" coords="788,1276,980,1317"/>
+<area shape="rect" id="node48" href="$classlogs_1_1Logger.html#aa381165771d00a6a1e3aa9664bf6467f" title="Trace un message de niveau INFO." alt="" coords="817,198,951,224"/>
+<area shape="rect" id="node49" href="$classlogs_1_1Logger.html#ae55afdeeb1bc9acb6dc02a3e2d06062f" title="Trace un message de niveau TELEM." alt="" coords="797,1342,971,1368"/>
+<area shape="rect" id="node50" href="$classlogs_1_1Logger.html#a240e8d7b58195c85bd7b4e4a3417d955" title="Trace un message de niveau WARN." alt="" coords="813,1392,955,1419"/>
+<area shape="rect" id="node3" href="$classAsservEsialR.html#adf4da92cf4d885cc744c970c7626fa0d" title=" " alt="" coords="511,704,709,731"/>
+<area shape="rect" id="node4" href="$classBeaconSensors.html#ae88c123cdeac6ee17c034a239bd38705" title="Constructor." alt="" coords="496,755,724,782"/>
+<area shape="rect" id="node5" href="$classDynamixelDriver.html#a6652b8534770759128aa2e77ddf4faa8" title="Constructor." alt="" coords="505,806,715,848"/>
+<area shape="rect" id="node6" href="$classGp2y0e02b.html#a3b3fe74d902e2b2d0447e9265c246ec6" title="Constructor." alt="" coords="521,96,699,123"/>
+<area shape="rect" id="node7" href="$classLcdShield.html#adf69aee9cba76742905ec98b0c3902d5" title="Constructor." alt="" coords="533,1431,687,1458"/>
+<area shape="rect" id="node8" href="$classServoUsingMotorDriver.html#acc8ccf92143efa853b83940d2d690817" title="Constructor." alt="" coords="257,1500,439,1541"/>
+<area shape="rect" id="node9" href="$classSwitchDriver.html#a318f2cc1988d9ddfae71131fcf39d929" title="Constructeur. Initialise le PCA9555." alt="" coords="512,1583,708,1610"/>
+<area shape="rect" id="node10" href="$classTestTimer.html#a7bd3bc501eab8acb36c03dffc677bf32" title="Constructeur de la classe." alt="" coords="531,1634,689,1660"/>
+<area shape="rect" id="node11" href="$classTestAction.html#ae3f7cc56414d35d8160f482efdf806fb" title="Destructeur de la classe." alt="" coords="523,1684,697,1711"/>
+<area shape="rect" id="node12" href="$classAdafruit__RGBLCDShield.html#aead28395830ccd7e74041736aba46e03" title=" " alt="" coords="523,1786,697,1828"/>
+<area shape="rect" id="node13" href="$classAdafruit__RGBLCDShield.html#a441c8fb704534e39e8716f8e43797523" title=" " alt="" coords="261,1820,435,1861"/>
+<area shape="rect" id="node14" href="$classAdafruit__RGBLCDShield.html#a1668a3877e0d9960df698b68195b3d27" title=" " alt="" coords="523,1982,697,2024"/>
+<area shape="rect" id="node15" href="$classSensors.html#a1ef07aeea0536ccf34e310d831e71ef0" title=" " alt="" coords="513,2048,707,2075"/>
+<area shape="rect" id="node16" href="$classAsserv.html#a3a481367962ccacd1a378c3bb5df3b25" title=" " alt="" coords="5,2128,200,2155"/>
+<area shape="rect" id="node17" href="$classAdafruit__RGBLCDShield.html#a265d1ecc4335973e71b12c05fb038673" title=" " alt="" coords="523,2266,697,2308"/>
+<area shape="rect" id="node18" href="$classSensors.html#a7c1612f78d78562aa12322638a74140f" title=" " alt="" coords="554,147,666,174"/>
+<area shape="rect" id="node19" href="$classMD25.html#a935ef31b09c463fead4abab0accbbb6c" title=" " alt="" coords="558,1532,662,1559"/>
+<area shape="rect" id="node20" href="$classOPOS6UL__RobotExtended.html#a3af6cff5115c7ae70f7a797d9e90e66a" title="Initialise l&#39;état du robot et le décisionmaker IA." alt="" coords="253,292,443,333"/>
+<area shape="rect" id="node21" href="$classRobot.html#ae8cede2564e5b9229da095991c064ae4" title="Start the robot (console for tests or main program).." alt="" coords="558,299,662,326"/>
+<area shape="rect" id="node22" href="$classBeaconSensors.html#ab5da914e8d5038ecb88bbefe650215d5" title="initialise i2c" alt="" coords="527,2332,693,2359"/>
+<area shape="rect" id="node23" href="$classAdafruit__RGBLCDShield.html#a5a9697632b6ded2d3d76cf903f9fd3a9" title=" " alt="" coords="523,2384,697,2425"/>
+<area shape="rect" id="node24" href="$classLedBar.html#abc84af9e1f24d8e7a0c9a7f67767c34f" title="Clignote une led nb fois pendant timeus." alt="" coords="547,552,673,579"/>
+<area shape="rect" id="node25" href="$classGroveColorSensor.html#a7c3b429a3541802917165ec053f63153" title="Takes the raw values from the sensors and converts them to Correlated Color Temperature." alt="" coords="510,603,710,630"/>
+<area shape="rect" id="node26" href="$classAdafruit__RGBLCDShield.html#ad203e22075b6a8b63e9e206105bcc433" title=" " alt="" coords="523,1852,697,1893"/>
+<area shape="rect" id="node27" href="$classGroveColorSensor.html#aaca3a16d1b12b867cfd9de6d4f1e05ae" title="Log the parameters." alt="" coords="521,654,699,680"/>
+<area shape="rect" id="node28" href="$classAsservDriver.html#a05bd91c77a979511dda5d0e901ddf6e6" title=" " alt="" coords="509,872,711,913"/>
+<area shape="rect" id="node29" href="$classAdafruit__RGBLCDShield.html#a3865353c3a27760ec7ca874c47ba2a07" title=" " alt="" coords="523,937,697,978"/>
+<area shape="rect" id="node30" href="$classAdafruit__RGBLCDShield.html#a3b041610ba67c0c0e343a7b18b6e668e" title=" " alt="" coords="523,1002,697,1044"/>
+<area shape="rect" id="node31" href="$classActionManagerTimer.html#a40e5f9d8c2706434376d416d3e43fd3b" title="Affiche via le logger les actions en cours." alt="" coords="531,1068,689,1109"/>
+<area shape="rect" id="node32" href="$classActionManagerTimer.html#a17c6563c7a6c0955c7ca2230b038d832" title="Affiche via le logger les timers posix en cours et en attente." alt="" coords="531,1133,689,1174"/>
+<area shape="rect" id="node33" href="$classActionManagerTimer.html#aef6be0b68f6595c8ac5ce89c66b9333a" title="Affiche via le logger les timers classiques en cours. Deprecated." alt="" coords="531,1198,689,1240"/>
+<area shape="rect" id="node34" href="$classServoObjectsSystem.html#a6df7e1694087d2fa67d41aeef363b3f3" title="Déploie un servo à la position donnée." alt="" coords="531,1264,689,1305"/>
+<area shape="rect" id="node35" href="$classAdafruit__RGBLCDShield.html#aa721251c365c8033ac872c18ad64b93f" title=" " alt="" coords="523,1917,697,1958"/>
+<area shape="rect" id="node36" href="$classAsserv.html#a31cb7196e12282ed27c45e8f58b4db04" title=" " alt="" coords="509,1380,711,1407"/>
+<area shape="rect" id="node37" href="$classAsserv.html#a960679fed5ab18f631d7847c95fc1f85" title=" " alt="" coords="253,1330,443,1356"/>
+<area shape="rect" id="node38" href="$classIAbyPath.html#a36763cca0b7005fddde021c35f054dc7" title=" " alt="" coords="505,350,715,376"/>
+<area shape="rect" id="node39" href="$classIAbyPath.html#ab1f1155d4a5565efa55a0c11b8a1abfa" title=" " alt="" coords="511,198,709,224"/>
+<area shape="rect" id="node40" href="$classAsserv.html#a9ae528690268f84726565305c42718e5" title=" " alt="" coords="248,2150,448,2192"/>
+<area shape="rect" id="node41" href="$classAsserv.html#a744a8285ae7c6339252458a9c94fd602" title=" " alt="" coords="535,2201,685,2242"/>
+<area shape="rect" id="node42" href="$classSoundBarAction.html#ad080a35d375a14b912ed5d2625c0b687" title="Execution de l&#39;action." alt="" coords="518,451,702,478"/>
+<area shape="rect" id="node43" href="$classAsservEsialR.html#abfd3be9bde7bf8ae887688bf8bc0ca43" title="Méthode virtuelle pure à implémenter dans les sous&#45;classes." alt="" coords="527,248,693,275"/>
+<area shape="rect" id="node44" href="$classAsservDriver.html#ae2fdf0d75abab4e2cc974706c8a81867" title="Méthode virtuelle pure à implémenter dans les sous&#45;classes." alt="" coords="527,400,693,427"/>
 </map>

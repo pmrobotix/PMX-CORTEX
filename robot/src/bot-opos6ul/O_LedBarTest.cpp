@@ -25,7 +25,7 @@ void O_LedBarTest::run(int argc, char **argv)
 
     OPOS6UL_RobotExtended &robot = OPOS6UL_RobotExtended::instance();
 
-    int wait = 2000000;
+    int wait = 20000;
 
     robot.chrono().start();
 
@@ -34,6 +34,7 @@ void O_LedBarTest::run(int argc, char **argv)
     //test avec asserv
     robot.asserv().startMotionTimerAndOdo(false);
 
+    logger().info() << "set cmd go" << logs::end;
     robot.actions().ledBar().setOff(0);
     robot.actions().ledBar().setOff(1);
     robot.actions().ledBar().setOn(0);
@@ -45,10 +46,10 @@ void O_LedBarTest::run(int argc, char **argv)
     robot.actions().ledBar().set(0, LED_ORANGE);
     robot.actions().ledBar().set(0, LED_GREEN);
     robot.actions().ledBar().setOff(0);
+    
+    robot.actions().ledBar().blink(5, wait, LED_ORANGE);
 
-    robot.actions().ledBar().blink(5, 100000, LED_ORANGE);
-
-    robot.actions().ledBar().k2mil(4, 200000, LED_GREEN);
+    robot.actions().ledBar().k2mil(4, wait, LED_GREEN);
 
     robot.actions().ledBar().resetAll();
 
@@ -67,7 +68,7 @@ void O_LedBarTest::run(int argc, char **argv)
         robot.actions().ledBar().startSet(5, LED_RED);
         robot.actions().ledBar().startSet(6, LED_RED);
         robot.actions().ledBar().startSet(7, LED_RED);
-        utils::sleep_for_micros(100000);
+        utils::sleep_for_micros(wait);
         robot.actions().ledBar().startSet(0, LED_OFF);
         robot.actions().ledBar().startSet(1, LED_OFF);
         robot.actions().ledBar().startSet(2, LED_OFF);
@@ -77,28 +78,28 @@ void O_LedBarTest::run(int argc, char **argv)
         robot.actions().ledBar().startSet(6, LED_OFF);
         robot.actions().ledBar().startSet(7, LED_OFF);
         i++;
-        utils::sleep_for_micros(100000);
+        utils::sleep_for_micros(wait);
     }
 
     logger().info() << "startAlternate" << logs::end;
-    robot.actions().ledBar().startTimerAlternate(10, 500000, 0x55, 0xAA, LED_GREEN, true);
+    robot.actions().ledBar().startTimerAlternate(10, 100000, 0x55, 0xAA, LED_GREEN, true);
 
-    robot.actions().ledBar().startTimerAlternate(10, 500000, 0x55, 0xAA, LED_ORANGE, false);
-    utils::sleep_for_micros(200000);
+    robot.actions().ledBar().startTimerAlternate(10, 100000, 0x55, 0xAA, LED_ORANGE, false);
+    utils::sleep_for_micros(wait);
 
-    robot.actions().ledBar().startTimerAlternate(10, 200000, 0x55, 0xAA, LED_ORANGE, false);
-    utils::sleep_for_micros(1000000);
+    robot.actions().ledBar().startTimerAlternate(10, 100000, 0x55, 0xAA, LED_ORANGE, false);
+    utils::sleep_for_micros(wait);
     robot.actions().ledBar().stop(true);
 
     logger().info() << "startBlinkPin" << logs::end;
-    robot.actions().ledBar().startTimerBlinkPin(10, 300000, 0, LED_RED, true);
-    utils::sleep_for_micros(1000000);
+    robot.actions().ledBar().startTimerBlinkPin(10, 100000, 0, LED_RED, true);
+    utils::sleep_for_micros(wait);
     robot.actions().ledBar().stop(true);
 
     robot.actions().ledBar().resetAll();
     logger().info() << "startK2mil" << logs::end;
     robot.actions().ledBar().startTimerK2mil(4, 100000, LED_GREEN, true);
-    utils::sleep_for_micros(1000000);
+    utils::sleep_for_micros(wait);
     robot.actions().ledBar().stop(true);
     robot.actions().ledBar().resetAll();
 
@@ -123,10 +124,11 @@ void O_LedBarTest::run(int argc, char **argv)
         robot.actions().ledBar().startSet(6, LED_OFF);
         robot.actions().ledBar().startSet(7, LED_OFF);
         i++;
-        utils::sleep_for_micros(100000);
+        utils::sleep_for_micros(wait);
     }
 
-    utils::sleep_for_micros(1000000);
+    utils::sleep_for_micros(wait);
+    
     robot.actions().ledBar().stop(true);
     robot.actions().ledBar().resetAll();
 

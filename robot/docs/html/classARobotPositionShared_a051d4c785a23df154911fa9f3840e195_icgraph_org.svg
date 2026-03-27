@@ -51,18 +51,18 @@
 <path fill="none" stroke="midnightblue" d="M275.79,-40.33C266.87,-41.36 258.21,-42.35 250.25,-43.26"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="276.4,-43.79 285.94,-39.17 275.6,-36.83 276.4,-43.79"/>
 </g>
-<!-- Node5 -->
-<g id="node5" class="node">
-<title>Node5</title>
-<g id="a_node5"><a xlink:href="classSensors.html#a6fde663a7fb649742b32c4c56e4b939c" target="_top" xlink:title=" ">
+<!-- Node6 -->
+<g id="node6" class="node">
+<title>Node6</title>
+<g id="a_node6"><a xlink:href="classSensors.html#a6fde663a7fb649742b32c4c56e4b939c" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="166,-0.5 166,-19.5 250,-19.5 250,-0.5 166,-0.5"/>
 <text text-anchor="middle" x="208" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">Sensors::front</text>
 </a>
 </g>
 </g>
-<!-- Node2&#45;&gt;Node5 -->
-<g id="edge4" class="edge">
-<title>Node2&#45;&gt;Node5</title>
+<!-- Node2&#45;&gt;Node6 -->
+<g id="edge5" class="edge">
+<title>Node2&#45;&gt;Node6</title>
 <path fill="none" stroke="midnightblue" d="M275.79,-17.67C266.87,-16.64 258.21,-15.65 250.25,-14.74"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="275.6,-21.17 285.94,-18.83 276.4,-14.21 275.6,-21.17"/>
 </g>
@@ -70,22 +70,43 @@
 <g id="node4" class="node">
 <title>Node4</title>
 <g id="a_node4"><a xlink:href="classSensorsTimer.html#abc377178c2471f664b31658554963e83" target="_top" xlink:title="Actions à executer pour le timer.">
-<polygon fill="white" stroke="black" points="0,-19.5 0,-38.5 130,-38.5 130,-19.5 0,-19.5"/>
-<text text-anchor="middle" x="65" y="-26.5" font-family="Helvetica,sans-Serif" font-size="10.00">SensorsTimer::onTimer</text>
+<polygon fill="white" stroke="black" points="0,-38.5 0,-57.5 130,-57.5 130,-38.5 0,-38.5"/>
+<text text-anchor="middle" x="65" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">SensorsTimer::onTimer</text>
 </a>
 </g>
 </g>
 <!-- Node3&#45;&gt;Node4 -->
 <g id="edge3" class="edge">
 <title>Node3&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M155.84,-41.11C147.46,-39.98 138.68,-38.79 130.03,-37.63"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="155.46,-44.59 165.84,-42.45 156.39,-37.65 155.46,-44.59"/>
+<path fill="none" stroke="midnightblue" d="M155.57,-48C147.27,-48 138.59,-48 130.03,-48"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="155.84,-51.5 165.84,-48 155.84,-44.5 155.84,-51.5"/>
 </g>
-<!-- Node5&#45;&gt;Node4 -->
-<g id="edge5" class="edge">
-<title>Node5&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M155.84,-16.89C147.46,-18.02 138.68,-19.21 130.03,-20.37"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="156.39,-20.35 165.84,-15.55 155.46,-13.41 156.39,-20.35"/>
+<!-- Node5 -->
+<g id="node5" class="node">
+<title>Node5</title>
+<g id="a_node5"><a xlink:href="classO__SensorsTest.html#ae3b998034225e16586ded4ba3bd419e5" target="_top" xlink:title="Execute le test.">
+<polygon fill="white" stroke="black" points="10.5,-0.5 10.5,-19.5 119.5,-19.5 119.5,-0.5 10.5,-0.5"/>
+<text text-anchor="middle" x="65" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">O_SensorsTest::run</text>
+</a>
+</g>
+</g>
+<!-- Node3&#45;&gt;Node5 -->
+<g id="edge4" class="edge">
+<title>Node3&#45;&gt;Node5</title>
+<path fill="none" stroke="midnightblue" d="M161.56,-35.75C142.13,-30.52 119.77,-24.49 101.57,-19.59"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="160.85,-39.19 171.42,-38.41 162.68,-32.43 160.85,-39.19"/>
+</g>
+<!-- Node6&#45;&gt;Node4 -->
+<g id="edge6" class="edge">
+<title>Node6&#45;&gt;Node4</title>
+<path fill="none" stroke="midnightblue" d="M161.56,-22.25C142.13,-27.48 119.77,-33.51 101.57,-38.41"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="162.68,-25.57 171.42,-19.59 160.85,-18.81 162.68,-25.57"/>
+</g>
+<!-- Node6&#45;&gt;Node5 -->
+<g id="edge7" class="edge">
+<title>Node6&#45;&gt;Node5</title>
+<path fill="none" stroke="midnightblue" d="M155.73,-10C143.96,-10 131.42,-10 119.56,-10"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="155.84,-13.5 165.84,-10 155.84,-6.5 155.84,-13.5"/>
 </g>
 </g>
 </svg>

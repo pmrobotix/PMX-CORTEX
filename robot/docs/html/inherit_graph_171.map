@@ -1,9 +1,3 @@
 <map id="Graphe hiérarchique des classes" name="Graphe hiérarchique des classes">
-<area shape="rect" id="node1" href="$classIAction.html" title="Cette interface represente une action executee." alt="" coords="5,132,72,159"/>
-<area shape="rect" id="node2" href="$classCountingAction.html" title=" " alt="" coords="122,5,243,32"/>
-<area shape="rect" id="node3" href="$classLedBarAction.html" title="Cette action permet de definir les actions concernant la barre de leds." alt="" coords="129,56,237,83"/>
-<area shape="rect" id="node4" href="$classMockAction.html" title=" " alt="" coords="133,107,232,133"/>
-<area shape="rect" id="node5" href="$classOrderingAction.html" title=" " alt="" coords="123,157,242,184"/>
-<area shape="rect" id="node6" href="$classSoundBarAction.html" title="Cette action permet de definir les actions pour donner des sons." alt="" coords="120,208,245,235"/>
-<area shape="rect" id="node7" href="$classTestAction.html" title="Cette action permet de." alt="" coords="138,259,227,285"/>
+<area shape="rect" id="node1" href="$classGpioPCA9555.html" title="Driver singleton pour le GPIO expander PCA9555 via I2C." alt="" coords="5,5,116,32"/>
 </map>

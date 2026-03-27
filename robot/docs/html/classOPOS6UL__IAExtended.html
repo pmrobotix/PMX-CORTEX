@@ -65,16 +65,24 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Fonctions membres publiques</a> &#124;
+<a href="#pub-attribs">Attributs publics</a> &#124;
+<a href="#pri-attribs">Attributs privés</a> &#124;
 <a href="classOPOS6UL__IAExtended-members.html">Liste de tous les membres</a>  </div>
   <div class="headertitle">
 <div class="title">Référence de la classe OPOS6UL_IAExtended</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Gestion de l'IA étendue du robot OPOS6UL (terrain de jeu, déplacement adverse).  
+<p>Gestion de l'IA etendue du robot OPOS6UL (terrain de jeu, deplacement adverse).  
  <a href="classOPOS6UL__IAExtended.html#details">Plus de détails...</a></p>
 
 <p><code>#include &lt;<a class="el" href="OPOS6UL__IAExtended_8hpp_source.html">OPOS6UL_IAExtended.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Graphe de collaboration de OPOS6UL_IAExtended:</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classOPOS6UL__IAExtended__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<center><span class="legend">[<a href="graph_legend.html">légende</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Fonctions membres publiques</h2></td></tr>
@@ -82,16 +90,49 @@ Fonctions membres publiques</h2></td></tr>
 <tr class="separator:a25b80fe3ad16f9481def0b7f939a5a3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab355163f4574290fc586cc8c41b67c9f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOPOS6UL__IAExtended.html#ab355163f4574290fc586cc8c41b67c9f">~OPOS6UL_IAExtended</a> ()</td></tr>
 <tr class="separator:ab355163f4574290fc586cc8c41b67c9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa902e0684bee670e1ad189948e7d7971"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classIAbyPath.html">IAbyPath</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOPOS6UL__IAExtended.html#aa902e0684bee670e1ad189948e7d7971">iAbyPath</a> ()</td></tr>
+<tr class="memdesc:aa902e0684bee670e1ad189948e7d7971"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourne l'IA par pathfinding (nouvelle version).  <a href="classOPOS6UL__IAExtended.html#aa902e0684bee670e1ad189948e7d7971">Plus de détails...</a><br /></td></tr>
+<tr class="separator:aa902e0684bee670e1ad189948e7d7971"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ebf8bb8f21224f42f7f2192958ca535"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classIAbyZone.html">IAbyZone</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOPOS6UL__IAExtended.html#a4ebf8bb8f21224f42f7f2192958ca535">iAbyZone</a> ()</td></tr>
+<tr class="memdesc:a4ebf8bb8f21224f42f7f2192958ca535"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourne l'IA par zones (ancienne version).  <a href="classOPOS6UL__IAExtended.html#a4ebf8bb8f21224f42f7f2192958ca535">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a4ebf8bb8f21224f42f7f2192958ca535"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeaa64a0f2c66aa082fc79e6fa77472ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOPOS6UL__IAExtended.html#aeaa64a0f2c66aa082fc79e6fa77472ab">initPlayground</a> ()</td></tr>
 <tr class="memdesc:aeaa64a0f2c66aa082fc79e6fa77472ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise le terrain de jeu (zones, obstacles, chemins).  <a href="classOPOS6UL__IAExtended.html#aeaa64a0f2c66aa082fc79e6fa77472ab">Plus de détails...</a><br /></td></tr>
 <tr class="separator:aeaa64a0f2c66aa082fc79e6fa77472ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af172b51de46364b5a1d6b6f6354888e3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOPOS6UL__IAExtended.html#af172b51de46364b5a1d6b6f6354888e3">move_adv</a> (float x_mm, float y_mm)</td></tr>
-<tr class="memdesc:af172b51de46364b5a1d6b6f6354888e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Déplace la position connue de l'adversaire sur le terrain.  <a href="classOPOS6UL__IAExtended.html#af172b51de46364b5a1d6b6f6354888e3">Plus de détails...</a><br /></td></tr>
+<tr class="memdesc:af172b51de46364b5a1d6b6f6354888e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deplace la position connue de l'adversaire sur le terrain.  <a href="classOPOS6UL__IAExtended.html#af172b51de46364b5a1d6b6f6354888e3">Plus de détails...</a><br /></td></tr>
 <tr class="separator:af172b51de46364b5a1d6b6f6354888e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Attributs publics</h2></td></tr>
+<tr class="memitem:ae493f982cb5f0cc3a1110e8170082375"><td class="memItemLeft" align="right" valign="top">PlaygroundObjectID&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOPOS6UL__IAExtended.html#ae493f982cb5f0cc3a1110e8170082375">area_A3</a></td></tr>
+<tr class="separator:ae493f982cb5f0cc3a1110e8170082375"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a271ae4443b6f6537b2034269df942d10"><td class="memItemLeft" align="right" valign="top">PlaygroundObjectID&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOPOS6UL__IAExtended.html#a271ae4443b6f6537b2034269df942d10">area_B3</a></td></tr>
+<tr class="separator:a271ae4443b6f6537b2034269df942d10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5ad67e9030e25570af42ddda702efe8"><td class="memItemLeft" align="right" valign="top">PlaygroundObjectID&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOPOS6UL__IAExtended.html#ac5ad67e9030e25570af42ddda702efe8">area_B4</a></td></tr>
+<tr class="separator:ac5ad67e9030e25570af42ddda702efe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca7c28ccc3a8c78e25d340bb11c557ee"><td class="memItemLeft" align="right" valign="top">PlaygroundObjectID&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOPOS6UL__IAExtended.html#aca7c28ccc3a8c78e25d340bb11c557ee">area_C4</a></td></tr>
+<tr class="separator:aca7c28ccc3a8c78e25d340bb11c557ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa210c95cd1154d75e33f4ba6521c7ec4"><td class="memItemLeft" align="right" valign="top">PlaygroundObjectID&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOPOS6UL__IAExtended.html#aa210c95cd1154d75e33f4ba6521c7ec4">opponent_1</a></td></tr>
+<tr class="separator:aa210c95cd1154d75e33f4ba6521c7ec4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee6bea5d3f1021ee3a4559bdc63e4e53"><td class="memItemLeft" align="right" valign="top">PlaygroundObjectID&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOPOS6UL__IAExtended.html#aee6bea5d3f1021ee3a4559bdc63e4e53">opponent_2</a></td></tr>
+<tr class="separator:aee6bea5d3f1021ee3a4559bdc63e4e53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b8d9772a75d0e6d069d0391598e2e4a"><td class="memItemLeft" align="right" valign="top">PlaygroundObjectID&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOPOS6UL__IAExtended.html#a8b8d9772a75d0e6d069d0391598e2e4a">opponent_3</a></td></tr>
+<tr class="separator:a8b8d9772a75d0e6d069d0391598e2e4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada44e8ff061416524dbe18ec37bbd181"><td class="memItemLeft" align="right" valign="top">PlaygroundObjectID&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOPOS6UL__IAExtended.html#ada44e8ff061416524dbe18ec37bbd181">opponent_4</a></td></tr>
+<tr class="separator:ada44e8ff061416524dbe18ec37bbd181"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Attributs privés</h2></td></tr>
+<tr class="memitem:a3cdec1f4ab433feb67791d714c146604"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classIAbyPath.html">IAbyPath</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOPOS6UL__IAExtended.html#a3cdec1f4ab433feb67791d714c146604">iap_</a></td></tr>
+<tr class="separator:a3cdec1f4ab433feb67791d714c146604"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0faf77a116b7a59ba9461468048e62ec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classIAbyZone.html">IAbyZone</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOPOS6UL__IAExtended.html#a0faf77a116b7a59ba9461468048e62ec">iaz_</a></td></tr>
+<tr class="separator:a0faf77a116b7a59ba9461468048e62ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72b3e990cdc2c40cab0973387557f48e"><td class="memItemLeft" align="right" valign="top">SymmetricalPlayground *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOPOS6UL__IAExtended.html#a72b3e990cdc2c40cab0973387557f48e">p_</a></td></tr>
+<tr class="separator:a72b3e990cdc2c40cab0973387557f48e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
-<div class="textblock"><p>Gestion de l'IA étendue du robot OPOS6UL (terrain de jeu, déplacement adverse). </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">A faire:</a></b></dt><dd>Migrer les modules IAbyPath, IAbyZone et PathFinding. </dd></dl>
+<div class="textblock"><p>Gestion de l'IA etendue du robot OPOS6UL (terrain de jeu, deplacement adverse). </p>
 </div><h2 class="groupheader">Documentation des constructeurs et destructeur</h2>
 <a id="a25b80fe3ad16f9481def0b7f939a5a3d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a25b80fe3ad16f9481def0b7f939a5a3d">&#9670;&nbsp;</a></span>OPOS6UL_IAExtended()</h2>
@@ -118,6 +159,12 @@ Fonctions membres publiques</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classOPOS6UL__IAExtended_a25b80fe3ad16f9481def0b7f939a5a3d_cgraph.svg" width="100%" height="541"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
 
 </div>
 </div>
@@ -147,6 +194,66 @@ Fonctions membres publiques</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Documentation des fonctions membres</h2>
+<a id="aa902e0684bee670e1ad189948e7d7971"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa902e0684bee670e1ad189948e7d7971">&#9670;&nbsp;</a></span>iAbyPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classIAbyPath.html">IAbyPath</a>&amp; OPOS6UL_IAExtended::iAbyPath </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retourne l'IA par pathfinding (nouvelle version). </p>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classOPOS6UL__IAExtended_aa902e0684bee670e1ad189948e7d7971_icgraph.svg" width="100%" height="466"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a4ebf8bb8f21224f42f7f2192958ca535"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ebf8bb8f21224f42f7f2192958ca535">&#9670;&nbsp;</a></span>iAbyZone()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classIAbyZone.html">IAbyZone</a>&amp; OPOS6UL_IAExtended::iAbyZone </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retourne l'IA par zones (ancienne version). </p>
+
+</div>
+</div>
 <a id="aeaa64a0f2c66aa082fc79e6fa77472ab"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aeaa64a0f2c66aa082fc79e6fa77472ab">&#9670;&nbsp;</a></span>initPlayground()</h2>
 
@@ -163,6 +270,18 @@ Fonctions membres publiques</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Initialise le terrain de jeu (zones, obstacles, chemins). </p>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classOPOS6UL__IAExtended_aeaa64a0f2c66aa082fc79e6fa77472ab_cgraph.svg" width="100%" height="541"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classOPOS6UL__IAExtended_aeaa64a0f2c66aa082fc79e6fa77472ab_icgraph.svg" width="395" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
 
 </div>
 </div>
@@ -192,7 +311,7 @@ Fonctions membres publiques</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Déplace la position connue de l'adversaire sur le terrain. </p>
+<p>Deplace la position connue de l'adversaire sur le terrain. </p>
 <dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
     <tr><td class="paramname">x_mm</td><td>Position X de l'adversaire en mm. </td></tr>
@@ -209,6 +328,185 @@ Voici le graphe des appelants de cette fonction :</div>
 
 </div>
 </div>
+<h2 class="groupheader">Documentation des données membres</h2>
+<a id="ae493f982cb5f0cc3a1110e8170082375"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae493f982cb5f0cc3a1110e8170082375">&#9670;&nbsp;</a></span>area_A3</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PlaygroundObjectID OPOS6UL_IAExtended::area_A3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a271ae4443b6f6537b2034269df942d10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a271ae4443b6f6537b2034269df942d10">&#9670;&nbsp;</a></span>area_B3</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PlaygroundObjectID OPOS6UL_IAExtended::area_B3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac5ad67e9030e25570af42ddda702efe8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5ad67e9030e25570af42ddda702efe8">&#9670;&nbsp;</a></span>area_B4</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PlaygroundObjectID OPOS6UL_IAExtended::area_B4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aca7c28ccc3a8c78e25d340bb11c557ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca7c28ccc3a8c78e25d340bb11c557ee">&#9670;&nbsp;</a></span>area_C4</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PlaygroundObjectID OPOS6UL_IAExtended::area_C4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3cdec1f4ab433feb67791d714c146604"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cdec1f4ab433feb67791d714c146604">&#9670;&nbsp;</a></span>iap_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classIAbyPath.html">IAbyPath</a> OPOS6UL_IAExtended::iap_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0faf77a116b7a59ba9461468048e62ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0faf77a116b7a59ba9461468048e62ec">&#9670;&nbsp;</a></span>iaz_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classIAbyZone.html">IAbyZone</a> OPOS6UL_IAExtended::iaz_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa210c95cd1154d75e33f4ba6521c7ec4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa210c95cd1154d75e33f4ba6521c7ec4">&#9670;&nbsp;</a></span>opponent_1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PlaygroundObjectID OPOS6UL_IAExtended::opponent_1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aee6bea5d3f1021ee3a4559bdc63e4e53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee6bea5d3f1021ee3a4559bdc63e4e53">&#9670;&nbsp;</a></span>opponent_2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PlaygroundObjectID OPOS6UL_IAExtended::opponent_2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8b8d9772a75d0e6d069d0391598e2e4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b8d9772a75d0e6d069d0391598e2e4a">&#9670;&nbsp;</a></span>opponent_3</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PlaygroundObjectID OPOS6UL_IAExtended::opponent_3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ada44e8ff061416524dbe18ec37bbd181"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada44e8ff061416524dbe18ec37bbd181">&#9670;&nbsp;</a></span>opponent_4</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PlaygroundObjectID OPOS6UL_IAExtended::opponent_4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a72b3e990cdc2c40cab0973387557f48e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72b3e990cdc2c40cab0973387557f48e">&#9670;&nbsp;</a></span>p_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SymmetricalPlayground* OPOS6UL_IAExtended::p_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
 <li>src/bot-opos6ul/<a class="el" href="OPOS6UL__IAExtended_8hpp_source.html">OPOS6UL_IAExtended.hpp</a></li>
 <li>src/bot-opos6ul/<a class="el" href="OPOS6UL__IAExtended_8cpp.html">OPOS6UL_IAExtended.cpp</a></li>
@@ -216,7 +514,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Généré le Jeudi 26 Mars 2026 23:28:59 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Généré le Vendredi 27 Mars 2026 12:31:55 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

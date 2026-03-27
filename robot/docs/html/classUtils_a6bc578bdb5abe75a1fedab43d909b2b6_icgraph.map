@@ -1,39 +1,52 @@
 <map id="Utils::mmToUO" name="Utils::mmToUO">
-<area shape="rect" id="node1" title=" " alt="" coords="1363,275,1483,301"/>
-<area shape="rect" id="node2" href="$classCommandManagerA.html#a7b6f1b708edcd9dcbf636934ebd6fee4" title=" " alt="" coords="1073,16,1291,43"/>
-<area shape="rect" id="node3" href="$classCommandManagerA.html#a4d8ac8cedd147da82fca1d73970e7b84" title=" " alt="" coords="1073,67,1291,109"/>
-<area shape="rect" id="node10" href="$classCommandManagerA.html#a7ba985f99583c8733999c5eed02912b5" title=" " alt="" coords="1073,133,1291,174"/>
-<area shape="rect" id="node11" href="$classCommandManagerA.html#a0d7a4731eeaab720cd4a9fc135c64084" title=" " alt="" coords="1057,300,1307,327"/>
-<area shape="rect" id="node12" href="$classCommandManagerA.html#ac1f8a98137f08b0974cdee6bfda7ecf4" title=" " alt="" coords="1073,351,1291,393"/>
-<area shape="rect" id="node13" href="$classCommandManagerA.html#a2dae6504721d5eaa0c4d1ae58cb0cdcc" title=" " alt="" coords="1049,199,1315,225"/>
-<area shape="rect" id="node23" href="$classCommandManagerA.html#a5705ed05c4c964a5cedbd7bdb5f471b1" title=" " alt="" coords="1056,417,1308,444"/>
-<area shape="rect" id="node27" href="$classCommandManagerA.html#a0f62e1ea0526585a655dd3bd68f79f85" title=" " alt="" coords="781,469,1001,510"/>
-<area shape="rect" id="node28" href="$classAsservEsialR.html#a08fc904da0513ea35c524958f8cc6df0" title=" " alt="" coords="1102,553,1262,594"/>
-<area shape="rect" id="node32" href="$classAsservEsialR.html#a9b3d60c1cb5f5eabe0857b16c46432d6" title="Definit la position courante du robot (recalage)." alt="" coords="1073,249,1291,276"/>
-<area shape="rect" id="node4" href="$classAsservEsialR.html#a18f0ce02a39c7a1cadf7cddf15f875d5" title="Oriente le robot face a un point." alt="" coords="811,67,971,109"/>
-<area shape="rect" id="node5" href="$classAsserv.html#af98a1702935599e4d8f0b6cfac9c7dbe" title=" " alt="" coords="560,5,692,32"/>
-<area shape="rect" id="node6" href="$classAsservEsialR.html#aff541fb741bcef0ae8be48fbf6c66d94" title="Deplace le robot vers un point (marche avant)." alt="" coords="527,123,725,149"/>
-<area shape="rect" id="node8" href="$classAsservEsialR.html#a57df0bb16d2916c5cd161fa69034f3c8" title="Deplace le robot vers un point (marche arriere)." alt="" coords="546,57,706,98"/>
-<area shape="rect" id="node7" href="$classAsserv.html#a3208aa1d2cc84eff11770477b79aa6f7" title=" " alt="" coords="310,68,429,95"/>
-<area shape="rect" id="node9" href="$classAsserv.html#ade31f4182c755e3ee09092fe9bf3d5d0" title=" " alt="" coords="292,17,447,44"/>
-<area shape="rect" id="node14" href="$classAsservEsialR.html#a163832308cf0ea6fb9826fd93950c7bf" title="Avance ou recule en ligne droite." alt="" coords="811,154,971,195"/>
-<area shape="rect" id="node15" href="$classAsserv.html#a100bad165da8f3055e05383e0cba03fd" title=" " alt="" coords="568,173,684,200"/>
-<area shape="rect" id="node16" href="$classAsserv.html#aa2ec3b84e3cccf2145cc70e33f08dc58" title=" " alt="" coords="268,119,471,145"/>
-<area shape="rect" id="node18" href="$classAsserv.html#a960679fed5ab18f631d7847c95fc1f85" title=" " alt="" coords="274,169,465,196"/>
-<area shape="rect" id="node20" href="$classO__State__Init.html#a1980cd82dcb83e88d61f2e7e14dddfa0" title=" " alt="" coords="293,271,445,297"/>
-<area shape="rect" id="node22" href="$classRobot.html#a7c2c32badf138c2a26b82068447c3c98" title="Fonctions de motion intelligente en plusieurs essais." alt="" coords="295,220,443,247"/>
-<area shape="rect" id="node17" href="$classAsserv.html#af438189501d475dcb6632ce63efe5e5f" title=" " alt="" coords="5,105,220,146"/>
-<area shape="rect" id="node19" href="$classAsserv.html#a0a57aa0008a30ba9b13502e4dd61310d" title=" " alt="" coords="11,170,214,211"/>
-<area shape="rect" id="node21" href="$classO__State__Init.html#abc19788b7457d1f819245dd28367fe91" title="Exécute l&#39;état d&#39;initialisation." alt="" coords="33,271,193,297"/>
-<area shape="rect" id="node24" href="$classCommandManagerA.html#a23d52bda2157cc39ab2990c3d554b806" title=" " alt="" coords="781,351,1001,393"/>
-<area shape="rect" id="node25" href="$classCommandManagerA.html#a5a1c89032b7f8150bed910011daf111a" title=" " alt="" coords="519,440,733,467"/>
-<area shape="rect" id="node26" href="$classAsservEsialR.html#abfd3be9bde7bf8ae887688bf8bc0ca43" title="Méthode virtuelle pure à implémenter dans les sous&#45;classes." alt="" coords="287,453,452,480"/>
-<area shape="rect" id="node29" href="$classAsserv.html#a0ac23995bdebb69bb49304850c951886" title=" " alt="" coords="824,535,959,561"/>
-<area shape="rect" id="node30" href="$classAsserv.html#acc891ab26e32320b4f2fac646de93632" title=" " alt="" coords="820,585,963,612"/>
-<area shape="rect" id="node31" href="$classAsserv.html#aa105905ebc1940adb7c483a14c9ce8fc" title=" " alt="" coords="810,636,973,663"/>
-<area shape="rect" id="node33" href="$classAsserv.html#abe526ad31d80f46598cdbb031a83a906" title=" " alt="" coords="804,271,979,297"/>
-<area shape="rect" id="node34" href="$classAsserv.html#a3a481367962ccacd1a378c3bb5df3b25" title=" " alt="" coords="529,271,723,297"/>
-<area shape="rect" id="node35" href="$classAsserv.html#a050645863c2a40f3116ee0847d1d3732" title=" " alt="" coords="524,327,728,353"/>
-<area shape="rect" id="node36" href="$classAsserv.html#a314e3ff9a8a538a23d26dcb802386024" title=" " alt="" coords="277,387,461,429"/>
-<area shape="rect" id="node37" href="$classAsserv.html#a9e997a871e745e687a4088103378bae3" title=" " alt="" coords="272,322,467,363"/>
+<area shape="rect" id="node1" title=" " alt="" coords="2143,338,2263,365"/>
+<area shape="rect" id="node2" href="$classCommandManagerA.html#a7b6f1b708edcd9dcbf636934ebd6fee4" title=" " alt="" coords="1853,79,2071,106"/>
+<area shape="rect" id="node3" href="$classCommandManagerA.html#a4d8ac8cedd147da82fca1d73970e7b84" title=" " alt="" coords="1853,131,2071,172"/>
+<area shape="rect" id="node21" href="$classCommandManagerA.html#a7ba985f99583c8733999c5eed02912b5" title=" " alt="" coords="1853,196,2071,237"/>
+<area shape="rect" id="node22" href="$classCommandManagerA.html#a0d7a4731eeaab720cd4a9fc135c64084" title=" " alt="" coords="1837,363,2087,390"/>
+<area shape="rect" id="node23" href="$classCommandManagerA.html#ac1f8a98137f08b0974cdee6bfda7ecf4" title=" " alt="" coords="1853,415,2071,456"/>
+<area shape="rect" id="node24" href="$classCommandManagerA.html#a2dae6504721d5eaa0c4d1ae58cb0cdcc" title=" " alt="" coords="1829,262,2095,289"/>
+<area shape="rect" id="node35" href="$classCommandManagerA.html#a5705ed05c4c964a5cedbd7bdb5f471b1" title=" " alt="" coords="1836,481,2088,507"/>
+<area shape="rect" id="node39" href="$classCommandManagerA.html#a0f62e1ea0526585a655dd3bd68f79f85" title=" " alt="" coords="1561,532,1781,573"/>
+<area shape="rect" id="node40" href="$classAsservEsialR.html#a08fc904da0513ea35c524958f8cc6df0" title=" " alt="" coords="1882,616,2042,657"/>
+<area shape="rect" id="node44" href="$classAsservEsialR.html#a9b3d60c1cb5f5eabe0857b16c46432d6" title="Definit la position courante du robot (recalage)." alt="" coords="1853,313,2071,339"/>
+<area shape="rect" id="node4" href="$classAsservEsialR.html#a18f0ce02a39c7a1cadf7cddf15f875d5" title="Oriente le robot face a un point." alt="" coords="1591,131,1751,172"/>
+<area shape="rect" id="node5" href="$classAsserv.html#af98a1702935599e4d8f0b6cfac9c7dbe" title=" " alt="" coords="1083,79,1215,106"/>
+<area shape="rect" id="node17" href="$classAsservEsialR.html#aff541fb741bcef0ae8be48fbf6c66d94" title="Deplace le robot vers un point (marche avant)." alt="" coords="1307,137,1505,163"/>
+<area shape="rect" id="node19" href="$classAsservEsialR.html#a57df0bb16d2916c5cd161fa69034f3c8" title="Deplace le robot vers un point (marche arriere)." alt="" coords="1326,188,1486,229"/>
+<area shape="rect" id="node6" href="$classIAbyPath.html#a36763cca0b7005fddde021c35f054dc7" title=" " alt="" coords="789,129,999,155"/>
+<area shape="rect" id="node9" href="$classIAbyPath.html#ab95592ae87c3f666835d3fbdac8c5ffd" title=" " alt="" coords="519,5,727,47"/>
+<area shape="rect" id="node10" href="$classIAbyPath.html#ab1f1155d4a5565efa55a0c11b8a1abfa" title=" " alt="" coords="795,78,993,105"/>
+<area shape="rect" id="node7" href="$classIAbyPath.html#acc586e1ba62ffb7a21087a5ca4d2f131" title=" " alt="" coords="505,254,741,281"/>
+<area shape="rect" id="node8" href="$classIAbyPath.html#a9535c82f137778cc6cd4b159fe3d58ea" title=" " alt="" coords="235,247,457,288"/>
+<area shape="rect" id="node11" href="$classIAbyPath.html#a00b7b125584bda7731696dfd5069b17c" title=" " alt="" coords="519,71,727,112"/>
+<area shape="rect" id="node15" href="$classIAbyPath.html#aa2a96904ea74078d56dad53979b1d999" title=" " alt="" coords="511,137,735,163"/>
+<area shape="rect" id="node12" href="$O__IAbyPathTest_8cpp.html#ac1055b8eb7025052d58ebaf15869a480" title=" " alt="" coords="257,27,435,54"/>
+<area shape="rect" id="node14" href="$O__IAbyPathTest_8cpp.html#aafb960063ea3193551e7ba63626e2561" title=" " alt="" coords="257,78,435,105"/>
+<area shape="rect" id="node13" href="$classO__IAByPathTest.html#abedd21fde4835d641e6aa3f8e1c6581f" title=" " alt="" coords="5,53,187,79"/>
+<area shape="rect" id="node16" href="$classIAbyPath.html#a3f27b793f84340c99ca33e12c2380bb4" title=" " alt="" coords="241,129,451,171"/>
+<area shape="rect" id="node18" href="$classAsserv.html#a3208aa1d2cc84eff11770477b79aa6f7" title=" " alt="" coords="1089,131,1208,158"/>
+<area shape="rect" id="node20" href="$classAsserv.html#ade31f4182c755e3ee09092fe9bf3d5d0" title=" " alt="" coords="1071,189,1226,215"/>
+<area shape="rect" id="node25" href="$classAsservEsialR.html#a163832308cf0ea6fb9826fd93950c7bf" title="Avance ou recule en ligne droite." alt="" coords="1591,221,1751,263"/>
+<area shape="rect" id="node26" href="$classAsserv.html#a100bad165da8f3055e05383e0cba03fd" title=" " alt="" coords="1091,281,1207,307"/>
+<area shape="rect" id="node27" href="$classAsserv.html#aa2ec3b84e3cccf2145cc70e33f08dc58" title=" " alt="" coords="793,331,995,358"/>
+<area shape="rect" id="node29" href="$classAsserv.html#a960679fed5ab18f631d7847c95fc1f85" title=" " alt="" coords="799,179,989,206"/>
+<area shape="rect" id="node31" href="$classO__IAByPathTest.html#a3f57f585ff1382a52bf7f79a28d43629" title=" " alt="" coords="818,382,970,409"/>
+<area shape="rect" id="node32" href="$classO__State__Init.html#a1980cd82dcb83e88d61f2e7e14dddfa0" title=" " alt="" coords="818,433,970,459"/>
+<area shape="rect" id="node34" href="$classRobot.html#a7c2c32badf138c2a26b82068447c3c98" title="Fonctions de motion intelligente en plusieurs essais." alt="" coords="820,281,968,307"/>
+<area shape="rect" id="node28" href="$classAsserv.html#af438189501d475dcb6632ce63efe5e5f" title=" " alt="" coords="516,324,731,365"/>
+<area shape="rect" id="node30" href="$classAsserv.html#a0a57aa0008a30ba9b13502e4dd61310d" title=" " alt="" coords="522,188,725,229"/>
+<area shape="rect" id="node33" href="$classO__State__Init.html#abc19788b7457d1f819245dd28367fe91" title="Exécute l&#39;état d&#39;initialisation." alt="" coords="543,433,703,459"/>
+<area shape="rect" id="node36" href="$classCommandManagerA.html#a23d52bda2157cc39ab2990c3d554b806" title=" " alt="" coords="1561,415,1781,456"/>
+<area shape="rect" id="node37" href="$classCommandManagerA.html#a5a1c89032b7f8150bed910011daf111a" title=" " alt="" coords="1299,481,1513,507"/>
+<area shape="rect" id="node38" href="$classAsservEsialR.html#abfd3be9bde7bf8ae887688bf8bc0ca43" title="Méthode virtuelle pure à implémenter dans les sous&#45;classes." alt="" coords="1066,483,1231,510"/>
+<area shape="rect" id="node41" href="$classAsserv.html#a0ac23995bdebb69bb49304850c951886" title=" " alt="" coords="1604,598,1739,625"/>
+<area shape="rect" id="node42" href="$classAsserv.html#acc891ab26e32320b4f2fac646de93632" title=" " alt="" coords="1600,649,1743,675"/>
+<area shape="rect" id="node43" href="$classAsserv.html#aa105905ebc1940adb7c483a14c9ce8fc" title=" " alt="" coords="1590,699,1753,726"/>
+<area shape="rect" id="node45" href="$classAsserv.html#abe526ad31d80f46598cdbb031a83a906" title=" " alt="" coords="1319,345,1493,371"/>
+<area shape="rect" id="node46" href="$classAsserv.html#a3a481367962ccacd1a378c3bb5df3b25" title=" " alt="" coords="1051,345,1246,371"/>
+<area shape="rect" id="node47" href="$classAsserv.html#a050645863c2a40f3116ee0847d1d3732" title=" " alt="" coords="1047,433,1251,459"/>
+<area shape="rect" id="node48" href="$classAsserv.html#a314e3ff9a8a538a23d26dcb802386024" title=" " alt="" coords="802,484,986,525"/>
+<area shape="rect" id="node49" href="$classAsserv.html#a9e997a871e745e687a4088103378bae3" title=" " alt="" coords="797,549,991,591"/>
+<area shape="rect" id="node50" href="$classO__SensorsTest.html#ae3b998034225e16586ded4ba3bd419e5" title="Execute le test." alt="" coords="821,615,967,642"/>
 </map>

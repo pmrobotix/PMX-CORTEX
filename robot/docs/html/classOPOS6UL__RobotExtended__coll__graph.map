@@ -1,52 +1,52 @@
 <map id="OPOS6UL_RobotExtended" name="OPOS6UL_RobotExtended">
-<area shape="rect" id="node1" title="Classe principale du robot étendu pour OPOS6UL (singleton)." alt="" coords="2389,671,2579,697"/>
-<area shape="rect" id="node2" href="$classRobot.html" title=" " alt="" coords="1465,725,1525,752"/>
-<area shape="rect" id="node15" href="$classAsserv.html" title=" " alt="" coords="2135,847,2202,873"/>
-<area shape="rect" id="node18" href="$classAsservEsialR.html" title=" " alt="" coords="1769,1205,1876,1232"/>
-<area shape="rect" id="node36" href="$classSensors.html" title="Gestion des capteurs de detection et de distance." alt="" coords="1786,507,1859,533"/>
-<area shape="rect" id="node49" href="$classO__State__DecisionMakerIA.html" title="Moteur de décision IA du robot." alt="" coords="1728,640,1917,667"/>
-<area shape="rect" id="node3" href="$classAutomate.html" title="Gère un automate simple." alt="" coords="1145,776,1231,803"/>
-<area shape="rect" id="node4" href="$classIAutomateState.html" title="Définit l&#39;état d&#39;un automate." alt="" coords="763,789,887,816"/>
-<area shape="rect" id="node5" href="$classArguments.html" title=" " alt="" coords="1141,624,1235,651"/>
-<area shape="rect" id="node6" href="$classConsoleManager.html" title="Classe de gestion de l&#39;ensemble des tests de fonctionnement du robot." alt="" coords="1123,675,1253,701"/>
-<area shape="rect" id="node7" href="$classSvgWriter.html" title="Wrapper pour la génération de fichier svg via le système de log." alt="" coords="1145,725,1231,752"/>
-<area shape="rect" id="node8" href="$classutils_1_1Mutex.html" title="Implémentation d&#39;une gestion de mutex." alt="" coords="111,517,210,544"/>
-<area shape="rect" id="node19" href="$classutils_1_1Thread.html" title="Classe de base pour les threads (wrapper POSIX pthread)." alt="" coords="410,548,513,575"/>
-<area shape="rect" id="node30" href="$classActionManagerTimer.html" title="Classe de gestion des actions du robot et des actions par timer." alt="" coords="745,397,904,424"/>
-<area shape="rect" id="node42" href="$classServoObjectsSystem.html" title="Système de gestion des servomoteurs (déploiement, positionnement, torque)." alt="" coords="1744,217,1901,244"/>
-<area shape="rect" id="node9" href="$classlogs_1_1Logger.html" title="Classe de gestion des traces de l&#39;application." alt="" coords="774,672,875,699"/>
-<area shape="rect" id="node10" href="$classlogs_1_1Level.html" title="Cette classe représente un niveau de trace." alt="" coords="415,776,507,803"/>
-<area shape="rect" id="node11" href="$classlogs_1_1Appender.html" title="Classe de gestion des flux de sortie pour les logs." alt="" coords="402,827,521,853"/>
-<area shape="rect" id="node12" href="$classutils_1_1PointerList.html" title=" " alt="" coords="761,723,888,765"/>
-<area shape="rect" id="node13" title=" " alt="" coords="384,877,539,933"/>
-<area shape="rect" id="node14" href="$classutils_1_1Chronometer.html" title="Gestion d&#39;un chronomètre." alt="" coords="390,957,533,984"/>
-<area shape="rect" id="node28" href="$classARobotPositionShared.html" title="Interface abstraite d&#39;acces a la position partagee du robot." alt="" coords="928,933,1095,960"/>
-<area shape="rect" id="node16" href="$structsRobotPosition.html" title="Position et etat du robot sur la table." alt="" coords="1435,892,1554,919"/>
-<area shape="rect" id="node17" href="$classAAsservDriver.html" title="Interface abstraite du driver d&#39;asservissement." alt="" coords="1437,1455,1552,1481"/>
-<area shape="rect" id="node20" href="$classCodeursInterface.html" title=" " alt="" coords="395,1320,528,1347"/>
-<area shape="rect" id="node24" href="$classOdometrie.html" title=" " alt="" coords="779,1261,870,1288"/>
-<area shape="rect" id="node21" href="$classCommandManagerA.html" title=" " alt="" coords="1417,1165,1572,1192"/>
-<area shape="rect" id="node22" href="$classCMDList.html" title=" " alt="" coords="1150,1053,1226,1080"/>
-<area shape="rect" id="node23" href="$structCMD__struct.html" title=" " alt="" coords="776,1087,873,1113"/>
-<area shape="rect" id="node25" href="$classConsignController.html" title=" " alt="" coords="1119,1244,1257,1271"/>
-<area shape="rect" id="node26" href="$classRegulateur.html" title=" " alt="" coords="778,1163,871,1189"/>
-<area shape="rect" id="node27" href="$classMotorsController.html" title=" " alt="" coords="759,1333,890,1360"/>
-<area shape="rect" id="node29" href="$classActions.html" title=" " alt="" coords="1153,359,1223,385"/>
-<area shape="rect" id="node35" href="$classOPOS6UL__ActionsExtended.html" title="Gestion des actions étendues du robot OPOS6UL (servos, capteurs, LEDs, LCD)." alt="" coords="2069,317,2268,344"/>
-<area shape="rect" id="node37" href="$classAActionsElement.html" title="Classe abstraite définissant la notion d&#39;élément du robot." alt="" coords="1428,335,1561,361"/>
-<area shape="rect" id="node31" href="$classutils_1_1PointerList.html" title=" " alt="" coords="365,259,557,301"/>
-<area shape="rect" id="node32" title=" " alt="" coords="5,167,316,209"/>
-<area shape="rect" id="node33" href="$classutils_1_1PointerList.html" title=" " alt="" coords="383,390,540,431"/>
-<area shape="rect" id="node34" href="$classutils_1_1PointerList.html" title=" " alt="" coords="398,325,525,366"/>
-<area shape="rect" id="node39" href="$classLcdShield.html" title="Gestion de l&#39;écran LCD du robot." alt="" coords="1781,56,1865,83"/>
-<area shape="rect" id="node44" href="$classTirette.html" title="Gère la tirette de démarrage du robot (interrupteur de lancement)." alt="" coords="1790,292,1855,319"/>
-<area shape="rect" id="node46" href="$classLedBar.html" title="Gestion d&#39;une barre de LEDs avec actions et timers de clignotement." alt="" coords="1789,343,1856,369"/>
-<area shape="rect" id="node47" href="$classButtonBar.html" title="Gestion de la barre de boutons du robot." alt="" coords="1779,393,1866,420"/>
-<area shape="rect" id="node38" href="$classASensorsDriver.html" title="Interface abstraite du driver de capteurs." alt="" coords="1433,527,1556,553"/>
-<area shape="rect" id="node40" href="$classPrint.html" title=" " alt="" coords="1469,5,1521,32"/>
-<area shape="rect" id="node41" href="$classALcdShieldDriver.html" title="Interface abstraite du driver d&#39;ecran LCD." alt="" coords="1428,56,1561,83"/>
-<area shape="rect" id="node43" href="$classAServoDriver.html" title="Interface abstraite du driver de servomoteurs." alt="" coords="1441,157,1549,184"/>
-<area shape="rect" id="node45" href="$classASwitchDriver.html" title="Interface abstraite du driver de switchs." alt="" coords="1437,425,1552,452"/>
-<area shape="rect" id="node48" href="$classAButtonDriver.html" title="Interface abstraite du driver de boutons." alt="" coords="1437,476,1552,503"/>
-<area shape="rect" id="node50" href="$classOPOS6UL__IAExtended.html" title="Gestion de l&#39;IA étendue du robot OPOS6UL (terrain de jeu, déplacement adverse)." alt="" coords="2087,897,2251,924"/>
+<area shape="rect" id="node1" title="Classe principale du robot étendu pour OPOS6UL (singleton)." alt="" coords="2177,763,2367,789"/>
+<area shape="rect" id="node2" href="$classRobot.html" title=" " alt="" coords="1253,947,1313,973"/>
+<area shape="rect" id="node15" href="$classAsserv.html" title=" " alt="" coords="1923,1105,1990,1132"/>
+<area shape="rect" id="node18" href="$classAsservEsialR.html" title=" " alt="" coords="1557,1316,1664,1343"/>
+<area shape="rect" id="node31" href="$classSensors.html" title="Gestion des capteurs de detection et de distance." alt="" coords="1574,379,1647,405"/>
+<area shape="rect" id="node44" href="$classO__State__DecisionMakerIA.html" title="Moteur de décision IA du robot." alt="" coords="1516,787,1705,813"/>
+<area shape="rect" id="node46" href="$classIAbyPath.html" title=" " alt="" coords="1571,735,1650,761"/>
+<area shape="rect" id="node49" href="$classIAbyZone.html" title=" " alt="" coords="1569,655,1653,681"/>
+<area shape="rect" id="node3" href="$classAutomate.html" title="Gère un automate simple." alt="" coords="933,913,1019,940"/>
+<area shape="rect" id="node4" href="$classIAutomateState.html" title="Définit l&#39;état d&#39;un automate." alt="" coords="551,964,675,991"/>
+<area shape="rect" id="node5" href="$classArguments.html" title=" " alt="" coords="929,964,1023,991"/>
+<area shape="rect" id="node6" href="$classConsoleManager.html" title="Classe de gestion de l&#39;ensemble des tests de fonctionnement du robot." alt="" coords="911,1015,1041,1041"/>
+<area shape="rect" id="node7" href="$classSvgWriter.html" title="Wrapper pour la génération de fichier svg via le système de log." alt="" coords="933,1229,1019,1256"/>
+<area shape="rect" id="node8" href="$classutils_1_1Mutex.html" title="Implémentation d&#39;une gestion de mutex." alt="" coords="5,656,104,683"/>
+<area shape="rect" id="node19" href="$classutils_1_1Thread.html" title="Classe de base pour les threads (wrapper POSIX pthread)." alt="" coords="198,800,301,827"/>
+<area shape="rect" id="node27" href="$classActionManagerTimer.html" title="Classe de gestion des actions du robot et des actions par timer." alt="" coords="533,699,692,725"/>
+<area shape="rect" id="node37" href="$classServoObjectsSystem.html" title="Système de gestion des servomoteurs (déploiement, positionnement, torque)." alt="" coords="1532,48,1689,75"/>
+<area shape="rect" id="node9" href="$classlogs_1_1Logger.html" title="Classe de gestion des traces de l&#39;application." alt="" coords="562,1167,663,1193"/>
+<area shape="rect" id="node10" href="$classlogs_1_1Level.html" title="Cette classe représente un niveau de trace." alt="" coords="203,1104,295,1131"/>
+<area shape="rect" id="node11" href="$classlogs_1_1Appender.html" title="Classe de gestion des flux de sortie pour les logs." alt="" coords="190,1155,309,1181"/>
+<area shape="rect" id="node12" href="$classutils_1_1PointerList.html" title=" " alt="" coords="549,1218,676,1259"/>
+<area shape="rect" id="node13" title=" " alt="" coords="172,1205,327,1261"/>
+<area shape="rect" id="node14" href="$classutils_1_1Chronometer.html" title="Gestion d&#39;un chronomètre." alt="" coords="178,923,321,949"/>
+<area shape="rect" id="node25" href="$classARobotPositionShared.html" title="Interface abstraite d&#39;acces a la position partagee du robot." alt="" coords="716,883,883,909"/>
+<area shape="rect" id="node16" href="$structsRobotPosition.html" title="Position et etat du robot sur la table." alt="" coords="1223,1107,1342,1133"/>
+<area shape="rect" id="node17" href="$classAAsservDriver.html" title="Interface abstraite du driver d&#39;asservissement." alt="" coords="1225,1571,1340,1597"/>
+<area shape="rect" id="node20" href="$classCodeursInterface.html" title=" " alt="" coords="183,1336,316,1363"/>
+<area shape="rect" id="node22" href="$classOdometrie.html" title=" " alt="" coords="567,1456,658,1483"/>
+<area shape="rect" id="node21" href="$classCommandManagerA.html" title=" " alt="" coords="1205,1455,1360,1481"/>
+<area shape="rect" id="node23" href="$classConsignController.html" title=" " alt="" coords="907,1409,1045,1436"/>
+<area shape="rect" id="node24" href="$classMotorsController.html" title=" " alt="" coords="547,1385,678,1412"/>
+<area shape="rect" id="node26" href="$classActions.html" title=" " alt="" coords="941,559,1011,585"/>
+<area shape="rect" id="node30" href="$classOPOS6UL__ActionsExtended.html" title="Gestion des actions étendues du robot OPOS6UL (servos, capteurs, LEDs, LCD)." alt="" coords="1857,280,2056,307"/>
+<area shape="rect" id="node32" href="$classAActionsElement.html" title="Classe abstraite définissant la notion d&#39;élément du robot." alt="" coords="1216,305,1349,332"/>
+<area shape="rect" id="node28" href="$classutils_1_1PointerList.html" title=" " alt="" coords="153,669,345,710"/>
+<area shape="rect" id="node29" href="$classutils_1_1PointerList.html" title=" " alt="" coords="171,734,328,775"/>
+<area shape="rect" id="node34" href="$classLcdShield.html" title="Gestion de l&#39;écran LCD du robot." alt="" coords="1569,445,1653,472"/>
+<area shape="rect" id="node39" href="$classTirette.html" title="Gère la tirette de démarrage du robot (interrupteur de lancement)." alt="" coords="1578,112,1643,139"/>
+<area shape="rect" id="node41" href="$classLedBar.html" title="Gestion d&#39;une barre de LEDs avec actions et timers de clignotement." alt="" coords="1577,305,1644,332"/>
+<area shape="rect" id="node42" href="$classButtonBar.html" title="Gestion de la barre de boutons du robot." alt="" coords="1567,255,1654,281"/>
+<area shape="rect" id="node33" href="$classASensorsDriver.html" title="Interface abstraite du driver de capteurs." alt="" coords="1221,401,1344,428"/>
+<area shape="rect" id="node35" href="$classPrint.html" title=" " alt="" coords="1257,503,1309,529"/>
+<area shape="rect" id="node36" href="$classALcdShieldDriver.html" title="Interface abstraite du driver d&#39;ecran LCD." alt="" coords="1216,452,1349,479"/>
+<area shape="rect" id="node38" href="$classAServoDriver.html" title="Interface abstraite du driver de servomoteurs." alt="" coords="1229,43,1337,69"/>
+<area shape="rect" id="node40" href="$classASwitchDriver.html" title="Interface abstraite du driver de switchs." alt="" coords="1225,109,1340,136"/>
+<area shape="rect" id="node43" href="$classAButtonDriver.html" title="Interface abstraite du driver de boutons." alt="" coords="1225,228,1340,255"/>
+<area shape="rect" id="node45" href="$classOPOS6UL__IAExtended.html" title="Gestion de l&#39;IA etendue du robot OPOS6UL (terrain de jeu, deplacement adverse)." alt="" coords="1875,735,2039,761"/>
+<area shape="rect" id="node47" href="$structACTIONS.html" title=" " alt="" coords="1243,687,1323,713"/>
+<area shape="rect" id="node48" href="$structZONE.html" title=" " alt="" coords="947,636,1005,663"/>
+<area shape="rect" id="node50" href="$structZONE__PATH.html" title=" " alt="" coords="1233,636,1332,663"/>
 </map>

@@ -1,10 +1,6 @@
 <map id="Graphe hiérarchique des classes" name="Graphe hiérarchique des classes">
-<area shape="rect" id="node1" href="$classITimerPosixListener.html" title="Cette interface représente une action executée par un timer lorsqu&#39;il atteint son seuil d&#39;execution." alt="" coords="5,157,156,184"/>
-<area shape="rect" id="node2" href="$classCountingPosixTimer.html" title=" " alt="" coords="204,5,357,32"/>
-<area shape="rect" id="node3" href="$classLedBarTimer.html" title="Cette action permet de definir les timers concernant la barre de leds." alt="" coords="228,56,333,83"/>
-<area shape="rect" id="node4" href="$classMockPosixTimer.html" title=" " alt="" coords="215,107,346,133"/>
-<area shape="rect" id="node5" href="$classSensorsTimer.html" title="Le timer associe aux sensors de detection." alt="" coords="225,157,336,184"/>
-<area shape="rect" id="node6" href="$classServoObjectsTimer.html" title="Cette action permet de definir les timers concernant les servomotors." alt="" coords="207,208,354,235"/>
-<area shape="rect" id="node7" href="$classTestTimer.html" title="Ce timer." alt="" coords="237,259,324,285"/>
-<area shape="rect" id="node8" href="$classTimingPosixTimer.html" title=" " alt="" coords="211,309,351,336"/>
+<area shape="rect" id="node1" href="$classIAutomateState.html" title="Définit l&#39;état d&#39;un automate." alt="" coords="5,31,129,57"/>
+<area shape="rect" id="node2" href="$classAAutomateState.html" title="Définit les méthodes communes à tous les états." alt="" coords="177,31,307,57"/>
+<area shape="rect" id="node3" href="$classO__State__Init.html" title="État d&#39;initialisation du robot." alt="" coords="398,5,499,32"/>
+<area shape="rect" id="node4" href="$classO__State__WaitEndOfMatch.html" title="Cette classe est la tache principale du robot." alt="" coords="355,56,543,83"/>
 </map>

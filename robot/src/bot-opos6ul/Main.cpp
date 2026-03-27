@@ -8,12 +8,12 @@
 // #include "O_AsservXYRotateTest.hpp"
 // #include "O_AsservTest.hpp"
 #include "O_ButtonBarTest.hpp"
-// #include "O_IAbyPathTest.hpp"
+#include "O_IAbyPathTest.hpp"
 #include "O_LcdBoardTest.hpp"
 #include "O_LedBarTest.hpp"
-// #include "O_SensorsTest.hpp"
-// #include "O_ServoObjectsTest.hpp"
-// #include "O_ServoStepTest.hpp"
+#include "O_SensorsTest.hpp"
+#include "O_ServoObjectsTest.hpp"
+#include "O_ServoStepTest.hpp"
 #include "O_TiretteTest.hpp"
 
 #include "OPOS6UL_RobotExtended.hpp"
@@ -36,16 +36,17 @@ int main(int argc, char** argv)
     robot.getConsoleManager().add(new O_ButtonBarTest());
     robot.getConsoleManager().add(new O_LcdBoardTest());
     robot.getConsoleManager().add(new O_ActionManagerTimerTest());
+    robot.getConsoleManager().add(new O_IAByPathTest());
     // robot.getConsoleManager().add(new O_AsservEsialTest());
     // robot.getConsoleManager().add(new O_AsservLineRotateTest());
     // robot.getConsoleManager().add(new O_AsservXYRotateTest());
     // robot.getConsoleManager().add(new O_AsservTest());
     // robot.getConsoleManager().add(new O_Asserv_SquareTest());
     // robot.getConsoleManager().add(new O_Asserv_CalageTest());
-    // robot.getConsoleManager().add(new O_IAByPathTest());
-    // robot.getConsoleManager().add(new O_ServoStepTest);
-    // robot.getConsoleManager().add(new O_ServoObjectsTest);
-    // robot.getConsoleManager().add(new O_SensorsTest);
+
+    robot.getConsoleManager().add(new O_ServoStepTest());
+    robot.getConsoleManager().add(new O_ServoObjectsTest());
+    robot.getConsoleManager().add(new O_SensorsTest());
 
     robot.parseConsoleArgs(argc, argv, false);
 

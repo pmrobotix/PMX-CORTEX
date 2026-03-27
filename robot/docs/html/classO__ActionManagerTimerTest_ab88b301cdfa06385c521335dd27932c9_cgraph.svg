@@ -688,25 +688,25 @@ var sectionId = 'dynsection-3';
 <polygon fill="midnightblue" stroke="midnightblue" points="550.58,-650.32 560.37,-646.27 550.19,-643.33 550.58,-650.32"/>
 </g>
 <!-- Node33&#45;&gt;Node5 -->
-<g id="edge58" class="edge">
+<g id="edge60" class="edge">
 <title>Node33&#45;&gt;Node5</title>
 <path fill="none" stroke="midnightblue" d="M679.63,-629.97C732.36,-621.41 811.51,-606.34 878,-584.5 972.67,-553.4 997.4,-544.15 1082,-491.5 1117.32,-469.51 1153.84,-437.45 1174.65,-418.12"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="1177.17,-420.54 1182.07,-411.14 1172.38,-415.44 1177.17,-420.54"/>
 </g>
 <!-- Node33&#45;&gt;Node7 -->
-<g id="edge57" class="edge">
+<g id="edge59" class="edge">
 <title>Node33&#45;&gt;Node7</title>
 <path fill="none" stroke="midnightblue" d="M632.24,-623.27C646.99,-602.78 672.99,-564.81 690,-529.5 711.22,-485.43 691.01,-459.68 726,-425.5 735.57,-416.15 748.78,-410.45 761.45,-406.96"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="762.48,-410.31 771.42,-404.61 760.88,-403.5 762.48,-410.31"/>
 </g>
 <!-- Node33&#45;&gt;Node9 -->
-<g id="edge62" class="edge">
+<g id="edge64" class="edge">
 <title>Node33&#45;&gt;Node9</title>
 <path fill="none" stroke="midnightblue" d="M628.96,-623.41C644.4,-595.31 680.93,-534.37 726,-496.5 783.82,-447.91 811.24,-455.82 878,-420.5 969.81,-371.93 996.93,-366.08 1082,-306.5 1117.03,-281.96 1153.9,-248.27 1174.81,-228.3"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="1177.48,-230.59 1182.25,-221.13 1172.62,-225.55 1177.48,-230.59"/>
 </g>
 <!-- Node33&#45;&gt;Node12 -->
-<g id="edge59" class="edge">
+<g id="edge61" class="edge">
 <title>Node33&#45;&gt;Node12</title>
 <path fill="none" stroke="midnightblue" d="M652.03,-623.46C672.83,-613.52 700.89,-600.37 726,-589.5 734.6,-585.78 743.82,-581.95 752.75,-578.33"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="754.31,-581.48 762.29,-574.5 751.7,-574.98 754.31,-581.48"/>
@@ -730,66 +730,66 @@ var sectionId = 'dynsection-3';
 <!-- Node35 -->
 <g id="node35" class="node">
 <title>Node35</title>
-<g id="a_node35"><a xlink:href="classutils_1_1PointerList.html#a9607cdd93b715a838e015452a49f61d5" target="_top" xlink:title="Returns a read/write iterator that points one past the last element in the list. Iteration is done in...">
-<polygon fill="white" stroke="black" points="742.5,-796 742.5,-815 861.5,-815 861.5,-796 742.5,-796"/>
-<text text-anchor="middle" x="802" y="-803" font-family="Helvetica,sans-Serif" font-size="10.00">utils::PointerList::end</text>
+<g id="a_node35"><a xlink:href="classlogs_1_1Logger.html#a7dffc8f610014ec59b63392da16140e4" target="_top" xlink:title="Trace un message de niveau DEBUG.">
+<polygon fill="white" stroke="black" points="942,-651 942,-670 1054,-670 1054,-651 942,-651"/>
+<text text-anchor="middle" x="998" y="-658" font-family="Helvetica,sans-Serif" font-size="10.00">logs::Logger::debug</text>
 </a>
 </g>
 </g>
 <!-- Node33&#45;&gt;Node35 -->
 <g id="edge56" class="edge">
 <title>Node33&#45;&gt;Node35</title>
-<path fill="none" stroke="midnightblue" d="M627.41,-653.79C640.93,-684.07 675.33,-751.77 726,-786.5 728.91,-788.5 732.02,-790.28 735.25,-791.88"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="734.04,-795.18 744.61,-795.91 736.81,-788.75 734.04,-795.18"/>
+<path fill="none" stroke="midnightblue" d="M679.75,-641.94C748.06,-645.93 860.5,-652.51 931.55,-656.67"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="931.53,-660.18 941.72,-657.27 931.94,-653.19 931.53,-660.18"/>
 </g>
 <!-- Node36 -->
 <g id="node36" class="node">
 <title>Node36</title>
-<g id="a_node36"><a xlink:href="classITimerListener.html#a1fb13795b7ae788210f5e6bce5a9aeb0" target="_top" xlink:title="Getter sur les infos permettant d&#39;identifier le timer.">
+<g id="a_node36"><a xlink:href="classutils_1_1PointerList.html#a9607cdd93b715a838e015452a49f61d5" target="_top" xlink:title="Returns a read/write iterator that points one past the last element in the list. Iteration is done in...">
+<polygon fill="white" stroke="black" points="742.5,-796 742.5,-815 861.5,-815 861.5,-796 742.5,-796"/>
+<text text-anchor="middle" x="802" y="-803" font-family="Helvetica,sans-Serif" font-size="10.00">utils::PointerList::end</text>
+</a>
+</g>
+</g>
+<!-- Node33&#45;&gt;Node36 -->
+<g id="edge58" class="edge">
+<title>Node33&#45;&gt;Node36</title>
+<path fill="none" stroke="midnightblue" d="M627.41,-653.79C640.93,-684.07 675.33,-751.77 726,-786.5 728.91,-788.5 732.02,-790.28 735.25,-791.88"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="734.04,-795.18 744.61,-795.91 736.81,-788.75 734.04,-795.18"/>
+</g>
+<!-- Node37 -->
+<g id="node37" class="node">
+<title>Node37</title>
+<g id="a_node37"><a xlink:href="classITimerListener.html#a1fb13795b7ae788210f5e6bce5a9aeb0" target="_top" xlink:title="Getter sur les infos permettant d&#39;identifier le timer.">
 <polygon fill="white" stroke="black" points="741.5,-758 741.5,-777 862.5,-777 862.5,-758 741.5,-758"/>
 <text text-anchor="middle" x="802" y="-765" font-family="Helvetica,sans-Serif" font-size="10.00">ITimerListener::name</text>
 </a>
 </g>
 </g>
-<!-- Node33&#45;&gt;Node36 -->
-<g id="edge60" class="edge">
-<title>Node33&#45;&gt;Node36</title>
+<!-- Node33&#45;&gt;Node37 -->
+<g id="edge62" class="edge">
+<title>Node33&#45;&gt;Node37</title>
 <path fill="none" stroke="midnightblue" d="M631.02,-653.51C647.77,-677.4 683.82,-723.88 726,-748.5 729.72,-750.67 733.68,-752.6 737.77,-754.3"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="736.89,-757.71 747.49,-757.9 739.33,-751.15 736.89,-757.71"/>
-</g>
-<!-- Node37 -->
-<g id="node37" class="node">
-<title>Node37</title>
-<g id="a_node37"><a xlink:href="classITimerListener.html#a0004b567b000eef6df12d9d970909142" target="_top" xlink:title="Actions de fin à executer pour le timer.">
-<polygon fill="white" stroke="black" points="726,-720 726,-739 878,-739 878,-720 726,-720"/>
-<text text-anchor="middle" x="802" y="-727" font-family="Helvetica,sans-Serif" font-size="10.00">ITimerListener::onTimerEnd</text>
-</a>
-</g>
-</g>
-<!-- Node33&#45;&gt;Node37 -->
-<g id="edge61" class="edge">
-<title>Node33&#45;&gt;Node37</title>
-<path fill="none" stroke="midnightblue" d="M638.77,-653.63C658.75,-669.91 692.77,-695.48 726,-710.5 731.33,-712.91 737.02,-715.05 742.79,-716.94"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="741.94,-720.34 752.53,-719.9 743.98,-713.65 741.94,-720.34"/>
 </g>
 <!-- Node38 -->
 <g id="node38" class="node">
 <title>Node38</title>
-<g id="a_node38"><a xlink:href="classlogs_1_1Logger.html#a240e8d7b58195c85bd7b4e4a3417d955" target="_top" xlink:title="Trace un message de niveau WARN.">
-<polygon fill="white" stroke="black" points="945,-651 945,-670 1051,-670 1051,-651 945,-651"/>
-<text text-anchor="middle" x="998" y="-658" font-family="Helvetica,sans-Serif" font-size="10.00">logs::Logger::warn</text>
+<g id="a_node38"><a xlink:href="classITimerListener.html#a0004b567b000eef6df12d9d970909142" target="_top" xlink:title="Actions de fin à executer pour le timer.">
+<polygon fill="white" stroke="black" points="726,-720 726,-739 878,-739 878,-720 726,-720"/>
+<text text-anchor="middle" x="802" y="-727" font-family="Helvetica,sans-Serif" font-size="10.00">ITimerListener::onTimerEnd</text>
 </a>
 </g>
 </g>
 <!-- Node33&#45;&gt;Node38 -->
 <g id="edge63" class="edge">
 <title>Node33&#45;&gt;Node38</title>
-<path fill="none" stroke="midnightblue" d="M679.75,-641.94C749.05,-645.99 863.75,-652.7 934.59,-656.85"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="934.53,-660.35 944.72,-657.44 934.94,-653.36 934.53,-660.35"/>
+<path fill="none" stroke="midnightblue" d="M638.77,-653.63C658.75,-669.91 692.77,-695.48 726,-710.5 731.33,-712.91 737.02,-715.05 742.79,-716.94"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="741.94,-720.34 752.53,-719.9 743.98,-713.65 741.94,-720.34"/>
 </g>
-<!-- Node38&#45;&gt;Node10 -->
-<g id="edge64" class="edge">
-<title>Node38&#45;&gt;Node10</title>
+<!-- Node35&#45;&gt;Node10 -->
+<g id="edge57" class="edge">
+<title>Node35&#45;&gt;Node10</title>
 <path fill="none" stroke="midnightblue" d="M1047.7,-650.91C1073.86,-645.76 1106.28,-639.38 1133.77,-633.97"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="1134.51,-637.39 1143.65,-632.02 1133.16,-630.52 1134.51,-637.39"/>
 </g>

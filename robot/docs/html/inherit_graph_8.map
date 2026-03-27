@@ -1,4 +1,4 @@
 <map id="Graphe hiérarchique des classes" name="Graphe hiérarchique des classes">
-<area shape="rect" id="node1" href="$classALedDriver.html" title="Interface abstraite du driver de LEDs." alt="" coords="5,5,100,32"/>
-<area shape="rect" id="node2" href="$classLedDriver.html" title="Implementation ARM du driver de LEDs." alt="" coords="148,5,233,32"/>
+<area shape="rect" id="node1" href="$classALcdShieldDriver.html" title="Interface abstraite du driver d&#39;ecran LCD." alt="" coords="5,5,139,32"/>
+<area shape="rect" id="node2" href="$classLcdShieldDriver.html" title="Implementation ARM du driver LCD." alt="" coords="187,5,311,32"/>
 </map>

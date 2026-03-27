@@ -1,10 +1,12 @@
 <map id="Robot::asserv" name="Robot::asserv">
-<area shape="rect" id="node1" title=" " alt="" coords="507,147,617,174"/>
+<area shape="rect" id="node1" title=" " alt="" coords="507,198,617,225"/>
 <area shape="rect" id="node2" href="$classOPOS6UL__RobotExtended.html#ac8ac2be407a78cdd62261f72226162df" title=" " alt="" coords="251,5,459,47"/>
-<area shape="rect" id="node3" href="$classO__State__Init.html#abc19788b7457d1f819245dd28367fe91" title="Exécute l&#39;état d&#39;initialisation." alt="" coords="24,118,184,145"/>
-<area shape="rect" id="node4" href="$classO__LedBarTest.html#af9e0e172d13b334cda0fe32bb659b414" title=" " alt="" coords="285,122,424,149"/>
-<area shape="rect" id="node5" href="$classRobot.html#a0e65015148118700defe09b47ba5453d" title=" " alt="" coords="289,223,421,250"/>
-<area shape="rect" id="node7" href="$classO__State__Init.html#a1980cd82dcb83e88d61f2e7e14dddfa0" title=" " alt="" coords="279,173,431,199"/>
-<area shape="rect" id="node8" href="$classRobot.html#a7c2c32badf138c2a26b82068447c3c98" title="Fonctions de motion intelligente en plusieurs essais." alt="" coords="281,274,429,301"/>
-<area shape="rect" id="node6" href="$classOPOS6UL__RobotExtended.html#ab47e33e026160cbb65bbff6129a01597" title=" " alt="" coords="5,216,203,257"/>
+<area shape="rect" id="node3" href="$classO__State__Init.html#abc19788b7457d1f819245dd28367fe91" title="Exécute l&#39;état d&#39;initialisation." alt="" coords="24,169,184,195"/>
+<area shape="rect" id="node4" href="$classO__IAByPathTest.html#a3f57f585ff1382a52bf7f79a28d43629" title=" " alt="" coords="279,122,431,149"/>
+<area shape="rect" id="node5" href="$classO__LedBarTest.html#af9e0e172d13b334cda0fe32bb659b414" title=" " alt="" coords="285,173,424,199"/>
+<area shape="rect" id="node6" href="$classO__SensorsTest.html#ae3b998034225e16586ded4ba3bd419e5" title="Execute le test." alt="" coords="282,223,427,250"/>
+<area shape="rect" id="node7" href="$classRobot.html#a0e65015148118700defe09b47ba5453d" title=" " alt="" coords="289,325,421,351"/>
+<area shape="rect" id="node9" href="$classO__State__Init.html#a1980cd82dcb83e88d61f2e7e14dddfa0" title=" " alt="" coords="279,274,431,301"/>
+<area shape="rect" id="node10" href="$classRobot.html#a7c2c32badf138c2a26b82068447c3c98" title="Fonctions de motion intelligente en plusieurs essais." alt="" coords="281,375,429,402"/>
+<area shape="rect" id="node8" href="$classOPOS6UL__RobotExtended.html#ab47e33e026160cbb65bbff6129a01597" title=" " alt="" coords="5,317,203,359"/>
 </map>

@@ -1,7 +1,9 @@
 <map id="utils::Chronometer::getElapsedTimeInSec" name="utils::Chronometer::getElapsedTimeInSec">
-<area shape="rect" id="node1" title="Retourne le temps écoulé en secondes." alt="" coords="357,71,528,112"/>
+<area shape="rect" id="node1" title="Retourne le temps écoulé en secondes." alt="" coords="357,129,528,171"/>
 <area shape="rect" id="node2" href="$classOPOS6UL__RobotExtended.html#a3af6cff5115c7ae70f7a797d9e90e66a" title="Initialise l&#39;état du robot et le décisionmaker IA." alt="" coords="114,5,303,47"/>
 <area shape="rect" id="node4" href="$classO__State__WaitEndOfMatch.html#aa73613440b37c8dd42181e2e0265ae86" title="Exécute l&#39;état d&#39;attente de fin de match." alt="" coords="115,71,303,112"/>
-<area shape="rect" id="node5" href="$classtest_1_1TimerPosixStandaloneBench.html#a71eaba7b9c9cf2dc0384bced04b641f4" title=" " alt="" coords="108,136,309,177"/>
+<area shape="rect" id="node5" href="$classO__IAByPathTest.html#a3f57f585ff1382a52bf7f79a28d43629" title=" " alt="" coords="133,137,285,163"/>
+<area shape="rect" id="node6" href="$classO__SensorsTest.html#ae3b998034225e16586ded4ba3bd419e5" title="Execute le test." alt="" coords="136,187,281,214"/>
+<area shape="rect" id="node7" href="$classtest_1_1TimerPosixStandaloneBench.html#a71eaba7b9c9cf2dc0384bced04b641f4" title=" " alt="" coords="108,239,309,280"/>
 <area shape="rect" id="node3" href="$src_2bot-opos6ul_2Main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,60,39"/>
 </map>

@@ -1,4 +1,5 @@
 <map id="Graphe hiérarchique des classes" name="Graphe hiérarchique des classes">
-<area shape="rect" id="node1" href="$classAServoUsingMotorDriver.html" title="Interface abstraite du driver de moteur en mode servo." alt="" coords="5,5,188,32"/>
-<area shape="rect" id="node2" href="$classServoUsingMotorDriver.html" title=" " alt="" coords="236,5,411,32"/>
+<area shape="rect" id="node1" href="$classAServoDriver.html" title="Interface abstraite du driver de servomoteurs." alt="" coords="5,31,113,57"/>
+<area shape="rect" id="node2" href="$classDynamixelDriver.html" title=" " alt="" coords="161,5,293,32"/>
+<area shape="rect" id="node3" href="$classServoDriver.html" title=" " alt="" coords="178,56,277,83"/>
 </map>

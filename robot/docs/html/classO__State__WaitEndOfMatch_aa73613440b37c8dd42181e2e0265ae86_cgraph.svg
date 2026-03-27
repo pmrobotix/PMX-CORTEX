@@ -468,18 +468,18 @@ var sectionId = 'dynsection-3';
 <path fill="none" stroke="midnightblue" d="M73.05,-575.79C80.68,-648.29 116.32,-956.83 177,-1028.5 179.99,-1032.03 183.45,-1035.15 187.22,-1037.9"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="185.55,-1040.99 195.88,-1043.37 189.29,-1035.07 185.55,-1040.99"/>
 </g>
-<!-- Node77 -->
+<!-- Node76 -->
 <g id="node49" class="node">
-<title>Node77</title>
+<title>Node76</title>
 <g id="a_node49"><a xlink:href="classRobot.html#a769fd661366307a701f22d3f7904ded0" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="183,-551 183,-570 320,-570 320,-551 183,-551"/>
 <text text-anchor="middle" x="251.5" y="-558" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::svgPrintEndOfFile</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node77 -->
+<!-- Node1&#45;&gt;Node76 -->
 <g id="edge58" class="edge">
-<title>Node1&#45;&gt;Node77</title>
+<title>Node1&#45;&gt;Node76</title>
 <path fill="none" stroke="midnightblue" d="M141.22,-560.5C151.45,-560.5 162.05,-560.5 172.44,-560.5"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="172.73,-564 182.73,-560.5 172.73,-557 172.73,-564"/>
 </g>
@@ -862,42 +862,42 @@ var sectionId = 'dynsection-3';
 <path fill="none" stroke="midnightblue" d="M526.62,-1066.6C540.42,-1068.12 554.95,-1069.71 569.04,-1071.26"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="568.88,-1074.77 579.2,-1072.38 569.64,-1067.81 568.88,-1074.77"/>
 </g>
-<!-- Node78 -->
+<!-- Node77 -->
 <g id="node50" class="node">
-<title>Node78</title>
+<title>Node77</title>
 <g id="a_node50"><a xlink:href="classSvgWriter.html#a18e6747b544e14bc12f184bce594ec63" target="_top" xlink:title="Ferme le document SVG (balises de fin).">
 <polygon fill="white" stroke="red" points="390,-551 390,-570 514,-570 514,-551 390,-551"/>
 <text text-anchor="middle" x="452" y="-558" font-family="Helvetica,sans-Serif" font-size="10.00">SvgWriter::endHeader</text>
 </a>
 </g>
 </g>
-<!-- Node77&#45;&gt;Node78 -->
+<!-- Node76&#45;&gt;Node77 -->
 <g id="edge59" class="edge">
-<title>Node77&#45;&gt;Node78</title>
+<title>Node76&#45;&gt;Node77</title>
 <path fill="none" stroke="midnightblue" d="M320.26,-560.5C339.39,-560.5 360.27,-560.5 379.61,-560.5"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="379.87,-564 389.87,-560.5 379.87,-557 379.87,-564"/>
 </g>
-<!-- Node78&#45;&gt;Node18 -->
+<!-- Node77&#45;&gt;Node18 -->
 <g id="edge60" class="edge">
-<title>Node78&#45;&gt;Node18</title>
+<title>Node77&#45;&gt;Node18</title>
 <path fill="none" stroke="midnightblue" d="M503.21,-550.96C537.2,-544.5 581.51,-536.08 613.09,-530.08"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="614.11,-533.45 623.28,-528.15 612.81,-526.57 614.11,-533.45"/>
 </g>
-<!-- Node78&#45;&gt;Node20 -->
+<!-- Node77&#45;&gt;Node20 -->
 <g id="edge62" class="edge">
-<title>Node78&#45;&gt;Node20</title>
+<title>Node77&#45;&gt;Node20</title>
 <path fill="none" stroke="midnightblue" d="M514.26,-568.37C534.52,-570.7 557.2,-573.03 578,-574.5 723.62,-584.82 895.35,-587.55 984.13,-588.26"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="984.25,-591.76 994.28,-588.33 984.3,-584.76 984.25,-591.76"/>
 </g>
-<!-- Node78&#45;&gt;Node21 -->
+<!-- Node77&#45;&gt;Node21 -->
 <g id="edge63" class="edge">
-<title>Node78&#45;&gt;Node21</title>
+<title>Node77&#45;&gt;Node21</title>
 <path fill="none" stroke="midnightblue" d="M514.18,-559.09C605.6,-556.75 783.26,-551.32 934,-541.5 948.38,-540.56 963.8,-539.31 978.41,-538.02"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="978.72,-541.5 988.37,-537.12 978.09,-534.53 978.72,-541.5"/>
 </g>
-<!-- Node78&#45;&gt;Node40 -->
+<!-- Node77&#45;&gt;Node40 -->
 <g id="edge61" class="edge">
-<title>Node78&#45;&gt;Node40</title>
+<title>Node77&#45;&gt;Node40</title>
 <path fill="none" stroke="midnightblue" d="M471.21,-550.94C495.17,-538.65 538.85,-517.26 578,-503.5 585.05,-501.02 592.58,-498.72 600.04,-496.65"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="601.02,-500.01 609.77,-494.04 599.21,-493.25 601.02,-500.01"/>
 </g>

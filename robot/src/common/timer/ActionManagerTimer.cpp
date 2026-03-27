@@ -123,7 +123,7 @@ void ActionManagerTimer::stopTimer(std::string timerNameToDelete)
     if (found)
         timers_.erase(save);
     else
-        logger().warn() << "Timer [" << timerNameToDelete << "] not found or already deleted." << logs::end;
+        logger().debug() << "Timer [" << timerNameToDelete << "] not found or already deleted." << logs::end;
 
     mtimer_.unlock();
 }
@@ -149,7 +149,7 @@ void ActionManagerTimer::stopPTimer(std::string ptimerNameToDelete)
     if (found)
         ptimers_.erase(save);
     else
-        logger().warn() << "PTimer [" << ptimerNameToDelete << "] not found or already deleted." << logs::end;
+        logger().debug() << "PTimer [" << ptimerNameToDelete << "] not found or already deleted." << logs::end;
 
     mtimer_.unlock();
     unblock("stopPTimer");

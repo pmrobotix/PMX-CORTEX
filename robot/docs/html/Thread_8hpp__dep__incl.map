@@ -1,52 +1,52 @@
 <map id="src/common/thread/Thread.hpp" name="src/common/thread/Thread.hpp">
-<area shape="rect" id="node1" title="Définition de la classe Thread." alt="" coords="5748,5,5973,32"/>
-<area shape="rect" id="node2" href="$src_2bot-opos6ul_2LoggerInitialize_8cpp.html" title="Ce fichier contient l&#39;initialisation du système de Log." alt="" coords="451,281,704,307"/>
-<area shape="rect" id="node3" href="$src_2bot-opos6ul_2Main_8cpp.html" title=" " alt="" coords="2346,281,2532,307"/>
-<area shape="rect" id="node4" href="$O__LedBarTest_8cpp.html" title="Implementation de la classe O_LedBarTest." alt="" coords="1500,363,1688,404"/>
-<area shape="rect" id="node5" href="$O__State__DecisionMakerIA_8hpp.html" title="Déclaration de la classe O_State_DecisionMakerIA." alt="" coords="950,177,1128,218"/>
-<area shape="rect" id="node7" href="$O__State__WaitEndOfMatch_8cpp.html" title=" " alt="" coords="1041,273,1218,315"/>
-<area shape="rect" id="node8" href="$OPOS6UL__RobotExtended_8cpp.html" title=" " alt="" coords="1036,363,1223,404"/>
-<area shape="rect" id="node9" href="$LedBar_8cpp.html" title=" " alt="" coords="1712,370,1934,397"/>
-<area shape="rect" id="node10" href="$Sensors_8cpp.html" title=" " alt="" coords="4028,370,4256,397"/>
-<area shape="rect" id="node11" href="$ServoObjectsSystem_8cpp.html" title=" " alt="" coords="5392,363,5628,404"/>
-<area shape="rect" id="node12" href="$Asserv_8cpp.html" title=" " alt="" coords="5652,281,5874,307"/>
-<area shape="rect" id="node13" href="$AsservEsialR_8hpp.html" title=" " alt="" coords="5949,177,6132,218"/>
-<area shape="rect" id="node16" href="$LoggerFactory_8hpp.html" title="Définition de la classe LoggerFactory." alt="" coords="2909,87,3156,114"/>
-<area shape="rect" id="node40" href="$driver-arm_2AsservDriver_8hpp.html" title="Définition de la classe AsservDriver (OPOS6UL)." alt="" coords="5143,184,5372,211"/>
-<area shape="rect" id="node41" href="$AsservDriver__mbed__i2c_8hpp.html" title="Définition de la classe AsservDriver (OPOS6UL)." alt="" coords="5396,169,5559,225"/>
-<area shape="rect" id="node42" href="$TimerPosixStandaloneBench_8cpp.html" title="Bench du timer POSIX standalone." alt="" coords="5583,177,5823,218"/>
-<area shape="rect" id="node43" href="$Thread_8cpp.html" title="Implémentation de la classe Thread (wrapper POSIX pthread)." alt="" coords="6050,87,6274,114"/>
-<area shape="rect" id="node44" href="$Arguments_8cpp.html" title=" " alt="" coords="6297,87,6533,114"/>
-<area shape="rect" id="node45" href="$ConsoleManager_8cpp.html" title="Implementation de la classe ConsoleManager." alt="" coords="6557,80,6748,121"/>
-<area shape="rect" id="node46" href="$test_2bench_2Main_8cpp.html" title="Point d&#39;entree des benchmarks." alt="" coords="6772,87,6925,114"/>
-<area shape="rect" id="node47" href="$test_2common_2Main_8cpp.html" title="Point d&#39;entrée des tests unitaires common." alt="" coords="6950,184,7120,211"/>
-<area shape="rect" id="node48" href="$ThreadTest_8hpp.html" title="Définition de la classe ThreadTest." alt="" coords="7000,87,7211,114"/>
-<area shape="rect" id="node49" href="$test_2driver_2Main_8cpp.html" title="Point d&#39;entree des tests unitaires driver." alt="" coords="7235,87,7387,114"/>
-<area shape="rect" id="node50" href="$test_2manual_2Main_8cpp.html" title="Point d&#39;entree des tests manuels (verification visuelle/physique)." alt="" coords="7411,87,7574,114"/>
-<area shape="rect" id="node6" href="$O__State__DecisionMakerIA_8cpp.html" title=" " alt="" coords="1294,273,1472,315"/>
-<area shape="rect" id="node14" href="$OPOS6UL__AsservExtended_8cpp.html" title=" " alt="" coords="2779,363,2966,404"/>
-<area shape="rect" id="node15" href="$AsservEsialR_8cpp.html" title=" " alt="" coords="5949,273,6132,315"/>
-<area shape="rect" id="node17" href="$O__ActionManagerTimerTest_8hpp.html" title="Définition de la classe O_ActionManagerTimerTest." alt="" coords="2138,177,2322,218"/>
-<area shape="rect" id="node18" href="$O__ButtonBarTest_8hpp.html" title="Déclaration de la classe O_ButtonBarTest." alt="" coords="2346,177,2532,218"/>
-<area shape="rect" id="node19" href="$O__LcdBoardTest_8hpp.html" title="Définition de la classe OPOS6UL_LcdBoardTest." alt="" coords="2556,177,2759,218"/>
-<area shape="rect" id="node20" href="$O__LedBarTest_8hpp.html" title="Definition de la classe O_LedBarTest." alt="" coords="1874,177,2062,218"/>
-<area shape="rect" id="node21" href="$O__State__Init_8hpp.html" title="Déclaration de la classe O_State_Init." alt="" coords="26,273,204,315"/>
-<area shape="rect" id="node22" href="$O__State__WaitEndOfMatch_8hpp.html" title="Déclaration de la classe O_State_WaitEndOfMatch." alt="" coords="749,177,926,218"/>
-<area shape="rect" id="node23" href="$O__TiretteTest_8hpp.html" title=" " alt="" coords="2783,177,2970,218"/>
-<area shape="rect" id="node24" href="$OPOS6UL__AsservExtended_8hpp.html" title="Extension de l&#39;asservissement pour la carte OPOS6UL." alt="" coords="2779,273,2966,315"/>
-<area shape="rect" id="node25" href="$OPOS6UL__RobotExtended_8hpp.html" title="Extension de la classe Robot pour la carte OPOS6UL." alt="" coords="1416,177,1603,218"/>
-<area shape="rect" id="node26" href="$Actions_8hpp.html" title="Définition de la classe Actions." alt="" coords="1987,281,2214,307"/>
-<area shape="rect" id="node27" href="$ButtonBar_8hpp.html" title="Définition de la classe ButtonBar." alt="" coords="3096,177,3289,218"/>
-<area shape="rect" id="node28" href="$LcdShield_8hpp.html" title="Définition de la classe LcdShield." alt="" coords="1152,184,1392,211"/>
-<area shape="rect" id="node29" href="$LedBar_8hpp.html" title="Gestion de la barre de LEDs et ses actions/timers associés." alt="" coords="1628,184,1850,211"/>
-<area shape="rect" id="node30" href="$Sensors_8hpp.html" title="Gestion des capteurs de detection et de distance." alt="" coords="3078,281,3307,307"/>
-<area shape="rect" id="node31" href="$ServoObjectsSystem_8hpp.html" title="Gestion du système de servomoteurs et timers de déplacement associés." alt="" coords="5392,273,5628,315"/>
-<area shape="rect" id="node32" href="$ServoUsingMotor_8hpp.html" title="Définition de la classe ServoUsingMotor." alt="" coords="3314,177,3538,218"/>
-<area shape="rect" id="node33" href="$SoundBar_8hpp.html" title="Définition de la classe SoundBar et de l&#39;action SoundBarAction." alt="" coords="3562,184,3801,211"/>
-<area shape="rect" id="node34" href="$Tirette_8hpp.html" title="Définition de la classe Tirette." alt="" coords="3826,184,4047,211"/>
-<area shape="rect" id="node35" href="$Asserv_8hpp.html" title=" " alt="" coords="4844,184,5068,211"/>
-<area shape="rect" id="node36" href="$Regulateur_8h.html" title=" " alt="" coords="4072,177,4254,218"/>
-<area shape="rect" id="node37" href="$TelemetryAppender_8hpp.html" title="Définition de la classe TelemetryAppender." alt="" coords="482,177,673,218"/>
-<area shape="rect" id="node38" href="$LoggerFactory_8cpp.html" title="Implémentation de la classe LoggerFactory." alt="" coords="4278,184,4525,211"/>
-<area shape="rect" id="node39" href="$SvgWriter_8cpp.html" title="Implémentation de la classe SvgWriter." alt="" coords="4549,184,4769,211"/>
+<area shape="rect" id="node1" title="Définition de la classe Thread." alt="" coords="5479,5,5705,32"/>
+<area shape="rect" id="node2" href="$src_2bot-opos6ul_2LoggerInitialize_8cpp.html" title="Ce fichier contient l&#39;initialisation du système de Log." alt="" coords="255,184,508,211"/>
+<area shape="rect" id="node3" href="$src_2bot-opos6ul_2Main_8cpp.html" title=" " alt="" coords="4154,281,4339,307"/>
+<area shape="rect" id="node4" href="$O__LedBarTest_8cpp.html" title="Implementation de la classe O_LedBarTest." alt="" coords="2134,273,2322,315"/>
+<area shape="rect" id="node5" href="$O__SensorsTest_8cpp.html" title=" " alt="" coords="1836,273,2031,315"/>
+<area shape="rect" id="node6" href="$O__State__DecisionMakerIA_8hpp.html" title="Déclaration de la classe O_State_DecisionMakerIA." alt="" coords="1295,177,1473,218"/>
+<area shape="rect" id="node8" href="$O__State__WaitEndOfMatch_8cpp.html" title=" " alt="" coords="1089,273,1266,315"/>
+<area shape="rect" id="node9" href="$OPOS6UL__RobotExtended_8cpp.html" title=" " alt="" coords="1291,273,1477,315"/>
+<area shape="rect" id="node10" href="$LedBar_8cpp.html" title=" " alt="" coords="5,370,227,397"/>
+<area shape="rect" id="node11" href="$Sensors_8cpp.html" title=" " alt="" coords="341,370,569,397"/>
+<area shape="rect" id="node12" href="$ServoObjectsSystem_8cpp.html" title=" " alt="" coords="593,363,829,404"/>
+<area shape="rect" id="node13" href="$Asserv_8cpp.html" title=" " alt="" coords="6063,281,6286,307"/>
+<area shape="rect" id="node14" href="$AsservEsialR_8hpp.html" title=" " alt="" coords="5554,177,5737,218"/>
+<area shape="rect" id="node17" href="$LoggerFactory_8hpp.html" title="Définition de la classe LoggerFactory." alt="" coords="3423,87,3670,114"/>
+<area shape="rect" id="node40" href="$driver-arm_2AsservDriver_8hpp.html" title="Définition de la classe AsservDriver (OPOS6UL)." alt="" coords="5761,184,5991,211"/>
+<area shape="rect" id="node41" href="$AsservDriver__mbed__i2c_8hpp.html" title="Définition de la classe AsservDriver (OPOS6UL)." alt="" coords="6015,169,6177,225"/>
+<area shape="rect" id="node42" href="$TimerPosixStandaloneBench_8cpp.html" title="Bench du timer POSIX standalone." alt="" coords="6201,177,6441,218"/>
+<area shape="rect" id="node43" href="$Thread_8cpp.html" title="Implémentation de la classe Thread (wrapper POSIX pthread)." alt="" coords="5807,87,6031,114"/>
+<area shape="rect" id="node44" href="$Arguments_8cpp.html" title=" " alt="" coords="6054,87,6290,114"/>
+<area shape="rect" id="node45" href="$ConsoleManager_8cpp.html" title="Implementation de la classe ConsoleManager." alt="" coords="6314,80,6505,121"/>
+<area shape="rect" id="node46" href="$test_2bench_2Main_8cpp.html" title="Point d&#39;entree des benchmarks." alt="" coords="6529,87,6682,114"/>
+<area shape="rect" id="node47" href="$test_2common_2Main_8cpp.html" title="Point d&#39;entrée des tests unitaires common." alt="" coords="6707,184,6877,211"/>
+<area shape="rect" id="node48" href="$ThreadTest_8hpp.html" title="Définition de la classe ThreadTest." alt="" coords="6757,87,6968,114"/>
+<area shape="rect" id="node49" href="$test_2driver_2Main_8cpp.html" title="Point d&#39;entree des tests unitaires driver." alt="" coords="6992,87,7144,114"/>
+<area shape="rect" id="node50" href="$test_2manual_2Main_8cpp.html" title="Point d&#39;entree des tests manuels (verification visuelle/physique)." alt="" coords="7168,87,7331,114"/>
+<area shape="rect" id="node7" href="$O__State__DecisionMakerIA_8cpp.html" title=" " alt="" coords="1574,273,1751,315"/>
+<area shape="rect" id="node15" href="$OPOS6UL__AsservExtended_8cpp.html" title=" " alt="" coords="3023,273,3209,315"/>
+<area shape="rect" id="node16" href="$AsservEsialR_8cpp.html" title=" " alt="" coords="5554,273,5737,315"/>
+<area shape="rect" id="node18" href="$O__ActionManagerTimerTest_8hpp.html" title="Définition de la classe O_ActionManagerTimerTest." alt="" coords="4364,177,4548,218"/>
+<area shape="rect" id="node19" href="$O__ButtonBarTest_8hpp.html" title="Déclaration de la classe O_ButtonBarTest." alt="" coords="4572,177,4759,218"/>
+<area shape="rect" id="node20" href="$O__IAbyPathTest_8hpp.html" title="Definition de la classe O_IAByPathTest." alt="" coords="4783,177,4983,218"/>
+<area shape="rect" id="node21" href="$O__LcdBoardTest_8hpp.html" title="Définition de la classe OPOS6UL_LcdBoardTest." alt="" coords="5007,177,5209,218"/>
+<area shape="rect" id="node22" href="$O__LedBarTest_8hpp.html" title="Definition de la classe O_LedBarTest." alt="" coords="3453,177,3641,218"/>
+<area shape="rect" id="node23" href="$O__SensorsTest_8hpp.html" title=" " alt="" coords="3233,177,3428,218"/>
+<area shape="rect" id="node24" href="$O__ServoObjectsTest_8hpp.html" title=" " alt="" coords="3665,177,3895,218"/>
+<area shape="rect" id="node25" href="$O__ServoStepTest_8hpp.html" title=" " alt="" coords="3919,177,4129,218"/>
+<area shape="rect" id="node26" href="$O__State__Init_8hpp.html" title="Déclaration de la classe O_State_Init." alt="" coords="1549,177,1726,218"/>
+<area shape="rect" id="node27" href="$O__State__WaitEndOfMatch_8hpp.html" title="Déclaration de la classe O_State_WaitEndOfMatch." alt="" coords="1094,177,1271,218"/>
+<area shape="rect" id="node28" href="$O__TiretteTest_8hpp.html" title=" " alt="" coords="4153,177,4340,218"/>
+<area shape="rect" id="node29" href="$OPOS6UL__AsservExtended_8hpp.html" title="Extension de l&#39;asservissement pour la carte OPOS6UL." alt="" coords="3023,177,3209,218"/>
+<area shape="rect" id="node30" href="$OPOS6UL__RobotExtended_8hpp.html" title="Extension de la classe Robot pour la carte OPOS6UL." alt="" coords="2004,177,2191,218"/>
+<area shape="rect" id="node31" href="$Actions_8hpp.html" title="Définition de la classe Actions." alt="" coords="432,281,659,307"/>
+<area shape="rect" id="node32" href="$ButtonBar_8hpp.html" title="Définition de la classe ButtonBar." alt="" coords="5285,177,5478,218"/>
+<area shape="rect" id="node33" href="$LcdShield_8hpp.html" title="Définition de la classe LcdShield." alt="" coords="829,184,1069,211"/>
+<area shape="rect" id="node34" href="$LedBar_8hpp.html" title="Gestion de la barre de LEDs et ses actions/timers associés." alt="" coords="582,184,805,211"/>
+<area shape="rect" id="node35" href="$Sensors_8hpp.html" title="Gestion des capteurs de detection et de distance." alt="" coords="1751,184,1980,211"/>
+<area shape="rect" id="node36" href="$ServoObjectsSystem_8hpp.html" title="Gestion du système de servomoteurs et timers de déplacement associés." alt="" coords="4746,273,4982,315"/>
+<area shape="rect" id="node37" href="$ServoUsingMotor_8hpp.html" title="Définition de la classe ServoUsingMotor." alt="" coords="2265,177,2489,218"/>
+<area shape="rect" id="node38" href="$SoundBar_8hpp.html" title="Définition de la classe SoundBar et de l&#39;action SoundBarAction." alt="" coords="2514,184,2753,211"/>
+<area shape="rect" id="node39" href="$Tirette_8hpp.html" title="Définition de la classe Tirette." alt="" coords="2777,184,2999,211"/>
 </map>

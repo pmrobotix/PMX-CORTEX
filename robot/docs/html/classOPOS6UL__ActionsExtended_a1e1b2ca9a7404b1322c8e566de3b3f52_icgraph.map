@@ -1,6 +1,8 @@
 <map id="OPOS6UL_ActionsExtended::buttonBar" name="OPOS6UL_ActionsExtended::buttonBar">
-<area shape="rect" id="node1" title="Retourne l&#39;objet ButtonBar." alt="" coords="241,57,440,98"/>
+<area shape="rect" id="node1" title="Retourne l&#39;objet ButtonBar." alt="" coords="241,115,440,157"/>
 <area shape="rect" id="node2" href="$classO__State__Init.html#abc19788b7457d1f819245dd28367fe91" title="Exécute l&#39;état d&#39;initialisation." alt="" coords="19,5,179,32"/>
 <area shape="rect" id="node3" href="$classO__State__WaitEndOfMatch.html#aa73613440b37c8dd42181e2e0265ae86" title="Exécute l&#39;état d&#39;attente de fin de match." alt="" coords="5,57,193,98"/>
 <area shape="rect" id="node4" href="$classO__ButtonBarTest.html#a444c3618a504b59d0236b4b530f463e1" title="Execute le test." alt="" coords="20,123,179,149"/>
+<area shape="rect" id="node5" href="$classO__ServoObjectsTest.html#aabfa9ba518070128940062ed11028ca7" title="Execute le test." alt="" coords="9,173,189,200"/>
+<area shape="rect" id="node6" href="$classO__ServoStepTest.html#aefbe5c17504e0782e71a6ca13ed40518" title="Execute le test." alt="" coords="19,224,179,251"/>
 </map>

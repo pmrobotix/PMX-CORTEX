@@ -12,9 +12,9 @@
 <!-- Node0 -->
 <g id="node1" class="node">
 <title>Node0</title>
-<g id="a_node1"><a xlink:href="classConsoleManager.html" target="_top" xlink:title="Classe de gestion de l&#39;ensemble des tests de fonctionnement du robot.">
+<g id="a_node1"><a xlink:href="classConsoleKeyInput.html" target="_top" xlink:title="Classe utilitaire pour la gestion du clavier et du curseur console.">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-19.5 98,-19.5 98,-0.5 0,-0.5"/>
-<text text-anchor="middle" x="49" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">ConsoleManager</text>
+<text text-anchor="middle" x="49" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">ConsoleKeyInput</text>
 </a>
 </g>
 </g>
