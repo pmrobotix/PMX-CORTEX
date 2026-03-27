@@ -1095,6 +1095,15 @@ Chaque méthode publique doit être documentée :
 - ✅ O_IAByPathTest : activé, module IA migré
 - ⬜ SlowMotionServo : tester la lib de motion progressive des servos (portage Arduino → Linux)
 
+### Communication PAMIs (micro:bit)
+
+- ⬜ Evaluer la communication avec les PAMIs micro:bit :
+  - Option 1 : BLE via Broadcom CYW43430 integre (BT 4.1) — risque en milieu bruite (fiabilite < 5m en competition)
+  - Option 2 (recommandee) : radio micro:bit native (Nordic ESB) avec un micro:bit passerelle sur USB/serie de l'OPOS6UL — plus robuste, reconnexion rapide
+- ⬜ Definir le besoin : signal "top depart" uniquement ou communication bidirectionnelle pendant le match
+- ⬜ Si bidirectionnel : thread dediee dans le brain (lecture/ecriture serie ou stack BLE), file de messages, timeout, fallback autonome PAMI
+- ⬜ Tester la portee et fiabilite en conditions reelles (bruit 2.4 GHz)
+
 ### Refactoring architecture
 
 - ⬜ Renommer `interface/` → `driver_interface/` et `timer/` → `action_interface/` (+ déplacer IAction.hpp dans action_interface/)

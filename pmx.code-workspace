@@ -23,6 +23,10 @@
 		{
 			"name": "plotjuggler-plugin",
 			"path": "../plotjuggler_asservstream_plugin"
+		},
+		{
+			"name": "wiki",
+			"path": "../PMX-CORTEX.wiki"
 		}
 	],
 	"settings": {
@@ -51,7 +55,8 @@
 		},
 		"git.scanRepositories": [
 			"../asserv_chibios",
-			"../plotjuggler_asservstream_plugin"
+			"../plotjuggler_asservstream_plugin",
+			"../PMX-CORTEX.wiki"
 		]
 	},
 	"tasks": {
@@ -126,6 +131,17 @@
 				"label": "plotjuggler: run with plugin",
 				"type": "shell",
 				"command": "plotjuggler --plugin_folders ${workspaceFolder:plotjuggler-plugin}/asserv_stream_plugin/build",
+				"group": "none",
+				"problemMatcher": [],
+				"isBackground": true
+			},
+			{
+				"label": "wiki: visualiser (gollum)",
+				"type": "shell",
+				"command": "gollum",
+				"options": {
+					"cwd": "${workspaceFolder:wiki}"
+				},
 				"group": "none",
 				"problemMatcher": [],
 				"isBackground": true

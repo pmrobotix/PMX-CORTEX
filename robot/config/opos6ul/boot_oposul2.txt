@@ -1,0 +1,262 @@
+
+_________
+
+
+U-Boot SPL 2018.05 (Apr 29 2023 - 19:59:34 +0200)
+Trying to boot from MMC1
+
+
+U-Boot 2018.05 (Apr 29 2023 - 19:59:34 +0200)
+
+CPU:   Freescale i.MX6ULL rev1.1 900 MHz (running at 396 MHz)
+CPU:   Commercial temperature grade (0C to 95C) at 38C
+Reset cause: POR
+Model: Armadeus Systems OPOS6UL SoM on OPOS6ULDev board
+DRAM:  256 MiB
+MMC:   FSL_SDHC: 0, FSL_SDHC: 1
+Loading Environment from MMC... OK
+Video: 800x480x18
+In:    serial
+Out:   serial
+Err:   serial
+Net:   FEC [PRIME]
+Hit any key to stop autoboot:  0
+6666416 bytes read in 227 ms (28 MiB/s)
+30737 bytes read in 65 ms (460.9 KiB/s)
+## Flattened Device Tree blob at 88000000
+   Booting using the fdt blob at 0x88000000
+   Using Device Tree in place at 88000000, end 8800a810
+
+Starting kernel ...
+
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 5.10.167 (pmx@pmx-kubuntu) (arm-none-linux-gnueabihf-gcc (GNU Toolchain for 3
+[    0.000000] CPU: ARMv7 Processor [410fc075] revision 5 (ARMv7), cr=10c53c7d
+[    0.000000] CPU: div instructions available: patching division code
+[    0.000000] CPU: PIPT / VIPT nonaliasing data cache, VIPT aliasing instruction cache
+[    0.000000] OF: fdt: Machine model: Armadeus Systems OPOS6UL SoM (i.MX6ULL) on OPOS6ULDev board
+[    0.000000] Memory policy: Data cache writeback
+[    0.000000] cma: Reserved 64 MiB at 0x8c000000
+[    0.000000] Zone ranges:
+[    0.000000]   Normal   [mem 0x0000000080000000-0x000000008fffffff]
+[    0.000000]   HighMem  empty
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000080000000-0x000000008fffffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000080000000-0x000000008fffffff]
+[    0.000000] CPU: All CPU(s) started in SVC mode.
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 65024
+[    0.000000] Kernel command line: console=ttymxc0,115200 root=/dev/mmcblk0p2 ro rootfstype=ext4 rootwait
+[    0.000000] Dentry cache hash table entries: 32768 (order: 5, 131072 bytes, linear)
+[    0.000000] Inode-cache hash table entries: 16384 (order: 4, 65536 bytes, linear)
+[    0.000000] mem auto-init: stack:off, heap alloc:off, heap free:off
+[    0.000000] Memory: 177048K/262144K available (10240K kernel code, 1250K rwdata, 3408K rodata, 1024K i)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] NR_IRQS: 16, nr_irqs: 16, preallocated irqs: 16
+[    0.000000] Switching to timer-based delay loop, resolution 41ns
+[    0.000018] sched_clock: 32 bits at 24MHz, resolution 41ns, wraps every 89478484971ns
+[    0.000057] clocksource: mxc_timer1: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 79635851949s
+[    0.002399] Console: colour dummy device 80x30
+[    0.002457] Calibrating delay loop (skipped), value calculated using timer frequency.. 48.00 BogoMIPS )
+[    0.002497] pid_max: default: 32768 minimum: 301
+[    0.002812] Mount-cache hash table entries: 1024 (order: 0, 4096 bytes, linear)
+[    0.002845] Mountpoint-cache hash table entries: 1024 (order: 0, 4096 bytes, linear)
+[    0.004086] CPU: Testing write buffer coherency: ok
+[    0.005412] Setting up static identity map for 0x80100000 - 0x80100078
+[    0.006496] devtmpfs: initialized
+[    0.018698] VFP support v0.3: implementor 41 architecture 2 part 30 variant 7 rev 5
+[    0.019197] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750s
+[    0.019241] futex hash table entries: 256 (order: -1, 3072 bytes, linear)
+[    0.024020] pinctrl core: initialized pinctrl subsystem
+[    0.027223] NET: Registered protocol family 16
+[    0.040852] DMA: preallocated 256 KiB pool for atomic coherent allocations
+[    0.042813] thermal_sys: Registered thermal governor 'step_wise'
+[    0.219185] vdd3p0: supplied by regulator-dummy
+[    0.229018] cpu: supplied by regulator-dummy
+[    0.239157] vddsoc: supplied by regulator-dummy
+[    0.693826] No ATAGs?
+[    0.693889] hw-breakpoint: found 5 (+1 reserved) breakpoint and 4 watchpoint registers.
+[    0.693910] hw-breakpoint: maximum watchpoint size is 8 bytes.
+[    0.695123] imx6ul-pinctrl 20e0000.pinctrl: initialized IMX pinctrl driver
+[    0.696088] imx6ul-pinctrl 2290000.iomuxc-snvs: initialized IMX pinctrl driver
+[    0.745495] SCSI subsystem initialized
+[    0.746047] usbcore: registered new interface driver usbfs
+[    0.746160] usbcore: registered new interface driver hub
+[    0.746269] usbcore: registered new device driver usb
+[    0.748256] i2c i2c-0: IMX I2C adapter registered
+[    0.750830] i2c i2c-1: IMX I2C adapter registered
+[    0.752086] mc: Linux media interface: v0.10
+[    0.752197] videodev: Linux video capture interface: v2.00
+[    0.752361] pps_core: LinuxPPS API ver. 1 registered
+[    0.752383] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    0.752431] PTP clock support registered
+[    0.753051] Advanced Linux Sound Architecture Driver Initialized.
+[    0.754732] Bluetooth: Core ver 2.22
+[    0.754870] NET: Registered protocol family 31
+[    0.754892] Bluetooth: HCI device and connection manager initialized
+[    0.754927] Bluetooth: HCI socket layer initialized
+[    0.754953] Bluetooth: L2CAP socket layer initialized
+[    0.754998] Bluetooth: SCO socket layer initialized
+[    0.755931] clocksource: Switched to clocksource mxc_timer1
+[    0.756269] VFS: Disk quotas dquot_6.6.0
+[    0.756381] VFS: Dquot-cache hash table entries: 1024 (order 0, 4096 bytes)
+[    0.773094] NET: Registered protocol family 2
+[    0.773572] IP idents hash table entries: 4096 (order: 3, 32768 bytes, linear)
+[    0.774766] tcp_listen_portaddr_hash hash table entries: 512 (order: 0, 4096 bytes, linear)
+[    0.774847] TCP established hash table entries: 2048 (order: 1, 8192 bytes, linear)
+[    0.774913] TCP bind hash table entries: 2048 (order: 1, 8192 bytes, linear)
+[    0.774976] TCP: Hash tables configured (established 2048 bind 2048)
+[    0.775171] UDP hash table entries: 256 (order: 0, 4096 bytes, linear)
+[    0.775233] UDP-Lite hash table entries: 256 (order: 0, 4096 bytes, linear)
+[    0.775548] NET: Registered protocol family 1
+[    0.776676] RPC: Registered named UNIX socket transport module.
+[    0.776713] RPC: Registered udp transport module.
+[    0.776730] RPC: Registered tcp transport module.
+[    0.776746] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    0.778161] hw perfevents: enabled with armv7_cortex_a7 PMU driver, 5 counters available
+[    0.781019] Initialise system trusted keyrings
+[    0.781591] workingset: timestamp_bits=30 max_order=16 bucket_order=0
+[    0.791803] NFS: Registering the id_resolver key type
+[    0.791930] Key type id_resolver registered
+[    0.791951] Key type id_legacy registered
+[    0.792150] nfs4filelayout_init: NFSv4 File Layout Driver Registering...
+[    0.792174] nfs4flexfilelayout_init: NFSv4 Flexfile Layout Driver Registering...
+[    0.792253] jffs2: version 2.2. (NAND) © 2001-2006 Red Hat, Inc.
+[    0.793261] fuse: init (API version 7.32)
+[    1.033673] Key type asymmetric registered
+[    1.033713] Asymmetric key parser 'x509' registered
+[    1.033760] io scheduler mq-deadline registered
+[    1.033778] io scheduler kyber registered
+[    1.048422] imx-sdma 20ec000.sdma: Direct firmware load for imx/sdma/sdma-imx6q.bin failed with error 2
+[    1.048466] imx-sdma 20ec000.sdma: Falling back to sysfs fallback for: imx/sdma/sdma-imx6q.bin
+[    1.052098] mxs-dma 1804000.dma-apbh: initialized
+[    1.056431] 2020000.serial: ttymxc0 at MMIO 0x2020000 (irq = 21, base_baud = 5000000) is a IMX
+[    1.686682] printk: console [ttymxc0] enabled
+[    1.693317] 21e8000.serial: ttymxc1 at MMIO 0x21e8000 (irq = 63, base_baud = 5000000) is a IMX
+[    1.704409] 2288000.serial: ttymxc7 at MMIO 0x2288000 (irq = 68, base_baud = 5000000) is a IMX
+[    1.748447] imx_rngc 2284000.rng: Freescale RNGB registered (HW revision 2.129)
+[    1.756659] random: crng init done
+[    1.774759] [drm] Initialized mxsfb-drm 1.0.0 20160824 for 21c8000.lcdif on minor 0
+[    1.833785] Console: switching to colour frame buffer device 100x30
+[    1.855207] mxsfb 21c8000.lcdif: [drm] fb0: mxsfb-drmdrmfb frame buffer device
+[    1.884235] brd: module loaded
+[    1.901557] loop: module loaded
+[    1.914941] CAN device driver interface
+[    1.929975] pps pps0: new PPS source ptp0
+[    1.939587] fec 2188000.ethernet eth0: registered PHC device 0
+[    1.946723] usbcore: registered new interface driver asix
+[    1.952241] usbcore: registered new interface driver ax88179_178a
+[    1.958607] usbcore: registered new interface driver cdc_ether
+[    1.964559] usbcore: registered new interface driver smsc95xx
+[    1.970440] usbcore: registered new interface driver net1080
+[    1.976231] usbcore: registered new interface driver rndis_host
+[    1.982233] usbcore: registered new interface driver MOSCHIP usb-ethernet driver
+[    1.989821] usbcore: registered new interface driver cdc_ncm
+[    1.995500] ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+[    2.002090] ehci-mxc: Freescale On-Chip EHCI Host driver
+[    2.008229] usbcore: registered new interface driver usb-storage
+[    2.021592] input: iMX6UL Touchscreen Controller as /devices/platform/soc/2000000.bus/2040000.tsc/inpu0
+[    2.037409] snvs_rtc 20cc000.snvs:snvs-rtc-lp: registered as rtc0
+[    2.043630] snvs_rtc 20cc000.snvs:snvs-rtc-lp: setting system clock to 1970-01-01T00:00:00 UTC (0)
+[    2.052969] i2c /dev entries driver
+[    2.058657] pxp 21cc000.pxp: Device registered as /dev/video0
+[    2.069109] Bluetooth: HCI UART driver ver 2.3
+[    2.073624] Bluetooth: HCI UART protocol H4 registered
+[    2.078913] Bluetooth: HCI UART protocol LL registered
+[    2.085650] sdhci: Secure Digital Host Controller Interface driver
+[    2.091947] sdhci: Copyright(c) Pierre Ossman
+[    2.096361] sdhci-pltfm: SDHCI platform and OF driver helper
+[    2.110075] sdhci-esdhc-imx 2194000.mmc: allocated mmc-pwrseq
+[    2.120900] usbcore: registered new interface driver usbhid
+[    2.126634] usbhid: USB HID core driver
+[    2.150255] NET: Registered protocol family 10
+[    2.155885] mmc0: SDHCI controller on 2190000.mmc [2190000.mmc] using ADMA
+[    2.162887] mmc1: SDHCI controller on 2194000.mmc [2194000.mmc] using ADMA
+[    2.171467] Segment Routing with IPv6
+[    2.175615] sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver
+[    2.185672] NET: Registered protocol family 17
+[    2.190420] can: controller area network core
+[    2.195078] NET: Registered protocol family 29
+[    2.199626] can: raw protocol
+[    2.202734] can: broadcast manager protocol
+[    2.207357] can: netlink gateway - max_hops=1
+[    2.212250] Key type dns_resolver registered
+[    2.220902] Loading compiled-in X.509 certificates
+[    2.228733] mmc1: queuing unknown CIS tuple 0x80 (2 bytes)
+[    2.240225] mmc1: queuing unknown CIS tuple 0x80 (3 bytes)
+[    2.253249] mmc1: queuing unknown CIS tuple 0x80 (3 bytes)
+[    2.263828] mmc1: queuing unknown CIS tuple 0x80 (7 bytes)
+[    2.272884] mmc1: queuing unknown CIS tuple 0x80 (3 bytes)
+[    2.281174] mmc1: queuing unknown CIS tuple 0x80 (6 bytes)
+[    2.286749] ci_hdrc ci_hdrc.1: EHCI Host Controller
+[    2.291744] ci_hdrc ci_hdrc.1: new USB bus registered, assigned bus number 1
+[    2.315142] mmc0: new DDR MMC card at address 0001
+[    2.321004] mmcblk0: mmc0:0001 004GA0 3.69 GiB
+[    2.326074] ci_hdrc ci_hdrc.1: USB 2.0 started, EHCI 1.00
+[    2.331671] mmcblk0boot0: mmc0:0001 004GA0 partition 1 2.00 MiB
+[    2.337894] usb usb1: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 5.10
+[    2.346242] usb usb1: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+[    2.353469] usb usb1: Product: EHCI Host Controller
+[    2.358372] usb usb1: Manufacturer: Linux 5.10.167 ehci_hcd
+[    2.363948] usb usb1: SerialNumber: ci_hdrc.1
+[    2.368838] mmcblk0boot1: mmc0:0001 004GA0 partition 2 2.00 MiB
+[    2.375126] mmcblk0rpmb: mmc0:0001 004GA0 partition 3 512 KiB, chardev (245:0)
+[    2.383306] hub 1-0:1.0: USB hub found
+[    2.387203] hub 1-0:1.0: 1 port detected
+[    2.393314] imx_thermal 20c8000.anatop:tempmon: Commercial CPU temperature grade - max:95C critical:90C
+[    2.407183] input: gpio-keys as /devices/platform/gpio-keys/input/input1
+[    2.414806]  mmcblk0: p1 p2 p3
+[    2.419362] ALSA device list:
+[    2.426266]   No soundcards found.
+[    2.434822] EXT4-fs (mmcblk0p2): INFO: recovery required on readonly filesystem
+[    2.442258] EXT4-fs (mmcblk0p2): write access will be enabled during recovery
+[    2.496515] EXT4-fs (mmcblk0p2): recovery complete
+[    2.504939] EXT4-fs (mmcblk0p2): mounted filesystem with ordered data mode. Opts: (null)
+[    2.513204] VFS: Mounted root (ext4 filesystem) readonly on device 179:2.
+[    2.520964] devtmpfs: mounted
+[    2.525581] Freeing unused kernel memory: 1024K
+[    2.530638] Run /sbin/init as init process
+[    2.545667] mmc1: new high speed SDIO card at address 0001
+[    2.624982] EXT4-fs (mmcblk0p2): re-mounted. Opts: (null)
+[    2.654988] EXT4-fs (mmcblk0p3): recovery complete
+[    2.659875] EXT4-fs (mmcblk0p3): mounted filesystem with ordered data mode. Opts: (null)
+[    2.676049] usb 1-1: new high-speed USB device number 2 using ci_hdrc
+Starting syslogd: OK
+Starting klogd: OK
+Running sysctl: OK
+[    2.877389] usb 1-1: New USB device found, idVendor=0846, idProduct=9052, bcdDevice= 2.00
+[    2.885619] usb 1-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[    2.892839] usb 1-1: Product: 802.11ac WLAN Adapter
+[    2.897827] usb 1-1: Manufacturer: Realtek
+[    2.902013] usb 1-1: SerialNumber: 00e04c000001
+Starting mdev... OK
+Initializing random number generator: OK
+Saving random seed: OK
+Starting haveged: haveged: command socket is listening at fd 3
+OK
+Starting system message bus: done
+Starting rpcbind: OK
+Starting bluetoothd: [    3.482363] cfg80211: Loading compiled-in X.509 certificates for regulatory databe
+OK
+Starting network: [    3.658368] cfg80211: Loaded X.509 cert 'sforshee: 00b28ddf47aef9cea7'
+[    3.666095] platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+[    3.674745] platform regulatory.0: Falling back to sysfs fallback for: regulatory.db
+[    3.690792] Bluetooth: BNEP (Ethernet Emulation) ver 1.3
+[    3.706364] Bluetooth: BNEP socket layer initialized
+[    3.732771] rtl8812au: loading out-of-tree module taints kernel.
+[    3.847544] RTL871X: module init start
+[    3.851326] RTL871X: rtl8812au v4.3.14_13455.20150212_BTCOEX20150128-51
+[    3.858040] RTL871X: rtl8812au BT-Coex version = BTCOEX20150128-51
+OK
+Starting dropbear sshd: OK
+[    4.047914] RTL871X: rtw_ndev_init(wlan0)
+[    4.053230] usbcore: registered new interface driver rtl8812au
+[    4.059170] RTL871X: module init ret=0
+[    4.143122] cfg80211: failed to load regulatory.db
+
+Welcome to Armadeus development platform !
+opos6ul login:
+CTRL-A Z for help | 1152
+
+
+

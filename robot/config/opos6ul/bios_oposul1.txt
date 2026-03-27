@@ -1,0 +1,81 @@
+version robot 2025:
+BIOS:
+
+BIOS> printenv
+addipargs=setenv bootargs ${bootargs} ip=${ipaddr}:${serverip}:${gatewayip}:${netmask}:${hostname}:eth0:of
+addmmcargs=setenv bootargs ${bootargs} root=${mmcroot} rootfstype=${mmcrootfstype}
+addnfsargs=setenv bootargs ${bootargs} root=/dev/nfs rw nfsroot=${serverip}:${rootpath}
+autoload=no
+baudrate=115200
+board_name=opos6ul
+bootargs=console=ttymxc0,115200
+bootcmd=run emmcboot
+bootdelay=3
+check_env=if test -n ${flash_env_version}; then env default env_version; else env set flash_env_version $
+consoledev=ttymxc0
+cpu_type=imx6ull
+dnsip=85.95.208.3
+download_dtb=tftpboot ${fdt_addr} ${cpu_type}-${fdt_name}.dtb
+download_kernel=tftpboot ${loadaddr} ${kernelimg}
+download_rootfs=tftpboot ${loadaddr} ${board_name}-rootfs.ext4
+download_uboot_img=tftpboot ${loadaddr} ${board_name}-u-boot.img
+download_uboot_spl=tftpboot ${loadaddr} ${board_name}-u-boot.spl
+download_userdata=tftpboot ${loadaddr} ${board_name}-user_data.ext4
+emmcboot=run initargs; run addmmcargs; load mmc ${mmcdev}:${mmcpart} ${loadaddr} /boot/${kernelimg} && lo;
+emmcsafeboot=setenv mmcpart 1; setenv mmcroot /dev/mmcblk0p1 ro; run emmcboot;
+env_version=104
+erase_userdata=if mmc dev 0 0; then echo Erasing eMMC User Data partition, no way out...; mw ${loadaddr} n
+ethact=FEC
+ethaddr=00:1e:ac:f8:9a:2a
+ethprime=FEC
+fdt_addr=0x88000000
+fdt_high=0xffffffff
+fdt_name=opos6uldev
+fdtcontroladdr=8ef80590
+fileaddr=82000000
+filesize=602b4
+flash_dtb=if ext4write mmc ${mmcdev}:${mmcpart} ${fdt_addr} /boot/${cpu_type}-${fdt_name}.dtb ${filesize};
+flash_env_version=104
+flash_failsafe=if mmc dev 0 0; then setexpr nbblocks ${filesize} / 0x200; setexpr nbblocks ${nbblocks} + ;
+flash_kernel=if ext4write mmc ${mmcdev}:${mmcpart} ${loadaddr} /boot/${kernelimg} ${filesize}; then echo ;
+flash_reset_env=env default -f -a && saveenv && echo Environment variables erased!
+flash_rootfs=if mmc dev 0 0; then setexpr nbblocks ${filesize} / 0x200; setexpr nbblocks ${nbblocks} + 1;;
+flash_uboot_img=if mmc dev 0 1; then setexpr sz ${filesize} / 0x200; setexpr sz ${sz} + 1; if mmc write $;
+flash_uboot_spl=if mmc dev 0 1; then setexpr sz ${filesize} / 0x200; setexpr sz ${sz} + 1; if mmc write $;
+flash_userdata=if mmc dev 0 0; then setexpr nbblocks ${filesize} / 0x200; setexpr nbblocks ${nbblocks} + ;
+gatewayip=192.168.0.253
+initargs=setenv bootargs console=${consoledev},${baudrate} ${extrabootargs}
+initrd_high=0xffffffff
+ip_dyn=yes
+ipaddr=192.168.0.220
+kernelimg=opos6ul-linux.bin
+loadaddr=0x82000000
+mmcdev=0
+mmcpart=2
+mmcroot=/dev/mmcblk0p2 ro
+mmcrootfstype=ext4 rootwait
+nbblocks=5a001
+netmask=255.255.255.0
+nfsboot=run initargs; run addnfsargs addipargs; nfs ${loadaddr} ${serverip}:${rootpath}/boot/${kernelimg};
+preboot=run check_env
+rootpath=/tftpboot/opos6ul-root
+serverip=192.168.0.218
+show_update_logo=if fatload usb 0:1 ${loadaddr} /update/update.bmp; then bmp display ${loadaddr}; fi
+stderr=serial
+stdin=serial
+stdout=serial
+sz=302
+update_all=run update_rootfs update_uboot
+update_dtb=run download_dtb flash_dtb
+update_failsafe=run download_rootfs flash_failsafe
+update_kernel=run download_kernel flash_kernel
+update_rootfs=run download_rootfs flash_rootfs
+update_uboot=run download_uboot_spl flash_uboot_spl download_uboot_img flash_uboot_img
+update_userdata=run download_userdata flash_userdata; mmc rescan
+usb_update=usb start 1; run show_update_logo; run usb_update_rootfs;
+usb_update_rootfs=if fatload usb 0:1 ${loadaddr} /update/${board_name}-rootfs.ext4; then run flash_rootfsi
+ver=U-Boot 2018.05 (Apr 29 2023 - 19:59:34 +0200)
+videomode=video=ctfb:x:800,y:480,depth:18,pclk:30030,le:30,ri:210,up:23,lo:22,hs:16,vs:1,sync:1073741824,0
+
+Environment size: 5185/10235 bytes
+BIOS>
