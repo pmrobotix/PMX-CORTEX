@@ -30,13 +30,16 @@
 		}
 	],
 	"settings": {
-		// --- CMake : uniquement sur robot ---
+		// --- CMake : robot + brain ---
 		"cmake.automaticReconfigure": true,
-		"cmake.sourceDirectory": "${workspaceFolder:robot}",
+		"cmake.sourceDirectory": [
+			"${workspaceFolder:robot}",
+			"${workspaceFolder:brain}"
+		],
 		"cmake.ignoreCMakeListsMissing": true,
 		"cmake.provideTasks": false,
 		"cmake.configureOnOpen": false,
-		"cmake.autoSelectActiveFolder": false,
+		"cmake.autoSelectActiveFolder": true,
 		"tasks.statusbar.default.hide": true,
 		"cmake.options.advanced": {
 			"configurePreset":  { "statusBarVisibility": "visible" },

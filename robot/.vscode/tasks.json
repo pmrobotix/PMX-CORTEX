@@ -23,12 +23,11 @@
             "type": "pickString",
             "description": "Interface reseau OPOS6UL",
             "options": [
-                "192.168.2.105",
-                "192.168.3.103",
-                "192.168.2.107",
-                "192.168.0.205"
+                { "label": "Carte 2 - WiFi 5G", "value": "192.168.3.104" },
+                { "label": "Carte 1 - WiFi 5G", "value": "192.168.3.103" },
+                { "label": "Carte 2 - eth0", "value": "192.168.0.44" }
             ],
-            "default": "192.168.3.103"
+            "default": "192.168.3.104"
         },
         {
             "id": "targetBin",
@@ -39,7 +38,7 @@
                 "common-test",
                 "manual-test",
                 "bench",
-                "opos6ul"
+                "bot-opos6ul"
             ],
             "default": "driver-test"
         }
@@ -49,20 +48,24 @@
             // Build ARM + strip + scp (sans execution)
             "label": "ARM: Deploy",
             "type": "shell",
-            "command": "bash sh/deploy.sh ${input:targetIP} ${input:targetBin}",
+            "command": "bash sh/deploy.sh ${input:targetIP} ${input:targetBin} && echo '🤖 Bip Positronik, Successful transmission, captain Cho !'",
             "options": {
                 "cwd": "${workspaceFolder}",
-                "statusbar": { "hide": true }
+                "statusbar": {
+                    "hide": false,
+                    "label": "$(cloud-upload) Deploy",
+                    "color": "#4EC9B0"
+                }
             },
             "group": "build",
             "problemMatcher": [],
-            "presentation": { "reveal": "always", "panel": "shared", "focus": true }
+            "presentation": { "reveal": "always", "panel": "shared", "focus": true, "close": true }
         },
         {
             // Build + strip + scp + kill ancien process + execute
             "label": "ARM: Deploy + Run",
             "type": "shell",
-            "command": "bash sh/deploy.sh ${input:targetIP} ${input:targetBin} run",
+            "command": "bash sh/deploy.sh ${input:targetIP} ${input:targetBin} run && echo '🤖 Bip Positronik, Successful transmission, captain Cho !'",
             "options": {
                 "cwd": "${workspaceFolder}",
                 "statusbar": {
@@ -79,7 +82,7 @@
             // Terminal SSH interactif dans /root/pmx/
             "label": "ARM: Connect SSH",
             "type": "shell",
-            "command": "sshpass -p pmx ssh -o StrictHostKeyChecking=no root@${input:targetIP} 'cd /root/pmx ; exec $SHELL -l'",
+            "command": "sshpass -p pmx ssh -t -o StrictHostKeyChecking=no root@${input:targetIP} \"date -s '$(date -u '+%Y-%m-%d %H:%M:%S')' > /dev/null 2>&1; cd /root/pmx; exec /bin/sh -l\"",
             "options": {
                 "cwd": "${workspaceFolder}",
                 "statusbar": {
@@ -89,13 +92,13 @@
                 }
             },
             "problemMatcher": [],
-            "presentation": { "reveal": "always", "panel": "dedicated", "focus": true }
+            "presentation": { "reveal": "always", "panel": "new", "focus": true, "close": true }
         },
         {
             // Rapatrie les fichiers SVG generes sur la carte
             "label": "ARM: Recup SVG",
             "type": "shell",
-            "command": "sshpass -p pmx scp -o StrictHostKeyChecking=no root@${input:targetIP}:/root/pmx/*.svg /home/pmx/recup/",
+            "command": "sshpass -p pmx scp -o StrictHostKeyChecking=no root@${input:targetIP}:/root/pmx/*.svg /home/pmx/recup/ && echo '🤖 Bip Positronik, Successful transmission, captain Cho !'",
             "options": {
                 "cwd": "${workspaceFolder}",
                 "statusbar": {
@@ -105,13 +108,13 @@
                 }
             },
             "problemMatcher": [],
-            "presentation": { "reveal": "always", "panel": "shared" }
+            "presentation": { "reveal": "always", "panel": "shared", "close": true }
         },
         {
             // Generation de la documentation Doxygen
             "label": "Doxygen: Generer la doc",
             "type": "shell",
-            "command": "doxygen",
+            "command": "doxygen && echo '🤖 Bip Positronik, Successful transmission, captain Cho !'",
             "options": {
                 "cwd": "${workspaceFolder}",
                 "statusbar": { "hide": true }

@@ -10,7 +10,7 @@ Actions::Actions()
 
 void Actions::start()
 {
-    actionManagerTimer_.start("ActionManagerTimer", 2); //TODO si superieur à 1, ca bloque le programme sur OPOSUL
+    actionManagerTimer_.start("ActionManagerTimer", 60);
 
     while (!is_started())
     {

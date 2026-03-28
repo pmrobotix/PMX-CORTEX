@@ -37,3 +37,9 @@ add_compile_definitions(CONFIG_MOTORCTRL_BOTMOTORS=1)
 # =============================================
 add_executable(pmx-test test/main_test.cpp)
 target_link_libraries(pmx-test PRIVATE pthread)
+
+# =============================================
+# Tests manuels (hardware, a executer sur cible)
+# =============================================
+add_executable(test-screen test/manual/test_screen.cpp)
+target_link_libraries(test-screen PRIVATE pthread)

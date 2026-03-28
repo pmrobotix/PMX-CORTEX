@@ -5,6 +5,10 @@
 
 #include "../../src/common/thread/Thread.hpp"
 #include "../suite/UnitTestSuite.hpp"
+#include <sys/mman.h>
+#include <cerrno>
+#include <cstring>
+#include <iostream>
 
 #include "MutexTest.hpp"
 #include "ThreadTest.hpp"
@@ -19,6 +23,9 @@
 
 int main(int argc, char** argv)
 {
+    if (mlockall(MCL_CURRENT | MCL_FUTURE) != 0) {
+        std::cerr << "mlockall FAILED: " << strerror(errno) << std::endl;
+    }
     utils::set_realtime_priority(3, "common-test");
 
     UnitTestSuite suite;

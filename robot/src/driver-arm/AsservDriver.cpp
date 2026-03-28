@@ -950,7 +950,7 @@ void AsservDriver::motion_ActivateManager(bool enable) //TODO enable pas utile ?
 
 		}
 		//on demarre le check de positionnement...
-		this->start("AsservDriver::AsservDriver()", 3);
+		this->start("AsservDriver::AsservDriver()", 80);
 
 	} else
 	{

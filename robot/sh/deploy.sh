@@ -46,8 +46,11 @@ if ! command -v sshpass &>/dev/null; then
     exit 1
 fi
 
-SSH_CMD="sshpass -p $ROBOT_PASS ssh -o StrictHostKeyChecking=no $ROBOT_USER@$ROBOT_IP"
-SCP_CMD="sshpass -p $ROBOT_PASS scp -o StrictHostKeyChecking=no"
+# Multiplexing SSH : une seule connexion reutilisee pour mkdir, scp, kill, run
+CTRL_SOCK="/tmp/ssh-pmx-$ROBOT_IP"
+SSH_OPTS="-o StrictHostKeyChecking=no -o ControlMaster=auto -o ControlPath=$CTRL_SOCK -o ControlPersist=30"
+SSH_CMD="sshpass -p $ROBOT_PASS ssh $SSH_OPTS $ROBOT_USER@$ROBOT_IP"
+SCP_CMD="sshpass -p $ROBOT_PASS scp $SSH_OPTS"
 
 # --- Build ARM release ---
 info "Build $TARGET (arm-release)..."
@@ -76,9 +79,11 @@ $SCP_CMD "$BINARY" "$ROBOT_USER@$ROBOT_IP:$ROBOT_DIR/"
 
 # --- Run (optionnel) ---
 if [ "$RUN" = "run" ]; then
-    # Kill l'ancien process s'il tourne encore
-    info "Kill $TARGET (si en cours)..."
-    $SSH_CMD "killall $TARGET 2>/dev/null" || true
+    # Kill l'ancien process s'il tourne (uniquement bot-opos6ul)
+    if [ "$TARGET" = "bot-opos6ul" ]; then
+        info "Kill $TARGET (si en cours)..."
+        $SSH_CMD "killall $TARGET 2>/dev/null" || true
+    fi
     info "Execution $TARGET sur la carte..."
     echo "----------------------------------------"
     $SSH_CMD "cd $ROBOT_DIR && ./$TARGET"

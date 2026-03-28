@@ -8,6 +8,10 @@
 
 #include "../../src/common/thread/Thread.hpp"
 #include "../suite/UnitTestSuite.hpp"
+#include <sys/mman.h>
+#include <cerrno>
+#include <cstring>
+#include <iostream>
 
 #include "LedManualTest.hpp"
 #include "SwitchManualTest.hpp"
@@ -18,9 +22,13 @@
 #include "ServoDriverManualTest.hpp"
 #include "ColorDriverManualTest.hpp"
 #include "SensorDriverManualTest.hpp"
+#include "ScreenManualTest.hpp"
 
 int main(int, char**)
 {
+	if (mlockall(MCL_CURRENT | MCL_FUTURE) != 0) {
+		std::cerr << "mlockall FAILED: " << strerror(errno) << std::endl;
+	}
 	utils::set_realtime_priority(3, "manual-test");
 
 	UnitTestSuite suite;
@@ -34,6 +42,7 @@ int main(int, char**)
 	suite.addTest(new test::ColorDriverManualTest());
 	suite.addTest(new test::SensorDriverManualTest());
 	suite.addTest(new test::ButtonDriverManualTest());
+	suite.addTest(new test::ScreenManualTest());
 
 	suite.run();
 

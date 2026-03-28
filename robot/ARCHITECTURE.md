@@ -1114,3 +1114,45 @@ Chaque méthode publique doit être documentée :
 - ⬜ Remplacer les `exit(-1)` dans les drivers par des exceptions ou des codes retour (pas de exit() dans du code embarqué)
 - ⬜ Uniformiser les botId (OPOS6UL_Robot vs PMX) — un seul identifiant par robot
 - ⬜ Changer le SVG pour celui de 2026
+
+### Optimisations temps-réel 2026
+
+Objectif : réduire la latence worst-case des threads critiques (serial, I2C) de ~10-50ms à ~200-500µs, **sans PREEMPT_RT**.
+
+Prérequis kernel (en cours) : `CONFIG_PREEMPT=y`, `CONFIG_HZ=1000`, I2C déjà en 400 kHz.
+
+- ⬜ **1. `mlockall()` — Verrouiller la mémoire**
+  - Appeler `mlockall(MCL_CURRENT | MCL_FUTURE)` au début de `main()`, avant de lancer les threads
+  - Empêche les page faults (stalls de 1-10ms) en verrouillant toute la mémoire en RAM
+  - Coût : quelques Mo de RAM supplémentaires (négligeable sur 512 Mo)
+
+- ⬜ **2. `SCHED_FIFO` par thread — Priorités temps-réel**
+  - Assigner des priorités différenciées aux threads selon leur criticité
+  - POSIX SCHED_FIFO : 99 = max, 1 = min, 0 = pas temps-réel (SCHED_OTHER)
+  - Nécessite root ou `CAP_SYS_NICE`
+
+  | Thread | Priorité avant | Priorité après | Mode | Rôle |
+  |---|---|---|---|---|
+  | **AsservDriver** (driver-arm) | 3 | **80** | ARM | Comm série Teensy |
+  | **AsservEsialR** | 2 | **75** | SIMU | Boucle PID interne |
+  | **ActionManagerTimer** | 2 | **60** | ARM+SIMU | Actions/servos |
+  | **Main** | 50 | **50** | ARM+SIMU | Init/orchestration |
+  | **DecisionMakerIA** | 3 | **40** | ARM+SIMU | Stratégie match |
+  | **LoggerFactory** | 0 | **0** | ARM+SIMU | Logs best-effort |
+
+- ⬜ **3. UART `ASYNC_LOW_LATENCY` — Réduire la latence série**
+  - Activer le flag `ASYNC_LOW_LATENCY` via `ioctl(TIOCSSERIAL)` après `open()` du port série
+  - Réduit la latence de réveil du `read()` de ~10ms à <1ms
+  - Critique pour la communication haute fréquence avec la Teensy
+
+- ⬜ **4. `clock_nanosleep` absolu — Boucles sans dérive**
+  - Remplacer les `sleep_for()` / `usleep()` par `clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, ...)`
+  - Cible un instant absolu : si le traitement prend 2ms sur une période de 5ms, le sleep ne dure que 3ms
+  - Insensible aux changements d'horloge (NTP)
+
+- ⬜ **5. Priorités IRQ via `chrt` — Protéger serial/I2C du WiFi**
+  - Script init qui monte la priorité des threads IRQ UART et I2C au-dessus du WiFi :
+    - IRQ UART : `chrt -f -p 90`
+    - IRQ I2C : `chrt -f -p 85`
+    - WiFi : reste à la priorité par défaut (50)
+  - Empêche un transfert WiFi de bloquer les threads critiques

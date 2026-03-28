@@ -81,7 +81,7 @@ void OPOS6UL_RobotExtended::begin(int argc, char** argv)
         IAutomateState* stateWaitEndOfMatch = new O_State_WaitEndOfMatch();
         stateInit->addState("WaitEndOfMatch", stateWaitEndOfMatch);
 
-        decisionMaker_->start("O_State_DecisionMakerIA", 3);
+        decisionMaker_->start("O_State_DecisionMakerIA", 40);
 
         // Start the automate and wait for its return
         automate_.run(*this, stateInit);

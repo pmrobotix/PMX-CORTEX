@@ -96,7 +96,7 @@ AsservDriver::AsservDriver(std::string botid, ARobotPositionShared *aRobotPositi
 	{
 		//on demarre le check de positionnement...
 		//asservSimuStarted_ = true;
-		this->start("AsservDriver::AsservDriver()" + botid_, 3);
+		this->start("AsservDriver::AsservDriver()" + botid_, 80);
 	}
 //    else {
 //        //stop the thread

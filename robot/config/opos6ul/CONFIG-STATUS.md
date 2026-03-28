@@ -34,18 +34,55 @@ Reference wiki PMX : https://github.com/pmrobotix/PMX/wiki/DevEnv-OPOS6UL-Compil
 
 ## Statut des modifications (vs wiki PMX)
 
-### Appliquees (menuconfig buildroot)
+### Appliquees (menuconfig buildroot — `make menuconfig`)
 - [x] F2FS : `BR2_PACKAGE_F2FS_TOOLS=y`
+  `Target packages  ---> Filesystem and flash utilities  ---> [*] f2fs-tools`
 - [x] RTL8821AU WiFi 5GHz : `BR2_PACKAGE_RTL8821AU=y`
+  `Target packages  ---> Hardware handling  ---> [*] rtl8821au`
 - [x] wireless-tools : `BR2_PACKAGE_WIRELESS_TOOLS=y`
+  `Target packages  ---> Networking applications  ---> [*] wireless tools`
 - [x] wpa_supplicant + CLI + passphrase : `BR2_PACKAGE_WPA_SUPPLICANT=y`
+  `Target packages  ---> Networking applications  ---> [*] wpa_supplicant`
 - [x] hostapd : `BR2_PACKAGE_HOSTAPD=y`
+  `Target packages  ---> Networking applications  ---> [*] hostapd`
 - [x] as_devices + cpp : `BR2_PACKAGE_AS_DEVICES=y`
+  `Target packages  ---> Hardware handling  ---> [*] as_devices`
 
-### Appliquees (linux-menuconfig kernel)
+### Appliquees (linux-menuconfig kernel — `make linux-menuconfig`)
 - [x] F2FS en module + XATTR, ACL, CHECK_FS (`CONFIG_F2FS_FS=m`)
+  `File systems  ---> [M] F2FS filesystem support`
 - [x] LED GPIO + triggers timer, heartbeat, backlight, gpio, default_on
+  `Device Drivers  ---> LED Support  --->`
 - [x] CPU freq scaling : ondemand, powersave, conservative, userspace, i.MX CPUfreq
+  `CPU Power Management  ---> CPU Frequency scaling  --->`
+
+### A appliquer (linux-menuconfig kernel) — Amelioration precision timers
+
+Bench actuel (CONFIG_HZ=100, PREEMPT_VOLUNTARY) :
+- Timer 100ms : erreur +24%, jitter max 177ms
+- Timer 10ms  : erreur +129%, jitter max 159ms
+- Timer 1ms   : erreur +164%, jitter max 152ms
+
+**Modification 1 : Preemption**
+```
+General setup  --->
+    Preemption Model  --->
+        ( ) No Forced Preemption (Server)
+        ( ) Voluntary Kernel Preemption (Desktop)    ← actuel
+        (X) Preemptible Kernel (Low-Latency Desktop) ← a selectionner
+```
+Config : `CONFIG_PREEMPT_VOLUNTARY=y` → `CONFIG_PREEMPT=y`
+
+**Modification 2 : Timer frequency**
+```
+Kernel Features  --->
+    Timer frequency  --->
+        ( ) 100 HZ     ← actuel
+        (X) 1000 HZ    ← a selectionner
+```
+Config : `CONFIG_HZ=100` → `CONFIG_HZ=1000`
+
+Impact attendu : jitter ~150ms → ~1-5ms (avec tweaks userspace SCHED_FIFO + mlockall)
 
 ### NON appliquees (device tree Linux + U-Boot)
 - [ ] Desactivation LCD (backlight, pwm3, lcdif, pinctrl) - Linux ET U-Boot
@@ -55,23 +92,108 @@ Reference wiki PMX : https://github.com/pmrobotix/PMX/wiki/DevEnv-OPOS6UL-Compil
 
 ---
 
+## Inventaire des 3 cartes OPOS6UL
+
+| | Carte 1 (robot) | Carte 2 | Carte 3 |
+|---|---|---|---|
+| **Role** | Dans le robot, avec dongle 5GHz | Avec LCD connecte | Spare |
+| **MAC Ethernet** | `00:1e:ac:f8:9a:2a` | `00:1e:ac:f8:99:f0` | `00:1e:ac:f8:99:f1` |
+| **IP** | `192.168.0.220` | `192.168.0.99` | `192.168.0.99` |
+| **Server IP** | `192.168.0.218` | `192.168.0.121` | `192.168.0.121` |
+| **Boot delay** | 3s | 5s | 5s |
+| **Dongle USB RTL8821AU** | oui (wlan0, 5GHz) | oui (detecte) | non |
+| **WiFi Broadcom SDIO** | actif (mmc1, 2.4GHz) | actif (mmc1, 2.4GHz) | actif (mmc1, 2.4GHz) |
+| **LCD (lcdif)** | actif (800x480x18) | actif (800x480x18) | actif (800x480x18) |
+| **I2C bus** | i2c-0, i2c-1 | i2c-0, i2c-1 | i2c-0, i2c-1 |
+| **I2C devices (bus 0)** | 0x00, 0x2D | - | - |
+| **I2C devices (bus 1)** | 0x00, 0x08, 0x20, 0x24 | - | - |
+| **F2FS (mmcblk0p3)** | oui | ext4 | oui |
+| **CPU freq** | performance, 900MHz | - | - |
+| **Fichiers** | `bios_oposul1.txt`, `boot_oposul1.txt` | `bios_oposul2.txt`, `boot_oposul2.txt` | `bios_oposul3.txt`, `boot_oposul3.txt` |
+
+---
+
+## Ecran LCD : Santek ST0700-Adapt (L070O5-005)
+
+### Specs
+
+| Caracteristique | Valeur |
+|---|---|
+| Fabricant | Santek (San Technology) |
+| Reference panneau | ST0700I5Y-RBSLW |
+| Reference kit Armadeus | ST0700-Adapt |
+| Taille | 7.0 pouces |
+| Resolution | 800 x 480 (WVGA) |
+| Profondeur couleur | 18 bits (RGB666) |
+| Interface | RGB parallele (nappe TFT_J21 → X5 sur LCD_Adapt) |
+| Backlight | PWM (pwm3) |
+| **Tactile** | **Oui, resistif 4 fils (single touch)** |
+| Controleur tactile | TSC integre au i.MX6ULL (bloc `2040000.tsc`) |
+| Driver Linux | `mxsfb-drm` sur `/dev/fb0`, touchscreen sur `/dev/input/event0` |
+
+### Commandes utiles
+
+```bash
+# Afficher une image sur l'ecran
+fbv image.png
+
+# Capture d'ecran framebuffer
+fbgrab /tmp/screenshot.png
+
+# Test framebuffer
+fbtest
+
+# Veille ecran
+echo 1 > /sys/class/graphics/fb0/blank   # eteindre
+echo 0 > /sys/class/graphics/fb0/blank   # rallumer
+
+# Calibration tactile
+export TSLIB_TSDEVICE=/dev/input/event0
+ts_calibrate
+
+# Test tactile
+ts_test
+```
+
+### Logs de boot confirmant le fonctionnement
+
+```
+[drm] Initialized mxsfb-drm 1.0.0 for 21c8000.lcdif on minor 0
+mxsfb 21c8000.lcdif: [drm] fb0: mxsfb-drmdrmfb frame buffer device
+input: iMX6UL Touchscreen Controller as .../2040000.tsc/input0
+```
+
+### Test manuel
+
+Programme de test : `brain/test/manual/test_screen.cpp` (cible CMake `test-screen`)
+
+```bash
+# Compilation ARM
+cmake --preset arm-release && cmake --build build-arm-release --target test-screen
+
+# Copier sur la carte
+scp build-arm-release/test-screen root@<IP_CARTE>:/tmp/
+
+# Test framebuffer (rouge, vert, bleu, blanc, mire 8 couleurs)
+/tmp/test-screen
+
+# Test framebuffer + tactile (dessine des croix jaunes au toucher)
+/tmp/test-screen --touch
+```
+
+### Note importante
+
+Si le LCD est desactive (option GPIO ci-dessous), l'affichage ET le tactile sont perdus.
+Le LCD peut etre utile en dev pour afficher des infos de debug (position, etat IA, capteurs).
+
+---
+
 ## Compilation WiFi RTL8821AU
 
 Modification necessaire dans le fichier buildroot :
 - Fichier : `buildroot/package/rtl8821au/rtl8821au.mk`
 - Changer le hash du commit GitHub : `9f09c7627bda0ab5a577c1ad0337666ca2951132`
 - Source : https://github.com/abperiasamy/rtl8812AU_8821AU_linux
-
----
-
-## Desactivation LCD dans linux-menuconfig
-
-```
-Device Drivers
-  -> Graphics support
-     [ ] Backlight & LCD device support  ----
-     [ ] Bootup logo  ----
-```
 
 ---
 

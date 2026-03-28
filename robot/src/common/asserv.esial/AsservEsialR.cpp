@@ -58,7 +58,7 @@ void AsservEsialR::startAsserv(int freqHz)
     setSamplingFrequency(freqHz); //Hz
 
     //create motion control task thread execute function
-    start("AsservEsialR", 2);
+    start("AsservEsialR", 75);
 }
 void AsservEsialR::initAsserv()
 {
