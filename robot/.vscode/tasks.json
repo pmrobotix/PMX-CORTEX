@@ -59,7 +59,7 @@
             },
             "group": "build",
             "problemMatcher": [],
-            "presentation": { "reveal": "always", "panel": "shared", "focus": true, "close": true }
+            "presentation": { "reveal": "always", "panel": "shared", "focus": true }
         },
         {
             // Build + strip + scp + kill ancien process + execute
