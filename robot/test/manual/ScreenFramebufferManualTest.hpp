@@ -7,31 +7,31 @@
  * Touchscreen : /dev/input/event0 (TSC i.MX6ULL)
  */
 
-#ifndef TEST_SCREENMANUALTEST_HPP
-#define TEST_SCREENMANUALTEST_HPP
+#ifndef TEST_SCREENFRAMEBUFFERMANUALTEST_HPP
+#define TEST_SCREENFRAMEBUFFERMANUALTEST_HPP
 
 #include "../suite/UnitTest.hpp"
 #include "log/LoggerFactory.hpp"
 
 namespace test {
 
-class ScreenManualTest : public UnitTest
+class ScreenFramebufferManualTest : public UnitTest
 {
 private:
 
 	static inline const logs::Logger & logger()
 	{
-		static const logs::Logger & instance = logs::LoggerFactory::logger("ScreenManualTest");
+		static const logs::Logger & instance = logs::LoggerFactory::logger("ScreenFramebufferManualTest");
 		return instance;
 	}
 
 public:
 
-	ScreenManualTest() : UnitTest("ScreenManualTest")
+	ScreenFramebufferManualTest() : UnitTest("ScreenFramebufferManualTest")
 	{
 	}
 
-	virtual ~ScreenManualTest()
+	virtual ~ScreenFramebufferManualTest()
 	{
 	}
 
@@ -46,6 +46,17 @@ public:
 	 * \brief Test tactile : lit les events et dessine des croix.
 	 */
 	void testTouchscreen();
+
+	/*!
+	 * \brief Verification de la calibration : affiche 5 croix et mesure l'erreur.
+	 */
+	void testVerifyCalibration();
+
+	/*!
+	 * \brief Calibration tactile 3 points : affiche des croix cibles et
+	 *        mesure les coordonnees brutes pour calculer les coefficients.
+	 */
+	void testCalibration();
 };
 
 }

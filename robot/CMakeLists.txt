@@ -273,7 +273,7 @@ if(DRIVER_LIB)
         test/manual/ServoDriverManualTest.cpp
         test/manual/ColorDriverManualTest.cpp
         test/manual/SensorDriverManualTest.cpp
-        test/manual/ScreenManualTest.cpp
+        test/manual/ScreenFramebufferManualTest.cpp
     )
 
     target_link_libraries(manual-test PRIVATE pmx-suite ${DRIVER_LIB})

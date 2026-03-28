@@ -13,16 +13,16 @@
 #include <cstring>
 #include <iostream>
 
-#include "LedManualTest.hpp"
-#include "SwitchManualTest.hpp"
-#include "ActionManagerTimerManualTest.hpp"
-#include "AsservDriverManualTest.hpp"
-#include "ButtonDriverManualTest.hpp"
-#include "LcdShieldDriverManualTest.hpp"
-#include "ServoDriverManualTest.hpp"
-#include "ColorDriverManualTest.hpp"
-#include "SensorDriverManualTest.hpp"
-#include "ScreenManualTest.hpp"
+// #include "LedManualTest.hpp"
+// #include "SwitchManualTest.hpp"
+// #include "ActionManagerTimerManualTest.hpp"
+// #include "AsservDriverManualTest.hpp"
+// #include "ButtonDriverManualTest.hpp"
+// #include "LcdShieldDriverManualTest.hpp"
+// #include "ServoDriverManualTest.hpp"
+// #include "ColorDriverManualTest.hpp"
+// #include "SensorDriverManualTest.hpp"
+#include "ScreenFramebufferManualTest.hpp"
 
 int main(int, char**)
 {
@@ -33,16 +33,16 @@ int main(int, char**)
 
 	UnitTestSuite suite;
 
-	suite.addTest(new test::LedManualTest());
-	suite.addTest(new test::SwitchManualTest());
-	suite.addTest(new test::ActionManagerTimerManualTest());
-	suite.addTest(new test::AsservDriverManualTest());
-	suite.addTest(new test::LcdShieldDriverManualTest());
-	suite.addTest(new test::ServoDriverManualTest());
-	suite.addTest(new test::ColorDriverManualTest());
-	suite.addTest(new test::SensorDriverManualTest());
-	suite.addTest(new test::ButtonDriverManualTest());
-	suite.addTest(new test::ScreenManualTest());
+	// suite.addTest(new test::LedManualTest());
+	// suite.addTest(new test::SwitchManualTest());
+	// suite.addTest(new test::ActionManagerTimerManualTest());
+	// suite.addTest(new test::AsservDriverManualTest());
+	// suite.addTest(new test::LcdShieldDriverManualTest());
+	// suite.addTest(new test::ServoDriverManualTest());
+	// suite.addTest(new test::ColorDriverManualTest());
+	// suite.addTest(new test::SensorDriverManualTest());
+	// suite.addTest(new test::ButtonDriverManualTest());
+	suite.addTest(new test::ScreenFramebufferManualTest());
 
 	suite.run();
 
