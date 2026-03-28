@@ -56,31 +56,17 @@ Reference wiki PMX : https://github.com/pmrobotix/PMX/wiki/DevEnv-OPOS6UL-Compil
 - [x] CPU freq scaling : ondemand, powersave, conservative, userspace, i.MX CPUfreq
   `CPU Power Management  ---> CPU Frequency scaling  --->`
 
-### A appliquer (linux-menuconfig kernel) — Amelioration precision timers
+### Appliquees (linux-menuconfig kernel) — Amelioration precision timers (2026-03-28)
 
-Bench actuel (CONFIG_HZ=100, PREEMPT_VOLUNTARY) :
+Bench avant (CONFIG_HZ=100, PREEMPT_VOLUNTARY) :
 - Timer 100ms : erreur +24%, jitter max 177ms
 - Timer 10ms  : erreur +129%, jitter max 159ms
 - Timer 1ms   : erreur +164%, jitter max 152ms
 
-**Modification 1 : Preemption**
-```
-General setup  --->
-    Preemption Model  --->
-        ( ) No Forced Preemption (Server)
-        ( ) Voluntary Kernel Preemption (Desktop)    ← actuel
-        (X) Preemptible Kernel (Low-Latency Desktop) ← a selectionner
-```
-Config : `CONFIG_PREEMPT_VOLUNTARY=y` → `CONFIG_PREEMPT=y`
-
-**Modification 2 : Timer frequency**
-```
-Kernel Features  --->
-    Timer frequency  --->
-        ( ) 100 HZ     ← actuel
-        (X) 1000 HZ    ← a selectionner
-```
-Config : `CONFIG_HZ=100` → `CONFIG_HZ=1000`
+- [x] Preemption : `CONFIG_PREEMPT_VOLUNTARY=y` → `CONFIG_PREEMPT=y`
+  `General setup  ---> Preemption Model  ---> (X) Preemptible Kernel (Low-Latency Desktop)`
+- [x] Timer frequency : `CONFIG_HZ=100` → `CONFIG_HZ=1000`
+  `Kernel Features  ---> Timer frequency  ---> (X) 1000 HZ`
 
 Impact attendu : jitter ~150ms → ~1-5ms (avec tweaks userspace SCHED_FIFO + mlockall)
 

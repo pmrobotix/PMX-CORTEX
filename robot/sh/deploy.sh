@@ -56,7 +56,7 @@ SCP_CMD="sshpass -p $ROBOT_PASS scp $SSH_OPTS"
 info "Build $TARGET (arm-release)..."
 cd "$ROBOT_DIR_SRC"
 cmake --preset arm-release 2>&1 | tail -1
-cmake --build --preset arm-release --target "$TARGET" 2>&1 | tail -3
+cmake --build --preset arm-release --target "$TARGET" -j$(nproc) 2>&1 | tail -3
 
 BUILD_DIR="$ROBOT_DIR_SRC/build-arm-release"
 BINARY="$BUILD_DIR/$TARGET"

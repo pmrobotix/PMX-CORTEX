@@ -41,6 +41,7 @@ This is a licence-free software, it can be used by anyone who try to build a bet
     #include <fcntl.h>
     #include <unistd.h>
     #include <sys/ioctl.h>
+    #include <linux/serial.h>
 #endif
 
 

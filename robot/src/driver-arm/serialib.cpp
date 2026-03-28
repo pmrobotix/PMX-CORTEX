@@ -210,6 +210,14 @@ char serialib::openDevice(const char *Device,const unsigned int Bauds)
     options.c_cc[VMIN]=0;
     // Activate the settings
     tcsetattr(fd, TCSANOW, &options);
+
+    // Enable low-latency mode (wake up read() immediately instead of ~10ms buffering)
+    struct serial_struct serinfo;
+    if (ioctl(fd, TIOCGSERIAL, &serinfo) == 0) {
+        serinfo.flags |= ASYNC_LOW_LATENCY;
+        ioctl(fd, TIOCSSERIAL, &serinfo);
+    }
+
     // Success
     return (1);
 #endif

@@ -104,6 +104,15 @@ cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 cat /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_cur_freq
 cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq
 
+# Priorites IRQ temps-reel : UART et I2C au-dessus du WiFi
+echo "set IRQ priorities"
+for pid in $(pgrep -f "irq/.*uart\|irq/.*ttymxc"); do
+    chrt -f -p 90 $pid 2>/dev/null && echo "  UART IRQ $pid -> FIFO 90"
+done
+for pid in $(pgrep -f "irq/.*i2c"); do
+    chrt -f -p 85 $pid 2>/dev/null && echo "  I2C IRQ $pid -> FIFO 85"
+done
+
 
 #pour ajouter de la place sur la partition 2
 # resize2fs /dev/mmcblk0p2

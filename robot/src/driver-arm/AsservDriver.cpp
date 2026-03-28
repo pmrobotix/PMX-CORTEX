@@ -276,6 +276,7 @@ void AsservDriver::execute()
 	std::string readData = "";
 
 	nucleo_flushSerial();
+	utils::PeriodicTimer periodicTimer(100000); // période 100ms sans dérive
 	while (1)
 	{
 //		if (asservCardStarted_)
@@ -315,11 +316,8 @@ void AsservDriver::execute()
 			}
 		}
 
-		//this->yield();
 //		}
-		utils::Thread::sleep_for_millis(100);
-
-		this->yield();
+		periodicTimer.sleep_until_next();
 	}
 
 }

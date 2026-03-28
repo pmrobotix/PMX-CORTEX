@@ -9,6 +9,7 @@
 #include <pthread.h>
 #include <string>
 #include <thread>
+#include <ctime>
 #include "Mutex.hpp"
 #include <chrono>
 
@@ -45,6 +46,37 @@ void sleep_for_millis(int64_t msec);
  * \brief Met en pause le thread courant pendant \a sec secondes.
  */
 void sleep_for_secs(int64_t sec);
+
+/*!
+ * \brief Structure pour gérer une boucle périodique sans dérive.
+ *
+ * Utilise clock_nanosleep avec TIMER_ABSTIME pour cibler des instants absolus.
+ * Exemple d'utilisation :
+ * \code
+ * PeriodicTimer timer(100000); // période 100ms en microsecondes
+ * while (running) {
+ *     do_work();
+ *     timer.sleep_until_next();
+ * }
+ * \endcode
+ */
+struct PeriodicTimer {
+    struct timespec next;
+    int64_t period_ns;
+
+    PeriodicTimer(int64_t period_us) : period_ns(period_us * 1000) {
+        clock_gettime(CLOCK_MONOTONIC, &next);
+    }
+
+    void sleep_until_next() {
+        next.tv_nsec += period_ns;
+        while (next.tv_nsec >= 1000000000) {
+            next.tv_sec++;
+            next.tv_nsec -= 1000000000;
+        }
+        clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &next, nullptr);
+    }
+};
 
 /*!
  * \brief Classe de base pour les threads (wrapper POSIX pthread).

@@ -18,7 +18,7 @@
             // eth0  = cable direct     192.168.2.105
             // 5g    = WiFi 5GHz AP     192.168.3.103
             // wifi  = WiFi PMX         192.168.2.107
-            // home  = WiFi maison      192.168.0.205
+            // home  = WiFi maison      192.168.0.44
             "id": "targetIP",
             "type": "pickString",
             "description": "Interface reseau OPOS6UL",
@@ -134,6 +134,67 @@
             },
             "dependsOn": "Doxygen: Generer la doc",
             "problemMatcher": []
+        },
+        {
+            // Clean build ARM release
+            "label": "Clean: ARM Release",
+            "type": "shell",
+            "command": "cmake --build --preset arm-release --target clean && echo '🤖 Clean ARM Release OK'",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "statusbar": { "hide": true }
+            },
+            "problemMatcher": [],
+            "presentation": { "reveal": "always", "panel": "shared", "close": true }
+        },
+        {
+            // Clean build ARM debug
+            "label": "Clean: ARM Debug",
+            "type": "shell",
+            "command": "cmake --build --preset arm-debug --target clean && echo '🤖 Clean ARM Debug OK'",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "statusbar": { "hide": true }
+            },
+            "problemMatcher": [],
+            "presentation": { "reveal": "always", "panel": "shared", "close": true }
+        },
+        {
+            // Clean build SIMU debug
+            "label": "Clean: SIMU Debug",
+            "type": "shell",
+            "command": "cmake --build --preset simu-debug --target clean && echo '🤖 Clean SIMU Debug OK'",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "statusbar": { "hide": true }
+            },
+            "problemMatcher": [],
+            "presentation": { "reveal": "always", "panel": "shared", "close": true }
+        },
+        {
+            // Clean build SIMU release
+            "label": "Clean: SIMU Release",
+            "type": "shell",
+            "command": "cmake --build --preset simu-release --target clean && echo '🤖 Clean SIMU Release OK'",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "statusbar": { "hide": true }
+            },
+            "problemMatcher": [],
+            "presentation": { "reveal": "always", "panel": "shared", "close": true }
+        },
+        {
+            // Clean tous les builds d'un coup
+            "label": "Clean: ALL",
+            "type": "shell",
+            "command": "echo 'Clean all builds...'",
+            "dependsOn": ["Clean: ARM Release", "Clean: ARM Debug", "Clean: SIMU Debug", "Clean: SIMU Release"],
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "statusbar": { "hide": true }
+            },
+            "problemMatcher": [],
+            "presentation": { "reveal": "always", "panel": "shared", "close": true }
         }
     ]
 }

@@ -9,6 +9,7 @@
 #include <iostream>
 #include <cerrno>
 #include <cstring>
+#include <ctime>
 
 void*
 utils::Thread::entryPoint(void *pthis)
@@ -34,15 +35,24 @@ void utils::Thread::sched_yield() {
 }
 
 void utils::Thread::sleep_for_micros(int64_t usec) {
-    std::this_thread::sleep_for(std::chrono::microseconds(usec));
+    struct timespec ts;
+    ts.tv_sec = usec / 1000000;
+    ts.tv_nsec = (usec % 1000000) * 1000;
+    clock_nanosleep(CLOCK_MONOTONIC, 0, &ts, nullptr);
 }
 
 void utils::Thread::sleep_for_millis(int64_t msec) {
-    std::this_thread::sleep_for(std::chrono::milliseconds(msec));
+    struct timespec ts;
+    ts.tv_sec = msec / 1000;
+    ts.tv_nsec = (msec % 1000) * 1000000;
+    clock_nanosleep(CLOCK_MONOTONIC, 0, &ts, nullptr);
 }
 
 void utils::Thread::sleep_for_secs(int64_t sec) {
-    std::this_thread::sleep_for(std::chrono::seconds(sec));
+    struct timespec ts;
+    ts.tv_sec = sec;
+    ts.tv_nsec = 0;
+    clock_nanosleep(CLOCK_MONOTONIC, 0, &ts, nullptr);
 }
 
 bool utils::Thread::start(std::string name, int priority) {
@@ -106,13 +116,22 @@ int utils::set_realtime_priority(int p, std::string name, ThreadId thread) {
 }
 
 void utils::sleep_for_micros(int64_t usec) {
-    std::this_thread::sleep_for(std::chrono::microseconds(usec));
+    struct timespec ts;
+    ts.tv_sec = usec / 1000000;
+    ts.tv_nsec = (usec % 1000000) * 1000;
+    clock_nanosleep(CLOCK_MONOTONIC, 0, &ts, nullptr);
 }
 
 void utils::sleep_for_millis(int64_t msec) {
-    std::this_thread::sleep_for(std::chrono::milliseconds(msec));
+    struct timespec ts;
+    ts.tv_sec = msec / 1000;
+    ts.tv_nsec = (msec % 1000) * 1000000;
+    clock_nanosleep(CLOCK_MONOTONIC, 0, &ts, nullptr);
 }
 
 void utils::sleep_for_secs(int64_t sec) {
-    std::this_thread::sleep_for(std::chrono::seconds(sec));
+    struct timespec ts;
+    ts.tv_sec = sec;
+    ts.tv_nsec = 0;
+    clock_nanosleep(CLOCK_MONOTONIC, 0, &ts, nullptr);
 }
