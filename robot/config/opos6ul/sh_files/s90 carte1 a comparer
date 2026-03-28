@@ -12,17 +12,6 @@
 #ln -s /root/S90opos6ulstart.sh /etc/init.d/.
 
 
-# Fix entropie pour Dropbear SSH (evite le blocage au key exchange)
-# Sur Linux 5.10+, urandom est cryptographiquement sur apres le boot
-if [ -c /dev/random ] && [ ! -L /dev/random ]; then
-    rm /dev/random
-    ln -s /dev/urandom /dev/random
-fi
-
-# Relancer Dropbear avec cle ed25519 uniquement (plus rapide sur ARM)
-#killall -9 dropbear 2>/dev/null
-#dropbear -p 22 -r /etc/dropbear/dropbear_ed25519_host_key
-
 echo set eth0 network
 ifconfig eth0 up
 udhcpc -n
@@ -52,7 +41,8 @@ ifconfig wlan0 up
 #iwlist wlan0 s 
 # wpa_supplicant -Dwext -i wlan0 -c /etc/wpa_supplicant.conf -B #wlan0: Unsupported driver 'wext'
 wpa_supplicant -i wlan0 -c /etc/wpa_supplicant.conf -B
-#pour eviter une connexion à internet.. les DNS sont ajoutés après l'activation du wifi...
+
+on du wifi...                internet.. les DNS sont ajoutés après l'activati--More-- (41% of 2575 bytes)
 #echo "nameserver 127.0.0.1" > /etc/resolv.conf
 
 #configuration du dhcp
@@ -60,12 +50,8 @@ wpa_supplicant -i wlan0 -c /etc/wpa_supplicant.conf -B
 #ifconfig wlan0 192.168.3.104 netmask 255.255.255.0 up
 
 #IP for PMX_AP_5G (box 6137)
-#carte 1
 ifconfig wlan0 192.168.3.103 netmask 255.255.255.0 up
-#carte 2
-#ifconfig wlan0 192.168.3.104 netmask 255.255.255.0 up
-#carte 3
-#ifconfig wlan0 192.168.3.105 netmask 255.255.255.0 up
+
 
 echo ifconfig
 ifconfig
@@ -79,7 +65,7 @@ i2cdetect -y -a 1
 #si pas d'écran
 #i2cdetect -y -a 2
 #i2cdetect -y -a 3
-
+                            
 #liste des i2c
 #bus 0
 #MBED I2C_SLAVE_ADDRESS 0x05
@@ -102,37 +88,27 @@ echo performance > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 cat /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_cur_freq
 cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq
+                            
 
-# Priorites IRQ temps-reel : UART et I2C au-dessus du WiFi
-echo "set IRQ priorities"
-for pid in $(pgrep -f "irq/.*uart\|irq/.*ttymxc"); do
-    chrt -f -p 90 $pid 2>/dev/null && echo "  UART IRQ $pid -> FIFO 90"
-done
-for pid in $(pgrep -f "irq/.*i2c"); do
-    chrt -f -p 85 $pid 2>/dev/null && echo "  I2C IRQ $pid -> FIFO 85"
-done
+#pour ajouter de la place sur la partition 2
+# resize2fs /dev/mmcblk0p2
 
+#pour la partition 3 de data
 
-
+#mount  /dev/mmcblk0p3 /media/data/
 
 #F2FS
 # mettre un # dans /etc/fstab sur la ligne /dev/mmcblk0p3 
 #mkdir /root/pmx
 #formater en f2fs
 #umount /dev/mmcblk0p3
-#mkfs.f2fs /dev/mmcblk0p3 -f -t 0
+#mkfs.f2fs /dev/mmcblk0p3
 #mount -t f2fs /dev/mmcblk0p3 /root/pmx
+
 #nano /etc/fstab
 #/dev/mmcblk0p3   /root/pmx   f2fs    rw,acl,active_logs=6,background_gc=on,user_xattr           0 1
 
-#option pour ajouter de la place sur la partition 2
-# resize2fs /dev/mmcblk0p2
-#pour la partition 3 de data
-#mount  /dev/mmcblk0p3 /media/data/
-
-
-cd /root/pmx
+#cd /root/pmx
 #start PMX
 #/root/pmx/Bot_ArmadeusOPOS6UL_ARM m
-#/root/pmx/Bot_ArmadeusOPOS6UL_ARM m > log.txt &
-
+/root/pmx/Bot_ArmadeusOPOS6UL_ARM m > log.txt &

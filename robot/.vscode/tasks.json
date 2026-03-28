@@ -15,19 +15,20 @@
     "version": "2.0.0",
     "inputs": [
         {
-            // eth0  = cable direct     192.168.2.105
-            // 5g    = WiFi 5GHz AP     192.168.3.103
-            // wifi  = WiFi PMX         192.168.2.107
-            // home  = WiFi maison      192.168.0.44
+            // carte1   = WiFi 5GHz AP     192.168.3.103
+            // carte2   = WiFi 5GHz AP     192.168.3.104
+            // carte3   = WiFi 5GHz AP     192.168.3.105
+            // eth0  = cable RJ45 maison      192.168.0.44
             "id": "targetIP",
             "type": "pickString",
             "description": "Interface reseau OPOS6UL",
             "options": [
-                { "label": "Carte 2 - WiFi 5G", "value": "192.168.3.104" },
                 { "label": "Carte 1 - WiFi 5G", "value": "192.168.3.103" },
+                { "label": "Carte 2 - WiFi 5G", "value": "192.168.3.104" },
+                { "label": "Carte 3 - WiFi 5G", "value": "192.168.3.105" },
                 { "label": "Carte 2 - eth0", "value": "192.168.0.44" }
             ],
-            "default": "192.168.3.104"
+            "default": "192.168.3.103"
         },
         {
             "id": "targetBin",
@@ -40,7 +41,7 @@
                 "bench",
                 "bot-opos6ul"
             ],
-            "default": "driver-test"
+            "default": "bot-opos6ul"
         }
     ],
     "tasks": [

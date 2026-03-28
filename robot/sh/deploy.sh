@@ -8,16 +8,33 @@
 # Si l'IP n'est pas specifiee, utilise 192.168.3.103 (5GHz) par defaut.
 #
 # Exemples:
-#   ./deploy.sh driver-test                       # deploy sur 5g (defaut)
-#   ./deploy.sh driver-test run                   # deploy + execute sur 5g
-#   ./deploy.sh 192.168.2.105 driver-test run     # deploy + execute sur eth0
+#   ./sh/deploy.sh 1 bench                # deploy bench sur carte 1
+#   ./sh/deploy.sh 2 bot-opos6ul          # deploy bot sur carte 2
+#   ./sh/deploy.sh 3 driver-test          # deploy driver-test sur carte 3
+#   ./sh/deploy.sh 1 bench run            # deploy + execute bench sur carte 1
+#   ./sh/deploy.sh 3 manual-test run      # deploy + execute manual-test sur carte 3
+#   ./sh/deploy.sh 192.168.3.103 bench    # IP directe aussi acceptee
 #
-# Targets disponibles : opos6ul, driver-test, common-test, manual-test, bench
+# Cartes :
+#   carte 1 = 192.168.3.103
+#   carte 2 = 192.168.3.104
+#   carte 3 = 192.168.3.105
+#
+# Targets disponibles : bot-opos6ul, driver-test, common-test, manual-test, bench
 # ============================================================
 
 set -e
 
-ROBOT_IP="${1:-192.168.3.103}"
+# Resolution IP : accepte 1, 2, 3 ou une IP directe
+resolve_ip() {
+    case "$1" in
+        1) echo "192.168.3.103" ;;
+        2) echo "192.168.3.104" ;;
+        3) echo "192.168.3.105" ;;
+        *) echo "$1" ;;
+    esac
+}
+ROBOT_IP=$(resolve_ip "${1:-1}")
 TARGET="${2:?Usage: $0 [ip] <target> [run]}"
 RUN="${3:-}"
 
@@ -48,7 +65,7 @@ fi
 
 # Multiplexing SSH : une seule connexion reutilisee pour mkdir, scp, kill, run
 CTRL_SOCK="/tmp/ssh-pmx-$ROBOT_IP"
-SSH_OPTS="-o StrictHostKeyChecking=no -o ControlMaster=auto -o ControlPath=$CTRL_SOCK -o ControlPersist=30"
+SSH_OPTS="-o StrictHostKeyChecking=no -o ControlMaster=auto -o ControlPath=$CTRL_SOCK -o ControlPersist=yes"
 SSH_CMD="sshpass -p $ROBOT_PASS ssh $SSH_OPTS $ROBOT_USER@$ROBOT_IP"
 SCP_CMD="sshpass -p $ROBOT_PASS scp $SSH_OPTS"
 

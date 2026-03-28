@@ -49,8 +49,14 @@ Reference wiki PMX : https://github.com/pmrobotix/PMX/wiki/DevEnv-OPOS6UL-Compil
   `Target packages  ---> Hardware handling  ---> [*] as_devices`
 
 ### Appliquees (linux-menuconfig kernel — `make linux-menuconfig`)
-- [x] F2FS en module + XATTR, ACL, CHECK_FS (`CONFIG_F2FS_FS=m`)
-  `File systems  ---> [M] F2FS filesystem support`
+- [x] F2FS built-in + XATTR, ACL (`CONFIG_F2FS_FS=y`)
+  ```
+  make linux-menuconfig
+  File systems  --->
+      <*> F2FS filesystem support
+          [*] F2FS extended attributes
+          [*] F2FS Access Control Lists
+  ```
 - [x] LED GPIO + triggers timer, heartbeat, backlight, gpio, default_on
   `Device Drivers  ---> LED Support  --->`
 - [x] CPU freq scaling : ondemand, powersave, conservative, userspace, i.MX CPUfreq
@@ -178,8 +184,9 @@ Le LCD peut etre utile en dev pour afficher des infos de debug (position, etat I
 
 Modification necessaire dans le fichier buildroot :
 - Fichier : `buildroot/package/rtl8821au/rtl8821au.mk`
-- Changer le hash du commit GitHub : `9f09c7627bda0ab5a577c1ad0337666ca2951132`
+- Hash du commit GitHub : `4235b0ec7d7220a6364586d8e25b1e8cb99c36f1` (actuel, fonctionnel)
 - Source : https://github.com/abperiasamy/rtl8812AU_8821AU_linux
+- Version driver : v4.3.14_13455.20150212
 
 ---
 
@@ -202,6 +209,26 @@ make                             # compilation complete
 # Images generees dans :
 # buildroot/output/images/
 ```
+
+### IMPORTANT : Apres recompilation du kernel
+
+Les modules **out-of-tree** (externes au kernel Linux) ne sont PAS recompiles automatiquement
+par Buildroot apres un `make linux`. Leur `.ko` reste compile contre les anciens headers du kernel,
+ce qui provoque l'erreur `disagrees about version of symbol module_layout` au boot.
+
+Modules out-of-tree concernes :
+- `rtl8821au` (driver WiFi USB RTL8812AU/RTL8821AU)
+
+**Procedure apres chaque recompilation du kernel :**
+```bash
+make linux                       # recompiler le kernel
+make rtl8821au-dirclean          # supprimer le build du module externe
+make                             # rebuild complet (module + rootfs)
+# Reflasher kernel ET rootfs (le .ko est dans le rootfs)
+```
+
+Note : les modules **in-tree** (actives avec `=m` dans linux-menuconfig) sont recompiles
+automatiquement avec `make linux`, pas besoin de dirclean pour ceux-la.
 
 ---
 
