@@ -4,7 +4,7 @@
         {
             "label": "Build SIMU Debug",
             "type": "shell",
-            "command": "cmake --build --preset simu-debug -j$(nproc)",
+            "command": "cmake --build --preset simu-debug -j6",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -18,7 +18,7 @@
         {
             "label": "Build SIMU Release",
             "type": "shell",
-            "command": "cmake --build --preset simu-release -j$(nproc)",
+            "command": "cmake --build --preset simu-release -j6",
             "group": "build",
             "presentation": {
                 "reveal": "always",
@@ -29,7 +29,7 @@
         {
             "label": "Build ARM Release",
             "type": "shell",
-            "command": "cmake --build --preset arm-release -j$(nproc)",
+            "command": "cmake --build --preset arm-release -j6",
             "group": "build",
             "presentation": {
                 "reveal": "always",
@@ -40,7 +40,7 @@
         {
             "label": "Build ARM Debug",
             "type": "shell",
-            "command": "cmake --build --preset arm-debug -j$(nproc)",
+            "command": "cmake --build --preset arm-debug -j6",
             "group": "build",
             "presentation": {
                 "reveal": "always",
