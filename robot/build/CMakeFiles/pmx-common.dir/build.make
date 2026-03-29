@@ -741,6 +741,20 @@ CMakeFiles/pmx-common.dir/src/common/utils/Print.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pmx-common.dir/src/common/utils/Print.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/common/utils/Print.cpp -o CMakeFiles/pmx-common.dir/src/common/utils/Print.cpp.s
 
+CMakeFiles/pmx-common.dir/src/common/HardwareConfig.cpp.o: CMakeFiles/pmx-common.dir/flags.make
+CMakeFiles/pmx-common.dir/src/common/HardwareConfig.cpp.o: ../src/common/HardwareConfig.cpp
+CMakeFiles/pmx-common.dir/src/common/HardwareConfig.cpp.o: CMakeFiles/pmx-common.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Building CXX object CMakeFiles/pmx-common.dir/src/common/HardwareConfig.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pmx-common.dir/src/common/HardwareConfig.cpp.o -MF CMakeFiles/pmx-common.dir/src/common/HardwareConfig.cpp.o.d -o CMakeFiles/pmx-common.dir/src/common/HardwareConfig.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/common/HardwareConfig.cpp
+
+CMakeFiles/pmx-common.dir/src/common/HardwareConfig.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pmx-common.dir/src/common/HardwareConfig.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/src/common/HardwareConfig.cpp > CMakeFiles/pmx-common.dir/src/common/HardwareConfig.cpp.i
+
+CMakeFiles/pmx-common.dir/src/common/HardwareConfig.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pmx-common.dir/src/common/HardwareConfig.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/common/HardwareConfig.cpp -o CMakeFiles/pmx-common.dir/src/common/HardwareConfig.cpp.s
+
 # Object files for target pmx-common
 pmx__common_OBJECTS = \
 "CMakeFiles/pmx-common.dir/src/common/thread/Thread.cpp.o" \
@@ -790,7 +804,8 @@ pmx__common_OBJECTS = \
 "CMakeFiles/pmx-common.dir/src/common/action/SoundBar.cpp.o" \
 "CMakeFiles/pmx-common.dir/src/common/action/Tirette.cpp.o" \
 "CMakeFiles/pmx-common.dir/src/common/action/Sensors.cpp.o" \
-"CMakeFiles/pmx-common.dir/src/common/utils/Print.cpp.o"
+"CMakeFiles/pmx-common.dir/src/common/utils/Print.cpp.o" \
+"CMakeFiles/pmx-common.dir/src/common/HardwareConfig.cpp.o"
 
 # External object files for target pmx-common
 pmx__common_EXTERNAL_OBJECTS =
@@ -843,9 +858,10 @@ libpmx-common.a: CMakeFiles/pmx-common.dir/src/common/action/SoundBar.cpp.o
 libpmx-common.a: CMakeFiles/pmx-common.dir/src/common/action/Tirette.cpp.o
 libpmx-common.a: CMakeFiles/pmx-common.dir/src/common/action/Sensors.cpp.o
 libpmx-common.a: CMakeFiles/pmx-common.dir/src/common/utils/Print.cpp.o
+libpmx-common.a: CMakeFiles/pmx-common.dir/src/common/HardwareConfig.cpp.o
 libpmx-common.a: CMakeFiles/pmx-common.dir/build.make
 libpmx-common.a: CMakeFiles/pmx-common.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Linking CXX static library libpmx-common.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_50) "Linking CXX static library libpmx-common.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/pmx-common.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/pmx-common.dir/link.txt --verbose=$(VERBOSE)
 

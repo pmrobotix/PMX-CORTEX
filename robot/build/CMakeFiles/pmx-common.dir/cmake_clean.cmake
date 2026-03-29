@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/pmx-common.dir/src/common/HardwareConfig.cpp.o"
+  "CMakeFiles/pmx-common.dir/src/common/HardwareConfig.cpp.o.d"
   "CMakeFiles/pmx-common.dir/src/common/Robot.cpp.o"
   "CMakeFiles/pmx-common.dir/src/common/Robot.cpp.o.d"
   "CMakeFiles/pmx-common.dir/src/common/action/Actions.cpp.o"

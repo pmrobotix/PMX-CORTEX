@@ -130,6 +130,19 @@ pmx-common/fast:
 .PHONY : pmx-common/fast
 
 #=============================================================================
+# Target rules for targets named pmx-driver-stub
+
+# Build rule for target.
+pmx-driver-stub: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 pmx-driver-stub
+.PHONY : pmx-driver-stub
+
+# fast build rule for target.
+pmx-driver-stub/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-stub.dir/build.make CMakeFiles/pmx-driver-stub.dir/build
+.PHONY : pmx-driver-stub/fast
+
+#=============================================================================
 # Target rules for targets named pmx-driver-simu
 
 # Build rule for target.
@@ -701,6 +714,30 @@ src/bot-opos6ul/O_TiretteTest.s: src/bot-opos6ul/O_TiretteTest.cpp.s
 src/bot-opos6ul/O_TiretteTest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bot-opos6ul.dir/build.make CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_TiretteTest.cpp.s
 .PHONY : src/bot-opos6ul/O_TiretteTest.cpp.s
+
+src/common/HardwareConfig.o: src/common/HardwareConfig.cpp.o
+.PHONY : src/common/HardwareConfig.o
+
+# target to build an object file
+src/common/HardwareConfig.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-common.dir/build.make CMakeFiles/pmx-common.dir/src/common/HardwareConfig.cpp.o
+.PHONY : src/common/HardwareConfig.cpp.o
+
+src/common/HardwareConfig.i: src/common/HardwareConfig.cpp.i
+.PHONY : src/common/HardwareConfig.i
+
+# target to preprocess a source file
+src/common/HardwareConfig.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-common.dir/build.make CMakeFiles/pmx-common.dir/src/common/HardwareConfig.cpp.i
+.PHONY : src/common/HardwareConfig.cpp.i
+
+src/common/HardwareConfig.s: src/common/HardwareConfig.cpp.s
+.PHONY : src/common/HardwareConfig.s
+
+# target to generate assembly for a file
+src/common/HardwareConfig.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-common.dir/build.make CMakeFiles/pmx-common.dir/src/common/HardwareConfig.cpp.s
+.PHONY : src/common/HardwareConfig.cpp.s
 
 src/common/Robot.o: src/common/Robot.cpp.o
 .PHONY : src/common/Robot.o
@@ -1883,7 +1920,7 @@ src/driver-simu/AsservDriver.o: src/driver-simu/AsservDriver.cpp.o
 
 # target to build an object file
 src/driver-simu/AsservDriver.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-simu.dir/build.make CMakeFiles/pmx-driver-simu.dir/src/driver-simu/AsservDriver.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-stub.dir/build.make CMakeFiles/pmx-driver-stub.dir/src/driver-simu/AsservDriver.cpp.o
 .PHONY : src/driver-simu/AsservDriver.cpp.o
 
 src/driver-simu/AsservDriver.i: src/driver-simu/AsservDriver.cpp.i
@@ -1891,7 +1928,7 @@ src/driver-simu/AsservDriver.i: src/driver-simu/AsservDriver.cpp.i
 
 # target to preprocess a source file
 src/driver-simu/AsservDriver.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-simu.dir/build.make CMakeFiles/pmx-driver-simu.dir/src/driver-simu/AsservDriver.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-stub.dir/build.make CMakeFiles/pmx-driver-stub.dir/src/driver-simu/AsservDriver.cpp.i
 .PHONY : src/driver-simu/AsservDriver.cpp.i
 
 src/driver-simu/AsservDriver.s: src/driver-simu/AsservDriver.cpp.s
@@ -1899,7 +1936,7 @@ src/driver-simu/AsservDriver.s: src/driver-simu/AsservDriver.cpp.s
 
 # target to generate assembly for a file
 src/driver-simu/AsservDriver.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-simu.dir/build.make CMakeFiles/pmx-driver-simu.dir/src/driver-simu/AsservDriver.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-stub.dir/build.make CMakeFiles/pmx-driver-stub.dir/src/driver-simu/AsservDriver.cpp.s
 .PHONY : src/driver-simu/AsservDriver.cpp.s
 
 src/driver-simu/ButtonDriver.o: src/driver-simu/ButtonDriver.cpp.o
@@ -1907,7 +1944,7 @@ src/driver-simu/ButtonDriver.o: src/driver-simu/ButtonDriver.cpp.o
 
 # target to build an object file
 src/driver-simu/ButtonDriver.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-simu.dir/build.make CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ButtonDriver.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-stub.dir/build.make CMakeFiles/pmx-driver-stub.dir/src/driver-simu/ButtonDriver.cpp.o
 .PHONY : src/driver-simu/ButtonDriver.cpp.o
 
 src/driver-simu/ButtonDriver.i: src/driver-simu/ButtonDriver.cpp.i
@@ -1915,7 +1952,7 @@ src/driver-simu/ButtonDriver.i: src/driver-simu/ButtonDriver.cpp.i
 
 # target to preprocess a source file
 src/driver-simu/ButtonDriver.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-simu.dir/build.make CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ButtonDriver.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-stub.dir/build.make CMakeFiles/pmx-driver-stub.dir/src/driver-simu/ButtonDriver.cpp.i
 .PHONY : src/driver-simu/ButtonDriver.cpp.i
 
 src/driver-simu/ButtonDriver.s: src/driver-simu/ButtonDriver.cpp.s
@@ -1923,7 +1960,7 @@ src/driver-simu/ButtonDriver.s: src/driver-simu/ButtonDriver.cpp.s
 
 # target to generate assembly for a file
 src/driver-simu/ButtonDriver.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-simu.dir/build.make CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ButtonDriver.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-stub.dir/build.make CMakeFiles/pmx-driver-stub.dir/src/driver-simu/ButtonDriver.cpp.s
 .PHONY : src/driver-simu/ButtonDriver.cpp.s
 
 src/driver-simu/ColorDriver.o: src/driver-simu/ColorDriver.cpp.o
@@ -1931,7 +1968,7 @@ src/driver-simu/ColorDriver.o: src/driver-simu/ColorDriver.cpp.o
 
 # target to build an object file
 src/driver-simu/ColorDriver.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-simu.dir/build.make CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ColorDriver.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-stub.dir/build.make CMakeFiles/pmx-driver-stub.dir/src/driver-simu/ColorDriver.cpp.o
 .PHONY : src/driver-simu/ColorDriver.cpp.o
 
 src/driver-simu/ColorDriver.i: src/driver-simu/ColorDriver.cpp.i
@@ -1939,7 +1976,7 @@ src/driver-simu/ColorDriver.i: src/driver-simu/ColorDriver.cpp.i
 
 # target to preprocess a source file
 src/driver-simu/ColorDriver.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-simu.dir/build.make CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ColorDriver.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-stub.dir/build.make CMakeFiles/pmx-driver-stub.dir/src/driver-simu/ColorDriver.cpp.i
 .PHONY : src/driver-simu/ColorDriver.cpp.i
 
 src/driver-simu/ColorDriver.s: src/driver-simu/ColorDriver.cpp.s
@@ -1947,15 +1984,39 @@ src/driver-simu/ColorDriver.s: src/driver-simu/ColorDriver.cpp.s
 
 # target to generate assembly for a file
 src/driver-simu/ColorDriver.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-simu.dir/build.make CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ColorDriver.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-stub.dir/build.make CMakeFiles/pmx-driver-stub.dir/src/driver-simu/ColorDriver.cpp.s
 .PHONY : src/driver-simu/ColorDriver.cpp.s
+
+src/driver-simu/DriverFactories.o: src/driver-simu/DriverFactories.cpp.o
+.PHONY : src/driver-simu/DriverFactories.o
+
+# target to build an object file
+src/driver-simu/DriverFactories.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-simu.dir/build.make CMakeFiles/pmx-driver-simu.dir/src/driver-simu/DriverFactories.cpp.o
+.PHONY : src/driver-simu/DriverFactories.cpp.o
+
+src/driver-simu/DriverFactories.i: src/driver-simu/DriverFactories.cpp.i
+.PHONY : src/driver-simu/DriverFactories.i
+
+# target to preprocess a source file
+src/driver-simu/DriverFactories.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-simu.dir/build.make CMakeFiles/pmx-driver-simu.dir/src/driver-simu/DriverFactories.cpp.i
+.PHONY : src/driver-simu/DriverFactories.cpp.i
+
+src/driver-simu/DriverFactories.s: src/driver-simu/DriverFactories.cpp.s
+.PHONY : src/driver-simu/DriverFactories.s
+
+# target to generate assembly for a file
+src/driver-simu/DriverFactories.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-simu.dir/build.make CMakeFiles/pmx-driver-simu.dir/src/driver-simu/DriverFactories.cpp.s
+.PHONY : src/driver-simu/DriverFactories.cpp.s
 
 src/driver-simu/LcdShieldDriver.o: src/driver-simu/LcdShieldDriver.cpp.o
 .PHONY : src/driver-simu/LcdShieldDriver.o
 
 # target to build an object file
 src/driver-simu/LcdShieldDriver.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-simu.dir/build.make CMakeFiles/pmx-driver-simu.dir/src/driver-simu/LcdShieldDriver.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-stub.dir/build.make CMakeFiles/pmx-driver-stub.dir/src/driver-simu/LcdShieldDriver.cpp.o
 .PHONY : src/driver-simu/LcdShieldDriver.cpp.o
 
 src/driver-simu/LcdShieldDriver.i: src/driver-simu/LcdShieldDriver.cpp.i
@@ -1963,7 +2024,7 @@ src/driver-simu/LcdShieldDriver.i: src/driver-simu/LcdShieldDriver.cpp.i
 
 # target to preprocess a source file
 src/driver-simu/LcdShieldDriver.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-simu.dir/build.make CMakeFiles/pmx-driver-simu.dir/src/driver-simu/LcdShieldDriver.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-stub.dir/build.make CMakeFiles/pmx-driver-stub.dir/src/driver-simu/LcdShieldDriver.cpp.i
 .PHONY : src/driver-simu/LcdShieldDriver.cpp.i
 
 src/driver-simu/LcdShieldDriver.s: src/driver-simu/LcdShieldDriver.cpp.s
@@ -1971,7 +2032,7 @@ src/driver-simu/LcdShieldDriver.s: src/driver-simu/LcdShieldDriver.cpp.s
 
 # target to generate assembly for a file
 src/driver-simu/LcdShieldDriver.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-simu.dir/build.make CMakeFiles/pmx-driver-simu.dir/src/driver-simu/LcdShieldDriver.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-stub.dir/build.make CMakeFiles/pmx-driver-stub.dir/src/driver-simu/LcdShieldDriver.cpp.s
 .PHONY : src/driver-simu/LcdShieldDriver.cpp.s
 
 src/driver-simu/LedDriver.o: src/driver-simu/LedDriver.cpp.o
@@ -1979,7 +2040,7 @@ src/driver-simu/LedDriver.o: src/driver-simu/LedDriver.cpp.o
 
 # target to build an object file
 src/driver-simu/LedDriver.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-simu.dir/build.make CMakeFiles/pmx-driver-simu.dir/src/driver-simu/LedDriver.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-stub.dir/build.make CMakeFiles/pmx-driver-stub.dir/src/driver-simu/LedDriver.cpp.o
 .PHONY : src/driver-simu/LedDriver.cpp.o
 
 src/driver-simu/LedDriver.i: src/driver-simu/LedDriver.cpp.i
@@ -1987,7 +2048,7 @@ src/driver-simu/LedDriver.i: src/driver-simu/LedDriver.cpp.i
 
 # target to preprocess a source file
 src/driver-simu/LedDriver.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-simu.dir/build.make CMakeFiles/pmx-driver-simu.dir/src/driver-simu/LedDriver.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-stub.dir/build.make CMakeFiles/pmx-driver-stub.dir/src/driver-simu/LedDriver.cpp.i
 .PHONY : src/driver-simu/LedDriver.cpp.i
 
 src/driver-simu/LedDriver.s: src/driver-simu/LedDriver.cpp.s
@@ -1995,7 +2056,7 @@ src/driver-simu/LedDriver.s: src/driver-simu/LedDriver.cpp.s
 
 # target to generate assembly for a file
 src/driver-simu/LedDriver.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-simu.dir/build.make CMakeFiles/pmx-driver-simu.dir/src/driver-simu/LedDriver.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-stub.dir/build.make CMakeFiles/pmx-driver-stub.dir/src/driver-simu/LedDriver.cpp.s
 .PHONY : src/driver-simu/LedDriver.cpp.s
 
 src/driver-simu/RobotPositionShared.o: src/driver-simu/RobotPositionShared.cpp.o
@@ -2027,7 +2088,7 @@ src/driver-simu/SensorsDriver.o: src/driver-simu/SensorsDriver.cpp.o
 
 # target to build an object file
 src/driver-simu/SensorsDriver.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-simu.dir/build.make CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SensorsDriver.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-stub.dir/build.make CMakeFiles/pmx-driver-stub.dir/src/driver-simu/SensorsDriver.cpp.o
 .PHONY : src/driver-simu/SensorsDriver.cpp.o
 
 src/driver-simu/SensorsDriver.i: src/driver-simu/SensorsDriver.cpp.i
@@ -2035,7 +2096,7 @@ src/driver-simu/SensorsDriver.i: src/driver-simu/SensorsDriver.cpp.i
 
 # target to preprocess a source file
 src/driver-simu/SensorsDriver.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-simu.dir/build.make CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SensorsDriver.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-stub.dir/build.make CMakeFiles/pmx-driver-stub.dir/src/driver-simu/SensorsDriver.cpp.i
 .PHONY : src/driver-simu/SensorsDriver.cpp.i
 
 src/driver-simu/SensorsDriver.s: src/driver-simu/SensorsDriver.cpp.s
@@ -2043,7 +2104,7 @@ src/driver-simu/SensorsDriver.s: src/driver-simu/SensorsDriver.cpp.s
 
 # target to generate assembly for a file
 src/driver-simu/SensorsDriver.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-simu.dir/build.make CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SensorsDriver.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-stub.dir/build.make CMakeFiles/pmx-driver-stub.dir/src/driver-simu/SensorsDriver.cpp.s
 .PHONY : src/driver-simu/SensorsDriver.cpp.s
 
 src/driver-simu/ServoDriver.o: src/driver-simu/ServoDriver.cpp.o
@@ -2051,7 +2112,7 @@ src/driver-simu/ServoDriver.o: src/driver-simu/ServoDriver.cpp.o
 
 # target to build an object file
 src/driver-simu/ServoDriver.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-simu.dir/build.make CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ServoDriver.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-stub.dir/build.make CMakeFiles/pmx-driver-stub.dir/src/driver-simu/ServoDriver.cpp.o
 .PHONY : src/driver-simu/ServoDriver.cpp.o
 
 src/driver-simu/ServoDriver.i: src/driver-simu/ServoDriver.cpp.i
@@ -2059,7 +2120,7 @@ src/driver-simu/ServoDriver.i: src/driver-simu/ServoDriver.cpp.i
 
 # target to preprocess a source file
 src/driver-simu/ServoDriver.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-simu.dir/build.make CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ServoDriver.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-stub.dir/build.make CMakeFiles/pmx-driver-stub.dir/src/driver-simu/ServoDriver.cpp.i
 .PHONY : src/driver-simu/ServoDriver.cpp.i
 
 src/driver-simu/ServoDriver.s: src/driver-simu/ServoDriver.cpp.s
@@ -2067,7 +2128,7 @@ src/driver-simu/ServoDriver.s: src/driver-simu/ServoDriver.cpp.s
 
 # target to generate assembly for a file
 src/driver-simu/ServoDriver.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-simu.dir/build.make CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ServoDriver.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-stub.dir/build.make CMakeFiles/pmx-driver-stub.dir/src/driver-simu/ServoDriver.cpp.s
 .PHONY : src/driver-simu/ServoDriver.cpp.s
 
 src/driver-simu/ServoUsingMotorDriver.o: src/driver-simu/ServoUsingMotorDriver.cpp.o
@@ -2123,7 +2184,7 @@ src/driver-simu/SwitchDriver.o: src/driver-simu/SwitchDriver.cpp.o
 
 # target to build an object file
 src/driver-simu/SwitchDriver.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-simu.dir/build.make CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SwitchDriver.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-stub.dir/build.make CMakeFiles/pmx-driver-stub.dir/src/driver-simu/SwitchDriver.cpp.o
 .PHONY : src/driver-simu/SwitchDriver.cpp.o
 
 src/driver-simu/SwitchDriver.i: src/driver-simu/SwitchDriver.cpp.i
@@ -2131,7 +2192,7 @@ src/driver-simu/SwitchDriver.i: src/driver-simu/SwitchDriver.cpp.i
 
 # target to preprocess a source file
 src/driver-simu/SwitchDriver.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-simu.dir/build.make CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SwitchDriver.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-stub.dir/build.make CMakeFiles/pmx-driver-stub.dir/src/driver-simu/SwitchDriver.cpp.i
 .PHONY : src/driver-simu/SwitchDriver.cpp.i
 
 src/driver-simu/SwitchDriver.s: src/driver-simu/SwitchDriver.cpp.s
@@ -2139,7 +2200,7 @@ src/driver-simu/SwitchDriver.s: src/driver-simu/SwitchDriver.cpp.s
 
 # target to generate assembly for a file
 src/driver-simu/SwitchDriver.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-simu.dir/build.make CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SwitchDriver.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/pmx-driver-stub.dir/build.make CMakeFiles/pmx-driver-stub.dir/src/driver-simu/SwitchDriver.cpp.s
 .PHONY : src/driver-simu/SwitchDriver.cpp.s
 
 test/bench/LoggerInitialize.o: test/bench/LoggerInitialize.cpp.o
@@ -3022,6 +3083,7 @@ help:
 	@echo "... pmr-pathfinding"
 	@echo "... pmx-common"
 	@echo "... pmx-driver-simu"
+	@echo "... pmx-driver-stub"
 	@echo "... pmx-suite"
 	@echo "... simple-svg"
 	@echo "... src/bot-opos6ul/LoggerInitialize.o"
@@ -3081,6 +3143,9 @@ help:
 	@echo "... src/bot-opos6ul/O_TiretteTest.o"
 	@echo "... src/bot-opos6ul/O_TiretteTest.i"
 	@echo "... src/bot-opos6ul/O_TiretteTest.s"
+	@echo "... src/common/HardwareConfig.o"
+	@echo "... src/common/HardwareConfig.i"
+	@echo "... src/common/HardwareConfig.s"
 	@echo "... src/common/Robot.o"
 	@echo "... src/common/Robot.i"
 	@echo "... src/common/Robot.s"
@@ -3237,6 +3302,9 @@ help:
 	@echo "... src/driver-simu/ColorDriver.o"
 	@echo "... src/driver-simu/ColorDriver.i"
 	@echo "... src/driver-simu/ColorDriver.s"
+	@echo "... src/driver-simu/DriverFactories.o"
+	@echo "... src/driver-simu/DriverFactories.i"
+	@echo "... src/driver-simu/DriverFactories.s"
 	@echo "... src/driver-simu/LcdShieldDriver.o"
 	@echo "... src/driver-simu/LcdShieldDriver.i"
 	@echo "... src/driver-simu/LcdShieldDriver.s"

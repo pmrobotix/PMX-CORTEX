@@ -383,6 +383,7 @@ bot-opos6ul: CMakeFiles/bot-opos6ul.dir/build.make
 bot-opos6ul: libpmx-common.a
 bot-opos6ul: libpmx-driver-simu.a
 bot-opos6ul: libs/PathFinding/libpmr-pathfinding.a
+bot-opos6ul: libpmx-driver-stub.a
 bot-opos6ul: libpmx-common.a
 bot-opos6ul: libs/PathFinding/libpmr-pathfinding.a
 bot-opos6ul: libs/simple-svg/libsimple-svg.a

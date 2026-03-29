@@ -2,7 +2,7 @@
     "cmake.sourceDirectory": "${workspaceFolder}",
     "cmake.buildDirectory": "${workspaceFolder}/build-${buildKitVendor}-${buildType}",
     "cmake.parallelJobs": 12,
-    "cmake.buildArgs": ["-j12"],
+    "cmake.buildArgs": ["--parallel", "12"],
     "cmake.buildBeforeRun": true,
     "cmake.provideTasks": false,
     "tasks.statusbar.default.hide": true

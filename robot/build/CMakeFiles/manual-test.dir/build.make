@@ -270,6 +270,7 @@ manual-test: CMakeFiles/manual-test.dir/test/manual/ScreenFramebufferManualTest.
 manual-test: CMakeFiles/manual-test.dir/build.make
 manual-test: libpmx-suite.a
 manual-test: libpmx-driver-simu.a
+manual-test: libpmx-driver-stub.a
 manual-test: libpmx-common.a
 manual-test: libs/simple-svg/libsimple-svg.a
 manual-test: libs/PathFinding/libpmr-pathfinding.a

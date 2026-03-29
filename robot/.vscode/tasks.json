@@ -31,6 +31,18 @@
             "default": "192.168.3.103"
         },
         {
+            "id": "buildPreset",
+            "type": "pickString",
+            "description": "Preset CMake a builder",
+            "options": [
+                { "label": "SIMU Debug",    "value": "simu-debug" },
+                { "label": "SIMU Release",  "value": "simu-release" },
+                { "label": "ARM Debug",     "value": "arm-debug" },
+                { "label": "ARM Release",   "value": "arm-release" }
+            ],
+            "default": "simu-debug"
+        },
+        {
             "id": "targetBin",
             "type": "pickString",
             "description": "Binaire a deployer",
@@ -45,6 +57,23 @@
         }
     ],
     "tasks": [
+        {
+            // Build un preset au choix
+            "label": "Build ALL",
+            "type": "shell",
+            "command": "cmake --build --preset ${input:buildPreset} -j$(nproc)",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "statusbar": {
+                    "hide": false,
+                    "label": "$(tools) BuildAll",
+                    "color": "#61AFEF"
+                }
+            },
+            "group": "build",
+            "problemMatcher": "$gcc",
+            "presentation": { "reveal": "always", "panel": "shared", "focus": true }
+        },
         {
             // Build ARM + strip + scp (sans execution)
             "label": "ARM: Deploy",

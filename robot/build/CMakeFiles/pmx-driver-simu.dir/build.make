@@ -69,52 +69,24 @@ include CMakeFiles/pmx-driver-simu.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/pmx-driver-simu.dir/flags.make
 
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/LedDriver.cpp.o: CMakeFiles/pmx-driver-simu.dir/flags.make
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/LedDriver.cpp.o: ../src/driver-simu/LedDriver.cpp
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/LedDriver.cpp.o: CMakeFiles/pmx-driver-simu.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/pmx-driver-simu.dir/src/driver-simu/LedDriver.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pmx-driver-simu.dir/src/driver-simu/LedDriver.cpp.o -MF CMakeFiles/pmx-driver-simu.dir/src/driver-simu/LedDriver.cpp.o.d -o CMakeFiles/pmx-driver-simu.dir/src/driver-simu/LedDriver.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/driver-simu/LedDriver.cpp
+CMakeFiles/pmx-driver-simu.dir/src/driver-simu/DriverFactories.cpp.o: CMakeFiles/pmx-driver-simu.dir/flags.make
+CMakeFiles/pmx-driver-simu.dir/src/driver-simu/DriverFactories.cpp.o: ../src/driver-simu/DriverFactories.cpp
+CMakeFiles/pmx-driver-simu.dir/src/driver-simu/DriverFactories.cpp.o: CMakeFiles/pmx-driver-simu.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/pmx-driver-simu.dir/src/driver-simu/DriverFactories.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pmx-driver-simu.dir/src/driver-simu/DriverFactories.cpp.o -MF CMakeFiles/pmx-driver-simu.dir/src/driver-simu/DriverFactories.cpp.o.d -o CMakeFiles/pmx-driver-simu.dir/src/driver-simu/DriverFactories.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/driver-simu/DriverFactories.cpp
 
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/LedDriver.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pmx-driver-simu.dir/src/driver-simu/LedDriver.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/src/driver-simu/LedDriver.cpp > CMakeFiles/pmx-driver-simu.dir/src/driver-simu/LedDriver.cpp.i
+CMakeFiles/pmx-driver-simu.dir/src/driver-simu/DriverFactories.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pmx-driver-simu.dir/src/driver-simu/DriverFactories.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/src/driver-simu/DriverFactories.cpp > CMakeFiles/pmx-driver-simu.dir/src/driver-simu/DriverFactories.cpp.i
 
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/LedDriver.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pmx-driver-simu.dir/src/driver-simu/LedDriver.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/driver-simu/LedDriver.cpp -o CMakeFiles/pmx-driver-simu.dir/src/driver-simu/LedDriver.cpp.s
-
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ButtonDriver.cpp.o: CMakeFiles/pmx-driver-simu.dir/flags.make
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ButtonDriver.cpp.o: ../src/driver-simu/ButtonDriver.cpp
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ButtonDriver.cpp.o: CMakeFiles/pmx-driver-simu.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ButtonDriver.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ButtonDriver.cpp.o -MF CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ButtonDriver.cpp.o.d -o CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ButtonDriver.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/driver-simu/ButtonDriver.cpp
-
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ButtonDriver.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ButtonDriver.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/src/driver-simu/ButtonDriver.cpp > CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ButtonDriver.cpp.i
-
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ButtonDriver.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ButtonDriver.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/driver-simu/ButtonDriver.cpp -o CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ButtonDriver.cpp.s
-
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SwitchDriver.cpp.o: CMakeFiles/pmx-driver-simu.dir/flags.make
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SwitchDriver.cpp.o: ../src/driver-simu/SwitchDriver.cpp
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SwitchDriver.cpp.o: CMakeFiles/pmx-driver-simu.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SwitchDriver.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SwitchDriver.cpp.o -MF CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SwitchDriver.cpp.o.d -o CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SwitchDriver.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/driver-simu/SwitchDriver.cpp
-
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SwitchDriver.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SwitchDriver.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/src/driver-simu/SwitchDriver.cpp > CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SwitchDriver.cpp.i
-
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SwitchDriver.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SwitchDriver.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/driver-simu/SwitchDriver.cpp -o CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SwitchDriver.cpp.s
+CMakeFiles/pmx-driver-simu.dir/src/driver-simu/DriverFactories.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pmx-driver-simu.dir/src/driver-simu/DriverFactories.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/driver-simu/DriverFactories.cpp -o CMakeFiles/pmx-driver-simu.dir/src/driver-simu/DriverFactories.cpp.s
 
 CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SoundDriver.cpp.o: CMakeFiles/pmx-driver-simu.dir/flags.make
 CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SoundDriver.cpp.o: ../src/driver-simu/SoundDriver.cpp
 CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SoundDriver.cpp.o: CMakeFiles/pmx-driver-simu.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SoundDriver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SoundDriver.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SoundDriver.cpp.o -MF CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SoundDriver.cpp.o.d -o CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SoundDriver.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/driver-simu/SoundDriver.cpp
 
 CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SoundDriver.cpp.i: cmake_force
@@ -125,24 +97,10 @@ CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SoundDriver.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SoundDriver.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/driver-simu/SoundDriver.cpp -o CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SoundDriver.cpp.s
 
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/LcdShieldDriver.cpp.o: CMakeFiles/pmx-driver-simu.dir/flags.make
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/LcdShieldDriver.cpp.o: ../src/driver-simu/LcdShieldDriver.cpp
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/LcdShieldDriver.cpp.o: CMakeFiles/pmx-driver-simu.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/pmx-driver-simu.dir/src/driver-simu/LcdShieldDriver.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pmx-driver-simu.dir/src/driver-simu/LcdShieldDriver.cpp.o -MF CMakeFiles/pmx-driver-simu.dir/src/driver-simu/LcdShieldDriver.cpp.o.d -o CMakeFiles/pmx-driver-simu.dir/src/driver-simu/LcdShieldDriver.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/driver-simu/LcdShieldDriver.cpp
-
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/LcdShieldDriver.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pmx-driver-simu.dir/src/driver-simu/LcdShieldDriver.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/src/driver-simu/LcdShieldDriver.cpp > CMakeFiles/pmx-driver-simu.dir/src/driver-simu/LcdShieldDriver.cpp.i
-
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/LcdShieldDriver.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pmx-driver-simu.dir/src/driver-simu/LcdShieldDriver.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/driver-simu/LcdShieldDriver.cpp -o CMakeFiles/pmx-driver-simu.dir/src/driver-simu/LcdShieldDriver.cpp.s
-
 CMakeFiles/pmx-driver-simu.dir/src/driver-simu/RobotPositionShared.cpp.o: CMakeFiles/pmx-driver-simu.dir/flags.make
 CMakeFiles/pmx-driver-simu.dir/src/driver-simu/RobotPositionShared.cpp.o: ../src/driver-simu/RobotPositionShared.cpp
 CMakeFiles/pmx-driver-simu.dir/src/driver-simu/RobotPositionShared.cpp.o: CMakeFiles/pmx-driver-simu.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/pmx-driver-simu.dir/src/driver-simu/RobotPositionShared.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/pmx-driver-simu.dir/src/driver-simu/RobotPositionShared.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pmx-driver-simu.dir/src/driver-simu/RobotPositionShared.cpp.o -MF CMakeFiles/pmx-driver-simu.dir/src/driver-simu/RobotPositionShared.cpp.o.d -o CMakeFiles/pmx-driver-simu.dir/src/driver-simu/RobotPositionShared.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/driver-simu/RobotPositionShared.cpp
 
 CMakeFiles/pmx-driver-simu.dir/src/driver-simu/RobotPositionShared.cpp.i: cmake_force
@@ -153,52 +111,10 @@ CMakeFiles/pmx-driver-simu.dir/src/driver-simu/RobotPositionShared.cpp.s: cmake_
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pmx-driver-simu.dir/src/driver-simu/RobotPositionShared.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/driver-simu/RobotPositionShared.cpp -o CMakeFiles/pmx-driver-simu.dir/src/driver-simu/RobotPositionShared.cpp.s
 
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/AsservDriver.cpp.o: CMakeFiles/pmx-driver-simu.dir/flags.make
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/AsservDriver.cpp.o: ../src/driver-simu/AsservDriver.cpp
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/AsservDriver.cpp.o: CMakeFiles/pmx-driver-simu.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/pmx-driver-simu.dir/src/driver-simu/AsservDriver.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pmx-driver-simu.dir/src/driver-simu/AsservDriver.cpp.o -MF CMakeFiles/pmx-driver-simu.dir/src/driver-simu/AsservDriver.cpp.o.d -o CMakeFiles/pmx-driver-simu.dir/src/driver-simu/AsservDriver.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/driver-simu/AsservDriver.cpp
-
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/AsservDriver.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pmx-driver-simu.dir/src/driver-simu/AsservDriver.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/src/driver-simu/AsservDriver.cpp > CMakeFiles/pmx-driver-simu.dir/src/driver-simu/AsservDriver.cpp.i
-
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/AsservDriver.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pmx-driver-simu.dir/src/driver-simu/AsservDriver.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/driver-simu/AsservDriver.cpp -o CMakeFiles/pmx-driver-simu.dir/src/driver-simu/AsservDriver.cpp.s
-
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SensorsDriver.cpp.o: CMakeFiles/pmx-driver-simu.dir/flags.make
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SensorsDriver.cpp.o: ../src/driver-simu/SensorsDriver.cpp
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SensorsDriver.cpp.o: CMakeFiles/pmx-driver-simu.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SensorsDriver.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SensorsDriver.cpp.o -MF CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SensorsDriver.cpp.o.d -o CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SensorsDriver.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/driver-simu/SensorsDriver.cpp
-
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SensorsDriver.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SensorsDriver.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/src/driver-simu/SensorsDriver.cpp > CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SensorsDriver.cpp.i
-
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SensorsDriver.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SensorsDriver.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/driver-simu/SensorsDriver.cpp -o CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SensorsDriver.cpp.s
-
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ServoDriver.cpp.o: CMakeFiles/pmx-driver-simu.dir/flags.make
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ServoDriver.cpp.o: ../src/driver-simu/ServoDriver.cpp
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ServoDriver.cpp.o: CMakeFiles/pmx-driver-simu.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ServoDriver.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ServoDriver.cpp.o -MF CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ServoDriver.cpp.o.d -o CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ServoDriver.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/driver-simu/ServoDriver.cpp
-
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ServoDriver.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ServoDriver.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/src/driver-simu/ServoDriver.cpp > CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ServoDriver.cpp.i
-
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ServoDriver.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ServoDriver.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/driver-simu/ServoDriver.cpp -o CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ServoDriver.cpp.s
-
 CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ServoUsingMotorDriver.cpp.o: CMakeFiles/pmx-driver-simu.dir/flags.make
 CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ServoUsingMotorDriver.cpp.o: ../src/driver-simu/ServoUsingMotorDriver.cpp
 CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ServoUsingMotorDriver.cpp.o: CMakeFiles/pmx-driver-simu.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ServoUsingMotorDriver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ServoUsingMotorDriver.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ServoUsingMotorDriver.cpp.o -MF CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ServoUsingMotorDriver.cpp.o.d -o CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ServoUsingMotorDriver.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/driver-simu/ServoUsingMotorDriver.cpp
 
 CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ServoUsingMotorDriver.cpp.i: cmake_force
@@ -212,7 +128,7 @@ CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ServoUsingMotorDriver.cpp.s: cmak
 CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ActionDriver.cpp.o: CMakeFiles/pmx-driver-simu.dir/flags.make
 CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ActionDriver.cpp.o: ../src/driver-simu/ActionDriver.cpp
 CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ActionDriver.cpp.o: CMakeFiles/pmx-driver-simu.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ActionDriver.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ActionDriver.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ActionDriver.cpp.o -MF CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ActionDriver.cpp.o.d -o CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ActionDriver.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/driver-simu/ActionDriver.cpp
 
 CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ActionDriver.cpp.i: cmake_force
@@ -223,53 +139,25 @@ CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ActionDriver.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ActionDriver.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/driver-simu/ActionDriver.cpp -o CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ActionDriver.cpp.s
 
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ColorDriver.cpp.o: CMakeFiles/pmx-driver-simu.dir/flags.make
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ColorDriver.cpp.o: ../src/driver-simu/ColorDriver.cpp
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ColorDriver.cpp.o: CMakeFiles/pmx-driver-simu.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ColorDriver.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ColorDriver.cpp.o -MF CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ColorDriver.cpp.o.d -o CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ColorDriver.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/driver-simu/ColorDriver.cpp
-
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ColorDriver.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ColorDriver.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/src/driver-simu/ColorDriver.cpp > CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ColorDriver.cpp.i
-
-CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ColorDriver.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ColorDriver.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/driver-simu/ColorDriver.cpp -o CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ColorDriver.cpp.s
-
 # Object files for target pmx-driver-simu
 pmx__driver__simu_OBJECTS = \
-"CMakeFiles/pmx-driver-simu.dir/src/driver-simu/LedDriver.cpp.o" \
-"CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ButtonDriver.cpp.o" \
-"CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SwitchDriver.cpp.o" \
+"CMakeFiles/pmx-driver-simu.dir/src/driver-simu/DriverFactories.cpp.o" \
 "CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SoundDriver.cpp.o" \
-"CMakeFiles/pmx-driver-simu.dir/src/driver-simu/LcdShieldDriver.cpp.o" \
 "CMakeFiles/pmx-driver-simu.dir/src/driver-simu/RobotPositionShared.cpp.o" \
-"CMakeFiles/pmx-driver-simu.dir/src/driver-simu/AsservDriver.cpp.o" \
-"CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SensorsDriver.cpp.o" \
-"CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ServoDriver.cpp.o" \
 "CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ServoUsingMotorDriver.cpp.o" \
-"CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ActionDriver.cpp.o" \
-"CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ColorDriver.cpp.o"
+"CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ActionDriver.cpp.o"
 
 # External object files for target pmx-driver-simu
 pmx__driver__simu_EXTERNAL_OBJECTS =
 
-libpmx-driver-simu.a: CMakeFiles/pmx-driver-simu.dir/src/driver-simu/LedDriver.cpp.o
-libpmx-driver-simu.a: CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ButtonDriver.cpp.o
-libpmx-driver-simu.a: CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SwitchDriver.cpp.o
+libpmx-driver-simu.a: CMakeFiles/pmx-driver-simu.dir/src/driver-simu/DriverFactories.cpp.o
 libpmx-driver-simu.a: CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SoundDriver.cpp.o
-libpmx-driver-simu.a: CMakeFiles/pmx-driver-simu.dir/src/driver-simu/LcdShieldDriver.cpp.o
 libpmx-driver-simu.a: CMakeFiles/pmx-driver-simu.dir/src/driver-simu/RobotPositionShared.cpp.o
-libpmx-driver-simu.a: CMakeFiles/pmx-driver-simu.dir/src/driver-simu/AsservDriver.cpp.o
-libpmx-driver-simu.a: CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SensorsDriver.cpp.o
-libpmx-driver-simu.a: CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ServoDriver.cpp.o
 libpmx-driver-simu.a: CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ServoUsingMotorDriver.cpp.o
 libpmx-driver-simu.a: CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ActionDriver.cpp.o
-libpmx-driver-simu.a: CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ColorDriver.cpp.o
 libpmx-driver-simu.a: CMakeFiles/pmx-driver-simu.dir/build.make
 libpmx-driver-simu.a: CMakeFiles/pmx-driver-simu.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX static library libpmx-driver-simu.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX static library libpmx-driver-simu.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/pmx-driver-simu.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/pmx-driver-simu.dir/link.txt --verbose=$(VERBOSE)
 

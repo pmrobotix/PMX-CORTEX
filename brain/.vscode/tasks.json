@@ -4,7 +4,7 @@
         {
             "label": "Build SIMU Debug",
             "type": "shell",
-            "command": "cmake --build --preset simu-debug -j6",
+            "command": "cmake --build --preset simu-debug -j$(nproc)",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -18,7 +18,7 @@
         {
             "label": "Build SIMU Release",
             "type": "shell",
-            "command": "cmake --build --preset simu-release -j6",
+            "command": "cmake --build --preset simu-release -j$(nproc)",
             "group": "build",
             "presentation": {
                 "reveal": "always",
@@ -29,7 +29,7 @@
         {
             "label": "Build ARM Release",
             "type": "shell",
-            "command": "cmake --build --preset arm-release -j6",
+            "command": "cmake --build --preset arm-release -j$(nproc)",
             "group": "build",
             "presentation": {
                 "reveal": "always",
@@ -40,7 +40,7 @@
         {
             "label": "Build ARM Debug",
             "type": "shell",
-            "command": "cmake --build --preset arm-debug -j6",
+            "command": "cmake --build --preset arm-debug -j$(nproc)",
             "group": "build",
             "presentation": {
                 "reveal": "always",
@@ -83,6 +83,18 @@
                 "reveal": "always",
                 "panel": "shared"
             }
+        },
+        {
+            "label": "Build ALL",
+            "type": "shell",
+            "command": "echo 'Build ALL done.'",
+            "dependsOn": ["Build SIMU Debug", "Build SIMU Release", "Build ARM Release", "Build ARM Debug"],
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": "$gcc"
         },
         {
             "label": "Deploy ARM Release",

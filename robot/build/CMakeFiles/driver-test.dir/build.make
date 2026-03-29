@@ -142,6 +142,7 @@ driver-test: CMakeFiles/driver-test.dir/test/driver/SwitchDriverTest.cpp.o
 driver-test: CMakeFiles/driver-test.dir/build.make
 driver-test: libpmx-suite.a
 driver-test: libpmx-driver-simu.a
+driver-test: libpmx-driver-stub.a
 driver-test: libpmx-common.a
 driver-test: libs/simple-svg/libsimple-svg.a
 driver-test: libs/PathFinding/libpmr-pathfinding.a

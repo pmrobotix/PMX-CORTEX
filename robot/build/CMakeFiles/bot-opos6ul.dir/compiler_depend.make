@@ -661,6 +661,7 @@ CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/Main.cpp.o: ../src/bot-opos6ul/Main.c
   ../src/common/state/Automate.hpp \
   ../src/common/utils/Chronometer.hpp \
   ../src/common/utils/ConsoleManager.hpp \
+  ../src/common/HardwareConfig.hpp \
   ../src/common/thread/Thread.hpp \
   /usr/include/x86_64-linux-gnu/sys/mman.h \
   /usr/include/x86_64-linux-gnu/bits/mman.h \
@@ -1004,7 +1005,13 @@ CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/OPOS6UL_ActionsExtended.cpp.o: ../src
   ../src/common/interface/AServoDriver.hpp \
   ../src/common/action/Tirette.hpp \
   ../src/common/interface/ASwitchDriver.hpp \
-  ../src/common/action/ServoUsingMotor.hpp
+  ../src/common/action/ServoUsingMotor.hpp \
+  ../src/common/interface/AColorDriver.hpp \
+  ../src/common/Robot.hpp \
+  ../src/common/asserv/Asserv.hpp \
+  ../src/common/interface/AAsservDriver.hpp \
+  ../src/common/interface/ARobotPositionShared.hpp \
+  ../src/common/thread/Thread.hpp
 
 CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/OPOS6UL_AsservExtended.cpp.o: ../src/bot-opos6ul/OPOS6UL_AsservExtended.cpp \
   /usr/include/stdc-predef.h \
@@ -1966,6 +1973,7 @@ CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/OPOS6UL_RobotExtended.cpp.o: ../src/b
   ../src/common/action/Tirette.hpp \
   ../src/common/interface/ASwitchDriver.hpp \
   ../src/common/action/ServoUsingMotor.hpp \
+  ../src/common/interface/AColorDriver.hpp \
   ../src/bot-opos6ul/OPOS6UL_AsservExtended.hpp \
   ../src/common/asserv/Asserv.hpp \
   ../src/common/interface/AAsservDriver.hpp \
@@ -2583,6 +2591,7 @@ CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_ActionManagerTimerTest.cpp.o: ../sr
   ../src/common/action/Tirette.hpp \
   ../src/common/interface/ASwitchDriver.hpp \
   ../src/common/action/ServoUsingMotor.hpp \
+  ../src/common/interface/AColorDriver.hpp \
   ../src/bot-opos6ul/OPOS6UL_RobotExtended.hpp \
   ../src/common/Robot.hpp
 
@@ -2924,6 +2933,7 @@ CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_ButtonBarTest.cpp.o: ../src/bot-opo
   ../src/common/action/Tirette.hpp \
   ../src/common/interface/ASwitchDriver.hpp \
   ../src/common/action/ServoUsingMotor.hpp \
+  ../src/common/interface/AColorDriver.hpp \
   ../src/bot-opos6ul/OPOS6UL_RobotExtended.hpp \
   ../src/common/Robot.hpp
 
@@ -3298,6 +3308,7 @@ CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_IAbyPathTest.cpp.o: ../src/bot-opos
   ../src/common/action/Tirette.hpp \
   ../src/common/interface/ASwitchDriver.hpp \
   ../src/common/action/ServoUsingMotor.hpp \
+  ../src/common/interface/AColorDriver.hpp \
   ../src/bot-opos6ul/OPOS6UL_AsservExtended.hpp \
   ../src/common/asserv/Asserv.hpp \
   ../src/common/interface/ARobotPositionShared.hpp \
@@ -3645,6 +3656,7 @@ CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_LcdBoardTest.cpp.o: ../src/bot-opos
   ../src/common/action/Tirette.hpp \
   ../src/common/interface/ASwitchDriver.hpp \
   ../src/common/action/ServoUsingMotor.hpp \
+  ../src/common/interface/AColorDriver.hpp \
   ../src/bot-opos6ul/OPOS6UL_AsservExtended.hpp \
   ../src/common/asserv/Asserv.hpp \
   ../src/common/interface/AAsservDriver.hpp \
@@ -3992,6 +4004,7 @@ CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_LedBarTest.cpp.o: ../src/bot-opos6u
   ../src/common/action/Tirette.hpp \
   ../src/common/interface/ASwitchDriver.hpp \
   ../src/common/action/ServoUsingMotor.hpp \
+  ../src/common/interface/AColorDriver.hpp \
   ../src/bot-opos6ul/OPOS6UL_AsservExtended.hpp \
   ../src/common/asserv/Asserv.hpp \
   ../src/common/interface/AAsservDriver.hpp \
@@ -4341,6 +4354,7 @@ CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_SensorsTest.cpp.o: ../src/bot-opos6
   ../src/common/action/Tirette.hpp \
   ../src/common/interface/ASwitchDriver.hpp \
   ../src/common/action/ServoUsingMotor.hpp \
+  ../src/common/interface/AColorDriver.hpp \
   ../src/bot-opos6ul/OPOS6UL_RobotExtended.hpp
 
 CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_ServoObjectsTest.cpp.o: ../src/bot-opos6ul/O_ServoObjectsTest.cpp \
@@ -4683,6 +4697,7 @@ CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_ServoObjectsTest.cpp.o: ../src/bot-
   ../src/common/action/Tirette.hpp \
   ../src/common/interface/ASwitchDriver.hpp \
   ../src/common/action/ServoUsingMotor.hpp \
+  ../src/common/interface/AColorDriver.hpp \
   ../src/bot-opos6ul/OPOS6UL_RobotExtended.hpp
 
 CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_ServoStepTest.cpp.o: ../src/bot-opos6ul/O_ServoStepTest.cpp \
@@ -5025,6 +5040,7 @@ CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_ServoStepTest.cpp.o: ../src/bot-opo
   ../src/common/action/Tirette.hpp \
   ../src/common/interface/ASwitchDriver.hpp \
   ../src/common/action/ServoUsingMotor.hpp \
+  ../src/common/interface/AColorDriver.hpp \
   ../src/bot-opos6ul/OPOS6UL_RobotExtended.hpp
 
 CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_State_DecisionMakerIA.cpp.o: ../src/bot-opos6ul/O_State_DecisionMakerIA.cpp \
@@ -5239,6 +5255,13 @@ CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_State_DecisionMakerIA.cpp.o: ../src
   ../src/common/thread/Mutex.hpp \
   ../src/common/log/Level.hpp \
   ../src/common/thread/Thread.hpp \
+  ../src/common/action/Sensors.hpp \
+  ../src/common/interface/ASensorsDriver.hpp \
+  /usr/include/c++/11/vector \
+  /usr/include/c++/11/bits/stl_uninitialized.h \
+  /usr/include/c++/11/bits/stl_vector.h \
+  /usr/include/c++/11/bits/stl_bvector.h \
+  /usr/include/c++/11/bits/vector.tcc \
   ../src/common/Robot.hpp \
   ../src/common/log/LoggerFactory.hpp \
   ../src/common/utils/Arguments.hpp \
@@ -5249,11 +5272,6 @@ CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_State_DecisionMakerIA.cpp.o: ../src
   /usr/include/c++/11/bits/hashtable_policy.h \
   /usr/include/c++/11/bits/enable_special_members.h \
   /usr/include/c++/11/bits/unordered_map.h \
-  /usr/include/c++/11/vector \
-  /usr/include/c++/11/bits/stl_uninitialized.h \
-  /usr/include/c++/11/bits/stl_vector.h \
-  /usr/include/c++/11/bits/stl_bvector.h \
-  /usr/include/c++/11/bits/vector.tcc \
   /usr/include/c++/11/bits/stl_algo.h \
   /usr/include/c++/11/bits/algorithmfwd.h \
   /usr/include/c++/11/bits/stl_heap.h \
@@ -5292,7 +5310,117 @@ CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_State_DecisionMakerIA.cpp.o: ../src
   ../src/common/utils/FunctionalTest.hpp \
   ../src/common/state/Automate.hpp \
   ../src/common/utils/Chronometer.hpp \
+  ../src/common/action/AActionsElement.hpp \
+  ../src/common/timer/ITimerPosixListener.hpp \
+  /usr/include/string.h \
+  /usr/include/strings.h \
+  /usr/include/c++/11/stdlib.h \
+  /usr/include/unistd.h \
+  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
+  /usr/include/x86_64-linux-gnu/bits/environments.h \
+  /usr/include/x86_64-linux-gnu/bits/confname.h \
+  /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
+  /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
+  /usr/include/linux/close_range.h \
+  /usr/include/signal.h \
+  /usr/include/x86_64-linux-gnu/bits/signum-generic.h \
+  /usr/include/x86_64-linux-gnu/bits/signum-arch.h \
+  /usr/include/x86_64-linux-gnu/bits/types/sig_atomic_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/siginfo_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__sigval_t.h \
+  /usr/include/x86_64-linux-gnu/bits/siginfo-arch.h \
+  /usr/include/x86_64-linux-gnu/bits/siginfo-consts.h \
+  /usr/include/x86_64-linux-gnu/bits/siginfo-consts-arch.h \
+  /usr/include/x86_64-linux-gnu/bits/types/sigval_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/sigevent_t.h \
+  /usr/include/x86_64-linux-gnu/bits/sigevent-consts.h \
+  /usr/include/x86_64-linux-gnu/bits/sigaction.h \
+  /usr/include/x86_64-linux-gnu/bits/sigcontext.h \
+  /usr/include/x86_64-linux-gnu/bits/types/stack_t.h \
+  /usr/include/x86_64-linux-gnu/sys/ucontext.h \
+  /usr/include/x86_64-linux-gnu/bits/sigstack.h \
+  /usr/include/x86_64-linux-gnu/bits/sigstksz.h \
+  /usr/include/x86_64-linux-gnu/bits/ss_flags.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_sigstack.h \
+  /usr/include/x86_64-linux-gnu/bits/sigthread.h \
+  /usr/include/x86_64-linux-gnu/bits/signal_ext.h \
+  ../src/common/utils/Chronometer.hpp \
+  ../src/common/thread/Mutex.hpp \
+  ../src/common/asserv/Asserv.hpp \
+  ../src/common/interface/AAsservDriver.hpp \
+  ../src/common/interface/ARobotPositionShared.hpp \
+  ../src/common/ia/IAbyPath.hpp \
+  /home/pmx/git/PMX-CORTEX/libs/PathFinding/src/pmr_playground.h \
+  /usr/include/c++/11/climits \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/syslimits.h \
+  /usr/include/limits.h \
+  /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/local_lim.h \
+  /usr/include/linux/limits.h \
+  /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
+  /usr/include/c++/11/memory \
+  /usr/include/c++/11/bits/stl_raw_storage_iter.h \
+  /usr/include/c++/11/bits/align.h \
+  /usr/include/c++/11/bit \
+  /usr/include/c++/11/bits/shared_ptr.h \
+  /usr/include/c++/11/bits/shared_ptr_base.h \
+  /usr/include/c++/11/bits/allocated_ptr.h \
+  /usr/include/c++/11/ext/concurrence.h \
+  /usr/include/c++/11/bits/shared_ptr_atomic.h \
+  /usr/include/c++/11/bits/atomic_base.h \
+  /usr/include/c++/11/bits/atomic_lockfree_defines.h \
+  /usr/include/c++/11/backward/auto_ptr.h \
+  /usr/include/c++/11/pstl/glue_memory_defs.h \
+  /usr/include/c++/11/pstl/execution_defs.h \
+  /home/pmx/git/PMX-CORTEX/libs/PathFinding/src/pmr_point.h \
+  /home/pmx/git/PMX-CORTEX/libs/PathFinding/src/pmr_path_result.h \
+  /home/pmx/git/PMX-CORTEX/libs/PathFinding/src/pmr_node.h \
+  /home/pmx/git/PMX-CORTEX/libs/PathFinding/src/pmr_pathfinding.h \
+  /home/pmx/git/PMX-CORTEX/libs/PathFinding/src/pmr_edge.h \
+  /home/pmx/git/PMX-CORTEX/libs/PathFinding/src/pmr_zone.h \
+  ../src/common/Robot.hpp \
+  ../src/common/ia/IACommon.hpp \
+  ../src/common/Robot.hpp \
   ../src/common/log/Logger.hpp \
+  ../src/bot-opos6ul/OPOS6UL_ActionsExtended.hpp \
+  ../src/common/action/Actions.hpp \
+  ../src/common/timer/ActionManagerTimer.hpp \
+  /usr/include/semaphore.h \
+  /usr/include/x86_64-linux-gnu/bits/semaphore.h \
+  /usr/include/c++/11/atomic \
+  /usr/include/c++/11/list \
+  /usr/include/c++/11/bits/stl_list.h \
+  /usr/include/c++/11/bits/list.tcc \
+  ../src/common/utils/PointerList.hpp \
+  /usr/include/c++/11/cstddef \
+  ../src/common/action/IAction.hpp \
+  ../src/common/timer/ITimerListener.hpp \
+  ../src/common/timer/ITimerPosixListener.hpp \
+  ../src/common/action/LedBar.hpp \
+  ../src/common/interface/ALedDriver.hpp \
+  ../src/common/timer/ITimerListener.hpp \
+  ../src/common/action/IAction.hpp \
+  ../src/common/action/ButtonBar.hpp \
+  ../src/common/interface/AButtonDriver.hpp \
+  ../src/common/action/LcdShield.hpp \
+  ../src/common/utils/Print.hpp \
+  /usr/include/c++/11/cstring \
+  ../src/common/utils/WString.hpp \
+  ../src/common/action/LedBar.hpp \
+  ../src/common/action/ServoObjectsSystem.hpp \
+  ../src/common/interface/AServoDriver.hpp \
+  ../src/common/action/Tirette.hpp \
+  ../src/common/interface/ASwitchDriver.hpp \
+  ../src/common/action/ServoUsingMotor.hpp \
+  ../src/common/interface/AColorDriver.hpp \
+  ../src/bot-opos6ul/OPOS6UL_IAExtended.hpp \
+  /home/pmx/git/PMX-CORTEX/libs/PathFinding/src/pmr_symmetrical_pg.h \
+  /home/pmx/git/PMX-CORTEX/libs/PathFinding/src/pmr_playground.h \
+  ../src/common/ia/IAbyZone.hpp \
   ../src/bot-opos6ul/OPOS6UL_RobotExtended.hpp
 
 CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_State_Init.cpp.o: ../src/bot-opos6ul/O_State_Init.cpp \
@@ -5635,6 +5763,7 @@ CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_State_Init.cpp.o: ../src/bot-opos6u
   ../src/common/action/Tirette.hpp \
   ../src/common/interface/ASwitchDriver.hpp \
   ../src/common/action/ServoUsingMotor.hpp \
+  ../src/common/interface/AColorDriver.hpp \
   ../src/bot-opos6ul/OPOS6UL_AsservExtended.hpp \
   ../src/common/asserv/Asserv.hpp \
   ../src/common/interface/AAsservDriver.hpp \
@@ -5983,6 +6112,7 @@ CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_State_WaitEndOfMatch.cpp.o: ../src/
   ../src/common/action/Tirette.hpp \
   ../src/common/interface/ASwitchDriver.hpp \
   ../src/common/action/ServoUsingMotor.hpp \
+  ../src/common/interface/AColorDriver.hpp \
   ../src/bot-opos6ul/OPOS6UL_RobotExtended.hpp
 
 CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_TiretteTest.cpp.o: ../src/bot-opos6ul/O_TiretteTest.cpp \
@@ -6323,6 +6453,7 @@ CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_TiretteTest.cpp.o: ../src/bot-opos6
   ../src/common/action/Tirette.hpp \
   ../src/common/interface/ASwitchDriver.hpp \
   ../src/common/action/ServoUsingMotor.hpp \
+  ../src/common/interface/AColorDriver.hpp \
   ../src/bot-opos6ul/OPOS6UL_RobotExtended.hpp \
   ../src/common/Robot.hpp
 
@@ -6416,6 +6547,8 @@ CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_TiretteTest.cpp.o: ../src/bot-opos6
 /usr/include/x86_64-linux-gnu/bits/mman.h:
 
 /usr/include/x86_64-linux-gnu/sys/mman.h:
+
+../src/common/HardwareConfig.hpp:
 
 ../src/common/interface/AAsservDriver.hpp:
 
@@ -6714,6 +6847,8 @@ CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_TiretteTest.cpp.o: ../src/bot-opos6
 /usr/include/x86_64-linux-gnu/asm/socket.h:
 
 /usr/include/x86_64-linux-gnu/sys/select.h:
+
+../src/common/interface/AColorDriver.hpp:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h:
 

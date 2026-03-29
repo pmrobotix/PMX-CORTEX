@@ -6,7 +6,7 @@
 #ifndef O_STATE_DECISIONMAKERIA_HPP
 #define	O_STATE_DECISIONMAKERIA_HPP
 
-//TODO: migrer PathFinding include
+//TODO migrer PathFinding include
 //#include <src/pmr_playground.h>
 #include <string>
 
