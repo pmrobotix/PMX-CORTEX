@@ -1,0 +1,1062 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot: Référence de la classe ServoDriverSimu</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Types publics</a> &#124;
+<a href="#pub-methods">Fonctions membres publiques</a> &#124;
+<a href="#pub-static-methods">Fonctions membres publiques statiques</a> &#124;
+<a href="#pri-static-methods">Fonctions membres privées statiques</a> &#124;
+<a href="#pri-attribs">Attributs privés</a> &#124;
+<a href="classServoDriverSimu-members.html">Liste de tous les membres</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence de la classe ServoDriverSimu</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="driver-simu_2ServoDriver_8hpp_source.html">ServoDriver.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Graphe d'héritage de ServoDriverSimu:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classServoDriverSimu__inherit__graph.svg" width="143" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="graph_legend.html">légende</a>]</span></center></div>
+<div class="dynheader">
+Graphe de collaboration de ServoDriverSimu:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classServoDriverSimu__coll__graph.svg" width="143" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="graph_legend.html">légende</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Types publics</h2></td></tr>
+<tr class="memitem:af202d0a72cdde1d9c0c0eba05e253365"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAServoDriver.html#af202d0a72cdde1d9c0c0eba05e253365">ServoType</a> { <a class="el" href="classAServoDriver.html#af202d0a72cdde1d9c0c0eba05e253365ace3f795c279f2bfb2d40a715911be20b">SERVO_STANDARD</a>
+, <a class="el" href="classAServoDriver.html#af202d0a72cdde1d9c0c0eba05e253365a4397a48ac192183b8bf8b98727ca0978">SERVO_DYNAMIXEL</a>
+ }</td></tr>
+<tr class="memdesc:af202d0a72cdde1d9c0c0eba05e253365"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type de servomoteur.  <a href="classAServoDriver.html#af202d0a72cdde1d9c0c0eba05e253365">Plus de détails...</a><br /></td></tr>
+<tr class="separator:af202d0a72cdde1d9c0c0eba05e253365"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Fonctions membres publiques</h2></td></tr>
+<tr class="memitem:a5723e22f2d1331148622d9e1d691d5a0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServoDriverSimu.html#a5723e22f2d1331148622d9e1d691d5a0">ServoDriverSimu</a> ()</td></tr>
+<tr class="memdesc:a5723e22f2d1331148622d9e1d691d5a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="classServoDriverSimu.html#a5723e22f2d1331148622d9e1d691d5a0">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a5723e22f2d1331148622d9e1d691d5a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75d84d52267b551bccdf440147c18de6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServoDriverSimu.html#a75d84d52267b551bccdf440147c18de6">~ServoDriverSimu</a> ()</td></tr>
+<tr class="memdesc:a75d84d52267b551bccdf440147c18de6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <a href="classServoDriverSimu.html#a75d84d52267b551bccdf440147c18de6">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a75d84d52267b551bccdf440147c18de6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad21637417b10b9f06418e070428a8b8d"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAServoDriver.html#ad21637417b10b9f06418e070428a8b8d">constrain</a> (long value, long valeurMin, long valeurMax)</td></tr>
+<tr class="memdesc:ad21637417b10b9f06418e070428a8b8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Limite une valeur a un intervalle [min, max].  <a href="classAServoDriver.html#ad21637417b10b9f06418e070428a8b8d">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ad21637417b10b9f06418e070428a8b8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1efcb9d1caef9d922cd4e2db773eec66"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServoDriverSimu.html#a1efcb9d1caef9d922cd4e2db773eec66">getMoving</a> (int servo)</td></tr>
+<tr class="memdesc:a1efcb9d1caef9d922cd4e2db773eec66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifie si le servo est en mouvement.  <a href="classServoDriverSimu.html#a1efcb9d1caef9d922cd4e2db773eec66">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a1efcb9d1caef9d922cd4e2db773eec66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a916fcd9241b4f841d63446eb07a99945"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServoDriverSimu.html#a916fcd9241b4f841d63446eb07a99945">getPulsePos</a> (int servo)</td></tr>
+<tr class="memdesc:a916fcd9241b4f841d63446eb07a99945"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit la position courante du servo.  <a href="classServoDriverSimu.html#a916fcd9241b4f841d63446eb07a99945">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a916fcd9241b4f841d63446eb07a99945"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ba7caa0264336cbe29bca904c7f8f54"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServoDriverSimu.html#a3ba7caa0264336cbe29bca904c7f8f54">getTorque</a> (int servo)</td></tr>
+<tr class="memdesc:a3ba7caa0264336cbe29bca904c7f8f54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit le couple courant du servo.  <a href="classServoDriverSimu.html#a3ba7caa0264336cbe29bca904c7f8f54">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a3ba7caa0264336cbe29bca904c7f8f54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c4aefb616bf4dd3caec9113335eb39d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServoDriverSimu.html#a8c4aefb616bf4dd3caec9113335eb39d">hold</a> (int servo)</td></tr>
+<tr class="memdesc:a8c4aefb616bf4dd3caec9113335eb39d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maintient la position courante du servo (active le couple).  <a href="classServoDriverSimu.html#a8c4aefb616bf4dd3caec9113335eb39d">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a8c4aefb616bf4dd3caec9113335eb39d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13ad4f2693e72a4de6c5d047d23f1802"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServoDriverSimu.html#a13ad4f2693e72a4de6c5d047d23f1802">is_connected</a> ()</td></tr>
+<tr class="memdesc:a13ad4f2693e72a4de6c5d047d23f1802"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifie si la carte servo est connectee.  <a href="classServoDriverSimu.html#a13ad4f2693e72a4de6c5d047d23f1802">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a13ad4f2693e72a4de6c5d047d23f1802"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeeba1bd517ff5b3abc3ff2e4b3c3475d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServoDriverSimu.html#aeeba1bd517ff5b3abc3ff2e4b3c3475d">ping</a> (int)</td></tr>
+<tr class="memdesc:aeeba1bd517ff5b3abc3ff2e4b3c3475d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Envoie un ping au servo pour verifier sa presence.  <a href="classServoDriverSimu.html#aeeba1bd517ff5b3abc3ff2e4b3c3475d">Plus de détails...</a><br /></td></tr>
+<tr class="separator:aeeba1bd517ff5b3abc3ff2e4b3c3475d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f53d48093ae66a79da0373b25f6afcb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServoDriverSimu.html#a2f53d48093ae66a79da0373b25f6afcb">release</a> (int servo)</td></tr>
+<tr class="memdesc:a2f53d48093ae66a79da0373b25f6afcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Relache le servo (desactive le couple).  <a href="classServoDriverSimu.html#a2f53d48093ae66a79da0373b25f6afcb">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a2f53d48093ae66a79da0373b25f6afcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9a4ec38aa5a70546a1b8d1f28295033"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServoDriverSimu.html#ab9a4ec38aa5a70546a1b8d1f28295033">setMaxPulse</a> (int servo, int value=2400)</td></tr>
+<tr class="memdesc:ab9a4ec38aa5a70546a1b8d1f28295033"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definit la largeur d'impulsion maximale.  <a href="classServoDriverSimu.html#ab9a4ec38aa5a70546a1b8d1f28295033">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ab9a4ec38aa5a70546a1b8d1f28295033"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac63e7304f80922f2a8fb40fd23aecdcd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServoDriverSimu.html#ac63e7304f80922f2a8fb40fd23aecdcd">setMidPulse</a> (int servo, int value=1500)</td></tr>
+<tr class="memdesc:ac63e7304f80922f2a8fb40fd23aecdcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definit la largeur d'impulsion centrale (position neutre).  <a href="classServoDriverSimu.html#ac63e7304f80922f2a8fb40fd23aecdcd">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ac63e7304f80922f2a8fb40fd23aecdcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae31f27b5657b8565429b766236b20106"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServoDriverSimu.html#ae31f27b5657b8565429b766236b20106">setMinPulse</a> (int servo, int value=600)</td></tr>
+<tr class="memdesc:ae31f27b5657b8565429b766236b20106"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definit la largeur d'impulsion minimale.  <a href="classServoDriverSimu.html#ae31f27b5657b8565429b766236b20106">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ae31f27b5657b8565429b766236b20106"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af751f9cdb6c0255607a29607a72e4f7d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServoDriverSimu.html#af751f9cdb6c0255607a29607a72e4f7d">setPolarity</a> (int servo, bool inversed)</td></tr>
+<tr class="memdesc:af751f9cdb6c0255607a29607a72e4f7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inverse la polarite du servo.  <a href="classServoDriverSimu.html#af751f9cdb6c0255607a29607a72e4f7d">Plus de détails...</a><br /></td></tr>
+<tr class="separator:af751f9cdb6c0255607a29607a72e4f7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d18ada0fbd697e455bcd3e7ae68f422"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServoDriverSimu.html#a3d18ada0fbd697e455bcd3e7ae68f422">setPulsePos</a> (int servo, int pos, int rate)</td></tr>
+<tr class="memdesc:a3d18ada0fbd697e455bcd3e7ae68f422"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definit la position du servo par largeur d'impulsion PWM.  <a href="classServoDriverSimu.html#a3d18ada0fbd697e455bcd3e7ae68f422">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a3d18ada0fbd697e455bcd3e7ae68f422"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72c3a39c62af84bedce7740d1cef8bb4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServoDriverSimu.html#a72c3a39c62af84bedce7740d1cef8bb4">setTorque</a> (int servo, int millisec)</td></tr>
+<tr class="memdesc:a72c3a39c62af84bedce7740d1cef8bb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definit le couple maximal du servo.  <a href="classServoDriverSimu.html#a72c3a39c62af84bedce7740d1cef8bb4">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a72c3a39c62af84bedce7740d1cef8bb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a095c490db619bdc685580191c16f4c4b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServoDriverSimu.html#a095c490db619bdc685580191c16f4c4b">setType</a> (int servo, <a class="el" href="classAServoDriver.html#af202d0a72cdde1d9c0c0eba05e253365">ServoType</a>)</td></tr>
+<tr class="memdesc:a095c490db619bdc685580191c16f4c4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definit le type de servo.  <a href="classServoDriverSimu.html#a095c490db619bdc685580191c16f4c4b">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a095c490db619bdc685580191c16f4c4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d2800552f83989301739cec0aad73d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServoDriverSimu.html#a5d2800552f83989301739cec0aad73d2">turn</a> (int servo, int speed)</td></tr>
+<tr class="memdesc:a5d2800552f83989301739cec0aad73d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fait tourner le servo en mode moteur continu.  <a href="classServoDriverSimu.html#a5d2800552f83989301739cec0aad73d2">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a5d2800552f83989301739cec0aad73d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Fonctions membres publiques statiques</h2></td></tr>
+<tr class="memitem:a82847339a8d4bf66b8bcd372ef0f2f4a"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classAServoDriver.html">AServoDriver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAServoDriver.html#a82847339a8d4bf66b8bcd372ef0f2f4a">create</a> ()</td></tr>
+<tr class="memdesc:a82847339a8d4bf66b8bcd372ef0f2f4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cree l'instance concrete selon la plateforme.  <a href="classAServoDriver.html#a82847339a8d4bf66b8bcd372ef0f2f4a">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a82847339a8d4bf66b8bcd372ef0f2f4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-methods"></a>
+Fonctions membres privées statiques</h2></td></tr>
+<tr class="memitem:ad069b69537f1c5cc074a994f800b5c33"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="classlogs_1_1Logger.html">logs::Logger</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServoDriverSimu.html#ad069b69537f1c5cc074a994f800b5c33">logger</a> ()</td></tr>
+<tr class="memdesc:ad069b69537f1c5cc074a994f800b5c33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourne le Logger associé à la classe <a class="el" href="classServoDriverSimu.html">ServoDriverSimu(SIMU)</a>.  <a href="classServoDriverSimu.html#ad069b69537f1c5cc074a994f800b5c33">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ad069b69537f1c5cc074a994f800b5c33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Attributs privés</h2></td></tr>
+<tr class="memitem:ab783655897ec27af248ccb849ca52dee"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classServoDriverSimu.html#ab783655897ec27af248ccb849ca52dee">connected_</a></td></tr>
+<tr class="separator:ab783655897ec27af248ccb849ca52dee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentation des énumérations membres</h2>
+<a id="af202d0a72cdde1d9c0c0eba05e253365"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af202d0a72cdde1d9c0c0eba05e253365">&#9670;&nbsp;</a></span>ServoType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="classAServoDriver.html#af202d0a72cdde1d9c0c0eba05e253365">AServoDriver::ServoType</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Type de servomoteur. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Valeurs énumérées</th></tr><tr><td class="fieldname"><a id="af202d0a72cdde1d9c0c0eba05e253365ace3f795c279f2bfb2d40a715911be20b"></a>SERVO_STANDARD&#160;</td><td class="fielddoc"><p>Servo PWM classique. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="af202d0a72cdde1d9c0c0eba05e253365a4397a48ac192183b8bf8b98727ca0978"></a>SERVO_DYNAMIXEL&#160;</td><td class="fielddoc"><p>Servo Dynamixel (protocole serie). </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des constructeurs et destructeur</h2>
+<a id="a5723e22f2d1331148622d9e1d691d5a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5723e22f2d1331148622d9e1d691d5a0">&#9670;&nbsp;</a></span>ServoDriverSimu()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ServoDriverSimu::ServoDriverSimu </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classServoDriverSimu_a5723e22f2d1331148622d9e1d691d5a0_cgraph.svg" width="100%" height="541"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a75d84d52267b551bccdf440147c18de6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75d84d52267b551bccdf440147c18de6">&#9670;&nbsp;</a></span>~ServoDriverSimu()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ServoDriverSimu::~ServoDriverSimu </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Destructor. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des fonctions membres</h2>
+<a id="ad21637417b10b9f06418e070428a8b8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad21637417b10b9f06418e070428a8b8d">&#9670;&nbsp;</a></span>constrain()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">long AServoDriver::constrain </td>
+          <td>(</td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>valeurMin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>valeurMax</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Limite une valeur a un intervalle [min, max]. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>Valeur a limiter. </td></tr>
+    <tr><td class="paramname">valeurMin</td><td>Borne inferieure. </td></tr>
+    <tr><td class="paramname">valeurMax</td><td>Borne superieure. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Valeur limitee. </dd></dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classAServoDriver_ad21637417b10b9f06418e070428a8b8d_icgraph.svg" width="454" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a82847339a8d4bf66b8bcd372ef0f2f4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82847339a8d4bf66b8bcd372ef0f2f4a">&#9670;&nbsp;</a></span>create()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classAServoDriver.html">AServoDriver</a> * AServoDriver::create </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Cree l'instance concrete selon la plateforme. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Pointeur vers l'instance creee. </dd></dl>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classAServoDriver_a82847339a8d4bf66b8bcd372ef0f2f4a_cgraph.svg" width="406" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classAServoDriver_a82847339a8d4bf66b8bcd372ef0f2f4a_icgraph.svg" width="423" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a1efcb9d1caef9d922cd4e2db773eec66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1efcb9d1caef9d922cd4e2db773eec66">&#9670;&nbsp;</a></span>getMoving()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ServoDriverSimu::getMoving </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>servo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Verifie si le servo est en mouvement. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">servo</td><td>Index du servo. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 si en cours, 0 si termine, -1 si erreur. </dd></dl>
+
+<p>Implémente <a class="el" href="classAServoDriver.html#a954ac7340407b997387d84d7059ed32b">AServoDriver</a>.</p>
+
+</div>
+</div>
+<a id="a916fcd9241b4f841d63446eb07a99945"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a916fcd9241b4f841d63446eb07a99945">&#9670;&nbsp;</a></span>getPulsePos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ServoDriverSimu::getPulsePos </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>servo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lit la position courante du servo. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">servo</td><td>Index du servo. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Largeur d'impulsion courante en microsecondes. </dd></dl>
+
+<p>Implémente <a class="el" href="classAServoDriver.html#a478684e583054bdff2d31ee2c7aa944d">AServoDriver</a>.</p>
+
+</div>
+</div>
+<a id="a3ba7caa0264336cbe29bca904c7f8f54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ba7caa0264336cbe29bca904c7f8f54">&#9670;&nbsp;</a></span>getTorque()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ServoDriverSimu::getTorque </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>servo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lit le couple courant du servo. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">servo</td><td>Index du servo. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Valeur de couple. </dd></dl>
+
+<p>Implémente <a class="el" href="classAServoDriver.html#a9a95b8efce958c283fb4ef65649a38cd">AServoDriver</a>.</p>
+
+</div>
+</div>
+<a id="a8c4aefb616bf4dd3caec9113335eb39d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c4aefb616bf4dd3caec9113335eb39d">&#9670;&nbsp;</a></span>hold()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ServoDriverSimu::hold </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>servo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Maintient la position courante du servo (active le couple). </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">servo</td><td>Index du servo. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implémente <a class="el" href="classAServoDriver.html#af90488fb6a2ea3149f4bf68ae01e61b2">AServoDriver</a>.</p>
+
+</div>
+</div>
+<a id="a13ad4f2693e72a4de6c5d047d23f1802"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13ad4f2693e72a4de6c5d047d23f1802">&#9670;&nbsp;</a></span>is_connected()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ServoDriverSimu::is_connected </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Verifie si la carte servo est connectee. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>true si la communication est etablie. </dd></dl>
+
+<p>Implémente <a class="el" href="classAServoDriver.html#aa364bc577d881083d74126bb4ee65291">AServoDriver</a>.</p>
+
+</div>
+</div>
+<a id="ad069b69537f1c5cc074a994f800b5c33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad069b69537f1c5cc074a994f800b5c33">&#9670;&nbsp;</a></span>logger()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static const <a class="el" href="classlogs_1_1Logger.html">logs::Logger</a>&amp; ServoDriverSimu::logger </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retourne le Logger associé à la classe <a class="el" href="classServoDriverSimu.html">ServoDriverSimu(SIMU)</a>. </p>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classServoDriverSimu_ad069b69537f1c5cc074a994f800b5c33_cgraph.svg" width="615" height="170"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classServoDriverSimu_ad069b69537f1c5cc074a994f800b5c33_icgraph.svg" width="491" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="aeeba1bd517ff5b3abc3ff2e4b3c3475d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeeba1bd517ff5b3abc3ff2e4b3c3475d">&#9670;&nbsp;</a></span>ping()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ServoDriverSimu::ping </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>servo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Envoie un ping au servo pour verifier sa presence. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">servo</td><td>Index du servo. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>ID du servo si present, -1 sinon. </dd></dl>
+
+<p>Implémente <a class="el" href="classAServoDriver.html#a75ffc42390ff51d5d8b56985d3c93a47">AServoDriver</a>.</p>
+
+</div>
+</div>
+<a id="a2f53d48093ae66a79da0373b25f6afcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f53d48093ae66a79da0373b25f6afcb">&#9670;&nbsp;</a></span>release()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ServoDriverSimu::release </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>servo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Relache le servo (desactive le couple). </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">servo</td><td>Index du servo. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implémente <a class="el" href="classAServoDriver.html#a9005ceeeecc056474f1ae6e54ce8ba23">AServoDriver</a>.</p>
+
+</div>
+</div>
+<a id="ab9a4ec38aa5a70546a1b8d1f28295033"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9a4ec38aa5a70546a1b8d1f28295033">&#9670;&nbsp;</a></span>setMaxPulse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ServoDriverSimu::setMaxPulse </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>servo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>value</em> = <code>2400</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definit la largeur d'impulsion maximale. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">servo</td><td>Index du servo. </td></tr>
+    <tr><td class="paramname">value</td><td>Impulsion max en microsecondes. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implémente <a class="el" href="classAServoDriver.html#a2c8ca2180aab710c796a8a52587adaa8">AServoDriver</a>.</p>
+
+</div>
+</div>
+<a id="ac63e7304f80922f2a8fb40fd23aecdcd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac63e7304f80922f2a8fb40fd23aecdcd">&#9670;&nbsp;</a></span>setMidPulse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ServoDriverSimu::setMidPulse </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>servo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>value</em> = <code>1500</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definit la largeur d'impulsion centrale (position neutre). </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">servo</td><td>Index du servo. </td></tr>
+    <tr><td class="paramname">value</td><td>Impulsion centrale en microsecondes. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implémente <a class="el" href="classAServoDriver.html#a33b073e7c2c9bce6cd7002ddc9786b83">AServoDriver</a>.</p>
+
+</div>
+</div>
+<a id="ae31f27b5657b8565429b766236b20106"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae31f27b5657b8565429b766236b20106">&#9670;&nbsp;</a></span>setMinPulse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ServoDriverSimu::setMinPulse </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>servo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>value</em> = <code>600</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definit la largeur d'impulsion minimale. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">servo</td><td>Index du servo. </td></tr>
+    <tr><td class="paramname">value</td><td>Impulsion min en microsecondes. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implémente <a class="el" href="classAServoDriver.html#ac0f03a69563322014fc956c1a24078ae">AServoDriver</a>.</p>
+
+</div>
+</div>
+<a id="af751f9cdb6c0255607a29607a72e4f7d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af751f9cdb6c0255607a29607a72e4f7d">&#9670;&nbsp;</a></span>setPolarity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ServoDriverSimu::setPolarity </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>servo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>inversed</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Inverse la polarite du servo. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">servo</td><td>Index du servo. </td></tr>
+    <tr><td class="paramname">inversed</td><td>true pour inverser. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implémente <a class="el" href="classAServoDriver.html#a9fc6590e81391fc05ea59b5512c982ad">AServoDriver</a>.</p>
+
+</div>
+</div>
+<a id="a3d18ada0fbd697e455bcd3e7ae68f422"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d18ada0fbd697e455bcd3e7ae68f422">&#9670;&nbsp;</a></span>setPulsePos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ServoDriverSimu::setPulsePos </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>servo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>pulse</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>velocity</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definit la position du servo par largeur d'impulsion PWM. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">servo</td><td>Index du servo. </td></tr>
+    <tr><td class="paramname">pulse</td><td>Largeur d'impulsion en microsecondes. </td></tr>
+    <tr><td class="paramname">velocity</td><td>Vitesse de deplacement (0 = max). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implémente <a class="el" href="classAServoDriver.html#a3db6d14f3d23fdbd96e95add6a552b0c">AServoDriver</a>.</p>
+
+</div>
+</div>
+<a id="a72c3a39c62af84bedce7740d1cef8bb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72c3a39c62af84bedce7740d1cef8bb4">&#9670;&nbsp;</a></span>setTorque()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ServoDriverSimu::setTorque </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>servo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>torque</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definit le couple maximal du servo. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">servo</td><td>Index du servo. </td></tr>
+    <tr><td class="paramname">torque</td><td>Valeur de couple. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implémente <a class="el" href="classAServoDriver.html#ab7edad21e6c5cb53a72bdd1673040a36">AServoDriver</a>.</p>
+
+</div>
+</div>
+<a id="a095c490db619bdc685580191c16f4c4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a095c490db619bdc685580191c16f4c4b">&#9670;&nbsp;</a></span>setType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ServoDriverSimu::setType </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>servo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classAServoDriver.html#af202d0a72cdde1d9c0c0eba05e253365">ServoType</a>&#160;</td>
+          <td class="paramname"><em>type</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definit le type de servo. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">servo</td><td>Index du servo. </td></tr>
+    <tr><td class="paramname">type</td><td>Type (SERVO_STANDARD ou SERVO_DYNAMIXEL). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000009">Obsolète:</a></b></dt><dd>A terme, le type sera fixe a la construction. </dd></dl>
+
+<p>Implémente <a class="el" href="classAServoDriver.html#ae2b788756798105ae833a58984ade305">AServoDriver</a>.</p>
+
+</div>
+</div>
+<a id="a5d2800552f83989301739cec0aad73d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d2800552f83989301739cec0aad73d2">&#9670;&nbsp;</a></span>turn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ServoDriverSimu::turn </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>servo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>speed</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Fait tourner le servo en mode moteur continu. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">servo</td><td>Index du servo. </td></tr>
+    <tr><td class="paramname">speed</td><td>Vitesse de rotation (signe = sens). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implémente <a class="el" href="classAServoDriver.html#aea0af472e44c21328bf4ebb7203ca416">AServoDriver</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des données membres</h2>
+<a id="ab783655897ec27af248ccb849ca52dee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab783655897ec27af248ccb849ca52dee">&#9670;&nbsp;</a></span>connected_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ServoDriverSimu::connected_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>src/driver-simu/<a class="el" href="driver-simu_2ServoDriver_8hpp_source.html">ServoDriver.hpp</a></li>
+<li>src/driver-simu/<a class="el" href="driver-simu_2ServoDriver_8cpp.html">ServoDriver.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Lundi 30 Mars 2026 01:36:34 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

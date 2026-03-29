@@ -48,7 +48,7 @@ if (edges && edges.length) {
 <script type="text/javascript">
 var viewWidth = 692;
 var viewHeight = 192;
-var sectionId = 'dynsection-5';
+var sectionId = 'dynsection-7';
 </script>
 <script xlink:href="svgpan.js"/>
 <svg id="graph" class="graph">
@@ -115,7 +115,7 @@ var sectionId = 'dynsection-5';
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="classO__IAByPathTest.html#a3f57f585ff1382a52bf7f79a28d43629" target="_top" xlink:title=" ">
+<g id="a_node4"><a xlink:href="classO__IAByPathTest.html#a3f57f585ff1382a52bf7f79a28d43629" target="_top" xlink:title="Execute le test.">
 <polygon fill="white" stroke="black" points="175.5,-164 175.5,-183 289.5,-183 289.5,-164 175.5,-164"/>
 <text text-anchor="middle" x="232.5" y="-171" font-family="Helvetica,sans-Serif" font-size="10.00">O_IAByPathTest::run</text>
 </a>
@@ -190,7 +190,7 @@ var sectionId = 'dynsection-5';
 <!-- Node10 -->
 <g id="node10" class="node">
 <title>Node10</title>
-<g id="a_node10"><a xlink:href="classRobot.html#a46c797e9dba7c96927fa881851309bf0" target="_top" xlink:title=" ">
+<g id="a_node10"><a xlink:href="classRobot.html#a46c797e9dba7c96927fa881851309bf0" target="_top" xlink:title="Arrête le timer d&#39;asservissement et le gestionnaire d&#39;actions.">
 <polygon fill="white" stroke="black" points="156,-0.5 156,-30.5 309,-30.5 309,-0.5 156,-0.5"/>
 <text text-anchor="start" x="164" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::stopMotionTimerAnd</text>
 <text text-anchor="middle" x="232.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">ActionManager</text>

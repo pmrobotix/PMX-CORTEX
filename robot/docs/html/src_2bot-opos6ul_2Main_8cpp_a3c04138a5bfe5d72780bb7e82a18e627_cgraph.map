@@ -1,52 +1,52 @@
 <map id="main" name="main">
-<area shape="rect" id="node1" title=" " alt="" coords="5,1090,60,1117"/>
-<area shape="rect" id="node2" href="$classConsoleManager.html#aff7b3a0f19d93f25629cae84791a7084" title="Ajoute un test au gestionnaire." alt="" coords="126,488,289,514"/>
-<area shape="rect" id="node3" href="$classOPOS6UL__RobotExtended.html#a3af6cff5115c7ae70f7a797d9e90e66a" title="Initialise l&#39;état du robot et le décisionmaker IA." alt="" coords="113,915,302,956"/>
-<area shape="rect" id="node37" href="$classOPOS6UL__RobotExtended.html#a514e663cf7537d64d2d0272b8856d6c0" title="Retourne l&#39;instance unique du robot (singleton)." alt="" coords="610,1214,799,1255"/>
-<area shape="rect" id="node45" href="$namespaceutils.html#ac714339512d6dc1ee14c5b5a92d535be" title="Définit la priorité temps&#45;réel (SCHED_FIFO) du thread spécifié." alt="" coords="635,1331,775,1372"/>
-<area shape="rect" id="node47" href="$classRobot.html#a069902d2b940a23e00453ec6511b2ecb" title=" " alt="" coords="108,1381,307,1408"/>
-<area shape="rect" id="node48" href="$classRobot.html#a3a26291a86ba55cd33e173e70bf5ce5d" title="Parse console parameters (console for tests or main program).." alt="" coords="115,538,300,565"/>
-<area shape="rect" id="node4" href="$classIAutomateState.html#a2d088c807e6d7b30b93511096a34af2a" title="Ajoute une transition possible à cet état." alt="" coords="355,893,545,920"/>
-<area shape="rect" id="node5" href="$classRobot.html#ae8cede2564e5b9229da095991c064ae4" title="Start the robot (console for tests or main program).." alt="" coords="398,437,502,464"/>
-<area shape="rect" id="node6" href="$classlogs_1_1Logger.html#a7dffc8f610014ec59b63392da16140e4" title="Trace un message de niveau DEBUG." alt="" coords="630,757,779,784"/>
-<area shape="rect" id="node17" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="664,858,745,885"/>
-<area shape="rect" id="node23" href="$classlogs_1_1Logger.html#aa381165771d00a6a1e3aa9664bf6467f" title="Trace un message de niveau INFO." alt="" coords="637,656,772,682"/>
-<area shape="rect" id="node32" href="$classRobot.html#a7af430452b558088757324f857d099b2" title="Cette methode retourne l&#39;objet de manipulation du chronometer." alt="" coords="394,792,506,818"/>
-<area shape="rect" id="node33" href="$classutils_1_1Chronometer.html#a935aa20dd1791cfc8aec203a8838598d" title="Retourne le temps écoulé en secondes." alt="" coords="365,944,535,986"/>
-<area shape="rect" id="node34" href="$classRobot.html#a36b66143430e84b730555cf497b89774" title=" " alt="" coords="399,1010,501,1037"/>
-<area shape="rect" id="node35" href="$classRobot.html#a082495b8fff35165b750cd1cc5b48b90" title=" " alt="" coords="389,1061,511,1088"/>
-<area shape="rect" id="node36" href="$classOPOS6UL__RobotExtended.html#a096aea03c751e0cfdc4ce25741fdbe67" title=" " alt="" coords="355,1163,545,1204"/>
-<area shape="rect" id="node38" href="$classAutomate.html#a1df5d3b6c5abc353b347f4defcfde4e9" title="Lance l&#39;automate." alt="" coords="393,1112,507,1138"/>
-<area shape="rect" id="node43" href="$classutils_1_1Thread.html#a430ee2b8962147b587157fac97932219" title="Lance le thread." alt="" coords="379,1280,521,1306"/>
-<area shape="rect" id="node46" href="$classutils_1_1Thread.html#a29b8cb62f6b5f80ffe5b050167780f97" title="Attend la fin du thread (appelle pthread_join)." alt="" coords="359,741,541,768"/>
-<area shape="rect" id="node8" href="$classConsoleManager.html#a64d4e3f6022402c0ec145ad7d9aef03f" title=" " alt="" coords="864,146,1111,187"/>
-<area shape="rect" id="node10" href="$classConsoleManager.html#adf3d9ef10328d6854c13ad8130fcbee2" title=" " alt="" coords="593,590,816,631"/>
-<area shape="rect" id="node12" href="$classConsoleKeyInput.html#a60528b5f9b4295de7b271ea4ad16bd96" title="Lit un caractère depuis le terminal sans echo ni attente de retour chariot." alt="" coords="889,490,1085,517"/>
-<area shape="rect" id="node14" href="$namespaceutils.html#a4f86fc4c334661a6995538cc080a40c9" title="Met en pause le thread courant pendant usec microsecondes." alt="" coords="903,378,1072,405"/>
-<area shape="rect" id="node15" href="$classConsoleManager.html#a21be37acc9749db68a3da63e703035c1" title="Affiche un menu de sélection des tests." alt="" coords="593,524,816,566"/>
-<area shape="rect" id="node21" href="$classlogs_1_1Logger.html#a8b6a2019233bc44b3c3c86c653910831" title="Trace un message de niveau ERROR." alt="" coords="635,808,775,834"/>
-<area shape="rect" id="node22" href="$classRobot.html#a99ab62d38fe4737043969290b278cd15" title="Retourne la couleur du robot." alt="" coords="633,473,776,500"/>
-<area shape="rect" id="node24" href="$classRobot.html#ace39678c476c8e8b193d9c8baf7a692b" title="Retourne le Logger associe a la classe Robot. public car utilise dans Main." alt="" coords="650,706,759,733"/>
-<area shape="rect" id="node28" href="$classConsoleManager.html#aeddef217e965ace2a8a1cd7bab45f2bf" title="Détermine un test a lancer en fonction des paramètres de la ligne de commande." alt="" coords="625,169,785,196"/>
-<area shape="rect" id="node29" href="$classRobot.html#a641f6a9269152cc48be814827d71ee37" title="Enregistre la couleur du robot." alt="" coords="633,220,776,246"/>
-<area shape="rect" id="node30" href="$classRobot.html#a0bde038f1ccdfd979f17bfd9ddf25ba3" title=" " alt="" coords="639,270,771,297"/>
-<area shape="rect" id="node31" href="$classRobot.html#a54154ee94652d3093fba07052cdbc861" title=" " alt="" coords="643,321,766,348"/>
-<area shape="rect" id="node7" href="$classlogs_1_1Logger.html#afa535aaf4891e02c4ff7f84d372b5b1b" title="Méthode générique de trace d&#39;un message." alt="" coords="1159,769,1359,796"/>
-<area shape="rect" id="node9" href="$namespacelogs.html#ab465ba9cc0c8042ca19d9c1aeb008578" title=" " alt="" coords="1215,440,1303,466"/>
-<area shape="rect" id="node11" href="$classConsoleKeyInput.html#a6ff58ba8628e71281679d3732553216a" title="Efface l&#39;écran du terminal." alt="" coords="880,592,1095,618"/>
-<area shape="rect" id="node13" href="$classConsoleKeyInput.html#a50c105a501cf1640c7ad5822aba7255f" title="Déplace le curseur à une position donnée (ligne, colonne). Le coin supérieur gauche est (1,..." alt="" coords="881,541,1093,568"/>
-<area shape="rect" id="node16" href="$classConsoleManager.html#a417ef6797adc469a5e5a609519a0f75e" title="Execute un test en particulier en fonction de son identifiant." alt="" coords="879,250,1095,277"/>
-<area shape="rect" id="node18" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#a0e4fd77693fd899ec1b0670354f93a02" title="Cette méthode valide le message en cours de construction et le transmet au Logger de référence." alt="" coords="875,858,1099,885"/>
-<area shape="rect" id="node19" href="$classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32" title="Verrouille le mutex. Cette méthode doit être appelée avant d&#39;utiliser la ressource associée...." alt="" coords="1191,845,1326,872"/>
-<area shape="rect" id="node20" href="$classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3" title="Déverrouille le mutex. Cette méthode doit être appelée après avoir utiliser la ressource associée." alt="" coords="1183,896,1334,922"/>
-<area shape="rect" id="node25" href="$classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e" title="Cette méthode statique retourne un Logger en fonction de son nom." alt="" coords="913,1104,1061,1146"/>
-<area shape="rect" id="node26" href="$classlogs_1_1LoggerFactory.html#ac89f19c0ffd71aa8cdc1c2d44c03809e" title="Cette méthode ajoute un appender au système." alt="" coords="1169,1082,1348,1109"/>
-<area shape="rect" id="node27" href="$classlogs_1_1LoggerFactory.html#a90478b91d7af2ef8841ded21e3521f69" title="Cette méthode statique retourne l&#39;instance unique de la classe LoggerFactory." alt="" coords="1185,1134,1333,1175"/>
-<area shape="rect" id="node39" href="$classAutomate.html#ae252283b4c9ffff3ae601ad2cdb89ccd" title="Retourne l&#39;état courant de l&#39;automate." alt="" coords="635,960,775,986"/>
-<area shape="rect" id="node40" href="$classIAutomateState.html#a58bf3c2c5b55f7ba3fc1783fc36e102b" title="Traite l&#39;état actuel et renvoie l&#39;état suivant." alt="" coords="613,1010,796,1037"/>
-<area shape="rect" id="node41" href="$classAutomate.html#a719aca8aca98e5eff35d788ba125a5fc" title="Retourne le Logger associé à la classe Automate." alt="" coords="637,1112,772,1138"/>
-<area shape="rect" id="node42" href="$classIAutomateState.html#a11468bf9104e6574479588f0aacaabd3" title=" " alt="" coords="620,1061,789,1088"/>
-<area shape="rect" id="node44" href="$classutils_1_1Thread.html#a61b6c3d0b87570254646120b323b89f7" title="Cette méthode sert de point d&#39;entrée pour l&#39;appel à pcreate_thread." alt="" coords="615,1280,794,1306"/>
-<area shape="rect" id="node49" href="$classArguments.html#a4896d0a63a43b8eeba25167989341a33" title=" " alt="" coords="381,130,519,157"/>
-<area shape="rect" id="node50" href="$classArguments.html#a255619dfd905699c2736d80b53e34e0a" title=" " alt="" coords="635,68,775,94"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,1367,60,1393"/>
+<area shape="rect" id="node2" href="$classConsoleManager.html#aff7b3a0f19d93f25629cae84791a7084" title="Ajoute un test au gestionnaire." alt="" coords="126,979,289,1005"/>
+<area shape="rect" id="node3" href="$classOPOS6UL__RobotExtended.html#a3af6cff5115c7ae70f7a797d9e90e66a" title="Initialise l&#39;état du robot et le décisionmaker IA." alt="" coords="113,1081,302,1122"/>
+<area shape="rect" id="node32" href="$classOPOS6UL__RobotExtended.html#a514e663cf7537d64d2d0272b8856d6c0" title="Retourne l&#39;instance unique du robot (singleton)." alt="" coords="610,1225,799,1266"/>
+<area shape="rect" id="node40" href="$namespaceutils.html#ac714339512d6dc1ee14c5b5a92d535be" title="Définit la priorité temps&#45;réel (SCHED_FIFO) du thread spécifié." alt="" coords="635,1545,775,1586"/>
+<area shape="rect" id="node42" href="$classRobot.html#a069902d2b940a23e00453ec6511b2ecb" title="Retourne le gestionnaire de console (tests fonctionnels)." alt="" coords="108,1661,307,1688"/>
+<area shape="rect" id="node43" href="$classHardwareConfig.html#ac025d3170ffc737f6ac5335e944ed19f" title="Retourne l&#39;instance unique." alt="" coords="893,1451,1082,1477"/>
+<area shape="rect" id="node44" href="$classHardwareConfig.html#a42698eef9d965356b756a5bdc8f5071b" title="Charge la configuration depuis le repertoire de l&#39;executable." alt="" coords="369,1291,531,1317"/>
+<area shape="rect" id="node46" href="$classRobot.html#a3a26291a86ba55cd33e173e70bf5ce5d" title="Parse les paramètres de la ligne de commande et reconfigure la télémétrie si /i ou /p sont fournis." alt="" coords="357,515,543,541"/>
+<area shape="rect" id="node4" href="$classIAutomateState.html#a2d088c807e6d7b30b93511096a34af2a" title="Ajoute une transition possible à cet état." alt="" coords="355,1189,545,1216"/>
+<area shape="rect" id="node5" href="$classRobot.html#ae8cede2564e5b9229da095991c064ae4" title="Démarre le robot (test fonctionnel ou match)." alt="" coords="398,753,502,780"/>
+<area shape="rect" id="node6" href="$classlogs_1_1Logger.html#a7dffc8f610014ec59b63392da16140e4" title="Trace un message de niveau DEBUG." alt="" coords="630,920,779,947"/>
+<area shape="rect" id="node15" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="664,1072,745,1099"/>
+<area shape="rect" id="node19" href="$classlogs_1_1Logger.html#aa381165771d00a6a1e3aa9664bf6467f" title="Trace un message de niveau INFO." alt="" coords="637,971,772,997"/>
+<area shape="rect" id="node27" href="$classRobot.html#a7af430452b558088757324f857d099b2" title="Cette methode retourne l&#39;objet de manipulation du chronometer." alt="" coords="394,855,506,881"/>
+<area shape="rect" id="node28" href="$classutils_1_1Chronometer.html#a935aa20dd1791cfc8aec203a8838598d" title="Retourne le temps écoulé en secondes." alt="" coords="365,1022,535,1063"/>
+<area shape="rect" id="node29" href="$classRobot.html#a36b66143430e84b730555cf497b89774" title="Retourne l&#39;identifiant du robot." alt="" coords="399,1088,501,1115"/>
+<area shape="rect" id="node30" href="$classRobot.html#a082495b8fff35165b750cd1cc5b48b90" title=" " alt="" coords="389,1139,511,1165"/>
+<area shape="rect" id="node31" href="$classOPOS6UL__RobotExtended.html#a096aea03c751e0cfdc4ce25741fdbe67" title=" " alt="" coords="355,957,545,998"/>
+<area shape="rect" id="node33" href="$classAutomate.html#a1df5d3b6c5abc353b347f4defcfde4e9" title="Lance l&#39;automate." alt="" coords="393,1341,507,1368"/>
+<area shape="rect" id="node38" href="$classutils_1_1Thread.html#a430ee2b8962147b587157fac97932219" title="Lance le thread." alt="" coords="379,1493,521,1520"/>
+<area shape="rect" id="node41" href="$classutils_1_1Thread.html#a29b8cb62f6b5f80ffe5b050167780f97" title="Attend la fin du thread (appelle pthread_join)." alt="" coords="359,703,541,729"/>
+<area shape="rect" id="node8" href="$classConsoleManager.html#a64d4e3f6022402c0ec145ad7d9aef03f" title=" " alt="" coords="864,457,1111,498"/>
+<area shape="rect" id="node10" href="$classConsoleManager.html#adf3d9ef10328d6854c13ad8130fcbee2" title=" " alt="" coords="593,230,816,271"/>
+<area shape="rect" id="node12" href="$classConsoleKeyInput.html#a60528b5f9b4295de7b271ea4ad16bd96" title="Lit un caractère depuis le terminal sans echo ni attente de retour chariot." alt="" coords="889,304,1085,331"/>
+<area shape="rect" id="node13" href="$namespaceutils.html#a4f86fc4c334661a6995538cc080a40c9" title="Met en pause le thread courant pendant usec microsecondes." alt="" coords="1174,127,1343,153"/>
+<area shape="rect" id="node14" href="$classConsoleManager.html#a21be37acc9749db68a3da63e703035c1" title="Affiche un menu de sélection des tests." alt="" coords="593,347,816,389"/>
+<area shape="rect" id="node17" href="$classlogs_1_1Logger.html#a8b6a2019233bc44b3c3c86c653910831" title="Trace un message de niveau ERROR." alt="" coords="635,1123,775,1149"/>
+<area shape="rect" id="node18" href="$classRobot.html#a99ab62d38fe4737043969290b278cd15" title="Retourne la couleur du robot." alt="" coords="633,819,776,845"/>
+<area shape="rect" id="node20" href="$classRobot.html#ace39678c476c8e8b193d9c8baf7a692b" title="Retourne le Logger associe a la classe Robot. public car utilise dans Main." alt="" coords="650,565,759,592"/>
+<area shape="rect" id="node23" href="$classConsoleManager.html#aeddef217e965ace2a8a1cd7bab45f2bf" title="Détermine un test a lancer en fonction des paramètres de la ligne de commande." alt="" coords="625,869,785,896"/>
+<area shape="rect" id="node24" href="$classRobot.html#a641f6a9269152cc48be814827d71ee37" title="Enregistre la couleur du robot." alt="" coords="633,667,776,693"/>
+<area shape="rect" id="node25" href="$classRobot.html#a0bde038f1ccdfd979f17bfd9ddf25ba3" title=" " alt="" coords="639,717,771,744"/>
+<area shape="rect" id="node26" href="$classRobot.html#a54154ee94652d3093fba07052cdbc861" title=" " alt="" coords="643,768,766,795"/>
+<area shape="rect" id="node7" href="$classlogs_1_1Logger.html#afa535aaf4891e02c4ff7f84d372b5b1b" title="Méthode générique de trace d&#39;un message." alt="" coords="1159,1017,1359,1044"/>
+<area shape="rect" id="node9" href="$namespacelogs.html#ab465ba9cc0c8042ca19d9c1aeb008578" title=" " alt="" coords="1215,405,1303,432"/>
+<area shape="rect" id="node11" href="$classConsoleKeyInput.html#a6ff58ba8628e71281679d3732553216a" title="Efface l&#39;écran du terminal." alt="" coords="880,253,1095,280"/>
+<area shape="rect" id="node16" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#a0e4fd77693fd899ec1b0670354f93a02" title="Cette méthode valide le message en cours de construction et le transmet au Logger de référence." alt="" coords="875,1076,1099,1103"/>
+<area shape="rect" id="node21" href="$classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e" title="Cette méthode statique retourne un Logger en fonction de son nom." alt="" coords="913,1010,1061,1051"/>
+<area shape="rect" id="node22" href="$classlogs_1_1LoggerFactory.html#a90478b91d7af2ef8841ded21e3521f69" title="Cette méthode statique retourne l&#39;instance unique de la classe LoggerFactory." alt="" coords="1185,733,1333,774"/>
+<area shape="rect" id="node34" href="$classAutomate.html#ae252283b4c9ffff3ae601ad2cdb89ccd" title="Retourne l&#39;état courant de l&#39;automate." alt="" coords="635,1392,775,1419"/>
+<area shape="rect" id="node35" href="$classIAutomateState.html#a58bf3c2c5b55f7ba3fc1783fc36e102b" title="Traite l&#39;état actuel et renvoie l&#39;état suivant." alt="" coords="613,1443,796,1469"/>
+<area shape="rect" id="node36" href="$classAutomate.html#a719aca8aca98e5eff35d788ba125a5fc" title="Retourne le Logger associé à la classe Automate." alt="" coords="637,1173,772,1200"/>
+<area shape="rect" id="node37" href="$classIAutomateState.html#a11468bf9104e6574479588f0aacaabd3" title=" " alt="" coords="620,1341,789,1368"/>
+<area shape="rect" id="node39" href="$classutils_1_1Thread.html#a61b6c3d0b87570254646120b323b89f7" title="Cette méthode sert de point d&#39;entrée pour l&#39;appel à pcreate_thread." alt="" coords="615,1493,794,1520"/>
+<area shape="rect" id="node45" href="$classHardwareConfig.html#af0540d247a7c0ca862e6e9eadf3481e0" title=" " alt="" coords="617,1291,792,1317"/>
+<area shape="rect" id="node47" href="$classlogs_1_1LoggerFactory.html#a75823b27a156f58a8d4061453a632c66" title="Cette méthode retourne un Appender en fonction de son nom." alt="" coords="631,107,779,149"/>
+<area shape="rect" id="node48" href="$classArguments.html#a4896d0a63a43b8eeba25167989341a33" title=" " alt="" coords="636,5,773,32"/>
+<area shape="rect" id="node49" href="$classArguments.html#a255619dfd905699c2736d80b53e34e0a" title=" " alt="" coords="917,51,1057,77"/>
+<area shape="rect" id="node50" href="$classRobot.html#aefc159a05956e09edbe5e75333db25a8" title="Retourne le Logger RobotTelemetry4[ID] associe a la classe Robot. public car utilise dans Main." alt="" coords="639,515,771,541"/>
 </map>

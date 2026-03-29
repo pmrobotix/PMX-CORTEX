@@ -12,7 +12,7 @@
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
-<g id="a_node1"><a xlink:title="Parse console parameters (console for tests or main program)..">
+<g id="a_node1"><a xlink:title="Parse les paramètres de la ligne de commande et reconfigure la télémétrie si /i ou /p sont fournis.">
 <polygon fill="#bfbfbf" stroke="black" points="185,-44.5 185,-63.5 324,-63.5 324,-44.5 185,-44.5"/>
 <text text-anchor="middle" x="254.5" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::parseConsoleArgs</text>
 </a>

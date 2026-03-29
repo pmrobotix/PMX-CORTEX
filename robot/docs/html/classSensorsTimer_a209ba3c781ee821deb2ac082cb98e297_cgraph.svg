@@ -21,7 +21,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="classRobot.html#a36b66143430e84b730555cf497b89774" target="_top" xlink:title=" ">
+<g id="a_node2"><a xlink:href="classRobot.html#a36b66143430e84b730555cf497b89774" target="_top" xlink:title="Retourne l&#39;identifiant du robot.">
 <polygon fill="white" stroke="black" points="162,-88.5 162,-107.5 239,-107.5 239,-88.5 162,-88.5"/>
 <text text-anchor="middle" x="200.5" y="-95.5" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::getID</text>
 </a>

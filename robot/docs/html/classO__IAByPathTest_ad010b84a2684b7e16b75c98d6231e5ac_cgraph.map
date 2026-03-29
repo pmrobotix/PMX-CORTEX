@@ -1,5 +1,5 @@
 <map id="O_IAByPathTest::initPlayground" name="O_IAByPathTest::initPlayground">
-<area shape="rect" id="node1" title=" " alt="" coords="5,115,231,141"/>
+<area shape="rect" id="node1" title="Initialise le terrain de jeu (grille de navigation A*)." alt="" coords="5,115,231,141"/>
 <area shape="rect" id="node2" href="$classIAbyPath.html#ae82756d4338dfe7ac4811751dd9a5f17" title=" " alt="" coords="291,5,475,32"/>
 <area shape="rect" id="node3" href="$classOPOS6UL__RobotExtended.html#aece92ee3684b32eab5bbebba812e1c6b" title=" " alt="" coords="279,56,488,83"/>
 <area shape="rect" id="node4" href="$classOPOS6UL__IAExtended.html#aa902e0684bee670e1ad189948e7d7971" title="Retourne l&#39;IA par pathfinding (nouvelle version)." alt="" coords="301,107,465,149"/>
@@ -18,5 +18,5 @@
 <area shape="rect" id="node16" href="$classlogs_1_1LoggerFactory.html#ac89f19c0ffd71aa8cdc1c2d44c03809e" title="Cette méthode ajoute un appender au système." alt="" coords="1019,239,1197,265"/>
 <area shape="rect" id="node17" href="$classlogs_1_1LoggerFactory.html#a90478b91d7af2ef8841ded21e3521f69" title="Cette méthode statique retourne l&#39;instance unique de la classe LoggerFactory." alt="" coords="1034,290,1182,331"/>
 <area shape="rect" id="node18" href="$classlogs_1_1LoggerFactory.html#a212aa623f4b6bee12cb39e8017dde670" title="Cette méthode retourne le Logger principal qui définit le niveau de trace par défaut." alt="" coords="1034,355,1182,397"/>
-<area shape="rect" id="node20" href="$classRobot.html#a36b66143430e84b730555cf497b89774" title=" " alt="" coords="797,356,899,383"/>
+<area shape="rect" id="node20" href="$classRobot.html#a36b66143430e84b730555cf497b89774" title="Retourne l&#39;identifiant du robot." alt="" coords="797,356,899,383"/>
 </map>

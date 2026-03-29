@@ -1,13 +1,12 @@
 <map id="utils::Thread::sleep_for_millis" name="utils::Thread::sleep_for_millis">
-<area shape="rect" id="node1" title="Met en pause le thread pendant msec millisecondes." alt="" coords="465,136,612,177"/>
-<area shape="rect" id="node2" href="$classlogs_1_1LoggerFactory.html#a7d16182a3e1394b8bf14e21c9dfbda90" title="Méthode virtuelle pure à implémenter dans les sous&#45;classes." alt="" coords="261,77,409,119"/>
-<area shape="rect" id="node3" href="$classAsservDriver.html#ae2fdf0d75abab4e2cc974706c8a81867" title="Méthode virtuelle pure à implémenter dans les sous&#45;classes." alt="" coords="252,143,417,170"/>
-<area shape="rect" id="node4" href="$classAsservDriver.html#aac6d437abfd359731f676f4df87ef172" title=" " alt="" coords="256,195,413,236"/>
-<area shape="rect" id="node5" href="$classAsservDriver.html#a877e59ef598893571dfb2e8c54d50d57" title="Oriente le robot face a un point." alt="" coords="25,5,185,47"/>
-<area shape="rect" id="node6" href="$classAsservDriver.html#a1b4a90efa1f4416161944d9b164be2bc" title="Avance ou recule en ligne droite." alt="" coords="25,71,185,112"/>
-<area shape="rect" id="node7" href="$classAsservDriver.html#aca1011c3fb10e594e836ea4ada6b92ff" title="Effectue une rotation sur place." alt="" coords="25,136,185,177"/>
-<area shape="rect" id="node8" href="$classAsservDriver.html#a69d5e40538845c81b490a1ac3444847f" title="Deplace le robot vers un point (marche avant)." alt="" coords="5,202,204,229"/>
-<area shape="rect" id="node9" href="$classAsservDriver.html#a990f4ca32eef38a88031daa07fbe4546" title="Deplace le robot vers un point sans s&#39;arreter (enchainement)." alt="" coords="25,253,185,295"/>
-<area shape="rect" id="node10" href="$classAsservDriver.html#a96a9ab08074048b626f5f812c82c7342" title="Deplace le robot vers un point (marche arriere)." alt="" coords="25,319,185,360"/>
-<area shape="rect" id="node11" href="$classAsservDriver.html#a724a7b68fdf74793ee2d159f82fe50e5" title="Deplace le robot vers un point en marche arriere sans s&#39;arreter." alt="" coords="25,384,185,425"/>
+<area shape="rect" id="node1" title="Met en pause le thread pendant msec millisecondes." alt="" coords="457,163,604,204"/>
+<area shape="rect" id="node2" href="$classlogs_1_1LoggerFactory.html#a7d16182a3e1394b8bf14e21c9dfbda90" title="Méthode virtuelle pure à implémenter dans les sous&#45;classes." alt="" coords="257,129,405,171"/>
+<area shape="rect" id="node3" href="$classAsservDriver.html#aac6d437abfd359731f676f4df87ef172" title=" " alt="" coords="252,195,409,236"/>
+<area shape="rect" id="node4" href="$classAsservDriver.html#a877e59ef598893571dfb2e8c54d50d57" title="Oriente le robot face a un point." alt="" coords="25,5,185,47"/>
+<area shape="rect" id="node5" href="$classAsservDriver.html#a1b4a90efa1f4416161944d9b164be2bc" title="Avance ou recule en ligne droite." alt="" coords="25,71,185,112"/>
+<area shape="rect" id="node6" href="$classAsservDriver.html#aca1011c3fb10e594e836ea4ada6b92ff" title="Effectue une rotation sur place." alt="" coords="25,136,185,177"/>
+<area shape="rect" id="node7" href="$classAsservDriver.html#a69d5e40538845c81b490a1ac3444847f" title="Deplace le robot vers un point (marche avant)." alt="" coords="5,202,204,229"/>
+<area shape="rect" id="node8" href="$classAsservDriver.html#a990f4ca32eef38a88031daa07fbe4546" title="Deplace le robot vers un point sans s&#39;arreter (enchainement)." alt="" coords="25,253,185,295"/>
+<area shape="rect" id="node9" href="$classAsservDriver.html#a96a9ab08074048b626f5f812c82c7342" title="Deplace le robot vers un point (marche arriere)." alt="" coords="25,319,185,360"/>
+<area shape="rect" id="node10" href="$classAsservDriver.html#a724a7b68fdf74793ee2d159f82fe50e5" title="Deplace le robot vers un point en marche arriere sans s&#39;arreter." alt="" coords="25,384,185,425"/>
 </map>

@@ -2,7 +2,7 @@
 <area shape="rect" id="node1" title=" " alt="" coords="5,1196,229,1223"/>
 <area shape="rect" id="node2" href="$classRobot.html#a7af430452b558088757324f857d099b2" title="Cette methode retourne l&#39;objet de manipulation du chronometer." alt="" coords="321,5,433,32"/>
 <area shape="rect" id="node3" href="$classlogs_1_1Logger.html#a7dffc8f610014ec59b63392da16140e4" title="Trace un message de niveau DEBUG." alt="" coords="1087,680,1237,707"/>
-<area shape="rect" id="node5" href="$classRobot.html#a7fbd102d7898ba33eecae47cfec530fa" title=" " alt="" coords="569,1019,699,1045"/>
+<area shape="rect" id="node5" href="$classRobot.html#a7fbd102d7898ba33eecae47cfec530fa" title="Affiche l&#39;état de trajectoire courant." alt="" coords="569,1019,699,1045"/>
 <area shape="rect" id="node6" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="1121,1065,1203,1092"/>
 <area shape="rect" id="node11" href="$classRobot.html#ace39678c476c8e8b193d9c8baf7a692b" title="Retourne le Logger associe a la classe Robot. public car utilise dans Main." alt="" coords="849,1791,958,1817"/>
 <area shape="rect" id="node13" href="$classAsserv.html#a960679fed5ab18f631d7847c95fc1f85" title=" " alt="" coords="281,592,472,619"/>
@@ -12,11 +12,11 @@
 <area shape="rect" id="node30" href="$classAsserv.html#a22cbdc18185f0d910473b8a5bb434c84" title=" " alt="" coords="524,832,744,859"/>
 <area shape="rect" id="node33" href="$classIAbyPath.html#ab1f1155d4a5565efa55a0c11b8a1abfa" title=" " alt="" coords="278,1475,475,1501"/>
 <area shape="rect" id="node40" href="$classIAbyPath.html#a8a3c78c75a2208494e2774b918de3d45" title="Retourne le Logger associé à la classe IAbyPath." alt="" coords="570,1931,698,1957"/>
-<area shape="rect" id="node41" href="$classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" title=" " alt="" coords="844,1993,963,2020"/>
+<area shape="rect" id="node41" href="$classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" title="Retourne un pointeur vers l&#39;asservissement du robot." alt="" coords="844,1993,963,2020"/>
 <area shape="rect" id="node44" href="$classAsserv.html#a0c1a1048174322c00dfba79c74193bd1" title=" " alt="" coords="524,1272,744,1299"/>
-<area shape="rect" id="node45" href="$classRobot.html#ade84d9257e194f8b04cc9f5f97e184da" title=" " alt="" coords="547,1829,721,1856"/>
+<area shape="rect" id="node45" href="$classRobot.html#ade84d9257e194f8b04cc9f5f97e184da" title="Enregistre la position du robot dans le fichier SVG." alt="" coords="547,1829,721,1856"/>
 <area shape="rect" id="node48" href="$classutils_1_1Chronometer.html#aecf9f2e3ced9629be0a03b3ecf0ee01a" title="Retourne le temps écoulé en millisecondes." alt="" coords="277,1927,476,1969"/>
-<area shape="rect" id="node49" href="$classRobot.html#a460232bc7b2485ccd6bf3006566da322" title=" " alt="" coords="551,1069,717,1096"/>
+<area shape="rect" id="node49" href="$classRobot.html#a460232bc7b2485ccd6bf3006566da322" title="Réinitialise l&#39;affichage de l&#39;état de trajectoire." alt="" coords="551,1069,717,1096"/>
 <area shape="rect" id="node50" href="$namespaceutils.html#a4f86fc4c334661a6995538cc080a40c9" title="Met en pause le thread courant pendant usec microsecondes." alt="" coords="292,2044,461,2071"/>
 <area shape="rect" id="node4" href="$classlogs_1_1Logger.html#afa535aaf4891e02c4ff7f84d372b5b1b" title="Méthode générique de trace d&#39;un message." alt="" coords="1581,823,1781,849"/>
 <area shape="rect" id="node10" href="$classlogs_1_1Logger.html#a8b6a2019233bc44b3c3c86c653910831" title="Trace un message de niveau ERROR." alt="" coords="833,1217,973,1244"/>
@@ -43,7 +43,7 @@
 <area shape="rect" id="node37" href="$classAsserv.html#a3208aa1d2cc84eff11770477b79aa6f7" title=" " alt="" coords="575,1627,693,1653"/>
 <area shape="rect" id="node42" href="$classSvgWriter.html#a7079faf0c694ff10efe2f7e178d9e97c" title="Dessine une polyline SVG à partir d&#39;une liste de points." alt="" coords="547,1677,721,1704"/>
 <area shape="rect" id="node43" href="$classIAbyPath.html#a44107ea221a5d20ae780247bc814203c" title=" " alt="" coords="527,1424,741,1451"/>
-<area shape="rect" id="node46" href="$classRobot.html#a4f30918c35c294fbd5404fc3c3ffc075" title=" " alt="" coords="852,1841,955,1868"/>
+<area shape="rect" id="node46" href="$classRobot.html#a4f30918c35c294fbd5404fc3c3ffc075" title="Retourne une référence vers le SvgWriter (logging trajectoire)." alt="" coords="852,1841,955,1868"/>
 <area shape="rect" id="node35" href="$classAAsservDriver.html#abe49d0d089fd94136e4a2f90d8508c9e" title="Oriente le robot face a un point." alt="" coords="819,1573,988,1614"/>
 <area shape="rect" id="node36" href="$classAsservEsialR.html#a18f0ce02a39c7a1cadf7cddf15f875d5" title="Oriente le robot face a un point." alt="" coords="1341,1293,1501,1334"/>
 <area shape="rect" id="node38" href="$classAsservEsialR.html#aff541fb741bcef0ae8be48fbf6c66d94" title="Deplace le robot vers un point (marche avant)." alt="" coords="1063,1555,1261,1581"/>

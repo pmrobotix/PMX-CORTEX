@@ -4,7 +4,7 @@
 <area shape="rect" id="node4" href="$classAsserv.html#a4095558c0f4909ad9166a54a59185195" title=" " alt="" coords="248,86,417,113"/>
 <area shape="rect" id="node5" href="$ARobotPositionShared_8hpp.html#ae645817fbf89677ab8a3f779b4a10ae8" title="Convertit des degres en radians." alt="" coords="290,137,375,163"/>
 <area shape="rect" id="node6" href="$classIAbyZone.html#a1d40e763ea935fc4b09de7508fc71805" title=" " alt="" coords="208,238,457,265"/>
-<area shape="rect" id="node8" href="$classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" title=" " alt="" coords="535,187,654,214"/>
+<area shape="rect" id="node8" href="$classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" title="Retourne un pointeur vers l&#39;asservissement du robot." alt="" coords="535,187,654,214"/>
 <area shape="rect" id="node9" href="$classAsserv.html#a871088db63d1a0e20ccbf387c6f895db" title=" " alt="" coords="511,339,678,366"/>
 <area shape="rect" id="node32" href="$classAsserv.html#a2cca6401ccf8cfc7cc927177cba14f4a" title=" " alt="" coords="512,289,677,315"/>
 <area shape="rect" id="node33" href="$classIAbyZone.html#a61160acbc872b83ef3006b306c5b7aab" title=" " alt="" coords="250,390,415,417"/>
@@ -15,7 +15,7 @@
 <area shape="rect" id="node11" href="$classAsservEsialR.html#a18064f0087aa1cd67cbdd131f99720db" title="Lit la position courante du robot." alt="" coords="956,222,1176,249"/>
 <area shape="rect" id="node29" href="$classAAsservDriver.html#a81dea0fa2d154d60d67e9e12b415b265" title="Lit la position courante du robot." alt="" coords="993,273,1139,315"/>
 <area shape="rect" id="node30" href="$classARobotPositionShared.html#a42f840a7c37b33555643005112dc1875" title="Met a jour la position du robot." alt="" coords="983,339,1149,380"/>
-<area shape="rect" id="node31" href="$classRobot.html#a6a118c509a6d7ab35cdf96203eb0238a" title=" " alt="" coords="984,405,1148,431"/>
+<area shape="rect" id="node31" href="$classRobot.html#a6a118c509a6d7ab35cdf96203eb0238a" title="Retourne la position partagée du robot (pour communication inter&#45;threads)." alt="" coords="984,405,1148,431"/>
 <area shape="rect" id="node12" href="$classlogs_1_1Logger.html#a7dffc8f610014ec59b63392da16140e4" title="Trace un message de niveau DEBUG." alt="" coords="1560,11,1709,38"/>
 <area shape="rect" id="node14" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="1309,62,1390,89"/>
 <area shape="rect" id="node16" href="$classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32" title="Verrouille le mutex. Cette méthode doit être appelée avant d&#39;utiliser la ressource associée...." alt="" coords="1833,74,1967,101"/>

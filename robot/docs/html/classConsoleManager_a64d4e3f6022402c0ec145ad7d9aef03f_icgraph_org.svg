@@ -22,7 +22,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="classRobot.html#ae8cede2564e5b9229da095991c064ae4" target="_top" xlink:title="Start the robot (console for tests or main program)..">
+<g id="a_node2"><a xlink:href="classRobot.html#ae8cede2564e5b9229da095991c064ae4" target="_top" xlink:title="Démarre le robot (test fonctionnel ou match).">
 <polygon fill="white" stroke="black" points="290.5,-143 290.5,-162 368.5,-162 368.5,-143 290.5,-143"/>
 <text text-anchor="middle" x="329.5" y="-150" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::begin</text>
 </a>
@@ -53,7 +53,7 @@
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
-<g id="a_node6"><a xlink:href="classRobot.html#a3a26291a86ba55cd33e173e70bf5ce5d" target="_top" xlink:title="Parse console parameters (console for tests or main program)..">
+<g id="a_node6"><a xlink:href="classRobot.html#a3a26291a86ba55cd33e173e70bf5ce5d" target="_top" xlink:title="Parse les paramètres de la ligne de commande et reconfigure la télémétrie si /i ou /p sont fournis.">
 <polygon fill="white" stroke="black" points="454,-55 454,-74 593,-74 593,-55 454,-55"/>
 <text text-anchor="middle" x="523.5" y="-62" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::parseConsoleArgs</text>
 </a>

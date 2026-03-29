@@ -79,13 +79,14 @@ $(function() {
 <div class="dynheader">
 Graphe de collaboration de ButtonDriverWrapper:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classButtonDriverWrapper__coll__graph.svg" width="183" height="203"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classButtonDriverWrapper__coll__graph.svg" width="183" height="203"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 <center><span class="legend">[<a href="graph_legend.html">légende</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Fonctions membres publiques</h2></td></tr>
-<tr class="memitem:aa22e07d6b1010a2439de02d3a7f976aa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classButtonDriverWrapper.html#aa22e07d6b1010a2439de02d3a7f976aa">ButtonDriverWrapper</a> (<a class="el" href="classButtonDriver.html">ButtonDriver</a> *buttondriver)</td></tr>
-<tr class="separator:aa22e07d6b1010a2439de02d3a7f976aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac64f95ad6696f2f2ceaaa5cab2ea6956"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classButtonDriverWrapper.html#ac64f95ad6696f2f2ceaaa5cab2ea6956">ButtonDriverWrapper</a> (<a class="el" href="classButtonDriverSimu.html">ButtonDriverSimu</a> *buttondriver)</td></tr>
+<tr class="separator:ac64f95ad6696f2f2ceaaa5cab2ea6956"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf1e8302019e8e55da3679566f81c4e4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classButtonDriverWrapper.html#aaf1e8302019e8e55da3679566f81c4e4">~ButtonDriverWrapper</a> ()</td></tr>
 <tr class="separator:aaf1e8302019e8e55da3679566f81c4e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86cd30a961616fb443fccfd1acaba0f7"><td class="memItemLeft" align="right" valign="top">std::thread&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classButtonDriverWrapper.html#a86cd30a961616fb443fccfd1acaba0f7">buttonThread</a> (const char *arg1, int args)</td></tr>
@@ -97,15 +98,15 @@ Fonctions membres publiques</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Attributs publics</h2></td></tr>
-<tr class="memitem:a6bb5d505e7f51b0b4eb94c7f567bda2c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classButtonDriver.html">ButtonDriver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classButtonDriverWrapper.html#a6bb5d505e7f51b0b4eb94c7f567bda2c">buttondriver_</a></td></tr>
-<tr class="separator:a6bb5d505e7f51b0b4eb94c7f567bda2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcca3ace43b7b303429266ad85acc065"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classButtonDriverSimu.html">ButtonDriverSimu</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classButtonDriverWrapper.html#adcca3ace43b7b303429266ad85acc065">buttondriver_</a></td></tr>
+<tr class="separator:adcca3ace43b7b303429266ad85acc065"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
 <div class="textblock"><p>Wrapper pour le thread de lecture IPC des boutons. </p>
 <p>Lit les messages IPC ("enter", "up", "down", etc.) et met a jour les flags du <a class="el" href="classButtonDriver.html" title="Implementation ARM du driver de boutons.">ButtonDriver</a> en continu. </p>
 </div><h2 class="groupheader">Documentation des constructeurs et destructeur</h2>
-<a id="aa22e07d6b1010a2439de02d3a7f976aa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa22e07d6b1010a2439de02d3a7f976aa">&#9670;&nbsp;</a></span>ButtonDriverWrapper()</h2>
+<a id="ac64f95ad6696f2f2ceaaa5cab2ea6956"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac64f95ad6696f2f2ceaaa5cab2ea6956">&#9670;&nbsp;</a></span>ButtonDriverWrapper()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -116,7 +117,7 @@ Attributs publics</h2></td></tr>
         <tr>
           <td class="memname">ButtonDriverWrapper::ButtonDriverWrapper </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classButtonDriver.html">ButtonDriver</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="classButtonDriverSimu.html">ButtonDriverSimu</a> *&#160;</td>
           <td class="paramname"><em>buttondriver</em></td><td>)</td>
           <td></td>
         </tr>
@@ -204,6 +205,12 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classButtonDriverWrapper_a86cd30a961616fb443fccfd1acaba0f7_cgraph.svg" width="379" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classButtonDriverWrapper_a86cd30a961616fb443fccfd1acaba0f7_icgraph.svg" width="416" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
 
 </div>
 </div>
@@ -251,20 +258,21 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classButtonDriverWrapper_a76a81c5192ed24d5ad99e8c4ffad81b5_icgraph.svg" width="379" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classButtonDriverWrapper_a76a81c5192ed24d5ad99e8c4ffad81b5_icgraph.svg" width="624" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
 </div>
 <h2 class="groupheader">Documentation des données membres</h2>
-<a id="a6bb5d505e7f51b0b4eb94c7f567bda2c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6bb5d505e7f51b0b4eb94c7f567bda2c">&#9670;&nbsp;</a></span>buttondriver_</h2>
+<a id="adcca3ace43b7b303429266ad85acc065"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcca3ace43b7b303429266ad85acc065">&#9670;&nbsp;</a></span>buttondriver_</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classButtonDriver.html">ButtonDriver</a>* ButtonDriverWrapper::buttondriver_</td>
+          <td class="memname"><a class="el" href="classButtonDriverSimu.html">ButtonDriverSimu</a>* ButtonDriverWrapper::buttondriver_</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -277,7 +285,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Généré le Vendredi 27 Mars 2026 12:31:53 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Généré le Lundi 30 Mars 2026 01:36:30 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

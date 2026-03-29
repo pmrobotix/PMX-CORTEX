@@ -1,12 +1,13 @@
 <map id="SvgWriter::loggerSvgSensor" name="SvgWriter::loggerSvgSensor">
-<area shape="rect" id="node1" title="Retourne le logger dédié aux capteurs SVG." alt="" coords="757,97,960,123"/>
-<area shape="rect" id="node2" href="$classOPOS6UL__SvgWriterExtended.html#a3ee48528831cdb47824b43a72df5cc66" title=" " alt="" coords="487,5,709,47"/>
-<area shape="rect" id="node3" href="$classSvgWriter.html#a30059a7d7289c57d3bf1bf623713dc0a" title="Constructeur de la classe." alt="" coords="519,71,677,98"/>
-<area shape="rect" id="node4" href="$classSvgWriter.html#ac6b52164bb48debc2aa814b2e96ec233" title="Écrit l&#39;en&#45;tête SVG (grille, defs, symboles)." alt="" coords="509,122,687,149"/>
-<area shape="rect" id="node6" href="$classSvgWriter.html#a18e6747b544e14bc12f184bce594ec63" title="Ferme le document SVG (balises de fin)." alt="" coords="515,177,681,203"/>
-<area shape="rect" id="node5" href="$classOPOS6UL__RobotExtended.html#ab47e33e026160cbb65bbff6129a01597" title=" " alt="" coords="241,111,439,152"/>
-<area shape="rect" id="node7" href="$classSvgWriter.html#ae9f503ecbe84f673f7f05dc50a52728d" title="Destructeur de la classe." alt="" coords="255,177,425,203"/>
-<area shape="rect" id="node8" href="$classRobot.html#a769fd661366307a701f22d3f7904ded0" title=" " alt="" coords="249,227,431,254"/>
-<area shape="rect" id="node9" href="$classRobot.html#a924320124b09c2f2ac1621aa210d5f38" title="Destructor." alt="" coords="41,198,158,225"/>
-<area shape="rect" id="node10" href="$classO__State__WaitEndOfMatch.html#aa73613440b37c8dd42181e2e0265ae86" title="Exécute l&#39;état d&#39;attente de fin de match." alt="" coords="5,249,193,291"/>
+<area shape="rect" id="node1" title="Retourne le logger dédié aux capteurs SVG." alt="" coords="759,97,961,123"/>
+<area shape="rect" id="node2" href="$classOPOS6UL__SvgWriterExtended.html#a3ee48528831cdb47824b43a72df5cc66" title=" " alt="" coords="488,5,711,47"/>
+<area shape="rect" id="node3" href="$classSvgWriter.html#a30059a7d7289c57d3bf1bf623713dc0a" title="Constructeur de la classe." alt="" coords="520,71,679,98"/>
+<area shape="rect" id="node4" href="$classSvgWriter.html#ac6b52164bb48debc2aa814b2e96ec233" title="Écrit l&#39;en&#45;tête SVG (grille, defs, symboles)." alt="" coords="511,122,688,149"/>
+<area shape="rect" id="node6" href="$classSvgWriter.html#a18e6747b544e14bc12f184bce594ec63" title="Ferme le document SVG (balises de fin)." alt="" coords="517,177,682,203"/>
+<area shape="rect" id="node5" href="$classOPOS6UL__RobotExtended.html#ab47e33e026160cbb65bbff6129a01597" title=" " alt="" coords="243,111,440,152"/>
+<area shape="rect" id="node7" href="$classSvgWriter.html#ae9f503ecbe84f673f7f05dc50a52728d" title="Destructeur de la classe." alt="" coords="257,177,426,203"/>
+<area shape="rect" id="node8" href="$classRobot.html#a769fd661366307a701f22d3f7904ded0" title="Finalise et ferme le fichier SVG." alt="" coords="250,227,433,254"/>
+<area shape="rect" id="node9" href="$classRobot.html#a924320124b09c2f2ac1621aa210d5f38" title="Destructor." alt="" coords="41,169,159,195"/>
+<area shape="rect" id="node10" href="$classO__State__DecisionMakerIA.html#a96d1f2a7618d607fd10cc51b9111e653" title="Execute l&#39;action." alt="" coords="5,220,195,261"/>
+<area shape="rect" id="node11" href="$classO__State__WaitEndOfMatch.html#aa73613440b37c8dd42181e2e0265ae86" title="Exécute l&#39;état d&#39;attente de fin de match." alt="" coords="6,285,194,327"/>
 </map>

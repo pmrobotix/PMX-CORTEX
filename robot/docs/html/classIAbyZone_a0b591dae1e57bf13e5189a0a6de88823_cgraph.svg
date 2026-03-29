@@ -142,7 +142,7 @@ var sectionId = 'dynsection-13';
 <!-- Node16 -->
 <g id="node16" class="node">
 <title>Node16</title>
-<g id="a_node16"><a xlink:href="classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" target="_top" xlink:title=" ">
+<g id="a_node16"><a xlink:href="classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" target="_top" xlink:title="Retourne un pointeur vers l&#39;asservissement du robot.">
 <polygon fill="white" stroke="black" points="180,-218.5 180,-237.5 269,-237.5 269,-218.5 180,-218.5"/>
 <text text-anchor="middle" x="224.5" y="-225.5" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::passerv</text>
 </a>
@@ -429,7 +429,7 @@ var sectionId = 'dynsection-13';
 <!-- Node31 -->
 <g id="node31" class="node">
 <title>Node31</title>
-<g id="a_node31"><a xlink:href="classRobot.html#a6a118c509a6d7ab35cdf96203eb0238a" target="_top" xlink:title=" ">
+<g id="a_node31"><a xlink:href="classRobot.html#a6a118c509a6d7ab35cdf96203eb0238a" target="_top" xlink:title="Retourne la position partagée du robot (pour communication inter&#45;threads).">
 <polygon fill="white" stroke="black" points="713,-0.5 713,-19.5 836,-19.5 836,-0.5 713,-0.5"/>
 <text text-anchor="middle" x="774.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::sharedPosition</text>
 </a>

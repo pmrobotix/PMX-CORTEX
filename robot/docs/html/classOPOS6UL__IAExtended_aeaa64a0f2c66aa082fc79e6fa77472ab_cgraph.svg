@@ -314,7 +314,7 @@ var sectionId = 'dynsection-3';
 <!-- Node17 -->
 <g id="node17" class="node">
 <title>Node17</title>
-<g id="a_node17"><a xlink:href="classRobot.html#a36b66143430e84b730555cf497b89774" target="_top" xlink:title=" ">
+<g id="a_node17"><a xlink:href="classRobot.html#a36b66143430e84b730555cf497b89774" target="_top" xlink:title="Retourne l&#39;identifiant du robot.">
 <polygon fill="white" stroke="black" points="528.5,-11 528.5,-30 605.5,-30 605.5,-11 528.5,-11"/>
 <text text-anchor="middle" x="567" y="-18" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::getID</text>
 </a>

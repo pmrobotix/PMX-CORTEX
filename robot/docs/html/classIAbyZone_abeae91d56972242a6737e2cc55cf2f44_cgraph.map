@@ -6,9 +6,9 @@
 <area shape="rect" id="node6" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="309,157,391,184"/>
 <area shape="rect" id="node11" href="$classlogs_1_1Logger.html#a8b6a2019233bc44b3c3c86c653910831" title="Trace un message de niveau ERROR." alt="" coords="551,208,691,235"/>
 <area shape="rect" id="node12" href="$classIAbyZone.html#a4cc140058dae45b88658c5b691fee8a9" title="Retourne le Logger associé à la classe IAbyZone." alt="" coords="283,259,417,285"/>
-<area shape="rect" id="node17" href="$classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" title=" " alt="" coords="291,309,409,336"/>
+<area shape="rect" id="node17" href="$classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" title="Retourne un pointeur vers l&#39;asservissement du robot." alt="" coords="291,309,409,336"/>
 <area shape="rect" id="node18" href="$ARobotPositionShared_8hpp.html#a9adaec7e3e76bf5d807683cf34dca858" title="Convertit des radians en degres." alt="" coords="309,360,391,387"/>
-<area shape="rect" id="node19" href="$classRobot.html#a4f30918c35c294fbd5404fc3c3ffc075" title=" " alt="" coords="299,411,401,437"/>
+<area shape="rect" id="node19" href="$classRobot.html#a4f30918c35c294fbd5404fc3c3ffc075" title="Retourne une référence vers le SvgWriter (logging trajectoire)." alt="" coords="299,411,401,437"/>
 <area shape="rect" id="node20" href="$classSvgWriter.html#ac1a7e8a8541391a22424b4e6c6efa6c8" title="Dessine une zone d&#39;action sur le terrain." alt="" coords="270,461,430,488"/>
 <area shape="rect" id="node3" href="$ARobotPositionShared_8hpp.html#a45bb7dfd2e7442f6250b8d202cc75c7f" title="Normalise un angle dans l&#39;intervalle ]&#45;PI, PI]." alt="" coords="565,5,678,32"/>
 <area shape="rect" id="node7" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#a0e4fd77693fd899ec1b0670354f93a02" title="Cette méthode valide le message en cours de construction et le transmet au Logger de référence." alt="" coords="509,157,733,184"/>

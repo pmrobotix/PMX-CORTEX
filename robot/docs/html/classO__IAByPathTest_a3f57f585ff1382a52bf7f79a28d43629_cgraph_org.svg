@@ -12,7 +12,7 @@
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
-<g id="a_node1"><a xlink:title=" ">
+<g id="a_node1"><a xlink:title="Execute le test.">
 <polygon fill="#bfbfbf" stroke="black" points="0,-399 0,-418 114,-418 114,-399 0,-399"/>
 <text text-anchor="middle" x="57" y="-406" font-family="Helvetica,sans-Serif" font-size="10.00">O_IAByPathTest::run</text>
 </a>
@@ -67,7 +67,7 @@
 <!-- Node25 -->
 <g id="node12" class="node">
 <title>Node25</title>
-<g id="a_node12"><a xlink:href="classRobot.html#ac3663ed46470faec31e0a6b7eeaad3fb" target="_top" xlink:title=" ">
+<g id="a_node12"><a xlink:href="classRobot.html#ac3663ed46470faec31e0a6b7eeaad3fb" target="_top" xlink:title="Retourne une référence vers l&#39;asservissement du robot.">
 <polygon fill="white" stroke="black" points="187,-399 187,-418 270,-418 270,-399 187,-399"/>
 <text text-anchor="middle" x="228.5" y="-406" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::asserv</text>
 </a>
@@ -298,7 +298,7 @@
 <!-- Node92 -->
 <g id="node49" class="node">
 <title>Node92</title>
-<g id="a_node49"><a xlink:href="classRobot.html#ade84d9257e194f8b04cc9f5f97e184da" target="_top" xlink:title=" ">
+<g id="a_node49"><a xlink:href="classRobot.html#ade84d9257e194f8b04cc9f5f97e184da" target="_top" xlink:title="Enregistre la position du robot dans le fichier SVG.">
 <polygon fill="white" stroke="red" points="361.5,-399 361.5,-418 491.5,-418 491.5,-399 361.5,-399"/>
 <text text-anchor="middle" x="426.5" y="-406" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::svgPrintPosition</text>
 </a>
@@ -551,7 +551,7 @@
 <!-- Node50 -->
 <g id="node27" class="node">
 <title>Node50</title>
-<g id="a_node27"><a xlink:href="classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" target="_top" xlink:title=" ">
+<g id="a_node27"><a xlink:href="classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" target="_top" xlink:title="Retourne un pointeur vers l&#39;asservissement du robot.">
 <polygon fill="white" stroke="black" points="584,-437 584,-456 673,-456 673,-437 584,-437"/>
 <text text-anchor="middle" x="628.5" y="-444" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::passerv</text>
 </a>

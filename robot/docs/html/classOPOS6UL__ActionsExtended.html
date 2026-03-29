@@ -86,7 +86,8 @@ Graphe d'héritage de OPOS6UL_ActionsExtended:</div>
 <div class="dynheader">
 Graphe de collaboration de OPOS6UL_ActionsExtended:</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classOPOS6UL__ActionsExtended__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classOPOS6UL__ActionsExtended__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 <center><span class="legend">[<a href="graph_legend.html">légende</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
@@ -226,6 +227,9 @@ Attributs privés</h2></td></tr>
 <tr class="memitem:aa146fde1f225579ca6a0731577c1f217"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classButtonBar.html">ButtonBar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOPOS6UL__ActionsExtended.html#aa146fde1f225579ca6a0731577c1f217">buttonbar_</a></td></tr>
 <tr class="memdesc:aa146fde1f225579ca6a0731577c1f217"><td class="mdescLeft">&#160;</td><td class="mdescRight">Button Bar.  <a href="classOPOS6UL__ActionsExtended.html#aa146fde1f225579ca6a0731577c1f217">Plus de détails...</a><br /></td></tr>
 <tr class="separator:aa146fde1f225579ca6a0731577c1f217"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5ed553bb91017499fa9ed7426e0de4c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAColorDriver.html">AColorDriver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOPOS6UL__ActionsExtended.html#aa5ed553bb91017499fa9ed7426e0de4c">colordriver_</a></td></tr>
+<tr class="memdesc:aa5ed553bb91017499fa9ed7426e0de4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">capteur de couleur Grove (TCS3414 I2C).  <a href="classOPOS6UL__ActionsExtended.html#aa5ed553bb91017499fa9ed7426e0de4c">Plus de détails...</a><br /></td></tr>
+<tr class="separator:aa5ed553bb91017499fa9ed7426e0de4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ddd291598700b66ba4f664607a7d81c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classLcdShield.html">LcdShield</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOPOS6UL__ActionsExtended.html#a3ddd291598700b66ba4f664607a7d81c">lcd2x16_</a></td></tr>
 <tr class="memdesc:a3ddd291598700b66ba4f664607a7d81c"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classLcdShield.html" title="Gestion de l&#39;écran LCD du robot.">LcdShield</a> 2x16 characters.  <a href="classOPOS6UL__ActionsExtended.html#a3ddd291598700b66ba4f664607a7d81c">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a3ddd291598700b66ba4f664607a7d81c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -244,7 +248,11 @@ Attributs privés</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
 <div class="textblock"><p>Gestion des actions étendues du robot OPOS6UL (servos, capteurs, LEDs, LCD). </p>
-<p>Fournit l'accès aux périphériques d'action et les commandes de servomoteurs AX12. </p>
+<p>Fournit l'accès aux périphériques d'action et les commandes de servomoteurs AX12.</p>
+<p>== Lamp test et diagnostic hardware (LEDs) ==</p>
+<p>Au demarrage, les 8 LEDs s'allument (vert, 500ms). Chaque LED s'eteint quand le check du composant correspondant passe OK. Une LED qui reste allumee = composant en erreur. Les logs sont prefixes "Hardware status:" pour grep.</p>
+<p>LED 0 = <a class="el" href="classLcdShield.html" title="Gestion de l&#39;écran LCD du robot.">LcdShield</a> (MCP23017 I2C) LED 1 = Tirette/Switch (PCA9555 I2C) LED 2 = <a class="el" href="classBeaconSensors.html">BeaconSensors</a> (Teensy I2C) LED 3 = <a class="el" href="classGroveColorSensor.html" title="Implémentation du détecteur de couleur Grove associée au robot.">GroveColorSensor</a> (TCS3414 I2C) LED 4 = Servos AX12 (Teensy CCAx12 I2C) LED 5 = (reserve) LED 6 = (reserve) LED 7 = <a class="el" href="classAsservDriver.html">AsservDriver</a> (Nucleo serie USB)</p>
+<p>Voir aussi ARCHITECTURE.md section "Hardware status LEDs". </p>
 </div><h2 class="groupheader">Documentation des énumérations membres</h2>
 <a id="a520f3d4a043384a6fd7060632f2962eb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a520f3d4a043384a6fd7060632f2962eb">&#9670;&nbsp;</a></span>ServoAx12Label</h2>
@@ -327,7 +335,8 @@ Attributs privés</h2></td></tr>
 <div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classOPOS6UL__ActionsExtended_aced00f2c03b0aa9b9eda54e6874bac75_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classOPOS6UL__ActionsExtended_aced00f2c03b0aa9b9eda54e6874bac75_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 </div>
 
 </div>
@@ -536,8 +545,7 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classOPOS6UL__ActionsExtended_a946560d21bc7c1a12be600b16e07c93a_icgraph.svg" width="100%" height="386"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classOPOS6UL__ActionsExtended_a946560d21bc7c1a12be600b16e07c93a_icgraph.svg" width="100%" height="386"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
@@ -592,8 +600,7 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classOPOS6UL__ActionsExtended_a67daef275b861004d118273c7e2564c2_icgraph.svg" width="100%" height="386"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classOPOS6UL__ActionsExtended_a67daef275b861004d118273c7e2564c2_icgraph.svg" width="100%" height="386"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
@@ -648,8 +655,7 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classOPOS6UL__ActionsExtended_a5b32b355b6907dda48874f40dc9101eb_icgraph.svg" width="100%" height="386"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classOPOS6UL__ActionsExtended_a5b32b355b6907dda48874f40dc9101eb_icgraph.svg" width="100%" height="386"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
@@ -704,8 +710,7 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classOPOS6UL__ActionsExtended_ad3b7d5a26040d5780cc43a5a9ead9ad3_icgraph.svg" width="100%" height="386"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classOPOS6UL__ActionsExtended_ad3b7d5a26040d5780cc43a5a9ead9ad3_icgraph.svg" width="100%" height="386"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
@@ -760,7 +765,7 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classOPOS6UL__ActionsExtended_a44856498aa3839098211785a1fe0b6a3_icgraph.svg" width="438" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classOPOS6UL__ActionsExtended_a44856498aa3839098211785a1fe0b6a3_icgraph.svg" width="447" height="104"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 
@@ -798,8 +803,7 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classOPOS6UL__ActionsExtended_af04e19802d90a78d82e67b10061521a2_icgraph.svg" width="646" height="106"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classOPOS6UL__ActionsExtended_af04e19802d90a78d82e67b10061521a2_icgraph.svg" width="646" height="106"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -854,8 +858,7 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classOPOS6UL__ActionsExtended_ae63e06f334f5095383387aa9ff68c8a3_icgraph.svg" width="100%" height="386"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classOPOS6UL__ActionsExtended_ae63e06f334f5095383387aa9ff68c8a3_icgraph.svg" width="100%" height="386"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
@@ -1038,8 +1041,7 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classOPOS6UL__ActionsExtended_a1e1b2ca9a7404b1322c8e566de3b3f52_icgraph.svg" width="446" height="256"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classOPOS6UL__ActionsExtended_a1e1b2ca9a7404b1322c8e566de3b3f52_icgraph.svg" width="446" height="256"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1108,7 +1110,8 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classActions_a95422cfe6edb166b22bc6aa465aab866_icgraph.svg" width="555" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classActions_a95422cfe6edb166b22bc6aa465aab866_icgraph.svg" width="555" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -1220,7 +1223,7 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classOPOS6UL__ActionsExtended_a92c4b04808832f55fa7b68a9678307b1_icgraph.svg" width="100%" height="497"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classOPOS6UL__ActionsExtended_a92c4b04808832f55fa7b68a9678307b1_icgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
@@ -1326,8 +1329,7 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classOPOS6UL__ActionsExtended_a0bc7d581ad9cbae899f7f244340a5429_icgraph.svg" width="100%" height="433"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classOPOS6UL__ActionsExtended_a0bc7d581ad9cbae899f7f244340a5429_icgraph.svg" width="100%" height="433"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 
 </div>
@@ -1361,7 +1363,7 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classOPOS6UL__ActionsExtended_a3475484a307a07d60fd57fb9f49be8f5_icgraph.svg" width="654" height="206"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classOPOS6UL__ActionsExtended_a3475484a307a07d60fd57fb9f49be8f5_icgraph.svg" width="100%" height="568"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 
@@ -1467,8 +1469,7 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classOPOS6UL__ActionsExtended_a87bb61d89759101cac844e7c399f2f61_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classOPOS6UL__ActionsExtended_a87bb61d89759101cac844e7c399f2f61_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
@@ -1512,8 +1513,7 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classActions_a0ae27b3ac9fc5d07e8da95d6b3eb130a_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classActions_a0ae27b3ac9fc5d07e8da95d6b3eb130a_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
@@ -1557,8 +1557,7 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classActions_a49459ae072ed1f6ea6a69966a0ad4409_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classActions_a49459ae072ed1f6ea6a69966a0ad4409_cgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
 </div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
@@ -1633,7 +1632,8 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classActions_a2dca3495645f189f728586d4157c699c_icgraph.svg" width="652" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classActions_a2dca3495645f189f728586d4157c699c_icgraph.svg" width="652" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -1684,6 +1684,30 @@ Voici le graphe des appelants de cette fonction :</div>
 </div><div class="memdoc">
 
 <p>Button Bar. </p>
+
+</div>
+</div>
+<a id="aa5ed553bb91017499fa9ed7426e0de4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5ed553bb91017499fa9ed7426e0de4c">&#9670;&nbsp;</a></span>colordriver_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classAColorDriver.html">AColorDriver</a>* OPOS6UL_ActionsExtended::colordriver_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>capteur de couleur Grove (TCS3414 I2C). </p>
 
 </div>
 </div>
@@ -1814,7 +1838,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Généré le Vendredi 27 Mars 2026 12:31:55 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Généré le Lundi 30 Mars 2026 01:36:33 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

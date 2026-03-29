@@ -3,7 +3,7 @@
 <area shape="rect" id="node2" href="$classOPOS6UL__RobotExtended.html#a6468a2bb1fc8de815154a322e038b875" title=" " alt="" coords="247,5,437,47"/>
 <area shape="rect" id="node3" href="$classOPOS6UL__ActionsExtended.html#a45cbc8df7fe022adea06aa127b94069c" title="Cette methode retourne l&#39;objet ledbar." alt="" coords="243,71,441,112"/>
 <area shape="rect" id="node4" href="$classLedBar.html#aebfc6c5221a223364044fc5c6efacd7a" title="Active une led spécifique." alt="" coords="285,137,399,163"/>
-<area shape="rect" id="node13" href="$classRobot.html#ade84d9257e194f8b04cc9f5f97e184da" title=" " alt="" coords="255,238,429,265"/>
+<area shape="rect" id="node13" href="$classRobot.html#ade84d9257e194f8b04cc9f5f97e184da" title="Enregistre la position du robot dans le fichier SVG." alt="" coords="255,238,429,265"/>
 <area shape="rect" id="node5" href="$classLedBar.html#a4f6f26d47d0ea82380cebb8c2b9ea7c3" title="Change le statut d&#39;une led." alt="" coords="546,86,641,113"/>
 <area shape="rect" id="node6" href="$classLedBar.html#a349f726f4e7cd0058f95b6c9d9453b18" title="Retourne le Logger associé à la classe LedBar." alt="" coords="799,61,915,87"/>
 <area shape="rect" id="node11" href="$classlogs_1_1Logger.html#ae55afdeeb1bc9acb6dc02a3e2d06062f" title="Trace un message de niveau TELEM." alt="" coords="771,111,944,138"/>
@@ -15,8 +15,8 @@
 <area shape="rect" id="node14" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="553,390,634,417"/>
 <area shape="rect" id="node18" href="$classlogs_1_1Logger.html#a8b6a2019233bc44b3c3c86c653910831" title="Trace un message de niveau ERROR." alt="" coords="787,339,927,366"/>
 <area shape="rect" id="node19" href="$classRobot.html#ace39678c476c8e8b193d9c8baf7a692b" title="Retourne le Logger associe a la classe Robot. public car utilise dans Main." alt="" coords="803,162,912,189"/>
-<area shape="rect" id="node20" href="$classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" title=" " alt="" coords="534,187,653,214"/>
-<area shape="rect" id="node21" href="$classRobot.html#a4f30918c35c294fbd5404fc3c3ffc075" title=" " alt="" coords="542,238,645,265"/>
+<area shape="rect" id="node20" href="$classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" title="Retourne un pointeur vers l&#39;asservissement du robot." alt="" coords="534,187,653,214"/>
+<area shape="rect" id="node21" href="$classRobot.html#a4f30918c35c294fbd5404fc3c3ffc075" title="Retourne une référence vers le SvgWriter (logging trajectoire)." alt="" coords="542,238,645,265"/>
 <area shape="rect" id="node22" href="$classSvgWriter.html#a1b9df8d232ad40c0818be21ee057cad0" title="Dessine la position du robot sur le SVG." alt="" coords="489,289,697,315"/>
 <area shape="rect" id="node15" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#a0e4fd77693fd899ec1b0670354f93a02" title="Cette méthode valide le message en cours de construction et le transmet au Logger de référence." alt="" coords="745,390,969,417"/>
 <area shape="rect" id="node16" href="$classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32" title="Verrouille le mutex. Cette méthode doit être appelée avant d&#39;utiliser la ressource associée...." alt="" coords="1050,390,1185,417"/>

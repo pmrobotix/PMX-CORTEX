@@ -409,7 +409,7 @@ var sectionId = 'dynsection-2';
 <!-- Node21 -->
 <g id="node21" class="node">
 <title>Node21</title>
-<g id="a_node21"><a xlink:href="classRobot.html#a46c797e9dba7c96927fa881851309bf0" target="_top" xlink:title=" ">
+<g id="a_node21"><a xlink:href="classRobot.html#a46c797e9dba7c96927fa881851309bf0" target="_top" xlink:title="Arrête le timer d&#39;asservissement et le gestionnaire d&#39;actions.">
 <polygon fill="white" stroke="black" points="124,-132 124,-162 277,-162 277,-132 124,-132"/>
 <text text-anchor="start" x="132" y="-150" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::stopMotionTimerAnd</text>
 <text text-anchor="middle" x="200.5" y="-139" font-family="Helvetica,sans-Serif" font-size="10.00">ActionManager</text>

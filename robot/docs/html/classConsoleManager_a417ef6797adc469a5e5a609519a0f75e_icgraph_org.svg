@@ -52,7 +52,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="classRobot.html#ae8cede2564e5b9229da095991c064ae4" target="_top" xlink:title="Start the robot (console for tests or main program)..">
+<g id="a_node3"><a xlink:href="classRobot.html#ae8cede2564e5b9229da095991c064ae4" target="_top" xlink:title="Démarre le robot (test fonctionnel ou match).">
 <polygon fill="white" stroke="black" points="255,-22.5 255,-41.5 333,-41.5 333,-22.5 255,-22.5"/>
 <text text-anchor="middle" x="294" y="-29.5" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::begin</text>
 </a>

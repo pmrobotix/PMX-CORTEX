@@ -13,8 +13,8 @@
 <area shape="rect" id="node35" href="$classOPOS6UL__ActionsExtended.html#af04e19802d90a78d82e67b10061521a2" title="Initialise tous les servomoteurs AX12 à leur position de départ." alt="" coords="250,541,449,582"/>
 <area shape="rect" id="node36" href="$classOPOS6UL__ActionsExtended.html#ae63e06f334f5095383387aa9ff68c8a3" title="Initialise le servo de la banderole à la position repliée." alt="" coords="513,715,712,757"/>
 <area shape="rect" id="node37" href="$classOPOS6UL__ActionsExtended.html#a1e1b2ca9a7404b1322c8e566de3b3f52" title="Retourne l&#39;objet ButtonBar." alt="" coords="250,709,449,750"/>
-<area shape="rect" id="node38" href="$classRobot.html#aff7fd21568740625c8494d3fb5e9f34a" title=" " alt="" coords="290,775,409,801"/>
-<area shape="rect" id="node39" href="$classRobot.html#a36b66143430e84b730555cf497b89774" title=" " alt="" coords="298,825,401,852"/>
+<area shape="rect" id="node38" href="$classRobot.html#aff7fd21568740625c8494d3fb5e9f34a" title="Retourne les arguments de la ligne de commande." alt="" coords="290,775,409,801"/>
+<area shape="rect" id="node39" href="$classRobot.html#a36b66143430e84b730555cf497b89774" title="Retourne l&#39;identifiant du robot." alt="" coords="298,825,401,852"/>
 <area shape="rect" id="node40" href="$classServoObjectsSystem.html#aa422c0eb68a5f29a9db34f3225bdea2a" title="get the pulsewidth" alt="" coords="781,1066,938,1107"/>
 <area shape="rect" id="node41" href="$classOPOS6UL__RobotExtended.html#a514e663cf7537d64d2d0272b8856d6c0" title="Retourne l&#39;instance unique du robot (singleton)." alt="" coords="255,927,444,969"/>
 <area shape="rect" id="node42" href="$classOPOS6UL__ActionsExtended.html#a0bc7d581ad9cbae899f7f244340a5429" title="Relâche tous les servomoteurs AX12 (coupe le maintien en position)." alt="" coords="513,271,712,313"/>

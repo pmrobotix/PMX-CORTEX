@@ -1,9 +1,10 @@
 <map id="src/common/ia/IAbyZone.hpp" name="src/common/ia/IAbyZone.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="433,5,645,32"/>
-<area shape="rect" id="node2" href="$OPOS6UL__IAExtended_8hpp.html" title="Extension de l&#39;intelligence artificielle pour la carte OPOS6UL." alt="" coords="335,80,521,121"/>
-<area shape="rect" id="node7" href="$IAbyZone_8cpp.html" title=" " alt="" coords="545,87,756,114"/>
+<area shape="rect" id="node1" title=" " alt="" coords="530,5,742,32"/>
+<area shape="rect" id="node2" href="$OPOS6UL__IAExtended_8hpp.html" title="Extension de l&#39;intelligence artificielle pour la carte OPOS6UL." alt="" coords="432,80,619,121"/>
+<area shape="rect" id="node8" href="$IAbyZone_8cpp.html" title=" " alt="" coords="643,87,853,114"/>
 <area shape="rect" id="node3" href="$O__IAbyPathTest_8cpp.html" title="Implementation de la classe O_IAByPathTest." alt="" coords="5,169,205,211"/>
-<area shape="rect" id="node4" href="$OPOS6UL__AsservExtended_8cpp.html" title=" " alt="" coords="229,169,416,211"/>
-<area shape="rect" id="node5" href="$OPOS6UL__IAExtended_8cpp.html" title=" " alt="" coords="440,169,627,211"/>
-<area shape="rect" id="node6" href="$OPOS6UL__RobotExtended_8cpp.html" title=" " alt="" coords="651,169,837,211"/>
+<area shape="rect" id="node4" href="$O__State__DecisionMakerIA_8cpp.html" title="Implémentation de la classe O_State_DecisionMakerIA." alt="" coords="230,169,407,211"/>
+<area shape="rect" id="node5" href="$OPOS6UL__AsservExtended_8cpp.html" title="Implémentation de la classe OPOS6UL_AsservExtended." alt="" coords="432,169,619,211"/>
+<area shape="rect" id="node6" href="$OPOS6UL__IAExtended_8cpp.html" title="Implémentation de la classe OPOS6UL_IAExtended." alt="" coords="643,169,829,211"/>
+<area shape="rect" id="node7" href="$OPOS6UL__RobotExtended_8cpp.html" title="Implémentation de la classe OPOS6UL_RobotExtended." alt="" coords="853,169,1040,211"/>
 </map>

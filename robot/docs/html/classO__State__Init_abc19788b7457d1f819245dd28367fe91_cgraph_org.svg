@@ -37,7 +37,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="classRobot.html#ac3663ed46470faec31e0a6b7eeaad3fb" target="_top" xlink:title=" ">
+<g id="a_node3"><a xlink:href="classRobot.html#ac3663ed46470faec31e0a6b7eeaad3fb" target="_top" xlink:title="Retourne une référence vers l&#39;asservissement du robot.">
 <polygon fill="white" stroke="black" points="399,-1056.5 399,-1075.5 482,-1075.5 482,-1056.5 399,-1056.5"/>
 <text text-anchor="middle" x="440.5" y="-1063.5" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::asserv</text>
 </a>

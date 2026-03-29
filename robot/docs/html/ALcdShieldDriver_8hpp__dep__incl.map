@@ -1,11 +1,11 @@
 <map id="src/common/interface/ALcdShieldDriver.hpp" name="src/common/interface/ALcdShieldDriver.hpp">
-<area shape="rect" id="node1" title="Interface abstraite du driver d&#39;ecran LCD I2C." alt="" coords="380,5,544,47"/>
+<area shape="rect" id="node1" title="Interface abstraite du driver d&#39;ecran LCD I2C." alt="" coords="484,5,648,47"/>
 <area shape="rect" id="node2" href="$LcdShield_8cpp.html" title=" " alt="" coords="5,102,244,129"/>
 <area shape="rect" id="node3" href="$driver-arm_2LcdShieldDriver_8hpp.html" title="Implementation ARM du driver d&#39;ecran LCD pour l&#39;OPOS6UL." alt="" coords="268,95,448,136"/>
-<area shape="rect" id="node5" href="$driver-simu_2LcdShieldDriver_8hpp.html" title="Implementation SIMU du driver d&#39;ecran LCD." alt="" coords="473,95,659,136"/>
-<area shape="rect" id="node7" href="$LcdShieldDriverManualTest_8hpp.html" title="Définition de la classe LcdShieldDriverManualTest." alt="" coords="684,95,891,136"/>
-<area shape="rect" id="node4" href="$driver-arm_2LcdShieldDriver_8cpp.html" title="Implementation ARM du driver LCD." alt="" coords="268,184,448,225"/>
-<area shape="rect" id="node6" href="$driver-simu_2LcdShieldDriver_8cpp.html" title="Implementation SIMU du driver LCD." alt="" coords="473,184,659,225"/>
-<area shape="rect" id="node8" href="$LcdShieldDriverManualTest_8cpp.html" title="Implémentation de la classe LcdShieldDriverManualTest." alt="" coords="684,184,891,225"/>
-<area shape="rect" id="node9" href="$test_2manual_2Main_8cpp.html" title="Point d&#39;entree des tests manuels (verification visuelle/physique)." alt="" coords="915,191,1078,218"/>
+<area shape="rect" id="node5" href="$DriverFactories_8cpp.html" title="Factory create() pour le build SIMU." alt="" coords="656,191,905,218"/>
+<area shape="rect" id="node6" href="$driver-simu_2LcdShieldDriver_8hpp.html" title="Implementation SIMU du driver d&#39;ecran LCD." alt="" coords="473,95,659,136"/>
+<area shape="rect" id="node8" href="$LcdShieldDriverManualTest_8hpp.html" title="Définition de la classe LcdShieldDriverManualTest." alt="" coords="875,95,1081,136"/>
+<area shape="rect" id="node4" href="$driver-arm_2LcdShieldDriver_8cpp.html" title="Implementation ARM du driver LCD." alt="" coords="240,184,420,225"/>
+<area shape="rect" id="node7" href="$driver-simu_2LcdShieldDriver_8cpp.html" title="Implementation SIMU du driver LCD." alt="" coords="445,184,631,225"/>
+<area shape="rect" id="node9" href="$LcdShieldDriverManualTest_8cpp.html" title="Implémentation de la classe LcdShieldDriverManualTest." alt="" coords="929,184,1136,225"/>
 </map>

@@ -1,25 +1,29 @@
 <map id="OPOS6UL_RobotExtended::instance" name="OPOS6UL_RobotExtended::instance">
-<area shape="rect" id="node1" title="Retourne l&#39;instance unique du robot (singleton)." alt="" coords="751,573,940,615"/>
-<area shape="rect" id="node2" href="$classO__ServoObjectsTest.html#a88eeea465c68f251d5e892e835f6b3eb" title=" " alt="" coords="502,5,673,47"/>
-<area shape="rect" id="node3" href="$classO__ServoStepTest.html#a7579a3a63e9bd65d2f20fbd5600af511" title=" " alt="" coords="488,71,687,112"/>
-<area shape="rect" id="node4" href="$classO__State__DecisionMakerIA.html#a96d1f2a7618d607fd10cc51b9111e653" title="Execute l&#39;action." alt="" coords="493,136,682,177"/>
-<area shape="rect" id="node5" href="$classO__State__Init.html#abc19788b7457d1f819245dd28367fe91" title="Exécute l&#39;état d&#39;initialisation." alt="" coords="16,253,176,279"/>
-<area shape="rect" id="node6" href="$classO__State__WaitEndOfMatch.html#aa73613440b37c8dd42181e2e0265ae86" title="Exécute l&#39;état d&#39;attente de fin de match." alt="" coords="493,573,681,615"/>
-<area shape="rect" id="node7" href="$classO__IAByPathTest.html#abedd21fde4835d641e6aa3f8e1c6581f" title=" " alt="" coords="5,471,187,498"/>
-<area shape="rect" id="node8" href="$classO__IAByPathTest.html#ad010b84a2684b7e16b75c98d6231e5ac" title=" " alt="" coords="475,639,700,666"/>
-<area shape="rect" id="node9" href="$classOPOS6UL__RobotExtended.html#a096aea03c751e0cfdc4ce25741fdbe67" title=" " alt="" coords="493,355,682,396"/>
-<area shape="rect" id="node11" href="$src_2bot-opos6ul_2Main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="69,333,123,359"/>
-<area shape="rect" id="node12" href="$O__IAbyPathTest_8cpp.html#ac1055b8eb7025052d58ebaf15869a480" title=" " alt="" coords="241,471,418,498"/>
-<area shape="rect" id="node13" href="$O__IAbyPathTest_8cpp.html#aafb960063ea3193551e7ba63626e2561" title=" " alt="" coords="240,421,419,447"/>
-<area shape="rect" id="node14" href="$classO__State__Init.html#a1980cd82dcb83e88d61f2e7e14dddfa0" title=" " alt="" coords="253,303,405,330"/>
-<area shape="rect" id="node15" href="$classO__ActionManagerTimerTest.html#ab88b301cdfa06385c521335dd27932c9" title="Execute le test." alt="" coords="472,690,703,717"/>
-<area shape="rect" id="node16" href="$classO__ButtonBarTest.html#a444c3618a504b59d0236b4b530f463e1" title="Execute le test." alt="" coords="508,741,667,767"/>
-<area shape="rect" id="node17" href="$classO__IAByPathTest.html#a3f57f585ff1382a52bf7f79a28d43629" title=" " alt="" coords="511,791,663,818"/>
-<area shape="rect" id="node18" href="$classO__LcdBoardTest.html#a5fe507797dd1ee404d3fd4a0fd6b7885" title="Execute le test." alt="" coords="510,842,665,869"/>
-<area shape="rect" id="node19" href="$classO__LedBarTest.html#af9e0e172d13b334cda0fe32bb659b414" title=" " alt="" coords="518,893,657,919"/>
-<area shape="rect" id="node20" href="$classO__SensorsTest.html#ae3b998034225e16586ded4ba3bd419e5" title="Execute le test." alt="" coords="515,943,660,970"/>
-<area shape="rect" id="node21" href="$classO__ServoObjectsTest.html#aabfa9ba518070128940062ed11028ca7" title="Execute le test." alt="" coords="497,994,677,1021"/>
-<area shape="rect" id="node22" href="$classO__ServoStepTest.html#aefbe5c17504e0782e71a6ca13ed40518" title="Execute le test." alt="" coords="507,1045,667,1071"/>
-<area shape="rect" id="node23" href="$classO__TiretteTest.html#a66d6839aab8764140c00e77046ac4563" title="Execute le test." alt="" coords="519,1095,656,1122"/>
-<area shape="rect" id="node10" href="$classOPOS6UL__RobotExtended.html#a3af6cff5115c7ae70f7a797d9e90e66a" title="Initialise l&#39;état du robot et le décisionmaker IA." alt="" coords="235,355,424,396"/>
+<area shape="rect" id="node1" title="Retourne l&#39;instance unique du robot (singleton)." alt="" coords="1041,652,1231,693"/>
+<area shape="rect" id="node2" href="$classO__ServoObjectsTest.html#a88eeea465c68f251d5e892e835f6b3eb" title=" " alt="" coords="793,5,963,47"/>
+<area shape="rect" id="node3" href="$classO__ServoStepTest.html#a7579a3a63e9bd65d2f20fbd5600af511" title=" " alt="" coords="779,71,977,112"/>
+<area shape="rect" id="node4" href="$classO__State__DecisionMakerIA.html#a96d1f2a7618d607fd10cc51b9111e653" title="Execute l&#39;action." alt="" coords="5,188,195,229"/>
+<area shape="rect" id="node5" href="$classO__State__Init.html#abc19788b7457d1f819245dd28367fe91" title="Exécute l&#39;état d&#39;initialisation." alt="" coords="280,685,440,711"/>
+<area shape="rect" id="node6" href="$classO__State__WaitEndOfMatch.html#aa73613440b37c8dd42181e2e0265ae86" title="Exécute l&#39;état d&#39;attente de fin de match." alt="" coords="784,761,972,803"/>
+<area shape="rect" id="node7" href="$classO__IAByPathTest.html#abedd21fde4835d641e6aa3f8e1c6581f" title="Configure les activités de l&#39;IA pour le test." alt="" coords="269,507,451,534"/>
+<area shape="rect" id="node8" href="$classO__State__DecisionMakerIA.html#a9b35f6bac1a5602ec2a711fa280be4a6" title="Configure les activités pour les zones de jeu du match." alt="" coords="265,188,455,229"/>
+<area shape="rect" id="node9" href="$classO__State__DecisionMakerIA.html#a8bd1c4d72bec8768c7c7c15bd2e665d8" title="Configure les activités pour le mode test de la table." alt="" coords="243,253,477,295"/>
+<area shape="rect" id="node10" href="$classO__IAByPathTest.html#ad010b84a2684b7e16b75c98d6231e5ac" title="Initialise le terrain de jeu (grille de navigation A*)." alt="" coords="765,827,991,854"/>
+<area shape="rect" id="node11" href="$classOPOS6UL__RobotExtended.html#a096aea03c751e0cfdc4ce25741fdbe67" title=" " alt="" coords="783,441,973,483"/>
+<area shape="rect" id="node13" href="$src_2bot-opos6ul_2Main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="333,394,387,421"/>
+<area shape="rect" id="node14" href="$O__State__DecisionMakerIA_8cpp.html#a6af4b40e5e676265dd688e0004be0ff6" title="Action de fin de match : rejoint la zone de fin en haut de table." alt="" coords="541,238,699,265"/>
+<area shape="rect" id="node15" href="$O__IAbyPathTest_8cpp.html#ac1055b8eb7025052d58ebaf15869a480" title=" " alt="" coords="531,507,709,534"/>
+<area shape="rect" id="node16" href="$O__IAbyPathTest_8cpp.html#aafb960063ea3193551e7ba63626e2561" title=" " alt="" coords="531,390,709,417"/>
+<area shape="rect" id="node17" href="$O__State__DecisionMakerIA_8cpp.html#a1cbc5f5cba5f72b993c68f4aad4473f7" title="Action de poussée de la prise en zone basse." alt="" coords="551,558,689,585"/>
+<area shape="rect" id="node18" href="$classO__State__Init.html#a1980cd82dcb83e88d61f2e7e14dddfa0" title=" " alt="" coords="544,659,696,686"/>
+<area shape="rect" id="node19" href="$classO__ActionManagerTimerTest.html#ab88b301cdfa06385c521335dd27932c9" title="Execute le test." alt="" coords="763,878,993,905"/>
+<area shape="rect" id="node20" href="$classO__ButtonBarTest.html#a444c3618a504b59d0236b4b530f463e1" title="Execute le test." alt="" coords="799,929,957,955"/>
+<area shape="rect" id="node21" href="$classO__IAByPathTest.html#a3f57f585ff1382a52bf7f79a28d43629" title="Execute le test." alt="" coords="802,979,954,1006"/>
+<area shape="rect" id="node22" href="$classO__LcdBoardTest.html#a5fe507797dd1ee404d3fd4a0fd6b7885" title="Execute le test." alt="" coords="801,1030,955,1057"/>
+<area shape="rect" id="node23" href="$classO__LedBarTest.html#af9e0e172d13b334cda0fe32bb659b414" title=" " alt="" coords="809,1081,947,1107"/>
+<area shape="rect" id="node24" href="$classO__SensorsTest.html#ae3b998034225e16586ded4ba3bd419e5" title="Execute le test." alt="" coords="805,1131,951,1158"/>
+<area shape="rect" id="node25" href="$classO__ServoObjectsTest.html#aabfa9ba518070128940062ed11028ca7" title="Execute le test." alt="" coords="788,1182,968,1209"/>
+<area shape="rect" id="node26" href="$classO__ServoStepTest.html#aefbe5c17504e0782e71a6ca13ed40518" title="Execute le test." alt="" coords="798,1233,958,1259"/>
+<area shape="rect" id="node27" href="$classO__TiretteTest.html#a66d6839aab8764140c00e77046ac4563" title="Execute le test." alt="" coords="809,1283,947,1310"/>
+<area shape="rect" id="node12" href="$classOPOS6UL__RobotExtended.html#a3af6cff5115c7ae70f7a797d9e90e66a" title="Initialise l&#39;état du robot et le décisionmaker IA." alt="" coords="525,441,715,483"/>
 </map>

@@ -283,7 +283,7 @@ var sectionId = 'dynsection-3';
 <!-- Node32 -->
 <g id="node28" class="node">
 <title>Node32</title>
-<g id="a_node28"><a xlink:href="classRobot.html#ac7a09e8aad44c834c60d55ed96d25d7f" target="_top" xlink:title=" ">
+<g id="a_node28"><a xlink:href="classRobot.html#ac7a09e8aad44c834c60d55ed96d25d7f" target="_top" xlink:title="Libère les moteurs (roue libre).">
 <polygon fill="white" stroke="black" points="199.5,-285 199.5,-304 303.5,-304 303.5,-285 199.5,-285"/>
 <text text-anchor="middle" x="251.5" y="-292" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::freeMotion</text>
 </a>
@@ -471,7 +471,7 @@ var sectionId = 'dynsection-3';
 <!-- Node76 -->
 <g id="node49" class="node">
 <title>Node76</title>
-<g id="a_node49"><a xlink:href="classRobot.html#a769fd661366307a701f22d3f7904ded0" target="_top" xlink:title=" ">
+<g id="a_node49"><a xlink:href="classRobot.html#a769fd661366307a701f22d3f7904ded0" target="_top" xlink:title="Finalise et ferme le fichier SVG.">
 <polygon fill="white" stroke="black" points="183,-551 183,-570 320,-570 320,-551 183,-551"/>
 <text text-anchor="middle" x="251.5" y="-558" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::svgPrintEndOfFile</text>
 </a>
@@ -712,7 +712,7 @@ var sectionId = 'dynsection-3';
 <!-- Node38 -->
 <g id="node30" class="node">
 <title>Node38</title>
-<g id="a_node30"><a xlink:href="classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" target="_top" xlink:title=" ">
+<g id="a_node30"><a xlink:href="classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" target="_top" xlink:title="Retourne un pointeur vers l&#39;asservissement du robot.">
 <polygon fill="white" stroke="black" points="407.5,-206 407.5,-225 496.5,-225 496.5,-206 407.5,-206"/>
 <text text-anchor="middle" x="452" y="-213" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::passerv</text>
 </a>

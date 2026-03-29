@@ -1,5 +1,9 @@
 <map id="OPOS6UL_RobotExtended::displayPoints" name="OPOS6UL_RobotExtended::displayPoints">
-<area shape="rect" id="node1" title="Affiche les points accumulés pendant le match." alt="" coords="241,27,431,69"/>
-<area shape="rect" id="node2" href="$classO__State__Init.html#abc19788b7457d1f819245dd28367fe91" title="Exécute l&#39;état d&#39;initialisation." alt="" coords="19,5,179,32"/>
-<area shape="rect" id="node3" href="$classO__State__WaitEndOfMatch.html#aa73613440b37c8dd42181e2e0265ae86" title="Exécute l&#39;état d&#39;attente de fin de match." alt="" coords="5,57,193,98"/>
+<area shape="rect" id="node1" title="Affiche les points accumulés pendant le match." alt="" coords="761,51,951,93"/>
+<area shape="rect" id="node2" href="$classO__State__DecisionMakerIA.html#a96d1f2a7618d607fd10cc51b9111e653" title="Execute l&#39;action." alt="" coords="5,74,195,115"/>
+<area shape="rect" id="node3" href="$classO__State__Init.html#abc19788b7457d1f819245dd28367fe91" title="Exécute l&#39;état d&#39;initialisation." alt="" coords="539,29,699,56"/>
+<area shape="rect" id="node4" href="$classO__State__WaitEndOfMatch.html#aa73613440b37c8dd42181e2e0265ae86" title="Exécute l&#39;état d&#39;attente de fin de match." alt="" coords="525,81,713,122"/>
+<area shape="rect" id="node5" href="$O__State__DecisionMakerIA_8cpp.html#a6af4b40e5e676265dd688e0004be0ff6" title="Action de fin de match : rejoint la zone de fin en haut de table." alt="" coords="540,147,699,173"/>
+<area shape="rect" id="node6" href="$classO__State__DecisionMakerIA.html#a9b35f6bac1a5602ec2a711fa280be4a6" title="Configure les activités pour les zones de jeu du match." alt="" coords="265,74,455,115"/>
+<area shape="rect" id="node7" href="$classO__State__DecisionMakerIA.html#a8bd1c4d72bec8768c7c7c15bd2e665d8" title="Configure les activités pour le mode test de la table." alt="" coords="243,139,477,181"/>
 </map>

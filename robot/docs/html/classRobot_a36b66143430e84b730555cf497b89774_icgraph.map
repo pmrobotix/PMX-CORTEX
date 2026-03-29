@@ -1,5 +1,5 @@
 <map id="Robot::getID" name="Robot::getID">
-<area shape="rect" id="node1" title=" " alt="" coords="952,275,1055,301"/>
+<area shape="rect" id="node1" title="Retourne l&#39;identifiant du robot." alt="" coords="952,275,1055,301"/>
 <area shape="rect" id="node2" href="$classAsservEsialR.html#adf4da92cf4d885cc744c970c7626fa0d" title=" " alt="" coords="689,5,888,32"/>
 <area shape="rect" id="node3" href="$classSensors.html#ae46c462046eadf35df4f7bf49cebd50a" title="Constructor." alt="" coords="723,56,855,83"/>
 <area shape="rect" id="node4" href="$classOPOS6UL__RobotExtended.html#a3af6cff5115c7ae70f7a797d9e90e66a" title="Initialise l&#39;état du robot et le décisionmaker IA." alt="" coords="694,107,883,149"/>
@@ -13,7 +13,7 @@
 <area shape="rect" id="node17" href="$classO__ServoStepTest.html#aefbe5c17504e0782e71a6ca13ed40518" title="Execute le test." alt="" coords="709,528,869,555"/>
 <area shape="rect" id="node5" href="$src_2bot-opos6ul_2Main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="535,115,589,141"/>
 <area shape="rect" id="node8" href="$classIAbyPath.html#af470d678e57b5c6362fdcf70a856a489" title=" " alt="" coords="499,224,625,251"/>
-<area shape="rect" id="node9" href="$classO__IAByPathTest.html#ad010b84a2684b7e16b75c98d6231e5ac" title=" " alt="" coords="225,195,451,221"/>
+<area shape="rect" id="node9" href="$classO__IAByPathTest.html#ad010b84a2684b7e16b75c98d6231e5ac" title="Initialise le terrain de jeu (grille de navigation A*)." alt="" coords="225,195,451,221"/>
 <area shape="rect" id="node10" href="$classOPOS6UL__IAExtended.html#aeaa64a0f2c66aa082fc79e6fa77472ab" title="Initialise le terrain de jeu (zones, obstacles, chemins)." alt="" coords="256,246,420,287"/>
 <area shape="rect" id="node11" href="$classOPOS6UL__IAExtended.html#a25b80fe3ad16f9481def0b7f939a5a3d" title=" " alt="" coords="5,246,177,287"/>
 </map>

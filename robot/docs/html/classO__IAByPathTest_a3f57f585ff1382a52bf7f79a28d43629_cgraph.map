@@ -1,9 +1,9 @@
 <map id="O_IAByPathTest::run" name="O_IAByPathTest::run">
-<area shape="rect" id="node1" title=" " alt="" coords="5,1232,157,1259"/>
+<area shape="rect" id="node1" title="Execute le test." alt="" coords="5,1232,157,1259"/>
 <area shape="rect" id="node2" href="$classOPOS6UL__RobotExtended.html#a6468a2bb1fc8de815154a322e038b875" title=" " alt="" coords="215,91,405,133"/>
 <area shape="rect" id="node3" href="$classSensors.html#a1ef07aeea0536ccf34e310d831e71ef0" title=" " alt="" coords="213,157,407,184"/>
 <area shape="rect" id="node6" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="803,441,884,468"/>
-<area shape="rect" id="node12" href="$classRobot.html#ac3663ed46470faec31e0a6b7eeaad3fb" title=" " alt="" coords="255,1232,365,1259"/>
+<area shape="rect" id="node12" href="$classRobot.html#ac3663ed46470faec31e0a6b7eeaad3fb" title="Retourne une référence vers l&#39;asservissement du robot." alt="" coords="255,1232,365,1259"/>
 <area shape="rect" id="node13" href="$classAsserv.html#a2d4c545965ac32ef54c9b118d3576655" title=" " alt="" coords="217,383,403,409"/>
 <area shape="rect" id="node16" href="$classRobot.html#a7af430452b558088757324f857d099b2" title="Cette methode retourne l&#39;objet de manipulation du chronometer." alt="" coords="254,1283,366,1309"/>
 <area shape="rect" id="node17" href="$classAsserv.html#a100bad165da8f3055e05383e0cba03fd" title=" " alt="" coords="252,1333,368,1360"/>
@@ -18,7 +18,7 @@
 <area shape="rect" id="node42" href="$classActions.html#adf0dec391b032c0b36b329a3f039001e" title="Active les actions." alt="" coords="256,1080,364,1107"/>
 <area shape="rect" id="node45" href="$classutils_1_1Chronometer.html#a174c35f7b276290813fe913ed5c82bd3" title="Lance ou réinitialise le chronomètre." alt="" coords="239,1749,381,1790"/>
 <area shape="rect" id="node46" href="$classAsserv.html#a366bf4a9f0880c5dc125ac0637fee326" title=" " alt="" coords="217,543,403,585"/>
-<area shape="rect" id="node49" href="$classRobot.html#ade84d9257e194f8b04cc9f5f97e184da" title=" " alt="" coords="487,1232,661,1259"/>
+<area shape="rect" id="node49" href="$classRobot.html#ade84d9257e194f8b04cc9f5f97e184da" title="Enregistre la position du robot dans le fichier SVG." alt="" coords="487,1232,661,1259"/>
 <area shape="rect" id="node4" href="$classAActionsElement.html#a3fbd5b8201049a59602d8b7201a9ef8a" title="Retourne une référence sur le Actions associé." alt="" coords="480,5,668,32"/>
 <area shape="rect" id="node5" href="$classActions.html#a173e3bb37b9cbb0e5ef423b1719b7afd" title="Ajout d&#39;un timer standard." alt="" coords="504,107,644,133"/>
 <area shape="rect" id="node10" href="$classlogs_1_1Logger.html#a7dffc8f610014ec59b63392da16140e4" title="Trace un message de niveau DEBUG." alt="" coords="499,259,649,285"/>
@@ -33,7 +33,7 @@
 <area shape="rect" id="node24" href="$classIAbyPath.html#a659be955d17b16795bd842079c9a154d" title=" " alt="" coords="751,1283,935,1309"/>
 <area shape="rect" id="node25" href="$classlogs_1_1Logger.html#aa381165771d00a6a1e3aa9664bf6467f" title="Trace un message de niveau INFO." alt="" coords="776,1333,911,1360"/>
 <area shape="rect" id="node26" href="$classIAbyPath.html#a8a3c78c75a2208494e2774b918de3d45" title="Retourne le Logger associé à la classe IAbyPath." alt="" coords="779,1384,907,1411"/>
-<area shape="rect" id="node27" href="$classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" title=" " alt="" coords="784,1181,903,1208"/>
+<area shape="rect" id="node27" href="$classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" title="Retourne un pointeur vers l&#39;asservissement du robot." alt="" coords="784,1181,903,1208"/>
 <area shape="rect" id="node28" href="$classAsserv.html#a0c1a1048174322c00dfba79c74193bd1" title=" " alt="" coords="733,1435,953,1461"/>
 <area shape="rect" id="node29" href="$classAsserv.html#a871088db63d1a0e20ccbf387c6f895db" title=" " alt="" coords="760,1485,927,1512"/>
 <area shape="rect" id="node30" href="$classAsserv.html#a2cca6401ccf8cfc7cc927177cba14f4a" title=" " alt="" coords="761,1232,926,1259"/>

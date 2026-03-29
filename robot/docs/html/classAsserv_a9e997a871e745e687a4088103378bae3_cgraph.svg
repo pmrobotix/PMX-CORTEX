@@ -319,7 +319,7 @@ var sectionId = 'dynsection-7';
 <!-- Node25 -->
 <g id="node25" class="node">
 <title>Node25</title>
-<g id="a_node25"><a xlink:href="classRobot.html#a6a118c509a6d7ab35cdf96203eb0238a" target="_top" xlink:title=" ">
+<g id="a_node25"><a xlink:href="classRobot.html#a6a118c509a6d7ab35cdf96203eb0238a" target="_top" xlink:title="Retourne la position partagée du robot (pour communication inter&#45;threads).">
 <polygon fill="white" stroke="black" points="371,-406 371,-425 494,-425 494,-406 371,-406"/>
 <text text-anchor="middle" x="432.5" y="-413" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::sharedPosition</text>
 </a>

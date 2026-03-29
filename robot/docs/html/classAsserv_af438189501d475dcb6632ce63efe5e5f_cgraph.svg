@@ -48,7 +48,7 @@ if (edges && edges.length) {
 <script type="text/javascript">
 var viewWidth = 1834;
 var viewHeight = 865;
-var sectionId = 'dynsection-21';
+var sectionId = 'dynsection-23';
 </script>
 <script xlink:href="svgpan.js"/>
 <svg id="graph" class="graph">
@@ -648,7 +648,7 @@ var sectionId = 'dynsection-21';
 <!-- Node39 -->
 <g id="node36" class="node">
 <title>Node39</title>
-<g id="a_node36"><a xlink:href="classRobot.html#a6a118c509a6d7ab35cdf96203eb0238a" target="_top" xlink:title=" ">
+<g id="a_node36"><a xlink:href="classRobot.html#a6a118c509a6d7ab35cdf96203eb0238a" target="_top" xlink:title="Retourne la position partagée du robot (pour communication inter&#45;threads).">
 <polygon fill="white" stroke="black" points="1015,-40.97 1015,-59.97 1138,-59.97 1138,-40.97 1015,-40.97"/>
 <text text-anchor="middle" x="1076.5" y="-47.97" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::sharedPosition</text>
 </a>

@@ -1,13 +1,13 @@
 <map id="OPOS6UL_RobotExtended::begin" name="OPOS6UL_RobotExtended::begin">
 <area shape="rect" id="node1" title="Initialise l&#39;état du robot et le décisionmaker IA." alt="" coords="5,681,195,722"/>
 <area shape="rect" id="node2" href="$classIAutomateState.html#a2d088c807e6d7b30b93511096a34af2a" title="Ajoute une transition possible à cet état." alt="" coords="243,342,433,368"/>
-<area shape="rect" id="node3" href="$classRobot.html#ae8cede2564e5b9229da095991c064ae4" title="Start the robot (console for tests or main program).." alt="" coords="286,443,390,470"/>
+<area shape="rect" id="node3" href="$classRobot.html#ae8cede2564e5b9229da095991c064ae4" title="Démarre le robot (test fonctionnel ou match)." alt="" coords="286,443,390,470"/>
 <area shape="rect" id="node4" href="$classlogs_1_1Logger.html#a7dffc8f610014ec59b63392da16140e4" title="Trace un message de niveau DEBUG." alt="" coords="518,646,667,672"/>
 <area shape="rect" id="node18" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="552,696,633,723"/>
 <area shape="rect" id="node22" href="$classlogs_1_1Logger.html#aa381165771d00a6a1e3aa9664bf6467f" title="Trace un message de niveau INFO." alt="" coords="525,6,660,32"/>
 <area shape="rect" id="node32" href="$classRobot.html#a7af430452b558088757324f857d099b2" title="Cette methode retourne l&#39;objet de manipulation du chronometer." alt="" coords="282,630,394,656"/>
 <area shape="rect" id="node33" href="$classutils_1_1Chronometer.html#a935aa20dd1791cfc8aec203a8838598d" title="Retourne le temps écoulé en secondes." alt="" coords="253,681,423,722"/>
-<area shape="rect" id="node34" href="$classRobot.html#a36b66143430e84b730555cf497b89774" title=" " alt="" coords="287,747,389,774"/>
+<area shape="rect" id="node34" href="$classRobot.html#a36b66143430e84b730555cf497b89774" title="Retourne l&#39;identifiant du robot." alt="" coords="287,747,389,774"/>
 <area shape="rect" id="node35" href="$classRobot.html#a082495b8fff35165b750cd1cc5b48b90" title=" " alt="" coords="277,798,399,824"/>
 <area shape="rect" id="node36" href="$classOPOS6UL__RobotExtended.html#a096aea03c751e0cfdc4ce25741fdbe67" title=" " alt="" coords="243,946,433,988"/>
 <area shape="rect" id="node38" href="$classAutomate.html#a1df5d3b6c5abc353b347f4defcfde4e9" title="Lance l&#39;automate." alt="" coords="281,848,395,875"/>

@@ -48,7 +48,7 @@ if (edges && edges.length) {
 <script type="text/javascript">
 var viewWidth = 931;
 var viewHeight = 1383;
-var sectionId = 'dynsection-9';
+var sectionId = 'dynsection-10';
 </script>
 <script xlink:href="svgpan.js"/>
 <svg id="graph" class="graph">
@@ -326,7 +326,7 @@ var sectionId = 'dynsection-9';
 <!-- Node69 -->
 <g id="node46" class="node">
 <title>Node69</title>
-<g id="a_node46"><a xlink:href="classRobot.html#a6a118c509a6d7ab35cdf96203eb0238a" target="_top" xlink:title=" ">
+<g id="a_node46"><a xlink:href="classRobot.html#a6a118c509a6d7ab35cdf96203eb0238a" target="_top" xlink:title="Retourne la position partagée du robot (pour communication inter&#45;threads).">
 <polygon fill="white" stroke="black" points="181,-322 181,-341 304,-341 304,-322 181,-322"/>
 <text text-anchor="middle" x="242.5" y="-329" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::sharedPosition</text>
 </a>
@@ -357,7 +357,7 @@ var sectionId = 'dynsection-9';
 <!-- Node71 -->
 <g id="node48" class="node">
 <title>Node71</title>
-<g id="a_node48"><a xlink:href="classRobot.html#a4f30918c35c294fbd5404fc3c3ffc075" target="_top" xlink:title=" ">
+<g id="a_node48"><a xlink:href="classRobot.html#a4f30918c35c294fbd5404fc3c3ffc075" target="_top" xlink:title="Retourne une référence vers le SvgWriter (logging trajectoire).">
 <polygon fill="white" stroke="black" points="204,-234 204,-253 281,-253 281,-234 204,-234"/>
 <text text-anchor="middle" x="242.5" y="-241" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::svgw</text>
 </a>

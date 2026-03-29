@@ -48,7 +48,7 @@ if (edges && edges.length) {
 <script type="text/javascript">
 var viewWidth = 518;
 var viewHeight = 72;
-var sectionId = 'dynsection-39';
+var sectionId = 'dynsection-41';
 </script>
 <script xlink:href="svgpan.js"/>
 <svg id="graph" class="graph">
@@ -67,7 +67,7 @@ var sectionId = 'dynsection-39';
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="classRobot.html#ae8cede2564e5b9229da095991c064ae4" target="_top" xlink:title="Start the robot (console for tests or main program)..">
+<g id="a_node2"><a xlink:href="classRobot.html#ae8cede2564e5b9229da095991c064ae4" target="_top" xlink:title="Démarre le robot (test fonctionnel ou match).">
 <polygon fill="white" stroke="black" points="276,-38.5 276,-57.5 354,-57.5 354,-38.5 276,-38.5"/>
 <text text-anchor="middle" x="315" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::begin</text>
 </a>

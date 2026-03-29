@@ -7,11 +7,12 @@
 <area shape="rect" id="node8" href="$classSensors.html#ad47b232a04891091fe9776339cb40013" title=" " alt="" coords="185,224,388,251"/>
 <area shape="rect" id="node9" href="$classSensors.html#ab397d8739ebfe2f57290ddd97dc81efc" title=" " alt="" coords="185,275,388,317"/>
 <area shape="rect" id="node10" href="$classASensorsDriver.html#ab518d3654db6d8683136df8455a67601" title="Cree l&#39;instance concrete selon la plateforme." alt="" coords="201,341,372,368"/>
-<area shape="rect" id="node11" href="$classRobot.html#a36b66143430e84b730555cf497b89774" title=" " alt="" coords="235,392,338,419"/>
-<area shape="rect" id="node12" href="$classSensors.html#aaf25dc2afdd983216b66476f69731d54" title=" " alt="" coords="229,443,344,469"/>
-<area shape="rect" id="node13" href="$classSensors.html#a2a1a388e492a76281a0b743c33c3f47b" title=" " alt="" coords="191,494,382,535"/>
-<area shape="rect" id="node14" href="$classSensors.html#a12662045561c34eac5055c5819041f3a" title=" " alt="" coords="191,559,383,601"/>
-<area shape="rect" id="node15" href="$classRobot.html#a6a118c509a6d7ab35cdf96203eb0238a" title=" " alt="" coords="205,625,369,652"/>
-<area shape="rect" id="node3" href="$classSensors.html#ab60c07a863243a10e263a7277958c647" title=" " alt="" coords="440,109,543,136"/>
-<area shape="rect" id="node4" href="$classSensors.html#ae801861500996fbc44629666522eb86d" title=" " alt="" coords="436,161,547,188"/>
+<area shape="rect" id="node12" href="$classRobot.html#a36b66143430e84b730555cf497b89774" title="Retourne l&#39;identifiant du robot." alt="" coords="235,392,338,419"/>
+<area shape="rect" id="node13" href="$classSensors.html#aaf25dc2afdd983216b66476f69731d54" title=" " alt="" coords="229,443,344,469"/>
+<area shape="rect" id="node14" href="$classSensors.html#a2a1a388e492a76281a0b743c33c3f47b" title=" " alt="" coords="191,494,382,535"/>
+<area shape="rect" id="node15" href="$classSensors.html#a12662045561c34eac5055c5819041f3a" title=" " alt="" coords="191,559,383,601"/>
+<area shape="rect" id="node16" href="$classRobot.html#a6a118c509a6d7ab35cdf96203eb0238a" title="Retourne la position partagée du robot (pour communication inter&#45;threads)." alt="" coords="205,625,369,652"/>
+<area shape="rect" id="node3" href="$classSensors.html#ab60c07a863243a10e263a7277958c647" title=" " alt="" coords="479,164,582,191"/>
+<area shape="rect" id="node4" href="$classSensors.html#ae801861500996fbc44629666522eb86d" title=" " alt="" coords="475,109,586,136"/>
+<area shape="rect" id="node11" href="$classHardwareConfig.html#ac025d3170ffc737f6ac5335e944ed19f" title="Retourne l&#39;instance unique." alt="" coords="436,341,625,368"/>
 </map>

@@ -1,7 +1,8 @@
 <map id="Asserv::freeMotion" name="Asserv::freeMotion">
-<area shape="rect" id="node1" title=" " alt="" coords="449,56,593,83"/>
-<area shape="rect" id="node2" href="$classAsserv.html#aa8b9209374a094acf3242d732cdeee5e" title=" " alt="" coords="250,5,393,32"/>
-<area shape="rect" id="node3" href="$classO__State__Init.html#abc19788b7457d1f819245dd28367fe91" title="Exécute l&#39;état d&#39;initialisation." alt="" coords="241,56,401,83"/>
-<area shape="rect" id="node4" href="$classRobot.html#ac7a09e8aad44c834c60d55ed96d25d7f" title=" " alt="" coords="252,107,391,133"/>
-<area shape="rect" id="node5" href="$classO__State__WaitEndOfMatch.html#aa73613440b37c8dd42181e2e0265ae86" title="Exécute l&#39;état d&#39;attente de fin de match." alt="" coords="5,99,193,141"/>
+<area shape="rect" id="node1" title=" " alt="" coords="451,56,595,83"/>
+<area shape="rect" id="node2" href="$classAsserv.html#aa8b9209374a094acf3242d732cdeee5e" title=" " alt="" coords="251,5,394,32"/>
+<area shape="rect" id="node3" href="$classO__State__Init.html#abc19788b7457d1f819245dd28367fe91" title="Exécute l&#39;état d&#39;initialisation." alt="" coords="243,56,403,83"/>
+<area shape="rect" id="node4" href="$classRobot.html#ac7a09e8aad44c834c60d55ed96d25d7f" title="Libère les moteurs (roue libre)." alt="" coords="253,107,392,133"/>
+<area shape="rect" id="node5" href="$classO__State__DecisionMakerIA.html#a96d1f2a7618d607fd10cc51b9111e653" title="Execute l&#39;action." alt="" coords="5,66,195,107"/>
+<area shape="rect" id="node6" href="$classO__State__WaitEndOfMatch.html#aa73613440b37c8dd42181e2e0265ae86" title="Exécute l&#39;état d&#39;attente de fin de match." alt="" coords="6,131,194,173"/>
 </map>

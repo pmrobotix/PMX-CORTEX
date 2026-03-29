@@ -1,52 +1,52 @@
 <map id="test/suite/UnitTest.hpp" name="test/suite/UnitTest.hpp">
-<area shape="rect" id="node1" title="Définition de la classe DevUnitTest." alt="" coords="3309,5,3477,32"/>
-<area shape="rect" id="node2" href="$PosixTimerBench_8hpp.html" title="Benchmark de precision des timers POSIX." alt="" coords="469,87,704,114"/>
-<area shape="rect" id="node5" href="$TimerPosixStandaloneBench_8hpp.html" title="Bench du timer POSIX standalone (sans ActionManagerTimer)." alt="" coords="205,80,445,121"/>
-<area shape="rect" id="node7" href="$ActionManagerTimerTest_8hpp.html" title="Tests unitaires de la classe ActionManagerTimer." alt="" coords="841,80,1052,121"/>
-<area shape="rect" id="node10" href="$ChronometerTest_8hpp.html" title="Définition de la classe ChronometerTest." alt="" coords="1076,87,1327,114"/>
-<area shape="rect" id="node12" href="$ExceptionTest_8hpp.html" title="Définition de la classe ExceptionTest." alt="" coords="1351,87,1582,114"/>
-<area shape="rect" id="node14" href="$FileAppenderTest_8hpp.html" title="Définition de la classe FileAppenderTest." alt="" coords="1607,80,1804,121"/>
-<area shape="rect" id="node16" href="$LevelTest_8hpp.html" title="Définition de la classe LevelTest." alt="" coords="1829,87,2030,114"/>
-<area shape="rect" id="node18" href="$LoggerTest_8hpp.html" title="Définition de la classe LoggerTest." alt="" coords="2055,87,2265,114"/>
-<area shape="rect" id="node20" href="$MutexTest_8hpp.html" title="Définition de la classe MutexTest." alt="" coords="2290,87,2497,114"/>
-<area shape="rect" id="node22" href="$PointerListTest_8hpp.html" title="Définition de la classe PointerListTest." alt="" coords="2521,87,2756,114"/>
-<area shape="rect" id="node24" href="$SvgAppenderTest_8hpp.html" title="Définition de la classe SvgAppenderTest." alt="" coords="2781,87,3033,114"/>
-<area shape="rect" id="node26" href="$ThreadTest_8hpp.html" title="Définition de la classe ThreadTest." alt="" coords="3057,87,3268,114"/>
-<area shape="rect" id="node28" href="$LedDriverTest_8hpp.html" title="Test unitaire du driver de LEDs." alt="" coords="3519,87,3729,114"/>
-<area shape="rect" id="node31" href="$SwitchDriverTest_8hpp.html" title="Test unitaire du driver de switchs via l&#39;interface ASwitchDriver." alt="" coords="3753,80,3929,121"/>
-<area shape="rect" id="node33" href="$ActionManagerTimerManualTest_8hpp.html" title="Tests manuels longs de l&#39;ActionManagerTimer." alt="" coords="3953,80,4156,121"/>
-<area shape="rect" id="node36" href="$AsservDriverManualTest_8hpp.html" title="Test manuel du driver d&#39;asservissement." alt="" coords="4181,80,4369,121"/>
-<area shape="rect" id="node38" href="$ButtonDriverManualTest_8hpp.html" title="Test manuel du driver de boutons." alt="" coords="4393,80,4580,121"/>
-<area shape="rect" id="node40" href="$ColorDriverManualTest_8hpp.html" title="Définition de la classe ColorDriverManualTest." alt="" coords="4604,80,4831,121"/>
-<area shape="rect" id="node42" href="$LcdShieldDriverManualTest_8hpp.html" title="Définition de la classe LcdShieldDriverManualTest." alt="" coords="5541,80,5747,121"/>
-<area shape="rect" id="node44" href="$LedManualTest_8hpp.html" title="Test manuel visuel du driver de LEDs." alt="" coords="5772,87,6001,114"/>
-<area shape="rect" id="node46" href="$SensorDriverManualTest_8hpp.html" title="Définition de la classe SensorDriverManualTest." alt="" coords="4855,80,5043,121"/>
-<area shape="rect" id="node47" href="$ServoDriverManualTest_8hpp.html" title="Définition de la classe ServoDriverManualTest." alt="" coords="5068,80,5297,121"/>
-<area shape="rect" id="node48" href="$SwitchManualTest_8hpp.html" title="Test manuel de la tirette et des switchs arriere." alt="" coords="5321,80,5516,121"/>
-<area shape="rect" id="node49" href="$UnitTest_8cpp.html" title="Implémentation de la classe DevUnitTest." alt="" coords="6026,87,6193,114"/>
-<area shape="rect" id="node50" href="$UnitTestSuite_8hpp.html" title="Définition de la classe UnitTestSuite." alt="" coords="3293,87,3494,114"/>
-<area shape="rect" id="node3" href="$test_2bench_2Main_8cpp.html" title="Point d&#39;entree des benchmarks." alt="" coords="270,177,423,203"/>
-<area shape="rect" id="node4" href="$PosixTimerBench_8cpp.html" title="Benchmark de precision des timers POSIX." alt="" coords="448,177,683,203"/>
+<area shape="rect" id="node1" title="Définition de la classe DevUnitTest." alt="" coords="3285,5,3453,32"/>
+<area shape="rect" id="node2" href="$PosixTimerBench_8hpp.html" title="Benchmark de precision des timers POSIX." alt="" coords="447,87,681,114"/>
+<area shape="rect" id="node5" href="$TimerPosixStandaloneBench_8hpp.html" title="Bench du timer POSIX standalone (sans ActionManagerTimer)." alt="" coords="183,80,423,121"/>
+<area shape="rect" id="node7" href="$ActionManagerTimerTest_8hpp.html" title="Tests unitaires de la classe ActionManagerTimer." alt="" coords="705,80,916,121"/>
+<area shape="rect" id="node10" href="$ChronometerTest_8hpp.html" title="Définition de la classe ChronometerTest." alt="" coords="940,87,1191,114"/>
+<area shape="rect" id="node12" href="$ExceptionTest_8hpp.html" title="Définition de la classe ExceptionTest." alt="" coords="1215,87,1446,114"/>
+<area shape="rect" id="node14" href="$FileAppenderTest_8hpp.html" title="Définition de la classe FileAppenderTest." alt="" coords="1471,80,1668,121"/>
+<area shape="rect" id="node16" href="$LevelTest_8hpp.html" title="Définition de la classe LevelTest." alt="" coords="1693,87,1894,114"/>
+<area shape="rect" id="node18" href="$LoggerTest_8hpp.html" title="Définition de la classe LoggerTest." alt="" coords="2144,87,2355,114"/>
+<area shape="rect" id="node20" href="$MutexTest_8hpp.html" title="Définition de la classe MutexTest." alt="" coords="2379,87,2586,114"/>
+<area shape="rect" id="node22" href="$PointerListTest_8hpp.html" title="Définition de la classe PointerListTest." alt="" coords="2611,87,2845,114"/>
+<area shape="rect" id="node24" href="$SvgAppenderTest_8hpp.html" title="Définition de la classe SvgAppenderTest." alt="" coords="2870,87,3122,114"/>
+<area shape="rect" id="node26" href="$ThreadTest_8hpp.html" title="Définition de la classe ThreadTest." alt="" coords="3147,87,3357,114"/>
+<area shape="rect" id="node28" href="$LedDriverTest_8hpp.html" title="Test unitaire du driver de LEDs." alt="" coords="3381,87,3592,114"/>
+<area shape="rect" id="node31" href="$SwitchDriverTest_8hpp.html" title="Test unitaire du driver de switchs via l&#39;interface ASwitchDriver." alt="" coords="3616,80,3792,121"/>
+<area shape="rect" id="node33" href="$ActionManagerTimerManualTest_8hpp.html" title="Tests manuels longs de l&#39;ActionManagerTimer." alt="" coords="3816,80,4019,121"/>
+<area shape="rect" id="node35" href="$AsservDriverManualTest_8hpp.html" title="Test manuel du driver d&#39;asservissement." alt="" coords="4043,80,4231,121"/>
+<area shape="rect" id="node37" href="$ButtonDriverManualTest_8hpp.html" title="Test manuel du driver de boutons." alt="" coords="4256,80,4443,121"/>
+<area shape="rect" id="node39" href="$ColorDriverManualTest_8hpp.html" title="Définition de la classe ColorDriverManualTest." alt="" coords="4467,80,4693,121"/>
+<area shape="rect" id="node41" href="$LcdShieldDriverManualTest_8hpp.html" title="Définition de la classe LcdShieldDriverManualTest." alt="" coords="4718,80,4925,121"/>
+<area shape="rect" id="node43" href="$LedManualTest_8hpp.html" title="Test manuel visuel du driver de LEDs." alt="" coords="4949,87,5179,114"/>
+<area shape="rect" id="node45" href="$ScreenFramebufferManualTest_8hpp.html" title="Test manuel de l&#39;ecran TFT 7&quot; (framebuffer) et du tactile resistif." alt="" coords="5203,80,5429,121"/>
+<area shape="rect" id="node46" href="$SensorDriverManualTest_8hpp.html" title="Définition de la classe SensorDriverManualTest." alt="" coords="5454,80,5642,121"/>
+<area shape="rect" id="node47" href="$ServoDriverManualTest_8hpp.html" title="Définition de la classe ServoDriverManualTest." alt="" coords="5667,80,5896,121"/>
+<area shape="rect" id="node48" href="$SwitchManualTest_8hpp.html" title="Test manuel de la tirette et des switchs arriere." alt="" coords="5920,80,6115,121"/>
+<area shape="rect" id="node49" href="$UnitTest_8cpp.html" title="Implémentation de la classe DevUnitTest." alt="" coords="6139,87,6306,114"/>
+<area shape="rect" id="node50" href="$UnitTestSuite_8hpp.html" title="Définition de la classe UnitTestSuite." alt="" coords="1918,87,2119,114"/>
+<area shape="rect" id="node3" href="$test_2bench_2Main_8cpp.html" title="Point d&#39;entree des benchmarks." alt="" coords="527,177,681,203"/>
+<area shape="rect" id="node4" href="$PosixTimerBench_8cpp.html" title="Benchmark de precision des timers POSIX." alt="" coords="269,177,504,203"/>
 <area shape="rect" id="node6" href="$TimerPosixStandaloneBench_8cpp.html" title="Bench du timer POSIX standalone." alt="" coords="5,169,245,211"/>
-<area shape="rect" id="node8" href="$ActionManagerTimerTest_8cpp.html" title="Tests unitaires de la classe ActionManagerTimer." alt="" coords="707,169,917,211"/>
-<area shape="rect" id="node9" href="$test_2common_2Main_8cpp.html" title="Point d&#39;entrée des tests unitaires common." alt="" coords="1915,177,2085,203"/>
-<area shape="rect" id="node11" href="$ChronometerTest_8cpp.html" title="Implémentation des tests de la classe utils::Chronometer." alt="" coords="941,177,1192,203"/>
+<area shape="rect" id="node8" href="$ActionManagerTimerTest_8cpp.html" title="Tests unitaires de la classe ActionManagerTimer." alt="" coords="705,169,916,211"/>
+<area shape="rect" id="node9" href="$test_2common_2Main_8cpp.html" title="Point d&#39;entrée des tests unitaires common." alt="" coords="1917,177,2088,203"/>
+<area shape="rect" id="node11" href="$ChronometerTest_8cpp.html" title="Implémentation des tests de la classe utils::Chronometer." alt="" coords="940,177,1191,203"/>
 <area shape="rect" id="node13" href="$ExceptionTest_8cpp.html" title="Implémentation des tests de la classe logs::Exception." alt="" coords="1216,177,1445,203"/>
-<area shape="rect" id="node15" href="$FileAppenderTest_8cpp.html" title="Implémentation des tests de la classe logs::FileAppender." alt="" coords="1469,169,1667,211"/>
-<area shape="rect" id="node17" href="$LevelTest_8cpp.html" title="Implémentation des tests de la classe logs::Level." alt="" coords="1691,177,1891,203"/>
-<area shape="rect" id="node19" href="$LoggerTest_8cpp.html" title="Implémentation des tests de la classe logs::Logger." alt="" coords="2110,177,2319,203"/>
-<area shape="rect" id="node21" href="$MutexTest_8cpp.html" title="Implémentation des tests de la classe utils::Mutex." alt="" coords="2343,177,2550,203"/>
-<area shape="rect" id="node23" href="$PointerListTest_8cpp.html" title="Implémentation des tests de la classe utils::PointerList." alt="" coords="2575,177,2809,203"/>
-<area shape="rect" id="node25" href="$SvgAppenderTest_8cpp.html" title="Implémentation des tests de la classe logs::SvgAppender." alt="" coords="2833,177,3084,203"/>
-<area shape="rect" id="node27" href="$ThreadTest_8cpp.html" title="Implémentation des tests de la classe utils::Thread." alt="" coords="3108,177,3319,203"/>
-<area shape="rect" id="node29" href="$LedDriverTest_8cpp.html" title="Implementation du test unitaire du driver de LEDs." alt="" coords="3519,177,3729,203"/>
-<area shape="rect" id="node30" href="$test_2driver_2Main_8cpp.html" title="Point d&#39;entree des tests unitaires driver." alt="" coords="3343,177,3495,203"/>
-<area shape="rect" id="node32" href="$SwitchDriverTest_8cpp.html" title="Implementation du test unitaire du driver de switchs." alt="" coords="3753,169,3929,211"/>
-<area shape="rect" id="node34" href="$ActionManagerTimerManualTest_8cpp.html" title="Tests manuels longs de l&#39;ActionManagerTimer." alt="" coords="3953,169,4156,211"/>
-<area shape="rect" id="node35" href="$test_2manual_2Main_8cpp.html" title="Point d&#39;entree des tests manuels (verification visuelle/physique)." alt="" coords="4861,177,5024,203"/>
-<area shape="rect" id="node37" href="$AsservDriverManualTest_8cpp.html" title="Test manuel du driver d&#39;asservissement." alt="" coords="4181,169,4369,211"/>
-<area shape="rect" id="node39" href="$ButtonDriverManualTest_8cpp.html" title="Test manuel du driver de boutons." alt="" coords="4393,169,4580,211"/>
-<area shape="rect" id="node41" href="$ColorDriverManualTest_8cpp.html" title="Implémentation de la classe ColorDriverManualTest." alt="" coords="4604,169,4831,211"/>
-<area shape="rect" id="node43" href="$LcdShieldDriverManualTest_8cpp.html" title="Implémentation de la classe LcdShieldDriverManualTest." alt="" coords="5541,169,5747,211"/>
-<area shape="rect" id="node45" href="$LedManualTest_8cpp.html" title="Implementation du test manuel visuel des LEDs." alt="" coords="5773,177,6001,203"/>
+<area shape="rect" id="node15" href="$FileAppenderTest_8cpp.html" title="Implémentation des tests de la classe logs::FileAppender." alt="" coords="1471,169,1668,211"/>
+<area shape="rect" id="node17" href="$LevelTest_8cpp.html" title="Implémentation des tests de la classe logs::Level." alt="" coords="1693,177,1893,203"/>
+<area shape="rect" id="node19" href="$LoggerTest_8cpp.html" title="Implémentation des tests de la classe logs::Logger." alt="" coords="2113,177,2322,203"/>
+<area shape="rect" id="node21" href="$MutexTest_8cpp.html" title="Implémentation des tests de la classe utils::Mutex." alt="" coords="2346,177,2553,203"/>
+<area shape="rect" id="node23" href="$PointerListTest_8cpp.html" title="Implémentation des tests de la classe utils::PointerList." alt="" coords="2577,177,2812,203"/>
+<area shape="rect" id="node25" href="$SvgAppenderTest_8cpp.html" title="Implémentation des tests de la classe logs::SvgAppender." alt="" coords="2836,177,3087,203"/>
+<area shape="rect" id="node27" href="$ThreadTest_8cpp.html" title="Implémentation des tests de la classe utils::Thread." alt="" coords="3111,177,3321,203"/>
+<area shape="rect" id="node29" href="$LedDriverTest_8cpp.html" title="Implementation du test unitaire du driver de LEDs." alt="" coords="3346,177,3555,203"/>
+<area shape="rect" id="node30" href="$test_2driver_2Main_8cpp.html" title="Point d&#39;entree des tests unitaires driver." alt="" coords="3580,177,3732,203"/>
+<area shape="rect" id="node32" href="$SwitchDriverTest_8cpp.html" title="Implementation du test unitaire du driver de switchs." alt="" coords="3756,169,3932,211"/>
+<area shape="rect" id="node34" href="$ActionManagerTimerManualTest_8cpp.html" title="Tests manuels longs de l&#39;ActionManagerTimer." alt="" coords="3956,169,4159,211"/>
+<area shape="rect" id="node36" href="$AsservDriverManualTest_8cpp.html" title="Test manuel du driver d&#39;asservissement." alt="" coords="4183,169,4371,211"/>
+<area shape="rect" id="node38" href="$ButtonDriverManualTest_8cpp.html" title="Test manuel du driver de boutons." alt="" coords="4396,169,4583,211"/>
+<area shape="rect" id="node40" href="$ColorDriverManualTest_8cpp.html" title="Implémentation de la classe ColorDriverManualTest." alt="" coords="4607,169,4833,211"/>
+<area shape="rect" id="node42" href="$LcdShieldDriverManualTest_8cpp.html" title="Implémentation de la classe LcdShieldDriverManualTest." alt="" coords="4858,169,5065,211"/>
+<area shape="rect" id="node44" href="$LedManualTest_8cpp.html" title="Implementation du test manuel visuel des LEDs." alt="" coords="5089,177,5317,203"/>
 </map>

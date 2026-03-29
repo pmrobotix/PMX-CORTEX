@@ -48,7 +48,7 @@ if (edges && edges.length) {
 <script type="text/javascript">
 var viewWidth = 1455;
 var viewHeight = 624;
-var sectionId = 'dynsection-42';
+var sectionId = 'dynsection-44';
 </script>
 <script xlink:href="svgpan.js"/>
 <svg id="graph" class="graph">
@@ -58,7 +58,7 @@ var sectionId = 'dynsection-42';
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
-<g id="a_node1"><a xlink:title=" ">
+<g id="a_node1"><a xlink:title="Arrête le timer d&#39;asservissement et le gestionnaire d&#39;actions.">
 <polygon fill="#bfbfbf" stroke="black" points="0,-197 0,-227 153,-227 153,-197 0,-197"/>
 <text text-anchor="start" x="8" y="-215" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::stopMotionTimerAnd</text>
 <text text-anchor="middle" x="76.5" y="-204" font-family="Helvetica,sans-Serif" font-size="10.00">ActionManager</text>
@@ -128,7 +128,7 @@ var sectionId = 'dynsection-42';
 <!-- Node16 -->
 <g id="node16" class="node">
 <title>Node16</title>
-<g id="a_node16"><a xlink:href="classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" target="_top" xlink:title=" ">
+<g id="a_node16"><a xlink:href="classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" target="_top" xlink:title="Retourne un pointeur vers l&#39;asservissement du robot.">
 <polygon fill="white" stroke="black" points="232.5,-126.5 232.5,-145.5 321.5,-145.5 321.5,-126.5 232.5,-126.5"/>
 <text text-anchor="middle" x="277" y="-133.5" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::passerv</text>
 </a>

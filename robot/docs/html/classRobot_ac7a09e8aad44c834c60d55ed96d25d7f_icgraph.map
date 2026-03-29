@@ -1,4 +1,5 @@
 <map id="Robot::freeMotion" name="Robot::freeMotion">
-<area shape="rect" id="node1" title=" " alt="" coords="241,13,380,39"/>
-<area shape="rect" id="node2" href="$classO__State__WaitEndOfMatch.html#aa73613440b37c8dd42181e2e0265ae86" title="Exécute l&#39;état d&#39;attente de fin de match." alt="" coords="5,5,193,47"/>
+<area shape="rect" id="node1" title="Libère les moteurs (roue libre)." alt="" coords="243,46,381,73"/>
+<area shape="rect" id="node2" href="$classO__State__DecisionMakerIA.html#a96d1f2a7618d607fd10cc51b9111e653" title="Execute l&#39;action." alt="" coords="5,5,195,47"/>
+<area shape="rect" id="node3" href="$classO__State__WaitEndOfMatch.html#aa73613440b37c8dd42181e2e0265ae86" title="Exécute l&#39;état d&#39;attente de fin de match." alt="" coords="6,71,194,112"/>
 </map>

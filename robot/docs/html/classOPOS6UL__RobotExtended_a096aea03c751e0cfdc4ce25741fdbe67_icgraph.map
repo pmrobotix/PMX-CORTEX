@@ -1,10 +1,15 @@
 <map id="OPOS6UL_RobotExtended::logger" name="OPOS6UL_RobotExtended::logger">
-<area shape="rect" id="node1" title=" " alt="" coords="472,89,661,131"/>
-<area shape="rect" id="node2" href="$classOPOS6UL__RobotExtended.html#a3af6cff5115c7ae70f7a797d9e90e66a" title="Initialise l&#39;état du robot et le décisionmaker IA." alt="" coords="235,5,424,47"/>
-<area shape="rect" id="node4" href="$O__IAbyPathTest_8cpp.html#ac1055b8eb7025052d58ebaf15869a480" title=" " alt="" coords="241,71,418,98"/>
-<area shape="rect" id="node6" href="$O__IAbyPathTest_8cpp.html#aafb960063ea3193551e7ba63626e2561" title=" " alt="" coords="240,122,419,149"/>
-<area shape="rect" id="node7" href="$classO__State__Init.html#a1980cd82dcb83e88d61f2e7e14dddfa0" title=" " alt="" coords="253,173,405,199"/>
-<area shape="rect" id="node3" href="$src_2bot-opos6ul_2Main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="69,13,123,39"/>
-<area shape="rect" id="node5" href="$classO__IAByPathTest.html#abedd21fde4835d641e6aa3f8e1c6581f" title=" " alt="" coords="5,97,187,123"/>
-<area shape="rect" id="node8" href="$classO__State__Init.html#abc19788b7457d1f819245dd28367fe91" title="Exécute l&#39;état d&#39;initialisation." alt="" coords="16,173,176,199"/>
+<area shape="rect" id="node1" title=" " alt="" coords="763,155,952,197"/>
+<area shape="rect" id="node2" href="$classOPOS6UL__RobotExtended.html#a3af6cff5115c7ae70f7a797d9e90e66a" title="Initialise l&#39;état du robot et le décisionmaker IA." alt="" coords="525,9,715,50"/>
+<area shape="rect" id="node4" href="$O__State__DecisionMakerIA_8cpp.html#a6af4b40e5e676265dd688e0004be0ff6" title="Action de fin de match : rejoint la zone de fin en haut de table." alt="" coords="541,87,699,113"/>
+<area shape="rect" id="node8" href="$O__IAbyPathTest_8cpp.html#ac1055b8eb7025052d58ebaf15869a480" title=" " alt="" coords="531,137,709,164"/>
+<area shape="rect" id="node10" href="$O__IAbyPathTest_8cpp.html#aafb960063ea3193551e7ba63626e2561" title=" " alt="" coords="531,188,709,215"/>
+<area shape="rect" id="node11" href="$O__State__DecisionMakerIA_8cpp.html#a1cbc5f5cba5f72b993c68f4aad4473f7" title="Action de poussée de la prise en zone basse." alt="" coords="551,239,689,265"/>
+<area shape="rect" id="node12" href="$classO__State__Init.html#a1980cd82dcb83e88d61f2e7e14dddfa0" title=" " alt="" coords="544,289,696,316"/>
+<area shape="rect" id="node3" href="$src_2bot-opos6ul_2Main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="333,5,387,32"/>
+<area shape="rect" id="node5" href="$classO__State__DecisionMakerIA.html#a9b35f6bac1a5602ec2a711fa280be4a6" title="Configure les activités pour les zones de jeu du match." alt="" coords="265,57,455,98"/>
+<area shape="rect" id="node7" href="$classO__State__DecisionMakerIA.html#a8bd1c4d72bec8768c7c7c15bd2e665d8" title="Configure les activités pour le mode test de la table." alt="" coords="243,122,477,163"/>
+<area shape="rect" id="node6" href="$classO__State__DecisionMakerIA.html#a96d1f2a7618d607fd10cc51b9111e653" title="Execute l&#39;action." alt="" coords="5,90,195,131"/>
+<area shape="rect" id="node9" href="$classO__IAByPathTest.html#abedd21fde4835d641e6aa3f8e1c6581f" title="Configure les activités de l&#39;IA pour le test." alt="" coords="269,188,451,215"/>
+<area shape="rect" id="node13" href="$classO__State__Init.html#abc19788b7457d1f819245dd28367fe91" title="Exécute l&#39;état d&#39;initialisation." alt="" coords="280,289,440,316"/>
 </map>

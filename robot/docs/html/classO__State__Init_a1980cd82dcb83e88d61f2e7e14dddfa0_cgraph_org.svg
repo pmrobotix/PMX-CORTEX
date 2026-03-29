@@ -37,7 +37,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="classRobot.html#ac3663ed46470faec31e0a6b7eeaad3fb" target="_top" xlink:title=" ">
+<g id="a_node3"><a xlink:href="classRobot.html#ac3663ed46470faec31e0a6b7eeaad3fb" target="_top" xlink:title="Retourne une référence vers l&#39;asservissement du robot.">
 <polygon fill="white" stroke="black" points="191,-1364.5 191,-1383.5 274,-1383.5 274,-1364.5 191,-1364.5"/>
 <text text-anchor="middle" x="232.5" y="-1371.5" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::asserv</text>
 </a>
@@ -435,7 +435,7 @@
 <!-- Node118 -->
 <g id="node50" class="node">
 <title>Node118</title>
-<g id="a_node50"><a xlink:href="classRobot.html#ade84d9257e194f8b04cc9f5f97e184da" target="_top" xlink:title=" ">
+<g id="a_node50"><a xlink:href="classRobot.html#ade84d9257e194f8b04cc9f5f97e184da" target="_top" xlink:title="Enregistre la position du robot dans le fichier SVG.">
 <polygon fill="white" stroke="red" points="167.5,-1200.5 167.5,-1219.5 297.5,-1219.5 297.5,-1200.5 167.5,-1200.5"/>
 <text text-anchor="middle" x="232.5" y="-1207.5" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::svgPrintPosition</text>
 </a>

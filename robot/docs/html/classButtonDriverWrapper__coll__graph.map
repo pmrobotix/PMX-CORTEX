@@ -1,5 +1,5 @@
 <map id="ButtonDriverWrapper" name="ButtonDriverWrapper">
 <area shape="rect" id="node1" title="Wrapper pour le thread de lecture IPC des boutons." alt="" coords="5,171,165,197"/>
-<area shape="rect" id="node2" href="$classButtonDriver.html" title="Implementation ARM du driver de boutons." alt="" coords="33,81,138,108"/>
+<area shape="rect" id="node2" href="$classButtonDriverSimu.html" title="Implementation simulation du driver de boutons." alt="" coords="16,81,155,108"/>
 <area shape="rect" id="node3" href="$classAButtonDriver.html" title="Interface abstraite du driver de boutons." alt="" coords="28,5,143,32"/>
 </map>

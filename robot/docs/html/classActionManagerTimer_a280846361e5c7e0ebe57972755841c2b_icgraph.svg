@@ -552,7 +552,7 @@ var sectionId = 'dynsection-33';
 <!-- Node26 -->
 <g id="node26" class="node">
 <title>Node26</title>
-<g id="a_node26"><a xlink:href="classRobot.html#a46c797e9dba7c96927fa881851309bf0" target="_top" xlink:title=" ">
+<g id="a_node26"><a xlink:href="classRobot.html#a46c797e9dba7c96927fa881851309bf0" target="_top" xlink:title="Arrête le timer d&#39;asservissement et le gestionnaire d&#39;actions.">
 <polygon fill="white" stroke="red" points="10,-935.5 10,-965.5 163,-965.5 163,-935.5 10,-935.5"/>
 <text text-anchor="start" x="18" y="-953.5" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::stopMotionTimerAnd</text>
 <text text-anchor="middle" x="86.5" y="-942.5" font-family="Helvetica,sans-Serif" font-size="10.00">ActionManager</text>
@@ -735,9 +735,9 @@ var sectionId = 'dynsection-33';
 <path fill="none" stroke="midnightblue" d="M741.62,-377.17C687.39,-377.7 612.62,-378.43 561.2,-378.93"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="741.88,-380.67 751.84,-377.07 741.81,-373.67 741.88,-380.67"/>
 </g>
-<!-- Node76 -->
+<!-- Node77 -->
 <g id="node48" class="node">
-<title>Node76</title>
+<title>Node77</title>
 <g id="a_node48"><a xlink:href="classActionManagerTimer.html#a1d13444da59d96cb4a127fbcea4075c7" target="_top" xlink:title="Trouve un timer posix specifique.">
 <polygon fill="white" stroke="black" points="597,-465.5 597,-495.5 716,-495.5 716,-465.5 597,-465.5"/>
 <text text-anchor="start" x="605" y="-483.5" font-family="Helvetica,sans-Serif" font-size="10.00">ActionManagerTimer</text>
@@ -745,15 +745,15 @@ var sectionId = 'dynsection-33';
 </a>
 </g>
 </g>
-<!-- Node40&#45;&gt;Node76 -->
+<!-- Node40&#45;&gt;Node77 -->
 <g id="edge78" class="edge">
-<title>Node40&#45;&gt;Node76</title>
+<title>Node40&#45;&gt;Node77</title>
 <path fill="none" stroke="midnightblue" d="M779.95,-397.27C750.35,-417.38 706.19,-447.4 679.77,-465.36"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="781.95,-400.14 788.25,-391.62 778.01,-394.35 781.95,-400.14"/>
 </g>
-<!-- Node78 -->
+<!-- Node79 -->
 <g id="node50" class="node">
-<title>Node78</title>
+<title>Node79</title>
 <g id="a_node50"><a xlink:href="classActionManagerTimer.html#ad14a24ea8609f916a5fb3e43c7f0e856" target="_top" xlink:title="Met en pause la boucle du manager d&#39;actions et de timer.">
 <polygon fill="white" stroke="black" points="442,-315.5 442,-345.5 561,-345.5 561,-315.5 442,-315.5"/>
 <text text-anchor="start" x="450" y="-333.5" font-family="Helvetica,sans-Serif" font-size="10.00">ActionManagerTimer</text>
@@ -761,9 +761,9 @@ var sectionId = 'dynsection-33';
 </a>
 </g>
 </g>
-<!-- Node40&#45;&gt;Node78 -->
+<!-- Node40&#45;&gt;Node79 -->
 <g id="edge81" class="edge">
-<title>Node40&#45;&gt;Node78</title>
+<title>Node40&#45;&gt;Node79</title>
 <path fill="none" stroke="midnightblue" d="M741.62,-366.21C687.39,-358.11 612.62,-346.95 561.2,-339.27"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="741.44,-369.72 751.84,-367.74 742.47,-362.8 741.44,-369.72"/>
 </g>
@@ -996,9 +996,9 @@ var sectionId = 'dynsection-33';
 <path fill="none" stroke="midnightblue" d="M446.4,-358.57C444.85,-357.29 443.38,-355.93 442,-354.5 410.74,-321.91 440.52,-288.61 406,-259.5 393.28,-248.77 376.29,-243.43 360.07,-240.94"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="444.47,-361.5 454.67,-364.38 448.5,-355.77 444.47,-361.5"/>
 </g>
-<!-- Node75 -->
+<!-- Node76 -->
 <g id="node47" class="node">
-<title>Node75</title>
+<title>Node76</title>
 <g id="a_node47"><a xlink:href="classtest_1_1ActionManagerTimerTest.html#a694574ced12994c68d7b8cdea2b57ea2" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="230.5,-318.5 230.5,-348.5 384.5,-348.5 384.5,-318.5 230.5,-318.5"/>
 <text text-anchor="start" x="238.5" y="-336.5" font-family="Helvetica,sans-Serif" font-size="10.00">test::ActionManagerTimer</text>
@@ -1006,9 +1006,9 @@ var sectionId = 'dynsection-33';
 </a>
 </g>
 </g>
-<!-- Node52&#45;&gt;Node75 -->
+<!-- Node52&#45;&gt;Node76 -->
 <g id="edge71" class="edge">
-<title>Node52&#45;&gt;Node75</title>
+<title>Node52&#45;&gt;Node76</title>
 <path fill="none" stroke="midnightblue" d="M431.96,-363.08C412.12,-358.33 390.58,-353.16 371.12,-348.5"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="431.31,-366.52 441.85,-365.45 432.94,-359.71 431.31,-366.52"/>
 </g>
@@ -1018,42 +1018,42 @@ var sectionId = 'dynsection-33';
 <path fill="none" stroke="midnightblue" d="M244.58,-240.5C222.37,-240.5 196.9,-240.5 173.04,-240.5"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="244.88,-244 254.88,-240.5 244.88,-237 244.88,-244"/>
 </g>
-<!-- Node76&#45;&gt;Node18 -->
+<!-- Node77&#45;&gt;Node18 -->
 <g id="edge80" class="edge">
-<title>Node76&#45;&gt;Node18</title>
+<title>Node77&#45;&gt;Node18</title>
 <path fill="none" stroke="midnightblue" d="M647.49,-505.19C633.38,-546.98 601.67,-633.53 561,-699.5 517.79,-769.59 480.83,-768.89 442,-841.5 415.14,-891.73 446.95,-924.91 406,-964.5 402.11,-968.27 397.72,-971.49 393.03,-974.24"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="650.86,-506.17 650.7,-495.57 644.22,-503.95 650.86,-506.17"/>
 </g>
-<!-- Node77 -->
+<!-- Node78 -->
 <g id="node49" class="node">
-<title>Node77</title>
+<title>Node78</title>
 <g id="a_node49"><a xlink:href="classActions.html#a1e8c51c018c41f15fbb29566860a9c97" target="_top" xlink:title="Recherche un timer POSIX par son nom.">
 <polygon fill="white" stroke="black" points="446,-463 446,-482 557,-482 557,-463 446,-463"/>
 <text text-anchor="middle" x="501.5" y="-470" font-family="Helvetica,sans-Serif" font-size="10.00">Actions::findPTimer</text>
 </a>
 </g>
 </g>
-<!-- Node76&#45;&gt;Node77 -->
+<!-- Node77&#45;&gt;Node78 -->
 <g id="edge79" class="edge">
-<title>Node76&#45;&gt;Node77</title>
+<title>Node77&#45;&gt;Node78</title>
 <path fill="none" stroke="midnightblue" d="M586.63,-476.9C576.8,-476.38 566.8,-475.86 557.29,-475.36"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="586.61,-480.4 596.78,-477.43 586.98,-473.41 586.61,-480.4"/>
 </g>
-<!-- Node78&#45;&gt;Node4 -->
+<!-- Node79&#45;&gt;Node4 -->
 <g id="edge83" class="edge">
-<title>Node78&#45;&gt;Node4</title>
+<title>Node79&#45;&gt;Node4</title>
 <path fill="none" stroke="midnightblue" d="M438.71,-348.42C427.83,-351.5 416.59,-354.63 406,-357.5 393.77,-360.81 380.65,-364.26 368.12,-367.49"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="439.92,-351.71 448.58,-345.61 438,-344.98 439.92,-351.71"/>
 </g>
-<!-- Node78&#45;&gt;Node8 -->
+<!-- Node79&#45;&gt;Node8 -->
 <g id="edge82" class="edge">
-<title>Node78&#45;&gt;Node8</title>
+<title>Node79&#45;&gt;Node8</title>
 <path fill="none" stroke="midnightblue" d="M486.16,-306.7C469.85,-281.7 440.91,-243.08 406,-221.5 397.75,-216.4 388.5,-212.34 379.06,-209.1"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="483.26,-308.67 491.58,-315.23 489.17,-304.92 483.26,-308.67"/>
 </g>
-<!-- Node78&#45;&gt;Node21 -->
+<!-- Node79&#45;&gt;Node21 -->
 <g id="edge84" class="edge">
-<title>Node78&#45;&gt;Node21</title>
+<title>Node79&#45;&gt;Node21</title>
 <path fill="none" stroke="midnightblue" d="M444.88,-351.73C443.88,-352.62 442.92,-353.54 442,-354.5 409.1,-388.98 441.2,-423.38 406,-455.5 398.38,-462.45 389.1,-467.52 379.32,-471.22"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="447.2,-354.36 453.16,-345.6 443.04,-348.73 447.2,-354.36"/>
 </g>

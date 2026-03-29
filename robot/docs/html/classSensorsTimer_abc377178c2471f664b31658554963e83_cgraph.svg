@@ -128,7 +128,7 @@ var sectionId = 'dynsection-12';
 <!-- Node26 -->
 <g id="node21" class="node">
 <title>Node26</title>
-<g id="a_node21"><a xlink:href="classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" target="_top" xlink:title=" ">
+<g id="a_node21"><a xlink:href="classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" target="_top" xlink:title="Retourne un pointeur vers l&#39;asservissement du robot.">
 <polygon fill="white" stroke="black" points="398,-1265.1 398,-1284.1 487,-1284.1 487,-1265.1 398,-1265.1"/>
 <text text-anchor="middle" x="442.5" y="-1272.1" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::passerv</text>
 </a>
@@ -173,7 +173,7 @@ var sectionId = 'dynsection-12';
 <!-- Node46 -->
 <g id="node35" class="node">
 <title>Node46</title>
-<g id="a_node35"><a xlink:href="classRobot.html#a91607f9ec65e768636015e1e9ed71b3f" target="_top" xlink:title=" ">
+<g id="a_node35"><a xlink:href="classRobot.html#a91607f9ec65e768636015e1e9ed71b3f" target="_top" xlink:title="Affiche le niveau de détection d&#39;obstacle.">
 <polygon fill="white" stroke="black" points="378,-410.1 378,-429.1 507,-429.1 507,-410.1 378,-410.1"/>
 <text text-anchor="middle" x="442.5" y="-417.1" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::displayObstacle</text>
 </a>
@@ -234,7 +234,7 @@ var sectionId = 'dynsection-12';
 <!-- Node52 -->
 <g id="node41" class="node">
 <title>Node52</title>
-<g id="a_node41"><a xlink:href="classRobot.html#afcfbfb8298b846a516f749c0bd087610" target="_top" xlink:title=" ">
+<g id="a_node41"><a xlink:href="classRobot.html#afcfbfb8298b846a516f749c0bd087610" target="_top" xlink:title="Réinitialise l&#39;affichage de détection d&#39;obstacle.">
 <polygon fill="white" stroke="black" points="365,-372.1 365,-391.1 520,-391.1 520,-372.1 365,-372.1"/>
 <text text-anchor="middle" x="442.5" y="-379.1" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::resetDisplayObstacle</text>
 </a>
@@ -464,7 +464,7 @@ var sectionId = 'dynsection-12';
 <!-- Node30 -->
 <g id="node24" class="node">
 <title>Node30</title>
-<g id="a_node24"><a xlink:href="classRobot.html#a6a118c509a6d7ab35cdf96203eb0238a" target="_top" xlink:title=" ">
+<g id="a_node24"><a xlink:href="classRobot.html#a6a118c509a6d7ab35cdf96203eb0238a" target="_top" xlink:title="Retourne la position partagée du robot (pour communication inter&#45;threads).">
 <polygon fill="white" stroke="black" points="592.5,-726.1 592.5,-745.1 715.5,-745.1 715.5,-726.1 592.5,-726.1"/>
 <text text-anchor="middle" x="654" y="-733.1" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::sharedPosition</text>
 </a>
@@ -479,7 +479,7 @@ var sectionId = 'dynsection-12';
 <!-- Node31 -->
 <g id="node25" class="node">
 <title>Node31</title>
-<g id="a_node25"><a xlink:href="classRobot.html#a4f30918c35c294fbd5404fc3c3ffc075" target="_top" xlink:title=" ">
+<g id="a_node25"><a xlink:href="classRobot.html#a4f30918c35c294fbd5404fc3c3ffc075" target="_top" xlink:title="Retourne une référence vers le SvgWriter (logging trajectoire).">
 <polygon fill="white" stroke="black" points="404,-878.1 404,-897.1 481,-897.1 481,-878.1 404,-878.1"/>
 <text text-anchor="middle" x="442.5" y="-885.1" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::svgw</text>
 </a>

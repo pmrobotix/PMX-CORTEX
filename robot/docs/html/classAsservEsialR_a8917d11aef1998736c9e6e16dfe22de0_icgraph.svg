@@ -48,7 +48,7 @@ if (edges && edges.length) {
 <script type="text/javascript">
 var viewWidth = 741;
 var viewHeight = 165;
-var sectionId = 'dynsection-100';
+var sectionId = 'dynsection-101';
 </script>
 <script xlink:href="svgpan.js"/>
 <svg id="graph" class="graph">
@@ -175,7 +175,7 @@ var sectionId = 'dynsection-100';
 <!-- Node9 -->
 <g id="node9" class="node">
 <title>Node9</title>
-<g id="a_node9"><a xlink:href="classRobot.html#a46c797e9dba7c96927fa881851309bf0" target="_top" xlink:title=" ">
+<g id="a_node9"><a xlink:href="classRobot.html#a46c797e9dba7c96927fa881851309bf0" target="_top" xlink:title="Arrête le timer d&#39;asservissement et le gestionnaire d&#39;actions.">
 <polygon fill="white" stroke="black" points="192,-0.5 192,-30.5 345,-30.5 345,-0.5 192,-0.5"/>
 <text text-anchor="start" x="200" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::stopMotionTimerAnd</text>
 <text text-anchor="middle" x="268.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">ActionManager</text>

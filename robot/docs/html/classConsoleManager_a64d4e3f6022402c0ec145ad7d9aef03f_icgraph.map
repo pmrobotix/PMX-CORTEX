@@ -1,8 +1,8 @@
 <map id="ConsoleManager::displayAvailableTests" name="ConsoleManager::displayAvailableTests">
 <area shape="rect" id="node1" title=" " alt="" coords="863,64,1109,105"/>
-<area shape="rect" id="node2" href="$classRobot.html#ae8cede2564e5b9229da095991c064ae4" title="Start the robot (console for tests or main program).." alt="" coords="393,13,497,39"/>
+<area shape="rect" id="node2" href="$classRobot.html#ae8cede2564e5b9229da095991c064ae4" title="Démarre le robot (test fonctionnel ou match)." alt="" coords="393,13,497,39"/>
 <area shape="rect" id="node5" href="$classConsoleManager.html#a21be37acc9749db68a3da63e703035c1" title="Affiche un menu de sélection des tests." alt="" coords="592,64,815,105"/>
-<area shape="rect" id="node6" href="$classRobot.html#a3a26291a86ba55cd33e173e70bf5ce5d" title="Parse console parameters (console for tests or main program).." alt="" coords="611,130,796,157"/>
+<area shape="rect" id="node6" href="$classRobot.html#a3a26291a86ba55cd33e173e70bf5ce5d" title="Parse les paramètres de la ligne de commande et reconfigure la télémétrie si /i ou /p sont fournis." alt="" coords="611,130,796,157"/>
 <area shape="rect" id="node3" href="$classOPOS6UL__RobotExtended.html#a3af6cff5115c7ae70f7a797d9e90e66a" title="Initialise l&#39;état du robot et le décisionmaker IA." alt="" coords="108,5,297,47"/>
 <area shape="rect" id="node4" href="$src_2bot-opos6ul_2Main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,42,60,69"/>
 <area shape="rect" id="node7" href="$classO__ServoObjectsTest.html#a88eeea465c68f251d5e892e835f6b3eb" title=" " alt="" coords="359,123,530,164"/>

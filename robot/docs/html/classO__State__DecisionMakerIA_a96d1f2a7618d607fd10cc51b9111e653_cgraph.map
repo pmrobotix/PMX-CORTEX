@@ -1,15 +1,52 @@
 <map id="O_State_DecisionMakerIA::execute" name="O_State_DecisionMakerIA::execute">
-<area shape="rect" id="node1" title="Execute l&#39;action." alt="" coords="5,129,195,170"/>
-<area shape="rect" id="node2" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="297,56,378,83"/>
-<area shape="rect" id="node7" href="$classlogs_1_1Logger.html#aa381165771d00a6a1e3aa9664bf6467f" title="Trace un message de niveau INFO." alt="" coords="525,107,659,133"/>
-<area shape="rect" id="node8" href="$classOPOS6UL__RobotExtended.html#a514e663cf7537d64d2d0272b8856d6c0" title="Retourne l&#39;instance unique du robot (singleton)." alt="" coords="243,158,432,199"/>
-<area shape="rect" id="node9" href="$classRobot.html#ace39678c476c8e8b193d9c8baf7a692b" title="Retourne le Logger associe a la classe Robot. public car utilise dans Main." alt="" coords="283,224,392,251"/>
-<area shape="rect" id="node3" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#a0e4fd77693fd899ec1b0670354f93a02" title="Cette méthode valide le message en cours de construction et le transmet au Logger de référence." alt="" coords="480,56,704,83"/>
-<area shape="rect" id="node4" href="$classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32" title="Verrouille le mutex. Cette méthode doit être appelée avant d&#39;utiliser la ressource associée...." alt="" coords="785,5,919,32"/>
-<area shape="rect" id="node5" href="$classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3" title="Déverrouille le mutex. Cette méthode doit être appelée après avoir utiliser la ressource associée." alt="" coords="777,56,927,83"/>
-<area shape="rect" id="node6" href="$classlogs_1_1Logger.html#afa535aaf4891e02c4ff7f84d372b5b1b" title="Méthode générique de trace d&#39;un message." alt="" coords="752,107,952,133"/>
-<area shape="rect" id="node10" href="$classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e" title="Cette méthode statique retourne un Logger en fonction de son nom." alt="" coords="518,217,666,258"/>
-<area shape="rect" id="node11" href="$classlogs_1_1LoggerFactory.html#ac89f19c0ffd71aa8cdc1c2d44c03809e" title="Cette méthode ajoute un appender au système." alt="" coords="763,165,941,192"/>
-<area shape="rect" id="node12" href="$classlogs_1_1LoggerFactory.html#a90478b91d7af2ef8841ded21e3521f69" title="Cette méthode statique retourne l&#39;instance unique de la classe LoggerFactory." alt="" coords="778,217,926,258"/>
-<area shape="rect" id="node13" href="$classlogs_1_1LoggerFactory.html#a212aa623f4b6bee12cb39e8017dde670" title="Cette méthode retourne le Logger principal qui définit le niveau de trace par défaut." alt="" coords="778,282,926,323"/>
+<area shape="rect" id="node1" title="Execute l&#39;action." alt="" coords="5,1178,195,1220"/>
+<area shape="rect" id="node2" href="$classOPOS6UL__RobotExtended.html#a6468a2bb1fc8de815154a322e038b875" title=" " alt="" coords="535,408,725,449"/>
+<area shape="rect" id="node3" href="$classSensors.html#a1ef07aeea0536ccf34e310d831e71ef0" title=" " alt="" coords="533,175,727,202"/>
+<area shape="rect" id="node6" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="1080,438,1161,464"/>
+<area shape="rect" id="node9" href="$classlogs_1_1Logger.html#a8b6a2019233bc44b3c3c86c653910831" title="Trace un message de niveau ERROR." alt="" coords="1051,671,1191,698"/>
+<area shape="rect" id="node12" href="$classRobot.html#ac3663ed46470faec31e0a6b7eeaad3fb" title="Retourne une référence vers l&#39;asservissement du robot." alt="" coords="305,466,415,492"/>
+<area shape="rect" id="node13" href="$classOPOS6UL__ActionsExtended.html#a44856498aa3839098211785a1fe0b6a3" title="Déploie la banderole (action de fin de match)." alt="" coords="261,342,459,384"/>
+<area shape="rect" id="node15" href="$classlogs_1_1Logger.html#aa381165771d00a6a1e3aa9664bf6467f" title="Trace un message de niveau INFO." alt="" coords="825,1076,960,1103"/>
+<area shape="rect" id="node16" href="$namespaceutils.html#a4f86fc4c334661a6995538cc080a40c9" title="Met en pause le thread courant pendant usec microsecondes." alt="" coords="808,367,977,394"/>
+<area shape="rect" id="node18" href="$classRobot.html#a7af430452b558088757324f857d099b2" title="Cette methode retourne l&#39;objet de manipulation du chronometer." alt="" coords="304,916,416,943"/>
+<area shape="rect" id="node19" href="$classOPOS6UL__RobotExtended.html#a73821b0ec83f0ebcdccf8c9e999616a0" title="Affiche les points accumulés pendant le match." alt="" coords="265,568,455,609"/>
+<area shape="rect" id="node24" href="$classAsserv.html#a100bad165da8f3055e05383e0cba03fd" title=" " alt="" coords="302,764,418,791"/>
+<area shape="rect" id="node27" href="$classRobot.html#ac7a09e8aad44c834c60d55ed96d25d7f" title="Libère les moteurs (roue libre)." alt="" coords="561,874,699,900"/>
+<area shape="rect" id="node30" href="$classOPOS6UL__RobotExtended.html#aece92ee3684b32eab5bbebba812e1c6b" title=" " alt="" coords="525,1076,735,1103"/>
+<area shape="rect" id="node31" href="$classIAbyPath.html#a0c7e960bbc87c86d716ac5aaa7da986a" title=" " alt="" coords="562,924,698,951"/>
+<area shape="rect" id="node37" href="$classOPOS6UL__IAExtended.html#aa902e0684bee670e1ad189948e7d7971" title="Retourne l&#39;IA par pathfinding (nouvelle version)." alt="" coords="548,1128,712,1169"/>
+<area shape="rect" id="node38" href="$classO__State__DecisionMakerIA.html#a9b35f6bac1a5602ec2a711fa280be4a6" title="Configure les activités pour les zones de jeu du match." alt="" coords="265,1237,455,1278"/>
+<area shape="rect" id="node40" href="$classOPOS6UL__RobotExtended.html#a514e663cf7537d64d2d0272b8856d6c0" title="Retourne l&#39;instance unique du robot (singleton)." alt="" coords="535,1296,725,1337"/>
+<area shape="rect" id="node41" href="$classO__State__DecisionMakerIA.html#a4db7f721d0291e9789b6d5f4822b9b97" title=" " alt="" coords="535,1413,725,1454"/>
+<area shape="rect" id="node42" href="$classO__State__DecisionMakerIA.html#a8bd1c4d72bec8768c7c7c15bd2e665d8" title="Configure les activités pour le mode test de la table." alt="" coords="243,1120,477,1161"/>
+<area shape="rect" id="node43" href="$classOPOS6UL__ActionsExtended.html#a3475484a307a07d60fd57fb9f49be8f5" title="Cette methode retourne l&#39;objet lanceur." alt="" coords="261,1506,459,1548"/>
+<area shape="rect" id="node44" href="$classSensors.html#a1f98ef29b4b9b5607aa154ccf493303a" title=" " alt="" coords="257,1572,463,1613"/>
+<area shape="rect" id="node45" href="$classSensors.html#aa272452c512e68bbe801ae7010a84a38" title=" " alt="" coords="257,1637,463,1678"/>
+<area shape="rect" id="node46" href="$classAsserv.html#af4469650ff2e9587118fb98219528ed2" title=" " alt="" coords="279,1703,441,1730"/>
+<area shape="rect" id="node47" href="$classutils_1_1Chronometer.html#af09b58a8ae28db72b09bca32efa3f95b" title="Indique si le chronomètre est en cours." alt="" coords="289,1754,431,1796"/>
+<area shape="rect" id="node48" href="$classRobot.html#a54154ee94652d3093fba07052cdbc861" title=" " alt="" coords="299,1820,421,1847"/>
+<area shape="rect" id="node49" href="$classRobot.html#a769fd661366307a701f22d3f7904ded0" title="Finalise et ferme le fichier SVG." alt="" coords="269,1871,451,1898"/>
+<area shape="rect" id="node50" href="$classRobot.html#a37f7fd3014bcc768c0aed0a3c66fb67f" title=" " alt="" coords="291,1922,429,1948"/>
+<area shape="rect" id="node4" href="$classAActionsElement.html#a3fbd5b8201049a59602d8b7201a9ef8a" title="Retourne une référence sur le Actions associé." alt="" coords="799,266,987,292"/>
+<area shape="rect" id="node5" href="$classActions.html#a173e3bb37b9cbb0e5ef423b1719b7afd" title="Ajout d&#39;un timer standard." alt="" coords="823,316,963,343"/>
+<area shape="rect" id="node10" href="$classlogs_1_1Logger.html#a7dffc8f610014ec59b63392da16140e4" title="Trace un message de niveau DEBUG." alt="" coords="818,468,967,495"/>
+<area shape="rect" id="node11" href="$classSensors.html#a445b086f263ac98b47cb545d11b73ab1" title=" " alt="" coords="831,164,954,191"/>
+<area shape="rect" id="node7" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#a0e4fd77693fd899ec1b0670354f93a02" title="Cette méthode valide le message en cours de construction et le transmet au Logger de référence." alt="" coords="1239,476,1463,503"/>
+<area shape="rect" id="node8" href="$classlogs_1_1Logger.html#afa535aaf4891e02c4ff7f84d372b5b1b" title="Méthode générique de trace d&#39;un message." alt="" coords="1511,627,1711,654"/>
+<area shape="rect" id="node14" href="$classServoObjectsSystem.html#a60de17986f65700a7659b22edda2faef" title="move 1 servo." alt="" coords="551,277,709,318"/>
+<area shape="rect" id="node17" href="$classOPOS6UL__ActionsExtended.html#a1a6ccdf4aae1302cdf664d32ae5a67c6" title="Cette methode retourne l&#39;objet servos." alt="" coords="531,342,729,384"/>
+<area shape="rect" id="node20" href="$classLcdShield.html#a9a329fba00c24f56f24266225dcb6a16" title="Efface le contenu de l&#39;écran." alt="" coords="568,575,692,602"/>
+<area shape="rect" id="node21" href="$classOPOS6UL__ActionsExtended.html#a92c4b04808832f55fa7b68a9678307b1" title="Cette methode retourne l&#39;objet LcdShield." alt="" coords="531,626,729,668"/>
+<area shape="rect" id="node22" href="$classPrint.html#aa4158dd94bc1741f92d99c427261d7c0" title=" " alt="" coords="585,474,675,500"/>
+<area shape="rect" id="node23" href="$classLcdShield.html#afb23b41227f1de62c1ac3ce853da71e4" title="Positionne le curseur à une position donnée." alt="" coords="553,524,707,551"/>
+<area shape="rect" id="node25" href="$classAsservEsialR.html#a163832308cf0ea6fb9826fd93950c7bf" title="Avance ou recule en ligne droite." alt="" coords="550,692,710,733"/>
+<area shape="rect" id="node26" href="$classAAsservDriver.html#a8eadfcc295d9c3f54811e857be3e9921" title="Avance ou recule en ligne droite." alt="" coords="545,757,715,798"/>
+<area shape="rect" id="node28" href="$classAsserv.html#aef3c037b15172c4cc015c47a33f93634" title=" " alt="" coords="821,519,965,546"/>
+<area shape="rect" id="node29" href="$classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" title="Retourne un pointeur vers l&#39;asservissement du robot." alt="" coords="833,570,952,596"/>
+<area shape="rect" id="node32" href="$classIAbyPath.html#a659be955d17b16795bd842079c9a154d" title=" " alt="" coords="801,772,985,799"/>
+<area shape="rect" id="node33" href="$classIAbyPath.html#a8a3c78c75a2208494e2774b918de3d45" title="Retourne le Logger associé à la classe IAbyPath." alt="" coords="829,823,957,850"/>
+<area shape="rect" id="node34" href="$classAsserv.html#a0c1a1048174322c00dfba79c74193bd1" title=" " alt="" coords="783,874,1003,900"/>
+<area shape="rect" id="node35" href="$classAsserv.html#a871088db63d1a0e20ccbf387c6f895db" title=" " alt="" coords="809,924,976,951"/>
+<area shape="rect" id="node36" href="$classAsserv.html#a2cca6401ccf8cfc7cc927177cba14f4a" title=" " alt="" coords="810,722,975,748"/>
+<area shape="rect" id="node39" href="$classRobot.html#a99ab62d38fe4737043969290b278cd15" title="Retourne la couleur du robot." alt="" coords="559,1194,701,1220"/>
 </map>

@@ -1,4 +1,6 @@
 <map id="src/driver&#45;simu/LedDriver.hpp" name="src/driver&#45;simu/LedDriver.hpp">
-<area shape="rect" id="node1" title="Implementation SIMU du driver de LEDs." alt="" coords="5,5,220,32"/>
-<area shape="rect" id="node2" href="$driver-simu_2LedDriver_8cpp.html" title="Implementation SIMU du driver de LEDs." alt="" coords="6,80,219,107"/>
+<area shape="rect" id="node1" title="Implementation SIMU du driver de LEDs." alt="" coords="253,5,468,32"/>
+<area shape="rect" id="node2" href="$driver-arm_2LedDriver_8cpp.html" title="Implementation ARM du driver de LEDs pour l&#39;OPOS6UL." alt="" coords="5,80,212,107"/>
+<area shape="rect" id="node3" href="$DriverFactories_8cpp.html" title="Factory create() pour le build SIMU." alt="" coords="236,80,485,107"/>
+<area shape="rect" id="node4" href="$driver-simu_2LedDriver_8cpp.html" title="Implementation SIMU du driver de LEDs." alt="" coords="510,80,723,107"/>
 </map>

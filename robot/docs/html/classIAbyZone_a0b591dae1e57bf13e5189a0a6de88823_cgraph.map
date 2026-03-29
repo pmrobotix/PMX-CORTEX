@@ -5,7 +5,7 @@
 <area shape="rect" id="node8" href="$classIAbyZone.html#a7931d32abc21501dffb48b09ccc25ed0" title=" " alt="" coords="210,188,399,215"/>
 <area shape="rect" id="node10" href="$classlogs_1_1Logger.html#aa381165771d00a6a1e3aa9664bf6467f" title="Trace un message de niveau INFO." alt="" coords="492,32,627,59"/>
 <area shape="rect" id="node11" href="$classIAbyZone.html#a4cc140058dae45b88658c5b691fee8a9" title="Retourne le Logger associé à la classe IAbyZone." alt="" coords="725,437,859,464"/>
-<area shape="rect" id="node16" href="$classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" title=" " alt="" coords="245,340,364,367"/>
+<area shape="rect" id="node16" href="$classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" title="Retourne un pointeur vers l&#39;asservissement du robot." alt="" coords="245,340,364,367"/>
 <area shape="rect" id="node17" href="$classAsserv.html#a0c1a1048174322c00dfba79c74193bd1" title=" " alt="" coords="195,391,415,417"/>
 <area shape="rect" id="node32" href="$classAsserv.html#a871088db63d1a0e20ccbf387c6f895db" title=" " alt="" coords="476,441,643,468"/>
 <area shape="rect" id="node33" href="$classAsserv.html#a2cca6401ccf8cfc7cc927177cba14f4a" title=" " alt="" coords="222,492,387,519"/>
@@ -23,7 +23,7 @@
 <area shape="rect" id="node20" href="$classAsservEsialR.html#a18064f0087aa1cd67cbdd131f99720db" title="Lit la position courante du robot." alt="" coords="928,349,1148,376"/>
 <area shape="rect" id="node29" href="$classAAsservDriver.html#a81dea0fa2d154d60d67e9e12b415b265" title="Lit la position courante du robot." alt="" coords="965,499,1111,541"/>
 <area shape="rect" id="node30" href="$classARobotPositionShared.html#a42f840a7c37b33555643005112dc1875" title="Met a jour la position du robot." alt="" coords="955,565,1121,606"/>
-<area shape="rect" id="node31" href="$classRobot.html#a6a118c509a6d7ab35cdf96203eb0238a" title=" " alt="" coords="956,631,1120,657"/>
+<area shape="rect" id="node31" href="$classRobot.html#a6a118c509a6d7ab35cdf96203eb0238a" title="Retourne la position partagée du robot (pour communication inter&#45;threads)." alt="" coords="956,631,1120,657"/>
 <area shape="rect" id="node21" href="$classlogs_1_1Logger.html#a7dffc8f610014ec59b63392da16140e4" title="Trace un message de niveau DEBUG." alt="" coords="1532,93,1681,120"/>
 <area shape="rect" id="node22" href="$classCommandManagerA.html#a3d4499244b1f7548c0889974a16b402b" title=" " alt="" coords="1196,347,1447,389"/>
 <area shape="rect" id="node23" href="$classOdometrie.html#abc6576337993c68f587df8ca4b3602f9" title=" " alt="" coords="1243,413,1400,440"/>

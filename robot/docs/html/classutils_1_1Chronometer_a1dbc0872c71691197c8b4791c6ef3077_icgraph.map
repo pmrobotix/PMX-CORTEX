@@ -1,7 +1,8 @@
 <map id="utils::Chronometer::setTimer" name="utils::Chronometer::setTimer">
-<area shape="rect" id="node1" title="Configure le timer avec une période donnée et lance le chronomètre." alt="" coords="444,57,587,98"/>
-<area shape="rect" id="node2" href="$classAsservEsialR.html#abfd3be9bde7bf8ae887688bf8bc0ca43" title="Méthode virtuelle pure à implémenter dans les sous&#45;classes." alt="" coords="225,5,391,32"/>
-<area shape="rect" id="node3" href="$classAsservDriver__mbed__i2c.html#aceeb058d409ef084ae4cc591c21befab" title="Méthode virtuelle pure à implémenter dans les sous&#45;classes." alt="" coords="220,57,396,98"/>
-<area shape="rect" id="node4" href="$classtest_1_1ChronometerTest.html#a7acfac7912eba425f6cc7c80faa017af" title="Vérifie le fonctionnement de setTimer/waitTimer." alt="" coords="224,122,392,163"/>
-<area shape="rect" id="node5" href="$classtest_1_1ChronometerTest.html#a1c7e36190a3c3f415a5547d408883d76" title="Execute les tests associés à la classe." alt="" coords="5,122,172,163"/>
+<area shape="rect" id="node1" title="Configure le timer avec une période donnée et lance le chronomètre." alt="" coords="467,86,609,127"/>
+<area shape="rect" id="node2" href="$classAsservEsialR.html#abfd3be9bde7bf8ae887688bf8bc0ca43" title="Méthode virtuelle pure à implémenter dans les sous&#45;classes." alt="" coords="237,5,402,32"/>
+<area shape="rect" id="node3" href="$classAsservDriver__mbed__i2c.html#aceeb058d409ef084ae4cc591c21befab" title="Méthode virtuelle pure à implémenter dans les sous&#45;classes." alt="" coords="231,57,407,98"/>
+<area shape="rect" id="node4" href="$classAsservDriverSimu.html#a733f14167a9d3442e609d3cb0955d0eb" title="Méthode virtuelle pure à implémenter dans les sous&#45;classes." alt="" coords="220,123,419,149"/>
+<area shape="rect" id="node5" href="$classtest_1_1ChronometerTest.html#a7acfac7912eba425f6cc7c80faa017af" title="Vérifie le fonctionnement de setTimer/waitTimer." alt="" coords="235,174,403,215"/>
+<area shape="rect" id="node6" href="$classtest_1_1ChronometerTest.html#a1c7e36190a3c3f415a5547d408883d76" title="Execute les tests associés à la classe." alt="" coords="5,174,172,215"/>
 </map>

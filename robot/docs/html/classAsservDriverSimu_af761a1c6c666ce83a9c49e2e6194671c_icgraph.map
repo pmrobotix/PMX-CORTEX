@@ -1,0 +1,5 @@
+<map id="AsservDriverSimu::motion_FreeMotion" name="AsservDriverSimu::motion_FreeMotion">
+<area shape="rect" id="node1" title="Passe en roue libre (aucun asservissement)." alt="" coords="288,27,481,69"/>
+<area shape="rect" id="node2" href="$classAsservDriverSimu.html#a66f474eaf4d3fc68ec571bcbe73d2326" title="Actions de nettoyage avant l&#39;arret du programme." alt="" coords="5,5,240,32"/>
+<area shape="rect" id="node3" href="$classAsservDriverSimu.html#a32d442467bd1d85e0c8f14cf91c341ef" title="Desactive le PID et stoppe les moteurs." alt="" coords="26,57,219,98"/>
+</map>

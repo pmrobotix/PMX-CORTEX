@@ -22,16 +22,16 @@
 <g id="node2" class="node">
 <title>Node1</title>
 <g id="a_node2"><a xlink:href="classButtonBar.html" target="_top" xlink:title="Gestion de la barre de boutons du robot.">
-<polygon fill="white" stroke="black" points="200.5,-646.5 200.5,-665.5 265.5,-665.5 265.5,-646.5 200.5,-646.5"/>
-<text text-anchor="middle" x="233" y="-653.5" font-family="Helvetica,sans-Serif" font-size="10.00">ButtonBar</text>
+<polygon fill="white" stroke="black" points="200.5,-608.5 200.5,-627.5 265.5,-627.5 265.5,-608.5 200.5,-608.5"/>
+<text text-anchor="middle" x="233" y="-615.5" font-family="Helvetica,sans-Serif" font-size="10.00">ButtonBar</text>
 </a>
 </g>
 </g>
 <!-- Node0&#45;&gt;Node1 -->
 <g id="edge1" class="edge">
 <title>Node0&#45;&gt;Node1</title>
-<path fill="none" stroke="midnightblue" d="M122.87,-668.31C148.95,-665.36 178.52,-662.03 200.3,-659.57"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="122.23,-664.85 112.69,-669.45 123.02,-671.81 122.23,-664.85"/>
+<path fill="none" stroke="midnightblue" d="M95.42,-661.53C114.3,-653.83 138.8,-644.27 161,-637 173.73,-632.83 187.96,-628.88 200.32,-625.68"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="94.01,-658.33 86.09,-665.38 96.67,-664.8 94.01,-658.33"/>
 </g>
 <!-- Node2 -->
 <g id="node3" class="node">
@@ -52,31 +52,31 @@
 <g id="node4" class="node">
 <title>Node3</title>
 <g id="a_node4"><a xlink:href="classLedBar.html" target="_top" xlink:title="Gestion d&#39;une barre de LEDs avec actions et timers de clignotement.">
-<polygon fill="white" stroke="black" points="208,-608.5 208,-627.5 258,-627.5 258,-608.5 208,-608.5"/>
-<text text-anchor="middle" x="233" y="-615.5" font-family="Helvetica,sans-Serif" font-size="10.00">LedBar</text>
+<polygon fill="white" stroke="black" points="208,-570.5 208,-589.5 258,-589.5 258,-570.5 208,-570.5"/>
+<text text-anchor="middle" x="233" y="-577.5" font-family="Helvetica,sans-Serif" font-size="10.00">LedBar</text>
 </a>
 </g>
 </g>
 <!-- Node0&#45;&gt;Node3 -->
 <g id="edge3" class="edge">
 <title>Node0&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M95.42,-661.53C114.3,-653.83 138.8,-644.27 161,-637 176.4,-631.96 193.99,-627.24 207.82,-623.77"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="94.01,-658.33 86.09,-665.38 96.67,-664.8 94.01,-658.33"/>
+<path fill="none" stroke="midnightblue" d="M80.39,-658.34C98.76,-641.1 129.7,-614.58 161,-599 175.74,-591.67 193.65,-586.9 207.8,-583.97"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="77.91,-655.87 73.1,-665.31 82.75,-660.92 77.91,-655.87"/>
 </g>
 <!-- Node4 -->
 <g id="node5" class="node">
 <title>Node4</title>
 <g id="a_node5"><a xlink:href="classSensors.html" target="_top" xlink:title="Gestion des capteurs de detection et de distance.">
-<polygon fill="white" stroke="black" points="205.5,-570.5 205.5,-589.5 260.5,-589.5 260.5,-570.5 205.5,-570.5"/>
-<text text-anchor="middle" x="233" y="-577.5" font-family="Helvetica,sans-Serif" font-size="10.00">Sensors</text>
+<polygon fill="white" stroke="black" points="205.5,-760.5 205.5,-779.5 260.5,-779.5 260.5,-760.5 205.5,-760.5"/>
+<text text-anchor="middle" x="233" y="-767.5" font-family="Helvetica,sans-Serif" font-size="10.00">Sensors</text>
 </a>
 </g>
 </g>
 <!-- Node0&#45;&gt;Node4 -->
 <g id="edge4" class="edge">
 <title>Node0&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M80.39,-658.34C98.76,-641.1 129.7,-614.58 161,-599 174.94,-592.06 191.71,-587.42 205.46,-584.47"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="77.91,-655.87 73.1,-665.31 82.75,-660.92 77.91,-655.87"/>
+<path fill="none" stroke="midnightblue" d="M80.39,-691.66C98.76,-708.9 129.7,-735.42 161,-751 174.94,-757.94 191.71,-762.58 205.46,-765.53"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="82.75,-689.08 73.1,-684.69 77.91,-694.13 82.75,-689.08"/>
 </g>
 <!-- Node5 -->
 <g id="node6" class="node">
@@ -97,53 +97,53 @@
 <g id="node7" class="node">
 <title>Node6</title>
 <g id="a_node7"><a xlink:href="classServoUsingMotor.html" target="_top" xlink:title="Gère un servomoteur piloté via un driver moteur.">
-<polygon fill="white" stroke="black" points="182.5,-760.5 182.5,-779.5 283.5,-779.5 283.5,-760.5 182.5,-760.5"/>
-<text text-anchor="middle" x="233" y="-767.5" font-family="Helvetica,sans-Serif" font-size="10.00">ServoUsingMotor</text>
+<polygon fill="white" stroke="black" points="182.5,-722.5 182.5,-741.5 283.5,-741.5 283.5,-722.5 182.5,-722.5"/>
+<text text-anchor="middle" x="233" y="-729.5" font-family="Helvetica,sans-Serif" font-size="10.00">ServoUsingMotor</text>
 </a>
 </g>
 </g>
 <!-- Node0&#45;&gt;Node6 -->
 <g id="edge6" class="edge">
 <title>Node0&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M80.39,-691.66C98.76,-708.9 129.7,-735.42 161,-751 168.65,-754.81 177.16,-757.93 185.56,-760.45"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="82.75,-689.08 73.1,-684.69 77.91,-694.13 82.75,-689.08"/>
+<path fill="none" stroke="midnightblue" d="M95.42,-688.47C114.3,-696.17 138.8,-705.73 161,-713 171.31,-716.38 182.6,-719.61 193.08,-722.41"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="96.67,-685.2 86.09,-684.62 94.01,-691.67 96.67,-685.2"/>
 </g>
 <!-- Node7 -->
 <g id="node8" class="node">
 <title>Node7</title>
 <g id="a_node8"><a xlink:href="classSoundBar.html" target="_top" xlink:title="Gère la barre de son du robot (beeps, mélodies, synthèse vocale).">
-<polygon fill="white" stroke="black" points="201.5,-722.5 201.5,-741.5 264.5,-741.5 264.5,-722.5 201.5,-722.5"/>
-<text text-anchor="middle" x="233" y="-729.5" font-family="Helvetica,sans-Serif" font-size="10.00">SoundBar</text>
+<polygon fill="white" stroke="black" points="201.5,-684.5 201.5,-703.5 264.5,-703.5 264.5,-684.5 201.5,-684.5"/>
+<text text-anchor="middle" x="233" y="-691.5" font-family="Helvetica,sans-Serif" font-size="10.00">SoundBar</text>
 </a>
 </g>
 </g>
 <!-- Node0&#45;&gt;Node7 -->
 <g id="edge7" class="edge">
 <title>Node0&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M95.42,-688.47C114.3,-696.17 138.8,-705.73 161,-713 174.1,-717.29 188.78,-721.34 201.38,-724.59"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="96.67,-685.2 86.09,-684.62 94.01,-691.67 96.67,-685.2"/>
+<path fill="none" stroke="midnightblue" d="M122.66,-681.67C149.2,-684.66 179.39,-688.07 201.31,-690.54"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="123.02,-678.19 112.69,-680.55 122.23,-685.15 123.02,-678.19"/>
 </g>
 <!-- Node8 -->
 <g id="node9" class="node">
 <title>Node8</title>
 <g id="a_node9"><a xlink:href="classTirette.html" target="_top" xlink:title="Gère la tirette de démarrage du robot (interrupteur de lancement).">
-<polygon fill="white" stroke="black" points="208.5,-684.5 208.5,-703.5 257.5,-703.5 257.5,-684.5 208.5,-684.5"/>
-<text text-anchor="middle" x="233" y="-691.5" font-family="Helvetica,sans-Serif" font-size="10.00">Tirette</text>
+<polygon fill="white" stroke="black" points="208.5,-646.5 208.5,-665.5 257.5,-665.5 257.5,-646.5 208.5,-646.5"/>
+<text text-anchor="middle" x="233" y="-653.5" font-family="Helvetica,sans-Serif" font-size="10.00">Tirette</text>
 </a>
 </g>
 </g>
 <!-- Node0&#45;&gt;Node8 -->
 <g id="edge8" class="edge">
 <title>Node0&#45;&gt;Node8</title>
-<path fill="none" stroke="midnightblue" d="M122.89,-681.7C152.31,-685.01 186.19,-688.83 208.29,-691.33"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="123.02,-678.19 112.69,-680.55 122.23,-685.15 123.02,-678.19"/>
+<path fill="none" stroke="midnightblue" d="M122.89,-668.3C152.31,-664.99 186.19,-661.17 208.29,-658.67"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="122.23,-664.85 112.69,-669.45 123.02,-671.81 122.23,-664.85"/>
 </g>
 <!-- Node12 -->
 <g id="node10" class="node">
 <title>Node12</title>
 <g id="a_node10"><a xlink:href="classAAsservDriver.html" target="_top" xlink:title="Interface abstraite du driver d&#39;asservissement.">
-<polygon fill="white" stroke="black" points="190,-266.5 190,-285.5 276,-285.5 276,-266.5 190,-266.5"/>
-<text text-anchor="middle" x="233" y="-273.5" font-family="Helvetica,sans-Serif" font-size="10.00">AAsservDriver</text>
+<polygon fill="white" stroke="black" points="190,-152.5 190,-171.5 276,-171.5 276,-152.5 190,-152.5"/>
+<text text-anchor="middle" x="233" y="-159.5" font-family="Helvetica,sans-Serif" font-size="10.00">AAsservDriver</text>
 </a>
 </g>
 </g>
@@ -151,437 +151,458 @@
 <g id="node11" class="node">
 <title>Node13</title>
 <g id="a_node11"><a xlink:href="classAsservDriver.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="381.5,-228.5 381.5,-247.5 461.5,-247.5 461.5,-228.5 381.5,-228.5"/>
-<text text-anchor="middle" x="421.5" y="-235.5" font-family="Helvetica,sans-Serif" font-size="10.00">AsservDriver</text>
+<polygon fill="white" stroke="black" points="381.5,-190.5 381.5,-209.5 461.5,-209.5 461.5,-190.5 381.5,-190.5"/>
+<text text-anchor="middle" x="421.5" y="-197.5" font-family="Helvetica,sans-Serif" font-size="10.00">AsservDriver</text>
 </a>
 </g>
 </g>
 <!-- Node12&#45;&gt;Node13 -->
 <g id="edge9" class="edge">
 <title>Node12&#45;&gt;Node13</title>
-<path fill="none" stroke="midnightblue" d="M286.24,-265.36C316.35,-259.22 353.6,-251.63 381.21,-246"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="285.42,-261.95 276.32,-267.38 286.82,-268.81 285.42,-261.95"/>
+<path fill="none" stroke="midnightblue" d="M286.24,-172.64C316.35,-178.78 353.6,-186.37 381.21,-192"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="286.82,-169.19 276.32,-170.62 285.42,-176.05 286.82,-169.19"/>
 </g>
 <!-- Node14 -->
 <g id="node12" class="node">
 <title>Node14</title>
-<g id="a_node12"><a xlink:href="classAsservDriver__mbed__i2c.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="355.5,-304.5 355.5,-323.5 487.5,-323.5 487.5,-304.5 355.5,-304.5"/>
-<text text-anchor="middle" x="421.5" y="-311.5" font-family="Helvetica,sans-Serif" font-size="10.00">AsservDriver_mbed_i2c</text>
+<g id="a_node12"><a xlink:href="classAsservDriverSimu.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="black" points="369.5,-152.5 369.5,-171.5 473.5,-171.5 473.5,-152.5 369.5,-152.5"/>
+<text text-anchor="middle" x="421.5" y="-159.5" font-family="Helvetica,sans-Serif" font-size="10.00">AsservDriverSimu</text>
 </a>
 </g>
 </g>
 <!-- Node12&#45;&gt;Node14 -->
 <g id="edge10" class="edge">
 <title>Node12&#45;&gt;Node14</title>
-<path fill="none" stroke="midnightblue" d="M286.16,-286.63C313.66,-292.23 347.12,-299.05 373.77,-304.48"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="286.82,-283.19 276.32,-284.62 285.42,-290.05 286.82,-283.19"/>
+<path fill="none" stroke="midnightblue" d="M286.36,-162C312.33,-162 343.58,-162 369.39,-162"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="286.32,-158.5 276.32,-162 286.32,-165.5 286.32,-158.5"/>
 </g>
 <!-- Node15 -->
 <g id="node13" class="node">
 <title>Node15</title>
-<g id="a_node13"><a xlink:href="classAsservEsialR.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="381.5,-266.5 381.5,-285.5 461.5,-285.5 461.5,-266.5 381.5,-266.5"/>
-<text text-anchor="middle" x="421.5" y="-273.5" font-family="Helvetica,sans-Serif" font-size="10.00">AsservEsialR</text>
+<g id="a_node13"><a xlink:href="classAsservDriver__mbed__i2c.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="black" points="355.5,-114.5 355.5,-133.5 487.5,-133.5 487.5,-114.5 355.5,-114.5"/>
+<text text-anchor="middle" x="421.5" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00">AsservDriver_mbed_i2c</text>
 </a>
 </g>
 </g>
 <!-- Node12&#45;&gt;Node15 -->
 <g id="edge11" class="edge">
 <title>Node12&#45;&gt;Node15</title>
-<path fill="none" stroke="midnightblue" d="M286.63,-276C316.68,-276 353.72,-276 381.21,-276"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="286.32,-272.5 276.32,-276 286.32,-279.5 286.32,-272.5"/>
+<path fill="none" stroke="midnightblue" d="M286.16,-151.37C313.66,-145.77 347.12,-138.95 373.77,-133.52"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="285.42,-147.95 276.32,-153.38 286.82,-154.81 285.42,-147.95"/>
 </g>
-<!-- Node31 -->
+<!-- Node16 -->
 <g id="node14" class="node">
-<title>Node31</title>
-<g id="a_node14"><a xlink:href="classlogs_1_1Appender.html" target="_top" xlink:title="Classe de gestion des flux de sortie pour les logs.">
+<title>Node16</title>
+<g id="a_node14"><a xlink:href="classAsservEsialR.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="black" points="381.5,-76.5 381.5,-95.5 461.5,-95.5 461.5,-76.5 381.5,-76.5"/>
+<text text-anchor="middle" x="421.5" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">AsservEsialR</text>
+</a>
+</g>
+</g>
+<!-- Node12&#45;&gt;Node16 -->
+<g id="edge12" class="edge">
+<title>Node12&#45;&gt;Node16</title>
+<path fill="none" stroke="midnightblue" d="M285.89,-151.73C292.56,-149.38 299.11,-146.51 305,-143 324.99,-131.1 320.85,-116.63 341,-105 353.17,-97.98 367.81,-93.54 381.2,-90.75"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="284.58,-148.47 276.09,-154.81 286.68,-155.15 284.58,-148.47"/>
+</g>
+<!-- Node35 -->
+<g id="node15" class="node">
+<title>Node35</title>
+<g id="a_node15"><a xlink:href="classlogs_1_1Appender.html" target="_top" xlink:title="Classe de gestion des flux de sortie pour les logs.">
 <polygon fill="white" stroke="black" points="18,-494.5 18,-513.5 107,-513.5 107,-494.5 18,-494.5"/>
 <text text-anchor="middle" x="62.5" y="-501.5" font-family="Helvetica,sans-Serif" font-size="10.00">logs::Appender</text>
 </a>
 </g>
 </g>
-<!-- Node32 -->
-<g id="node15" class="node">
-<title>Node32</title>
-<g id="a_node15"><a xlink:href="classlogs_1_1MemoryAppender.html" target="_top" xlink:title="Implémentation de Appender stockant les messages en mémoire.">
+<!-- Node36 -->
+<g id="node16" class="node">
+<title>Node36</title>
+<g id="a_node16"><a xlink:href="classlogs_1_1MemoryAppender.html" target="_top" xlink:title="Implémentation de Appender stockant les messages en mémoire.">
 <polygon fill="white" stroke="black" points="168,-494.5 168,-513.5 298,-513.5 298,-494.5 168,-494.5"/>
 <text text-anchor="middle" x="233" y="-501.5" font-family="Helvetica,sans-Serif" font-size="10.00">logs::MemoryAppender</text>
 </a>
 </g>
 </g>
-<!-- Node31&#45;&gt;Node32 -->
-<g id="edge12" class="edge">
-<title>Node31&#45;&gt;Node32</title>
+<!-- Node35&#45;&gt;Node36 -->
+<g id="edge13" class="edge">
+<title>Node35&#45;&gt;Node36</title>
 <path fill="none" stroke="midnightblue" d="M117.56,-504C133.55,-504 151.2,-504 167.76,-504"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="117.33,-500.5 107.33,-504 117.33,-507.5 117.33,-500.5"/>
 </g>
-<!-- Node33 -->
-<g id="node16" class="node">
-<title>Node33</title>
-<g id="a_node16"><a xlink:href="classUnitTestAppender.html" target="_top" xlink:title="Implémente un appender spécifique à l&#39;execution et au suivi des tests unitaires.">
+<!-- Node37 -->
+<g id="node17" class="node">
+<title>Node37</title>
+<g id="a_node17"><a xlink:href="classUnitTestAppender.html" target="_top" xlink:title="Implémente un appender spécifique à l&#39;execution et au suivi des tests unitaires.">
 <polygon fill="white" stroke="black" points="370,-456.5 370,-475.5 473,-475.5 473,-456.5 370,-456.5"/>
 <text text-anchor="middle" x="421.5" y="-463.5" font-family="Helvetica,sans-Serif" font-size="10.00">UnitTestAppender</text>
 </a>
 </g>
 </g>
-<!-- Node32&#45;&gt;Node33 -->
-<g id="edge13" class="edge">
-<title>Node32&#45;&gt;Node33</title>
+<!-- Node36&#45;&gt;Node37 -->
+<g id="edge14" class="edge">
+<title>Node36&#45;&gt;Node37</title>
 <path fill="none" stroke="midnightblue" d="M290.98,-492.39C317.5,-486.99 348.67,-480.64 373.78,-475.52"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="290.16,-488.98 281.06,-494.41 291.56,-495.84 290.16,-488.98"/>
 </g>
-<!-- Node34 -->
-<g id="node17" class="node">
-<title>Node34</title>
-<g id="a_node17"><a xlink:href="classlogs_1_1ConsoleAppender.html" target="_top" xlink:title="Implémentation de Appender pour une écriture des traces sur un flux de sortie de type std::ostream.">
-<polygon fill="white" stroke="black" points="357.5,-418.5 357.5,-437.5 485.5,-437.5 485.5,-418.5 357.5,-418.5"/>
-<text text-anchor="middle" x="421.5" y="-425.5" font-family="Helvetica,sans-Serif" font-size="10.00">logs::ConsoleAppender</text>
+<!-- Node38 -->
+<g id="node18" class="node">
+<title>Node38</title>
+<g id="a_node18"><a xlink:href="classlogs_1_1ConsoleAppender.html" target="_top" xlink:title="Implémentation de Appender pour une écriture des traces sur un flux de sortie de type std::ostream.">
+<polygon fill="white" stroke="black" points="357.5,-608.5 357.5,-627.5 485.5,-627.5 485.5,-608.5 357.5,-608.5"/>
+<text text-anchor="middle" x="421.5" y="-615.5" font-family="Helvetica,sans-Serif" font-size="10.00">logs::ConsoleAppender</text>
 </a>
 </g>
 </g>
-<!-- Node32&#45;&gt;Node34 -->
-<g id="edge14" class="edge">
-<title>Node32&#45;&gt;Node34</title>
-<path fill="none" stroke="midnightblue" d="M293.46,-490.8C297.47,-489.09 301.36,-487.17 305,-485 324.99,-473.1 320.85,-458.63 341,-447 347.76,-443.1 355.28,-440 362.93,-437.53"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="292.05,-487.59 283.93,-494.4 294.52,-494.14 292.05,-487.59"/>
+<!-- Node36&#45;&gt;Node38 -->
+<g id="edge15" class="edge">
+<title>Node36&#45;&gt;Node38</title>
+<path fill="none" stroke="midnightblue" d="M298.59,-518.39C300.84,-519.79 302.98,-521.32 305,-523 333.71,-546.93 311.97,-575.45 341,-599 345.85,-602.93 351.38,-606.08 357.21,-608.58"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="299.97,-515.16 289.49,-513.63 296.73,-521.37 299.97,-515.16"/>
 </g>
-<!-- Node35 -->
-<g id="node18" class="node">
-<title>Node35</title>
-<g id="a_node18"><a xlink:href="classlogs_1_1FileAppender.html" target="_top" xlink:title="Implémentation de Appender pour une sortie sur fichier.">
+<!-- Node39 -->
+<g id="node19" class="node">
+<title>Node39</title>
+<g id="a_node19"><a xlink:href="classlogs_1_1FileAppender.html" target="_top" xlink:title="Implémentation de Appender pour une sortie sur fichier.">
 <polygon fill="white" stroke="black" points="368,-570.5 368,-589.5 475,-589.5 475,-570.5 368,-570.5"/>
 <text text-anchor="middle" x="421.5" y="-577.5" font-family="Helvetica,sans-Serif" font-size="10.00">logs::FileAppender</text>
 </a>
 </g>
 </g>
-<!-- Node32&#45;&gt;Node35 -->
-<g id="edge15" class="edge">
-<title>Node32&#45;&gt;Node35</title>
+<!-- Node36&#45;&gt;Node39 -->
+<g id="edge16" class="edge">
+<title>Node36&#45;&gt;Node39</title>
 <path fill="none" stroke="midnightblue" d="M293.46,-517.2C297.47,-518.91 301.36,-520.83 305,-523 324.99,-534.9 320.85,-549.37 341,-561 349.23,-565.75 358.6,-569.32 367.95,-572"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="294.52,-513.86 283.93,-513.6 292.05,-520.41 294.52,-513.86"/>
 </g>
-<!-- Node36 -->
-<g id="node19" class="node">
-<title>Node36</title>
-<g id="a_node19"><a xlink:href="classlogs_1_1SvgAppender.html" target="_top" xlink:title="Implémentation de Appender créant un fichier SVG.">
+<!-- Node40 -->
+<g id="node20" class="node">
+<title>Node40</title>
+<g id="a_node20"><a xlink:href="classlogs_1_1SvgAppender.html" target="_top" xlink:title="Implémentation de Appender créant un fichier SVG.">
 <polygon fill="white" stroke="black" points="368,-532.5 368,-551.5 475,-551.5 475,-532.5 368,-532.5"/>
 <text text-anchor="middle" x="421.5" y="-539.5" font-family="Helvetica,sans-Serif" font-size="10.00">logs::SvgAppender</text>
 </a>
 </g>
 </g>
-<!-- Node32&#45;&gt;Node36 -->
-<g id="edge16" class="edge">
-<title>Node32&#45;&gt;Node36</title>
+<!-- Node36&#45;&gt;Node40 -->
+<g id="edge17" class="edge">
+<title>Node36&#45;&gt;Node40</title>
 <path fill="none" stroke="midnightblue" d="M290.98,-515.61C317.5,-521.01 348.67,-527.36 373.78,-532.48"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="291.56,-512.16 281.06,-513.59 290.16,-519.02 291.56,-512.16"/>
 </g>
-<!-- Node37 -->
-<g id="node20" class="node">
-<title>Node37</title>
-<g id="a_node20"><a xlink:href="classlogs_1_1TelemetryAppender.html" target="_top" xlink:title="Implémentation de Appender pour une écriture des traces sur un flux de reseau.">
+<!-- Node41 -->
+<g id="node21" class="node">
+<title>Node41</title>
+<g id="a_node21"><a xlink:href="classlogs_1_1TelemetryAppender.html" target="_top" xlink:title="Implémentation de Appender pour une écriture des traces sur un flux de reseau.">
 <polygon fill="white" stroke="black" points="352.5,-494.5 352.5,-513.5 490.5,-513.5 490.5,-494.5 352.5,-494.5"/>
 <text text-anchor="middle" x="421.5" y="-501.5" font-family="Helvetica,sans-Serif" font-size="10.00">logs::TelemetryAppender</text>
 </a>
 </g>
 </g>
-<!-- Node32&#45;&gt;Node37 -->
-<g id="edge17" class="edge">
-<title>Node32&#45;&gt;Node37</title>
+<!-- Node36&#45;&gt;Node41 -->
+<g id="edge18" class="edge">
+<title>Node36&#45;&gt;Node41</title>
 <path fill="none" stroke="midnightblue" d="M308.58,-504C323.05,-504 338.14,-504 352.38,-504"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="308.18,-500.5 298.18,-504 308.18,-507.5 308.18,-500.5"/>
 </g>
-<!-- Node40 -->
-<g id="node21" class="node">
-<title>Node40</title>
-<g id="a_node21"><a xlink:href="classARobotPositionShared.html" target="_top" xlink:title="Interface abstraite d&#39;acces a la position partagee du robot.">
-<polygon fill="white" stroke="black" points="0,-456.5 0,-475.5 125,-475.5 125,-456.5 0,-456.5"/>
-<text text-anchor="middle" x="62.5" y="-463.5" font-family="Helvetica,sans-Serif" font-size="10.00">ARobotPositionShared</text>
-</a>
-</g>
-</g>
-<!-- Node41 -->
+<!-- Node44 -->
 <g id="node22" class="node">
-<title>Node41</title>
-<g id="a_node22"><a xlink:href="classRobotPositionShared.html" target="_top" xlink:title="Implementation ARM de la position partagee.">
-<polygon fill="white" stroke="black" points="174,-456.5 174,-475.5 292,-475.5 292,-456.5 174,-456.5"/>
-<text text-anchor="middle" x="233" y="-463.5" font-family="Helvetica,sans-Serif" font-size="10.00">RobotPositionShared</text>
+<title>Node44</title>
+<g id="a_node22"><a xlink:href="classARobotPositionShared.html" target="_top" xlink:title="Interface abstraite d&#39;acces a la position partagee du robot.">
+<polygon fill="white" stroke="black" points="0,-266.5 0,-285.5 125,-285.5 125,-266.5 0,-266.5"/>
+<text text-anchor="middle" x="62.5" y="-273.5" font-family="Helvetica,sans-Serif" font-size="10.00">ARobotPositionShared</text>
 </a>
 </g>
 </g>
-<!-- Node40&#45;&gt;Node41 -->
-<g id="edge18" class="edge">
-<title>Node40&#45;&gt;Node41</title>
-<path fill="none" stroke="midnightblue" d="M135.46,-466C148.28,-466 161.49,-466 173.86,-466"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="135.29,-462.5 125.29,-466 135.29,-469.5 135.29,-462.5"/>
-</g>
-<!-- Node257 -->
+<!-- Node45 -->
 <g id="node23" class="node">
-<title>Node257</title>
-<g id="a_node23"><a xlink:href="classutils_1_1Mutex.html" target="_top" xlink:title="Implémentation d&#39;une gestion de mutex.">
-<polygon fill="white" stroke="black" points="25.5,-380.5 25.5,-399.5 99.5,-399.5 99.5,-380.5 25.5,-380.5"/>
-<text text-anchor="middle" x="62.5" y="-387.5" font-family="Helvetica,sans-Serif" font-size="10.00">utils::Mutex</text>
+<title>Node45</title>
+<g id="a_node23"><a xlink:href="classRobotPositionShared.html" target="_top" xlink:title="Implementation ARM de la position partagee.">
+<polygon fill="white" stroke="black" points="174,-266.5 174,-285.5 292,-285.5 292,-266.5 174,-266.5"/>
+<text text-anchor="middle" x="233" y="-273.5" font-family="Helvetica,sans-Serif" font-size="10.00">RobotPositionShared</text>
 </a>
 </g>
 </g>
-<!-- Node257&#45;&gt;Node5 -->
-<g id="edge23" class="edge">
-<title>Node257&#45;&gt;Node5</title>
-<path fill="none" stroke="#8b1a1a" d="M84.55,-406.04C97.42,-416.64 113.56,-431.4 125,-447 147.11,-477.14 132.29,-499.07 161,-523 165.61,-526.84 170.91,-529.91 176.51,-532.37"/>
-<polygon fill="#8b1a1a" stroke="#8b1a1a" points="86.64,-403.23 76.64,-399.72 82.27,-408.7 86.64,-403.23"/>
-</g>
-<!-- Node257&#45;&gt;Node32 -->
-<g id="edge28" class="edge">
-<title>Node257&#45;&gt;Node32</title>
-<path fill="none" stroke="midnightblue" d="M82.05,-406.61C94.41,-417.82 110.91,-433.06 125,-447 141.54,-463.36 141.01,-473.1 161,-485 167.47,-488.85 174.73,-491.94 182.07,-494.4"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="84.36,-403.98 74.59,-399.88 79.67,-409.18 84.36,-403.98"/>
-</g>
-<!-- Node257&#45;&gt;Node41 -->
-<g id="edge22" class="edge">
-<title>Node257&#45;&gt;Node41</title>
-<path fill="none" stroke="#8b1a1a" d="M85.43,-405.13C104.64,-417.8 133.66,-435.59 161,-447 169.83,-450.68 179.58,-453.84 188.96,-456.46"/>
-<polygon fill="#8b1a1a" stroke="#8b1a1a" points="87.35,-402.2 77.1,-399.54 83.45,-408.02 87.35,-402.2"/>
-</g>
-<!-- Node258 -->
-<g id="node24" class="node">
-<title>Node258</title>
-<g id="a_node24"><a xlink:href="classAdafruit__RGBLCDShield.html" target="_top" xlink:title="Driver pour le LCD Shield RGB 16x2 Adafruit.">
-<polygon fill="white" stroke="black" points="167.5,-418.5 167.5,-437.5 298.5,-437.5 298.5,-418.5 167.5,-418.5"/>
-<text text-anchor="middle" x="233" y="-425.5" font-family="Helvetica,sans-Serif" font-size="10.00">Adafruit_RGBLCDShield</text>
-</a>
-</g>
-</g>
-<!-- Node257&#45;&gt;Node258 -->
+<!-- Node44&#45;&gt;Node45 -->
 <g id="edge19" class="edge">
-<title>Node257&#45;&gt;Node258</title>
-<path fill="none" stroke="midnightblue" d="M109.62,-400.4C134.62,-406.04 165.28,-412.95 189.66,-418.45"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="110.17,-396.94 99.65,-398.15 108.63,-403.77 110.17,-396.94"/>
-</g>
-<!-- Node259 -->
-<g id="node25" class="node">
-<title>Node259</title>
-<g id="a_node25"><a xlink:href="classCCAx12Adc.html" target="_top" xlink:title="Implementation for CCAx12Adc card.">
-<polygon fill="white" stroke="black" points="196.5,-380.5 196.5,-399.5 269.5,-399.5 269.5,-380.5 196.5,-380.5"/>
-<text text-anchor="middle" x="233" y="-387.5" font-family="Helvetica,sans-Serif" font-size="10.00">CCAx12Adc</text>
-</a>
-</g>
-</g>
-<!-- Node257&#45;&gt;Node259 -->
-<g id="edge20" class="edge">
-<title>Node257&#45;&gt;Node259</title>
-<path fill="none" stroke="midnightblue" d="M109.77,-390C137.13,-390 171.26,-390 196.49,-390"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="109.65,-386.5 99.65,-390 109.65,-393.5 109.65,-386.5"/>
-</g>
-<!-- Node260 -->
-<g id="node26" class="node">
-<title>Node260</title>
-<g id="a_node26"><a xlink:href="classCCAx12Teensy.html" target="_top" xlink:title="Implementation for CCAx12Teensy card.">
-<polygon fill="white" stroke="black" points="188.5,-304.5 188.5,-323.5 277.5,-323.5 277.5,-304.5 188.5,-304.5"/>
-<text text-anchor="middle" x="233" y="-311.5" font-family="Helvetica,sans-Serif" font-size="10.00">CCAx12Teensy</text>
-</a>
-</g>
-</g>
-<!-- Node257&#45;&gt;Node260 -->
-<g id="edge21" class="edge">
-<title>Node257&#45;&gt;Node260</title>
-<path fill="none" stroke="midnightblue" d="M85.43,-374.87C104.64,-362.2 133.66,-344.41 161,-333 169.83,-329.32 179.58,-326.16 188.96,-323.54"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="83.45,-371.98 77.1,-380.46 87.35,-377.8 83.45,-371.98"/>
-</g>
-<!-- Node261 -->
-<g id="node27" class="node">
-<title>Node261</title>
-<g id="a_node27"><a xlink:href="classSvgWriter.html" target="_top" xlink:title="Wrapper pour la génération de fichier svg via le système de log.">
-<polygon fill="white" stroke="black" points="200.5,-342.5 200.5,-361.5 265.5,-361.5 265.5,-342.5 200.5,-342.5"/>
-<text text-anchor="middle" x="233" y="-349.5" font-family="Helvetica,sans-Serif" font-size="10.00">SvgWriter</text>
-</a>
-</g>
-</g>
-<!-- Node257&#45;&gt;Node261 -->
-<g id="edge24" class="edge">
-<title>Node257&#45;&gt;Node261</title>
-<path fill="none" stroke="midnightblue" d="M109.51,-379.62C138.37,-373.11 174.84,-364.89 200.45,-359.12"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="108.63,-376.23 99.65,-381.85 110.17,-383.06 108.63,-376.23"/>
-</g>
-<!-- Node264 -->
-<g id="node30" class="node">
-<title>Node264</title>
-<g id="a_node30"><a xlink:href="classlogs_1_1Logger_1_1LoggerBuffer.html" target="_top" xlink:title="Classe de délégation pour faciliter la création des traces.">
-<polygon fill="white" stroke="black" points="161,-228.5 161,-247.5 305,-247.5 305,-228.5 161,-228.5"/>
-<text text-anchor="middle" x="233" y="-235.5" font-family="Helvetica,sans-Serif" font-size="10.00">logs::Logger::LoggerBuffer</text>
-</a>
-</g>
-</g>
-<!-- Node257&#45;&gt;Node264 -->
-<g id="edge27" class="edge">
-<title>Node257&#45;&gt;Node264</title>
-<path fill="none" stroke="midnightblue" d="M72.12,-371.12C86.38,-342.06 117.66,-286.64 161,-257 166.69,-253.11 173.13,-250.02 179.77,-247.55"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="68.93,-369.68 67.8,-380.21 75.26,-372.69 68.93,-369.68"/>
-</g>
-<!-- Node265 -->
-<g id="node31" class="node">
-<title>Node265</title>
-<g id="a_node31"><a xlink:href="classutils_1_1Thread.html" target="_top" xlink:title="Classe de base pour les threads (wrapper POSIX pthread).">
-<polygon fill="white" stroke="black" points="194.5,-171.5 194.5,-190.5 271.5,-190.5 271.5,-171.5 194.5,-171.5"/>
-<text text-anchor="middle" x="233" y="-178.5" font-family="Helvetica,sans-Serif" font-size="10.00">utils::Thread</text>
-</a>
-</g>
-</g>
-<!-- Node257&#45;&gt;Node265 -->
-<g id="edge29" class="edge">
-<title>Node257&#45;&gt;Node265</title>
-<path fill="none" stroke="midnightblue" d="M70.43,-370.52C83.47,-336.16 114.6,-264.17 161,-219 173.82,-206.52 191.57,-197.02 206.12,-190.64"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="67.01,-369.68 66.83,-380.27 73.58,-372.1 67.01,-369.68"/>
-</g>
-<!-- Node262 -->
-<g id="node28" class="node">
-<title>Node262</title>
-<g id="a_node28"><a xlink:href="classOPOS6UL__SvgWriterExtended.html" target="_top" xlink:title="Génération de fichiers SVG pour la visualisation du robot et du terrain.">
-<polygon fill="white" stroke="black" points="341,-380.5 341,-399.5 502,-399.5 502,-380.5 341,-380.5"/>
-<text text-anchor="middle" x="421.5" y="-387.5" font-family="Helvetica,sans-Serif" font-size="10.00">OPOS6UL_SvgWriterExtended</text>
-</a>
-</g>
-</g>
-<!-- Node261&#45;&gt;Node262 -->
-<g id="edge25" class="edge">
-<title>Node261&#45;&gt;Node262</title>
-<path fill="none" stroke="midnightblue" d="M275.48,-360.45C304.55,-366.37 343.44,-374.3 373.64,-380.45"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="276.13,-357.01 265.64,-358.45 274.74,-363.87 276.13,-357.01"/>
-</g>
-<!-- Node263 -->
-<g id="node29" class="node">
-<title>Node263</title>
-<g id="a_node29"><a xlink:href="classSvgWriterExtended.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="366.5,-342.5 366.5,-361.5 476.5,-361.5 476.5,-342.5 366.5,-342.5"/>
-<text text-anchor="middle" x="421.5" y="-349.5" font-family="Helvetica,sans-Serif" font-size="10.00">SvgWriterExtended</text>
-</a>
-</g>
-</g>
-<!-- Node261&#45;&gt;Node263 -->
-<g id="edge26" class="edge">
-<title>Node261&#45;&gt;Node263</title>
-<path fill="none" stroke="midnightblue" d="M275.82,-352C302.57,-352 337.52,-352 366.38,-352"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="275.64,-348.5 265.64,-352 275.64,-355.5 275.64,-348.5"/>
-</g>
-<!-- Node265&#45;&gt;Node13 -->
-<g id="edge31" class="edge">
-<title>Node265&#45;&gt;Node13</title>
-<path fill="none" stroke="#8b1a1a" d="M267.8,-194.05C288.71,-201.86 316.2,-211.65 341,-219 354.06,-222.87 368.51,-226.51 381.46,-229.55"/>
-<polygon fill="#8b1a1a" stroke="#8b1a1a" points="269,-190.76 258.4,-190.51 266.53,-197.31 269,-190.76"/>
-</g>
-<!-- Node265&#45;&gt;Node14 -->
-<g id="edge32" class="edge">
-<title>Node265&#45;&gt;Node14</title>
-<path fill="none" stroke="#8b1a1a" d="M270.07,-194.78C282.31,-200.8 295.32,-208.83 305,-219 330.77,-246.07 311.97,-271.45 341,-295 345.74,-298.84 351.13,-301.93 356.82,-304.41"/>
-<polygon fill="#8b1a1a" stroke="#8b1a1a" points="271.48,-191.58 260.93,-190.58 268.56,-197.94 271.48,-191.58"/>
-</g>
-<!-- Node265&#45;&gt;Node15 -->
-<g id="edge33" class="edge">
-<title>Node265&#45;&gt;Node15</title>
-<path fill="none" stroke="midnightblue" d="M265.58,-195.16C278.38,-201.59 292.96,-209.81 305,-219 323.49,-233.11 320.85,-245.37 341,-257 353.17,-264.02 367.81,-268.46 381.2,-271.25"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="266.74,-191.83 256.21,-190.62 263.68,-198.13 266.74,-191.83"/>
+<title>Node44&#45;&gt;Node45</title>
+<path fill="none" stroke="midnightblue" d="M135.46,-276C148.28,-276 161.49,-276 173.86,-276"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="135.29,-272.5 125.29,-276 135.29,-279.5 135.29,-272.5"/>
 </g>
 <!-- Node266 -->
-<g id="node32" class="node">
+<g id="node24" class="node">
 <title>Node266</title>
-<g id="a_node32"><a xlink:href="classActionManagerTimer.html" target="_top" xlink:title="Classe de gestion des actions du robot et des actions par timer.">
-<polygon fill="white" stroke="black" points="362,-152.5 362,-171.5 481,-171.5 481,-152.5 362,-152.5"/>
-<text text-anchor="middle" x="421.5" y="-159.5" font-family="Helvetica,sans-Serif" font-size="10.00">ActionManagerTimer</text>
+<g id="a_node24"><a xlink:href="classutils_1_1Mutex.html" target="_top" xlink:title="Implémentation d&#39;une gestion de mutex.">
+<polygon fill="white" stroke="black" points="25.5,-190.5 25.5,-209.5 99.5,-209.5 99.5,-190.5 25.5,-190.5"/>
+<text text-anchor="middle" x="62.5" y="-197.5" font-family="Helvetica,sans-Serif" font-size="10.00">utils::Mutex</text>
 </a>
 </g>
 </g>
-<!-- Node265&#45;&gt;Node266 -->
-<g id="edge30" class="edge">
-<title>Node265&#45;&gt;Node266</title>
-<path fill="none" stroke="midnightblue" d="M281.83,-176.13C306.23,-173.64 336.11,-170.6 361.88,-167.97"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="281.33,-172.66 271.74,-177.16 282.04,-179.62 281.33,-172.66"/>
+<!-- Node266&#45;&gt;Node5 -->
+<g id="edge24" class="edge">
+<title>Node266&#45;&gt;Node5</title>
+<path fill="none" stroke="#8b1a1a" d="M87.06,-215.53C100.45,-225.67 116.25,-240.15 125,-257 179.98,-362.88 82.16,-433.46 161,-523 164.63,-527.12 169.04,-530.39 173.87,-532.98"/>
+<polygon fill="#8b1a1a" stroke="#8b1a1a" points="88.86,-212.51 78.7,-209.5 84.77,-218.19 88.86,-212.51"/>
+</g>
+<!-- Node266&#45;&gt;Node36 -->
+<g id="edge29" class="edge">
+<title>Node266&#45;&gt;Node36</title>
+<path fill="none" stroke="midnightblue" d="M84.73,-215.91C97.68,-226.45 113.82,-241.21 125,-257 183.6,-339.77 219.74,-459.69 229.39,-494.31"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="86.79,-213.08 76.77,-209.63 82.45,-218.57 86.79,-213.08"/>
+</g>
+<!-- Node266&#45;&gt;Node45 -->
+<g id="edge23" class="edge">
+<title>Node266&#45;&gt;Node45</title>
+<path fill="none" stroke="#8b1a1a" d="M85.43,-215.13C104.64,-227.8 133.66,-245.59 161,-257 169.83,-260.68 179.58,-263.84 188.96,-266.46"/>
+<polygon fill="#8b1a1a" stroke="#8b1a1a" points="87.35,-212.2 77.1,-209.54 83.45,-218.02 87.35,-212.2"/>
 </g>
 <!-- Node267 -->
-<g id="node33" class="node">
+<g id="node25" class="node">
 <title>Node267</title>
-<g id="a_node33"><a xlink:href="classO__State__DecisionMakerIA.html" target="_top" xlink:title="Moteur de décision IA du robot.">
-<polygon fill="white" stroke="black" points="350.5,-114.5 350.5,-133.5 492.5,-133.5 492.5,-114.5 350.5,-114.5"/>
-<text text-anchor="middle" x="421.5" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00">O_State_DecisionMakerIA</text>
+<g id="a_node25"><a xlink:href="classAdafruit__RGBLCDShield.html" target="_top" xlink:title="Driver pour le LCD Shield RGB 16x2 Adafruit.">
+<polygon fill="white" stroke="black" points="167.5,-190.5 167.5,-209.5 298.5,-209.5 298.5,-190.5 167.5,-190.5"/>
+<text text-anchor="middle" x="233" y="-197.5" font-family="Helvetica,sans-Serif" font-size="10.00">Adafruit_RGBLCDShield</text>
 </a>
 </g>
 </g>
-<!-- Node265&#45;&gt;Node267 -->
-<g id="edge34" class="edge">
-<title>Node265&#45;&gt;Node267</title>
-<path fill="none" stroke="midnightblue" d="M267.8,-167.95C288.71,-160.14 316.2,-150.35 341,-143 352.57,-139.57 365.22,-136.33 376.95,-133.52"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="266.53,-164.69 258.4,-171.49 269,-171.24 266.53,-164.69"/>
+<!-- Node266&#45;&gt;Node267 -->
+<g id="edge20" class="edge">
+<title>Node266&#45;&gt;Node267</title>
+<path fill="none" stroke="midnightblue" d="M109.75,-200C127.53,-200 148.16,-200 167.35,-200"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="109.65,-196.5 99.65,-200 109.65,-203.5 109.65,-196.5"/>
 </g>
 <!-- Node268 -->
-<g id="node34" class="node">
+<g id="node26" class="node">
 <title>Node268</title>
-<g id="a_node34"><a xlink:href="classlogs_1_1LoggerFactory.html" target="_top" xlink:title="Cette classe assure l&#39;initialisation du système de trace et son utilisation.">
-<polygon fill="white" stroke="black" points="366,-76.5 366,-95.5 477,-95.5 477,-76.5 366,-76.5"/>
-<text text-anchor="middle" x="421.5" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">logs::LoggerFactory</text>
+<g id="a_node26"><a xlink:href="classCCAx12Adc.html" target="_top" xlink:title="Implementation for CCAx12Adc card.">
+<polygon fill="white" stroke="black" points="196.5,-114.5 196.5,-133.5 269.5,-133.5 269.5,-114.5 196.5,-114.5"/>
+<text text-anchor="middle" x="233" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00">CCAx12Adc</text>
 </a>
 </g>
 </g>
-<!-- Node265&#45;&gt;Node268 -->
-<g id="edge35" class="edge">
-<title>Node265&#45;&gt;Node268</title>
-<path fill="none" stroke="midnightblue" d="M252.48,-164.47C272.79,-147.17 307.05,-120.41 341,-105 349.4,-101.19 358.66,-98.09 367.8,-95.58"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="249.93,-162.05 244.67,-171.25 254.52,-167.34 249.93,-162.05"/>
+<!-- Node266&#45;&gt;Node268 -->
+<g id="edge21" class="edge">
+<title>Node266&#45;&gt;Node268</title>
+<path fill="none" stroke="midnightblue" d="M85.43,-184.87C104.64,-172.2 133.66,-154.41 161,-143 172.19,-138.33 184.85,-134.51 196.35,-131.55"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="83.45,-181.98 77.1,-190.46 87.35,-187.8 83.45,-181.98"/>
 </g>
 <!-- Node269 -->
-<g id="node35" class="node">
+<g id="node27" class="node">
 <title>Node269</title>
-<g id="a_node35"><a xlink:href="classtest_1_1MutexCounterThread.html" target="_top" xlink:title="Thread qui incrémente un compteur partagé protégé par un Mutex.">
-<polygon fill="white" stroke="black" points="349.5,-38.5 349.5,-57.5 493.5,-57.5 493.5,-38.5 349.5,-38.5"/>
-<text text-anchor="middle" x="421.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">test::MutexCounterThread</text>
+<g id="a_node27"><a xlink:href="classCCAx12Teensy.html" target="_top" xlink:title="Implementation for CCAx12Teensy card.">
+<polygon fill="white" stroke="black" points="188.5,-76.5 188.5,-95.5 277.5,-95.5 277.5,-76.5 188.5,-76.5"/>
+<text text-anchor="middle" x="233" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">CCAx12Teensy</text>
 </a>
 </g>
 </g>
-<!-- Node265&#45;&gt;Node269 -->
-<g id="edge36" class="edge">
-<title>Node265&#45;&gt;Node269</title>
-<path fill="none" stroke="midnightblue" d="M245.81,-162.89C263.4,-137.41 298.97,-91.39 341,-67 347.75,-63.08 355.27,-59.97 362.92,-57.5"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="242.85,-161.02 240.16,-171.27 248.65,-164.93 242.85,-161.02"/>
+<!-- Node266&#45;&gt;Node269 -->
+<g id="edge22" class="edge">
+<title>Node266&#45;&gt;Node269</title>
+<path fill="none" stroke="midnightblue" d="M76.87,-182.29C94.02,-160.81 125.79,-125.02 161,-105 169.32,-100.27 178.86,-96.68 188.19,-93.97"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="74.04,-180.23 70.65,-190.27 79.56,-184.54 74.04,-180.23"/>
 </g>
 <!-- Node270 -->
-<g id="node36" class="node">
+<g id="node28" class="node">
 <title>Node270</title>
-<g id="a_node36"><a xlink:href="classtest_1_1SimpleThread.html" target="_top" xlink:title="Thread de test simple qui incrémente un compteur.">
-<polygon fill="white" stroke="black" points="367,-0.5 367,-19.5 476,-19.5 476,-0.5 367,-0.5"/>
-<text text-anchor="middle" x="421.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">test::SimpleThread</text>
+<g id="a_node28"><a xlink:href="classSvgWriter.html" target="_top" xlink:title="Wrapper pour la génération de fichier svg via le système de log.">
+<polygon fill="white" stroke="black" points="200.5,-38.5 200.5,-57.5 265.5,-57.5 265.5,-38.5 200.5,-38.5"/>
+<text text-anchor="middle" x="233" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">SvgWriter</text>
 </a>
 </g>
 </g>
-<!-- Node265&#45;&gt;Node270 -->
-<g id="edge37" class="edge">
-<title>Node265&#45;&gt;Node270</title>
-<path fill="none" stroke="midnightblue" d="M241.87,-162.04C256.41,-129.48 290.63,-63.16 341,-29 348.75,-23.74 357.79,-19.93 366.94,-17.17"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="238.61,-160.77 237.85,-171.34 245.03,-163.55 238.61,-160.77"/>
+<!-- Node266&#45;&gt;Node270 -->
+<g id="edge25" class="edge">
+<title>Node266&#45;&gt;Node270</title>
+<path fill="none" stroke="midnightblue" d="M72.12,-181.12C86.38,-152.06 117.66,-96.64 161,-67 172.59,-59.08 187.32,-54.45 200.37,-51.76"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="68.93,-179.68 67.8,-190.21 75.26,-182.69 68.93,-179.68"/>
+</g>
+<!-- Node273 -->
+<g id="node31" class="node">
+<title>Node273</title>
+<g id="a_node31"><a xlink:href="classlogs_1_1Logger_1_1LoggerBuffer.html" target="_top" xlink:title="Classe de délégation pour faciliter la création des traces.">
+<polygon fill="white" stroke="black" points="161,-0.5 161,-19.5 305,-19.5 305,-0.5 161,-0.5"/>
+<text text-anchor="middle" x="233" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">logs::Logger::LoggerBuffer</text>
+</a>
+</g>
+</g>
+<!-- Node266&#45;&gt;Node273 -->
+<g id="edge28" class="edge">
+<title>Node266&#45;&gt;Node273</title>
+<path fill="none" stroke="midnightblue" d="M69.13,-180.36C80.41,-144.61 109.26,-68.91 161,-29 166.05,-25.1 171.84,-22 177.88,-19.54"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="65.73,-179.5 66.19,-190.09 72.43,-181.53 65.73,-179.5"/>
+</g>
+<!-- Node274 -->
+<g id="node32" class="node">
+<title>Node274</title>
+<g id="a_node32"><a xlink:href="classutils_1_1Thread.html" target="_top" xlink:title="Classe de base pour les threads (wrapper POSIX pthread).">
+<polygon fill="white" stroke="black" points="194.5,-228.5 194.5,-247.5 271.5,-247.5 271.5,-228.5 194.5,-228.5"/>
+<text text-anchor="middle" x="233" y="-235.5" font-family="Helvetica,sans-Serif" font-size="10.00">utils::Thread</text>
+</a>
+</g>
+</g>
+<!-- Node266&#45;&gt;Node274 -->
+<g id="edge30" class="edge">
+<title>Node266&#45;&gt;Node274</title>
+<path fill="none" stroke="midnightblue" d="M109.52,-210.38C136.2,-216.4 169.37,-223.87 194.45,-229.53"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="110.17,-206.94 99.65,-208.15 108.63,-213.77 110.17,-206.94"/>
 </g>
 <!-- Node271 -->
-<g id="node37" class="node">
+<g id="node29" class="node">
 <title>Node271</title>
-<g id="a_node37"><a xlink:href="classtest_1_1SleepyThread.html" target="_top" xlink:title="Thread qui dort longtemps (pour tester cancel).">
-<polygon fill="white" stroke="black" points="367.5,-190.5 367.5,-209.5 475.5,-209.5 475.5,-190.5 367.5,-190.5"/>
-<text text-anchor="middle" x="421.5" y="-197.5" font-family="Helvetica,sans-Serif" font-size="10.00">test::SleepyThread</text>
+<g id="a_node29"><a xlink:href="classOPOS6UL__SvgWriterExtended.html" target="_top" xlink:title="Génération de fichiers SVG pour la visualisation du robot et du terrain.">
+<polygon fill="white" stroke="black" points="341,-38.5 341,-57.5 502,-57.5 502,-38.5 341,-38.5"/>
+<text text-anchor="middle" x="421.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">OPOS6UL_SvgWriterExtended</text>
 </a>
 </g>
 </g>
-<!-- Node265&#45;&gt;Node271 -->
-<g id="edge38" class="edge">
-<title>Node265&#45;&gt;Node271</title>
-<path fill="none" stroke="midnightblue" d="M281.78,-185.87C307.91,-188.53 340.34,-191.83 367.27,-194.58"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="282.04,-182.38 271.74,-184.84 281.33,-189.34 282.04,-182.38"/>
+<!-- Node270&#45;&gt;Node271 -->
+<g id="edge26" class="edge">
+<title>Node270&#45;&gt;Node271</title>
+<path fill="none" stroke="midnightblue" d="M275.83,-48C295.03,-48 318.46,-48 340.82,-48"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="275.64,-44.5 265.64,-48 275.64,-51.5 275.64,-44.5"/>
 </g>
-<!-- Node287 -->
+<!-- Node272 -->
+<g id="node30" class="node">
+<title>Node272</title>
+<g id="a_node30"><a xlink:href="classSvgWriterExtended.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="black" points="366.5,-0.5 366.5,-19.5 476.5,-19.5 476.5,-0.5 366.5,-0.5"/>
+<text text-anchor="middle" x="421.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">SvgWriterExtended</text>
+</a>
+</g>
+</g>
+<!-- Node270&#45;&gt;Node272 -->
+<g id="edge27" class="edge">
+<title>Node270&#45;&gt;Node272</title>
+<path fill="none" stroke="midnightblue" d="M275.48,-39.55C304.55,-33.63 343.44,-25.7 373.64,-19.55"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="274.74,-36.13 265.64,-41.55 276.13,-42.99 274.74,-36.13"/>
+</g>
+<!-- Node274&#45;&gt;Node13 -->
+<g id="edge32" class="edge">
+<title>Node274&#45;&gt;Node13</title>
+<path fill="none" stroke="#8b1a1a" d="M281.83,-228.25C312.65,-221.97 352.23,-213.91 381.21,-208.01"/>
+<polygon fill="#8b1a1a" stroke="#8b1a1a" points="280.84,-224.88 271.74,-230.31 282.24,-231.74 280.84,-224.88"/>
+</g>
+<!-- Node274&#45;&gt;Node14 -->
+<g id="edge33" class="edge">
+<title>Node274&#45;&gt;Node14</title>
+<path fill="none" stroke="#8b1a1a" d="M281.54,-229.19C289.69,-226.6 297.83,-223.27 305,-219 324.99,-207.1 320.85,-192.63 341,-181 349.6,-176.03 359.45,-172.36 369.21,-169.65"/>
+<polygon fill="#8b1a1a" stroke="#8b1a1a" points="280.33,-225.89 271.66,-231.99 282.24,-232.63 280.33,-225.89"/>
+</g>
+<!-- Node274&#45;&gt;Node15 -->
+<g id="edge34" class="edge">
+<title>Node274&#45;&gt;Node15</title>
+<path fill="none" stroke="#8b1a1a" d="M281.2,-231.51C289.78,-228.7 298.16,-224.7 305,-219 333.71,-195.07 311.97,-166.55 341,-143 345.74,-139.16 351.13,-136.07 356.82,-133.59"/>
+<polygon fill="#8b1a1a" stroke="#8b1a1a" points="280.21,-228.16 271.51,-234.2 282.08,-234.9 280.21,-228.16"/>
+</g>
+<!-- Node274&#45;&gt;Node16 -->
+<g id="edge35" class="edge">
+<title>Node274&#45;&gt;Node16</title>
+<path fill="none" stroke="midnightblue" d="M281.58,-232.32C290.2,-229.45 298.5,-225.22 305,-219 343.4,-182.27 302.11,-141.21 341,-105 351.8,-94.94 366.95,-89.92 381.12,-87.5"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="280.5,-228.99 271.79,-235.02 282.36,-235.74 280.5,-228.99"/>
+</g>
+<!-- Node275 -->
+<g id="node33" class="node">
+<title>Node275</title>
+<g id="a_node33"><a xlink:href="classActionManagerTimer.html" target="_top" xlink:title="Classe de gestion des actions du robot et des actions par timer.">
+<polygon fill="white" stroke="black" points="362,-266.5 362,-285.5 481,-285.5 481,-266.5 362,-266.5"/>
+<text text-anchor="middle" x="421.5" y="-273.5" font-family="Helvetica,sans-Serif" font-size="10.00">ActionManagerTimer</text>
+</a>
+</g>
+</g>
+<!-- Node274&#45;&gt;Node275 -->
+<g id="edge31" class="edge">
+<title>Node274&#45;&gt;Node275</title>
+<path fill="none" stroke="midnightblue" d="M281.77,-247.73C309.96,-253.48 345.49,-260.72 373.54,-266.43"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="282.24,-244.26 271.74,-245.69 280.84,-251.12 282.24,-244.26"/>
+</g>
+<!-- Node276 -->
+<g id="node34" class="node">
+<title>Node276</title>
+<g id="a_node34"><a xlink:href="classO__State__DecisionMakerIA.html" target="_top" xlink:title="Moteur de décision IA du robot.">
+<polygon fill="white" stroke="black" points="350.5,-228.5 350.5,-247.5 492.5,-247.5 492.5,-228.5 350.5,-228.5"/>
+<text text-anchor="middle" x="421.5" y="-235.5" font-family="Helvetica,sans-Serif" font-size="10.00">O_State_DecisionMakerIA</text>
+</a>
+</g>
+</g>
+<!-- Node274&#45;&gt;Node276 -->
+<g id="edge36" class="edge">
+<title>Node274&#45;&gt;Node276</title>
+<path fill="none" stroke="midnightblue" d="M281.92,-238C302.74,-238 327.55,-238 350.37,-238"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="281.74,-234.5 271.74,-238 281.74,-241.5 281.74,-234.5"/>
+</g>
+<!-- Node277 -->
+<g id="node35" class="node">
+<title>Node277</title>
+<g id="a_node35"><a xlink:href="classlogs_1_1LoggerFactory.html" target="_top" xlink:title="Cette classe assure l&#39;initialisation du système de trace et son utilisation.">
+<polygon fill="white" stroke="black" points="366,-418.5 366,-437.5 477,-437.5 477,-418.5 366,-418.5"/>
+<text text-anchor="middle" x="421.5" y="-425.5" font-family="Helvetica,sans-Serif" font-size="10.00">logs::LoggerFactory</text>
+</a>
+</g>
+</g>
+<!-- Node274&#45;&gt;Node277 -->
+<g id="edge37" class="edge">
+<title>Node274&#45;&gt;Node277</title>
+<path fill="none" stroke="midnightblue" d="M281.68,-243.22C290.37,-246.12 298.67,-250.48 305,-257 353.38,-306.8 291.96,-359.86 341,-409 347.82,-415.83 356.62,-420.37 365.88,-423.36"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="282.36,-239.78 271.79,-240.53 280.52,-246.53 282.36,-239.78"/>
+</g>
+<!-- Node278 -->
+<g id="node36" class="node">
+<title>Node278</title>
+<g id="a_node36"><a xlink:href="classtest_1_1MutexCounterThread.html" target="_top" xlink:title="Thread qui incrémente un compteur partagé protégé par un Mutex.">
+<polygon fill="white" stroke="black" points="349.5,-380.5 349.5,-399.5 493.5,-399.5 493.5,-380.5 349.5,-380.5"/>
+<text text-anchor="middle" x="421.5" y="-387.5" font-family="Helvetica,sans-Serif" font-size="10.00">test::MutexCounterThread</text>
+</a>
+</g>
+</g>
+<!-- Node274&#45;&gt;Node278 -->
+<g id="edge38" class="edge">
+<title>Node274&#45;&gt;Node278</title>
+<path fill="none" stroke="midnightblue" d="M281.58,-243.68C290.2,-246.55 298.5,-250.78 305,-257 343.4,-293.73 302.11,-334.79 341,-371 345.05,-374.77 349.71,-377.83 354.7,-380.32"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="282.36,-240.26 271.79,-240.98 280.5,-247.01 282.36,-240.26"/>
+</g>
+<!-- Node279 -->
+<g id="node37" class="node">
+<title>Node279</title>
+<g id="a_node37"><a xlink:href="classtest_1_1SimpleThread.html" target="_top" xlink:title="Thread de test simple qui incrémente un compteur.">
+<polygon fill="white" stroke="black" points="367,-342.5 367,-361.5 476,-361.5 476,-342.5 367,-342.5"/>
+<text text-anchor="middle" x="421.5" y="-349.5" font-family="Helvetica,sans-Serif" font-size="10.00">test::SimpleThread</text>
+</a>
+</g>
+</g>
+<!-- Node274&#45;&gt;Node279 -->
+<g id="edge39" class="edge">
+<title>Node274&#45;&gt;Node279</title>
+<path fill="none" stroke="midnightblue" d="M281.2,-244.49C289.78,-247.3 298.16,-251.3 305,-257 333.71,-280.93 311.97,-309.45 341,-333 348.49,-339.08 357.62,-343.27 366.97,-346.14"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="282.08,-241.1 271.51,-241.8 280.21,-247.84 282.08,-241.1"/>
+</g>
+<!-- Node280 -->
 <g id="node38" class="node">
-<title>Node287</title>
-<g id="a_node38"><a xlink:href="classPrint.html" target="_top" xlink:title=" ">
+<title>Node280</title>
+<g id="a_node38"><a xlink:href="classtest_1_1SleepyThread.html" target="_top" xlink:title="Thread qui dort longtemps (pour tester cancel).">
+<polygon fill="white" stroke="black" points="367.5,-304.5 367.5,-323.5 475.5,-323.5 475.5,-304.5 367.5,-304.5"/>
+<text text-anchor="middle" x="421.5" y="-311.5" font-family="Helvetica,sans-Serif" font-size="10.00">test::SleepyThread</text>
+</a>
+</g>
+</g>
+<!-- Node274&#45;&gt;Node280 -->
+<g id="edge40" class="edge">
+<title>Node274&#45;&gt;Node280</title>
+<path fill="none" stroke="midnightblue" d="M281.54,-246.81C289.69,-249.4 297.83,-252.73 305,-257 324.99,-268.9 320.85,-283.37 341,-295 348.99,-299.61 358.05,-303.11 367.11,-305.75"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="282.24,-243.37 271.66,-244.01 280.33,-250.11 282.24,-243.37"/>
+</g>
+<!-- Node297 -->
+<g id="node39" class="node">
+<title>Node297</title>
+<g id="a_node39"><a xlink:href="classPrint.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="43,-798.5 43,-817.5 82,-817.5 82,-798.5 43,-798.5"/>
 <text text-anchor="middle" x="62.5" y="-805.5" font-family="Helvetica,sans-Serif" font-size="10.00">Print</text>
 </a>
 </g>
 </g>
-<!-- Node287&#45;&gt;Node2 -->
-<g id="edge39" class="edge">
-<title>Node287&#45;&gt;Node2</title>
+<!-- Node297&#45;&gt;Node2 -->
+<g id="edge41" class="edge">
+<title>Node297&#45;&gt;Node2</title>
 <path fill="none" stroke="midnightblue" d="M92.52,-808C122.86,-808 170.3,-808 201.27,-808"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="92.18,-804.5 82.18,-808 92.18,-811.5 92.18,-804.5"/>
 </g>

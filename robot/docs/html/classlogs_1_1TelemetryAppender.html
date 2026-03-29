@@ -71,7 +71,6 @@ $(function() {
 <a href="#pub-methods">Fonctions membres publiques</a> &#124;
 <a href="#pro-methods">Fonctions membres protégées</a> &#124;
 <a href="#pro-attribs">Attributs protégés</a> &#124;
-<a href="#pri-methods">Fonctions membres privées</a> &#124;
 <a href="#pri-attribs">Attributs privés</a> &#124;
 <a href="classlogs_1_1TelemetryAppender-members.html">Liste de tous les membres</a>  </div>
   <div class="headertitle">
@@ -96,12 +95,15 @@ Graphe de collaboration de logs::TelemetryAppender:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Fonctions membres publiques</h2></td></tr>
-<tr class="memitem:af3e00020871557769a6036e49cf0903f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogs_1_1TelemetryAppender.html#af3e00020871557769a6036e49cf0903f">TelemetryAppender</a> (std::string Id_Robot, std::string PlotJuggler_hostname)</td></tr>
-<tr class="memdesc:af3e00020871557769a6036e49cf0903f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur par défaut. L'appender sera associé au flux de sortie standard.  <a href="classlogs_1_1TelemetryAppender.html#af3e00020871557769a6036e49cf0903f">Plus de détails...</a><br /></td></tr>
-<tr class="separator:af3e00020871557769a6036e49cf0903f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46e2ed896557d730a4c689494b104e12"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogs_1_1TelemetryAppender.html#a46e2ed896557d730a4c689494b104e12">TelemetryAppender</a> (std::string Id_Robot, std::string target_ip, int port=9870)</td></tr>
+<tr class="memdesc:a46e2ed896557d730a4c689494b104e12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur.  <a href="classlogs_1_1TelemetryAppender.html#a46e2ed896557d730a4c689494b104e12">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a46e2ed896557d730a4c689494b104e12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f37f1968d5db9221fb33631729fbb0a"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogs_1_1TelemetryAppender.html#a0f37f1968d5db9221fb33631729fbb0a">~TelemetryAppender</a> ()</td></tr>
 <tr class="memdesc:a0f37f1968d5db9221fb33631729fbb0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructeur de la classe.  <a href="classlogs_1_1TelemetryAppender.html#a0f37f1968d5db9221fb33631729fbb0a">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a0f37f1968d5db9221fb33631729fbb0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a204aa0413f22064a1a37534be4c777a9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogs_1_1TelemetryAppender.html#a204aa0413f22064a1a37534be4c777a9">configure</a> (const std::string &amp;target_ip, int port)</td></tr>
+<tr class="memdesc:a204aa0413f22064a1a37534be4c777a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconfigure l'adresse IP et le port de la cible UDP.  <a href="classlogs_1_1TelemetryAppender.html#a204aa0413f22064a1a37534be4c777a9">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a204aa0413f22064a1a37534be4c777a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70d4527e81e59cb89832f0ceb2cc5edb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogs_1_1TelemetryAppender.html#a70d4527e81e59cb89832f0ceb2cc5edb">flush</a> ()</td></tr>
 <tr class="memdesc:a70d4527e81e59cb89832f0ceb2cc5edb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Envoie tous les messages JSON en attente via UDP et affiche les messages console.  <a href="classlogs_1_1TelemetryAppender.html#a70d4527e81e59cb89832f0ceb2cc5edb">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a70d4527e81e59cb89832f0ceb2cc5edb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -142,12 +144,6 @@ Attributs protégés</h2></td></tr>
 <tr class="memdesc:a7892adf078780d6ea1c4173f71f1749c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Temps de démarrage de l'appender.  <a href="classlogs_1_1MemoryAppender.html#a7892adf078780d6ea1c4173f71f1749c">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a7892adf078780d6ea1c4173f71f1749c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
-Fonctions membres privées</h2></td></tr>
-<tr class="memitem:a58d0a0f41b041351552aab7cd27a1e86"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogs_1_1TelemetryAppender.html#a58d0a0f41b041351552aab7cd27a1e86">hostname_to_ip</a> (char *hostname, char *ip)</td></tr>
-<tr class="memdesc:a58d0a0f41b041351552aab7cd27a1e86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resolution du hostname pour obtenir l'IP.  <a href="classlogs_1_1TelemetryAppender.html#a58d0a0f41b041351552aab7cd27a1e86">Plus de détails...</a><br /></td></tr>
-<tr class="separator:a58d0a0f41b041351552aab7cd27a1e86"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Attributs privés</h2></td></tr>
 <tr class="memitem:a89239d4135ed6b264f5224c0bee90b35"><td class="memItemLeft" align="right" valign="top">struct sockaddr_in&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogs_1_1TelemetryAppender.html#a89239d4135ed6b264f5224c0bee90b35">addr_</a></td></tr>
@@ -157,7 +153,7 @@ Attributs privés</h2></td></tr>
 <tr class="memdesc:a3cd8ed42bd7f20b6843f5b5e23d0348b"><td class="mdescLeft">&#160;</td><td class="mdescRight">ID du ROBOT.  <a href="classlogs_1_1TelemetryAppender.html#a3cd8ed42bd7f20b6843f5b5e23d0348b">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a3cd8ed42bd7f20b6843f5b5e23d0348b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a81556dd0f57caf1681c1708038287431"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogs_1_1TelemetryAppender.html#a81556dd0f57caf1681c1708038287431">ip_</a> [100]</td></tr>
-<tr class="memdesc:a81556dd0f57caf1681c1708038287431"><td class="mdescLeft">&#160;</td><td class="mdescRight">IP reseau du plotjuggler.  <a href="classlogs_1_1TelemetryAppender.html#a81556dd0f57caf1681c1708038287431">Plus de détails...</a><br /></td></tr>
+<tr class="memdesc:a81556dd0f57caf1681c1708038287431"><td class="mdescLeft">&#160;</td><td class="mdescRight">IP reseau du récepteur de télémétrie (RPI).  <a href="classlogs_1_1TelemetryAppender.html#a81556dd0f57caf1681c1708038287431">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a81556dd0f57caf1681c1708038287431"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3d492d2282e0e81f4f5bed189511005e"><td class="memItemLeft" align="right" valign="top">std::list&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogs_1_1TelemetryAppender.html#a3d492d2282e0e81f4f5bed189511005e">messagesjson_</a></td></tr>
 <tr class="memdesc:a3d492d2282e0e81f4f5bed189511005e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Liste des messages json enregistrés.  <a href="classlogs_1_1TelemetryAppender.html#a3d492d2282e0e81f4f5bed189511005e">Plus de détails...</a><br /></td></tr>
@@ -172,8 +168,8 @@ Attributs privés</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
 <div class="textblock"><p>Implémentation de <a class="el" href="classlogs_1_1Appender.html" title="Classe de gestion des flux de sortie pour les logs.">Appender</a> pour une écriture des traces sur un flux de reseau. </p>
 </div><h2 class="groupheader">Documentation des constructeurs et destructeur</h2>
-<a id="af3e00020871557769a6036e49cf0903f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af3e00020871557769a6036e49cf0903f">&#9670;&nbsp;</a></span>TelemetryAppender()</h2>
+<a id="a46e2ed896557d730a4c689494b104e12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46e2ed896557d730a4c689494b104e12">&#9670;&nbsp;</a></span>TelemetryAppender()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -188,7 +184,13 @@ Attributs privés</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>PlotJuggler_hostname</em>&#160;</td>
+          <td class="paramname"><em>target_ip</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>port</em> = <code>9870</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -198,7 +200,14 @@ Attributs privés</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructeur par défaut. L'appender sera associé au flux de sortie standard. </p>
+<p>Constructeur. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Id_Robot</td><td>Identifiant du robot (clé racine du JSON). </td></tr>
+    <tr><td class="paramname">target_ip</td><td>Adresse IP du récepteur de télémétrie (ex: "192.168.3.101"). </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -235,6 +244,43 @@ Voici le graphe d'appel pour cette fonction :</div>
 </div>
 </div>
 <h2 class="groupheader">Documentation des fonctions membres</h2>
+<a id="a204aa0413f22064a1a37534be4c777a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a204aa0413f22064a1a37534be4c777a9">&#9670;&nbsp;</a></span>configure()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void logs::TelemetryAppender::configure </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>target_ip</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>port</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reconfigure l'adresse IP et le port de la cible UDP. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target_ip</td><td>Adresse IP du récepteur de télémétrie. </td></tr>
+    <tr><td class="paramname">port</td><td>Port UDP du récepteur. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a70d4527e81e59cb89832f0ceb2cc5edb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a70d4527e81e59cb89832f0ceb2cc5edb">&#9670;&nbsp;</a></span>flush()</h2>
 
@@ -261,45 +307,6 @@ Voici le graphe d'appel pour cette fonction :</div>
 <p>Envoie tous les messages JSON en attente via UDP et affiche les messages console. </p>
 
 <p>Réimplémentée à partir de <a class="el" href="classlogs_1_1MemoryAppender.html#a90fd2058402bceaff5e896ceee438df4">logs::MemoryAppender</a>.</p>
-
-</div>
-</div>
-<a id="a58d0a0f41b041351552aab7cd27a1e86"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a58d0a0f41b041351552aab7cd27a1e86">&#9670;&nbsp;</a></span>hostname_to_ip()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int logs::TelemetryAppender::hostname_to_ip </td>
-          <td>(</td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>hostname</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>ip</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Resolution du hostname pour obtenir l'IP. </p>
-<dl class="section return"><dt>Renvoie</dt><dd>1 if error </dd></dl>
 
 </div>
 </div>
@@ -700,7 +707,7 @@ Voici le graphe d'appel pour cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p>IP reseau du plotjuggler. </p>
+<p>IP reseau du récepteur de télémétrie (RPI). </p>
 
 </div>
 </div>
@@ -831,7 +838,7 @@ Voici le graphe d'appel pour cette fonction :</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Généré le Vendredi 27 Mars 2026 12:31:58 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Généré le Lundi 30 Mars 2026 01:36:36 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

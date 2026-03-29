@@ -1,0 +1,946 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot: Référence de la classe SensorsDriverSimu</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Types publics</a> &#124;
+<a href="#pub-methods">Fonctions membres publiques</a> &#124;
+<a href="#pub-static-methods">Fonctions membres publiques statiques</a> &#124;
+<a href="#pri-static-methods">Fonctions membres privées statiques</a> &#124;
+<a href="#pri-attribs">Attributs privés</a> &#124;
+<a href="classSensorsDriverSimu-members.html">Liste de tous les membres</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence de la classe SensorsDriverSimu</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="driver-simu_2SensorsDriver_8hpp_source.html">SensorsDriver.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Graphe d'héritage de SensorsDriverSimu:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classSensorsDriverSimu__inherit__graph.svg" width="158" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="graph_legend.html">légende</a>]</span></center></div>
+<div class="dynheader">
+Graphe de collaboration de SensorsDriverSimu:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classSensorsDriverSimu__coll__graph.svg" width="527" height="231"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="graph_legend.html">légende</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Types publics</h2></td></tr>
+<tr class="memitem:a9743a29ef7d4faebd915f096f07bf729"><td class="memItemLeft" align="right" valign="top">typedef std::vector&lt; <a class="el" href="classRobotPos.html">RobotPos</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classASensorsDriver.html#a9743a29ef7d4faebd915f096f07bf729">bot_positions</a></td></tr>
+<tr class="memdesc:a9743a29ef7d4faebd915f096f07bf729"><td class="mdescLeft">&#160;</td><td class="mdescRight">Liste de positions adversaires detectees.  <a href="classASensorsDriver.html#a9743a29ef7d4faebd915f096f07bf729">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a9743a29ef7d4faebd915f096f07bf729"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Fonctions membres publiques</h2></td></tr>
+<tr class="memitem:a5e939358cffd681264db8dcdb955885e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensorsDriverSimu.html#a5e939358cffd681264db8dcdb955885e">SensorsDriverSimu</a> (<a class="el" href="classARobotPositionShared.html">ARobotPositionShared</a> *aRobotPositionShared)</td></tr>
+<tr class="memdesc:a5e939358cffd681264db8dcdb955885e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="classSensorsDriverSimu.html#a5e939358cffd681264db8dcdb955885e">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a5e939358cffd681264db8dcdb955885e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fc2ba94e63bbe2457b6a6e6ff27f560"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensorsDriverSimu.html#a6fc2ba94e63bbe2457b6a6e6ff27f560">~SensorsDriverSimu</a> ()</td></tr>
+<tr class="memdesc:a6fc2ba94e63bbe2457b6a6e6ff27f560"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <a href="classSensorsDriverSimu.html#a6fc2ba94e63bbe2457b6a6e6ff27f560">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a6fc2ba94e63bbe2457b6a6e6ff27f560"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a036bf51f51ce1abc7885877594d1e242"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensorsDriverSimu.html#a036bf51f51ce1abc7885877594d1e242">addvPositionsAdv</a> (float x, float y)</td></tr>
+<tr class="memdesc:a036bf51f51ce1abc7885877594d1e242"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ajoute une position adversaire simulee.  <a href="classSensorsDriverSimu.html#a036bf51f51ce1abc7885877594d1e242">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a036bf51f51ce1abc7885877594d1e242"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac28dff750bccb3f68db8680eca288ce7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensorsDriverSimu.html#ac28dff750bccb3f68db8680eca288ce7">backCenter</a> ()</td></tr>
+<tr class="memdesc:ac28dff750bccb3f68db8680eca288ce7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit le capteur arriere centre.  <a href="classSensorsDriverSimu.html#ac28dff750bccb3f68db8680eca288ce7">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ac28dff750bccb3f68db8680eca288ce7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49a5c034bfdec1887e60cdc37744dd5f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensorsDriverSimu.html#a49a5c034bfdec1887e60cdc37744dd5f">backLeft</a> ()</td></tr>
+<tr class="memdesc:a49a5c034bfdec1887e60cdc37744dd5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit le capteur arriere gauche.  <a href="classSensorsDriverSimu.html#a49a5c034bfdec1887e60cdc37744dd5f">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a49a5c034bfdec1887e60cdc37744dd5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9f98997282369c91f474ce69d6d7236"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensorsDriverSimu.html#ad9f98997282369c91f474ce69d6d7236">backRight</a> ()</td></tr>
+<tr class="memdesc:ad9f98997282369c91f474ce69d6d7236"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit le capteur arriere droit.  <a href="classSensorsDriverSimu.html#ad9f98997282369c91f474ce69d6d7236">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ad9f98997282369c91f474ce69d6d7236"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55fbadc7bbbb9bda64aec00f183f934e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensorsDriverSimu.html#a55fbadc7bbbb9bda64aec00f183f934e">clearPositionsAdv</a> ()</td></tr>
+<tr class="memdesc:a55fbadc7bbbb9bda64aec00f183f934e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Supprime toutes les positions adversaires simulees.  <a href="classSensorsDriverSimu.html#a55fbadc7bbbb9bda64aec00f183f934e">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a55fbadc7bbbb9bda64aec00f183f934e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9eb4db72c5b60ac2f9eba07e85b6be6f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensorsDriverSimu.html#a9eb4db72c5b60ac2f9eba07e85b6be6f">displayNumber</a> (int number)</td></tr>
+<tr class="memdesc:a9eb4db72c5b60ac2f9eba07e85b6be6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche un nombre sur l'afficheur 7 segments.  <a href="classSensorsDriverSimu.html#a9eb4db72c5b60ac2f9eba07e85b6be6f">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a9eb4db72c5b60ac2f9eba07e85b6be6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6fe883367790b2aeda9fbfde03b5e81"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensorsDriverSimu.html#af6fe883367790b2aeda9fbfde03b5e81">frontCenter</a> ()</td></tr>
+<tr class="memdesc:af6fe883367790b2aeda9fbfde03b5e81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit le capteur avant centre.  <a href="classSensorsDriverSimu.html#af6fe883367790b2aeda9fbfde03b5e81">Plus de détails...</a><br /></td></tr>
+<tr class="separator:af6fe883367790b2aeda9fbfde03b5e81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adef9c63b79277a93dfc2b8cd774cd6d0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensorsDriverSimu.html#adef9c63b79277a93dfc2b8cd774cd6d0">frontLeft</a> ()</td></tr>
+<tr class="memdesc:adef9c63b79277a93dfc2b8cd774cd6d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit le capteur avant gauche.  <a href="classSensorsDriverSimu.html#adef9c63b79277a93dfc2b8cd774cd6d0">Plus de détails...</a><br /></td></tr>
+<tr class="separator:adef9c63b79277a93dfc2b8cd774cd6d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0f9e6346ac73adb1cbb62004ac2af36"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensorsDriverSimu.html#ab0f9e6346ac73adb1cbb62004ac2af36">frontRight</a> ()</td></tr>
+<tr class="memdesc:ab0f9e6346ac73adb1cbb62004ac2af36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit le capteur avant droit.  <a href="classSensorsDriverSimu.html#ab0f9e6346ac73adb1cbb62004ac2af36">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ab0f9e6346ac73adb1cbb62004ac2af36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c41a754c8b5a335801197e844cb2c68"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classASensorsDriver.html#a9743a29ef7d4faebd915f096f07bf729">ASensorsDriver::bot_positions</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensorsDriverSimu.html#a6c41a754c8b5a335801197e844cb2c68">getvPositionsAdv</a> ()</td></tr>
+<tr class="memdesc:a6c41a754c8b5a335801197e844cb2c68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourne les positions des adversaires detectes.  <a href="classSensorsDriverSimu.html#a6c41a754c8b5a335801197e844cb2c68">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a6c41a754c8b5a335801197e844cb2c68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b9da567126bd9edb8aae9c958aae05e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensorsDriverSimu.html#a4b9da567126bd9edb8aae9c958aae05e">is_connected</a> ()</td></tr>
+<tr class="memdesc:a4b9da567126bd9edb8aae9c958aae05e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifie si la balise est connectee.  <a href="classSensorsDriverSimu.html#a4b9da567126bd9edb8aae9c958aae05e">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a4b9da567126bd9edb8aae9c958aae05e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2452a60512c65122660afb8692340437"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensorsDriverSimu.html#a2452a60512c65122660afb8692340437">leftSide</a> ()</td></tr>
+<tr class="memdesc:a2452a60512c65122660afb8692340437"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit le capteur lateral gauche.  <a href="classSensorsDriverSimu.html#a2452a60512c65122660afb8692340437">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a2452a60512c65122660afb8692340437"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47269a3acc71ebfc9afe7343945c2433"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensorsDriverSimu.html#a47269a3acc71ebfc9afe7343945c2433">rightSide</a> ()</td></tr>
+<tr class="memdesc:a47269a3acc71ebfc9afe7343945c2433"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lit le capteur lateral droit.  <a href="classSensorsDriverSimu.html#a47269a3acc71ebfc9afe7343945c2433">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a47269a3acc71ebfc9afe7343945c2433"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a565fc0d032ed17e76ee7e00e5873887f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensorsDriverSimu.html#a565fc0d032ed17e76ee7e00e5873887f">sync</a> ()</td></tr>
+<tr class="memdesc:a565fc0d032ed17e76ee7e00e5873887f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Synch.ronise les données des capteurs.  <a href="classSensorsDriverSimu.html#a565fc0d032ed17e76ee7e00e5873887f">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a565fc0d032ed17e76ee7e00e5873887f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50d2cc902d55a25727be0a52cded82e4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classRobotPos.html">RobotPos</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensorsDriverSimu.html#a50d2cc902d55a25727be0a52cded82e4">transformPosTableToPosRobot</a> (int nb, float x_table, float y_table)</td></tr>
+<tr class="separator:a50d2cc902d55a25727be0a52cded82e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Fonctions membres publiques statiques</h2></td></tr>
+<tr class="memitem:ab518d3654db6d8683136df8455a67601"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classASensorsDriver.html">ASensorsDriver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classASensorsDriver.html#ab518d3654db6d8683136df8455a67601">create</a> (std::string botName, <a class="el" href="classARobotPositionShared.html">ARobotPositionShared</a> *aRobotPositionShared)</td></tr>
+<tr class="memdesc:ab518d3654db6d8683136df8455a67601"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cree l'instance concrete selon la plateforme.  <a href="classASensorsDriver.html#ab518d3654db6d8683136df8455a67601">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ab518d3654db6d8683136df8455a67601"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-methods"></a>
+Fonctions membres privées statiques</h2></td></tr>
+<tr class="memitem:a69e75e72425bb530cabb420923621ed7"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="classlogs_1_1Logger.html">logs::Logger</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensorsDriverSimu.html#a69e75e72425bb530cabb420923621ed7">logger</a> ()</td></tr>
+<tr class="memdesc:a69e75e72425bb530cabb420923621ed7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourne le Logger associé à la classe <a class="el" href="classSensorsDriver.html">SensorsDriver(SIMU)</a>.  <a href="classSensorsDriverSimu.html#a69e75e72425bb530cabb420923621ed7">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a69e75e72425bb530cabb420923621ed7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51464c577b96f9dbffcca875a0895bea"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="classlogs_1_1Logger.html">logs::Logger</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensorsDriverSimu.html#a51464c577b96f9dbffcca875a0895bea">loggerSvg</a> ()</td></tr>
+<tr class="separator:a51464c577b96f9dbffcca875a0895bea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Attributs privés</h2></td></tr>
+<tr class="memitem:ade3693198ff2f0ad62d1d7d7e3d1d7ac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ARobotPositionShared_8hpp.html#ae9c2a6fe427c361b8ee5e4a6529346bb">ROBOTPOSITION</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensorsDriverSimu.html#ade3693198ff2f0ad62d1d7d7e3d1d7ac">pos_pour_calcul_</a></td></tr>
+<tr class="separator:ade3693198ff2f0ad62d1d7d7e3d1d7ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ae397317458b0f5132aa1a0d40932f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ARobotPositionShared_8hpp.html#ae9c2a6fe427c361b8ee5e4a6529346bb">ROBOTPOSITION</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensorsDriverSimu.html#a6ae397317458b0f5132aa1a0d40932f8">pos_pour_calcul_prec_</a></td></tr>
+<tr class="separator:a6ae397317458b0f5132aa1a0d40932f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae823579d4bef21a9415a0e42bca47b38"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classARobotPositionShared.html">ARobotPositionShared</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensorsDriverSimu.html#ae823579d4bef21a9415a0e42bca47b38">robotPositionShared_</a></td></tr>
+<tr class="separator:ae823579d4bef21a9415a0e42bca47b38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63973d1f84205199faa52022d86fb51b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classASensorsDriver.html#a9743a29ef7d4faebd915f096f07bf729">bot_positions</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSensorsDriverSimu.html#a63973d1f84205199faa52022d86fb51b">vadv_</a></td></tr>
+<tr class="separator:a63973d1f84205199faa52022d86fb51b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentation des définitions de type membres</h2>
+<a id="a9743a29ef7d4faebd915f096f07bf729"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9743a29ef7d4faebd915f096f07bf729">&#9670;&nbsp;</a></span>bot_positions</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::vector&lt;<a class="el" href="classRobotPos.html">RobotPos</a>&gt; <a class="el" href="classASensorsDriver.html#a9743a29ef7d4faebd915f096f07bf729">ASensorsDriver::bot_positions</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Liste de positions adversaires detectees. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des constructeurs et destructeur</h2>
+<a id="a5e939358cffd681264db8dcdb955885e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e939358cffd681264db8dcdb955885e">&#9670;&nbsp;</a></span>SensorsDriverSimu()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SensorsDriverSimu::SensorsDriverSimu </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classARobotPositionShared.html">ARobotPositionShared</a> *&#160;</td>
+          <td class="paramname"><em>aRobotPositionShared</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+
+</div>
+</div>
+<a id="a6fc2ba94e63bbe2457b6a6e6ff27f560"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fc2ba94e63bbe2457b6a6e6ff27f560">&#9670;&nbsp;</a></span>~SensorsDriverSimu()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SensorsDriverSimu::~SensorsDriverSimu </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Destructor. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des fonctions membres</h2>
+<a id="a036bf51f51ce1abc7885877594d1e242"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a036bf51f51ce1abc7885877594d1e242">&#9670;&nbsp;</a></span>addvPositionsAdv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SensorsDriverSimu::addvPositionsAdv </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Ajoute une position adversaire simulee. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Position X en mm. </td></tr>
+    <tr><td class="paramname">y</td><td>Position Y en mm. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>Utilise uniquement en mode SIMU. </dd></dl>
+
+<p>Implémente <a class="el" href="classASensorsDriver.html#a88bb31b860fd7f3dcac91cb08ceb797c">ASensorsDriver</a>.</p>
+
+</div>
+</div>
+<a id="ac28dff750bccb3f68db8680eca288ce7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac28dff750bccb3f68db8680eca288ce7">&#9670;&nbsp;</a></span>backCenter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SensorsDriverSimu::backCenter </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lit le capteur arriere centre. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Distance en mm (0 si rien detecte). </dd></dl>
+
+<p>Implémente <a class="el" href="classASensorsDriver.html#a424c48415ec72021509c58cd4ce95fd8">ASensorsDriver</a>.</p>
+
+</div>
+</div>
+<a id="a49a5c034bfdec1887e60cdc37744dd5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49a5c034bfdec1887e60cdc37744dd5f">&#9670;&nbsp;</a></span>backLeft()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SensorsDriverSimu::backLeft </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lit le capteur arriere gauche. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Distance en mm (0 si rien detecte). </dd></dl>
+
+<p>Implémente <a class="el" href="classASensorsDriver.html#a73d2598f685d481a58b3b5364de4f75c">ASensorsDriver</a>.</p>
+
+</div>
+</div>
+<a id="ad9f98997282369c91f474ce69d6d7236"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9f98997282369c91f474ce69d6d7236">&#9670;&nbsp;</a></span>backRight()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SensorsDriverSimu::backRight </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lit le capteur arriere droit. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Distance en mm (0 si rien detecte). </dd></dl>
+
+<p>Implémente <a class="el" href="classASensorsDriver.html#afa92806f01cf2a920183fb0cb491101e">ASensorsDriver</a>.</p>
+
+</div>
+</div>
+<a id="a55fbadc7bbbb9bda64aec00f183f934e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55fbadc7bbbb9bda64aec00f183f934e">&#9670;&nbsp;</a></span>clearPositionsAdv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SensorsDriverSimu::clearPositionsAdv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Supprime toutes les positions adversaires simulees. </p>
+<dl class="section note"><dt>Note</dt><dd>Utilise uniquement en mode SIMU. </dd></dl>
+
+<p>Implémente <a class="el" href="classASensorsDriver.html#ac5a29aeb565fdec608728cfb2f8d3f1d">ASensorsDriver</a>.</p>
+
+</div>
+</div>
+<a id="ab518d3654db6d8683136df8455a67601"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab518d3654db6d8683136df8455a67601">&#9670;&nbsp;</a></span>create()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classASensorsDriver.html">ASensorsDriver</a> * ASensorsDriver::create </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>botName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classARobotPositionShared.html">ARobotPositionShared</a> *&#160;</td>
+          <td class="paramname"><em>aRobotPositionShared</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Cree l'instance concrete selon la plateforme. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">botName</td><td>Nom du robot. </td></tr>
+    <tr><td class="paramname">aRobotPositionShared</td><td>Pointeur vers la position partagee du robot. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Pointeur vers l'instance creee. </dd></dl>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classASensorsDriver_ab518d3654db6d8683136df8455a67601_cgraph.svg" width="419" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classASensorsDriver_ab518d3654db6d8683136df8455a67601_icgraph.svg" width="444" height="104"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a9eb4db72c5b60ac2f9eba07e85b6be6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9eb4db72c5b60ac2f9eba07e85b6be6f">&#9670;&nbsp;</a></span>displayNumber()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SensorsDriverSimu::displayNumber </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>number</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Affiche un nombre sur l'afficheur 7 segments. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">number</td><td>Nombre a afficher. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implémente <a class="el" href="classASensorsDriver.html#a1bbf3fcc72a8d2be97ae9a2237c1627f">ASensorsDriver</a>.</p>
+
+</div>
+</div>
+<a id="af6fe883367790b2aeda9fbfde03b5e81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6fe883367790b2aeda9fbfde03b5e81">&#9670;&nbsp;</a></span>frontCenter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SensorsDriverSimu::frontCenter </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lit le capteur avant centre. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Distance en mm (0 si rien detecte). </dd></dl>
+
+<p>Implémente <a class="el" href="classASensorsDriver.html#aeda5641a63ce110b5005494fd896ae62">ASensorsDriver</a>.</p>
+
+</div>
+</div>
+<a id="adef9c63b79277a93dfc2b8cd774cd6d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adef9c63b79277a93dfc2b8cd774cd6d0">&#9670;&nbsp;</a></span>frontLeft()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SensorsDriverSimu::frontLeft </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lit le capteur avant gauche. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Distance en mm (0 si rien detecte). </dd></dl>
+
+<p>Implémente <a class="el" href="classASensorsDriver.html#a7873d770e0255d9ef9c4e64d181dccfb">ASensorsDriver</a>.</p>
+
+</div>
+</div>
+<a id="ab0f9e6346ac73adb1cbb62004ac2af36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0f9e6346ac73adb1cbb62004ac2af36">&#9670;&nbsp;</a></span>frontRight()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SensorsDriverSimu::frontRight </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lit le capteur avant droit. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Distance en mm (0 si rien detecte). </dd></dl>
+
+<p>Implémente <a class="el" href="classASensorsDriver.html#afcf6344268efabb191cb38d7e900e245">ASensorsDriver</a>.</p>
+
+</div>
+</div>
+<a id="a6c41a754c8b5a335801197e844cb2c68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c41a754c8b5a335801197e844cb2c68">&#9670;&nbsp;</a></span>getvPositionsAdv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classASensorsDriver.html#a9743a29ef7d4faebd915f096f07bf729">ASensorsDriver::bot_positions</a> SensorsDriverSimu::getvPositionsAdv </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retourne les positions des adversaires detectes. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Vecteur de positions adversaires. </dd></dl>
+
+<p>Implémente <a class="el" href="classASensorsDriver.html#aec164c1aa888bc212ed5c3f986f22767">ASensorsDriver</a>.</p>
+
+</div>
+</div>
+<a id="a4b9da567126bd9edb8aae9c958aae05e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b9da567126bd9edb8aae9c958aae05e">&#9670;&nbsp;</a></span>is_connected()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SensorsDriverSimu::is_connected </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Verifie si la balise est connectee. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>true si la communication est etablie. </dd></dl>
+
+<p>Implémente <a class="el" href="classASensorsDriver.html#a51698531f71b94606b5f60c3d5f3dfc4">ASensorsDriver</a>.</p>
+
+</div>
+</div>
+<a id="a2452a60512c65122660afb8692340437"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2452a60512c65122660afb8692340437">&#9670;&nbsp;</a></span>leftSide()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SensorsDriverSimu::leftSide </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lit le capteur lateral gauche. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Distance en mm (0 si rien detecte). </dd></dl>
+
+<p>Implémente <a class="el" href="classASensorsDriver.html#a800cc3f2ce33b02a9c9a758308d9e53c">ASensorsDriver</a>.</p>
+
+</div>
+</div>
+<a id="a69e75e72425bb530cabb420923621ed7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69e75e72425bb530cabb420923621ed7">&#9670;&nbsp;</a></span>logger()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static const <a class="el" href="classlogs_1_1Logger.html">logs::Logger</a>&amp; SensorsDriverSimu::logger </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retourne le Logger associé à la classe <a class="el" href="classSensorsDriver.html">SensorsDriver(SIMU)</a>. </p>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classSensorsDriverSimu_a69e75e72425bb530cabb420923621ed7_cgraph.svg" width="588" height="170"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a51464c577b96f9dbffcca875a0895bea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51464c577b96f9dbffcca875a0895bea">&#9670;&nbsp;</a></span>loggerSvg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static const <a class="el" href="classlogs_1_1Logger.html">logs::Logger</a>&amp; SensorsDriverSimu::loggerSvg </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classSensorsDriverSimu_a51464c577b96f9dbffcca875a0895bea_cgraph.svg" width="588" height="170"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a47269a3acc71ebfc9afe7343945c2433"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47269a3acc71ebfc9afe7343945c2433">&#9670;&nbsp;</a></span>rightSide()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SensorsDriverSimu::rightSide </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Lit le capteur lateral droit. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Distance en mm (0 si rien detecte). </dd></dl>
+
+<p>Implémente <a class="el" href="classASensorsDriver.html#a08927084e26b430add29c87f05616bf8">ASensorsDriver</a>.</p>
+
+</div>
+</div>
+<a id="a565fc0d032ed17e76ee7e00e5873887f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a565fc0d032ed17e76ee7e00e5873887f">&#9670;&nbsp;</a></span>sync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SensorsDriverSimu::sync </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Synch.ronise les données des capteurs. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>renvoi -1 si erreur, zero sinon </dd></dl>
+
+<p>Implémente <a class="el" href="classASensorsDriver.html#a0c581029ba10d5ac820a9e3e2e6883cd">ASensorsDriver</a>.</p>
+
+</div>
+</div>
+<a id="a50d2cc902d55a25727be0a52cded82e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50d2cc902d55a25727be0a52cded82e4">&#9670;&nbsp;</a></span>transformPosTableToPosRobot()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classRobotPos.html">RobotPos</a> SensorsDriverSimu::transformPosTableToPosRobot </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x_table</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>y_table</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classSensorsDriverSimu_a50d2cc902d55a25727be0a52cded82e4_cgraph.svg" width="100%" height="404"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des données membres</h2>
+<a id="ade3693198ff2f0ad62d1d7d7e3d1d7ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade3693198ff2f0ad62d1d7d7e3d1d7ac">&#9670;&nbsp;</a></span>pos_pour_calcul_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ARobotPositionShared_8hpp.html#ae9c2a6fe427c361b8ee5e4a6529346bb">ROBOTPOSITION</a> SensorsDriverSimu::pos_pour_calcul_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6ae397317458b0f5132aa1a0d40932f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ae397317458b0f5132aa1a0d40932f8">&#9670;&nbsp;</a></span>pos_pour_calcul_prec_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="ARobotPositionShared_8hpp.html#ae9c2a6fe427c361b8ee5e4a6529346bb">ROBOTPOSITION</a> SensorsDriverSimu::pos_pour_calcul_prec_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae823579d4bef21a9415a0e42bca47b38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae823579d4bef21a9415a0e42bca47b38">&#9670;&nbsp;</a></span>robotPositionShared_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classARobotPositionShared.html">ARobotPositionShared</a>* SensorsDriverSimu::robotPositionShared_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a63973d1f84205199faa52022d86fb51b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63973d1f84205199faa52022d86fb51b">&#9670;&nbsp;</a></span>vadv_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classASensorsDriver.html#a9743a29ef7d4faebd915f096f07bf729">bot_positions</a> SensorsDriverSimu::vadv_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>src/driver-simu/<a class="el" href="driver-simu_2SensorsDriver_8hpp_source.html">SensorsDriver.hpp</a></li>
+<li>src/driver-simu/<a class="el" href="driver-simu_2SensorsDriver_8cpp.html">SensorsDriver.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Lundi 30 Mars 2026 01:36:33 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

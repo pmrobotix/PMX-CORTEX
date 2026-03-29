@@ -1,7 +1,8 @@
 <map id="LedBar::flashAll" name="LedBar::flashAll">
-<area shape="rect" id="node1" title="Allume toutes leds." alt="" coords="428,56,551,83"/>
-<area shape="rect" id="node2" href="$classLedBar.html#afad90556b784654b618c527eb19c50dd" title="Clignote toutes les leds nb fois." alt="" coords="233,5,339,32"/>
-<area shape="rect" id="node4" href="$classLedBarAction.html#a67bc2c636064156c80319623b88ec5e8" title="Execution de l&#39;action." alt="" coords="203,56,369,83"/>
-<area shape="rect" id="node5" href="$classO__State__WaitEndOfMatch.html#aa73613440b37c8dd42181e2e0265ae86" title="Exécute l&#39;état d&#39;attente de fin de match." alt="" coords="192,107,380,149"/>
-<area shape="rect" id="node3" href="$classO__LedBarTest.html#af9e0e172d13b334cda0fe32bb659b414" title=" " alt="" coords="5,5,144,32"/>
+<area shape="rect" id="node1" title="Allume toutes leds." alt="" coords="447,97,569,123"/>
+<area shape="rect" id="node2" href="$classOPOS6UL__ActionsExtended.html#aced00f2c03b0aa9b9eda54e6874bac75" title=" " alt="" coords="192,5,399,47"/>
+<area shape="rect" id="node3" href="$classLedBar.html#afad90556b784654b618c527eb19c50dd" title="Clignote toutes les leds nb fois." alt="" coords="242,71,349,98"/>
+<area shape="rect" id="node5" href="$classLedBarAction.html#a67bc2c636064156c80319623b88ec5e8" title="Execution de l&#39;action." alt="" coords="212,122,379,149"/>
+<area shape="rect" id="node6" href="$classO__State__WaitEndOfMatch.html#aa73613440b37c8dd42181e2e0265ae86" title="Exécute l&#39;état d&#39;attente de fin de match." alt="" coords="201,173,389,215"/>
+<area shape="rect" id="node4" href="$classO__LedBarTest.html#af9e0e172d13b334cda0fe32bb659b414" title=" " alt="" coords="5,71,144,98"/>
 </map>

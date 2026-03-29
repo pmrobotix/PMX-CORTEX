@@ -21,16 +21,16 @@
 <!-- Node1 -->
 <g id="node2" class="node">
 <title>Node1</title>
-<g id="a_node2"><a xlink:href="classColorDriver.html" target="_top" xlink:title="Implementation simulation du driver couleur.">
-<polygon fill="white" stroke="black" points="131,-38.5 131,-57.5 203,-57.5 203,-38.5 131,-38.5"/>
-<text text-anchor="middle" x="167" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">ColorDriver</text>
+<g id="a_node2"><a xlink:href="classColorDriverSimu.html" target="_top" xlink:title="Implementation simulation du driver couleur.">
+<polygon fill="white" stroke="black" points="118.5,-38.5 118.5,-57.5 215.5,-57.5 215.5,-38.5 118.5,-38.5"/>
+<text text-anchor="middle" x="167" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">ColorDriverSimu</text>
 </a>
 </g>
 </g>
 <!-- Node0&#45;&gt;Node1 -->
 <g id="edge1" class="edge">
 <title>Node0&#45;&gt;Node1</title>
-<path fill="none" stroke="midnightblue" d="M89.46,-36.41C103.2,-38.49 117.87,-40.71 130.65,-42.65"/>
+<path fill="none" stroke="midnightblue" d="M89.32,-36.39C98.87,-37.84 108.87,-39.35 118.38,-40.79"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="89.59,-32.89 79.18,-34.86 88.54,-39.81 89.59,-32.89"/>
 </g>
 <!-- Node2 -->

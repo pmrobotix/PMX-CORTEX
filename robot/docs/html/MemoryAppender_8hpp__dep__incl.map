@@ -1,24 +1,25 @@
 <map id="src/common/log/appender/MemoryAppender.hpp" name="src/common/log/appender/MemoryAppender.hpp">
-<area shape="rect" id="node1" title="Définition de la classe MemoryAppender." alt="" coords="1207,5,1398,47"/>
-<area shape="rect" id="node2" href="$ConsoleAppender_8hpp.html" title="Définition de la classe ConsoleAppender." alt="" coords="989,95,1179,136"/>
-<area shape="rect" id="node5" href="$FileAppender_8hpp.html" title="Définition de la classe FileAppender." alt="" coords="1207,95,1398,136"/>
-<area shape="rect" id="node8" href="$MemoryAppender_8cpp.html" title="Implementation de la classe MemoryAppender." alt="" coords="1422,95,1613,136"/>
-<area shape="rect" id="node9" href="$SvgAppender_8hpp.html" title="Définition de la classe SvgAppender." alt="" coords="405,95,595,136"/>
-<area shape="rect" id="node12" href="$TelemetryAppender_8hpp.html" title="Définition de la classe TelemetryAppender." alt="" coords="742,95,933,136"/>
-<area shape="rect" id="node14" href="$UnitTestAppender_8hpp.html" title="Définition de la classe UnitTestAppender utilisant le memory Appender." alt="" coords="2329,102,2559,129"/>
-<area shape="rect" id="node22" href="$UnitTestSuite_8cpp.html" title="Implementation de la classe UnitTestSuite." alt="" coords="3325,191,3525,218"/>
-<area shape="rect" id="node3" href="$src_2bot-opos6ul_2LoggerInitialize_8cpp.html" title="Ce fichier contient l&#39;initialisation du système de Log." alt="" coords="711,191,964,218"/>
-<area shape="rect" id="node4" href="$ConsoleAppender_8cpp.html" title="Implémentation de la classe ConsoleAppender." alt="" coords="989,184,1179,225"/>
-<area shape="rect" id="node6" href="$FileAppender_8cpp.html" title="Implémentation de la classe FileAppender." alt="" coords="1426,184,1617,225"/>
-<area shape="rect" id="node7" href="$FileAppenderTest_8cpp.html" title="Implémentation des tests de la classe logs::FileAppender." alt="" coords="1204,184,1401,225"/>
-<area shape="rect" id="node10" href="$SvgAppender_8cpp.html" title="Implémentation de la classe SvgAppender." alt="" coords="281,184,471,225"/>
-<area shape="rect" id="node11" href="$SvgAppenderTest_8cpp.html" title="Implémentation des tests de la classe logs::SvgAppender." alt="" coords="5,191,256,218"/>
-<area shape="rect" id="node13" href="$TelemetryAppender_8cpp.html" title="Implémentation de la classe TelemetryAppender." alt="" coords="495,184,686,225"/>
-<area shape="rect" id="node15" href="$test_2bench_2LoggerInitialize_8cpp.html" title="Initialisation du systeme de Log pour les benchmarks." alt="" coords="2583,191,2804,218"/>
-<area shape="rect" id="node16" href="$test_2common_2LoggerInitialize_8cpp.html" title="Initialisation du système de Log pour les tests unitaires." alt="" coords="2829,191,3067,218"/>
-<area shape="rect" id="node17" href="$LoggerTest_8cpp.html" title="Implémentation des tests de la classe logs::Logger." alt="" coords="3091,191,3301,218"/>
-<area shape="rect" id="node18" href="$test_2driver_2LoggerInitialize_8cpp.html" title="Initialisation du systeme de Log pour les tests driver." alt="" coords="1641,191,1861,218"/>
-<area shape="rect" id="node19" href="$test_2manual_2LoggerInitialize_8cpp.html" title="Initialisation du systeme de Log pour les tests manuels." alt="" coords="1885,191,2115,218"/>
-<area shape="rect" id="node20" href="$UnitTest_8cpp.html" title="Implémentation de la classe DevUnitTest." alt="" coords="2139,191,2306,218"/>
-<area shape="rect" id="node21" href="$UnitTestAppender_8cpp.html" title="Implémentation de la classe UnitTestAppender." alt="" coords="2330,191,2558,218"/>
+<area shape="rect" id="node1" title="Définition de la classe MemoryAppender." alt="" coords="1399,5,1589,47"/>
+<area shape="rect" id="node2" href="$ConsoleAppender_8hpp.html" title="Définition de la classe ConsoleAppender." alt="" coords="1184,95,1375,136"/>
+<area shape="rect" id="node5" href="$FileAppender_8hpp.html" title="Définition de la classe FileAppender." alt="" coords="1399,95,1589,136"/>
+<area shape="rect" id="node8" href="$MemoryAppender_8cpp.html" title="Implementation de la classe MemoryAppender." alt="" coords="1613,95,1804,136"/>
+<area shape="rect" id="node9" href="$SvgAppender_8hpp.html" title="Définition de la classe SvgAppender." alt="" coords="389,95,580,136"/>
+<area shape="rect" id="node12" href="$TelemetryAppender_8hpp.html" title="Définition de la classe TelemetryAppender." alt="" coords="871,95,1061,136"/>
+<area shape="rect" id="node15" href="$UnitTestAppender_8hpp.html" title="Définition de la classe UnitTestAppender utilisant le memory Appender." alt="" coords="2587,102,2817,129"/>
+<area shape="rect" id="node23" href="$UnitTestSuite_8cpp.html" title="Implementation de la classe UnitTestSuite." alt="" coords="3521,191,3721,218"/>
+<area shape="rect" id="node3" href="$src_2bot-opos6ul_2LoggerInitialize_8cpp.html" title="Ce fichier contient l&#39;initialisation du système de Log." alt="" coords="495,191,749,218"/>
+<area shape="rect" id="node4" href="$ConsoleAppender_8cpp.html" title="Implémentation de la classe ConsoleAppender." alt="" coords="1184,184,1375,225"/>
+<area shape="rect" id="node6" href="$FileAppender_8cpp.html" title="Implémentation de la classe FileAppender." alt="" coords="1399,184,1589,225"/>
+<area shape="rect" id="node7" href="$FileAppenderTest_8cpp.html" title="Implémentation des tests de la classe logs::FileAppender." alt="" coords="1614,184,1811,225"/>
+<area shape="rect" id="node10" href="$SvgAppender_8cpp.html" title="Implémentation de la classe SvgAppender." alt="" coords="5,184,196,225"/>
+<area shape="rect" id="node11" href="$SvgAppenderTest_8cpp.html" title="Implémentation des tests de la classe logs::SvgAppender." alt="" coords="221,191,471,218"/>
+<area shape="rect" id="node13" href="$TelemetryAppender_8cpp.html" title="Implémentation de la classe TelemetryAppender." alt="" coords="773,184,964,225"/>
+<area shape="rect" id="node14" href="$Robot_8cpp.html" title="Implémentation de la classe Robot." alt="" coords="989,191,1159,218"/>
+<area shape="rect" id="node16" href="$test_2bench_2LoggerInitialize_8cpp.html" title="Initialisation du systeme de Log pour les benchmarks." alt="" coords="2089,191,2310,218"/>
+<area shape="rect" id="node17" href="$test_2common_2LoggerInitialize_8cpp.html" title="Initialisation du système de Log pour les tests unitaires." alt="" coords="2335,191,2573,218"/>
+<area shape="rect" id="node18" href="$LoggerTest_8cpp.html" title="Implémentation des tests de la classe logs::Logger." alt="" coords="2597,191,2807,218"/>
+<area shape="rect" id="node19" href="$test_2driver_2LoggerInitialize_8cpp.html" title="Initialisation du systeme de Log pour les tests driver." alt="" coords="2831,191,3051,218"/>
+<area shape="rect" id="node20" href="$test_2manual_2LoggerInitialize_8cpp.html" title="Initialisation du systeme de Log pour les tests manuels." alt="" coords="3075,191,3305,218"/>
+<area shape="rect" id="node21" href="$UnitTest_8cpp.html" title="Implémentation de la classe DevUnitTest." alt="" coords="3329,191,3496,218"/>
+<area shape="rect" id="node22" href="$UnitTestAppender_8cpp.html" title="Implémentation de la classe UnitTestAppender." alt="" coords="1836,191,2064,218"/>
 </map>

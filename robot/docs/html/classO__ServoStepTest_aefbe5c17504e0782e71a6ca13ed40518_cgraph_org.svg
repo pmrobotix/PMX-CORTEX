@@ -115,7 +115,7 @@
 <!-- Node25 -->
 <g id="node25" class="node">
 <title>Node25</title>
-<g id="a_node25"><a xlink:href="classRobot.html#aff7fd21568740625c8494d3fb5e9f34a" target="_top" xlink:title=" ">
+<g id="a_node25"><a xlink:href="classRobot.html#aff7fd21568740625c8494d3fb5e9f34a" target="_top" xlink:title="Retourne les arguments de la ligne de commande.">
 <polygon fill="white" stroke="black" points="198.5,-398 198.5,-417 287.5,-417 287.5,-398 198.5,-398"/>
 <text text-anchor="middle" x="243" y="-405" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::getArgs</text>
 </a>
@@ -130,7 +130,7 @@
 <!-- Node26 -->
 <g id="node26" class="node">
 <title>Node26</title>
-<g id="a_node26"><a xlink:href="classRobot.html#a36b66143430e84b730555cf497b89774" target="_top" xlink:title=" ">
+<g id="a_node26"><a xlink:href="classRobot.html#a36b66143430e84b730555cf497b89774" target="_top" xlink:title="Retourne l&#39;identifiant du robot.">
 <polygon fill="white" stroke="black" points="204.5,-360 204.5,-379 281.5,-379 281.5,-360 204.5,-360"/>
 <text text-anchor="middle" x="243" y="-367" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::getID</text>
 </a>

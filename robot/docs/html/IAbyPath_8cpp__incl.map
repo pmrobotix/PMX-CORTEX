@@ -1,52 +1,52 @@
 <map id="src/common/ia/IAbyPath.cpp" name="src/common/ia/IAbyPath.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="1862,5,2069,32"/>
-<area shape="rect" id="node2" href="$IAbyPath_8hpp.html" title=" " alt="" coords="544,80,651,107"/>
-<area shape="rect" id="node13" href="$Logger_8hpp.html" title="Définition de la classe Logger." alt="" coords="240,379,333,405"/>
-<area shape="rect" id="node18" title=" " alt="" coords="1505,379,1567,405"/>
-<area shape="rect" id="node21" title=" " alt="" coords="1016,229,1083,256"/>
-<area shape="rect" id="node28" title=" " alt="" coords="951,80,1091,107"/>
-<area shape="rect" id="node29" title=" " alt="" coords="1115,80,1247,107"/>
-<area shape="rect" id="node30" title=" " alt="" coords="1272,80,1397,107"/>
-<area shape="rect" id="node31" title=" " alt="" coords="1421,80,1544,107"/>
-<area shape="rect" id="node32" title=" " alt="" coords="1568,80,1667,107"/>
-<area shape="rect" id="node33" title=" " alt="" coords="1691,80,1789,107"/>
-<area shape="rect" id="node34" title=" " alt="" coords="1814,80,1954,107"/>
-<area shape="rect" id="node35" title=" " alt="" coords="1978,80,2118,107"/>
-<area shape="rect" id="node36" title=" " alt="" coords="2142,80,2242,107"/>
-<area shape="rect" id="node37" title=" " alt="" coords="2267,80,2365,107"/>
-<area shape="rect" id="node38" title=" " alt="" coords="2390,80,2461,107"/>
-<area shape="rect" id="node39" title=" " alt="" coords="2485,80,2560,107"/>
-<area shape="rect" id="node40" title=" " alt="" coords="2584,80,2651,107"/>
-<area shape="rect" id="node41" title=" " alt="" coords="2675,80,2739,107"/>
-<area shape="rect" id="node42" title=" " alt="" coords="2763,80,2839,107"/>
-<area shape="rect" id="node43" href="$SvgWriter_8hpp.html" title="Définition de la classe SvgWriter." alt="" coords="2915,80,3053,107"/>
-<area shape="rect" id="node48" title=" " alt="" coords="3099,155,3261,181"/>
-<area shape="rect" id="node49" href="$Asserv_8hpp.html" title=" " alt="" coords="1341,155,1481,181"/>
-<area shape="rect" id="node3" title=" " alt="" coords="606,155,746,181"/>
-<area shape="rect" id="node4" title=" " alt="" coords="5,453,80,480"/>
-<area shape="rect" id="node5" title=" " alt="" coords="937,528,996,555"/>
-<area shape="rect" id="node6" href="$LoggerFactory_8hpp.html" title="Définition de la classe LoggerFactory." alt="" coords="459,304,621,331"/>
-<area shape="rect" id="node15" href="$AAsservDriver_8hpp.html" title="Interface abstraite du driver d&#39;asservissement." alt="" coords="1166,229,1370,256"/>
-<area shape="rect" id="node20" href="$Robot_8hpp.html" title=" " alt="" coords="822,155,922,181"/>
-<area shape="rect" id="node27" href="$IACommon_8hpp.html" title=" " alt="" coords="459,155,581,181"/>
-<area shape="rect" id="node7" title=" " alt="" coords="637,379,688,405"/>
-<area shape="rect" id="node8" href="$Thread_8hpp.html" title="Définition de la classe Thread." alt="" coords="459,379,613,405"/>
-<area shape="rect" id="node9" title=" " alt="" coords="203,528,287,555"/>
-<area shape="rect" id="node10" title=" " alt="" coords="531,453,595,480"/>
-<area shape="rect" id="node11" href="$Mutex_8hpp.html" title="Définition de la classe Mutex." alt="" coords="104,453,195,480"/>
-<area shape="rect" id="node12" title=" " alt="" coords="619,453,685,480"/>
-<area shape="rect" id="node14" href="$Level_8hpp.html" title="Définition de la classe Level." alt="" coords="219,453,304,480"/>
-<area shape="rect" id="node16" title=" " alt="" coords="1181,304,1248,331"/>
-<area shape="rect" id="node17" href="$ARobotPositionShared_8hpp.html" title="Position partagee du robot et utilitaires geometriques." alt="" coords="1323,304,1517,331"/>
-<area shape="rect" id="node19" href="$Chronometer_8hpp.html" title="Définition de la classe Chronometer." alt="" coords="1030,379,1197,405"/>
-<area shape="rect" id="node22" href="$Arguments_8hpp.html" title=" " alt="" coords="686,304,839,331"/>
-<area shape="rect" id="node25" href="$ConsoleManager_8hpp.html" title="Définition de la classe ConsoleManager." alt="" coords="966,304,1157,331"/>
-<area shape="rect" id="node26" href="$Automate_8hpp.html" title="Définition de la classe Automate." alt="" coords="598,229,749,256"/>
-<area shape="rect" id="node23" title=" " alt="" coords="713,379,799,405"/>
-<area shape="rect" id="node24" title=" " alt="" coords="824,379,904,405"/>
-<area shape="rect" id="node44" href="$PointerList_8hpp.html" title="Définition de la classe PointerList." alt="" coords="2825,155,2988,181"/>
-<area shape="rect" id="node45" title=" " alt="" coords="2810,229,2929,256"/>
-<area shape="rect" id="node46" title=" " alt="" coords="2953,229,3023,256"/>
-<area shape="rect" id="node47" title=" " alt="" coords="2743,229,2785,256"/>
-<area shape="rect" id="node50" title=" " alt="" coords="1449,229,1503,256"/>
+<area shape="rect" id="node1" title=" " alt="" coords="2293,5,2499,32"/>
+<area shape="rect" id="node2" href="$IAbyPath_8hpp.html" title=" " alt="" coords="631,80,737,107"/>
+<area shape="rect" id="node14" href="$Logger_8hpp.html" title="Définition de la classe Logger." alt="" coords="153,379,247,405"/>
+<area shape="rect" id="node19" title=" " alt="" coords="1465,379,1527,405"/>
+<area shape="rect" id="node22" title=" " alt="" coords="368,229,435,256"/>
+<area shape="rect" id="node28" title=" " alt="" coords="1798,80,1938,107"/>
+<area shape="rect" id="node29" title=" " alt="" coords="1962,80,2094,107"/>
+<area shape="rect" id="node30" title=" " alt="" coords="2119,80,2244,107"/>
+<area shape="rect" id="node31" title=" " alt="" coords="2268,80,2391,107"/>
+<area shape="rect" id="node32" title=" " alt="" coords="2415,80,2513,107"/>
+<area shape="rect" id="node33" title=" " alt="" coords="2537,80,2636,107"/>
+<area shape="rect" id="node34" title=" " alt="" coords="2661,80,2801,107"/>
+<area shape="rect" id="node35" title=" " alt="" coords="2825,80,2965,107"/>
+<area shape="rect" id="node36" title=" " alt="" coords="2989,80,3089,107"/>
+<area shape="rect" id="node37" title=" " alt="" coords="3113,80,3212,107"/>
+<area shape="rect" id="node38" title=" " alt="" coords="3237,80,3307,107"/>
+<area shape="rect" id="node39" title=" " alt="" coords="3332,80,3407,107"/>
+<area shape="rect" id="node40" title=" " alt="" coords="3431,80,3497,107"/>
+<area shape="rect" id="node41" title=" " alt="" coords="3521,80,3585,107"/>
+<area shape="rect" id="node42" title=" " alt="" coords="3610,80,3686,107"/>
+<area shape="rect" id="node43" href="$SvgWriter_8hpp.html" title="Définition de la classe SvgWriter." alt="" coords="1585,80,1722,107"/>
+<area shape="rect" id="node48" title=" " alt="" coords="1872,155,2035,181"/>
+<area shape="rect" id="node49" href="$Asserv_8hpp.html" title=" " alt="" coords="1338,155,1478,181"/>
+<area shape="rect" id="node3" title=" " alt="" coords="338,155,478,181"/>
+<area shape="rect" id="node4" title=" " alt="" coords="280,453,355,480"/>
+<area shape="rect" id="node5" title=" " alt="" coords="859,528,917,555"/>
+<area shape="rect" id="node6" href="$LoggerFactory_8hpp.html" title="Définition de la classe LoggerFactory." alt="" coords="389,304,552,331"/>
+<area shape="rect" id="node16" href="$AAsservDriver_8hpp.html" title="Interface abstraite du driver d&#39;asservissement." alt="" coords="1002,229,1206,256"/>
+<area shape="rect" id="node21" href="$Robot_8hpp.html" title=" " alt="" coords="699,155,799,181"/>
+<area shape="rect" id="node27" href="$IACommon_8hpp.html" title=" " alt="" coords="191,155,313,181"/>
+<area shape="rect" id="node7" title=" " alt="" coords="612,379,663,405"/>
+<area shape="rect" id="node8" href="$Thread_8hpp.html" title="Définition de la classe Thread." alt="" coords="383,379,537,405"/>
+<area shape="rect" id="node9" title=" " alt="" coords="179,528,263,555"/>
+<area shape="rect" id="node10" title=" " alt="" coords="603,453,667,480"/>
+<area shape="rect" id="node11" title=" " alt="" coords="520,453,579,480"/>
+<area shape="rect" id="node12" href="$Mutex_8hpp.html" title="Définition de la classe Mutex." alt="" coords="5,453,96,480"/>
+<area shape="rect" id="node13" title=" " alt="" coords="429,453,496,480"/>
+<area shape="rect" id="node15" href="$Level_8hpp.html" title="Définition de la classe Level." alt="" coords="171,453,256,480"/>
+<area shape="rect" id="node17" title=" " alt="" coords="1072,304,1139,331"/>
+<area shape="rect" id="node18" href="$ARobotPositionShared_8hpp.html" title="Position partagee du robot et utilitaires geometriques." alt="" coords="1264,304,1459,331"/>
+<area shape="rect" id="node20" href="$Chronometer_8hpp.html" title="Définition de la classe Chronometer." alt="" coords="1022,379,1189,405"/>
+<area shape="rect" id="node23" href="$Arguments_8hpp.html" title=" " alt="" coords="577,304,730,331"/>
+<area shape="rect" id="node25" href="$ConsoleManager_8hpp.html" title="Définition de la classe ConsoleManager." alt="" coords="806,304,997,331"/>
+<area shape="rect" id="node26" href="$Automate_8hpp.html" title="Définition de la classe Automate." alt="" coords="510,229,661,256"/>
+<area shape="rect" id="node24" title=" " alt="" coords="687,379,774,405"/>
+<area shape="rect" id="node44" href="$PointerList_8hpp.html" title="Définition de la classe PointerList." alt="" coords="1685,155,1848,181"/>
+<area shape="rect" id="node45" title=" " alt="" coords="1686,229,1805,256"/>
+<area shape="rect" id="node46" title=" " alt="" coords="1829,229,1899,256"/>
+<area shape="rect" id="node47" title=" " alt="" coords="1924,229,1967,256"/>
+<area shape="rect" id="node50" title=" " alt="" coords="1315,229,1370,256"/>
 </map>

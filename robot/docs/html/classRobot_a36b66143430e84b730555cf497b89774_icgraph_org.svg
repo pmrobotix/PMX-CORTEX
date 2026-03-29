@@ -12,7 +12,7 @@
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
-<g id="a_node1"><a xlink:title=" ">
+<g id="a_node1"><a xlink:title="Retourne l&#39;identifiant du robot.">
 <polygon fill="#bfbfbf" stroke="black" points="710,-190.5 710,-209.5 787,-209.5 787,-190.5 710,-190.5"/>
 <text text-anchor="middle" x="748.5" y="-197.5" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::getID</text>
 </a>
@@ -217,7 +217,7 @@
 <!-- Node9 -->
 <g id="node9" class="node">
 <title>Node9</title>
-<g id="a_node9"><a xlink:href="classO__IAByPathTest.html#ad010b84a2684b7e16b75c98d6231e5ac" target="_top" xlink:title=" ">
+<g id="a_node9"><a xlink:href="classO__IAByPathTest.html#ad010b84a2684b7e16b75c98d6231e5ac" target="_top" xlink:title="Initialise le terrain de jeu (grille de navigation A*).">
 <polygon fill="white" stroke="black" points="165,-250.5 165,-269.5 334,-269.5 334,-250.5 165,-250.5"/>
 <text text-anchor="middle" x="249.5" y="-257.5" font-family="Helvetica,sans-Serif" font-size="10.00">O_IAByPathTest::initPlayground</text>
 </a>

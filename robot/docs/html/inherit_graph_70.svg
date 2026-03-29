@@ -9,9 +9,9 @@
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 848)">
 <title>Graphe hiérarchique des classes</title>
 <polygon fill="white" stroke="transparent" points="-4,4 -4,-848 752,-848 752,4 -4,4"/>
-<!-- Node335 -->
+<!-- Node346 -->
 <g id="node1" class="node">
-<title>Node335</title>
+<title>Node346</title>
 <g id="a_node1"><a xlink:title=" ">
 <polygon fill="white" stroke="#bfbfbf" points="0,-367.5 0,-386.5 84,-386.5 84,-367.5 0,-367.5"/>
 <text text-anchor="middle" x="42" y="-374.5" font-family="Helvetica,sans-Serif" font-size="10.00">std::true_type</text>
@@ -29,15 +29,15 @@
 </a>
 </g>
 </g>
-<!-- Node335&#45;&gt;Node0 -->
+<!-- Node346&#45;&gt;Node0 -->
 <g id="edge1" class="edge">
-<title>Node335&#45;&gt;Node0</title>
+<title>Node346&#45;&gt;Node0</title>
 <path fill="none" stroke="midnightblue" d="M45.2,-396.84C52.67,-460.88 78.87,-660.81 120,-709 135.85,-727.58 159.06,-739.84 181.67,-747.91"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="48.64,-396.06 44.03,-386.52 41.68,-396.86 48.64,-396.06"/>
 </g>
-<!-- Node341 -->
+<!-- Node352 -->
 <g id="node7" class="node">
-<title>Node341</title>
+<title>Node352</title>
 <g id="a_node7"><a xlink:href="structdetail_1_1conjunction.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="167.5,-647 167.5,-699 340.5,-699 340.5,-647 167.5,-647"/>
 <text text-anchor="start" x="175.5" y="-687" font-family="Helvetica,sans-Serif" font-size="10.00">detail::conjunction</text>
@@ -47,15 +47,15 @@
 </a>
 </g>
 </g>
-<!-- Node335&#45;&gt;Node341 -->
+<!-- Node346&#45;&gt;Node352 -->
 <g id="edge6" class="edge">
-<title>Node335&#45;&gt;Node341</title>
+<title>Node346&#45;&gt;Node352</title>
 <path fill="none" stroke="midnightblue" d="M42.74,-396.75C43.22,-445.04 51.41,-570.01 120,-637 133.01,-649.7 150.01,-658.04 167.5,-663.47"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="46.24,-396.69 42.74,-386.69 39.24,-396.68 46.24,-396.69"/>
 </g>
-<!-- Node346 -->
+<!-- Node357 -->
 <g id="node12" class="node">
-<title>Node346</title>
+<title>Node357</title>
 <g id="a_node12"><a xlink:href="structdetail_1_1conjunction.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="197.5,-586.5 197.5,-627.5 310.5,-627.5 310.5,-586.5 197.5,-586.5"/>
 <text text-anchor="start" x="205.5" y="-615.5" font-family="Helvetica,sans-Serif" font-size="10.00">detail::conjunction</text>
@@ -64,15 +64,15 @@
 </a>
 </g>
 </g>
-<!-- Node335&#45;&gt;Node346 -->
+<!-- Node346&#45;&gt;Node357 -->
 <g id="edge11" class="edge">
-<title>Node335&#45;&gt;Node346</title>
+<title>Node346&#45;&gt;Node357</title>
 <path fill="none" stroke="midnightblue" d="M44.67,-396.76C49.15,-436.93 65.16,-528.36 120,-576 141.21,-594.43 171.28,-602.44 197.47,-605.72"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="48.14,-396.26 43.67,-386.66 41.17,-396.95 48.14,-396.26"/>
 </g>
-<!-- Node348 -->
+<!-- Node359 -->
 <g id="node14" class="node">
-<title>Node348</title>
+<title>Node359</title>
 <g id="a_node14"><a xlink:href="structdetail_1_1conjunction.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="200.5,-537 200.5,-567 307.5,-567 307.5,-537 200.5,-537"/>
 <text text-anchor="start" x="208.5" y="-555" font-family="Helvetica,sans-Serif" font-size="10.00">detail::conjunction</text>
@@ -80,15 +80,15 @@
 </a>
 </g>
 </g>
-<!-- Node335&#45;&gt;Node348 -->
+<!-- Node346&#45;&gt;Node359 -->
 <g id="edge13" class="edge">
-<title>Node335&#45;&gt;Node348</title>
+<title>Node346&#45;&gt;Node359</title>
 <path fill="none" stroke="midnightblue" d="M47.21,-396.7C55.28,-429.34 76.14,-494.27 120,-527 142.88,-544.07 174,-550.57 200.38,-552.69"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="50.54,-395.56 44.88,-386.61 43.72,-397.14 50.54,-395.56"/>
 </g>
-<!-- Node349 -->
+<!-- Node360 -->
 <g id="node15" class="node">
-<title>Node349</title>
+<title>Node360</title>
 <g id="a_node15"><a xlink:href="structdetail_1_1is__basic__json_3_01NLOHMANN__BASIC__JSON__TPL_01_4.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="162,-488 162,-518 346,-518 346,-488 162,-488"/>
 <text text-anchor="start" x="170" y="-506" font-family="Helvetica,sans-Serif" font-size="10.00">detail::is_basic_json</text>
@@ -96,15 +96,15 @@
 </a>
 </g>
 </g>
-<!-- Node335&#45;&gt;Node349 -->
+<!-- Node346&#45;&gt;Node360 -->
 <g id="edge14" class="edge">
-<title>Node335&#45;&gt;Node349</title>
+<title>Node346&#45;&gt;Node360</title>
 <path fill="none" stroke="midnightblue" d="M51.9,-395.86C63.93,-419.13 87.63,-458.04 120,-478 132.6,-485.77 147.05,-491.23 161.68,-495.05"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="54.92,-394.08 47.34,-386.68 48.65,-397.19 54.92,-394.08"/>
 </g>
-<!-- Node350 -->
+<!-- Node361 -->
 <g id="node16" class="node">
-<title>Node350</title>
+<title>Node361</title>
 <g id="a_node16"><a xlink:href="structdetail_1_1is__comparable_3_01Compare_00_01A_00_01B_00_01void__t_3_01decltype_07std_1_1decle5e3400d312093eca0a7154409c6a227.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="169.5,-373 169.5,-469 338.5,-469 338.5,-373 169.5,-373"/>
 <text text-anchor="start" x="177.5" y="-457" font-family="Helvetica,sans-Serif" font-size="10.00">detail::is_comparable</text>
@@ -118,15 +118,15 @@
 </a>
 </g>
 </g>
-<!-- Node335&#45;&gt;Node350 -->
+<!-- Node346&#45;&gt;Node361 -->
 <g id="edge15" class="edge">
-<title>Node335&#45;&gt;Node350</title>
+<title>Node346&#45;&gt;Node361</title>
 <path fill="none" stroke="midnightblue" d="M94.26,-387.74C116.83,-392.47 143.92,-398.15 169.29,-403.46"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="94.74,-384.27 84.24,-385.64 93.31,-391.12 94.74,-384.27"/>
 </g>
-<!-- Node351 -->
+<!-- Node362 -->
 <g id="node17" class="node">
-<title>Node351</title>
+<title>Node362</title>
 <g id="a_node17"><a xlink:href="structdetail_1_1is__complete__type_3_01T_00_01decltype_07void_07sizeof_07T_08_08_08_4.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="187,-312.5 187,-353.5 321,-353.5 321,-312.5 187,-312.5"/>
 <text text-anchor="start" x="195" y="-341.5" font-family="Helvetica,sans-Serif" font-size="10.00">detail::is_complete</text>
@@ -135,15 +135,15 @@
 </a>
 </g>
 </g>
-<!-- Node335&#45;&gt;Node351 -->
+<!-- Node346&#45;&gt;Node362 -->
 <g id="edge16" class="edge">
-<title>Node335&#45;&gt;Node351</title>
+<title>Node346&#45;&gt;Node362</title>
 <path fill="none" stroke="midnightblue" d="M94.16,-366.28C121.99,-360.45 156.75,-353.17 186.65,-346.9"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="93.31,-362.88 84.24,-368.36 94.74,-369.73 93.31,-362.88"/>
 </g>
-<!-- Node352 -->
+<!-- Node363 -->
 <g id="node18" class="node">
-<title>Node352</title>
+<title>Node363</title>
 <g id="a_node18"><a xlink:href="structdetail_1_1is__constructible__array__type__impl_3_01BasicJsonType_00_01ConstructibleArrayTyff4af2af9684a1cc8580410ec8c319a4.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="120,-230.5 120,-293.5 388,-293.5 388,-230.5 120,-230.5"/>
 <text text-anchor="start" x="128" y="-281.5" font-family="Helvetica,sans-Serif" font-size="10.00">detail::is_constructible</text>
@@ -154,15 +154,15 @@
 </a>
 </g>
 </g>
-<!-- Node335&#45;&gt;Node352 -->
+<!-- Node346&#45;&gt;Node363 -->
 <g id="edge17" class="edge">
-<title>Node335&#45;&gt;Node352</title>
+<title>Node346&#45;&gt;Node363</title>
 <path fill="none" stroke="midnightblue" d="M57.01,-359.43C71.23,-342.69 94.7,-317.9 120,-303 125.73,-299.63 131.76,-296.51 137.96,-293.62"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="54.13,-357.42 50.46,-367.35 59.53,-361.88 54.13,-357.42"/>
 </g>
-<!-- Node353 -->
+<!-- Node364 -->
 <g id="node19" class="node">
-<title>Node353</title>
+<title>Node364</title>
 <g id="a_node19"><a xlink:href="structdetail_1_1is__json__iterator__of_3_01BasicJsonType_00_01typename_01BasicJsonType_1_1const__iterator_01_4.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="167.5,-170.5 167.5,-211.5 340.5,-211.5 340.5,-170.5 167.5,-170.5"/>
 <text text-anchor="start" x="175.5" y="-199.5" font-family="Helvetica,sans-Serif" font-size="10.00">detail::is_json_iterator</text>
@@ -171,15 +171,15 @@
 </a>
 </g>
 </g>
-<!-- Node335&#45;&gt;Node353 -->
+<!-- Node346&#45;&gt;Node364 -->
 <g id="edge18" class="edge">
-<title>Node335&#45;&gt;Node353</title>
+<title>Node346&#45;&gt;Node364</title>
 <path fill="none" stroke="midnightblue" d="M47,-357.14C54.82,-323.63 75.44,-256.09 120,-221 133.67,-210.24 150.45,-203.18 167.43,-198.59"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="43.54,-356.59 44.82,-367.11 50.37,-358.08 43.54,-356.59"/>
 </g>
-<!-- Node354 -->
+<!-- Node365 -->
 <g id="node20" class="node">
-<title>Node354</title>
+<title>Node365</title>
 <g id="a_node20"><a xlink:href="structdetail_1_1is__json__iterator__of_3_01BasicJsonType_00_01typename_01BasicJsonType_1_1iterator_01_4.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="170.5,-110.5 170.5,-151.5 337.5,-151.5 337.5,-110.5 170.5,-110.5"/>
 <text text-anchor="start" x="178.5" y="-139.5" font-family="Helvetica,sans-Serif" font-size="10.00">detail::is_json_iterator</text>
@@ -188,15 +188,15 @@
 </a>
 </g>
 </g>
-<!-- Node335&#45;&gt;Node354 -->
+<!-- Node346&#45;&gt;Node365 -->
 <g id="edge19" class="edge">
-<title>Node335&#45;&gt;Node354</title>
+<title>Node346&#45;&gt;Node365</title>
 <path fill="none" stroke="midnightblue" d="M43.94,-357.31C47.1,-314.69 60.77,-213.48 120,-161 134,-148.6 152.02,-140.99 170.25,-136.41"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="40.44,-357.28 43.31,-367.48 47.43,-357.71 40.44,-357.28"/>
 </g>
-<!-- Node355 -->
+<!-- Node366 -->
 <g id="node21" class="node">
-<title>Node355</title>
+<title>Node366</title>
 <g id="a_node21"><a xlink:href="structdetail_1_1is__json__ref_3_01json__ref_3_01T_01_4_01_4.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="200.5,-61 200.5,-91 307.5,-91 307.5,-61 200.5,-61"/>
 <text text-anchor="start" x="208.5" y="-79" font-family="Helvetica,sans-Serif" font-size="10.00">detail::is_json_ref</text>
@@ -204,15 +204,15 @@
 </a>
 </g>
 </g>
-<!-- Node335&#45;&gt;Node355 -->
+<!-- Node346&#45;&gt;Node366 -->
 <g id="edge20" class="edge">
-<title>Node335&#45;&gt;Node355</title>
+<title>Node346&#45;&gt;Node366</title>
 <path fill="none" stroke="midnightblue" d="M45.78,-357.27C54.23,-300.14 81.42,-136.39 120,-101 141.38,-81.39 173.09,-74.88 200.18,-73.4"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="42.31,-356.81 44.34,-367.21 49.24,-357.81 42.31,-356.81"/>
 </g>
-<!-- Node356 -->
+<!-- Node367 -->
 <g id="node22" class="node">
-<title>Node356</title>
+<title>Node367</title>
 <g id="a_node22"><a xlink:href="structdetail_1_1is__specialization__of_3_01Primary_00_01Primary_3_01Args_8_8_8_01_4_01_4.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="187,-0.5 187,-41.5 321,-41.5 321,-0.5 187,-0.5"/>
 <text text-anchor="start" x="195" y="-29.5" font-family="Helvetica,sans-Serif" font-size="10.00">detail::is_specialization</text>
@@ -221,9 +221,9 @@
 </a>
 </g>
 </g>
-<!-- Node335&#45;&gt;Node356 -->
+<!-- Node346&#45;&gt;Node367 -->
 <g id="edge21" class="edge">
-<title>Node335&#45;&gt;Node356</title>
+<title>Node346&#45;&gt;Node367</title>
 <path fill="none" stroke="midnightblue" d="M44.95,-357.22C51.65,-293.43 75.75,-94.81 120,-51 137.58,-33.6 162.97,-25.4 186.86,-21.8"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="41.47,-356.88 43.93,-367.19 48.43,-357.59 41.47,-356.88"/>
 </g>
@@ -293,9 +293,9 @@
 <path fill="none" stroke="midnightblue" d="M553.4,-763C569.82,-763 587.42,-763 603.73,-763"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="553.36,-759.5 543.36,-763 553.36,-766.5 553.36,-759.5"/>
 </g>
-<!-- Node342 -->
+<!-- Node353 -->
 <g id="node8" class="node">
-<title>Node342</title>
+<title>Node353</title>
 <g id="a_node8"><a xlink:href="structdetail_1_1is__default__constructible_3_01const_01std_1_1pair_3_01T1_00_01T2_01_4_01_4.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="426,-682.5 426,-723.5 549,-723.5 549,-682.5 426,-682.5"/>
 <text text-anchor="start" x="434" y="-711.5" font-family="Helvetica,sans-Serif" font-size="10.00">detail::is_default</text>
@@ -304,15 +304,15 @@
 </a>
 </g>
 </g>
-<!-- Node341&#45;&gt;Node342 -->
+<!-- Node352&#45;&gt;Node353 -->
 <g id="edge7" class="edge">
-<title>Node341&#45;&gt;Node342</title>
+<title>Node352&#45;&gt;Node353</title>
 <path fill="none" stroke="midnightblue" d="M350.6,-685.39C376.06,-688.69 402.87,-692.16 425.88,-695.14"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="350.91,-681.9 340.54,-684.09 350.01,-688.84 350.91,-681.9"/>
 </g>
-<!-- Node344 -->
+<!-- Node355 -->
 <g id="node10" class="node">
-<title>Node344</title>
+<title>Node355</title>
 <g id="a_node10"><a xlink:href="structdetail_1_1is__default__constructible_3_01std_1_1pair_3_01T1_00_01T2_01_4_01_4.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="432,-622.5 432,-663.5 543,-663.5 543,-622.5 432,-622.5"/>
 <text text-anchor="start" x="440" y="-651.5" font-family="Helvetica,sans-Serif" font-size="10.00">detail::is_default</text>
@@ -321,15 +321,15 @@
 </a>
 </g>
 </g>
-<!-- Node341&#45;&gt;Node344 -->
+<!-- Node352&#45;&gt;Node355 -->
 <g id="edge9" class="edge">
-<title>Node341&#45;&gt;Node344</title>
+<title>Node352&#45;&gt;Node355</title>
 <path fill="none" stroke="midnightblue" d="M350.66,-660.6C378.33,-657.02 407.59,-653.23 431.83,-650.08"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="350.01,-657.16 340.54,-661.91 350.91,-664.1 350.01,-657.16"/>
 </g>
-<!-- Node343 -->
+<!-- Node354 -->
 <g id="node9" class="node">
-<title>Node343</title>
+<title>Node354</title>
 <g id="a_node9"><a xlink:href="structdetail_1_1is__constructible_3_01const_01std_1_1pair_3_01T1_00_01T2_01_4_01_4.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="587,-688 587,-718 748,-718 748,-688 587,-688"/>
 <text text-anchor="start" x="595" y="-706" font-family="Helvetica,sans-Serif" font-size="10.00">detail::is_constructible</text>
@@ -337,15 +337,15 @@
 </a>
 </g>
 </g>
-<!-- Node342&#45;&gt;Node343 -->
+<!-- Node353&#45;&gt;Node354 -->
 <g id="edge8" class="edge">
-<title>Node342&#45;&gt;Node343</title>
+<title>Node353&#45;&gt;Node354</title>
 <path fill="none" stroke="midnightblue" d="M559.33,-703C568.36,-703 577.65,-703 586.81,-703"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="559.26,-699.5 549.26,-703 559.26,-706.5 559.26,-699.5"/>
 </g>
-<!-- Node345 -->
+<!-- Node356 -->
 <g id="node11" class="node">
-<title>Node345</title>
+<title>Node356</title>
 <g id="a_node11"><a xlink:href="structdetail_1_1is__constructible_3_01std_1_1pair_3_01T1_00_01T2_01_4_01_4.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="602,-628 602,-658 733,-658 733,-628 602,-628"/>
 <text text-anchor="start" x="610" y="-646" font-family="Helvetica,sans-Serif" font-size="10.00">detail::is_constructible</text>
@@ -353,15 +353,15 @@
 </a>
 </g>
 </g>
-<!-- Node344&#45;&gt;Node345 -->
+<!-- Node355&#45;&gt;Node356 -->
 <g id="edge10" class="edge">
-<title>Node344&#45;&gt;Node345</title>
+<title>Node355&#45;&gt;Node356</title>
 <path fill="none" stroke="midnightblue" d="M553.53,-643C569.27,-643 586.1,-643 601.83,-643"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="553.36,-639.5 543.36,-643 553.36,-646.5 553.36,-639.5"/>
 </g>
-<!-- Node347 -->
+<!-- Node358 -->
 <g id="node13" class="node">
-<title>Node347</title>
+<title>Node358</title>
 <g id="a_node13"><a xlink:href="structdetail_1_1is__constructible__tuple_3_01T1_00_01std_1_1tuple_3_01Args_8_8_8_01_4_01_4.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="424,-562.5 424,-603.5 551,-603.5 551,-562.5 424,-562.5"/>
 <text text-anchor="start" x="432" y="-591.5" font-family="Helvetica,sans-Serif" font-size="10.00">detail::is_constructible</text>
@@ -370,9 +370,9 @@
 </a>
 </g>
 </g>
-<!-- Node346&#45;&gt;Node347 -->
+<!-- Node357&#45;&gt;Node358 -->
 <g id="edge12" class="edge">
-<title>Node346&#45;&gt;Node347</title>
+<title>Node357&#45;&gt;Node358</title>
 <path fill="none" stroke="midnightblue" d="M321,-600.16C353.32,-596.81 392.04,-592.79 423.9,-589.49"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="320.33,-596.71 310.74,-601.22 321.05,-603.67 320.33,-596.71"/>
 </g>

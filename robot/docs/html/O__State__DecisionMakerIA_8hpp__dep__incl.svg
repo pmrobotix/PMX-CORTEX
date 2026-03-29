@@ -22,7 +22,7 @@
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="O__State__DecisionMakerIA_8cpp.html" target="_top" xlink:title=" ">
+<g id="a_node2"><a xlink:href="O__State__DecisionMakerIA_8cpp.html" target="_top" xlink:title="Implémentation de la classe O_State_DecisionMakerIA.">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-30.5 133,-30.5 133,-0.5 0,-0.5"/>
 <text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">src/bot&#45;opos6ul/O_State</text>
 <text text-anchor="middle" x="66.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_DecisionMakerIA.cpp</text>
@@ -38,7 +38,7 @@
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="O__State__WaitEndOfMatch_8cpp.html" target="_top" xlink:title=" ">
+<g id="a_node3"><a xlink:href="O__State__WaitEndOfMatch_8cpp.html" target="_top" xlink:title="Implémentation de la classe O_State_WaitEndOfMatch.">
 <polygon fill="white" stroke="black" points="151,-0.5 151,-30.5 284,-30.5 284,-0.5 151,-0.5"/>
 <text text-anchor="start" x="159" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">src/bot&#45;opos6ul/O_State</text>
 <text text-anchor="middle" x="217.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_WaitEndOfMatch.cpp</text>
@@ -54,7 +54,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="OPOS6UL__RobotExtended_8cpp.html" target="_top" xlink:title=" ">
+<g id="a_node4"><a xlink:href="OPOS6UL__RobotExtended_8cpp.html" target="_top" xlink:title="Implémentation de la classe OPOS6UL_RobotExtended.">
 <polygon fill="white" stroke="black" points="302.5,-0.5 302.5,-30.5 442.5,-30.5 442.5,-0.5 302.5,-0.5"/>
 <text text-anchor="start" x="310.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">src/bot&#45;opos6ul/OPOS6UL</text>
 <text text-anchor="middle" x="372.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_RobotExtended.cpp</text>

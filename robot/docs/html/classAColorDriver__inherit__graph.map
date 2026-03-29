@@ -1,5 +1,5 @@
 <map id="AColorDriver" name="AColorDriver">
-<area shape="rect" id="node1" title="Interface abstraite du driver de capteur couleur." alt="" coords="71,5,177,32"/>
-<area shape="rect" id="node2" href="$classColorDriver.html" title="Implementation simulation du driver couleur." alt="" coords="5,80,101,107"/>
-<area shape="rect" id="node3" href="$classGroveColorSensor.html" title="Implémentation du détecteur de couleur Grove associée au robot." alt="" coords="125,80,264,107"/>
+<area shape="rect" id="node1" title="Interface abstraite du driver de capteur couleur." alt="" coords="96,5,201,32"/>
+<area shape="rect" id="node2" href="$classColorDriverSimu.html" title="Implementation simulation du driver couleur." alt="" coords="5,80,135,107"/>
+<area shape="rect" id="node3" href="$classGroveColorSensor.html" title="Implémentation du détecteur de couleur Grove associée au robot." alt="" coords="159,80,298,107"/>
 </map>

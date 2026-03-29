@@ -10,11 +10,11 @@
 <area shape="rect" id="node21" href="$classSensors.html#adb6e31b5f292fad731e2fd33e1fde8fa" title=" " alt="" coords="476,282,671,309"/>
 <area shape="rect" id="node22" href="$classSensors.html#a445b086f263ac98b47cb545d11b73ab1" title=" " alt="" coords="766,206,889,233"/>
 <area shape="rect" id="node23" href="$classSensors.html#a2c266a8b4feaec0456b1621fc6b2e865" title=" " alt="" coords="187,713,382,755"/>
-<area shape="rect" id="node24" href="$classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" title=" " alt="" coords="225,779,344,806"/>
+<area shape="rect" id="node24" href="$classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" title="Retourne un pointeur vers l&#39;asservissement du robot." alt="" coords="225,779,344,806"/>
 <area shape="rect" id="node25" href="$classSensors.html#aaf25dc2afdd983216b66476f69731d54" title=" " alt="" coords="227,830,342,857"/>
 <area shape="rect" id="node26" href="$classSensors.html#ae796030d5af64414b0822e5e36940bd4" title=" " alt="" coords="192,881,377,923"/>
-<area shape="rect" id="node28" href="$classRobot.html#a6a118c509a6d7ab35cdf96203eb0238a" title=" " alt="" coords="203,947,367,974"/>
-<area shape="rect" id="node29" href="$classRobot.html#a4f30918c35c294fbd5404fc3c3ffc075" title=" " alt="" coords="233,998,336,1025"/>
+<area shape="rect" id="node28" href="$classRobot.html#a6a118c509a6d7ab35cdf96203eb0238a" title="Retourne la position partagée du robot (pour communication inter&#45;threads)." alt="" coords="203,947,367,974"/>
+<area shape="rect" id="node29" href="$classRobot.html#a4f30918c35c294fbd5404fc3c3ffc075" title="Retourne une référence vers le SvgWriter (logging trajectoire)." alt="" coords="233,998,336,1025"/>
 <area shape="rect" id="node30" href="$classSensors.html#a33a5aa7e06b72aa392c3e9e1931c6d0b" title=" " alt="" coords="229,510,340,537"/>
 <area shape="rect" id="node44" href="$classSvgWriter.html#adf399e403e4fdcb453558208dfcda996" title="Dessine la position d&#39;un adversaire détecté." alt="" coords="195,1049,374,1091"/>
 <area shape="rect" id="node3" href="$classARobotPositionShared.html#a051d4c785a23df154911fa9f3840e195" title="Lit la position courante du robot." alt="" coords="490,5,657,47"/>

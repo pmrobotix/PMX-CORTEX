@@ -33,193 +33,208 @@
 <path fill="none" stroke="midnightblue" d="M74.38,-194.16C92.49,-205.28 123.7,-223.67 152,-236.5 160.73,-240.46 170.33,-244.21 179.48,-247.52"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="178.57,-250.91 189.17,-250.93 180.89,-244.31 178.57,-250.91"/>
 </g>
-<!-- Node3 -->
-<g id="node3" class="node">
-<title>Node3</title>
-<g id="a_node3"><a xlink:href="classlogs_1_1Logger.html#a7dffc8f610014ec59b63392da16140e4" target="_top" xlink:title="Trace un message de niveau DEBUG.">
+<!-- Node4 -->
+<g id="node4" class="node">
+<title>Node4</title>
+<g id="a_node4"><a xlink:href="classlogs_1_1Logger.html#a7dffc8f610014ec59b63392da16140e4" target="_top" xlink:title="Trace un message de niveau DEBUG.">
 <polygon fill="white" stroke="black" points="353,-213 353,-232 465,-232 465,-213 353,-213"/>
 <text text-anchor="middle" x="409" y="-220" font-family="Helvetica,sans-Serif" font-size="10.00">logs::Logger::debug</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node3 -->
-<g id="edge2" class="edge">
-<title>Node1&#45;&gt;Node3</title>
+<!-- Node1&#45;&gt;Node4 -->
+<g id="edge3" class="edge">
+<title>Node1&#45;&gt;Node4</title>
 <path fill="none" stroke="midnightblue" d="M100.01,-194.05C116.14,-197.5 134.86,-201.12 152,-203.5 216.56,-212.45 290.91,-217.38 342.79,-219.95"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="342.7,-223.45 352.85,-220.44 343.03,-216.46 342.7,-223.45"/>
 </g>
-<!-- Node5 -->
-<g id="node5" class="node">
-<title>Node5</title>
-<g id="a_node5"><a xlink:href="namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" target="_top" xlink:title="Cette méthode permet de finir les flux de construction par la notation.">
+<!-- Node6 -->
+<g id="node6" class="node">
+<title>Node6</title>
+<g id="a_node6"><a xlink:href="namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" target="_top" xlink:title="Cette méthode permet de finir les flux de construction par la notation.">
 <polygon fill="white" stroke="black" points="190,-175 190,-194 251,-194 251,-175 190,-175"/>
 <text text-anchor="middle" x="220.5" y="-182" font-family="Helvetica,sans-Serif" font-size="10.00">logs::end</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node5 -->
-<g id="edge4" class="edge">
-<title>Node1&#45;&gt;Node5</title>
+<!-- Node1&#45;&gt;Node6 -->
+<g id="edge5" class="edge">
+<title>Node1&#45;&gt;Node6</title>
 <path fill="none" stroke="midnightblue" d="M116.04,-184.5C137.02,-184.5 160.32,-184.5 179.49,-184.5"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="179.67,-188 189.67,-184.5 179.67,-181 179.67,-188"/>
 </g>
-<!-- Node9 -->
-<g id="node9" class="node">
-<title>Node9</title>
-<g id="a_node9"><a xlink:href="classALcdShieldDriver.html#aaa6d84bd2b3420de338b7f2f396cb68d" target="_top" xlink:title="Verifie si l&#39;ecran LCD est connecte.">
+<!-- Node10 -->
+<g id="node10" class="node">
+<title>Node10</title>
+<g id="a_node10"><a xlink:href="classALcdShieldDriver.html#aaa6d84bd2b3420de338b7f2f396cb68d" target="_top" xlink:title="Verifie si l&#39;ecran LCD est connecte.">
 <polygon fill="white" stroke="black" points="163.5,-125.5 163.5,-155.5 277.5,-155.5 277.5,-125.5 163.5,-125.5"/>
 <text text-anchor="start" x="171.5" y="-143.5" font-family="Helvetica,sans-Serif" font-size="10.00">ALcdShieldDriver::is</text>
 <text text-anchor="middle" x="220.5" y="-132.5" font-family="Helvetica,sans-Serif" font-size="10.00">_connected</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node9 -->
-<g id="edge9" class="edge">
-<title>Node1&#45;&gt;Node9</title>
+<!-- Node1&#45;&gt;Node10 -->
+<g id="edge10" class="edge">
+<title>Node1&#45;&gt;Node10</title>
 <path fill="none" stroke="midnightblue" d="M93.83,-174.95C111.65,-170.07 133.94,-163.95 154.78,-158.24"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="155.83,-161.58 164.55,-155.57 153.98,-154.83 155.83,-161.58"/>
 </g>
-<!-- Node10 -->
-<g id="node10" class="node">
-<title>Node10</title>
-<g id="a_node10"><a xlink:href="classLcdShield.html#a77f0ad9f1274f427f69e9d1030e3f1c7" target="_top" xlink:title="Retourne le Logger associé à la classe LcdShield.">
+<!-- Node11 -->
+<g id="node11" class="node">
+<title>Node11</title>
+<g id="a_node11"><a xlink:href="classLcdShield.html#a77f0ad9f1274f427f69e9d1030e3f1c7" target="_top" xlink:title="Retourne le Logger associé à la classe LcdShield.">
 <polygon fill="white" stroke="black" points="170.5,-71 170.5,-90 270.5,-90 270.5,-71 170.5,-71"/>
 <text text-anchor="middle" x="220.5" y="-78" font-family="Helvetica,sans-Serif" font-size="10.00">LcdShield::logger</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node10 -->
-<g id="edge10" class="edge">
-<title>Node1&#45;&gt;Node10</title>
+<!-- Node1&#45;&gt;Node11 -->
+<g id="edge11" class="edge">
+<title>Node1&#45;&gt;Node11</title>
 <path fill="none" stroke="midnightblue" d="M70.95,-174.91C88.29,-161.2 121.68,-135.54 152,-116.5 164.34,-108.75 178.49,-101.04 190.64,-94.75"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="192.57,-97.69 199.89,-90.03 189.39,-91.46 192.57,-97.69"/>
 </g>
-<!-- Node4 -->
-<g id="node4" class="node">
-<title>Node4</title>
-<g id="a_node4"><a xlink:href="classlogs_1_1Logger.html#afa535aaf4891e02c4ff7f84d372b5b1b" target="_top" xlink:title="Méthode générique de trace d&#39;un message.">
+<!-- Node3 -->
+<g id="node3" class="node">
+<title>Node3</title>
+<g id="a_node3"><a xlink:href="classHardwareConfig.html#ac025d3170ffc737f6ac5335e944ed19f" target="_top" xlink:title="Retourne l&#39;instance unique.">
+<polygon fill="white" stroke="black" points="338,-251 338,-270 480,-270 480,-251 338,-251"/>
+<text text-anchor="middle" x="409" y="-258" font-family="Helvetica,sans-Serif" font-size="10.00">HardwareConfig::instance</text>
+</a>
+</g>
+</g>
+<!-- Node2&#45;&gt;Node3 -->
+<g id="edge2" class="edge">
+<title>Node2&#45;&gt;Node3</title>
+<path fill="none" stroke="midnightblue" d="M289.09,-260.5C301.6,-260.5 314.77,-260.5 327.61,-260.5"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="327.81,-264 337.81,-260.5 327.81,-257 327.81,-264"/>
+</g>
+<!-- Node5 -->
+<g id="node5" class="node">
+<title>Node5</title>
+<g id="a_node5"><a xlink:href="classlogs_1_1Logger.html#afa535aaf4891e02c4ff7f84d372b5b1b" target="_top" xlink:title="Méthode générique de trace d&#39;un message.">
 <polygon fill="white" stroke="black" points="529,-213 529,-232 679,-232 679,-213 529,-213"/>
 <text text-anchor="middle" x="604" y="-220" font-family="Helvetica,sans-Serif" font-size="10.00">logs::Logger::writeMessage</text>
 </a>
 </g>
 </g>
-<!-- Node3&#45;&gt;Node4 -->
-<g id="edge3" class="edge">
-<title>Node3&#45;&gt;Node4</title>
+<!-- Node4&#45;&gt;Node5 -->
+<g id="edge4" class="edge">
+<title>Node4&#45;&gt;Node5</title>
 <path fill="none" stroke="midnightblue" d="M465.05,-222.5C481.78,-222.5 500.57,-222.5 518.76,-222.5"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="518.79,-226 528.79,-222.5 518.79,-219 518.79,-226"/>
-</g>
-<!-- Node6 -->
-<g id="node6" class="node">
-<title>Node6</title>
-<g id="a_node6"><a xlink:href="classlogs_1_1Logger_1_1LoggerBuffer.html#a0e4fd77693fd899ec1b0670354f93a02" target="_top" xlink:title="Cette méthode valide le message en cours de construction et le transmet au Logger de référence.">
-<polygon fill="white" stroke="black" points="325,-175 325,-194 493,-194 493,-175 325,-175"/>
-<text text-anchor="middle" x="409" y="-182" font-family="Helvetica,sans-Serif" font-size="10.00">logs::Logger::LoggerBuffer::end</text>
-</a>
-</g>
-</g>
-<!-- Node5&#45;&gt;Node6 -->
-<g id="edge5" class="edge">
-<title>Node5&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M251.05,-184.5C268.41,-184.5 291.41,-184.5 314.43,-184.5"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="314.63,-188 324.63,-184.5 314.63,-181 314.63,-188"/>
-</g>
-<!-- Node6&#45;&gt;Node4 -->
-<g id="edge8" class="edge">
-<title>Node6&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M458.7,-194.09C484.86,-199.24 517.28,-205.62 544.77,-211.03"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="544.16,-214.48 554.65,-212.98 545.51,-207.61 544.16,-214.48"/>
 </g>
 <!-- Node7 -->
 <g id="node7" class="node">
 <title>Node7</title>
-<g id="a_node7"><a xlink:href="classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32" target="_top" xlink:title="Verrouille le mutex. Cette méthode doit être appelée avant d&#39;utiliser la ressource associée....">
-<polygon fill="white" stroke="black" points="553.5,-175 553.5,-194 654.5,-194 654.5,-175 553.5,-175"/>
-<text text-anchor="middle" x="604" y="-182" font-family="Helvetica,sans-Serif" font-size="10.00">utils::Mutex::lock</text>
+<g id="a_node7"><a xlink:href="classlogs_1_1Logger_1_1LoggerBuffer.html#a0e4fd77693fd899ec1b0670354f93a02" target="_top" xlink:title="Cette méthode valide le message en cours de construction et le transmet au Logger de référence.">
+<polygon fill="white" stroke="black" points="325,-175 325,-194 493,-194 493,-175 325,-175"/>
+<text text-anchor="middle" x="409" y="-182" font-family="Helvetica,sans-Serif" font-size="10.00">logs::Logger::LoggerBuffer::end</text>
 </a>
 </g>
 </g>
 <!-- Node6&#45;&gt;Node7 -->
 <g id="edge6" class="edge">
 <title>Node6&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M493.25,-184.5C510.07,-184.5 527.44,-184.5 543.26,-184.5"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="543.41,-188 553.41,-184.5 543.41,-181 543.41,-188"/>
+<path fill="none" stroke="midnightblue" d="M251.05,-184.5C268.41,-184.5 291.41,-184.5 314.43,-184.5"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="314.63,-188 324.63,-184.5 314.63,-181 314.63,-188"/>
+</g>
+<!-- Node7&#45;&gt;Node5 -->
+<g id="edge9" class="edge">
+<title>Node7&#45;&gt;Node5</title>
+<path fill="none" stroke="midnightblue" d="M458.7,-194.09C484.86,-199.24 517.28,-205.62 544.77,-211.03"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="544.16,-214.48 554.65,-212.98 545.51,-207.61 544.16,-214.48"/>
 </g>
 <!-- Node8 -->
 <g id="node8" class="node">
 <title>Node8</title>
-<g id="a_node8"><a xlink:href="classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3" target="_top" xlink:title="Déverrouille le mutex. Cette méthode doit être appelée après avoir utiliser la ressource associée.">
+<g id="a_node8"><a xlink:href="classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32" target="_top" xlink:title="Verrouille le mutex. Cette méthode doit être appelée avant d&#39;utiliser la ressource associée....">
+<polygon fill="white" stroke="black" points="553.5,-175 553.5,-194 654.5,-194 654.5,-175 553.5,-175"/>
+<text text-anchor="middle" x="604" y="-182" font-family="Helvetica,sans-Serif" font-size="10.00">utils::Mutex::lock</text>
+</a>
+</g>
+</g>
+<!-- Node7&#45;&gt;Node8 -->
+<g id="edge7" class="edge">
+<title>Node7&#45;&gt;Node8</title>
+<path fill="none" stroke="midnightblue" d="M493.25,-184.5C510.07,-184.5 527.44,-184.5 543.26,-184.5"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="543.41,-188 553.41,-184.5 543.41,-181 543.41,-188"/>
+</g>
+<!-- Node9 -->
+<g id="node9" class="node">
+<title>Node9</title>
+<g id="a_node9"><a xlink:href="classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3" target="_top" xlink:title="Déverrouille le mutex. Cette méthode doit être appelée après avoir utiliser la ressource associée.">
 <polygon fill="white" stroke="black" points="547.5,-137 547.5,-156 660.5,-156 660.5,-137 547.5,-137"/>
 <text text-anchor="middle" x="604" y="-144" font-family="Helvetica,sans-Serif" font-size="10.00">utils::Mutex::unlock</text>
 </a>
 </g>
 </g>
-<!-- Node6&#45;&gt;Node8 -->
-<g id="edge7" class="edge">
-<title>Node6&#45;&gt;Node8</title>
+<!-- Node7&#45;&gt;Node9 -->
+<g id="edge8" class="edge">
+<title>Node7&#45;&gt;Node9</title>
 <path fill="none" stroke="midnightblue" d="M458.7,-174.91C484.86,-169.76 517.28,-163.38 544.77,-157.97"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="545.51,-161.39 554.65,-156.02 544.16,-154.52 545.51,-161.39"/>
 </g>
-<!-- Node11 -->
-<g id="node11" class="node">
-<title>Node11</title>
-<g id="a_node11"><a xlink:href="classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e" target="_top" xlink:title="Cette méthode statique retourne un Logger en fonction de son nom.">
+<!-- Node12 -->
+<g id="node12" class="node">
+<title>Node12</title>
+<g id="a_node12"><a xlink:href="classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e" target="_top" xlink:title="Cette méthode statique retourne un Logger en fonction de son nom.">
 <polygon fill="white" stroke="black" points="353.5,-57.5 353.5,-87.5 464.5,-87.5 464.5,-57.5 353.5,-57.5"/>
 <text text-anchor="start" x="361.5" y="-75.5" font-family="Helvetica,sans-Serif" font-size="10.00">logs::LoggerFactory</text>
 <text text-anchor="middle" x="409" y="-64.5" font-family="Helvetica,sans-Serif" font-size="10.00">::logger</text>
 </a>
 </g>
 </g>
-<!-- Node10&#45;&gt;Node11 -->
-<g id="edge11" class="edge">
-<title>Node10&#45;&gt;Node11</title>
+<!-- Node11&#45;&gt;Node12 -->
+<g id="edge12" class="edge">
+<title>Node11&#45;&gt;Node12</title>
 <path fill="none" stroke="midnightblue" d="M270.5,-78.4C292.79,-77.44 319.46,-76.3 343.36,-75.27"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="343.57,-78.77 353.41,-74.84 343.27,-71.77 343.57,-78.77"/>
 </g>
-<!-- Node12 -->
-<g id="node12" class="node">
-<title>Node12</title>
-<g id="a_node12"><a xlink:href="classlogs_1_1LoggerFactory.html#ac89f19c0ffd71aa8cdc1c2d44c03809e" target="_top" xlink:title="Cette méthode ajoute un appender au système.">
+<!-- Node13 -->
+<g id="node13" class="node">
+<title>Node13</title>
+<g id="a_node13"><a xlink:href="classlogs_1_1LoggerFactory.html#ac89f19c0ffd71aa8cdc1c2d44c03809e" target="_top" xlink:title="Cette méthode ajoute un appender au système.">
 <polygon fill="white" stroke="black" points="537,-99 537,-118 671,-118 671,-99 537,-99"/>
 <text text-anchor="middle" x="604" y="-106" font-family="Helvetica,sans-Serif" font-size="10.00">logs::LoggerFactory::add</text>
 </a>
 </g>
 </g>
-<!-- Node11&#45;&gt;Node12 -->
-<g id="edge12" class="edge">
-<title>Node11&#45;&gt;Node12</title>
+<!-- Node12&#45;&gt;Node13 -->
+<g id="edge13" class="edge">
+<title>Node12&#45;&gt;Node13</title>
 <path fill="none" stroke="midnightblue" d="M464.53,-82.67C488.63,-87.17 517.07,-92.47 541.89,-97.1"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="541.44,-100.58 551.92,-98.97 542.73,-93.7 541.44,-100.58"/>
 </g>
-<!-- Node13 -->
-<g id="node13" class="node">
-<title>Node13</title>
-<g id="a_node13"><a xlink:href="classlogs_1_1LoggerFactory.html#a90478b91d7af2ef8841ded21e3521f69" target="_top" xlink:title="Cette méthode statique retourne l&#39;instance unique de la classe LoggerFactory.">
+<!-- Node14 -->
+<g id="node14" class="node">
+<title>Node14</title>
+<g id="a_node14"><a xlink:href="classlogs_1_1LoggerFactory.html#a90478b91d7af2ef8841ded21e3521f69" target="_top" xlink:title="Cette méthode statique retourne l&#39;instance unique de la classe LoggerFactory.">
 <polygon fill="white" stroke="black" points="548.5,-49.5 548.5,-79.5 659.5,-79.5 659.5,-49.5 548.5,-49.5"/>
 <text text-anchor="start" x="556.5" y="-67.5" font-family="Helvetica,sans-Serif" font-size="10.00">logs::LoggerFactory</text>
 <text text-anchor="middle" x="604" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">::instance</text>
 </a>
 </g>
 </g>
-<!-- Node11&#45;&gt;Node13 -->
-<g id="edge13" class="edge">
-<title>Node11&#45;&gt;Node13</title>
+<!-- Node12&#45;&gt;Node14 -->
+<g id="edge14" class="edge">
+<title>Node12&#45;&gt;Node14</title>
 <path fill="none" stroke="midnightblue" d="M464.53,-70.24C487.45,-69.29 514.3,-68.18 538.22,-67.19"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="538.42,-70.68 548.27,-66.77 538.13,-63.69 538.42,-70.68"/>
 </g>
-<!-- Node14 -->
-<g id="node14" class="node">
-<title>Node14</title>
-<g id="a_node14"><a xlink:href="classlogs_1_1LoggerFactory.html#a212aa623f4b6bee12cb39e8017dde670" target="_top" xlink:title="Cette méthode retourne le Logger principal qui définit le niveau de trace par défaut.">
+<!-- Node15 -->
+<g id="node15" class="node">
+<title>Node15</title>
+<g id="a_node15"><a xlink:href="classlogs_1_1LoggerFactory.html#a212aa623f4b6bee12cb39e8017dde670" target="_top" xlink:title="Cette méthode retourne le Logger principal qui définit le niveau de trace par défaut.">
 <polygon fill="white" stroke="black" points="548.5,-0.5 548.5,-30.5 659.5,-30.5 659.5,-0.5 548.5,-0.5"/>
 <text text-anchor="start" x="556.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">logs::LoggerFactory</text>
 <text text-anchor="middle" x="604" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">::rootLogger</text>
 </a>
 </g>
 </g>
-<!-- Node11&#45;&gt;Node14 -->
-<g id="edge14" class="edge">
-<title>Node11&#45;&gt;Node14</title>
+<!-- Node12&#45;&gt;Node15 -->
+<g id="edge15" class="edge">
+<title>Node12&#45;&gt;Node15</title>
 <path fill="none" stroke="midnightblue" d="M460.96,-57.45C485.92,-50.08 516.14,-41.15 542.29,-33.43"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="543.49,-36.73 552.09,-30.54 541.51,-30.01 543.49,-36.73"/>
 </g>

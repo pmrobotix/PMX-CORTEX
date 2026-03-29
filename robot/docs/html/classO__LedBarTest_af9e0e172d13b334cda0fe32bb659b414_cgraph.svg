@@ -83,7 +83,7 @@ var sectionId = 'dynsection-3';
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="classRobot.html#ac3663ed46470faec31e0a6b7eeaad3fb" target="_top" xlink:title=" ">
+<g id="a_node3"><a xlink:href="classRobot.html#ac3663ed46470faec31e0a6b7eeaad3fb" target="_top" xlink:title="Retourne une référence vers l&#39;asservissement du robot.">
 <polygon fill="white" stroke="black" points="174.5,-984 174.5,-1003 257.5,-1003 257.5,-984 174.5,-984"/>
 <text text-anchor="middle" x="216" y="-991" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::asserv</text>
 </a>
@@ -173,7 +173,7 @@ var sectionId = 'dynsection-3';
 <!-- Node22 -->
 <g id="node19" class="node">
 <title>Node22</title>
-<g id="a_node19"><a xlink:href="classRobot.html#a36b66143430e84b730555cf497b89774" target="_top" xlink:title=" ">
+<g id="a_node19"><a xlink:href="classRobot.html#a36b66143430e84b730555cf497b89774" target="_top" xlink:title="Retourne l&#39;identifiant du robot.">
 <polygon fill="white" stroke="black" points="177.5,-148 177.5,-167 254.5,-167 254.5,-148 177.5,-148"/>
 <text text-anchor="middle" x="216" y="-155" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::getID</text>
 </a>

@@ -1,20 +1,23 @@
 <map id="Robot::parseConsoleArgs" name="Robot::parseConsoleArgs">
-<area shape="rect" id="node1" title="Parse console parameters (console for tests or main program).." alt="" coords="5,144,191,171"/>
-<area shape="rect" id="node2" href="$classlogs_1_1Logger.html#a7dffc8f610014ec59b63392da16140e4" title="Trace un message de niveau DEBUG." alt="" coords="287,5,437,32"/>
-<area shape="rect" id="node4" href="$classConsoleManager.html#a64d4e3f6022402c0ec145ad7d9aef03f" title=" " alt="" coords="239,107,485,149"/>
-<area shape="rect" id="node9" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="321,56,403,83"/>
-<area shape="rect" id="node11" href="$classRobot.html#ace39678c476c8e8b193d9c8baf7a692b" title="Retourne le Logger associe a la classe Robot. public car utilise dans Main." alt="" coords="307,173,417,200"/>
-<area shape="rect" id="node16" href="$classArguments.html#a4896d0a63a43b8eeba25167989341a33" title=" " alt="" coords="293,275,431,301"/>
-<area shape="rect" id="node17" href="$classArguments.html#a255619dfd905699c2736d80b53e34e0a" title=" " alt="" coords="537,275,677,301"/>
-<area shape="rect" id="node3" href="$classlogs_1_1Logger.html#afa535aaf4891e02c4ff7f84d372b5b1b" title="Méthode générique de trace d&#39;un message." alt="" coords="1001,13,1201,40"/>
-<area shape="rect" id="node5" href="$namespacelogs.html#ab465ba9cc0c8042ca19d9c1aeb008578" title=" " alt="" coords="563,115,651,141"/>
-<area shape="rect" id="node6" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#aee16dd078779a8154f1b3d7238748a6f" title=" " alt="" coords="745,107,937,149"/>
-<area shape="rect" id="node7" href="$classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32" title="Verrouille le mutex. Cette méthode doit être appelée avant d&#39;utiliser la ressource associée...." alt="" coords="1034,115,1169,141"/>
-<area shape="rect" id="node8" href="$classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3" title="Déverrouille le mutex. Cette méthode doit être appelée après avoir utiliser la ressource associée." alt="" coords="1026,64,1177,91"/>
-<area shape="rect" id="node10" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#a0e4fd77693fd899ec1b0670354f93a02" title="Cette méthode valide le message en cours de construction et le transmet au Logger de référence." alt="" coords="729,56,953,83"/>
-<area shape="rect" id="node12" href="$classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e" title="Cette méthode statique retourne un Logger en fonction de son nom." alt="" coords="533,187,681,229"/>
-<area shape="rect" id="node13" href="$classlogs_1_1LoggerFactory.html#ac89f19c0ffd71aa8cdc1c2d44c03809e" title="Cette méthode ajoute un appender au système." alt="" coords="752,173,931,200"/>
-<area shape="rect" id="node14" href="$classlogs_1_1LoggerFactory.html#a90478b91d7af2ef8841ded21e3521f69" title="Cette méthode statique retourne l&#39;instance unique de la classe LoggerFactory." alt="" coords="767,225,915,266"/>
-<area shape="rect" id="node15" href="$classlogs_1_1LoggerFactory.html#a212aa623f4b6bee12cb39e8017dde670" title="Cette méthode retourne le Logger principal qui définit le niveau de trace par défaut." alt="" coords="767,290,915,331"/>
-<area shape="rect" id="node18" href="$namespaceutils.html#a4f86fc4c334661a6995538cc080a40c9" title="Met en pause le thread courant pendant usec microsecondes." alt="" coords="757,356,926,383"/>
+<area shape="rect" id="node1" title="Parse les paramètres de la ligne de commande et reconfigure la télémétrie si /i ou /p sont fournis." alt="" coords="5,265,191,291"/>
+<area shape="rect" id="node2" href="$classlogs_1_1LoggerFactory.html#a75823b27a156f58a8d4061453a632c66" title="Cette méthode retourne un Appender en fonction de son nom." alt="" coords="288,5,436,47"/>
+<area shape="rect" id="node3" href="$classlogs_1_1Logger.html#a7dffc8f610014ec59b63392da16140e4" title="Trace un message de niveau DEBUG." alt="" coords="533,71,683,98"/>
+<area shape="rect" id="node5" href="$classConsoleManager.html#a64d4e3f6022402c0ec145ad7d9aef03f" title=" " alt="" coords="239,173,485,215"/>
+<area shape="rect" id="node10" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="321,239,403,266"/>
+<area shape="rect" id="node12" href="$classlogs_1_1Logger.html#aa381165771d00a6a1e3aa9664bf6467f" title="Trace un message de niveau INFO." alt="" coords="541,122,675,149"/>
+<area shape="rect" id="node13" href="$classlogs_1_1LoggerFactory.html#a90478b91d7af2ef8841ded21e3521f69" title="Cette méthode statique retourne l&#39;instance unique de la classe LoggerFactory." alt="" coords="769,291,917,332"/>
+<area shape="rect" id="node14" href="$classRobot.html#ace39678c476c8e8b193d9c8baf7a692b" title="Retourne le Logger associe a la classe Robot. public car utilise dans Main." alt="" coords="307,341,417,367"/>
+<area shape="rect" id="node18" href="$classArguments.html#a4896d0a63a43b8eeba25167989341a33" title=" " alt="" coords="293,493,431,519"/>
+<area shape="rect" id="node19" href="$classArguments.html#a255619dfd905699c2736d80b53e34e0a" title=" " alt="" coords="538,483,678,510"/>
+<area shape="rect" id="node21" href="$classRobot.html#aefc159a05956e09edbe5e75333db25a8" title="Retourne le Logger RobotTelemetry4[ID] associe a la classe Robot. public car utilise dans Main." alt="" coords="296,391,428,418"/>
+<area shape="rect" id="node4" href="$classlogs_1_1Logger.html#afa535aaf4891e02c4ff7f84d372b5b1b" title="Méthode générique de trace d&#39;un message." alt="" coords="1003,127,1203,154"/>
+<area shape="rect" id="node6" href="$namespacelogs.html#ab465ba9cc0c8042ca19d9c1aeb008578" title=" " alt="" coords="564,181,652,207"/>
+<area shape="rect" id="node7" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#aee16dd078779a8154f1b3d7238748a6f" title=" " alt="" coords="747,173,939,215"/>
+<area shape="rect" id="node8" href="$classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32" title="Verrouille le mutex. Cette méthode doit être appelée avant d&#39;utiliser la ressource associée...." alt="" coords="1035,183,1170,210"/>
+<area shape="rect" id="node9" href="$classutils_1_1Mutex.html#a59b2079dc7f803d49f78ac9c04406cd3" title="Déverrouille le mutex. Cette méthode doit être appelée après avoir utiliser la ressource associée." alt="" coords="1027,235,1178,262"/>
+<area shape="rect" id="node11" href="$classlogs_1_1Logger_1_1LoggerBuffer.html#a0e4fd77693fd899ec1b0670354f93a02" title="Cette méthode valide le message en cours de construction et le transmet au Logger de référence." alt="" coords="731,239,955,266"/>
+<area shape="rect" id="node15" href="$classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e" title="Cette méthode statique retourne un Logger en fonction de son nom." alt="" coords="534,349,682,391"/>
+<area shape="rect" id="node16" href="$classlogs_1_1LoggerFactory.html#ac89f19c0ffd71aa8cdc1c2d44c03809e" title="Cette méthode ajoute un appender au système." alt="" coords="753,357,932,383"/>
+<area shape="rect" id="node17" href="$classlogs_1_1LoggerFactory.html#a212aa623f4b6bee12cb39e8017dde670" title="Cette méthode retourne le Logger principal qui définit le niveau de trace par défaut." alt="" coords="769,408,917,449"/>
+<area shape="rect" id="node20" href="$namespaceutils.html#a4f86fc4c334661a6995538cc080a40c9" title="Met en pause le thread courant pendant usec microsecondes." alt="" coords="758,483,927,510"/>
 </map>

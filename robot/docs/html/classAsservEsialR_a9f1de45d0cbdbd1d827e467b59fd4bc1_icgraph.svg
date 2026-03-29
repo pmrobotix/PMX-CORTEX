@@ -46,22 +46,22 @@ if (edges && edges.length) {
         </defs>
 
 <script type="text/javascript">
-var viewWidth = 643;
+var viewWidth = 644;
 var viewHeight = 203;
-var sectionId = 'dynsection-52';
+var sectionId = 'dynsection-53';
 </script>
 <script xlink:href="svgpan.js"/>
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>AsservEsialR::motion_FreeMotion</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-198.5 639,-198.5 639,4 -4,4"/>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-198.5 640,-198.5 640,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
 <g id="a_node1"><a xlink:title="Passe en roue libre (aucun asservissement).">
-<polygon fill="#bfbfbf" stroke="black" points="515,-93.5 515,-123.5 635,-123.5 635,-93.5 515,-93.5"/>
-<text text-anchor="start" x="523" y="-111.5" font-family="Helvetica,sans-Serif" font-size="10.00">AsservEsialR::motion</text>
-<text text-anchor="middle" x="575" y="-100.5" font-family="Helvetica,sans-Serif" font-size="10.00">_FreeMotion</text>
+<polygon fill="#bfbfbf" stroke="black" points="516,-93.5 516,-123.5 636,-123.5 636,-93.5 516,-93.5"/>
+<text text-anchor="start" x="524" y="-111.5" font-family="Helvetica,sans-Serif" font-size="10.00">AsservEsialR::motion</text>
+<text text-anchor="middle" x="576" y="-100.5" font-family="Helvetica,sans-Serif" font-size="10.00">_FreeMotion</text>
 </a>
 </g>
 </g>
@@ -69,139 +69,155 @@ var sectionId = 'dynsection-52';
 <g id="node2" class="node">
 <title>Node2</title>
 <g id="a_node2"><a xlink:href="classAsserv.html#a3468d8efb89878c2235dc491c6e7a541" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="342,-175 342,-194 470,-194 470,-175 342,-175"/>
-<text text-anchor="middle" x="406" y="-182" font-family="Helvetica,sans-Serif" font-size="10.00">Asserv::doRunPivotLeft</text>
+<polygon fill="white" stroke="black" points="343,-175 343,-194 471,-194 471,-175 343,-175"/>
+<text text-anchor="middle" x="407" y="-182" font-family="Helvetica,sans-Serif" font-size="10.00">Asserv::doRunPivotLeft</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node2 -->
 <g id="edge1" class="edge">
 <title>Node1&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M544.26,-129.33C526.09,-141.29 502,-155.8 479,-165.5 470.19,-169.22 460.45,-172.37 451.06,-174.98"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="546.31,-132.17 552.67,-123.7 542.41,-126.36 546.31,-132.17"/>
+<path fill="none" stroke="midnightblue" d="M545.26,-129.33C527.09,-141.29 503,-155.8 480,-165.5 471.19,-169.22 461.45,-172.37 452.06,-174.98"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="547.31,-132.17 553.67,-123.7 543.41,-126.36 547.31,-132.17"/>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
 <g id="a_node3"><a xlink:href="classAsserv.html#a79a9b2ee1d39046119673dc81733bdab" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="338,-137 338,-156 474,-156 474,-137 338,-137"/>
-<text text-anchor="middle" x="406" y="-144" font-family="Helvetica,sans-Serif" font-size="10.00">Asserv::doRunPivotRight</text>
+<polygon fill="white" stroke="black" points="339,-137 339,-156 475,-156 475,-137 339,-137"/>
+<text text-anchor="middle" x="407" y="-144" font-family="Helvetica,sans-Serif" font-size="10.00">Asserv::doRunPivotRight</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node3 -->
 <g id="edge2" class="edge">
 <title>Node1&#45;&gt;Node3</title>
-<path fill="none" stroke="midnightblue" d="M504.83,-124.24C485.83,-128.56 465.81,-133.12 448.86,-136.98"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="505.68,-127.64 514.65,-122 504.12,-120.81 505.68,-127.64"/>
+<path fill="none" stroke="midnightblue" d="M505.83,-124.24C486.83,-128.56 466.81,-133.12 449.86,-136.98"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="506.68,-127.64 515.65,-122 505.12,-120.81 506.68,-127.64"/>
 </g>
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
 <g id="a_node4"><a xlink:href="classAsserv.html#aef3c037b15172c4cc015c47a33f93634" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="352,-99 352,-118 460,-118 460,-99 352,-99"/>
-<text text-anchor="middle" x="406" y="-106" font-family="Helvetica,sans-Serif" font-size="10.00">Asserv::freeMotion</text>
+<polygon fill="white" stroke="black" points="353,-99 353,-118 461,-118 461,-99 353,-99"/>
+<text text-anchor="middle" x="407" y="-106" font-family="Helvetica,sans-Serif" font-size="10.00">Asserv::freeMotion</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node4 -->
 <g id="edge3" class="edge">
 <title>Node1&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M504.49,-108.5C489.63,-108.5 474.16,-108.5 460.04,-108.5"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="504.65,-112 514.65,-108.5 504.65,-105 504.65,-112"/>
-</g>
-<!-- Node9 -->
-<g id="node9" class="node">
-<title>Node9</title>
-<g id="a_node9"><a xlink:href="classAsservEsialR.html#af41648945c1353b9fc1fb07f77330646" target="_top" xlink:title="Desactive le PID et stoppe les moteurs.">
-<polygon fill="white" stroke="black" points="346,-49.5 346,-79.5 466,-79.5 466,-49.5 346,-49.5"/>
-<text text-anchor="start" x="354" y="-67.5" font-family="Helvetica,sans-Serif" font-size="10.00">AsservEsialR::motion</text>
-<text text-anchor="middle" x="406" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">_DisablePID</text>
-</a>
-</g>
-</g>
-<!-- Node1&#45;&gt;Node9 -->
-<g id="edge8" class="edge">
-<title>Node1&#45;&gt;Node9</title>
-<path fill="none" stroke="midnightblue" d="M507.22,-90.91C492.92,-87.14 477.93,-83.19 464.03,-79.53"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="506.43,-94.32 517,-93.48 508.22,-87.55 506.43,-94.32"/>
+<path fill="none" stroke="midnightblue" d="M505.49,-108.5C490.63,-108.5 475.16,-108.5 461.04,-108.5"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="505.65,-112 515.65,-108.5 505.65,-105 505.65,-112"/>
 </g>
 <!-- Node10 -->
 <g id="node10" class="node">
 <title>Node10</title>
-<g id="a_node10"><a xlink:href="classOPOS6UL__AsservExtended.html#a1f17c09c76670c49c1272676879ef48a" target="_top" xlink:title="Démarre le timer de mouvement et l&#39;odométrie.">
-<polygon fill="white" stroke="black" points="333,-0.5 333,-30.5 479,-30.5 479,-0.5 333,-0.5"/>
-<text text-anchor="start" x="341" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">OPOS6UL_AsservExtended</text>
-<text text-anchor="middle" x="406" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">::startMotionTimerAndOdo</text>
+<g id="a_node10"><a xlink:href="classAsservEsialR.html#af41648945c1353b9fc1fb07f77330646" target="_top" xlink:title="Desactive le PID et stoppe les moteurs.">
+<polygon fill="white" stroke="black" points="347,-49.5 347,-79.5 467,-79.5 467,-49.5 347,-49.5"/>
+<text text-anchor="start" x="355" y="-67.5" font-family="Helvetica,sans-Serif" font-size="10.00">AsservEsialR::motion</text>
+<text text-anchor="middle" x="407" y="-56.5" font-family="Helvetica,sans-Serif" font-size="10.00">_DisablePID</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node10 -->
 <g id="edge9" class="edge">
 <title>Node1&#45;&gt;Node10</title>
-<path fill="none" stroke="midnightblue" d="M548.64,-86.75C530.27,-71.86 504.31,-52.51 479,-39.5 472.56,-36.19 465.56,-33.19 458.54,-30.52"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="546.58,-89.59 556.52,-93.25 551.03,-84.19 546.58,-89.59"/>
+<path fill="none" stroke="midnightblue" d="M508.22,-90.91C493.92,-87.14 478.93,-83.19 465.03,-79.53"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="507.43,-94.32 518,-93.48 509.22,-87.55 507.43,-94.32"/>
+</g>
+<!-- Node11 -->
+<g id="node11" class="node">
+<title>Node11</title>
+<g id="a_node11"><a xlink:href="classOPOS6UL__AsservExtended.html#a1f17c09c76670c49c1272676879ef48a" target="_top" xlink:title="Démarre le timer de mouvement et l&#39;odométrie.">
+<polygon fill="white" stroke="black" points="334,-0.5 334,-30.5 480,-30.5 480,-0.5 334,-0.5"/>
+<text text-anchor="start" x="342" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">OPOS6UL_AsservExtended</text>
+<text text-anchor="middle" x="407" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">::startMotionTimerAndOdo</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node11 -->
+<g id="edge10" class="edge">
+<title>Node1&#45;&gt;Node11</title>
+<path fill="none" stroke="midnightblue" d="M549.64,-86.75C531.27,-71.86 505.31,-52.51 480,-39.5 473.56,-36.19 466.56,-33.19 459.54,-30.52"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="547.58,-89.59 557.52,-93.25 552.03,-84.19 547.58,-89.59"/>
 </g>
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
 <g id="a_node5"><a xlink:href="classAsserv.html#aa8b9209374a094acf3242d732cdeee5e" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="183.5,-137 183.5,-156 290.5,-156 290.5,-137 183.5,-137"/>
-<text text-anchor="middle" x="237" y="-144" font-family="Helvetica,sans-Serif" font-size="10.00">Asserv::disablePID</text>
+<polygon fill="white" stroke="black" points="184.5,-137 184.5,-156 291.5,-156 291.5,-137 184.5,-137"/>
+<text text-anchor="middle" x="238" y="-144" font-family="Helvetica,sans-Serif" font-size="10.00">Asserv::disablePID</text>
 </a>
 </g>
 </g>
 <!-- Node4&#45;&gt;Node5 -->
 <g id="edge4" class="edge">
 <title>Node4&#45;&gt;Node5</title>
-<path fill="none" stroke="midnightblue" d="M353.04,-120.32C329.49,-125.68 302.03,-131.93 279.84,-136.98"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="353.88,-123.72 362.86,-118.09 352.33,-116.9 353.88,-123.72"/>
+<path fill="none" stroke="midnightblue" d="M354.04,-120.32C330.49,-125.68 303.03,-131.93 280.84,-136.98"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="354.88,-123.72 363.86,-118.09 353.33,-116.9 354.88,-123.72"/>
 </g>
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
 <g id="a_node6"><a xlink:href="classO__State__Init.html#abc19788b7457d1f819245dd28367fe91" target="_top" xlink:title="Exécute l&#39;état d&#39;initialisation.">
-<polygon fill="white" stroke="black" points="177,-99 177,-118 297,-118 297,-99 177,-99"/>
-<text text-anchor="middle" x="237" y="-106" font-family="Helvetica,sans-Serif" font-size="10.00">O_State_Init::execute</text>
+<polygon fill="white" stroke="black" points="178,-99 178,-118 298,-118 298,-99 178,-99"/>
+<text text-anchor="middle" x="238" y="-106" font-family="Helvetica,sans-Serif" font-size="10.00">O_State_Init::execute</text>
 </a>
 </g>
 </g>
 <!-- Node4&#45;&gt;Node6 -->
 <g id="edge5" class="edge">
 <title>Node4&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M341.32,-108.5C326.82,-108.5 311.47,-108.5 297.16,-108.5"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="341.7,-112 351.7,-108.5 341.7,-105 341.7,-112"/>
+<path fill="none" stroke="midnightblue" d="M342.32,-108.5C327.82,-108.5 312.47,-108.5 298.16,-108.5"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="342.7,-112 352.7,-108.5 342.7,-105 342.7,-112"/>
 </g>
 <!-- Node7 -->
 <g id="node7" class="node">
 <title>Node7</title>
-<g id="a_node7"><a xlink:href="classRobot.html#ac7a09e8aad44c834c60d55ed96d25d7f" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="185,-61 185,-80 289,-80 289,-61 185,-61"/>
-<text text-anchor="middle" x="237" y="-68" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::freeMotion</text>
+<g id="a_node7"><a xlink:href="classRobot.html#ac7a09e8aad44c834c60d55ed96d25d7f" target="_top" xlink:title="Libère les moteurs (roue libre).">
+<polygon fill="white" stroke="black" points="186,-61 186,-80 290,-80 290,-61 186,-61"/>
+<text text-anchor="middle" x="238" y="-68" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::freeMotion</text>
 </a>
 </g>
 </g>
 <!-- Node4&#45;&gt;Node7 -->
 <g id="edge6" class="edge">
 <title>Node4&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M353.04,-96.68C329.49,-91.32 302.03,-85.07 279.84,-80.02"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="352.33,-100.1 362.86,-98.91 353.88,-93.28 352.33,-100.1"/>
+<path fill="none" stroke="midnightblue" d="M354.04,-96.68C330.49,-91.32 303.03,-85.07 280.84,-80.02"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="353.33,-100.1 363.86,-98.91 354.88,-93.28 353.33,-100.1"/>
 </g>
 <!-- Node8 -->
 <g id="node8" class="node">
 <title>Node8</title>
-<g id="a_node8"><a xlink:href="classO__State__WaitEndOfMatch.html#aa73613440b37c8dd42181e2e0265ae86" target="_top" xlink:title="Exécute l&#39;état d&#39;attente de fin de match.">
-<polygon fill="white" stroke="black" points="0,-55.5 0,-85.5 141,-85.5 141,-55.5 0,-55.5"/>
-<text text-anchor="start" x="8" y="-73.5" font-family="Helvetica,sans-Serif" font-size="10.00">O_State_WaitEndOfMatch</text>
-<text text-anchor="middle" x="70.5" y="-62.5" font-family="Helvetica,sans-Serif" font-size="10.00">::execute</text>
+<g id="a_node8"><a xlink:href="classO__State__DecisionMakerIA.html#a96d1f2a7618d607fd10cc51b9111e653" target="_top" xlink:title="Execute l&#39;action.">
+<polygon fill="white" stroke="black" points="0,-80.5 0,-110.5 142,-110.5 142,-80.5 0,-80.5"/>
+<text text-anchor="start" x="8" y="-98.5" font-family="Helvetica,sans-Serif" font-size="10.00">O_State_DecisionMakerIA</text>
+<text text-anchor="middle" x="71" y="-87.5" font-family="Helvetica,sans-Serif" font-size="10.00">::execute</text>
 </a>
 </g>
 </g>
 <!-- Node7&#45;&gt;Node8 -->
 <g id="edge7" class="edge">
 <title>Node7&#45;&gt;Node8</title>
-<path fill="none" stroke="midnightblue" d="M174.56,-70.5C163.64,-70.5 152.18,-70.5 141.05,-70.5"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="174.85,-74 184.85,-70.5 174.85,-67 174.85,-74"/>
+<path fill="none" stroke="midnightblue" d="M175.79,-79.77C164.8,-81.44 153.27,-83.19 142.06,-84.88"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="176.33,-83.23 185.7,-78.27 175.29,-76.31 176.33,-83.23"/>
+</g>
+<!-- Node9 -->
+<g id="node9" class="node">
+<title>Node9</title>
+<g id="a_node9"><a xlink:href="classO__State__WaitEndOfMatch.html#aa73613440b37c8dd42181e2e0265ae86" target="_top" xlink:title="Exécute l&#39;état d&#39;attente de fin de match.">
+<polygon fill="white" stroke="black" points="0.5,-31.5 0.5,-61.5 141.5,-61.5 141.5,-31.5 0.5,-31.5"/>
+<text text-anchor="start" x="8.5" y="-49.5" font-family="Helvetica,sans-Serif" font-size="10.00">O_State_WaitEndOfMatch</text>
+<text text-anchor="middle" x="71" y="-38.5" font-family="Helvetica,sans-Serif" font-size="10.00">::execute</text>
+</a>
+</g>
+</g>
+<!-- Node7&#45;&gt;Node9 -->
+<g id="edge8" class="edge">
+<title>Node7&#45;&gt;Node9</title>
+<path fill="none" stroke="midnightblue" d="M175.72,-61.59C164.65,-59.98 153.04,-58.29 141.76,-56.65"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="175.3,-65.06 185.7,-63.04 176.31,-58.13 175.3,-65.06"/>
 </g>
 </g>
 </svg>

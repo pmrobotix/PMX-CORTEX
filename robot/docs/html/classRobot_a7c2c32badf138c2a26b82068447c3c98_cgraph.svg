@@ -48,7 +48,7 @@ if (edges && edges.length) {
 <script type="text/javascript">
 var viewWidth = 1567;
 var viewHeight = 969;
-var sectionId = 'dynsection-52';
+var sectionId = 'dynsection-55';
 </script>
 <script xlink:href="svgpan.js"/>
 <svg id="graph" class="graph">
@@ -67,7 +67,7 @@ var sectionId = 'dynsection-52';
 <!-- Node2 -->
 <g id="node2" class="node">
 <title>Node2</title>
-<g id="a_node2"><a xlink:href="classRobot.html#ac3663ed46470faec31e0a6b7eeaad3fb" target="_top" xlink:title=" ">
+<g id="a_node2"><a xlink:href="classRobot.html#ac3663ed46470faec31e0a6b7eeaad3fb" target="_top" xlink:title="Retourne une référence vers l&#39;asservissement du robot.">
 <polygon fill="white" stroke="black" points="188,-763 188,-782 271,-782 271,-763 188,-763"/>
 <text text-anchor="middle" x="229.5" y="-770" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::asserv</text>
 </a>
@@ -112,7 +112,7 @@ var sectionId = 'dynsection-52';
 <!-- Node6 -->
 <g id="node6" class="node">
 <title>Node6</title>
-<g id="a_node6"><a xlink:href="classRobot.html#a7fbd102d7898ba33eecae47cfec530fa" target="_top" xlink:title=" ">
+<g id="a_node6"><a xlink:href="classRobot.html#a7fbd102d7898ba33eecae47cfec530fa" target="_top" xlink:title="Affiche l&#39;état de trajectoire courant.">
 <polygon fill="white" stroke="black" points="180.5,-245 180.5,-264 278.5,-264 278.5,-245 180.5,-245"/>
 <text text-anchor="middle" x="229.5" y="-252" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::displayTS</text>
 </a>
@@ -705,7 +705,7 @@ var sectionId = 'dynsection-52';
 <!-- Node41 -->
 <g id="node39" class="node">
 <title>Node41</title>
-<g id="a_node39"><a xlink:href="classRobot.html#a6a118c509a6d7ab35cdf96203eb0238a" target="_top" xlink:title=" ">
+<g id="a_node39"><a xlink:href="classRobot.html#a6a118c509a6d7ab35cdf96203eb0238a" target="_top" xlink:title="Retourne la position partagée du robot (pour communication inter&#45;threads).">
 <polygon fill="white" stroke="black" points="748,-561 748,-580 871,-580 871,-561 748,-561"/>
 <text text-anchor="middle" x="809.5" y="-568" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::sharedPosition</text>
 </a>

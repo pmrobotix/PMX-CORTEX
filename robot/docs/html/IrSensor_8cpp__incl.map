@@ -1,20 +1,21 @@
 <map id="src/driver&#45;arm/old_drivers/IrSensor.cpp" name="src/driver&#45;arm/old_drivers/IrSensor.cpp">
-<area shape="rect" id="node1" title="Implémentation de la classe IrSensor (ADC)." alt="" coords="672,5,829,47"/>
-<area shape="rect" id="node2" href="$IrSensor_8hpp.html" title="Définition de la classe IrSensor." alt="" coords="362,95,465,121"/>
-<area shape="rect" id="node12" href="$Logger_8hpp.html" title="Définition de la classe Logger." alt="" coords="525,244,619,271"/>
-<area shape="rect" id="node15" title=" " alt="" coords="788,95,863,121"/>
-<area shape="rect" id="node16" title=" " alt="" coords="887,95,950,121"/>
-<area shape="rect" id="node17" href="$CCAx12Adc_8hpp.html" title="Définition de la classe CCAx12Adc. Program for the Made by PM&#45;ROBOTIX card to manage servomotor AX12,..." alt="" coords="553,95,679,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="212,169,308,196"/>
-<area shape="rect" id="node4" href="$LoggerFactory_8hpp.html" title="Définition de la classe LoggerFactory." alt="" coords="332,169,495,196"/>
-<area shape="rect" id="node5" title=" " alt="" coords="451,244,501,271"/>
-<area shape="rect" id="node6" title=" " alt="" coords="409,393,468,420"/>
-<area shape="rect" id="node7" href="$Thread_8hpp.html" title="Définition de la classe Thread." alt="" coords="137,244,290,271"/>
-<area shape="rect" id="node8" title=" " alt="" coords="197,393,281,420"/>
-<area shape="rect" id="node9" title=" " alt="" coords="147,319,211,345"/>
-<area shape="rect" id="node10" href="$Mutex_8hpp.html" title="Définition de la classe Mutex." alt="" coords="285,319,376,345"/>
-<area shape="rect" id="node11" title=" " alt="" coords="5,319,72,345"/>
-<area shape="rect" id="node13" title=" " alt="" coords="611,319,685,345"/>
-<area shape="rect" id="node14" href="$Level_8hpp.html" title="Définition de la classe Level." alt="" coords="501,319,587,345"/>
-<area shape="rect" id="node18" title=" " alt="" coords="519,169,713,196"/>
+<area shape="rect" id="node1" title="Implémentation de la classe IrSensor (ADC)." alt="" coords="579,5,736,47"/>
+<area shape="rect" id="node2" href="$IrSensor_8hpp.html" title="Définition de la classe IrSensor." alt="" coords="467,95,570,121"/>
+<area shape="rect" id="node13" href="$Logger_8hpp.html" title="Définition de la classe Logger." alt="" coords="496,244,589,271"/>
+<area shape="rect" id="node16" title=" " alt="" coords="744,95,819,121"/>
+<area shape="rect" id="node17" title=" " alt="" coords="843,95,906,121"/>
+<area shape="rect" id="node18" href="$CCAx12Adc_8hpp.html" title="Définition de la classe CCAx12Adc. Program for the Made by PM&#45;ROBOTIX card to manage servomotor AX12,..." alt="" coords="595,95,720,121"/>
+<area shape="rect" id="node3" title=" " alt="" coords="456,169,552,196"/>
+<area shape="rect" id="node4" href="$LoggerFactory_8hpp.html" title="Définition de la classe LoggerFactory." alt="" coords="576,169,739,196"/>
+<area shape="rect" id="node5" title=" " alt="" coords="632,244,683,271"/>
+<area shape="rect" id="node6" title=" " alt="" coords="536,393,595,420"/>
+<area shape="rect" id="node7" href="$Thread_8hpp.html" title="Définition de la classe Thread." alt="" coords="203,244,357,271"/>
+<area shape="rect" id="node8" title=" " alt="" coords="279,393,363,420"/>
+<area shape="rect" id="node9" title=" " alt="" coords="5,319,69,345"/>
+<area shape="rect" id="node10" title=" " alt="" coords="93,319,152,345"/>
+<area shape="rect" id="node11" href="$Mutex_8hpp.html" title="Définition de la classe Mutex." alt="" coords="317,319,408,345"/>
+<area shape="rect" id="node12" title=" " alt="" coords="176,319,243,345"/>
+<area shape="rect" id="node14" title=" " alt="" coords="643,319,717,345"/>
+<area shape="rect" id="node15" href="$Level_8hpp.html" title="Définition de la classe Level." alt="" coords="483,319,568,345"/>
+<area shape="rect" id="node19" title=" " alt="" coords="763,169,957,196"/>
 </map>

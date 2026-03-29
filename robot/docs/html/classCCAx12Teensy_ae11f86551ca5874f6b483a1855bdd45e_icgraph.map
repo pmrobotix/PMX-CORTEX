@@ -1,18 +1,20 @@
 <map id="CCAx12Teensy::readI2C" name="CCAx12Teensy::readI2C">
-<area shape="rect" id="node1" title=" " alt="" coords="495,132,669,159"/>
-<area shape="rect" id="node2" href="$classCCAx12Teensy.html#a156bd7d48da829aec67237d60c7be7a5" title=" " alt="" coords="256,31,431,57"/>
-<area shape="rect" id="node3" href="$classCCAx12Teensy.html#a7a4be50ad46846c5a1d8a8bb80af6ce5" title=" " alt="" coords="258,81,429,108"/>
-<area shape="rect" id="node5" href="$classCCAx12Teensy.html#a3b838fec3ab75c627fc03725f483599c" title=" " alt="" coords="242,132,445,159"/>
-<area shape="rect" id="node9" href="$classCCAx12Teensy.html#a743dbb935093a782f9985db895a1fc27" title=" " alt="" coords="259,208,427,235"/>
-<area shape="rect" id="node12" href="$classCCAx12Teensy.html#aad5eb7a2a208b355c8d84b853c362345" title=" " alt="" coords="240,360,447,387"/>
-<area shape="rect" id="node4" href="$classServoDriver.html#a952fbbfdbf9d0b57d5c6d6c09019b366" title="Envoie un ping au servo pour verifier sa presence." alt="" coords="31,5,166,32"/>
-<area shape="rect" id="node6" href="$classServoDriver.html#a0a8e84f0bbcff39549ddfc239f1a6237" title="Verifie si le servo est en mouvement." alt="" coords="11,56,187,83"/>
-<area shape="rect" id="node7" href="$classServoDriver.html#a716d64d7b2203c9cb8dff5c90d0a5dd9" title="Lit la position courante du servo." alt="" coords="5,107,192,133"/>
-<area shape="rect" id="node8" href="$classServoDriver.html#a108cce4f0dcf60bf443ee932621bc89c" title="Lit le couple courant du servo." alt="" coords="13,157,184,184"/>
-<area shape="rect" id="node10" href="$classCCAx12Teensy.html#aabde87b12a39781e684b537f674473df" title=" " alt="" coords="5,208,192,235"/>
-<area shape="rect" id="node11" href="$classCCAx12Teensy.html#aa3a9e62109ec26dbbeab2b3c69845163" title=" " alt="" coords="5,259,192,285"/>
-<area shape="rect" id="node13" href="$classServoDriver.html#af580283b3d1765c9a27276e9a870cf88" title="Maintient la position courante du servo (active le couple)." alt="" coords="31,309,166,336"/>
-<area shape="rect" id="node14" href="$classServoDriver.html#aa1040b0db7ed851aec70a122301fe665" title="Relache le servo (desactive le couple)." alt="" coords="21,360,176,387"/>
-<area shape="rect" id="node15" href="$classServoDriver.html#a890b9aa751fc70c3dae6fa3fcb2a2ab1" title="Definit la position du servo par largeur d&#39;impulsion PWM." alt="" coords="6,411,191,437"/>
-<area shape="rect" id="node16" href="$classServoDriver.html#a765f9895c457eb0c5dd385ece0416cc7" title="Definit le couple maximal du servo." alt="" coords="13,461,184,488"/>
+<area shape="rect" id="node1" title=" " alt="" coords="951,132,1125,159"/>
+<area shape="rect" id="node2" href="$classCCAx12Teensy.html#a156bd7d48da829aec67237d60c7be7a5" title=" " alt="" coords="712,31,887,57"/>
+<area shape="rect" id="node3" href="$classCCAx12Teensy.html#a7a4be50ad46846c5a1d8a8bb80af6ce5" title=" " alt="" coords="714,81,885,108"/>
+<area shape="rect" id="node5" href="$classCCAx12Teensy.html#a3b838fec3ab75c627fc03725f483599c" title=" " alt="" coords="698,132,901,159"/>
+<area shape="rect" id="node9" href="$classCCAx12Teensy.html#a743dbb935093a782f9985db895a1fc27" title=" " alt="" coords="715,208,883,235"/>
+<area shape="rect" id="node14" href="$classCCAx12Teensy.html#aad5eb7a2a208b355c8d84b853c362345" title=" " alt="" coords="696,360,903,387"/>
+<area shape="rect" id="node4" href="$classServoDriver.html#a952fbbfdbf9d0b57d5c6d6c09019b366" title="Envoie un ping au servo pour verifier sa presence." alt="" coords="487,5,622,32"/>
+<area shape="rect" id="node6" href="$classServoDriver.html#a0a8e84f0bbcff39549ddfc239f1a6237" title="Verifie si le servo est en mouvement." alt="" coords="467,56,643,83"/>
+<area shape="rect" id="node7" href="$classServoDriver.html#a716d64d7b2203c9cb8dff5c90d0a5dd9" title="Lit la position courante du servo." alt="" coords="461,107,648,133"/>
+<area shape="rect" id="node8" href="$classServoDriver.html#a108cce4f0dcf60bf443ee932621bc89c" title="Lit le couple courant du servo." alt="" coords="469,157,640,184"/>
+<area shape="rect" id="node10" href="$classCCAx12Teensy.html#aabde87b12a39781e684b537f674473df" title=" " alt="" coords="461,208,648,235"/>
+<area shape="rect" id="node13" href="$classCCAx12Teensy.html#aa3a9e62109ec26dbbeab2b3c69845163" title=" " alt="" coords="461,259,648,285"/>
+<area shape="rect" id="node11" href="$classCCAx12Teensy.html#a67a40bbeae8b21ed7b62ef504bb24788" title=" " alt="" coords="237,208,413,235"/>
+<area shape="rect" id="node12" href="$classServoDriver.html#a2076bae148e26ee3f854f1f1984d9714" title="Constructor." alt="" coords="5,208,189,235"/>
+<area shape="rect" id="node15" href="$classServoDriver.html#af580283b3d1765c9a27276e9a870cf88" title="Maintient la position courante du servo (active le couple)." alt="" coords="487,309,622,336"/>
+<area shape="rect" id="node16" href="$classServoDriver.html#aa1040b0db7ed851aec70a122301fe665" title="Relache le servo (desactive le couple)." alt="" coords="477,360,632,387"/>
+<area shape="rect" id="node17" href="$classServoDriver.html#a890b9aa751fc70c3dae6fa3fcb2a2ab1" title="Definit la position du servo par largeur d&#39;impulsion PWM." alt="" coords="462,411,647,437"/>
+<area shape="rect" id="node18" href="$classServoDriver.html#a765f9895c457eb0c5dd385ece0416cc7" title="Definit le couple maximal du servo." alt="" coords="469,461,640,488"/>
 </map>

@@ -17,9 +17,9 @@
 <area shape="rect" id="node43" href="$classOdometrie.html#ae85189a1bf1b195430f93252d00c47d5" title=" " alt="" coords="256,1200,401,1227"/>
 <area shape="rect" id="node44" href="$classARobotPositionShared.html#a42f840a7c37b33555643005112dc1875" title="Met a jour la position du robot." alt="" coords="245,1251,412,1293"/>
 <area shape="rect" id="node45" href="$classutils_1_1Chronometer.html#a1dbc0872c71691197c8b4791c6ef3077" title="Configure le timer avec une période donnée et lance le chronomètre." alt="" coords="257,1317,400,1358"/>
-<area shape="rect" id="node46" href="$classRobot.html#a6a118c509a6d7ab35cdf96203eb0238a" title=" " alt="" coords="247,1383,411,1409"/>
+<area shape="rect" id="node46" href="$classRobot.html#a6a118c509a6d7ab35cdf96203eb0238a" title="Retourne la position partagée du robot (pour communication inter&#45;threads)." alt="" coords="247,1383,411,1409"/>
 <area shape="rect" id="node47" href="$classutils_1_1Thread.html#ad5bc89ff373a37499d1bf12d9624f964" title="Met en pause le thread pendant usec microsecondes." alt="" coords="255,1434,402,1475"/>
-<area shape="rect" id="node48" href="$classRobot.html#a4f30918c35c294fbd5404fc3c3ffc075" title=" " alt="" coords="277,1500,380,1527"/>
+<area shape="rect" id="node48" href="$classRobot.html#a4f30918c35c294fbd5404fc3c3ffc075" title="Retourne une référence vers le SvgWriter (logging trajectoire)." alt="" coords="277,1500,380,1527"/>
 <area shape="rect" id="node49" href="$classutils_1_1Chronometer.html#a821bfe0e70f7b50199557667c08dbb67" title="Attend la fin de la période en cours." alt="" coords="257,1551,400,1593"/>
 <area shape="rect" id="node50" href="$classSvgWriter.html#af8e2a0679e17a9b8df363450fc7ca598" title="Dessine un marqueur de position du robot." alt="" coords="239,1617,418,1658"/>
 <area shape="rect" id="node3" href="$classlogs_1_1Logger.html#afa535aaf4891e02c4ff7f84d372b5b1b" title="Méthode générique de trace d&#39;un message." alt="" coords="811,52,1011,79"/>

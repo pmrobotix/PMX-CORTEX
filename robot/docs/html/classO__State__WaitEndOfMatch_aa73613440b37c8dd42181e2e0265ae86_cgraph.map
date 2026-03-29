@@ -14,7 +14,7 @@
 <area shape="rect" id="node18" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="837,819,918,846"/>
 <area shape="rect" id="node23" href="$classRobot.html#a99941a42e5ca4ffdc98c814e3161ca07" title=" " alt="" coords="283,920,398,947"/>
 <area shape="rect" id="node24" href="$classLedBar.html#ad91d62f821e6b1eb6689a0d23f021097" title="Allume toutes leds." alt="" coords="279,1072,402,1099"/>
-<area shape="rect" id="node28" href="$classRobot.html#ac7a09e8aad44c834c60d55ed96d25d7f" title=" " alt="" coords="271,1123,410,1150"/>
+<area shape="rect" id="node28" href="$classRobot.html#ac7a09e8aad44c834c60d55ed96d25d7f" title="Libère les moteurs (roue libre)." alt="" coords="271,1123,410,1150"/>
 <area shape="rect" id="node31" href="$classutils_1_1Chronometer.html#a935aa20dd1791cfc8aec203a8838598d" title="Retourne le temps écoulé en secondes." alt="" coords="255,1174,426,1216"/>
 <area shape="rect" id="node32" href="$classlogs_1_1Logger.html#aa381165771d00a6a1e3aa9664bf6467f" title="Trace un message de niveau INFO." alt="" coords="810,870,945,896"/>
 <area shape="rect" id="node33" href="$classOPOS6UL__RobotExtended.html#a514e663cf7537d64d2d0272b8856d6c0" title="Retourne l&#39;instance unique du robot (singleton)." alt="" coords="246,1240,435,1281"/>
@@ -26,7 +26,7 @@
 <area shape="rect" id="node44" href="$classLcdShield.html#a7e248adbf31034c0ce7a6a2565852073" title="Active le rétroéclairage." alt="" coords="245,1436,436,1463"/>
 <area shape="rect" id="node46" href="$classutils_1_1Chronometer.html#a174c35f7b276290813fe913ed5c82bd3" title="Lance ou réinitialise le chronomètre." alt="" coords="269,1488,412,1529"/>
 <area shape="rect" id="node47" href="$classOPOS6UL__RobotExtended.html#a0a997f7fd88abac1efe0083fce633649" title="Arrête toutes les actions supplémentaires (capteurs, LEDs, servos)." alt="" coords="246,97,435,138"/>
-<area shape="rect" id="node49" href="$classRobot.html#a769fd661366307a701f22d3f7904ded0" title=" " alt="" coords="249,768,432,795"/>
+<area shape="rect" id="node49" href="$classRobot.html#a769fd661366307a701f22d3f7904ded0" title="Finalise et ferme le fichier SVG." alt="" coords="249,768,432,795"/>
 <area shape="rect" id="node6" href="$classButtonBar.html#a2054f8a32649f17ec6e8929d85a45d76" title="Vérifie si un bouton est actuellement appuyé." alt="" coords="535,608,681,635"/>
 <area shape="rect" id="node7" href="$classAButtonDriver.html#a76900724cd51ab5213273cd2ef4e4918" title="Teste si un bouton est actuellement appuye." alt="" coords="791,608,964,635"/>
 <area shape="rect" id="node10" href="$classALcdShieldDriver.html#abffade6296456b829c9ad18571d9e2eb" title="Efface tout le contenu de l&#39;ecran." alt="" coords="791,234,964,260"/>
@@ -40,7 +40,7 @@
 <area shape="rect" id="node26" href="$classLedBar.html#a349f726f4e7cd0058f95b6c9d9453b18" title="Retourne le Logger associé à la classe LedBar." alt="" coords="819,1026,935,1052"/>
 <area shape="rect" id="node27" href="$classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e" title="Cette méthode statique retourne un Logger en fonction de son nom." alt="" coords="1065,978,1213,1020"/>
 <area shape="rect" id="node29" href="$classAsserv.html#aef3c037b15172c4cc015c47a33f93634" title=" " alt="" coords="536,1178,680,1204"/>
-<area shape="rect" id="node30" href="$classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" title=" " alt="" coords="549,1228,667,1255"/>
+<area shape="rect" id="node30" href="$classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" title="Retourne un pointeur vers l&#39;asservissement du robot." alt="" coords="549,1228,667,1255"/>
 <area shape="rect" id="node35" href="$classLedBar.html#a2e77350f53c4579d7f71cc00d4f26dad" title="Retourne vrai si une action ou un timer est en cours." alt="" coords="546,1076,670,1103"/>
 <area shape="rect" id="node36" href="$classLedBar.html#a4f6f26d47d0ea82380cebb8c2b9ea7c3" title="Change le statut d&#39;une led." alt="" coords="561,1026,655,1052"/>
 <area shape="rect" id="node37" href="$namespaceutils.html#a4f86fc4c334661a6995538cc080a40c9" title="Met en pause le thread courant pendant usec microsecondes." alt="" coords="523,975,693,1002"/>

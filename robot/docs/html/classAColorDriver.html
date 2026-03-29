@@ -80,7 +80,8 @@ $(function() {
 <div class="dynheader">
 Graphe d'héritage de AColorDriver:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classAColorDriver__inherit__graph.svg" width="270" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classAColorDriver__inherit__graph.svg" width="304" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 <center><span class="legend">[<a href="graph_legend.html">légende</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -93,6 +94,9 @@ Fonctions membres publiques</h2></td></tr>
 <tr class="memitem:aee75d3eab0612cc3a78053e15f50e47a"><td class="memItemLeft" align="right" valign="top">virtual float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAColorDriver.html#aee75d3eab0612cc3a78053e15f50e47a">getTY</a> ()=0</td></tr>
 <tr class="memdesc:aee75d3eab0612cc3a78053e15f50e47a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourne la coordonnee chromatique Ty.  <a href="classAColorDriver.html#aee75d3eab0612cc3a78053e15f50e47a">Plus de détails...</a><br /></td></tr>
 <tr class="separator:aee75d3eab0612cc3a78053e15f50e47a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b2c6acf0402fd7f88d5a2b2441e5c88"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAColorDriver.html#a0b2c6acf0402fd7f88d5a2b2441e5c88">is_connected</a> ()=0</td></tr>
+<tr class="memdesc:a0b2c6acf0402fd7f88d5a2b2441e5c88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifie si le capteur couleur est connecte.  <a href="classAColorDriver.html#a0b2c6acf0402fd7f88d5a2b2441e5c88">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a0b2c6acf0402fd7f88d5a2b2441e5c88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4b1874012a07a2e9d38ed5c25fc85dd5"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAColorDriver.html#a4b1874012a07a2e9d38ed5c25fc85dd5">readRGB</a> ()=0</td></tr>
 <tr class="memdesc:a4b1874012a07a2e9d38ed5c25fc85dd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Effectue une lecture RGB du capteur.  <a href="classAColorDriver.html#a4b1874012a07a2e9d38ed5c25fc85dd5">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a4b1874012a07a2e9d38ed5c25fc85dd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -196,9 +200,16 @@ Fonctions membres protégées</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Renvoie</dt><dd>Pointeur vers l'instance creee. </dd></dl>
 <div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classAColorDriver_ad569d1e4c0e481fdba30a6e5c9691743_cgraph.svg" width="403" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classAColorDriver_ad569d1e4c0e481fdba30a6e5c9691743_icgraph.svg" width="416" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classAColorDriver_ad569d1e4c0e481fdba30a6e5c9691743_icgraph.svg" width="420" height="118"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -229,7 +240,7 @@ Voici le graphe des appelants de cette fonction :</div>
 <p>Retourne la coordonnee chromatique Tx. </p>
 <dl class="section return"><dt>Renvoie</dt><dd>Valeur Tx (espace CIE xy). </dd></dl>
 
-<p>Implémenté dans <a class="el" href="classColorDriver.html#aa9114a476ce075a0d26a2884040235e8">ColorDriver</a>, et <a class="el" href="classGroveColorSensor.html#aa2c72c2e245dc011bc3215aa2bdd84bf">GroveColorSensor</a>.</p>
+<p>Implémenté dans <a class="el" href="classColorDriverSimu.html#a00bf5cdacef4558cc22f2e1c71310e90">ColorDriverSimu</a>, et <a class="el" href="classGroveColorSensor.html#aa2c72c2e245dc011bc3215aa2bdd84bf">GroveColorSensor</a>.</p>
 
 </div>
 </div>
@@ -259,7 +270,43 @@ Voici le graphe des appelants de cette fonction :</div>
 <p>Retourne la coordonnee chromatique Ty. </p>
 <dl class="section return"><dt>Renvoie</dt><dd>Valeur Ty (espace CIE xy). </dd></dl>
 
-<p>Implémenté dans <a class="el" href="classColorDriver.html#aa2e637a8f39e66f4581879fda8941514">ColorDriver</a>, et <a class="el" href="classGroveColorSensor.html#ab89e79b04f70f11dea991ca4f9d4de7c">GroveColorSensor</a>.</p>
+<p>Implémenté dans <a class="el" href="classColorDriverSimu.html#ad04f8af7aa9ad75aa38076f79c73b71e">ColorDriverSimu</a>, et <a class="el" href="classGroveColorSensor.html#ab89e79b04f70f11dea991ca4f9d4de7c">GroveColorSensor</a>.</p>
+
+</div>
+</div>
+<a id="a0b2c6acf0402fd7f88d5a2b2441e5c88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b2c6acf0402fd7f88d5a2b2441e5c88">&#9670;&nbsp;</a></span>is_connected()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool AColorDriver::is_connected </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Verifie si le capteur couleur est connecte. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>true si la communication I2C est etablie. </dd></dl>
+
+<p>Implémenté dans <a class="el" href="classColorDriverSimu.html#aadfd08993034e3d1e45b66289bb19bb9">ColorDriverSimu</a>, et <a class="el" href="classGroveColorSensor.html#a5ec930740740d7480c8e89891e7380c2">GroveColorSensor</a>.</p>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classAColorDriver_a0b2c6acf0402fd7f88d5a2b2441e5c88_icgraph.svg" width="464" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
 
 </div>
 </div>
@@ -289,19 +336,19 @@ Voici le graphe des appelants de cette fonction :</div>
 <p>Effectue une lecture RGB du capteur. </p>
 <dl class="section return"><dt>Renvoie</dt><dd>true si la lecture a reussi (capteur connecte). </dd></dl>
 
-<p>Implémenté dans <a class="el" href="classColorDriver.html#a90e94b9d2a0e519d4f47631c6fe7437f">ColorDriver</a>, et <a class="el" href="classGroveColorSensor.html#acd8fc1fe584b9aa8e51985ba99ad1836">GroveColorSensor</a>.</p>
+<p>Implémenté dans <a class="el" href="classColorDriverSimu.html#afafa322ec1e46e63940d1b2e016c3340">ColorDriverSimu</a>, et <a class="el" href="classGroveColorSensor.html#acd8fc1fe584b9aa8e51985ba99ad1836">GroveColorSensor</a>.</p>
 
 </div>
 </div>
 <hr/>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
 <li>src/common/interface/<a class="el" href="AColorDriver_8hpp_source.html">AColorDriver.hpp</a></li>
 <li>src/driver-arm/<a class="el" href="GroveColorSensor_8cpp.html">GroveColorSensor.cpp</a></li>
-<li>src/driver-simu/<a class="el" href="ColorDriver_8cpp.html">ColorDriver.cpp</a></li>
+<li>src/driver-simu/<a class="el" href="DriverFactories_8cpp.html">DriverFactories.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Généré le Vendredi 27 Mars 2026 12:31:51 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Généré le Lundi 30 Mars 2026 01:36:28 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

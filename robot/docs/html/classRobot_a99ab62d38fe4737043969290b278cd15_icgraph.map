@@ -1,10 +1,13 @@
 <map id="Robot::getMyColor" name="Robot::getMyColor">
-<area shape="rect" id="node1" title="Retourne la couleur du robot." alt="" coords="545,114,688,141"/>
-<area shape="rect" id="node2" href="$classRobot.html#ae8cede2564e5b9229da095991c064ae4" title="Start the robot (console for tests or main program).." alt="" coords="369,13,473,39"/>
-<area shape="rect" id="node5" href="$classO__State__Init.html#abc19788b7457d1f819245dd28367fe91" title="Exécute l&#39;état d&#39;initialisation." alt="" coords="123,143,283,170"/>
-<area shape="rect" id="node6" href="$classO__IAByPathTest.html#a3f57f585ff1382a52bf7f79a28d43629" title=" " alt="" coords="345,114,497,141"/>
-<area shape="rect" id="node7" href="$classO__SensorsTest.html#ae3b998034225e16586ded4ba3bd419e5" title="Execute le test." alt="" coords="349,165,494,191"/>
-<area shape="rect" id="node8" href="$classO__State__Init.html#a1980cd82dcb83e88d61f2e7e14dddfa0" title=" " alt="" coords="345,215,497,242"/>
+<area shape="rect" id="node1" title="Retourne la couleur du robot." alt="" coords="628,195,771,222"/>
+<area shape="rect" id="node2" href="$classRobot.html#ae8cede2564e5b9229da095991c064ae4" title="Démarre le robot (test fonctionnel ou match)." alt="" coords="411,13,515,39"/>
+<area shape="rect" id="node5" href="$classO__State__Init.html#abc19788b7457d1f819245dd28367fe91" title="Exécute l&#39;état d&#39;initialisation." alt="" coords="123,271,283,298"/>
+<area shape="rect" id="node6" href="$classO__State__DecisionMakerIA.html#a9b35f6bac1a5602ec2a711fa280be4a6" title="Configure les activités pour les zones de jeu du match." alt="" coords="368,64,557,105"/>
+<area shape="rect" id="node8" href="$classO__State__DecisionMakerIA.html#a8bd1c4d72bec8768c7c7c15bd2e665d8" title="Configure les activités pour le mode test de la table." alt="" coords="345,129,580,171"/>
+<area shape="rect" id="node9" href="$classO__IAByPathTest.html#a3f57f585ff1382a52bf7f79a28d43629" title="Execute le test." alt="" coords="387,246,539,273"/>
+<area shape="rect" id="node10" href="$classO__SensorsTest.html#ae3b998034225e16586ded4ba3bd419e5" title="Execute le test." alt="" coords="390,297,535,323"/>
+<area shape="rect" id="node11" href="$classO__State__Init.html#a1980cd82dcb83e88d61f2e7e14dddfa0" title=" " alt="" coords="387,347,539,374"/>
 <area shape="rect" id="node3" href="$classOPOS6UL__RobotExtended.html#a3af6cff5115c7ae70f7a797d9e90e66a" title="Initialise l&#39;état du robot et le décisionmaker IA." alt="" coords="108,5,297,47"/>
 <area shape="rect" id="node4" href="$src_2bot-opos6ul_2Main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,60,39"/>
+<area shape="rect" id="node7" href="$classO__State__DecisionMakerIA.html#a96d1f2a7618d607fd10cc51b9111e653" title="Execute l&#39;action." alt="" coords="108,100,297,141"/>
 </map>

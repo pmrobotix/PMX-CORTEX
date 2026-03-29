@@ -58,7 +58,7 @@ var sectionId = 'dynsection-11';
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
-<g id="a_node1"><a xlink:title=" ">
+<g id="a_node1"><a xlink:title="Affiche le niveau de détection d&#39;obstacle.">
 <polygon fill="#bfbfbf" stroke="black" points="0,-137 0,-156 129,-156 129,-137 0,-137"/>
 <text text-anchor="middle" x="64.5" y="-144" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::displayObstacle</text>
 </a>

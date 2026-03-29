@@ -1,0 +1,22 @@
+<map id="AsservDriverSimu::computeCounterR" name="AsservDriverSimu::computeCounterR">
+<area shape="rect" id="node1" title=" " alt="" coords="1349,209,1553,251"/>
+<area shape="rect" id="node2" href="$classAsservDriverSimu.html#a7a4841e83d9984392d827d0f4a0ab8ba" title="Lit les compteurs externes cumules (ticks)." alt="" coords="1075,5,1289,47"/>
+<area shape="rect" id="node3" href="$classAsservDriverSimu.html#a600247a2e47592ad9ddddc7423977919" title="Lit le delta des compteurs externes depuis le dernier appel." alt="" coords="1081,71,1283,112"/>
+<area shape="rect" id="node4" href="$classAsservDriverSimu.html#a9e021b9dee399fdfeeb62609a148ccde" title="Lit la valeur de l&#39;encodeur externe droit." alt="" coords="1081,239,1283,280"/>
+<area shape="rect" id="node6" href="$classAsservDriverSimuWrapper.html#a161d1fadbbf1032a934f0d0357a914eb" title=" " alt="" coords="532,213,727,255"/>
+<area shape="rect" id="node8" href="$classAsservDriverSimu.html#a4af7585e4bb362edfac685715dc706c9" title="Commande le moteur droit en position." alt="" coords="5,147,211,188"/>
+<area shape="rect" id="node9" href="$classAsservDriverSimuWrapper.html#a1f4afda54d97c0f8ec024589ed58e00f" title=" " alt="" coords="807,603,1002,644"/>
+<area shape="rect" id="node12" href="$classAsservDriverSimu.html#abac6d3c59c331ce0ee17682eb3447f3e" title="Remet a zero tous les encodeurs." alt="" coords="1063,637,1301,663"/>
+<area shape="rect" id="node14" href="$classAsservDriverSimu.html#aa41970e43bf714d0d409df33d0eb902d" title="Arrete le moteur droit." alt="" coords="1075,407,1289,448"/>
+<area shape="rect" id="node5" href="$classAsservDriverSimu.html#ae9e0a9fbed54d8f95007325e3dd58eeb" title="Lit la valeur de l&#39;encodeur interne droit." alt="" coords="803,239,1006,280"/>
+<area shape="rect" id="node7" href="$classAsservDriverSimuWrapper.html#a2743c30a61de2efcdcb364d715230f88" title=" " alt="" coords="264,201,459,243"/>
+<area shape="rect" id="node10" href="$classAsservDriverSimuWrapper.html#abc8b298b604bc5fa3b3811917292e94f" title=" " alt="" coords="532,603,727,644"/>
+<area shape="rect" id="node11" href="$classAsservDriverSimu.html#ae1b8078d64c5eda3e81c0c6e74b1d7bc" title="Commande le moteur droit en puissance pendant un temps donne." alt="" coords="259,603,464,644"/>
+<area shape="rect" id="node13" href="$classAsservDriverSimu.html#a48708465356ac7b1ec3f15c835a991ad" title="Constructor." alt="" coords="809,668,1000,709"/>
+<area shape="rect" id="node15" href="$classAsservDriverSimu.html#a86866497006102b2830de423d5e832c9" title="disable PID" alt="" coords="808,407,1001,448"/>
+<area shape="rect" id="node16" href="$classAsservDriverSimu.html#af761a1c6c666ce83a9c49e2e6194671c" title="Passe en roue libre (aucun asservissement)." alt="" coords="808,537,1001,579"/>
+<area shape="rect" id="node19" href="$classAsservDriverSimu.html#a2a6b71c4004c704a52f88bfbb6fad8f3" title="Interrompt la trajectoire en cours (arret d&#39;urgence logiciel)." alt="" coords="817,472,993,513"/>
+<area shape="rect" id="node20" href="$classAsservDriverSimu.html#a1ceec22cd9e8d3407584b73c8d7d3578" title="Arrete les deux moteurs." alt="" coords="795,355,1015,382"/>
+<area shape="rect" id="node17" href="$classAsservDriverSimu.html#a66f474eaf4d3fc68ec571bcbe73d2326" title="Actions de nettoyage avant l&#39;arret du programme." alt="" coords="512,486,747,513"/>
+<area shape="rect" id="node18" href="$classAsservDriverSimu.html#a32d442467bd1d85e0c8f14cf91c341ef" title="Desactive le PID et stoppe les moteurs." alt="" coords="533,537,726,579"/>
+</map>

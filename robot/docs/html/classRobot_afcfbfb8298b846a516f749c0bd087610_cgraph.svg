@@ -48,7 +48,7 @@ if (edges && edges.length) {
 <script type="text/javascript">
 var viewWidth = 671;
 var viewHeight = 241;
-var sectionId = 'dynsection-29';
+var sectionId = 'dynsection-31';
 </script>
 <script xlink:href="svgpan.js"/>
 <svg id="graph" class="graph">
@@ -58,7 +58,7 @@ var sectionId = 'dynsection-29';
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
-<g id="a_node1"><a xlink:title=" ">
+<g id="a_node1"><a xlink:title="Réinitialise l&#39;affichage de détection d&#39;obstacle.">
 <polygon fill="#bfbfbf" stroke="black" points="0,-137 0,-156 155,-156 155,-137 0,-137"/>
 <text text-anchor="middle" x="77.5" y="-144" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::resetDisplayObstacle</text>
 </a>

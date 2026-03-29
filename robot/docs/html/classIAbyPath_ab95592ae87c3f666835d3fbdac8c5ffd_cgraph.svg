@@ -98,7 +98,7 @@ var sectionId = 'dynsection-5';
 <!-- Node34 -->
 <g id="node34" class="node">
 <title>Node34</title>
-<g id="a_node34"><a xlink:href="classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" target="_top" xlink:title=" ">
+<g id="a_node34"><a xlink:href="classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" target="_top" xlink:title="Retourne un pointeur vers l&#39;asservissement du robot.">
 <polygon fill="white" stroke="black" points="610.5,-0.5 610.5,-19.5 699.5,-19.5 699.5,-0.5 610.5,-0.5"/>
 <text text-anchor="middle" x="655" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::passerv</text>
 </a>
@@ -113,7 +113,7 @@ var sectionId = 'dynsection-5';
 <!-- Node51 -->
 <g id="node47" class="node">
 <title>Node51</title>
-<g id="a_node47"><a xlink:href="classRobot.html#ade84d9257e194f8b04cc9f5f97e184da" target="_top" xlink:title=" ">
+<g id="a_node47"><a xlink:href="classRobot.html#ade84d9257e194f8b04cc9f5f97e184da" target="_top" xlink:title="Enregistre la position du robot dans le fichier SVG.">
 <polygon fill="white" stroke="black" points="393.5,-133.5 393.5,-152.5 523.5,-152.5 523.5,-133.5 393.5,-133.5"/>
 <text text-anchor="middle" x="458.5" y="-140.5" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::svgPrintPosition</text>
 </a>
@@ -690,7 +690,7 @@ var sectionId = 'dynsection-5';
 <!-- Node53 -->
 <g id="node49" class="node">
 <title>Node53</title>
-<g id="a_node49"><a xlink:href="classRobot.html#a4f30918c35c294fbd5404fc3c3ffc075" target="_top" xlink:title=" ">
+<g id="a_node49"><a xlink:href="classRobot.html#a4f30918c35c294fbd5404fc3c3ffc075" target="_top" xlink:title="Retourne une référence vers le SvgWriter (logging trajectoire).">
 <polygon fill="white" stroke="black" points="616.5,-190.5 616.5,-209.5 693.5,-209.5 693.5,-190.5 616.5,-190.5"/>
 <text text-anchor="middle" x="655" y="-197.5" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::svgw</text>
 </a>
@@ -921,7 +921,7 @@ var sectionId = 'dynsection-5';
 <!-- Node48 -->
 <g id="node44" class="node">
 <title>Node48</title>
-<g id="a_node44"><a xlink:href="classRobot.html#a6a118c509a6d7ab35cdf96203eb0238a" target="_top" xlink:title=" ">
+<g id="a_node44"><a xlink:href="classRobot.html#a6a118c509a6d7ab35cdf96203eb0238a" target="_top" xlink:title="Retourne la position partagée du robot (pour communication inter&#45;threads).">
 <polygon fill="white" stroke="black" points="1004,-406.5 1004,-425.5 1127,-425.5 1127,-406.5 1004,-406.5"/>
 <text text-anchor="middle" x="1065.5" y="-413.5" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::sharedPosition</text>
 </a>

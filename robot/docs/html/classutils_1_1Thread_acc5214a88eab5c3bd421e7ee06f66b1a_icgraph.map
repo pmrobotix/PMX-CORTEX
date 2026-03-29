@@ -1,6 +1,7 @@
 <map id="utils::Thread::isFinished" name="utils::Thread::isFinished">
-<area shape="rect" id="node1" title="Indique si le thread est terminé ou pas encore démarré." alt="" coords="464,42,640,69"/>
-<area shape="rect" id="node2" href="$classAsservDriver.html#a636bf5413d2cf0419f188a4965340758" title="Actions de nettoyage avant l&#39;arret du programme." alt="" coords="213,13,416,39"/>
-<area shape="rect" id="node4" href="$classtest_1_1ThreadTest.html#ab50f7c14a8011c9e19f2631835bbbe46" title="Vérifie le démarrage, l&#39;exécution et l&#39;attente de fin d&#39;un thread." alt="" coords="219,64,410,105"/>
+<area shape="rect" id="node1" title="Indique si le thread est terminé ou pas encore démarré." alt="" coords="496,63,672,90"/>
+<area shape="rect" id="node2" href="$classAsservDriver.html#a636bf5413d2cf0419f188a4965340758" title="Actions de nettoyage avant l&#39;arret du programme." alt="" coords="229,13,432,39"/>
+<area shape="rect" id="node4" href="$classAsservDriverSimu.html#a66f474eaf4d3fc68ec571bcbe73d2326" title="Actions de nettoyage avant l&#39;arret du programme." alt="" coords="213,63,448,90"/>
+<area shape="rect" id="node5" href="$classtest_1_1ThreadTest.html#ab50f7c14a8011c9e19f2631835bbbe46" title="Vérifie le démarrage, l&#39;exécution et l&#39;attente de fin d&#39;un thread." alt="" coords="235,115,426,156"/>
 <area shape="rect" id="node3" href="$classAsservDriver.html#aaeb3c80c8a079c812af38273f825c537" title="Assisted movement mode =)" alt="" coords="5,5,165,47"/>
 </map>

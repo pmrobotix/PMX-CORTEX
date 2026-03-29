@@ -4,7 +4,7 @@
 <area shape="rect" id="node3" href="$classAsservEsialR.html#a18064f0087aa1cd67cbdd131f99720db" title="Lit la position courante du robot." alt="" coords="444,222,664,249"/>
 <area shape="rect" id="node21" href="$classAAsservDriver.html#a81dea0fa2d154d60d67e9e12b415b265" title="Lit la position courante du robot." alt="" coords="481,273,627,315"/>
 <area shape="rect" id="node22" href="$classARobotPositionShared.html#a42f840a7c37b33555643005112dc1875" title="Met a jour la position du robot." alt="" coords="471,339,637,380"/>
-<area shape="rect" id="node23" href="$classRobot.html#a6a118c509a6d7ab35cdf96203eb0238a" title=" " alt="" coords="472,405,636,431"/>
+<area shape="rect" id="node23" href="$classRobot.html#a6a118c509a6d7ab35cdf96203eb0238a" title="Retourne la position partagée du robot (pour communication inter&#45;threads)." alt="" coords="472,405,636,431"/>
 <area shape="rect" id="node4" href="$classlogs_1_1Logger.html#a7dffc8f610014ec59b63392da16140e4" title="Trace un message de niveau DEBUG." alt="" coords="1048,11,1197,38"/>
 <area shape="rect" id="node6" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="797,62,878,89"/>
 <area shape="rect" id="node8" href="$classutils_1_1Mutex.html#aa584b418a5ef484f76b93e361a1d7e32" title="Verrouille le mutex. Cette méthode doit être appelée avant d&#39;utiliser la ressource associée...." alt="" coords="1321,74,1455,101"/>

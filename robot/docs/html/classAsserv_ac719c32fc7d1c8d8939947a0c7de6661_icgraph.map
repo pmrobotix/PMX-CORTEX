@@ -1,6 +1,9 @@
 <map id="Asserv::changeMatchXMin" name="Asserv::changeMatchXMin">
-<area shape="rect" id="node1" title=" " alt="" coords="468,31,661,57"/>
-<area shape="rect" id="node2" href="$classIAbyPath.html#a7677d8a2c19d0c55b7a2dc3682d5b516" title=" " alt="" coords="237,5,417,32"/>
-<area shape="rect" id="node4" href="$classIAbyZone.html#abeae91d56972242a6737e2cc55cf2f44" title=" " alt="" coords="235,56,420,83"/>
-<area shape="rect" id="node3" href="$classO__IAByPathTest.html#abedd21fde4835d641e6aa3f8e1c6581f" title=" " alt="" coords="5,5,187,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="759,89,952,116"/>
+<area shape="rect" id="node2" href="$classIAbyPath.html#a7677d8a2c19d0c55b7a2dc3682d5b516" title=" " alt="" coords="528,64,708,91"/>
+<area shape="rect" id="node7" href="$classIAbyZone.html#abeae91d56972242a6737e2cc55cf2f44" title=" " alt="" coords="525,115,711,141"/>
+<area shape="rect" id="node3" href="$classO__IAByPathTest.html#abedd21fde4835d641e6aa3f8e1c6581f" title="Configure les activités de l&#39;IA pour le test." alt="" coords="269,5,451,32"/>
+<area shape="rect" id="node4" href="$classO__State__DecisionMakerIA.html#a9b35f6bac1a5602ec2a711fa280be4a6" title="Configure les activités pour les zones de jeu du match." alt="" coords="265,57,455,98"/>
+<area shape="rect" id="node6" href="$classO__State__DecisionMakerIA.html#a8bd1c4d72bec8768c7c7c15bd2e665d8" title="Configure les activités pour le mode test de la table." alt="" coords="243,122,477,163"/>
+<area shape="rect" id="node5" href="$classO__State__DecisionMakerIA.html#a96d1f2a7618d607fd10cc51b9111e653" title="Execute l&#39;action." alt="" coords="5,90,195,131"/>
 </map>

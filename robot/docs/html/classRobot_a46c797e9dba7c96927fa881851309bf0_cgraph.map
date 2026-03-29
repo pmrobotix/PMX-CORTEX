@@ -1,10 +1,10 @@
 <map id="Robot::stopMotionTimerAndActionManager" name="Robot::stopMotionTimerAndActionManager">
-<area shape="rect" id="node1" title=" " alt="" coords="5,523,209,565"/>
+<area shape="rect" id="node1" title="Arrête le timer d&#39;asservissement et le gestionnaire d&#39;actions." alt="" coords="5,523,209,565"/>
 <area shape="rect" id="node2" href="$classActions.html#a95422cfe6edb166b22bc6aa465aab866" title="supprime toutes les actions et les timers." alt="" coords="1272,531,1399,557"/>
 <area shape="rect" id="node7" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="1295,184,1376,211"/>
 <area shape="rect" id="node10" href="$classlogs_1_1Logger.html#a8b6a2019233bc44b3c3c86c653910831" title="Trace un message de niveau ERROR." alt="" coords="1265,112,1405,139"/>
 <area shape="rect" id="node11" href="$classRobot.html#ace39678c476c8e8b193d9c8baf7a692b" title="Retourne le Logger associe a la classe Robot. public car utilise dans Main." alt="" coords="579,617,688,644"/>
-<area shape="rect" id="node16" href="$classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" title=" " alt="" coords="315,632,434,659"/>
+<area shape="rect" id="node16" href="$classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" title="Retourne un pointeur vers l&#39;asservissement du robot." alt="" coords="315,632,434,659"/>
 <area shape="rect" id="node17" href="$classAsserv.html#af3ac6ea471cb2fb8713ce32bbc05d66e" title=" " alt="" coords="257,712,492,739"/>
 <area shape="rect" id="node21" href="$classActions.html#a2dca3495645f189f728586d4157c699c" title="Arrete le thread sensorManager et actionManager." alt="" coords="263,480,487,507"/>
 <area shape="rect" id="node3" href="$classActionManagerTimer.html#a20bd3b06bc5f9b9fb747bb27d154d88d" title="Vide la liste des actions actuellement enregistrees." alt="" coords="1495,454,1654,495"/>

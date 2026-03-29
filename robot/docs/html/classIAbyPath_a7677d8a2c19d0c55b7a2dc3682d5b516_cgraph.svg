@@ -172,7 +172,7 @@ var sectionId = 'dynsection-15';
 <!-- Node19 -->
 <g id="node19" class="node">
 <title>Node19</title>
-<g id="a_node19"><a xlink:href="classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" target="_top" xlink:title=" ">
+<g id="a_node19"><a xlink:href="classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" target="_top" xlink:title="Retourne un pointeur vers l&#39;asservissement du robot.">
 <polygon fill="white" stroke="black" points="210,-114.5 210,-133.5 299,-133.5 299,-114.5 210,-114.5"/>
 <text text-anchor="middle" x="254.5" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::passerv</text>
 </a>
@@ -202,7 +202,7 @@ var sectionId = 'dynsection-15';
 <!-- Node21 -->
 <g id="node21" class="node">
 <title>Node21</title>
-<g id="a_node21"><a xlink:href="classRobot.html#a4f30918c35c294fbd5404fc3c3ffc075" target="_top" xlink:title=" ">
+<g id="a_node21"><a xlink:href="classRobot.html#a4f30918c35c294fbd5404fc3c3ffc075" target="_top" xlink:title="Retourne une référence vers le SvgWriter (logging trajectoire).">
 <polygon fill="white" stroke="black" points="216,-38.5 216,-57.5 293,-57.5 293,-38.5 216,-38.5"/>
 <text text-anchor="middle" x="254.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::svgw</text>
 </a>

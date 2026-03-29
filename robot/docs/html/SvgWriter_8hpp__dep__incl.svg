@@ -46,7 +46,7 @@ if (edges && edges.length) {
         </defs>
 
 <script type="text/javascript">
-var viewWidth = 1451;
+var viewWidth = 1653;
 var viewHeight = 162;
 var sectionId = 'dynsection-1';
 </script>
@@ -54,7 +54,7 @@ var sectionId = 'dynsection-1';
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>src/common/log/SvgWriter.hpp</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-158 1447,-158 1447,4 -4,4"/>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-158 1648.5,-158 1648.5,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node">
 <title>Node1</title>
@@ -159,7 +159,7 @@ var sectionId = 'dynsection-1';
 <!-- Node10 -->
 <g id="node10" class="node">
 <title>Node10</title>
-<g id="a_node10"><a xlink:href="Robot_8cpp.html" target="_top" xlink:title=" ">
+<g id="a_node10"><a xlink:href="Robot_8cpp.html" target="_top" xlink:title="Implémentation de la classe Robot.">
 <polygon fill="white" stroke="black" points="1115,-73 1115,-92 1243,-92 1243,-73 1115,-73"/>
 <text text-anchor="middle" x="1179" y="-80" font-family="Helvetica,sans-Serif" font-size="10.00">src/common/Robot.cpp</text>
 </a>
@@ -168,8 +168,8 @@ var sectionId = 'dynsection-1';
 <!-- Node1&#45;&gt;Node10 -->
 <g id="edge9" class="edge">
 <title>Node1&#45;&gt;Node10</title>
-<path fill="none" stroke="midnightblue" d="M837.81,-133.36C910.71,-125.27 1015.14,-112.68 1106,-98 1116.59,-96.29 1127.98,-94.16 1138.55,-92.07"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="837.29,-129.9 827.73,-134.47 838.06,-136.86 837.29,-129.9"/>
+<path fill="none" stroke="midnightblue" d="M836.83,-133.36C909.55,-125.23 1014.07,-112.59 1105,-98 1115.73,-96.28 1127.28,-94.15 1137.99,-92.06"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="836.34,-129.9 826.78,-134.48 837.11,-136.85 836.34,-129.9"/>
 </g>
 <!-- Node11 -->
 <g id="node11" class="node">
@@ -189,7 +189,7 @@ var sectionId = 'dynsection-1';
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="OPOS6UL__RobotExtended_8cpp.html" target="_top" xlink:title=" ">
+<g id="a_node3"><a xlink:href="OPOS6UL__RobotExtended_8cpp.html" target="_top" xlink:title="Implémentation de la classe OPOS6UL_RobotExtended.">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-30.5 140,-30.5 140,-0.5 0,-0.5"/>
 <text text-anchor="start" x="8" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">src/bot&#45;opos6ul/OPOS6UL</text>
 <text text-anchor="middle" x="70" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_RobotExtended.cpp</text>
@@ -205,7 +205,7 @@ var sectionId = 'dynsection-1';
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="OPOS6UL__SvgWriterExtended_8cpp.html" target="_top" xlink:title=" ">
+<g id="a_node4"><a xlink:href="OPOS6UL__SvgWriterExtended_8cpp.html" target="_top" xlink:title="Implémentation de la classe OPOS6UL_SvgWriterExtended.">
 <polygon fill="white" stroke="black" points="158,-0.5 158,-30.5 298,-30.5 298,-0.5 158,-0.5"/>
 <text text-anchor="start" x="166" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">src/bot&#45;opos6ul/OPOS6UL</text>
 <text text-anchor="middle" x="228" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_SvgWriterExtended.cpp</text>
@@ -221,17 +221,47 @@ var sectionId = 'dynsection-1';
 <!-- Node12 -->
 <g id="node12" class="node">
 <title>Node12</title>
-<g id="a_node12"><a xlink:href="driver-simu_2SensorsDriver_8cpp.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="black" points="1261.5,-6 1261.5,-25 1442.5,-25 1442.5,-6 1261.5,-6"/>
-<text text-anchor="middle" x="1352" y="-13" font-family="Helvetica,sans-Serif" font-size="10.00">src/driver&#45;simu/SensorsDriver.cpp</text>
+<g id="a_node12"><a xlink:href="driver-arm_2SensorsDriver_8cpp.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="black" points="1065,-6 1065,-25 1241,-25 1241,-6 1065,-6"/>
+<text text-anchor="middle" x="1153" y="-13" font-family="Helvetica,sans-Serif" font-size="10.00">src/driver&#45;arm/SensorsDriver.cpp</text>
 </a>
 </g>
 </g>
 <!-- Node11&#45;&gt;Node12 -->
 <g id="edge11" class="edge">
 <title>Node11&#45;&gt;Node12</title>
+<path fill="none" stroke="midnightblue" d="M1315.82,-69.68C1276.38,-56.8 1214.22,-36.5 1179.22,-25.06"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="1314.98,-73.09 1325.57,-72.87 1317.16,-66.44 1314.98,-73.09"/>
+</g>
+<!-- Node13 -->
+<g id="node13" class="node">
+<title>Node13</title>
+<g id="a_node13"><a xlink:href="DriverFactories_8cpp.html" target="_top" xlink:title="Factory create() pour le build SIMU.">
+<polygon fill="white" stroke="black" points="1258.5,-6 1258.5,-25 1445.5,-25 1445.5,-6 1258.5,-6"/>
+<text text-anchor="middle" x="1352" y="-13" font-family="Helvetica,sans-Serif" font-size="10.00">src/driver&#45;simu/DriverFactories.cpp</text>
+</a>
+</g>
+</g>
+<!-- Node11&#45;&gt;Node13 -->
+<g id="edge12" class="edge">
+<title>Node11&#45;&gt;Node13</title>
 <path fill="none" stroke="midnightblue" d="M1352,-62.54C1352,-50.17 1352,-34.62 1352,-25.13"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="1348.5,-62.73 1352,-72.73 1355.5,-62.73 1348.5,-62.73"/>
+</g>
+<!-- Node14 -->
+<g id="node14" class="node">
+<title>Node14</title>
+<g id="a_node14"><a xlink:href="driver-simu_2SensorsDriver_8cpp.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="black" points="1463.5,-6 1463.5,-25 1644.5,-25 1644.5,-6 1463.5,-6"/>
+<text text-anchor="middle" x="1554" y="-13" font-family="Helvetica,sans-Serif" font-size="10.00">src/driver&#45;simu/SensorsDriver.cpp</text>
+</a>
+</g>
+</g>
+<!-- Node11&#45;&gt;Node14 -->
+<g id="edge13" class="edge">
+<title>Node11&#45;&gt;Node14</title>
+<path fill="none" stroke="midnightblue" d="M1388.47,-69.77C1428.49,-56.89 1491.78,-36.52 1527.39,-25.06"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="1387.27,-66.47 1378.82,-72.87 1389.42,-73.14 1387.27,-66.47"/>
 </g>
 </g>
 </svg>

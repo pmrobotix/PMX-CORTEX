@@ -83,7 +83,7 @@ var sectionId = 'dynsection-1';
 <!-- Node3 -->
 <g id="node3" class="node">
 <title>Node3</title>
-<g id="a_node3"><a xlink:href="O__ActionManagerTimerTest_8cpp.html" target="_top" xlink:title="Implémentation de la classe L_ActionManagerTimerTest.">
+<g id="a_node3"><a xlink:href="O__ActionManagerTimerTest_8cpp.html" target="_top" xlink:title="Implémentation de la classe O_ActionManagerTimerTest.">
 <polygon fill="white" stroke="black" points="157.5,-0.5 157.5,-30.5 295.5,-30.5 295.5,-0.5 157.5,-0.5"/>
 <text text-anchor="start" x="165.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">src/bot&#45;opos6ul/O_Action</text>
 <text text-anchor="middle" x="226.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">ManagerTimerTest.cpp</text>
@@ -163,7 +163,7 @@ var sectionId = 'dynsection-1';
 <!-- Node8 -->
 <g id="node8" class="node">
 <title>Node8</title>
-<g id="a_node8"><a xlink:href="O__SensorsTest_8cpp.html" target="_top" xlink:title=" ">
+<g id="a_node8"><a xlink:href="O__SensorsTest_8cpp.html" target="_top" xlink:title="Implémentation de la classe O_SensorsTest.">
 <polygon fill="white" stroke="black" points="969.5,-0.5 969.5,-30.5 1115.5,-30.5 1115.5,-0.5 969.5,-0.5"/>
 <text text-anchor="start" x="977.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">src/bot&#45;opos6ul/O_Sensors</text>
 <text text-anchor="middle" x="1042.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">Test.cpp</text>
@@ -179,7 +179,7 @@ var sectionId = 'dynsection-1';
 <!-- Node9 -->
 <g id="node9" class="node">
 <title>Node9</title>
-<g id="a_node9"><a xlink:href="O__ServoObjectsTest_8cpp.html" target="_top" xlink:title=" ">
+<g id="a_node9"><a xlink:href="O__ServoObjectsTest_8cpp.html" target="_top" xlink:title="Implémentation de la classe O_ServoObjectsTest.">
 <polygon fill="white" stroke="black" points="1133.5,-0.5 1133.5,-30.5 1305.5,-30.5 1305.5,-0.5 1133.5,-0.5"/>
 <text text-anchor="start" x="1141.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">src/bot&#45;opos6ul/O_ServoObjects</text>
 <text text-anchor="middle" x="1219.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">Test.cpp</text>
@@ -195,7 +195,7 @@ var sectionId = 'dynsection-1';
 <!-- Node10 -->
 <g id="node10" class="node">
 <title>Node10</title>
-<g id="a_node10"><a xlink:href="O__ServoStepTest_8cpp.html" target="_top" xlink:title=" ">
+<g id="a_node10"><a xlink:href="O__ServoStepTest_8cpp.html" target="_top" xlink:title="Implémentation de la classe O_ServoStepTest.">
 <polygon fill="white" stroke="black" points="1324,-0.5 1324,-30.5 1481,-30.5 1481,-0.5 1324,-0.5"/>
 <text text-anchor="start" x="1332" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">src/bot&#45;opos6ul/O_ServoStep</text>
 <text text-anchor="middle" x="1402.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">Test.cpp</text>
@@ -211,7 +211,7 @@ var sectionId = 'dynsection-1';
 <!-- Node11 -->
 <g id="node11" class="node">
 <title>Node11</title>
-<g id="a_node11"><a xlink:href="O__State__DecisionMakerIA_8cpp.html" target="_top" xlink:title=" ">
+<g id="a_node11"><a xlink:href="O__State__DecisionMakerIA_8cpp.html" target="_top" xlink:title="Implémentation de la classe O_State_DecisionMakerIA.">
 <polygon fill="white" stroke="black" points="1499,-0.5 1499,-30.5 1632,-30.5 1632,-0.5 1499,-0.5"/>
 <text text-anchor="start" x="1507" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">src/bot&#45;opos6ul/O_State</text>
 <text text-anchor="middle" x="1565.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_DecisionMakerIA.cpp</text>
@@ -227,7 +227,7 @@ var sectionId = 'dynsection-1';
 <!-- Node12 -->
 <g id="node12" class="node">
 <title>Node12</title>
-<g id="a_node12"><a xlink:href="O__State__Init_8cpp.html" target="_top" xlink:title=" ">
+<g id="a_node12"><a xlink:href="O__State__Init_8cpp.html" target="_top" xlink:title="Implémentation de la classe O_State_Init.">
 <polygon fill="white" stroke="black" points="1650,-0.5 1650,-30.5 1783,-30.5 1783,-0.5 1650,-0.5"/>
 <text text-anchor="start" x="1658" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">src/bot&#45;opos6ul/O_State</text>
 <text text-anchor="middle" x="1716.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_Init.cpp</text>
@@ -243,7 +243,7 @@ var sectionId = 'dynsection-1';
 <!-- Node13 -->
 <g id="node13" class="node">
 <title>Node13</title>
-<g id="a_node13"><a xlink:href="O__State__WaitEndOfMatch_8cpp.html" target="_top" xlink:title=" ">
+<g id="a_node13"><a xlink:href="O__State__WaitEndOfMatch_8cpp.html" target="_top" xlink:title="Implémentation de la classe O_State_WaitEndOfMatch.">
 <polygon fill="white" stroke="black" points="1801,-0.5 1801,-30.5 1934,-30.5 1934,-0.5 1801,-0.5"/>
 <text text-anchor="start" x="1809" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">src/bot&#45;opos6ul/O_State</text>
 <text text-anchor="middle" x="1867.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_WaitEndOfMatch.cpp</text>
@@ -275,7 +275,7 @@ var sectionId = 'dynsection-1';
 <!-- Node15 -->
 <g id="node15" class="node">
 <title>Node15</title>
-<g id="a_node15"><a xlink:href="OPOS6UL__AsservExtended_8cpp.html" target="_top" xlink:title=" ">
+<g id="a_node15"><a xlink:href="OPOS6UL__AsservExtended_8cpp.html" target="_top" xlink:title="Implémentation de la classe OPOS6UL_AsservExtended.">
 <polygon fill="white" stroke="black" points="2110.5,-0.5 2110.5,-30.5 2250.5,-30.5 2250.5,-0.5 2110.5,-0.5"/>
 <text text-anchor="start" x="2118.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">src/bot&#45;opos6ul/OPOS6UL</text>
 <text text-anchor="middle" x="2180.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_AsservExtended.cpp</text>
@@ -291,7 +291,7 @@ var sectionId = 'dynsection-1';
 <!-- Node16 -->
 <g id="node16" class="node">
 <title>Node16</title>
-<g id="a_node16"><a xlink:href="OPOS6UL__RobotExtended_8cpp.html" target="_top" xlink:title=" ">
+<g id="a_node16"><a xlink:href="OPOS6UL__RobotExtended_8cpp.html" target="_top" xlink:title="Implémentation de la classe OPOS6UL_RobotExtended.">
 <polygon fill="white" stroke="black" points="2268.5,-0.5 2268.5,-30.5 2408.5,-30.5 2408.5,-0.5 2268.5,-0.5"/>
 <text text-anchor="start" x="2276.5" y="-18.5" font-family="Helvetica,sans-Serif" font-size="10.00">src/bot&#45;opos6ul/OPOS6UL</text>
 <text text-anchor="middle" x="2338.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">_RobotExtended.cpp</text>

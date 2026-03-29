@@ -1,0 +1,7 @@
+<map id="AsservDriverSimu::motion_DoFace" name="AsservDriverSimu::motion_DoFace">
+<area shape="rect" id="node1" title="Oriente le robot face a un point." alt="" coords="525,39,719,80"/>
+<area shape="rect" id="node2" href="$classAsservDriverSimu.html#a43fbdde3667329623cb671e409790838" title="Deplace le robot vers un point (marche avant)." alt="" coords="247,15,477,42"/>
+<area shape="rect" id="node4" href="$classAsservDriverSimu.html#a318bb62dce38a7315ce4739dd99eb2ca" title="Deplace le robot vers un point (marche arriere)." alt="" coords="265,68,459,109"/>
+<area shape="rect" id="node3" href="$classAsservDriverSimu.html#a65b0d3d2430ac3a64c614e00ecb34552" title="Deplace le robot vers un point sans s&#39;arreter (enchainement)." alt="" coords="5,5,199,47"/>
+<area shape="rect" id="node5" href="$classAsservDriverSimu.html#a737836104d14b52192b75e569d6afba8" title="Deplace le robot vers un point en marche arriere sans s&#39;arreter." alt="" coords="5,71,199,112"/>
+</map>

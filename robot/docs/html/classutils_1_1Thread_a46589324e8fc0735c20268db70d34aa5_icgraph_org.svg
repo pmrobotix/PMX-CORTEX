@@ -51,17 +51,18 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="classAsservDriver.html#af7ab066576413089d8e0977cc6d62864" target="_top" xlink:title="Constructor.">
-<polygon fill="white" stroke="black" points="393,-1093 393,-1112 542,-1112 542,-1093 393,-1093"/>
-<text text-anchor="middle" x="467.5" y="-1100" font-family="Helvetica,sans-Serif" font-size="10.00">AsservDriver::AsservDriver</text>
+<g id="a_node4"><a xlink:href="classAsservDriverSimu.html#a48708465356ac7b1ec3f15c835a991ad" target="_top" xlink:title="Constructor.">
+<polygon fill="white" stroke="black" points="396,-1092.5 396,-1122.5 539,-1122.5 539,-1092.5 396,-1092.5"/>
+<text text-anchor="start" x="404" y="-1110.5" font-family="Helvetica,sans-Serif" font-size="10.00">AsservDriverSimu::Asserv</text>
+<text text-anchor="middle" x="467.5" y="-1099.5" font-family="Helvetica,sans-Serif" font-size="10.00">DriverSimu</text>
 </a>
 </g>
 </g>
 <!-- Node3&#45;&gt;Node4 -->
 <g id="edge3" class="edge">
 <title>Node3&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M653.55,-583.27C651.18,-669.35 637.36,-1010.34 566,-1083.5 559.38,-1090.29 551.1,-1095.04 542.18,-1098.31"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="657.06,-583.16 653.81,-573.07 650.06,-582.98 657.06,-583.16"/>
+<path fill="none" stroke="midnightblue" d="M653.46,-583.19C650.72,-668.91 635.55,-1008.62 566,-1083.5 558.76,-1091.29 549.44,-1096.73 539.43,-1100.5"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="656.97,-583.13 653.77,-573.03 649.97,-582.92 656.97,-583.13"/>
 </g>
 <!-- Node5 -->
 <g id="node5" class="node">
@@ -521,7 +522,7 @@
 <!-- Node15 -->
 <g id="node15" class="node">
 <title>Node15</title>
-<g id="a_node15"><a xlink:href="classO__IAByPathTest.html#a3f57f585ff1382a52bf7f79a28d43629" target="_top" xlink:title=" ">
+<g id="a_node15"><a xlink:href="classO__IAByPathTest.html#a3f57f585ff1382a52bf7f79a28d43629" target="_top" xlink:title="Execute le test.">
 <polygon fill="white" stroke="black" points="189.5,-858 189.5,-877 303.5,-877 303.5,-858 189.5,-858"/>
 <text text-anchor="middle" x="246.5" y="-865" font-family="Helvetica,sans-Serif" font-size="10.00">O_IAByPathTest::run</text>
 </a>

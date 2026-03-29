@@ -53,7 +53,7 @@
 <!-- Node4 -->
 <g id="node4" class="node">
 <title>Node4</title>
-<g id="a_node4"><a xlink:href="classRobot.html#a46c797e9dba7c96927fa881851309bf0" target="_top" xlink:title=" ">
+<g id="a_node4"><a xlink:href="classRobot.html#a46c797e9dba7c96927fa881851309bf0" target="_top" xlink:title="Arrête le timer d&#39;asservissement et le gestionnaire d&#39;actions.">
 <polygon fill="white" stroke="black" points="124,-420 124,-450 277,-450 277,-420 124,-420"/>
 <text text-anchor="start" x="132" y="-438" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::stopMotionTimerAnd</text>
 <text text-anchor="middle" x="200.5" y="-427" font-family="Helvetica,sans-Serif" font-size="10.00">ActionManager</text>
@@ -69,7 +69,7 @@
 <!-- Node33 -->
 <g id="node33" class="node">
 <title>Node33</title>
-<g id="a_node33"><a xlink:href="classRobot.html#a769fd661366307a701f22d3f7904ded0" target="_top" xlink:title=" ">
+<g id="a_node33"><a xlink:href="classRobot.html#a769fd661366307a701f22d3f7904ded0" target="_top" xlink:title="Finalise et ferme le fichier SVG.">
 <polygon fill="white" stroke="black" points="132,-381.5 132,-400.5 269,-400.5 269,-381.5 132,-381.5"/>
 <text text-anchor="middle" x="200.5" y="-388.5" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::svgPrintEndOfFile</text>
 </a>
@@ -144,7 +144,7 @@
 <!-- Node18 -->
 <g id="node18" class="node">
 <title>Node18</title>
-<g id="a_node18"><a xlink:href="classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" target="_top" xlink:title=" ">
+<g id="a_node18"><a xlink:href="classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" target="_top" xlink:title="Retourne un pointeur vers l&#39;asservissement du robot.">
 <polygon fill="white" stroke="black" points="356.5,-463.5 356.5,-482.5 445.5,-482.5 445.5,-463.5 356.5,-463.5"/>
 <text text-anchor="middle" x="401" y="-470.5" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::passerv</text>
 </a>

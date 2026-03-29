@@ -1,5 +1,4 @@
 <map id="utils::Thread::yield" name="utils::Thread::yield">
-<area shape="rect" id="node1" title="Donne la main à un autre thread (appelle pthread_yield)." alt="" coords="219,42,361,69"/>
-<area shape="rect" id="node2" href="$classActionManagerTimer.html#a8eb81df877c40053d71f659265882058" title="Execute l&#39;ensemble des actions enregistrees." alt="" coords="9,5,167,47"/>
-<area shape="rect" id="node3" href="$classAsservDriver.html#ae2fdf0d75abab4e2cc974706c8a81867" title="Méthode virtuelle pure à implémenter dans les sous&#45;classes." alt="" coords="5,71,171,98"/>
+<area shape="rect" id="node1" title="Donne la main à un autre thread (appelle pthread_yield)." alt="" coords="212,13,355,39"/>
+<area shape="rect" id="node2" href="$classActionManagerTimer.html#a8eb81df877c40053d71f659265882058" title="Execute l&#39;ensemble des actions enregistrees." alt="" coords="5,5,164,47"/>
 </map>

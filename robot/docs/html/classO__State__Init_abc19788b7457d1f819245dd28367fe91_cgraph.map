@@ -1,7 +1,7 @@
 <map id="O_State_Init::execute" name="O_State_Init::execute">
 <area shape="rect" id="node1" title="Exécute l&#39;état d&#39;initialisation." alt="" coords="5,861,165,888"/>
 <area shape="rect" id="node2" href="$classOPOS6UL__RobotExtended.html#a6468a2bb1fc8de815154a322e038b875" title=" " alt="" coords="498,91,687,133"/>
-<area shape="rect" id="node3" href="$classRobot.html#ac3663ed46470faec31e0a6b7eeaad3fb" title=" " alt="" coords="537,325,648,352"/>
+<area shape="rect" id="node3" href="$classRobot.html#ac3663ed46470faec31e0a6b7eeaad3fb" title="Retourne une référence vers l&#39;asservissement du robot." alt="" coords="537,325,648,352"/>
 <area shape="rect" id="node4" href="$classOPOS6UL__ActionsExtended.html#af04e19802d90a78d82e67b10061521a2" title="Initialise tous les servomoteurs AX12 à leur position de départ." alt="" coords="493,377,692,418"/>
 <area shape="rect" id="node10" href="$classOPOS6UL__ActionsExtended.html#a1e1b2ca9a7404b1322c8e566de3b3f52" title="Retourne l&#39;objet ButtonBar." alt="" coords="230,825,429,866"/>
 <area shape="rect" id="node11" href="$classButtonBar.html#ade20f736d6a4b174817d78630cda6bd4" title="Vérifie si un des boutons est appuyé (non bloquant)." alt="" coords="497,942,688,983"/>

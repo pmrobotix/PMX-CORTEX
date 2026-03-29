@@ -1,8 +1,10 @@
 <map id="utils::Thread::cancel" name="utils::Thread::cancel">
-<area shape="rect" id="node1" title="Annule le thread (appelle pthread_cancel)." alt="" coords="464,85,617,112"/>
-<area shape="rect" id="node2" href="$classActions.html#aa0181cb9c1642b42dca16faa8c9356e0" title="Annule le thread en cours." alt="" coords="255,5,375,32"/>
-<area shape="rect" id="node3" href="$classAsservDriver.html#a636bf5413d2cf0419f188a4965340758" title="Actions de nettoyage avant l&#39;arret du programme." alt="" coords="213,56,416,83"/>
-<area shape="rect" id="node5" href="$classO__State__WaitEndOfMatch.html#aa73613440b37c8dd42181e2e0265ae86" title="Exécute l&#39;état d&#39;attente de fin de match." alt="" coords="221,107,409,149"/>
-<area shape="rect" id="node6" href="$classtest_1_1ThreadTest.html#a3ab4926fa019981bd51a7464be5cf4be" title="Vérifie que cancel() arrête un thread en cours." alt="" coords="213,173,416,200"/>
-<area shape="rect" id="node4" href="$classAsservDriver.html#aaeb3c80c8a079c812af38273f825c537" title="Assisted movement mode =)" alt="" coords="5,49,165,90"/>
+<area shape="rect" id="node1" title="Annule le thread (appelle pthread_cancel)." alt="" coords="496,147,649,174"/>
+<area shape="rect" id="node2" href="$classAsservDriverSimu.html#adefd22ea690046b5fa652e08402b3d50" title="Destructor." alt="" coords="255,5,406,47"/>
+<area shape="rect" id="node3" href="$classActions.html#aa0181cb9c1642b42dca16faa8c9356e0" title="Annule le thread en cours." alt="" coords="271,71,391,98"/>
+<area shape="rect" id="node4" href="$classAsservDriver.html#a636bf5413d2cf0419f188a4965340758" title="Actions de nettoyage avant l&#39;arret du programme." alt="" coords="229,122,432,149"/>
+<area shape="rect" id="node6" href="$classAsservDriverSimu.html#a66f474eaf4d3fc68ec571bcbe73d2326" title="Actions de nettoyage avant l&#39;arret du programme." alt="" coords="213,173,448,199"/>
+<area shape="rect" id="node7" href="$classO__State__WaitEndOfMatch.html#aa73613440b37c8dd42181e2e0265ae86" title="Exécute l&#39;état d&#39;attente de fin de match." alt="" coords="237,224,425,265"/>
+<area shape="rect" id="node8" href="$classtest_1_1ThreadTest.html#a3ab4926fa019981bd51a7464be5cf4be" title="Vérifie que cancel() arrête un thread en cours." alt="" coords="229,290,432,317"/>
+<area shape="rect" id="node5" href="$classAsservDriver.html#aaeb3c80c8a079c812af38273f825c537" title="Assisted movement mode =)" alt="" coords="5,115,165,156"/>
 </map>

@@ -51,7 +51,7 @@
 <!-- Node5 -->
 <g id="node5" class="node">
 <title>Node5</title>
-<g id="a_node5"><a xlink:href="classRobot.html#a7fbd102d7898ba33eecae47cfec530fa" target="_top" xlink:title=" ">
+<g id="a_node5"><a xlink:href="classRobot.html#a7fbd102d7898ba33eecae47cfec530fa" target="_top" xlink:title="Affiche l&#39;état de trajectoire courant.">
 <polygon fill="white" stroke="black" points="230.5,-339.5 230.5,-358.5 328.5,-358.5 328.5,-339.5 230.5,-339.5"/>
 <text text-anchor="middle" x="279.5" y="-346.5" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::displayTS</text>
 </a>
@@ -172,7 +172,7 @@
 <!-- Node48 -->
 <g id="node39" class="node">
 <title>Node48</title>
-<g id="a_node39"><a xlink:href="classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" target="_top" xlink:title=" ">
+<g id="a_node39"><a xlink:href="classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" target="_top" xlink:title="Retourne un pointeur vers l&#39;asservissement du robot.">
 <polygon fill="white" stroke="black" points="437,-193.5 437,-212.5 526,-212.5 526,-193.5 437,-193.5"/>
 <text text-anchor="middle" x="481.5" y="-200.5" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::passerv</text>
 </a>
@@ -232,7 +232,7 @@
 <!-- Node52 -->
 <g id="node43" class="node">
 <title>Node52</title>
-<g id="a_node43"><a xlink:href="classRobot.html#a460232bc7b2485ccd6bf3006566da322" target="_top" xlink:title=" ">
+<g id="a_node43"><a xlink:href="classRobot.html#a460232bc7b2485ccd6bf3006566da322" target="_top" xlink:title="Réinitialise l&#39;affichage de l&#39;état de trajectoire.">
 <polygon fill="white" stroke="black" points="217,-377.5 217,-396.5 342,-396.5 342,-377.5 217,-377.5"/>
 <text text-anchor="middle" x="279.5" y="-384.5" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::resetDisplayTS</text>
 </a>
@@ -262,7 +262,7 @@
 <!-- Node62 -->
 <g id="node48" class="node">
 <title>Node62</title>
-<g id="a_node48"><a xlink:href="classRobot.html#ade84d9257e194f8b04cc9f5f97e184da" target="_top" xlink:title=" ">
+<g id="a_node48"><a xlink:href="classRobot.html#ade84d9257e194f8b04cc9f5f97e184da" target="_top" xlink:title="Enregistre la position du robot dans le fichier SVG.">
 <polygon fill="white" stroke="black" points="214.5,-301.5 214.5,-320.5 344.5,-320.5 344.5,-301.5 214.5,-301.5"/>
 <text text-anchor="middle" x="279.5" y="-308.5" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::svgPrintPosition</text>
 </a>
@@ -755,7 +755,7 @@
 <!-- Node43 -->
 <g id="node34" class="node">
 <title>Node43</title>
-<g id="a_node34"><a xlink:href="classRobot.html#a6a118c509a6d7ab35cdf96203eb0238a" target="_top" xlink:title=" ">
+<g id="a_node34"><a xlink:href="classRobot.html#a6a118c509a6d7ab35cdf96203eb0238a" target="_top" xlink:title="Retourne la position partagée du robot (pour communication inter&#45;threads).">
 <polygon fill="white" stroke="black" points="823,-114.5 823,-133.5 946,-133.5 946,-114.5 823,-114.5"/>
 <text text-anchor="middle" x="884.5" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::sharedPosition</text>
 </a>
@@ -983,7 +983,7 @@
 <!-- Node63 -->
 <g id="node49" class="node">
 <title>Node63</title>
-<g id="a_node49"><a xlink:href="classRobot.html#a4f30918c35c294fbd5404fc3c3ffc075" target="_top" xlink:title=" ">
+<g id="a_node49"><a xlink:href="classRobot.html#a4f30918c35c294fbd5404fc3c3ffc075" target="_top" xlink:title="Retourne une référence vers le SvgWriter (logging trajectoire).">
 <polygon fill="white" stroke="black" points="443,-231.5 443,-250.5 520,-250.5 520,-231.5 443,-231.5"/>
 <text text-anchor="middle" x="481.5" y="-238.5" font-family="Helvetica,sans-Serif" font-size="10.00">Robot::svgw</text>
 </a>

@@ -1,13 +1,13 @@
 <map id="O_LedBarTest::run" name="O_LedBarTest::run">
 <area shape="rect" id="node1" title=" " alt="" coords="5,603,144,630"/>
 <area shape="rect" id="node2" href="$classOPOS6UL__RobotExtended.html#a6468a2bb1fc8de815154a322e038b875" title=" " alt="" coords="199,5,388,47"/>
-<area shape="rect" id="node3" href="$classRobot.html#ac3663ed46470faec31e0a6b7eeaad3fb" title=" " alt="" coords="238,71,349,98"/>
+<area shape="rect" id="node3" href="$classRobot.html#ac3663ed46470faec31e0a6b7eeaad3fb" title="Retourne une référence vers l&#39;asservissement du robot." alt="" coords="238,71,349,98"/>
 <area shape="rect" id="node4" href="$classLedBar.html#afad90556b784654b618c527eb19c50dd" title="Clignote toutes les leds nb fois." alt="" coords="240,173,347,199"/>
 <area shape="rect" id="node11" href="$classLedBar.html#aa771bd13ff72b872ec4c34e9ef68ea1b" title="Eteint toutes leds." alt="" coords="474,71,599,98"/>
 <area shape="rect" id="node13" href="$namespaceutils.html#a4f86fc4c334661a6995538cc080a40c9" title="Met en pause le thread courant pendant usec microsecondes." alt="" coords="915,375,1085,402"/>
 <area shape="rect" id="node14" href="$classRobot.html#a7af430452b558088757324f857d099b2" title="Cette methode retourne l&#39;objet de manipulation du chronometer." alt="" coords="237,1135,349,1162"/>
 <area shape="rect" id="node15" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="959,823,1041,850"/>
-<area shape="rect" id="node19" href="$classRobot.html#a36b66143430e84b730555cf497b89774" title=" " alt="" coords="242,1186,345,1213"/>
+<area shape="rect" id="node19" href="$classRobot.html#a36b66143430e84b730555cf497b89774" title="Retourne l&#39;identifiant du robot." alt="" coords="242,1186,345,1213"/>
 <area shape="rect" id="node20" href="$classOPOS6UL__RobotExtended.html#a514e663cf7537d64d2d0272b8856d6c0" title="Retourne l&#39;instance unique du robot (singleton)." alt="" coords="199,1237,388,1279"/>
 <area shape="rect" id="node21" href="$classLedBar.html#a5272d702b081c2fe6288a690e92cc488" title="Clignote toutes les leds nb fois sur les 2 valeurs hex val1 et val2." alt="" coords="237,426,349,453"/>
 <area shape="rect" id="node22" href="$classLedBar.html#a4f6f26d47d0ea82380cebb8c2b9ea7c3" title="Change le statut d&#39;une led." alt="" coords="489,274,584,301"/>

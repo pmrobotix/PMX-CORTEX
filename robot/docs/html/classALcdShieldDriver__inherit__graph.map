@@ -1,4 +1,5 @@
 <map id="ALcdShieldDriver" name="ALcdShieldDriver">
-<area shape="rect" id="node1" title="Interface abstraite du driver d&#39;ecran LCD." alt="" coords="5,5,139,32"/>
-<area shape="rect" id="node2" href="$classLcdShieldDriver.html" title="Implementation ARM du driver LCD." alt="" coords="10,80,134,107"/>
+<area shape="rect" id="node1" title="Interface abstraite du driver d&#39;ecran LCD." alt="" coords="83,5,217,32"/>
+<area shape="rect" id="node2" href="$classLcdShieldDriver.html" title="Implementation ARM du driver LCD." alt="" coords="5,80,129,107"/>
+<area shape="rect" id="node3" href="$classLcdShieldDriverSimu.html" title="Implementation simulation du driver LCD." alt="" coords="154,80,311,107"/>
 </map>

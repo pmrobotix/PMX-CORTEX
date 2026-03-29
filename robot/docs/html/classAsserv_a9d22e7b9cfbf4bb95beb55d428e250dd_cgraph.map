@@ -1,5 +1,6 @@
 <map id="Asserv::Asserv" name="Asserv::Asserv">
 <area shape="rect" id="node1" title="Constructor." alt="" coords="5,31,123,57"/>
 <area shape="rect" id="node2" href="$classAAsservDriver.html#a33d92438f9ed0e5fb526be0727b1e174" title="Cree l&#39;instance concrete selon la plateforme." alt="" coords="171,5,335,32"/>
-<area shape="rect" id="node3" href="$classRobot.html#a6a118c509a6d7ab35cdf96203eb0238a" title=" " alt="" coords="171,56,335,83"/>
+<area shape="rect" id="node4" href="$classRobot.html#a6a118c509a6d7ab35cdf96203eb0238a" title="Retourne la position partagée du robot (pour communication inter&#45;threads)." alt="" coords="171,56,335,83"/>
+<area shape="rect" id="node3" href="$classHardwareConfig.html#ac025d3170ffc737f6ac5335e944ed19f" title="Retourne l&#39;instance unique." alt="" coords="383,5,572,32"/>
 </map>

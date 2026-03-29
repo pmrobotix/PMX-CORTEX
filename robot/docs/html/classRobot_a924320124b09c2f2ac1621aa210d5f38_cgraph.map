@@ -2,13 +2,13 @@
 <area shape="rect" id="node1" title="Destructor." alt="" coords="5,382,123,409"/>
 <area shape="rect" id="node2" href="$classlogs_1_1LoggerFactory.html#a90478b91d7af2ef8841ded21e3521f69" title="Cette méthode statique retourne l&#39;instance unique de la classe LoggerFactory." alt="" coords="1970,5,2118,47"/>
 <area shape="rect" id="node3" href="$classlogs_1_1LoggerFactory.html#a4d89f093ecfe432ecb4fb8775dc4141f" title=" " alt="" coords="199,463,347,504"/>
-<area shape="rect" id="node4" href="$classRobot.html#a46c797e9dba7c96927fa881851309bf0" title=" " alt="" coords="171,345,375,387"/>
-<area shape="rect" id="node33" href="$classRobot.html#a769fd661366307a701f22d3f7904ded0" title=" " alt="" coords="181,411,364,438"/>
+<area shape="rect" id="node4" href="$classRobot.html#a46c797e9dba7c96927fa881851309bf0" title="Arrête le timer d&#39;asservissement et le gestionnaire d&#39;actions." alt="" coords="171,345,375,387"/>
+<area shape="rect" id="node33" href="$classRobot.html#a769fd661366307a701f22d3f7904ded0" title="Finalise et ferme le fichier SVG." alt="" coords="181,411,364,438"/>
 <area shape="rect" id="node5" href="$classActions.html#a95422cfe6edb166b22bc6aa465aab866" title="supprime toutes les actions et les timers." alt="" coords="1459,295,1586,322"/>
 <area shape="rect" id="node10" href="$namespacelogs.html#ac6f325c6cfe6189bc8e243daa184453b" title="Cette méthode permet de finir les flux de construction par la notation." alt="" coords="1482,666,1563,693"/>
 <area shape="rect" id="node13" href="$classlogs_1_1Logger.html#a8b6a2019233bc44b3c3c86c653910831" title="Trace un message de niveau ERROR." alt="" coords="1453,565,1593,591"/>
 <area shape="rect" id="node14" href="$classRobot.html#ace39678c476c8e8b193d9c8baf7a692b" title="Retourne le Logger associe a la classe Robot. public car utilise dans Main." alt="" coords="744,99,853,126"/>
-<area shape="rect" id="node18" href="$classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" title=" " alt="" coords="481,302,599,329"/>
+<area shape="rect" id="node18" href="$classRobot.html#aa569a899d4cc76a25f4e84ca56da2784" title="Retourne un pointeur vers l&#39;asservissement du robot." alt="" coords="481,302,599,329"/>
 <area shape="rect" id="node19" href="$classAsserv.html#af3ac6ea471cb2fb8713ce32bbc05d66e" title=" " alt="" coords="423,353,657,379"/>
 <area shape="rect" id="node23" href="$classActions.html#a2dca3495645f189f728586d4157c699c" title="Arrete le thread sensorManager et actionManager." alt="" coords="428,441,652,467"/>
 <area shape="rect" id="node6" href="$classActionManagerTimer.html#a20bd3b06bc5f9b9fb747bb27d154d88d" title="Vide la liste des actions actuellement enregistrees." alt="" coords="1705,331,1863,372"/>

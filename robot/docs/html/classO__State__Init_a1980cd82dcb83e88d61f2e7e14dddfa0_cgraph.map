@@ -1,7 +1,7 @@
 <map id="O_State_Init::setPos" name="O_State_Init::setPos">
 <area shape="rect" id="node1" title=" " alt="" coords="5,1141,157,1167"/>
 <area shape="rect" id="node2" href="$classOPOS6UL__RobotExtended.html#a6468a2bb1fc8de815154a322e038b875" title=" " alt="" coords="221,5,410,47"/>
-<area shape="rect" id="node3" href="$classRobot.html#ac3663ed46470faec31e0a6b7eeaad3fb" title=" " alt="" coords="260,71,371,98"/>
+<area shape="rect" id="node3" href="$classRobot.html#ac3663ed46470faec31e0a6b7eeaad3fb" title="Retourne une référence vers l&#39;asservissement du robot." alt="" coords="260,71,371,98"/>
 <area shape="rect" id="node4" href="$classAsserv.html#a2d4c545965ac32ef54c9b118d3576655" title=" " alt="" coords="223,122,408,149"/>
 <area shape="rect" id="node7" href="$classOPOS6UL__ActionsExtended.html#af04e19802d90a78d82e67b10061521a2" title="Initialise tous les servomoteurs AX12 à leur position de départ." alt="" coords="216,1104,415,1145"/>
 <area shape="rect" id="node13" href="$classLcdShield.html#a9a329fba00c24f56f24266225dcb6a16" title="Efface le contenu de l&#39;écran." alt="" coords="253,1170,377,1197"/>
@@ -27,7 +27,7 @@
 <area shape="rect" id="node47" href="$classAsserv.html#a050645863c2a40f3116ee0847d1d3732" title=" " alt="" coords="213,518,417,545"/>
 <area shape="rect" id="node48" href="$classAsserv.html#a366bf4a9f0880c5dc125ac0637fee326" title=" " alt="" coords="222,224,409,265"/>
 <area shape="rect" id="node49" href="$classRobot.html#a54154ee94652d3093fba07052cdbc861" title=" " alt="" coords="254,1890,377,1917"/>
-<area shape="rect" id="node50" href="$classRobot.html#ade84d9257e194f8b04cc9f5f97e184da" title=" " alt="" coords="229,290,402,317"/>
+<area shape="rect" id="node50" href="$classRobot.html#ade84d9257e194f8b04cc9f5f97e184da" title="Enregistre la position du robot dans le fichier SVG." alt="" coords="229,290,402,317"/>
 <area shape="rect" id="node5" href="$classAsservEsialR.html#a6bcff182c51cf9de8c80f38f33267bae" title="just disable PID" alt="" coords="493,57,653,99"/>
 <area shape="rect" id="node6" href="$classAAsservDriver.html#a83153736da05eba6451f02b399eb4438" title="Active le mode deplacement assiste (PID actif)." alt="" coords="488,123,657,164"/>
 <area shape="rect" id="node8" href="$classOPOS6UL__ActionsExtended.html#a946560d21bc7c1a12be600b16e07c93a" title="Déploie le bras droit en position d&#39;action." alt="" coords="473,1192,672,1233"/>

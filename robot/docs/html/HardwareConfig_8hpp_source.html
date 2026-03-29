@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PMX-CORTEX Robot:  Fichier source de src/common/HardwareConfig.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">PMX-CORTEX Robot
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">Robot PM-ROBOTIX — Coupe de France de Robotique 2026</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_fdedb0aba14d44ce9d99bc100e026e6a.html">common</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">HardwareConfig.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="HardwareConfig_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#ifndef HARDWARECONFIG_HPP_</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#define HARDWARECONFIG_HPP_</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="LoggerFactory_8hpp.html">log/LoggerFactory.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classHardwareConfig.html">   25</a></span>&#160;<span class="keyword">class </span><a class="code" href="classHardwareConfig.html">HardwareConfig</a></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;{</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">static</span> <a class="code" href="classHardwareConfig.html">HardwareConfig</a>&amp; <a class="code" href="classHardwareConfig.html#ac025d3170ffc737f6ac5335e944ed19f">instance</a>();</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classHardwareConfig.html#a42698eef9d965356b756a5bdc8f5071b">load</a>(<span class="keyword">const</span> std::string&amp; exePath);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classHardwareConfig.html#a0756be187004c46693bb31a8a42b094e">isEnabled</a>(<span class="keyword">const</span> std::string&amp; driverName) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classHardwareConfig.html#af0540d247a7c0ca862e6e9eadf3481e0">   49</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a>&amp; <a class="code" href="classHardwareConfig.html#af0540d247a7c0ca862e6e9eadf3481e0">logger</a>()</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    {</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="classlogs_1_1Logger.html">logs::Logger</a>&amp; <a class="code" href="classHardwareConfig.html#ac025d3170ffc737f6ac5335e944ed19f">instance</a> = <a class="code" href="classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e">logs::LoggerFactory::logger</a>(<span class="stringliteral">&quot;HardwareConfig&quot;</span>);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classHardwareConfig.html#ac025d3170ffc737f6ac5335e944ed19f">instance</a>;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classHardwareConfig.html#ade56004beac72f9a51736bdeacb4ae20">   55</a></span>&#160;    <a class="code" href="classHardwareConfig.html#ade56004beac72f9a51736bdeacb4ae20">HardwareConfig</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="classHardwareConfig.html#a8e42a765d40379d30622da80f9061913">   57</a></span>&#160;    std::map&lt;std::string, bool&gt; <a class="code" href="classHardwareConfig.html#a8e42a765d40379d30622da80f9061913">drivers_</a>;</div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="classHardwareConfig.html#ac176bb0fbabe602aff13f5dee1355cda">   58</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classHardwareConfig.html#ac176bb0fbabe602aff13f5dee1355cda">loaded_</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;};</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aLoggerFactory_8hpp_html"><div class="ttname"><a href="LoggerFactory_8hpp.html">LoggerFactory.hpp</a></div><div class="ttdoc">Définition de la classe LoggerFactory.</div></div>
+<div class="ttc" id="aclassHardwareConfig_html"><div class="ttname"><a href="classHardwareConfig.html">HardwareConfig</a></div><div class="ttdoc">Singleton de configuration hardware.</div><div class="ttdef"><b>Definition:</b> HardwareConfig.hpp:26</div></div>
+<div class="ttc" id="aclassHardwareConfig_html_a0756be187004c46693bb31a8a42b094e"><div class="ttname"><a href="classHardwareConfig.html#a0756be187004c46693bb31a8a42b094e">HardwareConfig::isEnabled</a></div><div class="ttdeci">bool isEnabled(const std::string &amp;driverName) const</div><div class="ttdoc">Teste si un driver est active.</div><div class="ttdef"><b>Definition:</b> HardwareConfig.cpp:75</div></div>
+<div class="ttc" id="aclassHardwareConfig_html_a42698eef9d965356b756a5bdc8f5071b"><div class="ttname"><a href="classHardwareConfig.html#a42698eef9d965356b756a5bdc8f5071b">HardwareConfig::load</a></div><div class="ttdeci">void load(const std::string &amp;exePath)</div><div class="ttdoc">Charge la configuration depuis le repertoire de l'executable.</div><div class="ttdef"><b>Definition:</b> HardwareConfig.cpp:19</div></div>
+<div class="ttc" id="aclassHardwareConfig_html_a8e42a765d40379d30622da80f9061913"><div class="ttname"><a href="classHardwareConfig.html#a8e42a765d40379d30622da80f9061913">HardwareConfig::drivers_</a></div><div class="ttdeci">std::map&lt; std::string, bool &gt; drivers_</div><div class="ttdef"><b>Definition:</b> HardwareConfig.hpp:57</div></div>
+<div class="ttc" id="aclassHardwareConfig_html_ac025d3170ffc737f6ac5335e944ed19f"><div class="ttname"><a href="classHardwareConfig.html#ac025d3170ffc737f6ac5335e944ed19f">HardwareConfig::instance</a></div><div class="ttdeci">static HardwareConfig &amp; instance()</div><div class="ttdoc">Retourne l'instance unique.</div><div class="ttdef"><b>Definition:</b> HardwareConfig.cpp:13</div></div>
+<div class="ttc" id="aclassHardwareConfig_html_ac176bb0fbabe602aff13f5dee1355cda"><div class="ttname"><a href="classHardwareConfig.html#ac176bb0fbabe602aff13f5dee1355cda">HardwareConfig::loaded_</a></div><div class="ttdeci">bool loaded_</div><div class="ttdef"><b>Definition:</b> HardwareConfig.hpp:58</div></div>
+<div class="ttc" id="aclassHardwareConfig_html_ade56004beac72f9a51736bdeacb4ae20"><div class="ttname"><a href="classHardwareConfig.html#ade56004beac72f9a51736bdeacb4ae20">HardwareConfig::HardwareConfig</a></div><div class="ttdeci">HardwareConfig()=default</div></div>
+<div class="ttc" id="aclassHardwareConfig_html_af0540d247a7c0ca862e6e9eadf3481e0"><div class="ttname"><a href="classHardwareConfig.html#af0540d247a7c0ca862e6e9eadf3481e0">HardwareConfig::logger</a></div><div class="ttdeci">static const logs::Logger &amp; logger()</div><div class="ttdef"><b>Definition:</b> HardwareConfig.hpp:49</div></div>
+<div class="ttc" id="aclasslogs_1_1LoggerFactory_html_a82585b5de73e471e06cafdccc3b3721e"><div class="ttname"><a href="classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e">logs::LoggerFactory::logger</a></div><div class="ttdeci">static const Logger &amp; logger(const std::string &amp;name)</div><div class="ttdoc">Cette méthode statique retourne un Logger en fonction de son nom.</div><div class="ttdef"><b>Definition:</b> LoggerFactory.cpp:54</div></div>
+<div class="ttc" id="aclasslogs_1_1Logger_html"><div class="ttname"><a href="classlogs_1_1Logger.html">logs::Logger</a></div><div class="ttdoc">Classe de gestion des traces de l'application.</div><div class="ttdef"><b>Definition:</b> Logger.hpp:63</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Lundi 30 Mars 2026 01:36:24 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>

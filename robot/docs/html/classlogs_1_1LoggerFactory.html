@@ -100,6 +100,9 @@ Fonctions membres publiques</h2></td></tr>
 <tr class="memitem:ac5133c34af0e57e169fd50a260037b8b"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogs_1_1LoggerFactory.html#ac5133c34af0e57e169fd50a260037b8b">~ LoggerFactory</a> ()</td></tr>
 <tr class="memdesc:ac5133c34af0e57e169fd50a260037b8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructeur de la classe.  <a href="classlogs_1_1LoggerFactory.html#ac5133c34af0e57e169fd50a260037b8b">Plus de détails...</a><br /></td></tr>
 <tr class="separator:ac5133c34af0e57e169fd50a260037b8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75823b27a156f58a8d4061453a632c66"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classlogs_1_1Appender.html">Appender</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogs_1_1LoggerFactory.html#a75823b27a156f58a8d4061453a632c66">appender</a> (const std::string &amp;<a class="el" href="classutils_1_1Thread.html#a48b51d705e5e07f19f4acc17c6fc5411">name</a>)</td></tr>
+<tr class="memdesc:a75823b27a156f58a8d4061453a632c66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cette méthode retourne un <a class="el" href="classlogs_1_1Appender.html" title="Classe de gestion des flux de sortie pour les logs.">Appender</a> en fonction de son nom.  <a href="classlogs_1_1LoggerFactory.html#a75823b27a156f58a8d4061453a632c66">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a75823b27a156f58a8d4061453a632c66"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac7174393a61b12f962bfacef078bf43e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1Thread.html#ac7174393a61b12f962bfacef078bf43e">cancel</a> ()</td></tr>
 <tr class="memdesc:ac7174393a61b12f962bfacef078bf43e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Annule le thread (appelle pthread_cancel).  <a href="classutils_1_1Thread.html#ac7174393a61b12f962bfacef078bf43e">Plus de détails...</a><br /></td></tr>
 <tr class="separator:ac7174393a61b12f962bfacef078bf43e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -162,9 +165,6 @@ Fonctions membres protégées</h2></td></tr>
 <tr class="memitem:a4a5dc780d448355be6eb117ed9a42a8b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogs_1_1LoggerFactory.html#a4a5dc780d448355be6eb117ed9a42a8b">add</a> (<a class="el" href="classlogs_1_1Logger.html">Logger</a> *<a class="el" href="classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e">logger</a>)</td></tr>
 <tr class="memdesc:a4a5dc780d448355be6eb117ed9a42a8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cette méthode ajoute un logger au système.  <a href="classlogs_1_1LoggerFactory.html#a4a5dc780d448355be6eb117ed9a42a8b">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a4a5dc780d448355be6eb117ed9a42a8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75823b27a156f58a8d4061453a632c66"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classlogs_1_1Appender.html">Appender</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlogs_1_1LoggerFactory.html#a75823b27a156f58a8d4061453a632c66">appender</a> (const std::string &amp;<a class="el" href="classutils_1_1Thread.html#a48b51d705e5e07f19f4acc17c6fc5411">name</a>)</td></tr>
-<tr class="memdesc:a75823b27a156f58a8d4061453a632c66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cette méthode retourne un <a class="el" href="classlogs_1_1Appender.html" title="Classe de gestion des flux de sortie pour les logs.">Appender</a> en fonction de son nom.  <a href="classlogs_1_1LoggerFactory.html#a75823b27a156f58a8d4061453a632c66">Plus de détails...</a><br /></td></tr>
-<tr class="separator:a75823b27a156f58a8d4061453a632c66"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a540314edf56707d4f8732af3be6d7044"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutils_1_1Thread.html#a540314edf56707d4f8732af3be6d7044">sched_yield</a> ()</td></tr>
 <tr class="memdesc:a540314edf56707d4f8732af3be6d7044"><td class="mdescLeft">&#160;</td><td class="mdescRight">Donne la main à un autre thread de même priorité (appelle ::sched_yield).  <a href="classutils_1_1Thread.html#a540314edf56707d4f8732af3be6d7044">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a540314edf56707d4f8732af3be6d7044"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -443,9 +443,6 @@ Voici le graphe d'appel pour cette fonction :</div>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classlogs_1_1Appender.html">logs::Appender</a> * logs::LoggerFactory::appender </td>
@@ -455,11 +452,6 @@ Voici le graphe d'appel pour cette fonction :</div>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Cette méthode retourne un <a class="el" href="classlogs_1_1Appender.html" title="Classe de gestion des flux de sortie pour les logs.">Appender</a> en fonction de son nom. </p>
@@ -470,6 +462,12 @@ Voici le graphe d'appel pour cette fonction :</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Renvoie</dt><dd>L'objet <a class="el" href="classlogs_1_1Appender.html" title="Classe de gestion des flux de sortie pour les logs.">Appender</a> associé au paramètre <code>nom</code>. </dd></dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classlogs_1_1LoggerFactory_a75823b27a156f58a8d4061453a632c66_icgraph.svg" width="639" height="170"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
 
 </div>
 </div>
@@ -500,7 +498,8 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classutils_1_1Thread_ac7174393a61b12f962bfacef078bf43e_icgraph.svg" width="623" height="206"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classutils_1_1Thread_ac7174393a61b12f962bfacef078bf43e_icgraph.svg" width="655" height="323"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -722,7 +721,8 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classutils_1_1Thread_acc5214a88eab5c3bd421e7ee06f66b1a_icgraph.svg" width="646" height="111"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classutils_1_1Thread_acc5214a88eab5c3bd421e7ee06f66b1a_icgraph.svg" width="100%" height="421"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 </div>
 
 </div>
@@ -1027,7 +1027,8 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classutils_1_1Thread_abf0fce52d68ec9df1bd813c8b9e50da6_icgraph.svg" width="618" height="431"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classutils_1_1Thread_abf0fce52d68ec9df1bd813c8b9e50da6_icgraph.svg" width="610" height="431"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -1266,7 +1267,8 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classutils_1_1Thread_a29b8cb62f6b5f80ffe5b050167780f97_icgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classutils_1_1Thread_a29b8cb62f6b5f80ffe5b050167780f97_icgraph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 </div>
 
 </div>
@@ -1298,7 +1300,8 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classutils_1_1Thread_a2535cf3474384aad6621c0556813097f_icgraph.svg" width="367" height="104"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classutils_1_1Thread_a2535cf3474384aad6621c0556813097f_icgraph.svg" width="360" height="52"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -1522,7 +1525,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Généré le Vendredi 27 Mars 2026 12:31:57 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Généré le Lundi 30 Mars 2026 01:36:36 pour PMX-CORTEX Robot par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>
