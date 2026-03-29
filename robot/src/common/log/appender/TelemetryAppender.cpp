@@ -6,64 +6,40 @@
 #include "TelemetryAppender.hpp"
 
 #include <list>
-#include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
-#include <sys/time.h>
+#include <arpa/inet.h>
 #include <chrono>
 #include <iostream>
-#include <iomanip>
-#include <ctime>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-
-#include <errno.h> //For errno - the error number
-#include <netdb.h>   //hostent
 
 #include "../../utils/json.hpp"
 
 using namespace std::chrono;
 
-logs::TelemetryAppender::TelemetryAppender(std::string Id_Robot, std::string PlotJuggler_hostname)
+logs::TelemetryAppender::TelemetryAppender(std::string Id_Robot, std::string target_ip)
 {
     id_ = Id_Robot;
 
     t_fd = socket(AF_INET, SOCK_DGRAM, 0); //UDP
-    char hostname[50];
-    strcpy(hostname, PlotJuggler_hostname.c_str()); //NOM DE LA VM DE LOG aec PLOTJUGGLER
-    int err = hostname_to_ip(hostname, ip_);
-    if (err == 1) {
-        //printf("Impossible to resolve PLOTJUGGLER VM on %s ; err=%d => EXIT !\n", hostname, err);
-        std::string ip = "192.168.3.104"; //TODO IP ADDRESS A CONFIGURER par ROBOT !!!!!!!!
-        //std::cout << "Impossible to resolve PLOTJUGGLER VM on " << PlotJuggler_hostname << "; err="<< err <<" => ip="<< ip << std::endl;
-
-        strcpy(ip_, ip.c_str());
-
-    }
-    //printf("%s resolved to %s\n", hostname, ip_);
+    strcpy(ip_, target_ip.c_str());
 
     addr_.sin_family = AF_INET;
-    addr_.sin_port = htons(9870); //PORT envoyer
-    //addr_.sin_addr.s_addr = inet_addr("127.0.0.1");
+    addr_.sin_port = htons(9870);
     addr_.sin_addr.s_addr = inet_addr(ip_);
-
 }
 
 void logs::TelemetryAppender::flush() {
-    char buf[1024];
 
     lockMessages();
 
     while (this->messagesjson_.size() > 0) {
         std::string message = this->messagesjson_.front();
 
-        snprintf(buf, sizeof(buf), "%s", message.c_str());
-
-        sendto(t_fd, buf, sizeof(buf), 0, (struct sockaddr*) &addr_, sizeof(addr_));
+        message += '\n';
+        sendto(t_fd, message.c_str(), message.size(), 0, (struct sockaddr*) &addr_, sizeof(addr_));
         this->messagesjson_.pop_front();
         std::this_thread::yield();
     }
@@ -129,27 +105,4 @@ void logs::TelemetryAppender::writeMessageWithJsonTime(std::string id, const log
     this->messagesjson_.push_back(j.dump());
     this->unlockMessages();
 
-}
-
-//return 1 if error
-int logs::TelemetryAppender::hostname_to_ip(char * hostname, char* ip) {
-    struct hostent *he;
-    struct in_addr **addr_list;
-    int i;
-
-    if ((he = gethostbyname(hostname)) == NULL) {
-        // get the host info
-        //herror("gethostbyname");
-        return 1;
-    }
-
-    addr_list = (struct in_addr **) he->h_addr_list;
-
-    for (i = 0; addr_list[i] != NULL; i++) {
-        //Return the first one;
-        strcpy(ip, inet_ntoa(*addr_list[i]));
-        return 0;
-    }
-
-    return 1;
 }

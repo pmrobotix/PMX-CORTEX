@@ -41,7 +41,7 @@ private:
     std::list<std::string> messagesjson_;
 
     /*!
-     * \brief IP reseau du plotjuggler.
+     * \brief IP reseau du récepteur de télémétrie (RPI).
      */
     char ip_[100];
     /*!
@@ -51,21 +51,16 @@ private:
     /*!
      * \brief socket UDP.
      */
-    int t_fd; //todo static or not ?? peut-etre dans le cas de plusieurs telemetry?
-
-    /*!
-     * \brief Resolution du hostname pour obtenir l'IP.
-     * \return 1 if error
-     */
-    int hostname_to_ip(char * hostname, char* ip);
+    int t_fd;
 
 public:
 
     /*!
-     * \brief Constructeur par défaut.
-     * L'appender sera associé au flux de sortie standard.
+     * \brief Constructeur.
+     * \param Id_Robot Identifiant du robot (clé racine du JSON).
+     * \param target_ip Adresse IP du récepteur de télémétrie (ex: "192.168.3.101").
      */
-    TelemetryAppender(std::string Id_Robot, std::string PlotJuggler_hostname);
+    TelemetryAppender(std::string Id_Robot, std::string target_ip);
 
     /*!
      * \brief Destructeur de la classe.

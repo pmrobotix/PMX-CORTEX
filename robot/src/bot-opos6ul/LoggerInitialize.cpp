@@ -26,8 +26,8 @@ void logs::LoggerFactory::initialize()
 
     //order=ERROR>TELEM>WARN>INFO>DEBUG
     //net =TELEMETRY+CONSOLE
-    //add("net", new TelemetryAppender("OPOS6UL", "pmx-vm"));
-    add(logs::Level::ERROR, "", "console"); //net = TELEMETRY + CONSOLE
+    add("net", new TelemetryAppender("OPOS6UL", "192.168.3.101"));
+    add(logs::Level::ERROR, "", "net"); //net = TELEMETRY + CONSOLE
 
     //INFO
     add(logs::Level::INFO, "Robot", "console");
@@ -50,7 +50,7 @@ void logs::LoggerFactory::initialize()
     add(logs::Level::INFO, "Sensors", "console");
     add(logs::Level::ERROR, "ServoObjectsSystem", "console");
     add(logs::Level::INFO, "ActionManagerTimer", "console");
-    add(logs::Level::INFO, "LedBar", "console");
+    add(logs::Level::INFO, "LedBar", "net");
 
     //State
     add(logs::Level::INFO, "O_State_Init", "console");

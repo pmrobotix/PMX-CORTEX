@@ -1085,6 +1085,61 @@ Chaque méthode publique doit être documentée :
 | `EXCLUDE` | `json.hpp` | nlohmann/json (24000 lignes, pas utile) |
 | `GENERATE_LATEX` | NO | HTML uniquement |
 
+## Télémétrie réseau (UDP)
+
+Le robot envoie ses données de télémétrie en JSON via UDP (port 9870) vers un récepteur externe.
+
+### Architecture
+
+```
+OPOS6UL (robot)                              RPI (récepteur)
+┌──────────────────┐       UDP 9870        ┌──────────────────┐
+│ TelemetryAppender│ ──── WiFi 5GHz ────→  │ Réception JSON   │
+│ (flush 300ms)    │    192.168.3.101      │                  │
+└──────────────────┘                       └──────────────────┘
+```
+
+### Format des paquets JSON
+
+Chaque paquet UDP contient un objet JSON avec l'ID du robot, un timestamp, le temps écoulé et les données du logger :
+
+```json
+{
+  "OPOS6UL": {
+    "timestamp": 1774733396.268,
+    "elapsedtime_ms": 10009.463,
+    "LedBar": { "pos": 0, "color": 6 }
+  }
+}
+```
+
+### Configuration réseau
+
+| Destination | IP | Port |
+|---|---|---|
+| RPI (récepteur) | `192.168.3.101` | 9870 |
+
+La même IP est utilisée en SIMU et en ARM. La configuration est dans `src/bot-opos6ul/LoggerInitialize.cpp`.
+
+### Test local en simulation
+
+```bash
+cd robot/build-simu-release
+socat -u UDP-RECV:9870,reuseaddr OPEN:./telemetry.json,creat,trunc &
+./bot-opos6ul t /n 1
+cat telemetry.json
+```
+
+### Loggers branchés sur la télémétrie
+
+Pour envoyer de la télémétrie depuis un logger, le configurer sur l'appender `"net"` dans `LoggerInitialize.cpp` :
+
+```cpp
+add(logs::Level::INFO, "MonLogger", "net");
+```
+
+Puis dans le code, utiliser `logger().telemetry(json)` pour envoyer des données JSON.
+
 ## TODO
 
 ### Migration PMX → PMX-CORTEX
@@ -1121,12 +1176,12 @@ Objectif : réduire la latence worst-case des threads critiques (serial, I2C) de
 
 Prérequis kernel (en cours) : `CONFIG_PREEMPT=y`, `CONFIG_HZ=1000`, I2C déjà en 400 kHz.
 
-- ⬜ **1. `mlockall()` — Verrouiller la mémoire**
+- ✅ **1. `mlockall()` — Verrouiller la mémoire**
   - Appeler `mlockall(MCL_CURRENT | MCL_FUTURE)` au début de `main()`, avant de lancer les threads
   - Empêche les page faults (stalls de 1-10ms) en verrouillant toute la mémoire en RAM
   - Coût : quelques Mo de RAM supplémentaires (négligeable sur 512 Mo)
 
-- ⬜ **2. `SCHED_FIFO` par thread — Priorités temps-réel**
+- ✅ **2. `SCHED_FIFO` par thread — Priorités temps-réel**
   - Assigner des priorités différenciées aux threads selon leur criticité
   - POSIX SCHED_FIFO : 99 = max, 1 = min, 0 = pas temps-réel (SCHED_OTHER)
   - Nécessite root ou `CAP_SYS_NICE`
@@ -1140,7 +1195,7 @@ Prérequis kernel (en cours) : `CONFIG_PREEMPT=y`, `CONFIG_HZ=1000`, I2C déjà 
   | **DecisionMakerIA** | 3 | **40** | ARM+SIMU | Stratégie match |
   | **LoggerFactory** | 0 | **0** | ARM+SIMU | Logs best-effort |
 
-- ⬜ **3. UART `ASYNC_LOW_LATENCY` — Réduire la latence série**
+- ✅ **3. UART `ASYNC_LOW_LATENCY` — Réduire la latence série**
   - Activer le flag `ASYNC_LOW_LATENCY` via `ioctl(TIOCSSERIAL)` après `open()` du port série
   - Réduit la latence de réveil du `read()` de ~10ms à <1ms
   - Critique pour la communication haute fréquence avec la Teensy
