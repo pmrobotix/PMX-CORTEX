@@ -35,6 +35,12 @@ public:
 	}
 
 	/*!
+	 * \brief Verifie si le capteur couleur est connecte.
+	 * \return true si la communication I2C est etablie.
+	 */
+	virtual bool is_connected() = 0;
+
+	/*!
 	 * \brief Effectue une lecture RGB du capteur.
 	 * \return true si la lecture a reussi (capteur connecte).
 	 */

@@ -97,6 +97,7 @@ public:
     TRAJ_STATE waitEndOfTraj();
     int getAsservStatus();
 
+    bool is_connected() override { return true; }
     void endWhatTodo();
 
     //fonctions asservissements externe par defaut

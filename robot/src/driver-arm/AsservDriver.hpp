@@ -93,6 +93,7 @@ protected:
     ROBOTPOSITION p_;
 public:
 
+    bool is_connected() override;
     void endWhatTodo();
 
     //commandes directes concernant les moteurs

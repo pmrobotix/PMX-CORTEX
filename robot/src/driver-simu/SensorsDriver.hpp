@@ -13,7 +13,7 @@ class ARobotPosShared;
 
 #define square(a)  (a)*(a)
 
-class SensorsDriver: public ASensorsDriver
+class SensorsDriverSimu: public ASensorsDriver
 {
 private:
 
@@ -46,12 +46,12 @@ public:
     /*!
      * \brief Constructor.
      */
-    SensorsDriver(ARobotPositionShared *aRobotPositionShared);
+    SensorsDriverSimu(ARobotPositionShared *aRobotPositionShared);
 
     /*!
      * \brief Destructor.
      */
-    ~SensorsDriver();
+    ~SensorsDriverSimu();
 
     bool is_connected();
 

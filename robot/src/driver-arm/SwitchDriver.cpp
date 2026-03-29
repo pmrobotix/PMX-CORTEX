@@ -4,6 +4,8 @@
  */
 
 #include "SwitchDriver.hpp"
+#include "HardwareConfig.hpp"
+#include "../driver-simu/SwitchDriver.hpp"
 
 #include <unistd.h>
 
@@ -12,6 +14,10 @@
 
 ASwitchDriver * ASwitchDriver::create(std::string)
 {
+	if (!HardwareConfig::instance().isEnabled("SwitchDriver")) {
+		static SwitchDriverSimu *instance = new SwitchDriverSimu();
+		return instance;
+	}
 	return new SwitchDriver();
 }
 
@@ -19,7 +25,9 @@ SwitchDriver::SwitchDriver()
 {
 	bool c = GpioPCA9555::instance().begin();
 	if (!c)
-		logger().debug() << "SwitchDriver() : GpioPCA9555 NOT CONNECTED !" << logs::end;
+		logger().error() << "Hardware status: SwitchDriver is NOT connected (GpioPCA9555) !" << logs::end;
+	else
+		logger().info() << "Hardware status: SwitchDriver OK" << logs::end;
 }
 
 SwitchDriver::~SwitchDriver()

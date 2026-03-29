@@ -97,6 +97,11 @@ void logs::LoggerFactory::initialize()
     add(logs::Level::INFO, "SensorsDriver.OPO", "console");
     add(logs::Level::INFO, "IrSensor.OPO", "console");
     add(logs::Level::INFO, "BeaconSensors.OPO", "console");
+    add(logs::Level::INFO, "Adafruit_RGBLCDShield.OPO", "console");
+    add(logs::Level::INFO, "GpioPCA9555.OPO", "console");
+    add(logs::Level::INFO, "CCAx12Teensy.OPO", "console");
+    add(logs::Level::INFO, "GroveColorSensor.OPO", "console");
+    add(logs::Level::INFO, "HardwareConfig", "console");
 
 
 }

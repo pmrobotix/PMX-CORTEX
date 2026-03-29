@@ -4,6 +4,25 @@
 
 - [Configuration hardware dynamique](HARDWARE_CONFIG.md) — Activation/désactivation des drivers via fichier `hardware.conf` pour l'intégration progressive
 
+## Hardware status LEDs
+
+Au démarrage, les 8 LEDs vertes s'allument (lamp test 500ms), puis chacune s'éteint si le composant est OK. **LED allumée = erreur.**
+
+| LED | Composant | Bus | Classe driver |
+|---|---|---|---|
+| 0 | LcdShield | MCP23017 I2C | `LcdShieldDriver` |
+| 1 | Tirette/Switch | PCA9555 I2C | `SwitchDriver` |
+| 2 | BeaconSensors | Teensy I2C | `SensorsDriver` |
+| 3 | GroveColorSensor | TCS3414 I2C | `GroveColorSensor` |
+| 4 | Servos AX12 | Teensy CCAx12 I2C | `ServoDriver` |
+| 5 | *(réserve)* | | |
+| 6 | *(réserve)* | | |
+| 7 | AsservDriver | Nucleo série USB | `AsservDriver` |
+
+Tous les logs de diagnostic sont préfixés `Hardware status:` (filtrable via `grep "Hardware status"`).
+
+Code source : `OPOS6UL_ActionsExtended::OPOS6UL_ActionsExtended()`.
+
 ## Structure des dossiers
 
 ```

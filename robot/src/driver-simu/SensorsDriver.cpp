@@ -10,12 +10,7 @@
 
 using namespace std;
 
-ASensorsDriver* ASensorsDriver::create(std::string, ARobotPositionShared *aRobotPositionShared)
-{
-    return new SensorsDriver(aRobotPositionShared);
-}
-
-SensorsDriver::SensorsDriver(ARobotPositionShared *aRobotPositionShared)
+SensorsDriverSimu::SensorsDriverSimu(ARobotPositionShared *aRobotPositionShared)
 {
     pos_pour_calcul_ = { 0 };
     pos_pour_calcul_prec_ = { 0 };
@@ -25,22 +20,22 @@ SensorsDriver::SensorsDriver(ARobotPositionShared *aRobotPositionShared)
 
 }
 
-SensorsDriver::~SensorsDriver()
+SensorsDriverSimu::~SensorsDriverSimu()
 {
 }
 
-bool SensorsDriver::is_connected()
+bool SensorsDriverSimu::is_connected()
 {
     return true;
 }
 
-void SensorsDriver::displayNumber(int number)
+void SensorsDriverSimu::displayNumber(int number)
 {
 
 }
 
 //a deplacer dans RobotPositionShared ?transformPosREPTABLE_to_PosREPROBOT Ne sert uniquement a la simu des sensors ?
-RobotPos SensorsDriver::transformPosTableToPosRobot(int nb, float x_table, float y_table)
+RobotPos SensorsDriverSimu::transformPosTableToPosRobot(int nb, float x_table, float y_table)
 {
     loggerSvg().info() << "<circle cx=\"" << x_table << "\" cy=\"" << -y_table << "\" r=\"5\" fill=\"red\" />"
             << logs::end;
@@ -107,28 +102,28 @@ RobotPos SensorsDriver::transformPosTableToPosRobot(int nb, float x_table, float
     return pos;
 }
 
-ASensorsDriver::bot_positions SensorsDriver::getvPositionsAdv()
+ASensorsDriver::bot_positions SensorsDriverSimu::getvPositionsAdv()
 {
     return vadv_;
 }
 
 
 //FOR TEST ONLY
-void SensorsDriver::addvPositionsAdv(float x, float y)
+void SensorsDriverSimu::addvPositionsAdv(float x, float y)
 {
 	int nb = 1;
 	RobotPos pos1 = transformPosTableToPosRobot(nb, x, y);
 	vadv_.push_back(pos1);
 }
 //FOR TEST ONLY
-void SensorsDriver::clearPositionsAdv()
+void SensorsDriverSimu::clearPositionsAdv()
 {
 	vadv_.clear();
 }
 
 
 
-int SensorsDriver::sync()
+int SensorsDriverSimu::sync()
 {
     //simulation de recuperation des données de la balise par la transaction i2c
     //prise en compte de la position du robot à se moment pour les futures calculs, voir la version precedentes
@@ -178,25 +173,25 @@ int SensorsDriver::sync()
     return 0;
 }
 
-int SensorsDriver::rightSide()
+int SensorsDriverSimu::rightSide()
 {
     return 400;
 }
-int SensorsDriver::leftSide()
+int SensorsDriverSimu::leftSide()
 {
     return 400;
 }
 
-int SensorsDriver::frontLeft()
+int SensorsDriverSimu::frontLeft()
 {
     return 999;
 }
-int SensorsDriver::frontCenter()
+int SensorsDriverSimu::frontCenter()
 {
     return 999;
 
 }
-int SensorsDriver::frontRight()
+int SensorsDriverSimu::frontRight()
 {
     //TODO temp mettre un ifdef pour simulation gros robot et petit robot
     /*
@@ -211,15 +206,15 @@ int SensorsDriver::frontRight()
     return 999;
 }
 
-int SensorsDriver::backLeft()
+int SensorsDriverSimu::backLeft()
 {
     return 999;
 }
-int SensorsDriver::backCenter()
+int SensorsDriverSimu::backCenter()
 {
     return 999;
 }
-int SensorsDriver::backRight()
+int SensorsDriverSimu::backRight()
 {
     return 999;
 }

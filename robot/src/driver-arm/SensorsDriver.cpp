@@ -1,6 +1,8 @@
 //drivers...OPO
 
 #include "SensorsDriver.hpp"
+#include "HardwareConfig.hpp"
+#include "../driver-simu/SensorsDriver.hpp"
 
 #include <string>
 #include <vector>
@@ -13,6 +15,9 @@ using namespace std;
 
 ASensorsDriver* ASensorsDriver::create(std::string, ARobotPositionShared *robotpos)
 {
+	if (!HardwareConfig::instance().isEnabled("SensorsDriver")) {
+		return new SensorsDriverSimu(robotpos);
+	}
 	return new SensorsDriver(robotpos);
 }
 

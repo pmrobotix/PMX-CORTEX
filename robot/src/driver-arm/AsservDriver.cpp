@@ -11,8 +11,15 @@
 //using namespace mn::CppLinuxSerial;
 using namespace std;
 
-AAsservDriver* AAsservDriver::create(string, ARobotPositionShared*)
+#include "HardwareConfig.hpp"
+#include "../driver-simu/AsservDriver.hpp"
+
+AAsservDriver* AAsservDriver::create(string botid, ARobotPositionShared *robotpos)
 {
+	if (!HardwareConfig::instance().isEnabled("AsservDriver")) {
+		static AsservDriverSimu *instance = new AsservDriverSimu(botid, robotpos);
+		return instance;
+	}
 	static AsservDriver *instance = new AsservDriver();
 	return instance;
 }
@@ -34,21 +41,31 @@ AsservDriver::AsservDriver() :
 	if ((int) errorOpening != 1)
 	{
 
-		logger().error() << ">> Error connection to " << SERIAL_PORT << " errorOpening=" << (int) errorOpening
-				<< logs::end;
-		//printf("Error connection to %s errorOpening=%c\n", SERIAL_PORT, errorOpening);
+		logger().error() << "Hardware status: AsservDriver is NOT connected ! Error on " << SERIAL_PORT
+				<< " errorOpening=" << (int) errorOpening << logs::end;
 		asservCardStarted_ = false;
 	} else
 	{
-
-		//logger().info() << ">>  connection to " << SERIAL_PORT << " errorOpening=" << (int)errorOpening << logs::end;
-
 		// Set DTR
 		serial_.DTR(true);
 		// Clear RTS
 		serial_.RTS(false);
 
 		nucleo_flushSerial();
+
+		// Test de presence : on attend une reponse de la Nucleo (timeout 500ms)
+		char testBuf[100] = { 0 };
+		int testErr = serial_.readString(testBuf, '\n', 100, 200);
+		if (testErr <= 0)
+		{
+			logger().error() << "Hardware status: AsservDriver is NOT responding on " << SERIAL_PORT << logs::end;
+			asservCardStarted_ = false;
+			serial_.closeDevice();
+		}
+		else
+		{
+			logger().info() << "Hardware status: AsservDriver OK on " << SERIAL_PORT << logs::end;
+		}
 	}
 
 	// Read and display the status of each pin
@@ -143,6 +160,11 @@ AsservDriver::AsservDriver() :
 AsservDriver::~AsservDriver()
 {
 	serial_.closeDevice();
+}
+
+bool AsservDriver::is_connected()
+{
+	return asservCardStarted_;
 }
 
 void AsservDriver::endWhatTodo()
@@ -292,9 +314,9 @@ void AsservDriver::execute()
 		//                    \return -3 MaxNbBytes is reached
 		if (err <= 0)
 		{
-			//printf("\n AsservDriver::execute() ERRROR serial_.readString error=%d \n", err);
-			logger().error() << " => AsservDriver::execute() error read serial!!!" << logs::end;
+			logger().error() << "Hardware status: AsservDriver serial read error (Nucleo not responding) !" << logs::end;
 			asservCardStarted_ = false;
+			break;
 
 		} else
 		{
@@ -939,16 +961,16 @@ void AsservDriver::motion_ActivateManager(bool enable) //TODO enable pas utile ?
 	{
 		if (!asservCardStarted_)
 		{
-			logger().debug() << "motion_ActivateManager() ERROR NUCLEO NOT STARTED " << asservCardStarted_ << logs::end;
+			logger().error() << "motion_ActivateManager() ERROR NUCLEO NOT STARTED " << asservCardStarted_ << logs::end;
 
 		} else
 		{
 			//effectuer la position de depart apres
 			nucleo_writeSerial('R'); //Reset
 
+			//on demarre le check de positionnement uniquement si la carte est connectee
+			this->start("AsservDriver::AsservDriver()", 80);
 		}
-		//on demarre le check de positionnement...
-		this->start("AsservDriver::AsservDriver()", 80);
 
 	} else
 	{

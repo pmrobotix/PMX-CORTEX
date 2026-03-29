@@ -15,7 +15,7 @@
 /*!
  * \brief Implementation simulation du driver de switchs.
  */
-class SwitchDriver: public ASwitchDriver
+class SwitchDriverSimu: public ASwitchDriver
 {
 private:
 
@@ -32,12 +32,12 @@ public:
 	/*!
 	 * \brief Constructeur.
 	 */
-	SwitchDriver();
+	SwitchDriverSimu();
 
 	/*!
 	 * \brief Destructeur.
 	 */
-	~SwitchDriver();
+	~SwitchDriverSimu();
 
 	bool is_connected() override;
 	int tirettePressed() override;

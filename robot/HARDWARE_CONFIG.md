@@ -79,20 +79,102 @@ Actuellement, la sélection est faite **à la compilation** (ARM vs SIMU).
 | `ServoDriver.cpp` → `AServoDriver::create()` | `ServoDriver` |
 | `AsservDriver.cpp` → `AAsservDriver::create()` | `AsservDriver` |
 
-**Exemple de modification** (`src/driver-arm/LcdShieldDriver.cpp`) :
+#### Exemple complet : LcdShieldDriver (celui qui cause l'erreur I2C)
+
+**Problème** : actuellement les classes ARM et SIMU s'appellent toutes les deux `LcdShieldDriver`. On ne peut pas les lier ensemble dans le même binaire.
+
+**Étape A — Renommer la classe simu**
+
+`src/driver-simu/LcdShieldDriver.hpp` :
 
 ```cpp
-#include "HardwareConfig.hpp"
-#include "../driver-simu/LcdShieldDriver.hpp"  // stub
+// AVANT
+class LcdShieldDriver: public ALcdShieldDriver
 
-ALcdShieldDriver* ALcdShieldDriver::create(std::string botName)
+// APRÈS
+class LcdShieldDriverSimu: public ALcdShieldDriver
+```
+
+`src/driver-simu/LcdShieldDriver.cpp` — renommer constructeur, destructeur et toutes les méthodes :
+
+```cpp
+// AVANT
+ALcdShieldDriver * ALcdShieldDriver::create(std::string botId)
 {
-    if (!HardwareConfig::instance().isEnabled("LcdShieldDriver")) {
-        return new LcdShieldDriver_simu();
-    }
     return new LcdShieldDriver();
 }
+LcdShieldDriver::LcdShieldDriver() { }
+LcdShieldDriver::~LcdShieldDriver() { }
+bool LcdShieldDriver::is_connected() { return true; }
+// ...
+
+// APRÈS — on supprime create() d'ici (c'est driver-arm qui fait le routing)
+LcdShieldDriverSimu::LcdShieldDriverSimu() { }
+LcdShieldDriverSimu::~LcdShieldDriverSimu() { }
+bool LcdShieldDriverSimu::is_connected() { return true; }
+// ...
 ```
+
+**Étape B — Modifier la factory ARM**
+
+`src/driver-arm/LcdShieldDriver.cpp` — seul le `create()` change :
+
+```cpp
+// AVANT
+#include "LcdShieldDriver.hpp"
+
+ALcdShieldDriver * ALcdShieldDriver::create(std::string botId)
+{
+    return new LcdShieldDriver();
+}
+// ... le reste (constructeur, clear(), write(), etc.) ne change PAS
+
+// APRÈS
+#include "LcdShieldDriver.hpp"
+#include "HardwareConfig.hpp"
+#include "../driver-simu/LcdShieldDriver.hpp"  // LcdShieldDriverSimu
+
+ALcdShieldDriver * ALcdShieldDriver::create(std::string botId)
+{
+    if (!HardwareConfig::instance().isEnabled("LcdShieldDriver")) {
+        return new LcdShieldDriverSimu();  // stub, pas d'I2C
+    }
+    return new LcdShieldDriver();  // vrai hardware
+}
+// ... le reste ne change PAS
+```
+
+**Étape C — Ajouter un `create()` pour le build SIMU pur**
+
+En mode SIMU on ne compile pas `driver-arm/`, il faut un `create()` dédié.
+
+`src/driver-simu/DriverFactories.cpp` (nouveau fichier, regroupe tous les `create()` simu) :
+
+```cpp
+#include "interface/ALcdShieldDriver.hpp"
+#include "LcdShieldDriver.hpp"  // LcdShieldDriverSimu
+
+ALcdShieldDriver * ALcdShieldDriver::create(std::string botId)
+{
+    return new LcdShieldDriverSimu();
+}
+// ... idem pour les 6 autres drivers
+```
+
+**Flux résumé :**
+
+```
+hardware.conf: LcdShieldDriver=0
+        │
+        ▼
+ALcdShieldDriver::create()          ← driver-arm/LcdShieldDriver.cpp
+        │
+        ├─ isEnabled? OUI → new LcdShieldDriver()         → I2C réel
+        │
+        └─ isEnabled? NON → new LcdShieldDriverSimu()     → stub (log only)
+```
+
+Le reste du code (`LcdShield`, `OPOS6UL_ActionsExtended`) ne voit rien, il manipule toujours un `ALcdShieldDriver*`. C'est le même pattern pour les 7 drivers.
 
 ### 3. Compilation : lier driver-simu dans la cible ARM
 

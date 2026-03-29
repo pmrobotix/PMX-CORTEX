@@ -9,12 +9,7 @@
 
 #include "log/Logger.hpp"
 
-AButtonDriver * AButtonDriver::create()
-{
-	return new ButtonDriver();
-}
-
-ButtonDriver::ButtonDriver()
+ButtonDriverSimu::ButtonDriverSimu()
 {
 	lindex = 0;
 	back_ = false;
@@ -28,14 +23,14 @@ ButtonDriver::ButtonDriver()
 	thread_created_ = 0;
 }
 
-ButtonDriver::~ButtonDriver()
+ButtonDriverSimu::~ButtonDriverSimu()
 {
 	stop_ = true;
 	if (tbutton_.joinable())
 		tbutton_.join();
 }
 
-bool ButtonDriver::pressed(ButtonTouch button)
+bool ButtonDriverSimu::pressed(ButtonTouch button)
 {
 	if (thread_created_ == 0) {
 		ButtonDriverWrapper *w_ = new ButtonDriverWrapper(this);

@@ -35,7 +35,7 @@ struct msgform
  * Utilise une file de messages System V (IPC) pour recevoir
  * les appuis clavier depuis un processus externe (console separee).
  */
-class ButtonDriver: public AButtonDriver
+class ButtonDriverSimu: public AButtonDriver
 {
 private:
 
@@ -63,12 +63,12 @@ public:
 	/*!
 	 * \brief Constructeur. Initialise les flags des boutons.
 	 */
-	ButtonDriver();
+	ButtonDriverSimu();
 
 	/*!
 	 * \brief Destructeur. Arrete le thread IPC et attend sa fin.
 	 */
-	~ButtonDriver();
+	~ButtonDriverSimu();
 
 	bool pressed(ButtonTouch button) override;
 };
@@ -82,7 +82,7 @@ public:
 class ButtonDriverWrapper
 {
 public:
-	ButtonDriverWrapper(ButtonDriver * buttondriver)
+	ButtonDriverWrapper(ButtonDriverSimu * buttondriver)
 	{
 		buttondriver_ = buttondriver;
 	}
@@ -90,7 +90,7 @@ public:
 	{
 	}
 
-	ButtonDriver * buttondriver_;
+	ButtonDriverSimu * buttondriver_;
 
 	/*!
 	 * \brief Boucle de lecture des messages IPC.

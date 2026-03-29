@@ -19,7 +19,7 @@
  * Stocke l'etat des LEDs dans un tableau et affiche
  * les changements dans la console via le logger.
  */
-class LedDriver: public ALedDriver
+class LedDriverSimu: public ALedDriver
 {
 private:
 
@@ -40,16 +40,12 @@ public:
 	 * \brief Constructeur.
 	 * \param nb Nombre de LEDs dans la barre.
 	 */
-	/*!
-	 * \brief Constructeur.
-	 * \param nb Nombre de LEDs dans la barre.
-	 */
-	LedDriver(int nb);
+	LedDriverSimu(int nb);
 
 	/*!
 	 * \brief Destructeur. Libere le tableau gpio.
 	 */
-	~LedDriver();
+	~LedDriverSimu();
 
 	void setBit(int index, LedColor color) override;
 	void setBytes(uint hex, LedColor color) override;

@@ -42,17 +42,30 @@ BeaconSensors::BeaconSensors(int bus, unsigned char i2c_addr) :
 bool BeaconSensors::begin(Settings settings)
 {
     int err = i2c_BeaconSensors_.setSlaveAddr(i2c_address_);
-    if (err < 0)
-        logger().debug() << " !!!!!!!!!!!! connected_BeaconSensors setSlaveAddr ERROR" << logs::end;
-
-    //TODO tester une communication en plus avec les settings !
-
-    Registers regs = getData();
-    //logger().error() << " !!!!!!!!!!!! connected_BeaconSensors (int)regs.flags : " << (int) regs.flags << logs::end;
-    if ((int) regs.flags == 0xFF)
+    if (err < 0) {
+        logger().error() << "Hardware status: BeaconSensors setSlaveAddr ERROR !" << logs::end;
         connected_BeaconSensors_ = false;
-    else
+        return connected_BeaconSensors_;
+    }
+
+    // Test de presence par un simple write (silencieux si KO, pas de "Can't write on i2c")
+    uint8_t dummy = 0x00;
+    err = i2c_BeaconSensors_.writeReg(0x02, &dummy, 1);
+    if (err < 0) {
+        connected_BeaconSensors_ = false;
+        logger().error() << "Hardware status: BeaconSensors is NOT connected !" << logs::end;
+        return connected_BeaconSensors_;
+    }
+
+    // Carte presente, on peut lire les registres
+    Registers regs = getData();
+    if ((int) regs.flags == 0xFF) {
+        connected_BeaconSensors_ = false;
+        logger().error() << "Hardware status: BeaconSensors is NOT connected (getData failed) !" << logs::end;
+    } else {
         connected_BeaconSensors_ = true;
+        logger().info() << "Hardware status: BeaconSensors OK" << logs::end;
+    }
 
     return connected_BeaconSensors_;
 }

@@ -11,12 +11,12 @@
 #include "utils/Chronometer.hpp"
 #include "log/LoggerFactory.hpp"
 
-class AsservDriver: public AAsservDriver, utils::Thread //, ITimerPosixListener
+class AsservDriverSimu: public AAsservDriver, utils::Thread //, ITimerPosixListener
 {
 
 public:
     /*!
-     * \brief Retourne le \ref Logger associé à la classe \ref AsservDriver(SIMU).
+     * \brief Retourne le \ref Logger associé à la classe \ref AsservDriverSimu(SIMU).
      */
     static inline const logs::Logger& logger()
     {
@@ -26,11 +26,11 @@ public:
 
 private:
     /*!
-     * \brief Retourne le \ref Logger associé à la classe \ref AsservDriverMemory(SIMU).
+     * \brief Retourne le \ref Logger associé à la classe \ref AsservDriverSimuMemory(SIMU).
      */
     static inline const logs::Logger& loggerM()
     {
-        static const logs::Logger &instance = logs::LoggerFactory::logger("AsservDriverMemory.SIMU");
+        static const logs::Logger &instance = logs::LoggerFactory::logger("AsservDriverSimuMemory.SIMU");
         return instance;
     }
 
@@ -112,6 +112,7 @@ public:
     //functions Asserv direct et minimum en cas d'asserv interne
 
     //functions Asserv interne
+    bool is_connected() override;
     void endWhatTodo();
 
     void setMotorLeftPosition(int power, long ticks);
@@ -173,12 +174,12 @@ public:
     /*!
      * \brief Constructor.
      */
-    AsservDriver(std::string botid, ARobotPositionShared *aRobotPositionShared);
+    AsservDriverSimu(std::string botid, ARobotPositionShared *aRobotPositionShared);
 
     /*!
      * \brief Destructor.
      */
-    virtual ~AsservDriver();
+    virtual ~AsservDriverSimu();
 
 };
 
@@ -190,18 +191,18 @@ public:
  //tw1.join();
  tw2.join();
  */
-class AsservDriverWrapper
+class AsservDriverSimuWrapper
 {
 public:
-    AsservDriverWrapper(AsservDriver *asserv)
+    AsservDriverSimuWrapper(AsservDriverSimu *asserv)
     {
         asserv_ = asserv;
     }
-    ~AsservDriverWrapper()
+    ~AsservDriverSimuWrapper()
     {
     }
 
-    AsservDriver *asserv_;
+    AsservDriverSimu *asserv_;
 
     void member1left(const char *arg1, int time_ms)
     {

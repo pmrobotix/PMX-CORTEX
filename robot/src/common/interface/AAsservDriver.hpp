@@ -76,6 +76,12 @@ public:
 	}
 
 	/*!
+	 * \brief Verifie si le driver d'asservissement est connecte.
+	 * \return true si la communication est etablie.
+	 */
+	virtual bool is_connected() = 0;
+
+	/*!
 	 * \brief Actions de nettoyage avant l'arret du programme.
 	 */
 	virtual void endWhatTodo() = 0;

@@ -107,6 +107,8 @@ add_library(pmx-common STATIC
     src/common/action/Sensors.cpp
     # utils (Arduino Print)
     src/common/utils/Print.cpp
+    # hardware config
+    src/common/HardwareConfig.cpp
 )
 
 target_include_directories(pmx-common PUBLIC
@@ -115,6 +117,26 @@ target_include_directories(pmx-common PUBLIC
 )
 
 target_link_libraries(pmx-common PUBLIC pthread rt simple-svg pmr-pathfinding)
+
+# =============================================
+# Bibliothèque driver-stub : stubs simu toujours disponibles
+# =============================================
+add_library(pmx-driver-stub STATIC
+    src/driver-simu/LedDriver.cpp
+    src/driver-simu/LcdShieldDriver.cpp
+    src/driver-simu/ButtonDriver.cpp
+    src/driver-simu/SwitchDriver.cpp
+    src/driver-simu/SensorsDriver.cpp
+    src/driver-simu/ServoDriver.cpp
+    src/driver-simu/AsservDriver.cpp
+    src/driver-simu/ColorDriver.cpp
+)
+
+target_include_directories(pmx-driver-stub PUBLIC
+    src/driver-simu
+)
+
+target_link_libraries(pmx-driver-stub PUBLIC pmx-common)
 
 # =============================================
 # Bibliothèque driver : sélection automatique
@@ -148,31 +170,24 @@ if(TARGET_PLATFORM STREQUAL "ARM")
         src/driver-arm
     )
 
-    target_link_libraries(pmx-driver-arm PUBLIC pmx-common as_devices as_devices_cpp)
+    target_link_libraries(pmx-driver-arm PUBLIC pmx-common pmx-driver-stub as_devices as_devices_cpp)
 
     set(DRIVER_LIB pmx-driver-arm)
 else()
     # --- pmx-driver-simu (compilation native PC) ---
     add_library(pmx-driver-simu STATIC
-        src/driver-simu/LedDriver.cpp
-        src/driver-simu/ButtonDriver.cpp
-        src/driver-simu/SwitchDriver.cpp
+        src/driver-simu/DriverFactories.cpp
         src/driver-simu/SoundDriver.cpp
-        src/driver-simu/LcdShieldDriver.cpp
         src/driver-simu/RobotPositionShared.cpp
-        src/driver-simu/AsservDriver.cpp
-        src/driver-simu/SensorsDriver.cpp
-        src/driver-simu/ServoDriver.cpp
         src/driver-simu/ServoUsingMotorDriver.cpp
         src/driver-simu/ActionDriver.cpp
-        src/driver-simu/ColorDriver.cpp
     )
 
     target_include_directories(pmx-driver-simu PUBLIC
         src/driver-simu
     )
 
-    target_link_libraries(pmx-driver-simu PUBLIC pmx-common)
+    target_link_libraries(pmx-driver-simu PUBLIC pmx-common pmx-driver-stub)
 
     set(DRIVER_LIB pmx-driver-simu)
 endif()

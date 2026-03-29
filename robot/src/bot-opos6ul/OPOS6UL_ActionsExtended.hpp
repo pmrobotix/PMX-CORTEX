@@ -18,11 +18,30 @@
 #include "action/Tirette.hpp"
 #include "interface/AServoDriver.hpp"
 #include "action/ServoUsingMotor.hpp"
+#include "interface/AColorDriver.hpp"
 
 /*!
  * \brief Gestion des actions étendues du robot OPOS6UL (servos, capteurs, LEDs, LCD).
  *
  * Fournit l'accès aux périphériques d'action et les commandes de servomoteurs AX12.
+ *
+ * == Lamp test et diagnostic hardware (LEDs) ==
+ *
+ * Au demarrage, les 8 LEDs s'allument (vert, 500ms).
+ * Chaque LED s'eteint quand le check du composant correspondant passe OK.
+ * Une LED qui reste allumee = composant en erreur.
+ * Les logs sont prefixes "Hardware status:" pour grep.
+ *
+ *   LED 0 = LcdShield          (MCP23017 I2C)
+ *   LED 1 = Tirette/Switch     (PCA9555 I2C)
+ *   LED 2 = BeaconSensors      (Teensy I2C)
+ *   LED 3 = GroveColorSensor   (TCS3414 I2C)
+ *   LED 4 = Servos AX12        (Teensy CCAx12 I2C)
+ *   LED 5 = (reserve)
+ *   LED 6 = (reserve)
+ *   LED 7 = AsservDriver       (Nucleo serie USB)
+ *
+ * Voir aussi ARCHITECTURE.md section "Hardware status LEDs".
  */
 class OPOS6UL_ActionsExtended: public Actions {
 private:
@@ -64,6 +83,11 @@ private:
 	ServoObjectsSystem servos_;
 
 	//ServoUsingMotor lanceurCerises_;
+
+	/*!
+	 * \brief capteur de couleur Grove (TCS3414 I2C).
+	 */
+	AColorDriver *colordriver_;
 
 public:
 

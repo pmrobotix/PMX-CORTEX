@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string>
 #include "ServoDriver.hpp"
+#include "HardwareConfig.hpp"
+#include "../driver-simu/ServoDriver.hpp"
 
 #include "log/Logger.hpp"
 #include "CCAx12Teensy.hpp"
@@ -12,7 +14,10 @@ using namespace std;
 
 AServoDriver* AServoDriver::create()
 {
-
+	if (!HardwareConfig::instance().isEnabled("ServoDriver")) {
+		static ServoDriverSimu *instance = new ServoDriverSimu();
+		return instance;
+	}
 	static ServoDriver *instance = new ServoDriver();
 	return instance;
 }

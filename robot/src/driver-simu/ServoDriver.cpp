@@ -6,38 +6,23 @@
 
 using namespace std;
 
-AServoDriver * AServoDriver::create()
-{
-    static ServoDriver *instance = new ServoDriver();
-    return instance;
-}
-
-ServoDriver::ServoDriver() :
+ServoDriverSimu::ServoDriverSimu() :
         connected_(true)
 {
     logger().debug() << "ServoDriver()" << logs::end;
 }
 
-bool ServoDriver::is_connected()
+bool ServoDriverSimu::is_connected()
 {
     return connected_;
 }
 
-void ServoDriver::setType(int servo, ServoType)
+void ServoDriverSimu::setType(int servo, ServoType)
 {
 
 }
 
-void ServoDriver::hold(int servo) // 1 à 8
-{
-    switch (servo) {
-
-    default:
-        break;
-    }
-}
-
-void ServoDriver::setPulsePos(int servo, int pos, int rate)
+void ServoDriverSimu::hold(int servo) // 1 à 8
 {
     switch (servo) {
 
@@ -46,7 +31,7 @@ void ServoDriver::setPulsePos(int servo, int pos, int rate)
     }
 }
 
-void ServoDriver::release(int servo)
+void ServoDriverSimu::setPulsePos(int servo, int pos, int rate)
 {
     switch (servo) {
 
@@ -55,7 +40,7 @@ void ServoDriver::release(int servo)
     }
 }
 
-void ServoDriver::setTorque(int servo, int millisec)
+void ServoDriverSimu::release(int servo)
 {
     switch (servo) {
 
@@ -64,41 +49,50 @@ void ServoDriver::setTorque(int servo, int millisec)
     }
 }
 
-void ServoDriver::turn(int servo, int speed)
+void ServoDriverSimu::setTorque(int servo, int millisec)
+{
+    switch (servo) {
+
+    default:
+        break;
+    }
+}
+
+void ServoDriverSimu::turn(int servo, int speed)
 {
 }
 
-int ServoDriver::getMoving(int servo)
+int ServoDriverSimu::getMoving(int servo)
 {
     return -1;
 }
-int ServoDriver::getPulsePos(int servo)
+int ServoDriverSimu::getPulsePos(int servo)
 {
     return -1;
 }
 
-int ServoDriver::ping(int servo)
+int ServoDriverSimu::ping(int servo)
 {
     return 1;
 }
 
-void ServoDriver::setMinPulse(int servo, int pulse)
+void ServoDriverSimu::setMinPulse(int servo, int pulse)
 {
 }
 
-void ServoDriver::setMidPulse(int servo, int pulse)
+void ServoDriverSimu::setMidPulse(int servo, int pulse)
 {
 }
 
-void ServoDriver::setMaxPulse(int servo, int pulse)
+void ServoDriverSimu::setMaxPulse(int servo, int pulse)
 {
 }
 
-void ServoDriver::setPolarity(int servo, bool inversed)
+void ServoDriverSimu::setPolarity(int servo, bool inversed)
 {
 }
 
-int ServoDriver::getTorque(int servo)
+int ServoDriverSimu::getTorque(int servo)
 {
     return -1;
 }

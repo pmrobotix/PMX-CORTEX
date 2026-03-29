@@ -4,12 +4,17 @@
  */
 
 #include "ButtonDriver.hpp"
+#include "HardwareConfig.hpp"
+#include "../driver-simu/ButtonDriver.hpp"
 
 #include <unistd.h>
 #include <cstdint>
 
 AButtonDriver * AButtonDriver::create()
 {
+    if (!HardwareConfig::instance().isEnabled("ButtonDriver")) {
+        return new ButtonDriverSimu();
+    }
     return new ButtonDriver();
 }
 

@@ -79,6 +79,11 @@ protected:
 public:
 
     /*!
+     * \brief Verifie si le driver d'asservissement est connecte.
+     */
+    bool is_connected() { return asservdriver_->is_connected(); }
+
+    /*!
      * \brief Constructor.
      *
      */

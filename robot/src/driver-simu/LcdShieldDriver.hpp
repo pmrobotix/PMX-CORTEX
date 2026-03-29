@@ -19,7 +19,7 @@
  *
  * Toutes les methodes sont des stubs qui loggent les appels.
  */
-class LcdShieldDriver: public ALcdShieldDriver
+class LcdShieldDriverSimu: public ALcdShieldDriver
 {
 private:
 
@@ -34,12 +34,12 @@ public:
 	/*!
 	 * \brief Constructeur.
 	 */
-	LcdShieldDriver();
+	LcdShieldDriverSimu();
 
 	/*!
 	 * \brief Destructeur.
 	 */
-	~LcdShieldDriver();
+	~LcdShieldDriverSimu();
 
 	bool is_connected() override;
 	void clear() override;

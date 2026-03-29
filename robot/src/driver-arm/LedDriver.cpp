@@ -4,6 +4,8 @@
  */
 
 #include "LedDriver.hpp"
+#include "HardwareConfig.hpp"
+#include "../driver-simu/LedDriver.hpp"
 
 #include <unistd.h>
 #include <string>
@@ -12,6 +14,9 @@
 
 ALedDriver* ALedDriver::create(std::string, int nb)
 {
+	if (!HardwareConfig::instance().isEnabled("LedDriver")) {
+		return new LedDriverSimu(nb);
+	}
 	return new LedDriver(nb);
 }
 

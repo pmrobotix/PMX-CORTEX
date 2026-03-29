@@ -55,10 +55,11 @@ bool Adafruit_RGBLCDShield::begin(uint8_t, uint8_t lines, uint8_t dotsize) //col
     int err = _i2c.begin();
     if (err == -1) {
         connected_ = false;
-        logger().debug() << "Adafruit_RGBLCDShield::begin() : NOT CONNECTED !" << logs::end;
+        logger().error() << "Hardware status: Adafruit_RGBLCDShield is NOT connected (MCP23017 I2C) !" << logs::end;
         return connected_;
     } else {
         connected_ = true;
+        logger().info() << "Hardware status: Adafruit_RGBLCDShield OK" << logs::end;
 
         _i2c.pinMode(8, OUTPUT);
         _i2c.pinMode(6, OUTPUT);

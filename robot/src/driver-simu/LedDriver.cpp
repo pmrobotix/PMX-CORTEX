@@ -10,12 +10,7 @@
 
 #include "log/Logger.hpp"
 
-ALedDriver * ALedDriver::create(std::string, int nb)
-{
-	return new LedDriver(nb);
-}
-
-LedDriver::LedDriver(int nb)
+LedDriverSimu::LedDriverSimu(int nb)
 {
 	hexa = 0;
 	nb_ = nb;
@@ -26,12 +21,12 @@ LedDriver::LedDriver(int nb)
 	}
 }
 
-LedDriver::~LedDriver()
+LedDriverSimu::~LedDriverSimu()
 {
 	delete[] gpio;
 }
 
-void LedDriver::setBit(int index, LedColor color)
+void LedDriverSimu::setBit(int index, LedColor color)
 {
 	gpio[index] = color;
 
@@ -49,7 +44,7 @@ void LedDriver::setBit(int index, LedColor color)
 	logger().debug() << ost.str() << logs::end;
 }
 
-void LedDriver::setBytes(uint hex, LedColor color)
+void LedDriverSimu::setBytes(uint hex, LedColor color)
 {
 	hexa = hex;
 
@@ -69,7 +64,7 @@ void LedDriver::setBytes(uint hex, LedColor color)
 	logger().debug() << ost.str() << logs::end;
 }
 
-int LedDriver::getBit(int index)
+int LedDriverSimu::getBit(int index)
 {
 	return gpio[index];
 }

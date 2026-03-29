@@ -19,6 +19,7 @@
 #include "OPOS6UL_RobotExtended.hpp"
 #include "utils/ConsoleManager.hpp"
 #include "Robot.hpp"
+#include "HardwareConfig.hpp"
 #include "thread/Thread.hpp"
 #include <sys/mman.h>
 #include <cerrno>
@@ -28,6 +29,9 @@ using namespace std;
 
 int main(int argc, char** argv)
 {
+    // Charger la config hardware depuis le repertoire de l'executable
+    HardwareConfig::instance().load(argv[0]);
+
     // Verrouille toute la mémoire en RAM pour éviter les page faults (stalls 1-10ms)
     if (mlockall(MCL_CURRENT | MCL_FUTURE) != 0) {
         cerr << "mlockall FAILED: " << strerror(errno) << endl;

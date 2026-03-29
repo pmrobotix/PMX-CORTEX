@@ -10,7 +10,13 @@
 
 #include "log/Logger.hpp"
 
+#include "HardwareConfig.hpp"
+#include "../driver-simu/ColorDriver.hpp"
+
 AColorDriver * AColorDriver::create(std::string) {
+    if (!HardwareConfig::instance().isEnabled("ColorDriver")) {
+        return new ColorDriverSimu();
+    }
     return new GroveColorSensor();
 }
 
@@ -19,21 +25,21 @@ GroveColorSensor::GroveColorSensor() :
                 false)
 {
 
-    if (!begin()) logger().error() << "GroveColorSensor::GroveColorSensor() : TCS3414 is NOT CONNECTED !" << logs::end;
+    if (!begin()) logger().error() << "Hardware status: GroveColorSensor is NOT connected (TCS3414 I2C) !" << logs::end;
 
 }
 
 bool GroveColorSensor::begin() {
-    connected_ = true;
+    connected_ = false;
 
     //open i2c and setslave
     int ret = grovei2c_.setSlaveAddr(GROVE_COLOR_DEFAULT_ADDRESS);
-    if (ret == -1) return ret;
+    if (ret == -1) return false;
     //0x80 1000 0000 //write to Control register
     //0x01 0000 0001 //Turn the device on (does not enable ADC yet)
 
     ret = write_i2c(0x80, 0x01);
-    if (ret == -1) return ret;
+    if (ret == -1) return false;
 
     // Request ID to test if TCS3414 is connected
     unsigned char ID = 0;
@@ -42,13 +48,13 @@ bool GroveColorSensor::begin() {
 
     if (ID == 17) //0000 0001 || 0001 0001
             {
-        logger().info() << "TCS3414 is now ON : id=" << (int) ID << logs::end;
+        logger().info() << "Hardware status: GroveColorSensor OK (TCS3414 id=" << (int) ID << ")" << logs::end;
         connected_ = true;
         TCS3414Setup(10, 100); 	//setup and enable the grove sensor
         return connected_;
     }
     else {
-        logger().error() << "GroveColorSensor::begin() : TCS3414 is NOT CONNECTED !!!!, ID=" << (int) ID << " not eq 17 !" << logs::end;
+        logger().error() << "Hardware status: GroveColorSensor is NOT connected (TCS3414 ID=" << (int) ID << " not eq 17) !" << logs::end;
         connected_ = false;
         return connected_;
     }

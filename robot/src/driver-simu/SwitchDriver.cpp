@@ -8,42 +8,36 @@
 #include <chrono>
 #include <thread>
 
-ASwitchDriver * ASwitchDriver::create(std::string)
-{
-	static SwitchDriver *instance = new SwitchDriver();
-	return instance;
-}
-
-SwitchDriver::SwitchDriver()
+SwitchDriverSimu::SwitchDriverSimu()
 {
 	state_ = 1;
 }
 
-SwitchDriver::~SwitchDriver()
+SwitchDriverSimu::~SwitchDriverSimu()
 {
 }
 
-bool SwitchDriver::is_connected()
+bool SwitchDriverSimu::is_connected()
 {
 	return true;
 }
 
-int SwitchDriver::tirettePressed()
+int SwitchDriverSimu::tirettePressed()
 {
 	std::this_thread::sleep_for(std::chrono::microseconds(250000));
 	return 0;
 }
 
-int SwitchDriver::backLeftPressed()
+int SwitchDriverSimu::backLeftPressed()
 {
 	return 0;
 }
 
-int SwitchDriver::backRightPressed()
+int SwitchDriverSimu::backRightPressed()
 {
 	return 0;
 }
 
-void SwitchDriver::setGPIO(int, bool)
+void SwitchDriverSimu::setGPIO(int, bool)
 {
 }

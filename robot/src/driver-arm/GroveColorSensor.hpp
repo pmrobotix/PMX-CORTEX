@@ -72,6 +72,7 @@ public:
 
 	bool begin();
 
+	bool is_connected() override { return connected_; }
 	bool readRGB();
 	float getTX();
 	float getTY();

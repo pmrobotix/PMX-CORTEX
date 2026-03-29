@@ -25,10 +25,11 @@ bool GpioPCA9555::setup()
 	long r = write_i2c(CONFIG_P0, 0x00); // Port0 = sorties
 	if (r < 0) {
 		connected_ = false;
-		logger().debug() << "setup() : GpioBoard NOT CONNECTED !" << logs::end;
+		logger().error() << "Hardware status: GpioPCA9555 is NOT connected !" << logs::end;
 		return connected_;
 	} else {
 		connected_ = true;
+		logger().info() << "Hardware status: GpioPCA9555 OK" << logs::end;
 		write_i2c(OUT_P0, 0x00);          // RAZ sorties
 		write_i2c(CONFIG_P1, 0xFF);       // Port1 = entrees
 		write_i2c(IN_P1, 0x00);

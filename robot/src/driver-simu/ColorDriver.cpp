@@ -5,30 +5,25 @@
 
 #include "ColorDriver.hpp"
 
-AColorDriver * AColorDriver::create(std::string botName)
-{
-    return new ColorDriver();
-}
-
-ColorDriver::ColorDriver()
+ColorDriverSimu::ColorDriverSimu()
 {
 }
 
-ColorDriver::~ColorDriver()
+ColorDriverSimu::~ColorDriverSimu()
 {
 }
 
-bool ColorDriver::readRGB()
+bool ColorDriverSimu::readRGB()
 {
     return true;
 }
 
-float ColorDriver::getTX()
+float ColorDriverSimu::getTX()
 {
     return 0.0f;
 }
 
-float ColorDriver::getTY()
+float ColorDriverSimu::getTY()
 {
     return 0.0f;
 }

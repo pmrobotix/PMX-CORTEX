@@ -16,7 +16,7 @@
  *
  * Retourne des valeurs neutres (pas de capteur en simulation).
  */
-class ColorDriver: public AColorDriver
+class ColorDriverSimu: public AColorDriver
 {
 private:
 
@@ -31,13 +31,14 @@ public:
 	/*!
 	 * \brief Constructeur.
 	 */
-	ColorDriver();
+	ColorDriverSimu();
 
 	/*!
 	 * \brief Destructeur.
 	 */
-	~ColorDriver();
+	~ColorDriverSimu();
 
+	bool is_connected() override { return true; }
 	bool readRGB() override;
 	float getTX() override;
 	float getTY() override;

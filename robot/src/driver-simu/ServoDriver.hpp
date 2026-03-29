@@ -4,12 +4,12 @@
 #include "interface/AServoDriver.hpp"
 #include "log/LoggerFactory.hpp"
 
-class ServoDriver: public AServoDriver
+class ServoDriverSimu: public AServoDriver
 {
 private:
 
     /*!
-     * \brief Retourne le \ref Logger associé à la classe \ref ServoDriver(SIMU).
+     * \brief Retourne le \ref Logger associé à la classe \ref ServoDriverSimu(SIMU).
      */
     static inline const logs::Logger & logger()
     {
@@ -25,12 +25,12 @@ public:
     /*!
      * \brief Constructor.
      */
-    ServoDriver();
+    ServoDriverSimu();
 
     /*!
      * \brief Destructor.
      */
-    inline ~ServoDriver()
+    inline ~ServoDriverSimu()
     {
     }
 

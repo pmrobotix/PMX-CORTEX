@@ -9,62 +9,57 @@
 #include <cstdint>
 #include <string>
 
-ALcdShieldDriver * ALcdShieldDriver::create(std::string botId)
-{
-    return new LcdShieldDriver();
-}
-
-LcdShieldDriver::LcdShieldDriver()
+LcdShieldDriverSimu::LcdShieldDriverSimu()
 {
 
 }
 
-LcdShieldDriver::~LcdShieldDriver()
+LcdShieldDriverSimu::~LcdShieldDriverSimu()
 {
 }
 
-bool LcdShieldDriver::is_connected()
+bool LcdShieldDriverSimu::is_connected()
 {
     return true;
 }
 
-void LcdShieldDriver::clear()
+void LcdShieldDriverSimu::clear()
 {
 
 }
 
-void LcdShieldDriver::home()
+void LcdShieldDriverSimu::home()
 {
 
 }
 
-void LcdShieldDriver::setBacklightOn()
+void LcdShieldDriverSimu::setBacklightOn()
 {
     logger().debug() << "setBacklightOn()" << logs::end;
 }
 
-void LcdShieldDriver::setBacklightOff()
+void LcdShieldDriverSimu::setBacklightOff()
 {
     logger().debug() << "setBacklightOff()" << logs::end;
 }
 
-void LcdShieldDriver::setCursor(uint8_t col, uint8_t row)
+void LcdShieldDriverSimu::setCursor(uint8_t col, uint8_t row)
 {
 
 }
 
-size_t LcdShieldDriver::write(uint8_t value)
+size_t LcdShieldDriverSimu::write(uint8_t value)
 {
     logger().debug() << value << logs::end;
     return 1;
 }
 
-void LcdShieldDriver::print_content_string(std::string str, int row, int col)
+void LcdShieldDriverSimu::print_content_string(std::string str, int row, int col)
 {
     logger().debug() << str << logs::end;
 }
 
-void LcdShieldDriver::print_content_integer(int value, int row, int col)
+void LcdShieldDriverSimu::print_content_integer(int value, int row, int col)
 {
     logger().debug() << value << logs::end;
 }

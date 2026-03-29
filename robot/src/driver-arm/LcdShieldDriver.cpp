@@ -4,6 +4,8 @@
  */
 
 #include "LcdShieldDriver.hpp"
+#include "HardwareConfig.hpp"
+#include "../driver-simu/LcdShieldDriver.hpp"
 
 #include <stddef.h>
 #include <cstdint>
@@ -13,6 +15,9 @@
 
 ALcdShieldDriver * ALcdShieldDriver::create(std::string botId)
 {
+    if (!HardwareConfig::instance().isEnabled("LcdShieldDriver")) {
+        return new LcdShieldDriverSimu();
+    }
     return new LcdShieldDriver();
 }
 

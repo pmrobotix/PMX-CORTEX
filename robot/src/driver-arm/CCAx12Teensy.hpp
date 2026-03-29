@@ -86,7 +86,7 @@ private:
 	 */
 	static const logs::Logger& logger()
 	{
-		static const logs::Logger &instance = logs::LoggerFactory::logger("CCAx12Teensy.EV3");
+		static const logs::Logger &instance = logs::LoggerFactory::logger("CCAx12Teensy.OPO");
 		return instance;
 	}
 
