@@ -1,3 +1,8 @@
+/*!
+ * \file
+ * \brief Implémentation de la classe OPOS6UL_IAExtended.
+ */
+
 #include "OPOS6UL_IAExtended.hpp"
 
 #include <pmr_symmetrical_pg.h>

@@ -1,5 +1,9 @@
 # Architecture robot/ — PMX-CORTEX
 
+## Migrations en cours
+
+- [Configuration hardware dynamique](HARDWARE_CONFIG.md) — Activation/désactivation des drivers via fichier `hardware.conf` pour l'intégration progressive
+
 ## Structure des dossiers
 
 ```

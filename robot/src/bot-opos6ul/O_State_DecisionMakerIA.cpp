@@ -1,3 +1,8 @@
+/*!
+ * \file
+ * \brief Implémentation de la classe O_State_DecisionMakerIA.
+ */
+
 //TODO: reimplementer la strategie pour 2026 (ancien code PMX 2025 : 979 lignes)
 
 #include "O_State_DecisionMakerIA.hpp"

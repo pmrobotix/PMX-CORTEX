@@ -60,7 +60,14 @@ public:
      * \param Id_Robot Identifiant du robot (clé racine du JSON).
      * \param target_ip Adresse IP du récepteur de télémétrie (ex: "192.168.3.101").
      */
-    TelemetryAppender(std::string Id_Robot, std::string target_ip);
+    TelemetryAppender(std::string Id_Robot, std::string target_ip, int port = 9870);
+
+    /*!
+     * \brief Reconfigure l'adresse IP et le port de la cible UDP.
+     * \param target_ip Adresse IP du récepteur de télémétrie.
+     * \param port Port UDP du récepteur.
+     */
+    void configure(const std::string &target_ip, int port);
 
     /*!
      * \brief Destructeur de la classe.

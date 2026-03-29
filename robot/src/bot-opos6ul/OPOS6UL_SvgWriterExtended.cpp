@@ -1,3 +1,8 @@
+/*!
+ * \file
+ * \brief Implémentation de la classe OPOS6UL_SvgWriterExtended.
+ */
+
 #include "OPOS6UL_SvgWriterExtended.hpp"
 
 #include <cmath>

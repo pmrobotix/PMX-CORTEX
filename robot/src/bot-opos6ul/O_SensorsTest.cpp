@@ -1,3 +1,8 @@
+/*!
+ * \file
+ * \brief Implémentation de la classe O_SensorsTest.
+ */
+
 #include "O_SensorsTest.hpp"
 
 #include <chrono>

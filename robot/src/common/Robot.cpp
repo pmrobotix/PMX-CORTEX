@@ -1,7 +1,6 @@
-/*
- * Robot.cpp
- *
- *
+/*!
+ * \file
+ * \brief Implémentation de la classe Robot.
  */
 
 #include "Robot.hpp"
@@ -10,6 +9,7 @@
 #include <stdlib.h>
 
 #include "log/SvgWriter.hpp"
+#include "log/appender/TelemetryAppender.hpp"
 //#include "Asserv/MotorControl.hpp" // not migrated yet
 //#include "Asserv/MovingBase.hpp" // not migrated yet
 #include "utils/ConsoleKeyInput.hpp"
@@ -168,23 +168,46 @@ void Robot::configureDefaultConsoleArgs() {
         cOpt.addArgument("strategy", "name of the strategy of match", "all");
         cArgs_.addOption(cOpt);
     }
+
+    {
+        Arguments::Option cOpt('i', "Telemetry target IP");
+        cOpt.addArgument("ip", "IP address of telemetry receiver", "192.168.3.101");
+        cArgs_.addOption(cOpt);
+    }
+
+    {
+        Arguments::Option cOpt('p', "Telemetry target UDP port");
+        cOpt.addArgument("port", "UDP port of telemetry receiver", "9870");
+        cArgs_.addOption(cOpt);
+    }
 }
 
 void Robot::parseConsoleArgs(int argc, char** argv, bool stopWithErrors) {
-    if (stopWithErrors) {
-        // request option "h" and print out manual if set...
-        if (cArgs_['h']) {
-            std::cout << "Available functional tests: " << std::endl;
-            cmanager_.displayAvailableTests("", -1);
-            cArgs_.usage();
-            exit(0);
-        }
-    }
-
     if (!cArgs_.parse(argc, argv, stopWithErrors)) {
         logger().debug() << "Error parsing DEFAULT" << logs::end;
         sleep(1);
         exit(-1);
+    }
+
+    if (cArgs_['h']) {
+        std::cout << "Available functional tests: " << std::endl;
+        cmanager_.displayAvailableTests("", -1);
+        cArgs_.usage();
+        exit(0);
+    }
+
+    // Reconfigure telemetry appender with command line args
+    if (cArgs_['i'] || cArgs_['p']) {
+        std::string ip = cArgs_['i'] ? cArgs_['i']["ip"] : "192.168.3.101";
+        int port = cArgs_['p'] ? std::atoi(cArgs_['p']["port"].c_str()) : 9870;
+        logs::Appender *app = logs::LoggerFactory::instance().appender("net");
+        if (app != nullptr) {
+            auto *telemetry = dynamic_cast<logs::TelemetryAppender *>(app);
+            if (telemetry != nullptr) {
+                telemetry->configure(ip, port);
+                logger().info() << "Telemetry configured: " << ip << ":" << port << logs::end;
+            }
+        }
     }
 }
 

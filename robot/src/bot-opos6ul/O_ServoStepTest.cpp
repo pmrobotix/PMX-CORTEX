@@ -1,3 +1,8 @@
+/*!
+ * \file
+ * \brief Implémentation de la classe O_ServoStepTest.
+ */
+
 #include "O_ServoStepTest.hpp"
 
 #include <stdlib.h>

@@ -1,6 +1,6 @@
 /*!
  * \file
- * \brief Implémentation de la classe L_ActionManagerTimerTest.
+ * \brief Implémentation de la classe O_ActionManagerTimerTest.
  */
 
 #include "O_ActionManagerTimerTest.hpp"

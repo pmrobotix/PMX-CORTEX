@@ -24,24 +24,42 @@ private:
         return instance;
     }
 
-    Playground *p_; //for new ia
+    /*!
+     * \brief Terrain de jeu pour le pathfinding (A*).
+     */
+    Playground *p_;
 
 public:
 
+    /*!
+     * \brief Constructeur de la classe.
+     */
     O_IAByPathTest() :
             FunctionalTest("IAbyPath", "test l'ia demo IAByPath")
     {
         p_ = NULL;
     }
 
+    /*!
+     * \brief Destructeur de la classe.
+     */
     virtual ~O_IAByPathTest()
     {
     }
 
+    /*!
+     * \brief Execute le test.
+     */
     virtual void run(int argc, char** argv);
 
+    /*!
+     * \brief Configure les activités de l'IA pour le test.
+     */
     void IASetup();
 
+    /*!
+     * \brief Initialise le terrain de jeu (grille de navigation A*).
+     */
     void initPlayground();
 };
 

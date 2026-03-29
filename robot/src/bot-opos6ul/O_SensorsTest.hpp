@@ -1,3 +1,8 @@
+/*!
+ * \file
+ * \brief Définition de la classe O_SensorsTest.
+ */
+
 #ifndef OPOS6UL_SENSORSTEST_HPP_
 #define	OPOS6UL_SENSORSTEST_HPP_
 

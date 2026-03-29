@@ -1,3 +1,8 @@
+/*!
+ * \file
+ * \brief Implémentation de la classe OPOS6UL_AsservExtended.
+ */
+
 #include "OPOS6UL_AsservExtended.hpp"
 
 #include <cmath>

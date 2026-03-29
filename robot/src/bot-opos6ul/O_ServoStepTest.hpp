@@ -1,3 +1,8 @@
+/*!
+ * \file
+ * \brief Définition de la classe O_ServoStepTest.
+ */
+
 #ifndef OPOS6UL_SERVOSTEPTEST_HPP_
 #define	OPOS6UL_SERVOSTEPTEST_HPP_
 

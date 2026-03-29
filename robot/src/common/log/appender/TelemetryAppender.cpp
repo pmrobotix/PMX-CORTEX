@@ -19,7 +19,7 @@
 
 using namespace std::chrono;
 
-logs::TelemetryAppender::TelemetryAppender(std::string Id_Robot, std::string target_ip)
+logs::TelemetryAppender::TelemetryAppender(std::string Id_Robot, std::string target_ip, int port)
 {
     id_ = Id_Robot;
 
@@ -27,7 +27,14 @@ logs::TelemetryAppender::TelemetryAppender(std::string Id_Robot, std::string tar
     strcpy(ip_, target_ip.c_str());
 
     addr_.sin_family = AF_INET;
-    addr_.sin_port = htons(9870);
+    addr_.sin_port = htons(port);
+    addr_.sin_addr.s_addr = inet_addr(ip_);
+}
+
+void logs::TelemetryAppender::configure(const std::string &target_ip, int port)
+{
+    strcpy(ip_, target_ip.c_str());
+    addr_.sin_port = htons(port);
     addr_.sin_addr.s_addr = inet_addr(ip_);
 }
 

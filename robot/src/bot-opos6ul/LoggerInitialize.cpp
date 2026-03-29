@@ -26,7 +26,7 @@ void logs::LoggerFactory::initialize()
 
     //order=ERROR>TELEM>WARN>INFO>DEBUG
     //net =TELEMETRY+CONSOLE
-    add("net", new TelemetryAppender("OPOS6UL", "192.168.3.101"));
+    add("net", new TelemetryAppender("OPOS6UL", "192.168.3.101", 9870));
     add(logs::Level::ERROR, "", "net"); //net = TELEMETRY + CONSOLE
 
     //INFO

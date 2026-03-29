@@ -19,10 +19,32 @@ class Actions;
 class Arguments;
 class ConsoleManager;
 
+/*!
+ * \brief Couleur de l'équipe du robot sur la table.
+ */
 enum RobotColor {
 	PMXNOCOLOR, PMXYELLOW, PMXBLUE
 };
 
+/*!
+ * \brief Classe générique de base du robot.
+ *
+ * Robot fournit l'infrastructure commune à tous les robots du projet :
+ * asservissement, stratégie (IA), gestion des actions, système de logs,
+ * machine à états, ligne de commande et chronométrage du match.
+ *
+ * Cette classe est conçue pour être **surchargée** par chaque robot concret
+ * (ex: OPOS6UL_RobotExtended) qui y injecte ses propres drivers, actionneurs,
+ * stratégie et configuration via les setters (setAsserv, setActions, setSVG).
+ *
+ * Les méthodes virtuelles (begin, stopMotionTimerAndActionManager, freeMotion,
+ * displayTS, displayObstacle) permettent à chaque robot de personnaliser
+ * son comportement de démarrage, d'arrêt et d'affichage.
+ *
+ * La ligne de commande (préfixe /) est configurée dans configureDefaultConsoleArgs()
+ * et parsée dans parseConsoleArgs(). Les sous-classes peuvent ajouter leurs
+ * propres options avant l'appel à parseConsoleArgs().
+ */
 class Robot {
 public:
 
@@ -49,10 +71,19 @@ public:
 		return telem_;
 	}
 
+	/*!
+	 * \brief Score courant du robot pendant le match.
+	 */
 	int points;
 
+	/*!
+	 * \brief Indique si le robot est en mode table de test.
+	 */
 	bool tabletest;
 
+	/*!
+	 * \brief Indique si la fin de match (90s) doit être ignorée.
+	 */
 	bool skipEndOfMatch;
 
 protected:
@@ -194,68 +225,107 @@ public:
 		this->waitForInit_ = init;
 	}
 
-	//Label of the Robot
+	/*!
+	 * \brief Retourne l'identifiant du robot.
+	 */
 	std::string getID()
 	{
 		return id_;
 	}
 
+	/*!
+	 * \brief Retourne la position partagée du robot (pour communication inter-threads).
+	 */
 	ARobotPositionShared* sharedPosition()
 	{
 		return sharedPosition_;
 	}
 
+	/*!
+	 * \brief Retourne un pointeur vers l'asservissement du robot.
+	 */
 	inline Asserv* passerv()
 	{
 		if (asserv_default_ == NULL) printf("ERROR asserv() NULL ! \n");
 		return asserv_default_;
 	}
+
+	/*!
+	 * \brief Retourne une référence vers l'asservissement du robot.
+	 */
 	inline Asserv& asserv()
 	{
 		Asserv &r_asserv = *asserv_default_;
 		return r_asserv;
-
 	}
+
+	/*!
+	 * \brief Retourne une référence vers le SvgWriter (logging trajectoire).
+	 */
 	inline SvgWriter& svgw()
 	{
 		SvgWriter &r_svg = *svg_;
 		return r_svg;
 	}
 
+	/*!
+	 * \brief Retourne une référence vers les actions du robot.
+	 */
 	inline Actions& actions()
 	{
 		Actions &r_actions = *actions_default_;
 		return r_actions;
-
 	}
 
+	/*!
+	 * \brief Définit l'asservissement du robot.
+	 */
 	inline void setAsserv(Asserv *asserv)
 	{
 		asserv_default_ = asserv;
 	}
 
+	/*!
+	 * \brief Définit le SvgWriter du robot.
+	 */
 	inline void setSVG(SvgWriter *svg)
 	{
 		svg_ = svg;
 	}
+
+	/*!
+	 * \brief Définit les actions du robot.
+	 */
 	inline void setActions(Actions *action)
 	{
 		actions_default_ = action;
 	}
 
-	//COLOR 0:GRIS / 1:ORANGE / 2:RED / 3:GREEN / 4:BLUE / 5:BLACK
+	/*!
+	 * \brief Enregistre la position du robot dans le fichier SVG.
+	 * \param color Couleur du tracé (0:GRIS, 1:ORANGE, 2:RED, 3:GREEN, 4:BLUE, 5:BLACK).
+	 */
 	void svgPrintPosition(int color = 0);
 
+	/*!
+	 * \brief Finalise et ferme le fichier SVG.
+	 */
 	void svgPrintEndOfFile();
 
 	void operator=(Robot const&); // Don't implement
 
+	/*!
+	 * \brief Retourne le gestionnaire de console (tests fonctionnels).
+	 */
 	inline ConsoleManager& getConsoleManager()
 	{
 		ConsoleManager &r_cmanager = cmanager_;
 		return r_cmanager;
 	}
 
+	/*!
+	 * \brief Retourne les arguments de la ligne de commande.
+	 */
 	inline Arguments& getArgs()
 	{
 		Arguments &r_cargs = cArgs_;
@@ -287,26 +357,60 @@ public:
 		this->myColor_ = color;
 	}
 
+	/*!
+	 * \brief Configure les options de la ligne de commande par défaut.
+	 *
+	 * Options disponibles :
+	 * - /h : Affiche l'aide
+	 * - /z : Simule les boutons (SIMU uniquement)
+	 * - /k : Skip setup
+	 * - /b : Couleur BLUE
+	 * - /n num : Numéro du test fonctionnel
+	 * - /t strategy : Nom de la stratégie de match (défaut: "all")
+	 * - /i ip : IP cible télémétrie (défaut: "192.168.3.101")
+	 * - /p port : Port UDP cible télémétrie (défaut: 9870)
+	 */
 	void configureDefaultConsoleArgs();
 
 	/*!
-	 * \brief Parse console parameters (console for tests or main program)..
+	 * \brief Parse les paramètres de la ligne de commande et reconfigure
+	 *        la télémétrie si /i ou /p sont fournis.
 	 */
 	void parseConsoleArgs(int argc, char **argv, bool stopWithErrors = true);
 
 	/*!
-	 * \brief Start the robot (console for tests or main program)..
+	 * \brief Démarre le robot (test fonctionnel ou match).
 	 */
 	virtual void begin(int argc, char **argv);
 
+	/*!
+	 * \brief Arrête le timer d'asservissement et le gestionnaire d'actions.
+	 */
 	virtual void stopMotionTimerAndActionManager();
 
+	/*!
+	 * \brief Libère les moteurs (roue libre).
+	 */
 	virtual void freeMotion();
 
+	/*!
+	 * \brief Réinitialise l'affichage de l'état de trajectoire.
+	 */
 	virtual void resetDisplayTS();
+
+	/*!
+	 * \brief Affiche l'état de trajectoire courant.
+	 */
 	virtual void displayTS(TRAJ_STATE ts);
 
+	/*!
+	 * \brief Réinitialise l'affichage de détection d'obstacle.
+	 */
 	virtual void resetDisplayObstacle();
+
+	/*!
+	 * \brief Affiche le niveau de détection d'obstacle.
+	 */
 	virtual void displayObstacle(int level);
 
 };

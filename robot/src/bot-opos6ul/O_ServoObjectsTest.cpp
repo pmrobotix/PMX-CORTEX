@@ -1,3 +1,8 @@
+/*!
+ * \file
+ * \brief Implémentation de la classe O_ServoObjectsTest.
+ */
+
 #include "O_ServoObjectsTest.hpp"
 
 #include <unistd.h>

@@ -1,3 +1,8 @@
+/*!
+ * \file
+ * \brief Définition de la classe O_ServoObjectsTest.
+ */
+
 #ifndef OPOS6UL_SERVOOBJECTSTEST_HPP_
 #define	OPOS6UL_SERVOOBJECTSTEST_HPP_
 

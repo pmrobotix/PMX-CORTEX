@@ -1,3 +1,8 @@
+/*!
+ * \file
+ * \brief Définition de la classe O_TiretteTest.
+ */
+
 #ifndef OPOS6UL_TIRETTETEST_HPP
 #define	OPOS6UL_TIRETTETEST_HPP
 

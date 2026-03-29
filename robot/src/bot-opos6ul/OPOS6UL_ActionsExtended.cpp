@@ -1,3 +1,8 @@
+/*!
+ * \file
+ * \brief Implémentation de la classe OPOS6UL_ActionsExtended.
+ */
+
 #include "OPOS6UL_ActionsExtended.hpp"
 
 OPOS6UL_ActionsExtended::OPOS6UL_ActionsExtended(std::string botId, Robot *robot) :

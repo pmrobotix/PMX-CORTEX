@@ -14,7 +14,10 @@
 class Robot;
 
 /*!
- * \brief Cette classe est la tache principale du robot.
+ * \brief État d'attente de fin de match.
+ *
+ * Cet état attend la fin du temps de match (100s), puis arrête
+ * les moteurs et affiche le score final.
  */
 class O_State_WaitEndOfMatch: public AAutomateState
 {

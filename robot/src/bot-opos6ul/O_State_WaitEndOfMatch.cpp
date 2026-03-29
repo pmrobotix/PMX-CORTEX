@@ -1,3 +1,8 @@
+/*!
+ * \file
+ * \brief Implémentation de la classe O_State_WaitEndOfMatch.
+ */
+
 #include "O_State_WaitEndOfMatch.hpp"
 
 #include <unistd.h>

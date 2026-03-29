@@ -1,3 +1,8 @@
+/*!
+ * \file
+ * \brief Implémentation de la classe OPOS6UL_RobotExtended.
+ */
+
 #include "OPOS6UL_RobotExtended.hpp"
 
 #include <string>

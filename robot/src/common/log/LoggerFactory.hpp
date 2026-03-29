@@ -136,6 +136,8 @@ protected:
      */
     void add(const Level & level, const std::string & loggerName, const std::string & appenderName);
 
+public:
+
     /*!
      * \brief Cette méthode retourne un Appender en fonction de son nom.
      *
@@ -144,8 +146,6 @@ protected:
      * \return L'objet Appender associé au paramètre \c nom.
      */
     Appender * appender(const std::string & name);
-
-public:
 
     /*!
      * \brief Destructeur de la classe.

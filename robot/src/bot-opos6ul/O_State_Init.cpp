@@ -1,3 +1,8 @@
+/*!
+ * \file
+ * \brief Implémentation de la classe O_State_Init.
+ */
+
 #include "O_State_Init.hpp"
 
 #include "action/LcdShield.hpp"
