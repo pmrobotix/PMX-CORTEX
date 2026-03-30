@@ -1,8 +1,14 @@
 <map id="Asserv::startMotionTimerAndOdo" name="Asserv::startMotionTimerAndOdo">
-<area shape="rect" id="node1" title=" " alt="" coords="413,74,600,115"/>
-<area shape="rect" id="node2" href="$classO__IAByPathTest.html#a3f57f585ff1382a52bf7f79a28d43629" title="Execute le test." alt="" coords="213,5,365,32"/>
-<area shape="rect" id="node3" href="$classO__LedBarTest.html#af9e0e172d13b334cda0fe32bb659b414" title=" " alt="" coords="220,56,359,83"/>
-<area shape="rect" id="node4" href="$classO__SensorsTest.html#ae3b998034225e16586ded4ba3bd419e5" title="Execute le test." alt="" coords="217,107,362,133"/>
-<area shape="rect" id="node5" href="$classO__State__Init.html#a1980cd82dcb83e88d61f2e7e14dddfa0" title=" " alt="" coords="213,157,365,184"/>
-<area shape="rect" id="node6" href="$classO__State__Init.html#abc19788b7457d1f819245dd28367fe91" title="Exécute l&#39;état d&#39;initialisation." alt="" coords="5,157,165,184"/>
+<area shape="rect" id="node1" title=" " alt="" coords="471,226,657,267"/>
+<area shape="rect" id="node2" href="$classO__Asserv__CalageTest.html#ad731f64308b62269f060e74c0282e30f" title=" " alt="" coords="223,5,413,32"/>
+<area shape="rect" id="node3" href="$classO__Asserv__SquareTest.html#a16a0bf866c8070611cfa8952e3ef64d8" title=" " alt="" coords="223,56,413,83"/>
+<area shape="rect" id="node4" href="$classO__AsservCalibrationTest.html#a578ac4b37bd38a475665dc353cb834f5" title=" " alt="" coords="213,107,423,133"/>
+<area shape="rect" id="node5" href="$classO__AsservLineRotateTest.html#ac54536863ccc3f6bc0ce3f30e99e1b70" title=" " alt="" coords="214,157,422,184"/>
+<area shape="rect" id="node6" href="$classO__AsservTest.html#a87e2ffa360e3e12ff5c7b81b1952a04f" title=" " alt="" coords="249,208,387,235"/>
+<area shape="rect" id="node7" href="$classO__AsservXYRotateTest.html#a13ccb691e37bdddc94ca53b29311e39a" title=" " alt="" coords="219,259,417,285"/>
+<area shape="rect" id="node8" href="$classO__IAByPathTest.html#a3f57f585ff1382a52bf7f79a28d43629" title="Execute le test." alt="" coords="242,309,394,336"/>
+<area shape="rect" id="node9" href="$classO__LedBarTest.html#af9e0e172d13b334cda0fe32bb659b414" title=" " alt="" coords="249,360,387,387"/>
+<area shape="rect" id="node10" href="$classO__SensorsTest.html#ae3b998034225e16586ded4ba3bd419e5" title="Execute le test." alt="" coords="245,411,391,437"/>
+<area shape="rect" id="node11" href="$classO__State__Init.html#a1980cd82dcb83e88d61f2e7e14dddfa0" title=" " alt="" coords="242,461,394,488"/>
+<area shape="rect" id="node12" href="$classO__State__Init.html#abc19788b7457d1f819245dd28367fe91" title="Exécute l&#39;état d&#39;initialisation." alt="" coords="5,461,165,488"/>
 </map>

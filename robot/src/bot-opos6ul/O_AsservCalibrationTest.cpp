@@ -1,0 +1,135 @@
+/*!
+ * \file
+ * \brief Implémentation de la classe O_AsservCalibrationTest.
+ */
+
+#include "O_AsservCalibrationTest.hpp"
+
+#include <cstdlib>
+#include <unistd.h>
+#include <string>
+
+#include "utils/Arguments.hpp"
+#include "Robot.hpp"
+#include "utils/Chronometer.hpp"
+#include "log/Logger.hpp"
+#include "OPOS6UL_AsservExtended.hpp"
+#include "OPOS6UL_RobotExtended.hpp"
+
+void O_AsservCalibrationTest::configureConsoleArgs(int argc, char** argv)
+{
+    OPOS6UL_RobotExtended &robot = OPOS6UL_RobotExtended::instance();
+    robot.getArgs().addArgument("step", "n step test");
+
+    //reparse arguments
+    robot.parseConsoleArgs(argc, argv);
+}
+
+void O_AsservCalibrationTest::run(int argc, char** argv)
+{
+    logger().info() << "N° " << this->position() << " - Executing - " << this->desc() << logs::end;
+    configureConsoleArgs(argc, argv);
+    OPOS6UL_RobotExtended &robot = OPOS6UL_RobotExtended::instance();
+    int left = 0;
+    int right = 0;
+    int nb = 0;
+    int step = 0;
+
+    Arguments args = robot.getArgs();
+
+    if (args["step"] != "0") {
+        step = atoi(args["step"].c_str());
+        logger().debug() << "Arg step set " << args["step"] << ", step = " << step << logs::end;
+    }
+
+    utils::Chronometer chrono("O_AsservCalibrationTest");
+
+    robot.asserv().setPositionAndColor(100.0, 800.0, 0.0, (robot.getMyColor() != PMXYELLOW));
+    robot.asserv().startMotionTimerAndOdo(true);
+
+    robot.svgPrintPosition();
+
+    chrono.start();
+
+    if (step == 0) {
+        //set position
+        logger().info() << "set position..." << logs::end;
+        robot.asserv().setPositionAndColor(300, 500, 0.0, (robot.getMyColor() != PMXYELLOW));
+
+        while (1) {
+
+            robot.asserv().getEncodersCounts(&right, &left);
+            ROBOTPOSITION p = robot.asserv().pos_getPosition();
+            logger().info() << "time= "
+                    << robot.chrono().getElapsedTimeInMilliSec()
+                    << "ms ; left= " << left << " ; right= " << right
+                    << " x=" << p.x << " y=" << p.y
+                    << " deg=" << p.theta * 180.0 / M_PI
+                    << logs::end;
+            utils::sleep_for_micros(100000);
+            nb++;
+        }
+    }
+
+    if (step == 1) {
+        logger().info() << "ETAPE 1 : TEST CODEURS - compter sur un metre" << logs::end;
+        while (1) {
+
+            robot.asserv().getEncodersCounts(&right, &left);
+            ROBOTPOSITION p = robot.asserv().pos_getPosition();
+            logger().info() << nb
+                    << " time= "
+                    << robot.chrono().getElapsedTimeInMilliSec()
+                    << "ms ; left(2)= " << left << " ; right(1)= " << right
+                    << "\tx=" << p.x << " y=" << p.y
+                    << " deg=" << p.theta * 180.0 / M_PI
+                    << logs::end;
+            utils::sleep_for_micros(100000);
+            nb++;
+        }
+    }
+
+    if (step == 2) {
+        logger().info() << "ETAPE 2 : TEST MOTEURS ET CODEURS" << logs::end;
+        while (1) {
+            robot.asserv().runMotorLeft(25, 0);
+            robot.asserv().runMotorRight(25, 0);
+
+            robot.asserv().getEncodersCounts(&right, &left);
+            ROBOTPOSITION p = robot.asserv().pos_getPosition();
+            logger().info() << "time= "
+                    << robot.chrono().getElapsedTimeInMilliSec()
+                    << "ms ; left= " << left << " ; right= " << right
+                    << " x=" << p.x << " y=" << p.y
+                    << " deg=" << p.theta * 180.0 / M_PI
+                    << logs::end;
+            usleep(100000);
+            nb++;
+            if (nb > 50) break;
+        }
+    }
+
+    if (step == 3) {
+        logger().info() << "ETAPE 3 : assistedHandling pour regler P" << logs::end;
+        while (1) {
+            robot.asserv().assistedHandling();
+            sleep(1);
+        }
+    }
+
+    if (step == 4) {
+        logger().info() << "ETAPE 4 : on avance pour regler D" << logs::end;
+        robot.asserv().assistedHandling();
+        robot.asserv().doLine(100);
+        sleep(1);
+    }
+
+    if (step == 5) {
+        logger().info() << "ETAPE 5 : on tourne pour regler D" << logs::end;
+        robot.asserv().assistedHandling();
+        robot.asserv().doRelativeRotateDeg(90);
+        sleep(1);
+    }
+
+    logger().info() << "Happy End." << logs::end;
+}

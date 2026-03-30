@@ -1,18 +1,18 @@
 var searchData=
 [
-  ['handle_3570',['handle',['../classbackward_1_1details_1_1handle.html',1,'backward::details']]],
-  ['handle_3c_20char_20_2a_20_3e_3571',['handle&lt; char * &gt;',['../classbackward_1_1details_1_1handle.html',1,'backward::details']]],
-  ['handle_3c_20char_20_2a_2a_20_3e_3572',['handle&lt; char ** &gt;',['../classbackward_1_1details_1_1handle.html',1,'backward::details']]],
-  ['handle_3c_20std_3a_3aifstream_20_2a_2c_20backward_3a_3adetails_3a_3adefault_5fdelete_3c_20std_3a_3aifstream_20_2a_20_3e_20_3e_3573',['handle&lt; std::ifstream *, backward::details::default_delete&lt; std::ifstream * &gt; &gt;',['../classbackward_1_1details_1_1handle.html',1,'backward::details']]],
-  ['hardwareconfig_3574',['HardwareConfig',['../classHardwareConfig.html',1,'']]],
-  ['has_5ffrom_5fjson_3575',['has_from_json',['../structdetail_1_1has__from__json.html',1,'detail']]],
-  ['has_5ffrom_5fjson_3c_20basicjsontype_2c_20t_2c_20enable_5fif_5ft_3c_20_21is_5fbasic_5fjson_3c_20t_20_3e_3a_3avalue_20_3e_20_3e_3576',['has_from_json&lt; BasicJsonType, T, enable_if_t&lt; !is_basic_json&lt; T &gt;::value &gt; &gt;',['../structdetail_1_1has__from__json_3_01BasicJsonType_00_01T_00_01enable__if__t_3_01_9is__basic__json_3_01T_01_4_1_1value_01_4_01_4.html',1,'detail']]],
-  ['has_5fkey_5fcompare_3577',['has_key_compare',['../structdetail_1_1has__key__compare.html',1,'detail']]],
-  ['has_5fnon_5fdefault_5ffrom_5fjson_3578',['has_non_default_from_json',['../structdetail_1_1has__non__default__from__json.html',1,'detail']]],
-  ['has_5fnon_5fdefault_5ffrom_5fjson_3c_20basicjsontype_2c_20t_2c_20enable_5fif_5ft_3c_20_21is_5fbasic_5fjson_3c_20t_20_3e_3a_3avalue_20_3e_20_3e_3579',['has_non_default_from_json&lt; BasicJsonType, T, enable_if_t&lt; !is_basic_json&lt; T &gt;::value &gt; &gt;',['../structdetail_1_1has__non__default__from__json_3_01BasicJsonType_00_01T_00_01enable__if__t_3_01_912047717fa07cfa9d99fe9eafcf1e11e.html',1,'detail']]],
-  ['has_5fto_5fjson_3580',['has_to_json',['../structdetail_1_1has__to__json.html',1,'detail']]],
-  ['has_5fto_5fjson_3c_20basicjsontype_2c_20t_2c_20enable_5fif_5ft_3c_20_21is_5fbasic_5fjson_3c_20t_20_3e_3a_3avalue_20_3e_20_3e_3581',['has_to_json&lt; BasicJsonType, T, enable_if_t&lt; !is_basic_json&lt; T &gt;::value &gt; &gt;',['../structdetail_1_1has__to__json_3_01BasicJsonType_00_01T_00_01enable__if__t_3_01_9is__basic__json_3_01T_01_4_1_1value_01_4_01_4.html',1,'detail']]],
-  ['hash_3c_20nlohmann_3a_3anlohmann_5fbasic_5fjson_5ftpl_20_3e_3582',['hash&lt; nlohmann::NLOHMANN_BASIC_JSON_TPL &gt;',['../structstd_1_1hash_3_01nlohmann_1_1NLOHMANN__BASIC__JSON__TPL_01_4.html',1,'std']]],
-  ['hashtable_3583',['hashtable',['../structbackward_1_1details_1_1hashtable.html',1,'backward::details']]],
-  ['hashtable_3c_20std_3a_3astring_2c_20sourcefile_20_3e_3584',['hashtable&lt; std::string, SourceFile &gt;',['../structbackward_1_1details_1_1hashtable.html',1,'backward::details']]]
+  ['handle_3601',['handle',['../classbackward_1_1details_1_1handle.html',1,'backward::details']]],
+  ['handle_3c_20char_20_2a_20_3e_3602',['handle&lt; char * &gt;',['../classbackward_1_1details_1_1handle.html',1,'backward::details']]],
+  ['handle_3c_20char_20_2a_2a_20_3e_3603',['handle&lt; char ** &gt;',['../classbackward_1_1details_1_1handle.html',1,'backward::details']]],
+  ['handle_3c_20std_3a_3aifstream_20_2a_2c_20backward_3a_3adetails_3a_3adefault_5fdelete_3c_20std_3a_3aifstream_20_2a_20_3e_20_3e_3604',['handle&lt; std::ifstream *, backward::details::default_delete&lt; std::ifstream * &gt; &gt;',['../classbackward_1_1details_1_1handle.html',1,'backward::details']]],
+  ['hardwareconfig_3605',['HardwareConfig',['../classHardwareConfig.html',1,'']]],
+  ['has_5ffrom_5fjson_3606',['has_from_json',['../structdetail_1_1has__from__json.html',1,'detail']]],
+  ['has_5ffrom_5fjson_3c_20basicjsontype_2c_20t_2c_20enable_5fif_5ft_3c_20_21is_5fbasic_5fjson_3c_20t_20_3e_3a_3avalue_20_3e_20_3e_3607',['has_from_json&lt; BasicJsonType, T, enable_if_t&lt; !is_basic_json&lt; T &gt;::value &gt; &gt;',['../structdetail_1_1has__from__json_3_01BasicJsonType_00_01T_00_01enable__if__t_3_01_9is__basic__json_3_01T_01_4_1_1value_01_4_01_4.html',1,'detail']]],
+  ['has_5fkey_5fcompare_3608',['has_key_compare',['../structdetail_1_1has__key__compare.html',1,'detail']]],
+  ['has_5fnon_5fdefault_5ffrom_5fjson_3609',['has_non_default_from_json',['../structdetail_1_1has__non__default__from__json.html',1,'detail']]],
+  ['has_5fnon_5fdefault_5ffrom_5fjson_3c_20basicjsontype_2c_20t_2c_20enable_5fif_5ft_3c_20_21is_5fbasic_5fjson_3c_20t_20_3e_3a_3avalue_20_3e_20_3e_3610',['has_non_default_from_json&lt; BasicJsonType, T, enable_if_t&lt; !is_basic_json&lt; T &gt;::value &gt; &gt;',['../structdetail_1_1has__non__default__from__json_3_01BasicJsonType_00_01T_00_01enable__if__t_3_01_912047717fa07cfa9d99fe9eafcf1e11e.html',1,'detail']]],
+  ['has_5fto_5fjson_3611',['has_to_json',['../structdetail_1_1has__to__json.html',1,'detail']]],
+  ['has_5fto_5fjson_3c_20basicjsontype_2c_20t_2c_20enable_5fif_5ft_3c_20_21is_5fbasic_5fjson_3c_20t_20_3e_3a_3avalue_20_3e_20_3e_3612',['has_to_json&lt; BasicJsonType, T, enable_if_t&lt; !is_basic_json&lt; T &gt;::value &gt; &gt;',['../structdetail_1_1has__to__json_3_01BasicJsonType_00_01T_00_01enable__if__t_3_01_9is__basic__json_3_01T_01_4_1_1value_01_4_01_4.html',1,'detail']]],
+  ['hash_3c_20nlohmann_3a_3anlohmann_5fbasic_5fjson_5ftpl_20_3e_3613',['hash&lt; nlohmann::NLOHMANN_BASIC_JSON_TPL &gt;',['../structstd_1_1hash_3_01nlohmann_1_1NLOHMANN__BASIC__JSON__TPL_01_4.html',1,'std']]],
+  ['hashtable_3614',['hashtable',['../structbackward_1_1details_1_1hashtable.html',1,'backward::details']]],
+  ['hashtable_3c_20std_3a_3astring_2c_20sourcefile_20_3e_3615',['hashtable&lt; std::string, SourceFile &gt;',['../structbackward_1_1details_1_1hashtable.html',1,'backward::details']]]
 ];

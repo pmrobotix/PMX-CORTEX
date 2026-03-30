@@ -1,33 +1,40 @@
 <map id="src/common/utils/ConsoleManager.hpp" name="src/common/utils/ConsoleManager.hpp">
-<area shape="rect" id="node1" title="Définition de la classe ConsoleManager." alt="" coords="3435,5,3625,47"/>
-<area shape="rect" id="node2" href="$src_2bot-opos6ul_2Main_8cpp.html" title=" " alt="" coords="3452,370,3637,397"/>
-<area shape="rect" id="node3" href="$Robot_8hpp.html" title=" " alt="" coords="2252,102,2424,129"/>
-<area shape="rect" id="node31" href="$ConsoleManager_8cpp.html" title="Implementation de la classe ConsoleManager." alt="" coords="3568,95,3759,136"/>
-<area shape="rect" id="node4" href="$O__IAbyPathTest_8cpp.html" title="Implementation de la classe O_IAByPathTest." alt="" coords="629,363,829,404"/>
-<area shape="rect" id="node5" href="$O__LedBarTest_8cpp.html" title="Implementation de la classe O_LedBarTest." alt="" coords="2139,363,2327,404"/>
-<area shape="rect" id="node6" href="$O__SensorsTest_8cpp.html" title="Implémentation de la classe O_SensorsTest." alt="" coords="853,363,1047,404"/>
-<area shape="rect" id="node7" href="$O__ServoObjectsTest_8cpp.html" title="Implémentation de la classe O_ServoObjectsTest." alt="" coords="2987,363,3217,404"/>
-<area shape="rect" id="node8" href="$O__ServoStepTest_8cpp.html" title="Implémentation de la classe O_ServoStepTest." alt="" coords="2351,363,2560,404"/>
-<area shape="rect" id="node9" href="$O__State__DecisionMakerIA_8cpp.html" title="Implémentation de la classe O_State_DecisionMakerIA." alt="" coords="5,363,183,404"/>
-<area shape="rect" id="node10" href="$O__State__Init_8cpp.html" title="Implémentation de la classe O_State_Init." alt="" coords="2584,363,2761,404"/>
-<area shape="rect" id="node11" href="$O__State__WaitEndOfMatch_8cpp.html" title="Implémentation de la classe O_State_WaitEndOfMatch." alt="" coords="2785,363,2963,404"/>
-<area shape="rect" id="node12" href="$OPOS6UL__ActionsExtended_8cpp.html" title="Implémentation de la classe OPOS6UL_ActionsExtended." alt="" coords="3241,363,3427,404"/>
-<area shape="rect" id="node13" href="$OPOS6UL__RobotExtended_8hpp.html" title="Extension de la classe Robot pour la carte OPOS6UL." alt="" coords="1718,273,1905,315"/>
-<area shape="rect" id="node20" href="$Sensors_8hpp.html" title="Gestion des capteurs de detection et de distance." alt="" coords="954,191,1183,218"/>
-<area shape="rect" id="node23" href="$Asserv_8cpp.html" title=" " alt="" coords="2451,191,2673,218"/>
-<area shape="rect" id="node24" href="$AsservEsialR_8cpp.html" title=" " alt="" coords="2697,184,2880,225"/>
-<area shape="rect" id="node25" href="$IAbyPath_8hpp.html" title=" " alt="" coords="455,191,661,218"/>
-<area shape="rect" id="node29" href="$IAbyZone_8cpp.html" title=" " alt="" coords="2905,191,3115,218"/>
-<area shape="rect" id="node30" href="$Robot_8cpp.html" title="Implémentation de la classe Robot." alt="" coords="3139,191,3310,218"/>
-<area shape="rect" id="node14" href="$O__ActionManagerTimerTest_8cpp.html" title="Implémentation de la classe O_ActionManagerTimerTest." alt="" coords="1930,363,2114,404"/>
-<area shape="rect" id="node15" href="$O__ButtonBarTest_8cpp.html" title="Implémentation de la classe O_ButtonBarTest." alt="" coords="1282,363,1469,404"/>
-<area shape="rect" id="node16" href="$O__LcdBoardTest_8cpp.html" title="Implémentation de la classe O_LcdBoardTest." alt="" coords="1493,363,1695,404"/>
-<area shape="rect" id="node17" href="$O__TiretteTest_8cpp.html" title="Implémentation de la classe O_TiretteTest." alt="" coords="1719,363,1906,404"/>
-<area shape="rect" id="node18" href="$OPOS6UL__AsservExtended_8cpp.html" title="Implémentation de la classe OPOS6UL_AsservExtended." alt="" coords="418,363,605,404"/>
-<area shape="rect" id="node19" href="$OPOS6UL__RobotExtended_8cpp.html" title="Implémentation de la classe OPOS6UL_RobotExtended." alt="" coords="1071,363,1258,404"/>
-<area shape="rect" id="node21" href="$OPOS6UL__ActionsExtended_8hpp.html" title="Extension des actions du robot pour la carte OPOS6UL." alt="" coords="1929,273,2115,315"/>
-<area shape="rect" id="node22" href="$Sensors_8cpp.html" title=" " alt="" coords="777,281,1005,307"/>
-<area shape="rect" id="node26" href="$OPOS6UL__IAExtended_8hpp.html" title="Extension de l&#39;intelligence artificielle pour la carte OPOS6UL." alt="" coords="465,273,651,315"/>
-<area shape="rect" id="node28" href="$IAbyPath_8cpp.html" title=" " alt="" coords="183,281,389,307"/>
-<area shape="rect" id="node27" href="$OPOS6UL__IAExtended_8cpp.html" title="Implémentation de la classe OPOS6UL_IAExtended." alt="" coords="207,363,394,404"/>
+<area shape="rect" id="node1" title="Définition de la classe ConsoleManager." alt="" coords="3028,5,3219,47"/>
+<area shape="rect" id="node2" href="$src_2bot-opos6ul_2Main_8cpp.html" title=" " alt="" coords="5,370,191,397"/>
+<area shape="rect" id="node3" href="$Robot_8hpp.html" title=" " alt="" coords="3037,102,3209,129"/>
+<area shape="rect" id="node38" href="$ConsoleManager_8cpp.html" title="Implementation de la classe ConsoleManager." alt="" coords="3233,95,3424,136"/>
+<area shape="rect" id="node4" href="$O__Asserv__CalageTest_8cpp.html" title="Implémentation de la classe O_Asserv_CalageTest." alt="" coords="1741,363,1927,404"/>
+<area shape="rect" id="node5" href="$O__Asserv__SquareTest_8cpp.html" title="Implémentation de la classe O_Asserv_SquareTest." alt="" coords="3047,363,3234,404"/>
+<area shape="rect" id="node6" href="$O__AsservCalibrationTest_8cpp.html" title="Implémentation de la classe O_AsservCalibrationTest." alt="" coords="215,363,402,404"/>
+<area shape="rect" id="node7" href="$O__AsservLineRotateTest_8cpp.html" title="Implémentation de la classe O_AsservLineRotateTest." alt="" coords="3898,363,4085,404"/>
+<area shape="rect" id="node8" href="$O__AsservTest_8cpp.html" title="Implémentation de la classe O_AsservTest." alt="" coords="4109,363,4295,404"/>
+<area shape="rect" id="node9" href="$O__AsservXYRotateTest_8cpp.html" title="Implémentation de la classe O_AsservXYRotateTest." alt="" coords="4319,363,4506,404"/>
+<area shape="rect" id="node10" href="$O__IAbyPathTest_8cpp.html" title="Implementation de la classe O_IAByPathTest." alt="" coords="4943,363,5143,404"/>
+<area shape="rect" id="node11" href="$O__LedBarTest_8cpp.html" title="Implementation de la classe O_LedBarTest." alt="" coords="628,363,816,404"/>
+<area shape="rect" id="node12" href="$O__SensorsTest_8cpp.html" title="Implémentation de la classe O_SensorsTest." alt="" coords="3258,363,3453,404"/>
+<area shape="rect" id="node13" href="$O__ServoObjectsTest_8cpp.html" title="Implémentation de la classe O_ServoObjectsTest." alt="" coords="841,363,1070,404"/>
+<area shape="rect" id="node14" href="$O__ServoStepTest_8cpp.html" title="Implémentation de la classe O_ServoStepTest." alt="" coords="1095,363,1304,404"/>
+<area shape="rect" id="node15" href="$O__State__DecisionMakerIA_8cpp.html" title="Implémentation de la classe O_State_DecisionMakerIA." alt="" coords="4741,363,4919,404"/>
+<area shape="rect" id="node16" href="$O__State__Init_8cpp.html" title="Implémentation de la classe O_State_Init." alt="" coords="1328,363,1505,404"/>
+<area shape="rect" id="node17" href="$O__State__WaitEndOfMatch_8cpp.html" title="Implémentation de la classe O_State_WaitEndOfMatch." alt="" coords="427,363,604,404"/>
+<area shape="rect" id="node18" href="$OPOS6UL__ActionsExtended_8cpp.html" title="Implémentation de la classe OPOS6UL_ActionsExtended." alt="" coords="1530,363,1717,404"/>
+<area shape="rect" id="node19" href="$OPOS6UL__RobotExtended_8hpp.html" title="Extension de la classe Robot pour la carte OPOS6UL." alt="" coords="2618,273,2805,315"/>
+<area shape="rect" id="node27" href="$Sensors_8hpp.html" title="Gestion des capteurs de detection et de distance." alt="" coords="3313,191,3542,218"/>
+<area shape="rect" id="node30" href="$Asserv_8cpp.html" title=" " alt="" coords="3667,191,3889,218"/>
+<area shape="rect" id="node31" href="$AsservEsialR_8cpp.html" title=" " alt="" coords="3913,184,4096,225"/>
+<area shape="rect" id="node32" href="$IAbyPath_8hpp.html" title=" " alt="" coords="4601,191,4808,218"/>
+<area shape="rect" id="node36" href="$IAbyZone_8cpp.html" title=" " alt="" coords="4171,191,4382,218"/>
+<area shape="rect" id="node37" href="$Robot_8cpp.html" title="Implémentation de la classe Robot." alt="" coords="4406,191,4577,218"/>
+<area shape="rect" id="node20" href="$O__ActionManagerTimerTest_8cpp.html" title="Implémentation de la classe O_ActionManagerTimerTest." alt="" coords="2191,363,2375,404"/>
+<area shape="rect" id="node21" href="$O__ButtonBarTest_8cpp.html" title="Implémentation de la classe O_ButtonBarTest." alt="" coords="2399,363,2586,404"/>
+<area shape="rect" id="node22" href="$O__GroveColorTest_8cpp.html" title="Implémentation de la classe O_GroveColorTest." alt="" coords="1951,363,2167,404"/>
+<area shape="rect" id="node23" href="$O__LcdBoardTest_8cpp.html" title="Implémentation de la classe O_LcdBoardTest." alt="" coords="2610,363,2813,404"/>
+<area shape="rect" id="node24" href="$O__TiretteTest_8cpp.html" title="Implémentation de la classe O_TiretteTest." alt="" coords="2837,363,3023,404"/>
+<area shape="rect" id="node25" href="$OPOS6UL__AsservExtended_8cpp.html" title="Implémentation de la classe OPOS6UL_AsservExtended." alt="" coords="3687,363,3874,404"/>
+<area shape="rect" id="node26" href="$OPOS6UL__RobotExtended_8cpp.html" title="Implémentation de la classe OPOS6UL_RobotExtended." alt="" coords="3477,363,3663,404"/>
+<area shape="rect" id="node28" href="$OPOS6UL__ActionsExtended_8hpp.html" title="Extension des actions du robot pour la carte OPOS6UL." alt="" coords="2833,273,3019,315"/>
+<area shape="rect" id="node29" href="$Sensors_8cpp.html" title=" " alt="" coords="3212,281,3440,307"/>
+<area shape="rect" id="node33" href="$OPOS6UL__IAExtended_8hpp.html" title="Extension de l&#39;intelligence artificielle pour la carte OPOS6UL." alt="" coords="4110,273,4297,315"/>
+<area shape="rect" id="node35" href="$IAbyPath_8cpp.html" title=" " alt="" coords="4601,281,4808,307"/>
+<area shape="rect" id="node34" href="$OPOS6UL__IAExtended_8cpp.html" title="Implémentation de la classe OPOS6UL_IAExtended." alt="" coords="4530,363,4717,404"/>
 </map>

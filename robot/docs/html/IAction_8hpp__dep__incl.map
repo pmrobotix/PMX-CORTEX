@@ -1,35 +1,40 @@
 <map id="src/common/action/IAction.hpp" name="src/common/action/IAction.hpp">
-<area shape="rect" id="node1" title="Definition de l&#39;interface IAction." alt="" coords="2252,5,2475,32"/>
-<area shape="rect" id="node2" href="$O__ActionManagerTimerTest_8hpp.html" title="Définition de la classe O_ActionManagerTimerTest." alt="" coords="1425,80,1609,121"/>
-<area shape="rect" id="node5" href="$LedBar_8hpp.html" title="Gestion de la barre de LEDs et ses actions/timers associés." alt="" coords="1633,87,1856,114"/>
-<area shape="rect" id="node28" href="$SoundBar_8hpp.html" title="Définition de la classe SoundBar et de l&#39;action SoundBarAction." alt="" coords="2112,87,2351,114"/>
-<area shape="rect" id="node29" href="$ActionManagerTimer_8hpp.html" title="Definition de la classe ActionManagerTimer." alt="" coords="2453,80,2695,121"/>
-<area shape="rect" id="node32" href="$ActionManagerTimerTest_8cpp.html" title="Tests unitaires de la classe ActionManagerTimer." alt="" coords="2755,169,2966,211"/>
-<area shape="rect" id="node33" href="$ActionManagerTimerManualTest_8cpp.html" title="Tests manuels longs de l&#39;ActionManagerTimer." alt="" coords="2990,169,3193,211"/>
-<area shape="rect" id="node3" href="$src_2bot-opos6ul_2Main_8cpp.html" title=" " alt="" coords="1061,177,1247,203"/>
-<area shape="rect" id="node4" href="$O__ActionManagerTimerTest_8cpp.html" title="Implémentation de la classe O_ActionManagerTimerTest." alt="" coords="2822,348,3006,389"/>
+<area shape="rect" id="node1" title="Definition de l&#39;interface IAction." alt="" coords="2872,5,3095,32"/>
+<area shape="rect" id="node2" href="$O__ActionManagerTimerTest_8hpp.html" title="Définition de la classe O_ActionManagerTimerTest." alt="" coords="2045,80,2229,121"/>
+<area shape="rect" id="node5" href="$LedBar_8hpp.html" title="Gestion de la barre de LEDs et ses actions/timers associés." alt="" coords="2253,87,2476,114"/>
+<area shape="rect" id="node33" href="$SoundBar_8hpp.html" title="Définition de la classe SoundBar et de l&#39;action SoundBarAction." alt="" coords="2732,87,2971,114"/>
+<area shape="rect" id="node34" href="$ActionManagerTimer_8hpp.html" title="Definition de la classe ActionManagerTimer." alt="" coords="3073,80,3315,121"/>
+<area shape="rect" id="node37" href="$ActionManagerTimerTest_8cpp.html" title="Tests unitaires de la classe ActionManagerTimer." alt="" coords="3375,169,3586,211"/>
+<area shape="rect" id="node38" href="$ActionManagerTimerManualTest_8cpp.html" title="Tests manuels longs de l&#39;ActionManagerTimer." alt="" coords="3610,169,3813,211"/>
+<area shape="rect" id="node3" href="$src_2bot-opos6ul_2Main_8cpp.html" title=" " alt="" coords="1681,177,1867,203"/>
+<area shape="rect" id="node4" href="$O__ActionManagerTimerTest_8cpp.html" title="Implémentation de la classe O_ActionManagerTimerTest." alt="" coords="3875,348,4059,389"/>
 <area shape="rect" id="node6" href="$O__LedBarTest_8cpp.html" title="Implementation de la classe O_LedBarTest." alt="" coords="5,348,193,389"/>
-<area shape="rect" id="node7" href="$OPOS6UL__ActionsExtended_8hpp.html" title="Extension des actions du robot pour la carte OPOS6UL." alt="" coords="1373,259,1559,300"/>
-<area shape="rect" id="node19" href="$OPOS6UL__RobotExtended_8cpp.html" title="Implémentation de la classe OPOS6UL_RobotExtended." alt="" coords="218,348,405,389"/>
-<area shape="rect" id="node20" href="$Actions_8hpp.html" title="Définition de la classe Actions." alt="" coords="1929,177,2155,203"/>
-<area shape="rect" id="node23" href="$LedBar_8cpp.html" title=" " alt="" coords="1634,266,1855,293"/>
-<area shape="rect" id="node8" href="$O__ButtonBarTest_8cpp.html" title="Implémentation de la classe O_ButtonBarTest." alt="" coords="1689,348,1875,389"/>
-<area shape="rect" id="node9" href="$O__IAbyPathTest_8cpp.html" title="Implementation de la classe O_IAByPathTest." alt="" coords="1899,348,2099,389"/>
-<area shape="rect" id="node10" href="$O__LcdBoardTest_8cpp.html" title="Implémentation de la classe O_LcdBoardTest." alt="" coords="2123,348,2326,389"/>
-<area shape="rect" id="node11" href="$O__SensorsTest_8cpp.html" title="Implémentation de la classe O_SensorsTest." alt="" coords="2350,348,2545,389"/>
-<area shape="rect" id="node12" href="$O__ServoObjectsTest_8cpp.html" title="Implémentation de la classe O_ServoObjectsTest." alt="" coords="2569,348,2798,389"/>
-<area shape="rect" id="node13" href="$O__ServoStepTest_8cpp.html" title="Implémentation de la classe O_ServoStepTest." alt="" coords="429,348,639,389"/>
-<area shape="rect" id="node14" href="$O__State__DecisionMakerIA_8cpp.html" title="Implémentation de la classe O_State_DecisionMakerIA." alt="" coords="663,348,840,389"/>
-<area shape="rect" id="node15" href="$O__State__Init_8cpp.html" title="Implémentation de la classe O_State_Init." alt="" coords="864,348,1041,389"/>
-<area shape="rect" id="node16" href="$O__State__WaitEndOfMatch_8cpp.html" title="Implémentation de la classe O_State_WaitEndOfMatch." alt="" coords="1065,348,1243,389"/>
-<area shape="rect" id="node17" href="$O__TiretteTest_8cpp.html" title="Implémentation de la classe O_TiretteTest." alt="" coords="1267,348,1454,389"/>
-<area shape="rect" id="node18" href="$OPOS6UL__ActionsExtended_8cpp.html" title="Implémentation de la classe OPOS6UL_ActionsExtended." alt="" coords="1478,348,1665,389"/>
-<area shape="rect" id="node21" href="$Actions_8cpp.html" title=" " alt="" coords="1929,266,2155,293"/>
-<area shape="rect" id="node22" href="$ButtonBar_8cpp.html" title=" " alt="" coords="2179,259,2372,300"/>
-<area shape="rect" id="node24" href="$Sensors_8cpp.html" title=" " alt="" coords="2396,266,2624,293"/>
-<area shape="rect" id="node25" href="$ServoObjectsSystem_8cpp.html" title=" " alt="" coords="2648,259,2884,300"/>
-<area shape="rect" id="node26" href="$SoundBar_8cpp.html" title=" " alt="" coords="3104,266,3343,293"/>
-<area shape="rect" id="node27" href="$Robot_8cpp.html" title="Implémentation de la classe Robot." alt="" coords="2909,266,3079,293"/>
-<area shape="rect" id="node30" href="$ActionManagerTimer_8cpp.html" title="Implementation de la classe ActionManagerTimer." alt="" coords="2230,169,2473,211"/>
-<area shape="rect" id="node31" href="$PosixTimerBench_8cpp.html" title="Benchmark de precision des timers POSIX." alt="" coords="2497,177,2731,203"/>
+<area shape="rect" id="node7" href="$OPOS6UL__ActionsExtended_8hpp.html" title="Extension des actions du robot pour la carte OPOS6UL." alt="" coords="1993,259,2179,300"/>
+<area shape="rect" id="node24" href="$OPOS6UL__RobotExtended_8cpp.html" title="Implémentation de la classe OPOS6UL_RobotExtended." alt="" coords="218,348,405,389"/>
+<area shape="rect" id="node25" href="$Actions_8hpp.html" title="Définition de la classe Actions." alt="" coords="2549,177,2775,203"/>
+<area shape="rect" id="node28" href="$LedBar_8cpp.html" title=" " alt="" coords="2254,266,2475,293"/>
+<area shape="rect" id="node8" href="$O__Asserv__CalageTest_8cpp.html" title="Implémentation de la classe O_Asserv_CalageTest." alt="" coords="2822,348,3009,389"/>
+<area shape="rect" id="node9" href="$O__Asserv__SquareTest_8cpp.html" title="Implémentation de la classe O_Asserv_SquareTest." alt="" coords="3033,348,3219,389"/>
+<area shape="rect" id="node10" href="$O__AsservLineRotateTest_8cpp.html" title="Implémentation de la classe O_AsservLineRotateTest." alt="" coords="3243,348,3430,389"/>
+<area shape="rect" id="node11" href="$O__AsservTest_8cpp.html" title="Implémentation de la classe O_AsservTest." alt="" coords="3454,348,3641,389"/>
+<area shape="rect" id="node12" href="$O__AsservXYRotateTest_8cpp.html" title="Implémentation de la classe O_AsservXYRotateTest." alt="" coords="3665,348,3851,389"/>
+<area shape="rect" id="node13" href="$O__ButtonBarTest_8cpp.html" title="Implémentation de la classe O_ButtonBarTest." alt="" coords="429,348,615,389"/>
+<area shape="rect" id="node14" href="$O__IAbyPathTest_8cpp.html" title="Implementation de la classe O_IAByPathTest." alt="" coords="639,348,839,389"/>
+<area shape="rect" id="node15" href="$O__LcdBoardTest_8cpp.html" title="Implémentation de la classe O_LcdBoardTest." alt="" coords="863,348,1066,389"/>
+<area shape="rect" id="node16" href="$O__SensorsTest_8cpp.html" title="Implémentation de la classe O_SensorsTest." alt="" coords="1090,348,1285,389"/>
+<area shape="rect" id="node17" href="$O__ServoObjectsTest_8cpp.html" title="Implémentation de la classe O_ServoObjectsTest." alt="" coords="1309,348,1538,389"/>
+<area shape="rect" id="node18" href="$O__ServoStepTest_8cpp.html" title="Implémentation de la classe O_ServoStepTest." alt="" coords="1563,348,1772,389"/>
+<area shape="rect" id="node19" href="$O__State__DecisionMakerIA_8cpp.html" title="Implémentation de la classe O_State_DecisionMakerIA." alt="" coords="1796,348,1973,389"/>
+<area shape="rect" id="node20" href="$O__State__Init_8cpp.html" title="Implémentation de la classe O_State_Init." alt="" coords="1997,348,2175,389"/>
+<area shape="rect" id="node21" href="$O__State__WaitEndOfMatch_8cpp.html" title="Implémentation de la classe O_State_WaitEndOfMatch." alt="" coords="2199,348,2376,389"/>
+<area shape="rect" id="node22" href="$O__TiretteTest_8cpp.html" title="Implémentation de la classe O_TiretteTest." alt="" coords="2401,348,2587,389"/>
+<area shape="rect" id="node23" href="$OPOS6UL__ActionsExtended_8cpp.html" title="Implémentation de la classe OPOS6UL_ActionsExtended." alt="" coords="2611,348,2798,389"/>
+<area shape="rect" id="node26" href="$Actions_8cpp.html" title=" " alt="" coords="2549,266,2775,293"/>
+<area shape="rect" id="node27" href="$ButtonBar_8cpp.html" title=" " alt="" coords="2799,259,2992,300"/>
+<area shape="rect" id="node29" href="$Sensors_8cpp.html" title=" " alt="" coords="3016,266,3244,293"/>
+<area shape="rect" id="node30" href="$ServoObjectsSystem_8cpp.html" title=" " alt="" coords="3268,259,3504,300"/>
+<area shape="rect" id="node31" href="$SoundBar_8cpp.html" title=" " alt="" coords="3724,266,3963,293"/>
+<area shape="rect" id="node32" href="$Robot_8cpp.html" title="Implémentation de la classe Robot." alt="" coords="3529,266,3699,293"/>
+<area shape="rect" id="node35" href="$ActionManagerTimer_8cpp.html" title="Implementation de la classe ActionManagerTimer." alt="" coords="2850,169,3093,211"/>
+<area shape="rect" id="node36" href="$PosixTimerBench_8cpp.html" title="Benchmark de precision des timers POSIX." alt="" coords="3117,177,3351,203"/>
 </map>

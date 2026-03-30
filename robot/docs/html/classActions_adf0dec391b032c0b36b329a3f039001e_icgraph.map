@@ -1,9 +1,13 @@
 <map id="Actions::start" name="Actions::start">
-<area shape="rect" id="node1" title="Active les actions." alt="" coords="284,132,392,159"/>
+<area shape="rect" id="node1" title="Active les actions." alt="" coords="284,233,392,260"/>
 <area shape="rect" id="node2" href="$classO__State__Init.html#abc19788b7457d1f819245dd28367fe91" title="Exécute l&#39;état d&#39;initialisation." alt="" coords="41,5,201,32"/>
 <area shape="rect" id="node3" href="$classO__ActionManagerTimerTest.html#ab88b301cdfa06385c521335dd27932c9" title="Execute le test." alt="" coords="5,56,236,83"/>
-<area shape="rect" id="node4" href="$classO__IAByPathTest.html#a3f57f585ff1382a52bf7f79a28d43629" title="Execute le test." alt="" coords="45,107,197,133"/>
-<area shape="rect" id="node5" href="$classO__LedBarTest.html#af9e0e172d13b334cda0fe32bb659b414" title=" " alt="" coords="51,157,190,184"/>
-<area shape="rect" id="node6" href="$classO__SensorsTest.html#ae3b998034225e16586ded4ba3bd419e5" title="Execute le test." alt="" coords="48,208,193,235"/>
-<area shape="rect" id="node7" href="$classO__ServoObjectsTest.html#aabfa9ba518070128940062ed11028ca7" title="Execute le test." alt="" coords="31,259,211,285"/>
+<area shape="rect" id="node4" href="$classO__Asserv__SquareTest.html#a16a0bf866c8070611cfa8952e3ef64d8" title=" " alt="" coords="25,107,216,133"/>
+<area shape="rect" id="node5" href="$classO__AsservLineRotateTest.html#ac54536863ccc3f6bc0ce3f30e99e1b70" title=" " alt="" coords="17,157,225,184"/>
+<area shape="rect" id="node6" href="$classO__AsservTest.html#a87e2ffa360e3e12ff5c7b81b1952a04f" title=" " alt="" coords="51,208,190,235"/>
+<area shape="rect" id="node7" href="$classO__AsservXYRotateTest.html#a13ccb691e37bdddc94ca53b29311e39a" title=" " alt="" coords="21,259,220,285"/>
+<area shape="rect" id="node8" href="$classO__IAByPathTest.html#a3f57f585ff1382a52bf7f79a28d43629" title="Execute le test." alt="" coords="45,309,197,336"/>
+<area shape="rect" id="node9" href="$classO__LedBarTest.html#af9e0e172d13b334cda0fe32bb659b414" title=" " alt="" coords="51,360,190,387"/>
+<area shape="rect" id="node10" href="$classO__SensorsTest.html#ae3b998034225e16586ded4ba3bd419e5" title="Execute le test." alt="" coords="48,411,193,437"/>
+<area shape="rect" id="node11" href="$classO__ServoObjectsTest.html#aabfa9ba518070128940062ed11028ca7" title="Execute le test." alt="" coords="31,461,211,488"/>
 </map>

@@ -1,6 +1,8 @@
 <map id="Sensors::getAvailableFrontCenter" name="Sensors::getAvailableFrontCenter">
-<area shape="rect" id="node1" title=" " alt="" coords="387,23,581,65"/>
-<area shape="rect" id="node2" href="$classSensors.html#a6fde663a7fb649742b32c4c56e4b939c" title=" " alt="" coords="227,56,339,83"/>
+<area shape="rect" id="node1" title=" " alt="" coords="473,74,668,115"/>
+<area shape="rect" id="node2" href="$classSensors.html#a6fde663a7fb649742b32c4c56e4b939c" title=" " alt="" coords="270,56,382,83"/>
 <area shape="rect" id="node3" href="$classSensorsTimer.html#abc377178c2471f664b31658554963e83" title="Actions à executer pour le timer." alt="" coords="5,5,179,32"/>
+<area shape="rect" id="node5" href="$classO__AsservTest.html#a87e2ffa360e3e12ff5c7b81b1952a04f" title=" " alt="" coords="257,107,395,133"/>
+<area shape="rect" id="node6" href="$classO__AsservXYRotateTest.html#a13ccb691e37bdddc94ca53b29311e39a" title=" " alt="" coords="227,157,425,184"/>
 <area shape="rect" id="node4" href="$classO__SensorsTest.html#ae3b998034225e16586ded4ba3bd419e5" title="Execute le test." alt="" coords="19,56,165,83"/>
 </map>

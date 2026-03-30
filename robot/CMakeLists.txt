@@ -213,6 +213,13 @@ if(DRIVER_LIB)
         src/bot-opos6ul/O_LcdBoardTest.cpp
         src/bot-opos6ul/O_ActionManagerTimerTest.cpp
         src/bot-opos6ul/O_IAbyPathTest.cpp
+        src/bot-opos6ul/O_AsservLineRotateTest.cpp
+        src/bot-opos6ul/O_AsservXYRotateTest.cpp
+        src/bot-opos6ul/O_AsservTest.cpp
+        src/bot-opos6ul/O_AsservCalibrationTest.cpp
+        src/bot-opos6ul/O_Asserv_SquareTest.cpp
+        src/bot-opos6ul/O_Asserv_CalageTest.cpp
+        src/bot-opos6ul/O_GroveColorTest.cpp
         src/bot-opos6ul/O_ServoStepTest.cpp
         src/bot-opos6ul/O_ServoObjectsTest.cpp
         src/bot-opos6ul/O_SensorsTest.cpp
@@ -223,6 +230,23 @@ if(DRIVER_LIB)
     )
 
     target_link_libraries(bot-opos6ul PRIVATE pmx-common ${DRIVER_LIB} pmr-pathfinding)
+
+    # Copie des fichiers nécessaires à côté de l'exécutable après le build
+    add_custom_command(TARGET bot-opos6ul POST_BUILD
+        # Config hardware (active/desactive les drivers)
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            ${CMAKE_SOURCE_DIR}/src/bot-opos6ul/hardware.conf
+            $<TARGET_FILE_DIR:bot-opos6ul>/hardware.conf
+        # Config asservissement (chargé en relatif par OPOS6UL_AsservExtended)
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            ${CMAKE_SOURCE_DIR}/src/bot-opos6ul/config_OPOS6UL_Robot.txt
+            $<TARGET_FILE_DIR:bot-opos6ul>/config_OPOS6UL_Robot.txt
+        # Ressources SVG pour le log (index.html + table)
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+            ${CMAKE_SOURCE_DIR}/src/common/log/resources-svg
+            $<TARGET_FILE_DIR:bot-opos6ul>/resources-svg
+        COMMENT "Copie hardware.conf + config asserv + resources-svg dans le repertoire de build"
+    )
 endif()
 
 # =============================================

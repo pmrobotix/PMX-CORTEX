@@ -451,6 +451,150 @@ src/bot-opos6ul/O_ActionManagerTimerTest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bot-opos6ul.dir/build.make CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_ActionManagerTimerTest.cpp.s
 .PHONY : src/bot-opos6ul/O_ActionManagerTimerTest.cpp.s
 
+src/bot-opos6ul/O_AsservCalibrationTest.o: src/bot-opos6ul/O_AsservCalibrationTest.cpp.o
+.PHONY : src/bot-opos6ul/O_AsservCalibrationTest.o
+
+# target to build an object file
+src/bot-opos6ul/O_AsservCalibrationTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bot-opos6ul.dir/build.make CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservCalibrationTest.cpp.o
+.PHONY : src/bot-opos6ul/O_AsservCalibrationTest.cpp.o
+
+src/bot-opos6ul/O_AsservCalibrationTest.i: src/bot-opos6ul/O_AsservCalibrationTest.cpp.i
+.PHONY : src/bot-opos6ul/O_AsservCalibrationTest.i
+
+# target to preprocess a source file
+src/bot-opos6ul/O_AsservCalibrationTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bot-opos6ul.dir/build.make CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservCalibrationTest.cpp.i
+.PHONY : src/bot-opos6ul/O_AsservCalibrationTest.cpp.i
+
+src/bot-opos6ul/O_AsservCalibrationTest.s: src/bot-opos6ul/O_AsservCalibrationTest.cpp.s
+.PHONY : src/bot-opos6ul/O_AsservCalibrationTest.s
+
+# target to generate assembly for a file
+src/bot-opos6ul/O_AsservCalibrationTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bot-opos6ul.dir/build.make CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservCalibrationTest.cpp.s
+.PHONY : src/bot-opos6ul/O_AsservCalibrationTest.cpp.s
+
+src/bot-opos6ul/O_AsservLineRotateTest.o: src/bot-opos6ul/O_AsservLineRotateTest.cpp.o
+.PHONY : src/bot-opos6ul/O_AsservLineRotateTest.o
+
+# target to build an object file
+src/bot-opos6ul/O_AsservLineRotateTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bot-opos6ul.dir/build.make CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservLineRotateTest.cpp.o
+.PHONY : src/bot-opos6ul/O_AsservLineRotateTest.cpp.o
+
+src/bot-opos6ul/O_AsservLineRotateTest.i: src/bot-opos6ul/O_AsservLineRotateTest.cpp.i
+.PHONY : src/bot-opos6ul/O_AsservLineRotateTest.i
+
+# target to preprocess a source file
+src/bot-opos6ul/O_AsservLineRotateTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bot-opos6ul.dir/build.make CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservLineRotateTest.cpp.i
+.PHONY : src/bot-opos6ul/O_AsservLineRotateTest.cpp.i
+
+src/bot-opos6ul/O_AsservLineRotateTest.s: src/bot-opos6ul/O_AsservLineRotateTest.cpp.s
+.PHONY : src/bot-opos6ul/O_AsservLineRotateTest.s
+
+# target to generate assembly for a file
+src/bot-opos6ul/O_AsservLineRotateTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bot-opos6ul.dir/build.make CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservLineRotateTest.cpp.s
+.PHONY : src/bot-opos6ul/O_AsservLineRotateTest.cpp.s
+
+src/bot-opos6ul/O_AsservTest.o: src/bot-opos6ul/O_AsservTest.cpp.o
+.PHONY : src/bot-opos6ul/O_AsservTest.o
+
+# target to build an object file
+src/bot-opos6ul/O_AsservTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bot-opos6ul.dir/build.make CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservTest.cpp.o
+.PHONY : src/bot-opos6ul/O_AsservTest.cpp.o
+
+src/bot-opos6ul/O_AsservTest.i: src/bot-opos6ul/O_AsservTest.cpp.i
+.PHONY : src/bot-opos6ul/O_AsservTest.i
+
+# target to preprocess a source file
+src/bot-opos6ul/O_AsservTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bot-opos6ul.dir/build.make CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservTest.cpp.i
+.PHONY : src/bot-opos6ul/O_AsservTest.cpp.i
+
+src/bot-opos6ul/O_AsservTest.s: src/bot-opos6ul/O_AsservTest.cpp.s
+.PHONY : src/bot-opos6ul/O_AsservTest.s
+
+# target to generate assembly for a file
+src/bot-opos6ul/O_AsservTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bot-opos6ul.dir/build.make CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservTest.cpp.s
+.PHONY : src/bot-opos6ul/O_AsservTest.cpp.s
+
+src/bot-opos6ul/O_AsservXYRotateTest.o: src/bot-opos6ul/O_AsservXYRotateTest.cpp.o
+.PHONY : src/bot-opos6ul/O_AsservXYRotateTest.o
+
+# target to build an object file
+src/bot-opos6ul/O_AsservXYRotateTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bot-opos6ul.dir/build.make CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservXYRotateTest.cpp.o
+.PHONY : src/bot-opos6ul/O_AsservXYRotateTest.cpp.o
+
+src/bot-opos6ul/O_AsservXYRotateTest.i: src/bot-opos6ul/O_AsservXYRotateTest.cpp.i
+.PHONY : src/bot-opos6ul/O_AsservXYRotateTest.i
+
+# target to preprocess a source file
+src/bot-opos6ul/O_AsservXYRotateTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bot-opos6ul.dir/build.make CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservXYRotateTest.cpp.i
+.PHONY : src/bot-opos6ul/O_AsservXYRotateTest.cpp.i
+
+src/bot-opos6ul/O_AsservXYRotateTest.s: src/bot-opos6ul/O_AsservXYRotateTest.cpp.s
+.PHONY : src/bot-opos6ul/O_AsservXYRotateTest.s
+
+# target to generate assembly for a file
+src/bot-opos6ul/O_AsservXYRotateTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bot-opos6ul.dir/build.make CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservXYRotateTest.cpp.s
+.PHONY : src/bot-opos6ul/O_AsservXYRotateTest.cpp.s
+
+src/bot-opos6ul/O_Asserv_CalageTest.o: src/bot-opos6ul/O_Asserv_CalageTest.cpp.o
+.PHONY : src/bot-opos6ul/O_Asserv_CalageTest.o
+
+# target to build an object file
+src/bot-opos6ul/O_Asserv_CalageTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bot-opos6ul.dir/build.make CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_Asserv_CalageTest.cpp.o
+.PHONY : src/bot-opos6ul/O_Asserv_CalageTest.cpp.o
+
+src/bot-opos6ul/O_Asserv_CalageTest.i: src/bot-opos6ul/O_Asserv_CalageTest.cpp.i
+.PHONY : src/bot-opos6ul/O_Asserv_CalageTest.i
+
+# target to preprocess a source file
+src/bot-opos6ul/O_Asserv_CalageTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bot-opos6ul.dir/build.make CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_Asserv_CalageTest.cpp.i
+.PHONY : src/bot-opos6ul/O_Asserv_CalageTest.cpp.i
+
+src/bot-opos6ul/O_Asserv_CalageTest.s: src/bot-opos6ul/O_Asserv_CalageTest.cpp.s
+.PHONY : src/bot-opos6ul/O_Asserv_CalageTest.s
+
+# target to generate assembly for a file
+src/bot-opos6ul/O_Asserv_CalageTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bot-opos6ul.dir/build.make CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_Asserv_CalageTest.cpp.s
+.PHONY : src/bot-opos6ul/O_Asserv_CalageTest.cpp.s
+
+src/bot-opos6ul/O_Asserv_SquareTest.o: src/bot-opos6ul/O_Asserv_SquareTest.cpp.o
+.PHONY : src/bot-opos6ul/O_Asserv_SquareTest.o
+
+# target to build an object file
+src/bot-opos6ul/O_Asserv_SquareTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bot-opos6ul.dir/build.make CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_Asserv_SquareTest.cpp.o
+.PHONY : src/bot-opos6ul/O_Asserv_SquareTest.cpp.o
+
+src/bot-opos6ul/O_Asserv_SquareTest.i: src/bot-opos6ul/O_Asserv_SquareTest.cpp.i
+.PHONY : src/bot-opos6ul/O_Asserv_SquareTest.i
+
+# target to preprocess a source file
+src/bot-opos6ul/O_Asserv_SquareTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bot-opos6ul.dir/build.make CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_Asserv_SquareTest.cpp.i
+.PHONY : src/bot-opos6ul/O_Asserv_SquareTest.cpp.i
+
+src/bot-opos6ul/O_Asserv_SquareTest.s: src/bot-opos6ul/O_Asserv_SquareTest.cpp.s
+.PHONY : src/bot-opos6ul/O_Asserv_SquareTest.s
+
+# target to generate assembly for a file
+src/bot-opos6ul/O_Asserv_SquareTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bot-opos6ul.dir/build.make CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_Asserv_SquareTest.cpp.s
+.PHONY : src/bot-opos6ul/O_Asserv_SquareTest.cpp.s
+
 src/bot-opos6ul/O_ButtonBarTest.o: src/bot-opos6ul/O_ButtonBarTest.cpp.o
 .PHONY : src/bot-opos6ul/O_ButtonBarTest.o
 
@@ -474,6 +618,30 @@ src/bot-opos6ul/O_ButtonBarTest.s: src/bot-opos6ul/O_ButtonBarTest.cpp.s
 src/bot-opos6ul/O_ButtonBarTest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bot-opos6ul.dir/build.make CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_ButtonBarTest.cpp.s
 .PHONY : src/bot-opos6ul/O_ButtonBarTest.cpp.s
+
+src/bot-opos6ul/O_GroveColorTest.o: src/bot-opos6ul/O_GroveColorTest.cpp.o
+.PHONY : src/bot-opos6ul/O_GroveColorTest.o
+
+# target to build an object file
+src/bot-opos6ul/O_GroveColorTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bot-opos6ul.dir/build.make CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_GroveColorTest.cpp.o
+.PHONY : src/bot-opos6ul/O_GroveColorTest.cpp.o
+
+src/bot-opos6ul/O_GroveColorTest.i: src/bot-opos6ul/O_GroveColorTest.cpp.i
+.PHONY : src/bot-opos6ul/O_GroveColorTest.i
+
+# target to preprocess a source file
+src/bot-opos6ul/O_GroveColorTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bot-opos6ul.dir/build.make CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_GroveColorTest.cpp.i
+.PHONY : src/bot-opos6ul/O_GroveColorTest.cpp.i
+
+src/bot-opos6ul/O_GroveColorTest.s: src/bot-opos6ul/O_GroveColorTest.cpp.s
+.PHONY : src/bot-opos6ul/O_GroveColorTest.s
+
+# target to generate assembly for a file
+src/bot-opos6ul/O_GroveColorTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bot-opos6ul.dir/build.make CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_GroveColorTest.cpp.s
+.PHONY : src/bot-opos6ul/O_GroveColorTest.cpp.s
 
 src/bot-opos6ul/O_IAbyPathTest.o: src/bot-opos6ul/O_IAbyPathTest.cpp.o
 .PHONY : src/bot-opos6ul/O_IAbyPathTest.o
@@ -3110,9 +3278,30 @@ help:
 	@echo "... src/bot-opos6ul/O_ActionManagerTimerTest.o"
 	@echo "... src/bot-opos6ul/O_ActionManagerTimerTest.i"
 	@echo "... src/bot-opos6ul/O_ActionManagerTimerTest.s"
+	@echo "... src/bot-opos6ul/O_AsservCalibrationTest.o"
+	@echo "... src/bot-opos6ul/O_AsservCalibrationTest.i"
+	@echo "... src/bot-opos6ul/O_AsservCalibrationTest.s"
+	@echo "... src/bot-opos6ul/O_AsservLineRotateTest.o"
+	@echo "... src/bot-opos6ul/O_AsservLineRotateTest.i"
+	@echo "... src/bot-opos6ul/O_AsservLineRotateTest.s"
+	@echo "... src/bot-opos6ul/O_AsservTest.o"
+	@echo "... src/bot-opos6ul/O_AsservTest.i"
+	@echo "... src/bot-opos6ul/O_AsservTest.s"
+	@echo "... src/bot-opos6ul/O_AsservXYRotateTest.o"
+	@echo "... src/bot-opos6ul/O_AsservXYRotateTest.i"
+	@echo "... src/bot-opos6ul/O_AsservXYRotateTest.s"
+	@echo "... src/bot-opos6ul/O_Asserv_CalageTest.o"
+	@echo "... src/bot-opos6ul/O_Asserv_CalageTest.i"
+	@echo "... src/bot-opos6ul/O_Asserv_CalageTest.s"
+	@echo "... src/bot-opos6ul/O_Asserv_SquareTest.o"
+	@echo "... src/bot-opos6ul/O_Asserv_SquareTest.i"
+	@echo "... src/bot-opos6ul/O_Asserv_SquareTest.s"
 	@echo "... src/bot-opos6ul/O_ButtonBarTest.o"
 	@echo "... src/bot-opos6ul/O_ButtonBarTest.i"
 	@echo "... src/bot-opos6ul/O_ButtonBarTest.s"
+	@echo "... src/bot-opos6ul/O_GroveColorTest.o"
+	@echo "... src/bot-opos6ul/O_GroveColorTest.i"
+	@echo "... src/bot-opos6ul/O_GroveColorTest.s"
 	@echo "... src/bot-opos6ul/O_IAbyPathTest.o"
 	@echo "... src/bot-opos6ul/O_IAbyPathTest.i"
 	@echo "... src/bot-opos6ul/O_IAbyPathTest.s"

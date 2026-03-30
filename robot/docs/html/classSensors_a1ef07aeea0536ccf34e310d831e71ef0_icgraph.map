@@ -1,6 +1,10 @@
 <map id="Sensors::addTimerSensors" name="Sensors::addTimerSensors">
-<area shape="rect" id="node1" title=" " alt="" coords="243,71,437,98"/>
-<area shape="rect" id="node2" href="$classO__State__DecisionMakerIA.html#a96d1f2a7618d607fd10cc51b9111e653" title="Execute l&#39;action." alt="" coords="5,5,195,47"/>
-<area shape="rect" id="node3" href="$classO__IAByPathTest.html#a3f57f585ff1382a52bf7f79a28d43629" title="Execute le test." alt="" coords="24,71,176,98"/>
-<area shape="rect" id="node4" href="$classO__SensorsTest.html#ae3b998034225e16586ded4ba3bd419e5" title="Execute le test." alt="" coords="27,122,173,149"/>
+<area shape="rect" id="node1" title=" " alt="" coords="261,173,456,199"/>
+<area shape="rect" id="node2" href="$classO__State__DecisionMakerIA.html#a96d1f2a7618d607fd10cc51b9111e653" title="Execute l&#39;action." alt="" coords="15,5,204,47"/>
+<area shape="rect" id="node3" href="$classO__Asserv__SquareTest.html#a16a0bf866c8070611cfa8952e3ef64d8" title=" " alt="" coords="14,71,205,98"/>
+<area shape="rect" id="node4" href="$classO__AsservLineRotateTest.html#ac54536863ccc3f6bc0ce3f30e99e1b70" title=" " alt="" coords="5,122,213,149"/>
+<area shape="rect" id="node5" href="$classO__AsservTest.html#a87e2ffa360e3e12ff5c7b81b1952a04f" title=" " alt="" coords="40,173,179,199"/>
+<area shape="rect" id="node6" href="$classO__AsservXYRotateTest.html#a13ccb691e37bdddc94ca53b29311e39a" title=" " alt="" coords="10,223,209,250"/>
+<area shape="rect" id="node7" href="$classO__IAByPathTest.html#a3f57f585ff1382a52bf7f79a28d43629" title="Execute le test." alt="" coords="33,274,185,301"/>
+<area shape="rect" id="node8" href="$classO__SensorsTest.html#ae3b998034225e16586ded4ba3bd419e5" title="Execute le test." alt="" coords="37,325,182,351"/>
 </map>

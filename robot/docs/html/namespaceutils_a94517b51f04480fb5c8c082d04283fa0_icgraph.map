@@ -1,9 +1,10 @@
 <map id="utils::sleep_for_secs" name="utils::sleep_for_secs">
-<area shape="rect" id="node1" title="Met en pause le thread courant pendant sec secondes." alt="" coords="775,71,929,98"/>
+<area shape="rect" id="node1" title="Met en pause le thread courant pendant sec secondes." alt="" coords="775,97,929,123"/>
 <area shape="rect" id="node2" href="$classtest_1_1SleepyThread.html#a9e9c78f1091dc91b903252cdd56aa0c4" title="Méthode virtuelle pure à implémenter dans les sous&#45;classes." alt="" coords="554,5,698,47"/>
 <area shape="rect" id="node3" href="$O__State__DecisionMakerIA_8cpp.html#a6af4b40e5e676265dd688e0004be0ff6" title="Action de fin de match : rejoint la zone de fin en haut de table." alt="" coords="547,71,705,98"/>
-<area shape="rect" id="node7" href="$classtest_1_1TimerPosixStandaloneBench.html#a71eaba7b9c9cf2dc0384bced04b641f4" title=" " alt="" coords="525,123,727,164"/>
-<area shape="rect" id="node4" href="$classO__State__DecisionMakerIA.html#a9b35f6bac1a5602ec2a711fa280be4a6" title="Configure les activités pour les zones de jeu du match." alt="" coords="265,31,455,72"/>
-<area shape="rect" id="node6" href="$classO__State__DecisionMakerIA.html#a8bd1c4d72bec8768c7c7c15bd2e665d8" title="Configure les activités pour le mode test de la table." alt="" coords="243,96,477,137"/>
-<area shape="rect" id="node5" href="$classO__State__DecisionMakerIA.html#a96d1f2a7618d607fd10cc51b9111e653" title="Execute l&#39;action." alt="" coords="5,64,195,105"/>
+<area shape="rect" id="node7" href="$classO__AsservXYRotateTest.html#a13ccb691e37bdddc94ca53b29311e39a" title=" " alt="" coords="527,122,725,149"/>
+<area shape="rect" id="node8" href="$classtest_1_1TimerPosixStandaloneBench.html#a71eaba7b9c9cf2dc0384bced04b641f4" title=" " alt="" coords="525,173,727,215"/>
+<area shape="rect" id="node4" href="$classO__State__DecisionMakerIA.html#a9b35f6bac1a5602ec2a711fa280be4a6" title="Configure les activités pour les zones de jeu du match." alt="" coords="265,32,455,73"/>
+<area shape="rect" id="node6" href="$classO__State__DecisionMakerIA.html#a8bd1c4d72bec8768c7c7c15bd2e665d8" title="Configure les activités pour le mode test de la table." alt="" coords="243,97,477,139"/>
+<area shape="rect" id="node5" href="$classO__State__DecisionMakerIA.html#a96d1f2a7618d607fd10cc51b9111e653" title="Execute l&#39;action." alt="" coords="5,65,195,107"/>
 </map>

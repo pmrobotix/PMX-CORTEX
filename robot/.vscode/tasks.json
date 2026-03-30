@@ -141,6 +141,22 @@
             "presentation": { "reveal": "always", "panel": "shared", "close": true }
         },
         {
+            // Ouvre le log SVG dans le navigateur
+            "label": "SVG Log: Ouvrir",
+            "type": "shell",
+            "command": "setsid firefox ${workspaceFolder}/build-${input:buildPreset}/resources-svg/index.html 2>/dev/null",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "statusbar": {
+                    "hide": false,
+                    "label": "$(open-preview) SVG Log",
+                    "color": "#DCDCAA"
+                }
+            },
+            "problemMatcher": [],
+            "presentation": { "reveal": "never" }
+        },
+        {
             // Generation de la documentation Doxygen
             "label": "Doxygen: Generer la doc",
             "type": "shell",
@@ -157,7 +173,7 @@
             // Genere la doc puis ouvre dans le navigateur
             "label": "Doxygen: Ouvrir la doc",
             "type": "shell",
-            "command": "xdg-open docs/html/index.html",
+            "command": "setsid firefox docs/html/index.html 2>/dev/null",
             "options": {
                 "cwd": "${workspaceFolder}",
                 "statusbar": { "hide": true }

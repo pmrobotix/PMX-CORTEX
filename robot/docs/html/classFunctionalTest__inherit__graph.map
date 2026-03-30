@@ -1,12 +1,19 @@
 <map id="FunctionalTest" name="FunctionalTest">
-<area shape="rect" id="node1" title="Abstract class to implement functional tests using ConsoleManager." alt="" coords="5,208,120,235"/>
+<area shape="rect" id="node1" title="Abstract class to implement functional tests using ConsoleManager." alt="" coords="5,385,120,412"/>
 <area shape="rect" id="node2" href="$classO__ActionManagerTimerTest.html" title="Effectue un test de l&#39;action manager avec timer." alt="" coords="168,5,369,32"/>
-<area shape="rect" id="node3" href="$classO__ButtonBarTest.html" title="Effectue un test sur les buttons." alt="" coords="203,56,334,83"/>
-<area shape="rect" id="node4" href="$classO__IAByPathTest.html" title="Effectue un test de l&#39;IAByPath." alt="" coords="207,107,330,133"/>
-<area shape="rect" id="node5" href="$classO__LcdBoardTest.html" title="Effectue un test du LCD sur 2 lignes." alt="" coords="206,157,331,184"/>
-<area shape="rect" id="node6" href="$classO__LedBarTest.html" title="Effectue un test de clignotement des LEDs du tableau d&#39;affichage." alt="" coords="213,208,324,235"/>
-<area shape="rect" id="node7" href="$classO__SensorsTest.html" title="Effectue un test avec les capteurs IR." alt="" coords="211,259,327,285"/>
-<area shape="rect" id="node8" href="$classO__ServoObjectsTest.html" title="Effectue un test sur les servos." alt="" coords="193,309,344,336"/>
-<area shape="rect" id="node9" href="$classO__ServoStepTest.html" title="Effectue un test sur les servos." alt="" coords="203,360,334,387"/>
-<area shape="rect" id="node10" href="$classO__TiretteTest.html" title="Effectue un test sur les buttons." alt="" coords="215,411,323,437"/>
+<area shape="rect" id="node3" href="$classO__AsservCalibrationTest.html" title="Test de calibration de l&#39;asservissement." alt="" coords="179,56,359,83"/>
+<area shape="rect" id="node4" href="$classO__AsservLineRotateTest.html" title="Test de l&#39;asservissement : ligne droite et rotation." alt="" coords="179,107,358,133"/>
+<area shape="rect" id="node5" href="$classO__AsservTest.html" title="Test de l&#39;asservissement : déplacement vers plusieurs positions XY." alt="" coords="214,157,323,184"/>
+<area shape="rect" id="node6" href="$classO__AsservXYRotateTest.html" title="Test de l&#39;asservissement par coordonnées absolues XY et rotation." alt="" coords="184,208,353,235"/>
+<area shape="rect" id="node7" href="$classO__Asserv__CalageTest.html" title="Test de recalage par bordure ou capteurs latéraux." alt="" coords="188,259,349,285"/>
+<area shape="rect" id="node8" href="$classO__Asserv__SquareTest.html" title="Test de l&#39;asservissement : parcours en carré." alt="" coords="188,309,349,336"/>
+<area shape="rect" id="node9" href="$classO__ButtonBarTest.html" title="Effectue un test sur les buttons." alt="" coords="203,360,334,387"/>
+<area shape="rect" id="node10" href="$classO__GroveColorTest.html" title="Test du capteur couleur Grove." alt="" coords="199,411,338,437"/>
+<area shape="rect" id="node11" href="$classO__IAByPathTest.html" title="Effectue un test de l&#39;IAByPath." alt="" coords="207,461,330,488"/>
+<area shape="rect" id="node12" href="$classO__LcdBoardTest.html" title="Effectue un test du LCD sur 2 lignes." alt="" coords="206,512,331,539"/>
+<area shape="rect" id="node13" href="$classO__LedBarTest.html" title="Effectue un test de clignotement des LEDs du tableau d&#39;affichage." alt="" coords="213,563,324,589"/>
+<area shape="rect" id="node14" href="$classO__SensorsTest.html" title="Effectue un test avec les capteurs IR." alt="" coords="211,613,327,640"/>
+<area shape="rect" id="node15" href="$classO__ServoObjectsTest.html" title="Effectue un test sur les servos." alt="" coords="193,664,344,691"/>
+<area shape="rect" id="node16" href="$classO__ServoStepTest.html" title="Effectue un test sur les servos." alt="" coords="203,715,334,741"/>
+<area shape="rect" id="node17" href="$classO__TiretteTest.html" title="Effectue un test sur les buttons." alt="" coords="215,765,323,792"/>
 </map>

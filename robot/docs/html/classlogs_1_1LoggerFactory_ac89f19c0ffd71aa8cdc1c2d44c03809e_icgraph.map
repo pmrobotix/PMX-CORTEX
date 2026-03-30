@@ -1,52 +1,52 @@
 <map id="logs::LoggerFactory::add" name="logs::LoggerFactory::add">
-<area shape="rect" id="node1" title="Cette méthode ajoute un appender au système." alt="" coords="451,1263,629,1290"/>
-<area shape="rect" id="node2" href="$classlogs_1_1LoggerFactory.html#a12d0cca9505bd37587b4c0333a7c86b8" title="Méthode d&#39;initialisation du système." alt="" coords="255,615,403,656"/>
-<area shape="rect" id="node4" href="$classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e" title="Cette méthode statique retourne un Logger en fonction de son nom." alt="" coords="255,1288,403,1329"/>
+<area shape="rect" id="node1" title="Cette méthode ajoute un appender au système." alt="" coords="451,1302,629,1329"/>
+<area shape="rect" id="node2" href="$classlogs_1_1LoggerFactory.html#a12d0cca9505bd37587b4c0333a7c86b8" title="Méthode d&#39;initialisation du système." alt="" coords="255,633,403,675"/>
+<area shape="rect" id="node4" href="$classlogs_1_1LoggerFactory.html#a82585b5de73e471e06cafdccc3b3721e" title="Cette méthode statique retourne un Logger en fonction de son nom." alt="" coords="255,1327,403,1368"/>
 <area shape="rect" id="node3" href="$classlogs_1_1LoggerFactory.html#af48dba1727daa4d9114882e5b64c35ac" title="constructeur de la classe." alt="" coords="32,5,180,47"/>
 <area shape="rect" id="node5" href="$classSvgWriter.html#a30059a7d7289c57d3bf1bf623713dc0a" title="Constructeur de la classe." alt="" coords="27,71,185,98"/>
 <area shape="rect" id="node6" href="$classO__ActionManagerTimerTest.html#a6df609be6efe8b210fff31c250b2db1c" title="Retourne le Logger associé à la classe L_ActionManagerTimerTest." alt="" coords="5,123,207,164"/>
 <area shape="rect" id="node7" href="$classTestAction.html#a6dd04c86a0ca9f6494b4549a00002c38" title="Retourne le Logger associé à la classe TestAction." alt="" coords="37,189,175,215"/>
 <area shape="rect" id="node8" href="$classTestTimer.html#a26c7a4931e603c4dd32f7f11d2a31ce1" title="Retourne le Logger associé à la classe TestTimer." alt="" coords="39,239,173,266"/>
-<area shape="rect" id="node9" href="$classO__ButtonBarTest.html#a75d34fba1b48cbdec357f15f304f3e17" title="Retourne le Logger associé à la classe O_ButtonBarTest." alt="" coords="17,290,195,317"/>
-<area shape="rect" id="node10" href="$classO__IAByPathTest.html#a62ac1d696b52b91d4648eda7ac9827c3" title=" " alt="" coords="20,341,192,367"/>
-<area shape="rect" id="node11" href="$classO__LcdBoardTest.html#a973a63c9823e70b1e98f9c958b143589" title="Retourne le Logger associé à la classe O_LcdBoardTest." alt="" coords="19,391,193,418"/>
-<area shape="rect" id="node12" href="$classO__LedBarTest.html#a867bffdb06dfc61b4c476f62292bc66a" title=" " alt="" coords="27,442,185,469"/>
-<area shape="rect" id="node13" href="$classO__SensorsTest.html#ab6080ad39471d867071cecd3010f0215" title="Retourne le Logger associé à la classe O_SensorsTest." alt="" coords="23,493,189,519"/>
-<area shape="rect" id="node14" href="$classO__ServoObjectsTest.html#a613a05c62e276131fd17a6f513c510f7" title="Retourne le Logger associé à la classe O_ServoObjectsTest." alt="" coords="31,544,181,585"/>
-<area shape="rect" id="node15" href="$classO__ServoStepTest.html#adb8bd519481fc1d3ecb9c4b4642b8057" title="Retourne le Logger associé à la classe O_ServoStepTest." alt="" coords="16,610,196,637"/>
-<area shape="rect" id="node16" href="$classO__State__DecisionMakerIA.html#a4db7f721d0291e9789b6d5f4822b9b97" title=" " alt="" coords="11,661,201,703"/>
-<area shape="rect" id="node17" href="$classO__State__Init.html#a40e98691ba82e9ea8716093e16eb098f" title=" " alt="" coords="31,727,181,754"/>
-<area shape="rect" id="node18" href="$classO__State__WaitEndOfMatch.html#a424117ef035f9a8e6fb42a18d301fc6d" title=" " alt="" coords="12,779,200,820"/>
-<area shape="rect" id="node19" href="$classO__TiretteTest.html#a244edf137b102c00af5ed5631c4536cd" title="Retourne le Logger associé à la classe O_TiretteTest." alt="" coords="27,845,185,871"/>
-<area shape="rect" id="node20" href="$classOPOS6UL__ActionsExtended.html#a552c21bdbdca5420b05352ef1df8021c" title=" " alt="" coords="7,896,205,937"/>
-<area shape="rect" id="node21" href="$classOPOS6UL__AsservExtended.html#aa14ff46fea4a295db8a7f0cc1977edae" title="Return Logger linked to OPOS6UL_AsservExtended." alt="" coords="9,961,203,1003"/>
-<area shape="rect" id="node22" href="$classOPOS6UL__RobotExtended.html#a096aea03c751e0cfdc4ce25741fdbe67" title=" " alt="" coords="11,1027,201,1068"/>
-<area shape="rect" id="node23" href="$classActions.html#a9cc6c9bd885d6e03234b0cf5061a5ca1" title="Return Logger linked to Actions." alt="" coords="47,1093,165,1119"/>
-<area shape="rect" id="node24" href="$classButtonBar.html#a17ebe0e964bb831d3b743c087d9ce7b9" title="Retourne le Logger associé à la classe ButtonBar." alt="" coords="38,1143,174,1170"/>
-<area shape="rect" id="node25" href="$classLcdShield.html#a77f0ad9f1274f427f69e9d1030e3f1c7" title="Retourne le Logger associé à la classe LcdShield." alt="" coords="39,1194,173,1221"/>
-<area shape="rect" id="node26" href="$classLedBar.html#a349f726f4e7cd0058f95b6c9d9453b18" title="Retourne le Logger associé à la classe LedBar." alt="" coords="48,1245,164,1271"/>
-<area shape="rect" id="node27" href="$classLedBarTimer.html#abb0c54240b3a0b9d35ed6e9995f94b36" title="Retourne le Logger associé à la classe LedBarTimer." alt="" coords="29,1295,183,1322"/>
-<area shape="rect" id="node28" href="$classLedBarAction.html#ad1338cf51583f175735dbcae831404af" title="Retourne le Logger associé à la classe LedBarAction." alt="" coords="27,1346,185,1373"/>
-<area shape="rect" id="node29" href="$classSensors.html#a445b086f263ac98b47cb545d11b73ab1" title=" " alt="" coords="45,1397,167,1423"/>
-<area shape="rect" id="node30" href="$classSensorsTimer.html#a96561df211896b2acad5c5aecd2a36eb" title=" " alt="" coords="26,1447,186,1474"/>
-<area shape="rect" id="node31" href="$classServoObjectsSystem.html#a3443f7bcf51a8e48e813abac590a0f66" title="Retourne le Logger associé à la classe ServoObjectsSystem." alt="" coords="27,1499,185,1540"/>
-<area shape="rect" id="node32" href="$classServoObjectsTimer.html#a0c60ec8f42c1c4c54ca3b6aa219b7cd8" title="Retourne le Logger associé à la classe ServoObjectsTimer." alt="" coords="29,1564,183,1605"/>
-<area shape="rect" id="node33" href="$classServoUsingMotor.html#a50e191c7a858d08b29055528ab585eb6" title="Retourne le Logger associé à la classe ServoUsingMotor." alt="" coords="15,1630,197,1657"/>
-<area shape="rect" id="node34" href="$classSoundBar.html#a26880f8b93ee5135df79f122409cc20f" title="Retourne le Logger associé à la classe SoundBar." alt="" coords="39,1681,173,1707"/>
-<area shape="rect" id="node35" href="$classSoundBarAction.html#a5d000eaf81cdc69068ea9b16c1462363" title="Retourne le Logger associé à la classe SoundBarAction." alt="" coords="19,1731,193,1758"/>
-<area shape="rect" id="node36" href="$classTirette.html#ae3ad64cb17f5a3e5424280d971111365" title="Retourne le Logger associé à la classe Tirette." alt="" coords="49,1782,163,1809"/>
-<area shape="rect" id="node37" href="$classAsservEsialR.html#a7d6428bb79534a27e2b8b2e1baae943b" title="Retourne le Logger associe a la classe AsservEsialR." alt="" coords="29,1833,183,1859"/>
-<area shape="rect" id="node38" href="$classAsserv.html#a5857f21b4410828db5387367bb63a0df" title="Return Logger linked to Asserv." alt="" coords="49,1883,163,1910"/>
-<area shape="rect" id="node39" href="$classHardwareConfig.html#af0540d247a7c0ca862e6e9eadf3481e0" title=" " alt="" coords="19,1934,193,1961"/>
-<area shape="rect" id="node40" href="$classIAbyPath.html#a8a3c78c75a2208494e2774b918de3d45" title="Retourne le Logger associé à la classe IAbyPath." alt="" coords="42,1985,170,2011"/>
-<area shape="rect" id="node41" href="$classIAbyZone.html#a4cc140058dae45b88658c5b691fee8a9" title="Retourne le Logger associé à la classe IAbyZone." alt="" coords="39,2035,173,2062"/>
-<area shape="rect" id="node42" href="$classRobot.html#ace39678c476c8e8b193d9c8baf7a692b" title="Retourne le Logger associe a la classe Robot. public car utilise dans Main." alt="" coords="51,2086,161,2113"/>
-<area shape="rect" id="node43" href="$classAutomate.html#a719aca8aca98e5eff35d788ba125a5fc" title="Retourne le Logger associé à la classe Automate." alt="" coords="39,2137,173,2163"/>
-<area shape="rect" id="node44" href="$classActionManagerTimer.html#a280846361e5c7e0ebe57972755841c2b" title=" " alt="" coords="27,2188,185,2229"/>
-<area shape="rect" id="node45" href="$classActionDriver.html#a8b895ab55f6cc64b442fe3f4f435486d" title=" " alt="" coords="30,2254,182,2281"/>
-<area shape="rect" id="node46" href="$classAdafruit__MCP23017.html#af6b2322503226b23c3017a707fcaba64" title=" " alt="" coords="27,2305,185,2347"/>
-<area shape="rect" id="node47" href="$classAdafruit__RGBLCDShield.html#a93313ba4a8e5e896f400006672ff4317" title=" " alt="" coords="19,2371,193,2412"/>
-<area shape="rect" id="node48" href="$classAsservDriver.html#a037c58098a47f261e1b2fd97cc818ff5" title="Retourne le Logger associé à la classe AsservDriver(OPOS6UL)." alt="" coords="29,2437,183,2463"/>
-<area shape="rect" id="node49" href="$classBeaconSensors.html#a6313d9e396cb5cd115205753e16a1932" title="Retourne le Logger associé à la classe BeaconSensors(OPOS6UL)." alt="" coords="21,2487,191,2514"/>
-<area shape="rect" id="node50" href="$classButtonDriver.html#ad012e9f5521b17497279e822cce78950" title=" " alt="" coords="29,2538,183,2565"/>
+<area shape="rect" id="node9" href="$classO__Asserv__CalageTest.html#a220b36b49a9a7165c8ff933719e16fba" title=" " alt="" coords="25,291,187,332"/>
+<area shape="rect" id="node10" href="$classO__Asserv__SquareTest.html#aca6b22e0566f6cde4a024475b7f872f2" title=" " alt="" coords="25,356,187,397"/>
+<area shape="rect" id="node11" href="$classO__AsservCalibrationTest.html#ad024da01d3b2c2e806255b187ddba848" title=" " alt="" coords="16,421,196,463"/>
+<area shape="rect" id="node12" href="$classO__AsservLineRotateTest.html#a51cfa99bed1fa60b3c51097afb9027b9" title=" " alt="" coords="17,487,195,528"/>
+<area shape="rect" id="node13" href="$classO__AsservTest.html#a6ad43545a837844431441acda6edc9f1" title=" " alt="" coords="27,553,185,579"/>
+<area shape="rect" id="node14" href="$classO__AsservXYRotateTest.html#a43ac8591846479c855d1ace6e612fa8a" title=" " alt="" coords="21,604,191,645"/>
+<area shape="rect" id="node15" href="$classO__ButtonBarTest.html#a75d34fba1b48cbdec357f15f304f3e17" title="Retourne le Logger associé à la classe O_ButtonBarTest." alt="" coords="17,670,195,697"/>
+<area shape="rect" id="node16" href="$classO__GroveColorTest.html#a9d676fdd003eb6eefafe1f7dad66093c" title=" " alt="" coords="13,721,199,747"/>
+<area shape="rect" id="node17" href="$classO__IAByPathTest.html#a62ac1d696b52b91d4648eda7ac9827c3" title=" " alt="" coords="20,771,192,798"/>
+<area shape="rect" id="node18" href="$classO__LcdBoardTest.html#a973a63c9823e70b1e98f9c958b143589" title="Retourne le Logger associé à la classe O_LcdBoardTest." alt="" coords="19,822,193,849"/>
+<area shape="rect" id="node19" href="$classO__LedBarTest.html#a867bffdb06dfc61b4c476f62292bc66a" title=" " alt="" coords="27,873,185,899"/>
+<area shape="rect" id="node20" href="$classO__SensorsTest.html#ab6080ad39471d867071cecd3010f0215" title="Retourne le Logger associé à la classe O_SensorsTest." alt="" coords="23,923,189,950"/>
+<area shape="rect" id="node21" href="$classO__ServoObjectsTest.html#a613a05c62e276131fd17a6f513c510f7" title="Retourne le Logger associé à la classe O_ServoObjectsTest." alt="" coords="31,975,181,1016"/>
+<area shape="rect" id="node22" href="$classO__ServoStepTest.html#adb8bd519481fc1d3ecb9c4b4642b8057" title="Retourne le Logger associé à la classe O_ServoStepTest." alt="" coords="16,1041,196,1067"/>
+<area shape="rect" id="node23" href="$classO__State__DecisionMakerIA.html#a4db7f721d0291e9789b6d5f4822b9b97" title=" " alt="" coords="11,1092,201,1133"/>
+<area shape="rect" id="node24" href="$classO__State__Init.html#a40e98691ba82e9ea8716093e16eb098f" title=" " alt="" coords="31,1158,181,1185"/>
+<area shape="rect" id="node25" href="$classO__State__WaitEndOfMatch.html#a424117ef035f9a8e6fb42a18d301fc6d" title=" " alt="" coords="12,1209,200,1251"/>
+<area shape="rect" id="node26" href="$classO__TiretteTest.html#a244edf137b102c00af5ed5631c4536cd" title="Retourne le Logger associé à la classe O_TiretteTest." alt="" coords="27,1275,185,1302"/>
+<area shape="rect" id="node27" href="$classOPOS6UL__ActionsExtended.html#a552c21bdbdca5420b05352ef1df8021c" title=" " alt="" coords="7,1327,205,1368"/>
+<area shape="rect" id="node28" href="$classOPOS6UL__AsservExtended.html#aa14ff46fea4a295db8a7f0cc1977edae" title="Return Logger linked to OPOS6UL_AsservExtended." alt="" coords="9,1392,203,1433"/>
+<area shape="rect" id="node29" href="$classOPOS6UL__RobotExtended.html#a096aea03c751e0cfdc4ce25741fdbe67" title=" " alt="" coords="11,1457,201,1499"/>
+<area shape="rect" id="node30" href="$classActions.html#a9cc6c9bd885d6e03234b0cf5061a5ca1" title="Return Logger linked to Actions." alt="" coords="47,1523,165,1550"/>
+<area shape="rect" id="node31" href="$classButtonBar.html#a17ebe0e964bb831d3b743c087d9ce7b9" title="Retourne le Logger associé à la classe ButtonBar." alt="" coords="38,1574,174,1601"/>
+<area shape="rect" id="node32" href="$classLcdShield.html#a77f0ad9f1274f427f69e9d1030e3f1c7" title="Retourne le Logger associé à la classe LcdShield." alt="" coords="39,1625,173,1651"/>
+<area shape="rect" id="node33" href="$classLedBar.html#a349f726f4e7cd0058f95b6c9d9453b18" title="Retourne le Logger associé à la classe LedBar." alt="" coords="48,1675,164,1702"/>
+<area shape="rect" id="node34" href="$classLedBarTimer.html#abb0c54240b3a0b9d35ed6e9995f94b36" title="Retourne le Logger associé à la classe LedBarTimer." alt="" coords="29,1726,183,1753"/>
+<area shape="rect" id="node35" href="$classLedBarAction.html#ad1338cf51583f175735dbcae831404af" title="Retourne le Logger associé à la classe LedBarAction." alt="" coords="27,1777,185,1803"/>
+<area shape="rect" id="node36" href="$classSensors.html#a445b086f263ac98b47cb545d11b73ab1" title=" " alt="" coords="45,1827,167,1854"/>
+<area shape="rect" id="node37" href="$classSensorsTimer.html#a96561df211896b2acad5c5aecd2a36eb" title=" " alt="" coords="26,1878,186,1905"/>
+<area shape="rect" id="node38" href="$classServoObjectsSystem.html#a3443f7bcf51a8e48e813abac590a0f66" title="Retourne le Logger associé à la classe ServoObjectsSystem." alt="" coords="27,1929,185,1971"/>
+<area shape="rect" id="node39" href="$classServoObjectsTimer.html#a0c60ec8f42c1c4c54ca3b6aa219b7cd8" title="Retourne le Logger associé à la classe ServoObjectsTimer." alt="" coords="29,1995,183,2036"/>
+<area shape="rect" id="node40" href="$classServoUsingMotor.html#a50e191c7a858d08b29055528ab585eb6" title="Retourne le Logger associé à la classe ServoUsingMotor." alt="" coords="15,2061,197,2087"/>
+<area shape="rect" id="node41" href="$classSoundBar.html#a26880f8b93ee5135df79f122409cc20f" title="Retourne le Logger associé à la classe SoundBar." alt="" coords="39,2111,173,2138"/>
+<area shape="rect" id="node42" href="$classSoundBarAction.html#a5d000eaf81cdc69068ea9b16c1462363" title="Retourne le Logger associé à la classe SoundBarAction." alt="" coords="19,2162,193,2189"/>
+<area shape="rect" id="node43" href="$classTirette.html#ae3ad64cb17f5a3e5424280d971111365" title="Retourne le Logger associé à la classe Tirette." alt="" coords="49,2213,163,2239"/>
+<area shape="rect" id="node44" href="$classAsservEsialR.html#a7d6428bb79534a27e2b8b2e1baae943b" title="Retourne le Logger associe a la classe AsservEsialR." alt="" coords="29,2263,183,2290"/>
+<area shape="rect" id="node45" href="$classAsserv.html#a5857f21b4410828db5387367bb63a0df" title="Return Logger linked to Asserv." alt="" coords="49,2314,163,2341"/>
+<area shape="rect" id="node46" href="$classHardwareConfig.html#af0540d247a7c0ca862e6e9eadf3481e0" title=" " alt="" coords="19,2365,193,2391"/>
+<area shape="rect" id="node47" href="$classIAbyPath.html#a8a3c78c75a2208494e2774b918de3d45" title="Retourne le Logger associé à la classe IAbyPath." alt="" coords="42,2415,170,2442"/>
+<area shape="rect" id="node48" href="$classIAbyZone.html#a4cc140058dae45b88658c5b691fee8a9" title="Retourne le Logger associé à la classe IAbyZone." alt="" coords="39,2466,173,2493"/>
+<area shape="rect" id="node49" href="$classRobot.html#ace39678c476c8e8b193d9c8baf7a692b" title="Retourne le Logger associe a la classe Robot. public car utilise dans Main." alt="" coords="51,2517,161,2543"/>
+<area shape="rect" id="node50" href="$classAutomate.html#a719aca8aca98e5eff35d788ba125a5fc" title="Retourne le Logger associé à la classe Automate." alt="" coords="39,2567,173,2594"/>
 </map>

@@ -1,49 +1,52 @@
 <map id="Utils::UOTomm" name="Utils::UOTomm">
-<area shape="rect" id="node1" title=" " alt="" coords="2819,594,2939,621"/>
-<area shape="rect" id="node2" href="$classOdometrie.html#a4e35405c76f7c939f143f2d07a969e23" title=" " alt="" coords="2616,569,2771,595"/>
-<area shape="rect" id="node47" href="$classOdometrie.html#a349119b93cb97e0ef586fbf78e43b823" title=" " alt="" coords="2616,619,2771,646"/>
-<area shape="rect" id="node3" href="$classAsservEsialR.html#a18064f0087aa1cd67cbdd131f99720db" title="Lit la position courante du robot." alt="" coords="2348,594,2568,621"/>
-<area shape="rect" id="node4" href="$classAsservEsialR.html#abfd3be9bde7bf8ae887688bf8bc0ca43" title="Méthode virtuelle pure à implémenter dans les sous&#45;classes." alt="" coords="2129,569,2295,595"/>
-<area shape="rect" id="node5" href="$classAsserv.html#a02914fbd6c3d2ee03c896cb7a9f86078" title=" " alt="" coords="2124,619,2300,646"/>
-<area shape="rect" id="node6" href="$classAsserv.html#a314e3ff9a8a538a23d26dcb802386024" title=" " alt="" coords="1883,372,2067,413"/>
-<area shape="rect" id="node7" href="$classAsserv.html#a9e997a871e745e687a4088103378bae3" title=" " alt="" coords="1878,437,2073,479"/>
-<area shape="rect" id="node8" href="$classOPOS6UL__AsservExtended.html#a4e96d47def0637c3f6e135a0a3ee3d1c" title="Vérifie si une détection capteur correspond à une position dans le terrain." alt="" coords="1878,503,2073,544"/>
-<area shape="rect" id="node9" href="$classAsserv.html#a11fc2df956a191f42ab34088a7ae9ce0" title=" " alt="" coords="1895,569,2056,595"/>
-<area shape="rect" id="node36" href="$classO__SensorsTest.html#ae3b998034225e16586ded4ba3bd419e5" title="Execute le test." alt="" coords="1361,873,1507,899"/>
-<area shape="rect" id="node40" href="$classAsserv.html#a871088db63d1a0e20ccbf387c6f895db" title=" " alt="" coords="1633,619,1800,646"/>
-<area shape="rect" id="node43" href="$classAsserv.html#a2cca6401ccf8cfc7cc927177cba14f4a" title=" " alt="" coords="1634,670,1799,697"/>
-<area shape="rect" id="node44" href="$classAsserv.html#ae8c86b1f9cfe795e8c9aad3e7e4ea40c" title=" " alt="" coords="1875,772,2075,813"/>
-<area shape="rect" id="node46" href="$classAsserv.html#a959dc45e49f920c77e62a11b75a15641" title=" " alt="" coords="1875,837,2076,879"/>
-<area shape="rect" id="node10" href="$classAsserv.html#a31cb7196e12282ed27c45e8f58b4db04" title=" " alt="" coords="1615,163,1818,190"/>
-<area shape="rect" id="node29" href="$classAsserv.html#a0c1a1048174322c00dfba79c74193bd1" title=" " alt="" coords="1607,569,1827,595"/>
-<area shape="rect" id="node11" href="$classAsserv.html#af438189501d475dcb6632ce63efe5e5f" title=" " alt="" coords="1036,137,1251,179"/>
-<area shape="rect" id="node12" href="$classAsserv.html#aa2ec3b84e3cccf2145cc70e33f08dc58" title=" " alt="" coords="1333,366,1535,393"/>
-<area shape="rect" id="node15" href="$classAsserv.html#a0a57aa0008a30ba9b13502e4dd61310d" title=" " alt="" coords="1042,5,1245,47"/>
-<area shape="rect" id="node16" href="$classAsserv.html#a960679fed5ab18f631d7847c95fc1f85" title=" " alt="" coords="1339,214,1529,241"/>
-<area shape="rect" id="node24" href="$classIAbyPath.html#a00b7b125584bda7731696dfd5069b17c" title=" " alt="" coords="1039,71,1247,112"/>
-<area shape="rect" id="node28" href="$classIAbyPath.html#a42570f6bc87216c2ac5d028ad596fe02" title=" " alt="" coords="1327,163,1541,190"/>
-<area shape="rect" id="node13" href="$classIAbyPath.html#acc586e1ba62ffb7a21087a5ca4d2f131" title=" " alt="" coords="1025,475,1261,502"/>
-<area shape="rect" id="node14" href="$classIAbyPath.html#a9535c82f137778cc6cd4b159fe3d58ea" title=" " alt="" coords="755,319,977,360"/>
-<area shape="rect" id="node17" href="$classIAbyPath.html#aa2a96904ea74078d56dad53979b1d999" title=" " alt="" coords="1031,315,1255,342"/>
-<area shape="rect" id="node18" href="$O__State__DecisionMakerIA_8cpp.html#a1cbc5f5cba5f72b993c68f4aad4473f7" title="Action de poussée de la prise en zone basse." alt="" coords="547,349,685,375"/>
-<area shape="rect" id="node19" href="$classIAbyPath.html#a3f27b793f84340c99ca33e12c2380bb4" title=" " alt="" coords="761,253,971,295"/>
-<area shape="rect" id="node20" href="$O__State__DecisionMakerIA_8cpp.html#a6af4b40e5e676265dd688e0004be0ff6" title="Action de fin de match : rejoint la zone de fin en haut de table." alt="" coords="537,279,695,306"/>
-<area shape="rect" id="node21" href="$classO__State__DecisionMakerIA.html#a9b35f6bac1a5602ec2a711fa280be4a6" title="Configure les activités pour les zones de jeu du match." alt="" coords="265,272,455,313"/>
-<area shape="rect" id="node23" href="$classO__State__DecisionMakerIA.html#a8bd1c4d72bec8768c7c7c15bd2e665d8" title="Configure les activités pour le mode test de la table." alt="" coords="243,337,477,379"/>
-<area shape="rect" id="node22" href="$classO__State__DecisionMakerIA.html#a96d1f2a7618d607fd10cc51b9111e653" title="Execute l&#39;action." alt="" coords="5,337,195,379"/>
-<area shape="rect" id="node25" href="$O__IAbyPathTest_8cpp.html#ac1055b8eb7025052d58ebaf15869a480" title=" " alt="" coords="777,53,955,79"/>
-<area shape="rect" id="node27" href="$O__IAbyPathTest_8cpp.html#aafb960063ea3193551e7ba63626e2561" title=" " alt="" coords="777,103,955,130"/>
-<area shape="rect" id="node26" href="$classO__IAByPathTest.html#abedd21fde4835d641e6aa3f8e1c6581f" title="Configure les activités de l&#39;IA pour le test." alt="" coords="525,78,707,105"/>
-<area shape="rect" id="node30" href="$classIAbyPath.html#a36763cca0b7005fddde021c35f054dc7" title=" " alt="" coords="1329,569,1539,595"/>
-<area shape="rect" id="node31" href="$classIAbyPath.html#ab1f1155d4a5565efa55a0c11b8a1abfa" title=" " alt="" coords="1335,315,1533,342"/>
-<area shape="rect" id="node33" href="$classIAbyPath.html#a0c7e960bbc87c86d716ac5aaa7da986a" title=" " alt="" coords="1366,670,1502,697"/>
-<area shape="rect" id="node35" href="$classIAbyZone.html#a0b591dae1e57bf13e5189a0a6de88823" title=" " alt="" coords="1363,771,1505,798"/>
-<area shape="rect" id="node37" href="$classO__State__Init.html#a1980cd82dcb83e88d61f2e7e14dddfa0" title=" " alt="" coords="1358,619,1510,646"/>
-<area shape="rect" id="node39" href="$classRobot.html#a7c2c32badf138c2a26b82068447c3c98" title="Fonctions de motion intelligente en plusieurs essais." alt="" coords="1360,822,1508,849"/>
-<area shape="rect" id="node32" href="$classIAbyPath.html#ab95592ae87c3f666835d3fbdac8c5ffd" title=" " alt="" coords="1039,367,1247,408"/>
-<area shape="rect" id="node34" href="$classO__IAByPathTest.html#a3f57f585ff1382a52bf7f79a28d43629" title="Execute le test." alt="" coords="1067,645,1219,671"/>
-<area shape="rect" id="node38" href="$classO__State__Init.html#abc19788b7457d1f819245dd28367fe91" title="Exécute l&#39;état d&#39;initialisation." alt="" coords="1063,594,1223,621"/>
-<area shape="rect" id="node41" href="$classIAbyZone.html#a4d9aa1eca3385fb6d2b0610de934b5be" title=" " alt="" coords="1066,923,1221,950"/>
-<area shape="rect" id="node42" href="$classIAbyZone.html#a1d40e763ea935fc4b09de7508fc71805" title=" " alt="" coords="1309,923,1559,950"/>
-<area shape="rect" id="node45" href="$classSensorsTimer.html#abc377178c2471f664b31658554963e83" title="Actions à executer pour le timer." alt="" coords="1630,811,1803,838"/>
+<area shape="rect" id="node1" title=" " alt="" coords="2284,1035,2404,1062"/>
+<area shape="rect" id="node2" href="$classOdometrie.html#a4e35405c76f7c939f143f2d07a969e23" title=" " alt="" coords="2081,1010,2236,1037"/>
+<area shape="rect" id="node50" href="$classOdometrie.html#a349119b93cb97e0ef586fbf78e43b823" title=" " alt="" coords="2081,1061,2236,1087"/>
+<area shape="rect" id="node3" href="$classAsservEsialR.html#a18064f0087aa1cd67cbdd131f99720db" title="Lit la position courante du robot." alt="" coords="1813,1035,2033,1062"/>
+<area shape="rect" id="node4" href="$classAsservEsialR.html#abfd3be9bde7bf8ae887688bf8bc0ca43" title="Méthode virtuelle pure à implémenter dans les sous&#45;classes." alt="" coords="1595,1010,1760,1037"/>
+<area shape="rect" id="node5" href="$classAsserv.html#a02914fbd6c3d2ee03c896cb7a9f86078" title=" " alt="" coords="1589,1061,1765,1087"/>
+<area shape="rect" id="node6" href="$classAsserv.html#a314e3ff9a8a538a23d26dcb802386024" title=" " alt="" coords="1345,5,1529,47"/>
+<area shape="rect" id="node7" href="$classAsserv.html#a9e997a871e745e687a4088103378bae3" title=" " alt="" coords="1339,71,1534,112"/>
+<area shape="rect" id="node8" href="$classOPOS6UL__AsservExtended.html#a4e96d47def0637c3f6e135a0a3ee3d1c" title="Vérifie si une détection capteur correspond à une position dans le terrain." alt="" coords="1339,136,1534,177"/>
+<area shape="rect" id="node9" href="$classAsserv.html#a11fc2df956a191f42ab34088a7ae9ce0" title=" " alt="" coords="1356,1050,1517,1077"/>
+<area shape="rect" id="node14" href="$classO__AsservXYRotateTest.html#a13ccb691e37bdddc94ca53b29311e39a" title=" " alt="" coords="224,1469,423,1495"/>
+<area shape="rect" id="node17" href="$classO__Asserv__CalageTest.html#ad731f64308b62269f060e74c0282e30f" title=" " alt="" coords="228,297,419,323"/>
+<area shape="rect" id="node18" href="$classO__Asserv__SquareTest.html#a16a0bf866c8070611cfa8952e3ef64d8" title=" " alt="" coords="228,546,419,573"/>
+<area shape="rect" id="node28" href="$classO__AsservLineRotateTest.html#ac54536863ccc3f6bc0ce3f30e99e1b70" title=" " alt="" coords="497,339,705,366"/>
+<area shape="rect" id="node38" href="$classO__SensorsTest.html#ae3b998034225e16586ded4ba3bd419e5" title="Execute le test." alt="" coords="819,1570,964,1597"/>
+<area shape="rect" id="node42" href="$classAsserv.html#a871088db63d1a0e20ccbf387c6f895db" title=" " alt="" coords="1091,1342,1257,1369"/>
+<area shape="rect" id="node45" href="$classAsserv.html#a2cca6401ccf8cfc7cc927177cba14f4a" title=" " alt="" coords="1091,1146,1257,1173"/>
+<area shape="rect" id="node46" href="$classO__AsservCalibrationTest.html#a578ac4b37bd38a475665dc353cb834f5" title=" " alt="" coords="1332,2026,1541,2053"/>
+<area shape="rect" id="node47" href="$classAsserv.html#ae8c86b1f9cfe795e8c9aad3e7e4ea40c" title=" " alt="" coords="1337,2077,1537,2119"/>
+<area shape="rect" id="node49" href="$classAsserv.html#a959dc45e49f920c77e62a11b75a15641" title=" " alt="" coords="1336,2143,1537,2184"/>
+<area shape="rect" id="node10" href="$classAsserv.html#a31cb7196e12282ed27c45e8f58b4db04" title=" " alt="" coords="1073,607,1275,634"/>
+<area shape="rect" id="node30" href="$classAsserv.html#a0c1a1048174322c00dfba79c74193bd1" title=" " alt="" coords="1064,1013,1284,1039"/>
+<area shape="rect" id="node11" href="$classAsserv.html#af438189501d475dcb6632ce63efe5e5f" title=" " alt="" coords="493,632,708,673"/>
+<area shape="rect" id="node12" href="$classAsserv.html#aa2ec3b84e3cccf2145cc70e33f08dc58" title=" " alt="" coords="790,1063,993,1090"/>
+<area shape="rect" id="node16" href="$classAsserv.html#a0a57aa0008a30ba9b13502e4dd61310d" title=" " alt="" coords="499,391,702,432"/>
+<area shape="rect" id="node19" href="$classAsserv.html#a960679fed5ab18f631d7847c95fc1f85" title=" " alt="" coords="796,658,987,685"/>
+<area shape="rect" id="node25" href="$classIAbyPath.html#a00b7b125584bda7731696dfd5069b17c" title=" " alt="" coords="497,456,705,497"/>
+<area shape="rect" id="node29" href="$classIAbyPath.html#a42570f6bc87216c2ac5d028ad596fe02" title=" " alt="" coords="784,759,999,786"/>
+<area shape="rect" id="node13" href="$classIAbyPath.html#acc586e1ba62ffb7a21087a5ca4d2f131" title=" " alt="" coords="483,1215,719,1242"/>
+<area shape="rect" id="node15" href="$classIAbyPath.html#a9535c82f137778cc6cd4b159fe3d58ea" title=" " alt="" coords="212,963,435,1004"/>
+<area shape="rect" id="node20" href="$classIAbyPath.html#aa2a96904ea74078d56dad53979b1d999" title=" " alt="" coords="489,1029,713,1055"/>
+<area shape="rect" id="node21" href="$O__State__DecisionMakerIA_8cpp.html#a1cbc5f5cba5f72b993c68f4aad4473f7" title="Action de poussée de la prise en zone basse." alt="" coords="15,991,154,1018"/>
+<area shape="rect" id="node22" href="$classO__AsservTest.html#a87e2ffa360e3e12ff5c7b81b1952a04f" title=" " alt="" coords="254,1122,393,1149"/>
+<area shape="rect" id="node23" href="$classIAbyPath.html#a3f27b793f84340c99ca33e12c2380bb4" title=" " alt="" coords="218,897,429,939"/>
+<area shape="rect" id="node24" href="$O__State__DecisionMakerIA_8cpp.html#a6af4b40e5e676265dd688e0004be0ff6" title="Action de fin de match : rejoint la zone de fin en haut de table." alt="" coords="5,905,164,931"/>
+<area shape="rect" id="node26" href="$O__IAbyPathTest_8cpp.html#ac1055b8eb7025052d58ebaf15869a480" title=" " alt="" coords="235,439,412,466"/>
+<area shape="rect" id="node27" href="$O__IAbyPathTest_8cpp.html#aafb960063ea3193551e7ba63626e2561" title=" " alt="" coords="234,490,413,517"/>
+<area shape="rect" id="node31" href="$classIAbyPath.html#a36763cca0b7005fddde021c35f054dc7" title=" " alt="" coords="787,1266,996,1293"/>
+<area shape="rect" id="node32" href="$classIAbyPath.html#ab1f1155d4a5565efa55a0c11b8a1abfa" title=" " alt="" coords="793,810,990,837"/>
+<area shape="rect" id="node34" href="$classIAbyPath.html#a0c7e960bbc87c86d716ac5aaa7da986a" title=" " alt="" coords="823,1367,959,1394"/>
+<area shape="rect" id="node37" href="$classIAbyZone.html#a0b591dae1e57bf13e5189a0a6de88823" title=" " alt="" coords="821,1114,962,1141"/>
+<area shape="rect" id="node39" href="$classO__State__Init.html#a1980cd82dcb83e88d61f2e7e14dddfa0" title=" " alt="" coords="815,1418,967,1445"/>
+<area shape="rect" id="node41" href="$classRobot.html#a7c2c32badf138c2a26b82068447c3c98" title="Fonctions de motion intelligente en plusieurs essais." alt="" coords="817,607,965,634"/>
+<area shape="rect" id="node33" href="$classIAbyPath.html#ab95592ae87c3f666835d3fbdac8c5ffd" title=" " alt="" coords="497,912,705,953"/>
+<area shape="rect" id="node35" href="$classO__State__DecisionMakerIA.html#a96d1f2a7618d607fd10cc51b9111e653" title="Execute l&#39;action." alt="" coords="506,1352,695,1393"/>
+<area shape="rect" id="node36" href="$classO__IAByPathTest.html#a3f57f585ff1382a52bf7f79a28d43629" title="Execute le test." alt="" coords="525,1301,677,1327"/>
+<area shape="rect" id="node40" href="$classO__State__Init.html#abc19788b7457d1f819245dd28367fe91" title="Exécute l&#39;état d&#39;initialisation." alt="" coords="521,1418,681,1445"/>
+<area shape="rect" id="node43" href="$classIAbyZone.html#a4d9aa1eca3385fb6d2b0610de934b5be" title=" " alt="" coords="523,1722,678,1749"/>
+<area shape="rect" id="node44" href="$classIAbyZone.html#a1d40e763ea935fc4b09de7508fc71805" title=" " alt="" coords="767,1722,1016,1749"/>
+<area shape="rect" id="node48" href="$classSensorsTimer.html#abc377178c2471f664b31658554963e83" title="Actions à executer pour le timer." alt="" coords="1087,2117,1261,2143"/>
 </map>

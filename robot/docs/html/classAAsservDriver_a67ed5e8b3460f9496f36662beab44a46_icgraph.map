@@ -1,6 +1,7 @@
 <map id="AAsservDriver::setMotorLeftPower" name="AAsservDriver::setMotorLeftPower">
-<area shape="rect" id="node1" title="Commande le moteur gauche en puissance pendant un temps donne." alt="" coords="439,23,644,65"/>
-<area shape="rect" id="node2" href="$classAsserv.html#a1db79355d394b4cb35690bdd6ab3fc2c" title="run Left Motor. timems &lt; 0 =&gt; use duty_cycle, run forever timems = 0 =&gt; use speed (include internal r..." alt="" coords="235,31,391,57"/>
-<area shape="rect" id="node3" href="$classAsserv.html#a3468d8efb89878c2235dc491c6e7a541" title=" " alt="" coords="11,5,181,32"/>
-<area shape="rect" id="node4" href="$classAsserv.html#a79a9b2ee1d39046119673dc81733bdab" title=" " alt="" coords="5,56,187,83"/>
+<area shape="rect" id="node1" title="Commande le moteur gauche en puissance pendant un temps donne." alt="" coords="467,49,672,90"/>
+<area shape="rect" id="node2" href="$classAsserv.html#a1db79355d394b4cb35690bdd6ab3fc2c" title="run Left Motor. timems &lt; 0 =&gt; use duty_cycle, run forever timems = 0 =&gt; use speed (include internal r..." alt="" coords="263,56,419,83"/>
+<area shape="rect" id="node3" href="$classAsserv.html#a3468d8efb89878c2235dc491c6e7a541" title=" " alt="" coords="25,5,195,32"/>
+<area shape="rect" id="node4" href="$classAsserv.html#a79a9b2ee1d39046119673dc81733bdab" title=" " alt="" coords="19,56,201,83"/>
+<area shape="rect" id="node5" href="$classO__AsservCalibrationTest.html#a578ac4b37bd38a475665dc353cb834f5" title=" " alt="" coords="5,107,215,133"/>
 </map>

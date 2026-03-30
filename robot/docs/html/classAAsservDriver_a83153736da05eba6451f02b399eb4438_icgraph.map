@@ -1,12 +1,18 @@
 <map id="AAsservDriver::motion_AssistedHandling" name="AAsservDriver::motion_AssistedHandling">
-<area shape="rect" id="node1" title="Active le mode deplacement assiste (PID actif)." alt="" coords="656,107,825,149"/>
-<area shape="rect" id="node2" href="$classAsserv.html#a2d4c545965ac32ef54c9b118d3576655" title=" " alt="" coords="418,27,603,53"/>
-<area shape="rect" id="node6" href="$classAsserv.html#a0ac23995bdebb69bb49304850c951886" title=" " alt="" coords="443,144,578,171"/>
-<area shape="rect" id="node7" href="$classOPOS6UL__AsservExtended.html#a1f17c09c76670c49c1272676879ef48a" title="Démarre le timer de mouvement et l&#39;odométrie." alt="" coords="413,195,608,237"/>
-<area shape="rect" id="node8" href="$classAsserv.html#a366bf4a9f0880c5dc125ac0637fee326" title=" " alt="" coords="417,78,604,119"/>
-<area shape="rect" id="node3" href="$classO__IAByPathTest.html#a3f57f585ff1382a52bf7f79a28d43629" title="Execute le test." alt="" coords="213,5,365,32"/>
-<area shape="rect" id="node4" href="$classO__State__Init.html#a1980cd82dcb83e88d61f2e7e14dddfa0" title=" " alt="" coords="213,56,365,83"/>
-<area shape="rect" id="node5" href="$classO__State__Init.html#abc19788b7457d1f819245dd28367fe91" title="Exécute l&#39;état d&#39;initialisation." alt="" coords="5,56,165,83"/>
-<area shape="rect" id="node9" href="$classO__LedBarTest.html#af9e0e172d13b334cda0fe32bb659b414" title=" " alt="" coords="220,107,359,133"/>
-<area shape="rect" id="node10" href="$classO__SensorsTest.html#ae3b998034225e16586ded4ba3bd419e5" title="Execute le test." alt="" coords="217,157,362,184"/>
+<area shape="rect" id="node1" title="Active le mode deplacement assiste (PID actif)." alt="" coords="713,255,883,297"/>
+<area shape="rect" id="node2" href="$classAsserv.html#a2d4c545965ac32ef54c9b118d3576655" title=" " alt="" coords="475,132,661,159"/>
+<area shape="rect" id="node9" href="$classAsserv.html#a0ac23995bdebb69bb49304850c951886" title=" " alt="" coords="501,292,635,319"/>
+<area shape="rect" id="node11" href="$classOPOS6UL__AsservExtended.html#a1f17c09c76670c49c1272676879ef48a" title="Démarre le timer de mouvement et l&#39;odométrie." alt="" coords="471,343,665,385"/>
+<area shape="rect" id="node12" href="$classAsserv.html#a366bf4a9f0880c5dc125ac0637fee326" title=" " alt="" coords="475,226,661,267"/>
+<area shape="rect" id="node3" href="$classO__AsservCalibrationTest.html#a578ac4b37bd38a475665dc353cb834f5" title=" " alt="" coords="213,56,423,83"/>
+<area shape="rect" id="node4" href="$classO__AsservLineRotateTest.html#ac54536863ccc3f6bc0ce3f30e99e1b70" title=" " alt="" coords="214,107,422,133"/>
+<area shape="rect" id="node5" href="$classO__AsservXYRotateTest.html#a13ccb691e37bdddc94ca53b29311e39a" title=" " alt="" coords="219,157,417,184"/>
+<area shape="rect" id="node6" href="$classO__IAByPathTest.html#a3f57f585ff1382a52bf7f79a28d43629" title="Execute le test." alt="" coords="242,208,394,235"/>
+<area shape="rect" id="node7" href="$classO__State__Init.html#a1980cd82dcb83e88d61f2e7e14dddfa0" title=" " alt="" coords="242,5,394,32"/>
+<area shape="rect" id="node8" href="$classO__State__Init.html#abc19788b7457d1f819245dd28367fe91" title="Exécute l&#39;état d&#39;initialisation." alt="" coords="5,5,165,32"/>
+<area shape="rect" id="node10" href="$classO__Asserv__CalageTest.html#ad731f64308b62269f060e74c0282e30f" title=" " alt="" coords="223,461,413,488"/>
+<area shape="rect" id="node13" href="$classO__Asserv__SquareTest.html#a16a0bf866c8070611cfa8952e3ef64d8" title=" " alt="" coords="223,360,413,387"/>
+<area shape="rect" id="node14" href="$classO__AsservTest.html#a87e2ffa360e3e12ff5c7b81b1952a04f" title=" " alt="" coords="249,411,387,437"/>
+<area shape="rect" id="node15" href="$classO__LedBarTest.html#af9e0e172d13b334cda0fe32bb659b414" title=" " alt="" coords="249,259,387,285"/>
+<area shape="rect" id="node16" href="$classO__SensorsTest.html#ae3b998034225e16586ded4ba3bd419e5" title="Execute le test." alt="" coords="245,309,391,336"/>
 </map>

@@ -293,10 +293,108 @@ CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_IAbyPathTest.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_IAbyPathTest.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/bot-opos6ul/O_IAbyPathTest.cpp -o CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_IAbyPathTest.cpp.s
 
+CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservLineRotateTest.cpp.o: CMakeFiles/bot-opos6ul.dir/flags.make
+CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservLineRotateTest.cpp.o: ../src/bot-opos6ul/O_AsservLineRotateTest.cpp
+CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservLineRotateTest.cpp.o: CMakeFiles/bot-opos6ul.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservLineRotateTest.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservLineRotateTest.cpp.o -MF CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservLineRotateTest.cpp.o.d -o CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservLineRotateTest.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/bot-opos6ul/O_AsservLineRotateTest.cpp
+
+CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservLineRotateTest.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservLineRotateTest.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/src/bot-opos6ul/O_AsservLineRotateTest.cpp > CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservLineRotateTest.cpp.i
+
+CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservLineRotateTest.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservLineRotateTest.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/bot-opos6ul/O_AsservLineRotateTest.cpp -o CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservLineRotateTest.cpp.s
+
+CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservXYRotateTest.cpp.o: CMakeFiles/bot-opos6ul.dir/flags.make
+CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservXYRotateTest.cpp.o: ../src/bot-opos6ul/O_AsservXYRotateTest.cpp
+CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservXYRotateTest.cpp.o: CMakeFiles/bot-opos6ul.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservXYRotateTest.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservXYRotateTest.cpp.o -MF CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservXYRotateTest.cpp.o.d -o CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservXYRotateTest.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/bot-opos6ul/O_AsservXYRotateTest.cpp
+
+CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservXYRotateTest.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservXYRotateTest.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/src/bot-opos6ul/O_AsservXYRotateTest.cpp > CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservXYRotateTest.cpp.i
+
+CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservXYRotateTest.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservXYRotateTest.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/bot-opos6ul/O_AsservXYRotateTest.cpp -o CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservXYRotateTest.cpp.s
+
+CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservTest.cpp.o: CMakeFiles/bot-opos6ul.dir/flags.make
+CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservTest.cpp.o: ../src/bot-opos6ul/O_AsservTest.cpp
+CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservTest.cpp.o: CMakeFiles/bot-opos6ul.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservTest.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservTest.cpp.o -MF CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservTest.cpp.o.d -o CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservTest.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/bot-opos6ul/O_AsservTest.cpp
+
+CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservTest.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservTest.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/src/bot-opos6ul/O_AsservTest.cpp > CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservTest.cpp.i
+
+CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservTest.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservTest.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/bot-opos6ul/O_AsservTest.cpp -o CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservTest.cpp.s
+
+CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservCalibrationTest.cpp.o: CMakeFiles/bot-opos6ul.dir/flags.make
+CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservCalibrationTest.cpp.o: ../src/bot-opos6ul/O_AsservCalibrationTest.cpp
+CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservCalibrationTest.cpp.o: CMakeFiles/bot-opos6ul.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservCalibrationTest.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservCalibrationTest.cpp.o -MF CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservCalibrationTest.cpp.o.d -o CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservCalibrationTest.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/bot-opos6ul/O_AsservCalibrationTest.cpp
+
+CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservCalibrationTest.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservCalibrationTest.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/src/bot-opos6ul/O_AsservCalibrationTest.cpp > CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservCalibrationTest.cpp.i
+
+CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservCalibrationTest.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservCalibrationTest.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/bot-opos6ul/O_AsservCalibrationTest.cpp -o CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservCalibrationTest.cpp.s
+
+CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_Asserv_SquareTest.cpp.o: CMakeFiles/bot-opos6ul.dir/flags.make
+CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_Asserv_SquareTest.cpp.o: ../src/bot-opos6ul/O_Asserv_SquareTest.cpp
+CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_Asserv_SquareTest.cpp.o: CMakeFiles/bot-opos6ul.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_Asserv_SquareTest.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_Asserv_SquareTest.cpp.o -MF CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_Asserv_SquareTest.cpp.o.d -o CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_Asserv_SquareTest.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/bot-opos6ul/O_Asserv_SquareTest.cpp
+
+CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_Asserv_SquareTest.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_Asserv_SquareTest.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/src/bot-opos6ul/O_Asserv_SquareTest.cpp > CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_Asserv_SquareTest.cpp.i
+
+CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_Asserv_SquareTest.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_Asserv_SquareTest.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/bot-opos6ul/O_Asserv_SquareTest.cpp -o CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_Asserv_SquareTest.cpp.s
+
+CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_Asserv_CalageTest.cpp.o: CMakeFiles/bot-opos6ul.dir/flags.make
+CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_Asserv_CalageTest.cpp.o: ../src/bot-opos6ul/O_Asserv_CalageTest.cpp
+CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_Asserv_CalageTest.cpp.o: CMakeFiles/bot-opos6ul.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_Asserv_CalageTest.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_Asserv_CalageTest.cpp.o -MF CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_Asserv_CalageTest.cpp.o.d -o CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_Asserv_CalageTest.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/bot-opos6ul/O_Asserv_CalageTest.cpp
+
+CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_Asserv_CalageTest.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_Asserv_CalageTest.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/src/bot-opos6ul/O_Asserv_CalageTest.cpp > CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_Asserv_CalageTest.cpp.i
+
+CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_Asserv_CalageTest.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_Asserv_CalageTest.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/bot-opos6ul/O_Asserv_CalageTest.cpp -o CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_Asserv_CalageTest.cpp.s
+
+CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_GroveColorTest.cpp.o: CMakeFiles/bot-opos6ul.dir/flags.make
+CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_GroveColorTest.cpp.o: ../src/bot-opos6ul/O_GroveColorTest.cpp
+CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_GroveColorTest.cpp.o: CMakeFiles/bot-opos6ul.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_GroveColorTest.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_GroveColorTest.cpp.o -MF CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_GroveColorTest.cpp.o.d -o CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_GroveColorTest.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/bot-opos6ul/O_GroveColorTest.cpp
+
+CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_GroveColorTest.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_GroveColorTest.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pmx/git/PMX-CORTEX/robot/src/bot-opos6ul/O_GroveColorTest.cpp > CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_GroveColorTest.cpp.i
+
+CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_GroveColorTest.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_GroveColorTest.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pmx/git/PMX-CORTEX/robot/src/bot-opos6ul/O_GroveColorTest.cpp -o CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_GroveColorTest.cpp.s
+
 CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_ServoStepTest.cpp.o: CMakeFiles/bot-opos6ul.dir/flags.make
 CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_ServoStepTest.cpp.o: ../src/bot-opos6ul/O_ServoStepTest.cpp
 CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_ServoStepTest.cpp.o: CMakeFiles/bot-opos6ul.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_ServoStepTest.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_ServoStepTest.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_ServoStepTest.cpp.o -MF CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_ServoStepTest.cpp.o.d -o CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_ServoStepTest.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/bot-opos6ul/O_ServoStepTest.cpp
 
 CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_ServoStepTest.cpp.i: cmake_force
@@ -310,7 +408,7 @@ CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_ServoStepTest.cpp.s: cmake_force
 CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_ServoObjectsTest.cpp.o: CMakeFiles/bot-opos6ul.dir/flags.make
 CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_ServoObjectsTest.cpp.o: ../src/bot-opos6ul/O_ServoObjectsTest.cpp
 CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_ServoObjectsTest.cpp.o: CMakeFiles/bot-opos6ul.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_ServoObjectsTest.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_ServoObjectsTest.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_ServoObjectsTest.cpp.o -MF CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_ServoObjectsTest.cpp.o.d -o CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_ServoObjectsTest.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/bot-opos6ul/O_ServoObjectsTest.cpp
 
 CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_ServoObjectsTest.cpp.i: cmake_force
@@ -324,7 +422,7 @@ CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_ServoObjectsTest.cpp.s: cmake_force
 CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_SensorsTest.cpp.o: CMakeFiles/bot-opos6ul.dir/flags.make
 CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_SensorsTest.cpp.o: ../src/bot-opos6ul/O_SensorsTest.cpp
 CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_SensorsTest.cpp.o: CMakeFiles/bot-opos6ul.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_SensorsTest.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_SensorsTest.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_SensorsTest.cpp.o -MF CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_SensorsTest.cpp.o.d -o CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_SensorsTest.cpp.o -c /home/pmx/git/PMX-CORTEX/robot/src/bot-opos6ul/O_SensorsTest.cpp
 
 CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_SensorsTest.cpp.i: cmake_force
@@ -353,6 +451,13 @@ bot__opos6ul_OBJECTS = \
 "CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_LcdBoardTest.cpp.o" \
 "CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_ActionManagerTimerTest.cpp.o" \
 "CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_IAbyPathTest.cpp.o" \
+"CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservLineRotateTest.cpp.o" \
+"CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservXYRotateTest.cpp.o" \
+"CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservTest.cpp.o" \
+"CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservCalibrationTest.cpp.o" \
+"CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_Asserv_SquareTest.cpp.o" \
+"CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_Asserv_CalageTest.cpp.o" \
+"CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_GroveColorTest.cpp.o" \
 "CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_ServoStepTest.cpp.o" \
 "CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_ServoObjectsTest.cpp.o" \
 "CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_SensorsTest.cpp.o"
@@ -376,6 +481,13 @@ bot-opos6ul: CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_ButtonBarTest.cpp.o
 bot-opos6ul: CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_LcdBoardTest.cpp.o
 bot-opos6ul: CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_ActionManagerTimerTest.cpp.o
 bot-opos6ul: CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_IAbyPathTest.cpp.o
+bot-opos6ul: CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservLineRotateTest.cpp.o
+bot-opos6ul: CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservXYRotateTest.cpp.o
+bot-opos6ul: CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservTest.cpp.o
+bot-opos6ul: CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_AsservCalibrationTest.cpp.o
+bot-opos6ul: CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_Asserv_SquareTest.cpp.o
+bot-opos6ul: CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_Asserv_CalageTest.cpp.o
+bot-opos6ul: CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_GroveColorTest.cpp.o
 bot-opos6ul: CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_ServoStepTest.cpp.o
 bot-opos6ul: CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_ServoObjectsTest.cpp.o
 bot-opos6ul: CMakeFiles/bot-opos6ul.dir/src/bot-opos6ul/O_SensorsTest.cpp.o
@@ -388,8 +500,12 @@ bot-opos6ul: libpmx-common.a
 bot-opos6ul: libs/PathFinding/libpmr-pathfinding.a
 bot-opos6ul: libs/simple-svg/libsimple-svg.a
 bot-opos6ul: CMakeFiles/bot-opos6ul.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Linking CXX executable bot-opos6ul"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pmx/git/PMX-CORTEX/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Linking CXX executable bot-opos6ul"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/bot-opos6ul.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Copie config asserv + resources-svg dans le repertoire de build"
+	/usr/bin/cmake -E copy_if_different /home/pmx/git/PMX-CORTEX/robot/src/bot-opos6ul/hardware.conf /home/pmx/git/PMX-CORTEX/robot/build/hardware.conf
+	/usr/bin/cmake -E copy_if_different /home/pmx/git/PMX-CORTEX/robot/src/bot-opos6ul/config_OPOS6UL_Robot.txt /home/pmx/git/PMX-CORTEX/robot/build/config_OPOS6UL_Robot.txt
+	/usr/bin/cmake -E copy_directory /home/pmx/git/PMX-CORTEX/robot/src/common/log/resources-svg /home/pmx/git/PMX-CORTEX/robot/build/resources-svg
 
 # Rule to build all files generated by this target.
 CMakeFiles/bot-opos6ul.dir/build: bot-opos6ul

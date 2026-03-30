@@ -330,279 +330,279 @@
 <path fill="none" stroke="midnightblue" d="M135.46,-276C148.28,-276 161.49,-276 173.86,-276"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="135.29,-272.5 125.29,-276 135.29,-279.5 135.29,-272.5"/>
 </g>
-<!-- Node266 -->
+<!-- Node273 -->
 <g id="node24" class="node">
-<title>Node266</title>
+<title>Node273</title>
 <g id="a_node24"><a xlink:href="classutils_1_1Mutex.html" target="_top" xlink:title="Implémentation d&#39;une gestion de mutex.">
 <polygon fill="white" stroke="black" points="25.5,-190.5 25.5,-209.5 99.5,-209.5 99.5,-190.5 25.5,-190.5"/>
 <text text-anchor="middle" x="62.5" y="-197.5" font-family="Helvetica,sans-Serif" font-size="10.00">utils::Mutex</text>
 </a>
 </g>
 </g>
-<!-- Node266&#45;&gt;Node5 -->
+<!-- Node273&#45;&gt;Node5 -->
 <g id="edge24" class="edge">
-<title>Node266&#45;&gt;Node5</title>
+<title>Node273&#45;&gt;Node5</title>
 <path fill="none" stroke="#8b1a1a" d="M87.06,-215.53C100.45,-225.67 116.25,-240.15 125,-257 179.98,-362.88 82.16,-433.46 161,-523 164.63,-527.12 169.04,-530.39 173.87,-532.98"/>
 <polygon fill="#8b1a1a" stroke="#8b1a1a" points="88.86,-212.51 78.7,-209.5 84.77,-218.19 88.86,-212.51"/>
 </g>
-<!-- Node266&#45;&gt;Node36 -->
+<!-- Node273&#45;&gt;Node36 -->
 <g id="edge29" class="edge">
-<title>Node266&#45;&gt;Node36</title>
+<title>Node273&#45;&gt;Node36</title>
 <path fill="none" stroke="midnightblue" d="M84.73,-215.91C97.68,-226.45 113.82,-241.21 125,-257 183.6,-339.77 219.74,-459.69 229.39,-494.31"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="86.79,-213.08 76.77,-209.63 82.45,-218.57 86.79,-213.08"/>
 </g>
-<!-- Node266&#45;&gt;Node45 -->
+<!-- Node273&#45;&gt;Node45 -->
 <g id="edge23" class="edge">
-<title>Node266&#45;&gt;Node45</title>
+<title>Node273&#45;&gt;Node45</title>
 <path fill="none" stroke="#8b1a1a" d="M85.43,-215.13C104.64,-227.8 133.66,-245.59 161,-257 169.83,-260.68 179.58,-263.84 188.96,-266.46"/>
 <polygon fill="#8b1a1a" stroke="#8b1a1a" points="87.35,-212.2 77.1,-209.54 83.45,-218.02 87.35,-212.2"/>
 </g>
-<!-- Node267 -->
+<!-- Node274 -->
 <g id="node25" class="node">
-<title>Node267</title>
+<title>Node274</title>
 <g id="a_node25"><a xlink:href="classAdafruit__RGBLCDShield.html" target="_top" xlink:title="Driver pour le LCD Shield RGB 16x2 Adafruit.">
 <polygon fill="white" stroke="black" points="167.5,-190.5 167.5,-209.5 298.5,-209.5 298.5,-190.5 167.5,-190.5"/>
 <text text-anchor="middle" x="233" y="-197.5" font-family="Helvetica,sans-Serif" font-size="10.00">Adafruit_RGBLCDShield</text>
 </a>
 </g>
 </g>
-<!-- Node266&#45;&gt;Node267 -->
+<!-- Node273&#45;&gt;Node274 -->
 <g id="edge20" class="edge">
-<title>Node266&#45;&gt;Node267</title>
+<title>Node273&#45;&gt;Node274</title>
 <path fill="none" stroke="midnightblue" d="M109.75,-200C127.53,-200 148.16,-200 167.35,-200"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="109.65,-196.5 99.65,-200 109.65,-203.5 109.65,-196.5"/>
 </g>
-<!-- Node268 -->
+<!-- Node275 -->
 <g id="node26" class="node">
-<title>Node268</title>
+<title>Node275</title>
 <g id="a_node26"><a xlink:href="classCCAx12Adc.html" target="_top" xlink:title="Implementation for CCAx12Adc card.">
 <polygon fill="white" stroke="black" points="196.5,-114.5 196.5,-133.5 269.5,-133.5 269.5,-114.5 196.5,-114.5"/>
 <text text-anchor="middle" x="233" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00">CCAx12Adc</text>
 </a>
 </g>
 </g>
-<!-- Node266&#45;&gt;Node268 -->
+<!-- Node273&#45;&gt;Node275 -->
 <g id="edge21" class="edge">
-<title>Node266&#45;&gt;Node268</title>
+<title>Node273&#45;&gt;Node275</title>
 <path fill="none" stroke="midnightblue" d="M85.43,-184.87C104.64,-172.2 133.66,-154.41 161,-143 172.19,-138.33 184.85,-134.51 196.35,-131.55"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="83.45,-181.98 77.1,-190.46 87.35,-187.8 83.45,-181.98"/>
 </g>
-<!-- Node269 -->
+<!-- Node276 -->
 <g id="node27" class="node">
-<title>Node269</title>
+<title>Node276</title>
 <g id="a_node27"><a xlink:href="classCCAx12Teensy.html" target="_top" xlink:title="Implementation for CCAx12Teensy card.">
 <polygon fill="white" stroke="black" points="188.5,-76.5 188.5,-95.5 277.5,-95.5 277.5,-76.5 188.5,-76.5"/>
 <text text-anchor="middle" x="233" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">CCAx12Teensy</text>
 </a>
 </g>
 </g>
-<!-- Node266&#45;&gt;Node269 -->
+<!-- Node273&#45;&gt;Node276 -->
 <g id="edge22" class="edge">
-<title>Node266&#45;&gt;Node269</title>
+<title>Node273&#45;&gt;Node276</title>
 <path fill="none" stroke="midnightblue" d="M76.87,-182.29C94.02,-160.81 125.79,-125.02 161,-105 169.32,-100.27 178.86,-96.68 188.19,-93.97"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="74.04,-180.23 70.65,-190.27 79.56,-184.54 74.04,-180.23"/>
 </g>
-<!-- Node270 -->
+<!-- Node277 -->
 <g id="node28" class="node">
-<title>Node270</title>
+<title>Node277</title>
 <g id="a_node28"><a xlink:href="classSvgWriter.html" target="_top" xlink:title="Wrapper pour la génération de fichier svg via le système de log.">
 <polygon fill="white" stroke="black" points="200.5,-38.5 200.5,-57.5 265.5,-57.5 265.5,-38.5 200.5,-38.5"/>
 <text text-anchor="middle" x="233" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">SvgWriter</text>
 </a>
 </g>
 </g>
-<!-- Node266&#45;&gt;Node270 -->
+<!-- Node273&#45;&gt;Node277 -->
 <g id="edge25" class="edge">
-<title>Node266&#45;&gt;Node270</title>
+<title>Node273&#45;&gt;Node277</title>
 <path fill="none" stroke="midnightblue" d="M72.12,-181.12C86.38,-152.06 117.66,-96.64 161,-67 172.59,-59.08 187.32,-54.45 200.37,-51.76"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="68.93,-179.68 67.8,-190.21 75.26,-182.69 68.93,-179.68"/>
 </g>
-<!-- Node273 -->
+<!-- Node280 -->
 <g id="node31" class="node">
-<title>Node273</title>
+<title>Node280</title>
 <g id="a_node31"><a xlink:href="classlogs_1_1Logger_1_1LoggerBuffer.html" target="_top" xlink:title="Classe de délégation pour faciliter la création des traces.">
 <polygon fill="white" stroke="black" points="161,-0.5 161,-19.5 305,-19.5 305,-0.5 161,-0.5"/>
 <text text-anchor="middle" x="233" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">logs::Logger::LoggerBuffer</text>
 </a>
 </g>
 </g>
-<!-- Node266&#45;&gt;Node273 -->
+<!-- Node273&#45;&gt;Node280 -->
 <g id="edge28" class="edge">
-<title>Node266&#45;&gt;Node273</title>
+<title>Node273&#45;&gt;Node280</title>
 <path fill="none" stroke="midnightblue" d="M69.13,-180.36C80.41,-144.61 109.26,-68.91 161,-29 166.05,-25.1 171.84,-22 177.88,-19.54"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="65.73,-179.5 66.19,-190.09 72.43,-181.53 65.73,-179.5"/>
 </g>
-<!-- Node274 -->
+<!-- Node281 -->
 <g id="node32" class="node">
-<title>Node274</title>
+<title>Node281</title>
 <g id="a_node32"><a xlink:href="classutils_1_1Thread.html" target="_top" xlink:title="Classe de base pour les threads (wrapper POSIX pthread).">
 <polygon fill="white" stroke="black" points="194.5,-228.5 194.5,-247.5 271.5,-247.5 271.5,-228.5 194.5,-228.5"/>
 <text text-anchor="middle" x="233" y="-235.5" font-family="Helvetica,sans-Serif" font-size="10.00">utils::Thread</text>
 </a>
 </g>
 </g>
-<!-- Node266&#45;&gt;Node274 -->
+<!-- Node273&#45;&gt;Node281 -->
 <g id="edge30" class="edge">
-<title>Node266&#45;&gt;Node274</title>
+<title>Node273&#45;&gt;Node281</title>
 <path fill="none" stroke="midnightblue" d="M109.52,-210.38C136.2,-216.4 169.37,-223.87 194.45,-229.53"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="110.17,-206.94 99.65,-208.15 108.63,-213.77 110.17,-206.94"/>
 </g>
-<!-- Node271 -->
+<!-- Node278 -->
 <g id="node29" class="node">
-<title>Node271</title>
+<title>Node278</title>
 <g id="a_node29"><a xlink:href="classOPOS6UL__SvgWriterExtended.html" target="_top" xlink:title="Génération de fichiers SVG pour la visualisation du robot et du terrain.">
 <polygon fill="white" stroke="black" points="341,-38.5 341,-57.5 502,-57.5 502,-38.5 341,-38.5"/>
 <text text-anchor="middle" x="421.5" y="-45.5" font-family="Helvetica,sans-Serif" font-size="10.00">OPOS6UL_SvgWriterExtended</text>
 </a>
 </g>
 </g>
-<!-- Node270&#45;&gt;Node271 -->
+<!-- Node277&#45;&gt;Node278 -->
 <g id="edge26" class="edge">
-<title>Node270&#45;&gt;Node271</title>
+<title>Node277&#45;&gt;Node278</title>
 <path fill="none" stroke="midnightblue" d="M275.83,-48C295.03,-48 318.46,-48 340.82,-48"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="275.64,-44.5 265.64,-48 275.64,-51.5 275.64,-44.5"/>
 </g>
-<!-- Node272 -->
+<!-- Node279 -->
 <g id="node30" class="node">
-<title>Node272</title>
+<title>Node279</title>
 <g id="a_node30"><a xlink:href="classSvgWriterExtended.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="366.5,-0.5 366.5,-19.5 476.5,-19.5 476.5,-0.5 366.5,-0.5"/>
 <text text-anchor="middle" x="421.5" y="-7.5" font-family="Helvetica,sans-Serif" font-size="10.00">SvgWriterExtended</text>
 </a>
 </g>
 </g>
-<!-- Node270&#45;&gt;Node272 -->
+<!-- Node277&#45;&gt;Node279 -->
 <g id="edge27" class="edge">
-<title>Node270&#45;&gt;Node272</title>
+<title>Node277&#45;&gt;Node279</title>
 <path fill="none" stroke="midnightblue" d="M275.48,-39.55C304.55,-33.63 343.44,-25.7 373.64,-19.55"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="274.74,-36.13 265.64,-41.55 276.13,-42.99 274.74,-36.13"/>
 </g>
-<!-- Node274&#45;&gt;Node13 -->
+<!-- Node281&#45;&gt;Node13 -->
 <g id="edge32" class="edge">
-<title>Node274&#45;&gt;Node13</title>
+<title>Node281&#45;&gt;Node13</title>
 <path fill="none" stroke="#8b1a1a" d="M281.83,-228.25C312.65,-221.97 352.23,-213.91 381.21,-208.01"/>
 <polygon fill="#8b1a1a" stroke="#8b1a1a" points="280.84,-224.88 271.74,-230.31 282.24,-231.74 280.84,-224.88"/>
 </g>
-<!-- Node274&#45;&gt;Node14 -->
+<!-- Node281&#45;&gt;Node14 -->
 <g id="edge33" class="edge">
-<title>Node274&#45;&gt;Node14</title>
+<title>Node281&#45;&gt;Node14</title>
 <path fill="none" stroke="#8b1a1a" d="M281.54,-229.19C289.69,-226.6 297.83,-223.27 305,-219 324.99,-207.1 320.85,-192.63 341,-181 349.6,-176.03 359.45,-172.36 369.21,-169.65"/>
 <polygon fill="#8b1a1a" stroke="#8b1a1a" points="280.33,-225.89 271.66,-231.99 282.24,-232.63 280.33,-225.89"/>
 </g>
-<!-- Node274&#45;&gt;Node15 -->
+<!-- Node281&#45;&gt;Node15 -->
 <g id="edge34" class="edge">
-<title>Node274&#45;&gt;Node15</title>
+<title>Node281&#45;&gt;Node15</title>
 <path fill="none" stroke="#8b1a1a" d="M281.2,-231.51C289.78,-228.7 298.16,-224.7 305,-219 333.71,-195.07 311.97,-166.55 341,-143 345.74,-139.16 351.13,-136.07 356.82,-133.59"/>
 <polygon fill="#8b1a1a" stroke="#8b1a1a" points="280.21,-228.16 271.51,-234.2 282.08,-234.9 280.21,-228.16"/>
 </g>
-<!-- Node274&#45;&gt;Node16 -->
+<!-- Node281&#45;&gt;Node16 -->
 <g id="edge35" class="edge">
-<title>Node274&#45;&gt;Node16</title>
+<title>Node281&#45;&gt;Node16</title>
 <path fill="none" stroke="midnightblue" d="M281.58,-232.32C290.2,-229.45 298.5,-225.22 305,-219 343.4,-182.27 302.11,-141.21 341,-105 351.8,-94.94 366.95,-89.92 381.12,-87.5"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="280.5,-228.99 271.79,-235.02 282.36,-235.74 280.5,-228.99"/>
 </g>
-<!-- Node275 -->
+<!-- Node282 -->
 <g id="node33" class="node">
-<title>Node275</title>
+<title>Node282</title>
 <g id="a_node33"><a xlink:href="classActionManagerTimer.html" target="_top" xlink:title="Classe de gestion des actions du robot et des actions par timer.">
 <polygon fill="white" stroke="black" points="362,-266.5 362,-285.5 481,-285.5 481,-266.5 362,-266.5"/>
 <text text-anchor="middle" x="421.5" y="-273.5" font-family="Helvetica,sans-Serif" font-size="10.00">ActionManagerTimer</text>
 </a>
 </g>
 </g>
-<!-- Node274&#45;&gt;Node275 -->
+<!-- Node281&#45;&gt;Node282 -->
 <g id="edge31" class="edge">
-<title>Node274&#45;&gt;Node275</title>
+<title>Node281&#45;&gt;Node282</title>
 <path fill="none" stroke="midnightblue" d="M281.77,-247.73C309.96,-253.48 345.49,-260.72 373.54,-266.43"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="282.24,-244.26 271.74,-245.69 280.84,-251.12 282.24,-244.26"/>
 </g>
-<!-- Node276 -->
+<!-- Node283 -->
 <g id="node34" class="node">
-<title>Node276</title>
+<title>Node283</title>
 <g id="a_node34"><a xlink:href="classO__State__DecisionMakerIA.html" target="_top" xlink:title="Moteur de décision IA du robot.">
 <polygon fill="white" stroke="black" points="350.5,-228.5 350.5,-247.5 492.5,-247.5 492.5,-228.5 350.5,-228.5"/>
 <text text-anchor="middle" x="421.5" y="-235.5" font-family="Helvetica,sans-Serif" font-size="10.00">O_State_DecisionMakerIA</text>
 </a>
 </g>
 </g>
-<!-- Node274&#45;&gt;Node276 -->
+<!-- Node281&#45;&gt;Node283 -->
 <g id="edge36" class="edge">
-<title>Node274&#45;&gt;Node276</title>
+<title>Node281&#45;&gt;Node283</title>
 <path fill="none" stroke="midnightblue" d="M281.92,-238C302.74,-238 327.55,-238 350.37,-238"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="281.74,-234.5 271.74,-238 281.74,-241.5 281.74,-234.5"/>
 </g>
-<!-- Node277 -->
+<!-- Node284 -->
 <g id="node35" class="node">
-<title>Node277</title>
+<title>Node284</title>
 <g id="a_node35"><a xlink:href="classlogs_1_1LoggerFactory.html" target="_top" xlink:title="Cette classe assure l&#39;initialisation du système de trace et son utilisation.">
 <polygon fill="white" stroke="black" points="366,-418.5 366,-437.5 477,-437.5 477,-418.5 366,-418.5"/>
 <text text-anchor="middle" x="421.5" y="-425.5" font-family="Helvetica,sans-Serif" font-size="10.00">logs::LoggerFactory</text>
 </a>
 </g>
 </g>
-<!-- Node274&#45;&gt;Node277 -->
+<!-- Node281&#45;&gt;Node284 -->
 <g id="edge37" class="edge">
-<title>Node274&#45;&gt;Node277</title>
+<title>Node281&#45;&gt;Node284</title>
 <path fill="none" stroke="midnightblue" d="M281.68,-243.22C290.37,-246.12 298.67,-250.48 305,-257 353.38,-306.8 291.96,-359.86 341,-409 347.82,-415.83 356.62,-420.37 365.88,-423.36"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="282.36,-239.78 271.79,-240.53 280.52,-246.53 282.36,-239.78"/>
 </g>
-<!-- Node278 -->
+<!-- Node285 -->
 <g id="node36" class="node">
-<title>Node278</title>
+<title>Node285</title>
 <g id="a_node36"><a xlink:href="classtest_1_1MutexCounterThread.html" target="_top" xlink:title="Thread qui incrémente un compteur partagé protégé par un Mutex.">
 <polygon fill="white" stroke="black" points="349.5,-380.5 349.5,-399.5 493.5,-399.5 493.5,-380.5 349.5,-380.5"/>
 <text text-anchor="middle" x="421.5" y="-387.5" font-family="Helvetica,sans-Serif" font-size="10.00">test::MutexCounterThread</text>
 </a>
 </g>
 </g>
-<!-- Node274&#45;&gt;Node278 -->
+<!-- Node281&#45;&gt;Node285 -->
 <g id="edge38" class="edge">
-<title>Node274&#45;&gt;Node278</title>
+<title>Node281&#45;&gt;Node285</title>
 <path fill="none" stroke="midnightblue" d="M281.58,-243.68C290.2,-246.55 298.5,-250.78 305,-257 343.4,-293.73 302.11,-334.79 341,-371 345.05,-374.77 349.71,-377.83 354.7,-380.32"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="282.36,-240.26 271.79,-240.98 280.5,-247.01 282.36,-240.26"/>
 </g>
-<!-- Node279 -->
+<!-- Node286 -->
 <g id="node37" class="node">
-<title>Node279</title>
+<title>Node286</title>
 <g id="a_node37"><a xlink:href="classtest_1_1SimpleThread.html" target="_top" xlink:title="Thread de test simple qui incrémente un compteur.">
 <polygon fill="white" stroke="black" points="367,-342.5 367,-361.5 476,-361.5 476,-342.5 367,-342.5"/>
 <text text-anchor="middle" x="421.5" y="-349.5" font-family="Helvetica,sans-Serif" font-size="10.00">test::SimpleThread</text>
 </a>
 </g>
 </g>
-<!-- Node274&#45;&gt;Node279 -->
+<!-- Node281&#45;&gt;Node286 -->
 <g id="edge39" class="edge">
-<title>Node274&#45;&gt;Node279</title>
+<title>Node281&#45;&gt;Node286</title>
 <path fill="none" stroke="midnightblue" d="M281.2,-244.49C289.78,-247.3 298.16,-251.3 305,-257 333.71,-280.93 311.97,-309.45 341,-333 348.49,-339.08 357.62,-343.27 366.97,-346.14"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="282.08,-241.1 271.51,-241.8 280.21,-247.84 282.08,-241.1"/>
 </g>
-<!-- Node280 -->
+<!-- Node287 -->
 <g id="node38" class="node">
-<title>Node280</title>
+<title>Node287</title>
 <g id="a_node38"><a xlink:href="classtest_1_1SleepyThread.html" target="_top" xlink:title="Thread qui dort longtemps (pour tester cancel).">
 <polygon fill="white" stroke="black" points="367.5,-304.5 367.5,-323.5 475.5,-323.5 475.5,-304.5 367.5,-304.5"/>
 <text text-anchor="middle" x="421.5" y="-311.5" font-family="Helvetica,sans-Serif" font-size="10.00">test::SleepyThread</text>
 </a>
 </g>
 </g>
-<!-- Node274&#45;&gt;Node280 -->
+<!-- Node281&#45;&gt;Node287 -->
 <g id="edge40" class="edge">
-<title>Node274&#45;&gt;Node280</title>
+<title>Node281&#45;&gt;Node287</title>
 <path fill="none" stroke="midnightblue" d="M281.54,-246.81C289.69,-249.4 297.83,-252.73 305,-257 324.99,-268.9 320.85,-283.37 341,-295 348.99,-299.61 358.05,-303.11 367.11,-305.75"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="282.24,-243.37 271.66,-244.01 280.33,-250.11 282.24,-243.37"/>
 </g>
-<!-- Node297 -->
+<!-- Node304 -->
 <g id="node39" class="node">
-<title>Node297</title>
+<title>Node304</title>
 <g id="a_node39"><a xlink:href="classPrint.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="black" points="43,-798.5 43,-817.5 82,-817.5 82,-798.5 43,-798.5"/>
 <text text-anchor="middle" x="62.5" y="-805.5" font-family="Helvetica,sans-Serif" font-size="10.00">Print</text>
 </a>
 </g>
 </g>
-<!-- Node297&#45;&gt;Node2 -->
+<!-- Node304&#45;&gt;Node2 -->
 <g id="edge41" class="edge">
-<title>Node297&#45;&gt;Node2</title>
+<title>Node304&#45;&gt;Node2</title>
 <path fill="none" stroke="midnightblue" d="M92.52,-808C122.86,-808 170.3,-808 201.27,-808"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="92.18,-804.5 82.18,-808 92.18,-811.5 92.18,-804.5"/>
 </g>

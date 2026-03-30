@@ -1,52 +1,52 @@
 <map id="utils::Thread::state" name="utils::Thread::state">
-<area shape="rect" id="node1" title="Retourne l&#39;état courant du thread." alt="" coords="1579,1225,1723,1252"/>
-<area shape="rect" id="node2" href="$classActions.html#a637e05ac19e873621b1e123c2ff29990" title="Indique si le gestionnaire d&#39;actions est démarré." alt="" coords="1085,512,1228,538"/>
-<area shape="rect" id="node35" href="$classutils_1_1Thread.html#acc5214a88eab5c3bd421e7ee06f66b1a" title="Indique si le thread est terminé ou pas encore démarré." alt="" coords="1069,1149,1245,1176"/>
-<area shape="rect" id="node40" href="$classutils_1_1Thread.html#a46589324e8fc0735c20268db70d34aa5" title="Modifie l&#39;état du thread (thread&#45;safe)." alt="" coords="1336,1225,1501,1252"/>
-<area shape="rect" id="node47" href="$classtest_1_1ThreadTest.html#a6c8d29fa04a545a3c602c220804e8fb5" title="Vérifie les transitions d&#39;état CREATED → STARTED → STOPPED." alt="" coords="526,1440,719,1466"/>
-<area shape="rect" id="node48" href="$classActions.html#a2dca3495645f189f728586d4157c699c" title="Arrete le thread sensorManager et actionManager." alt="" coords="1307,1330,1531,1357"/>
-<area shape="rect" id="node3" href="$classActions.html#a710f952f5942e626d73e47733a8848b0" title="Ajout d&#39;une action." alt="" coords="818,144,961,170"/>
-<area shape="rect" id="node13" href="$classActions.html#a173e3bb37b9cbb0e5ef423b1719b7afd" title="Ajout d&#39;un timer standard." alt="" coords="819,473,959,500"/>
-<area shape="rect" id="node33" href="$classActions.html#adf0dec391b032c0b36b329a3f039001e" title="Active les actions." alt="" coords="569,549,677,576"/>
-<area shape="rect" id="node4" href="$classO__ActionManagerTimerTest.html#ab88b301cdfa06385c521335dd27932c9" title="Execute le test." alt="" coords="243,194,473,221"/>
-<area shape="rect" id="node5" href="$classSoundBar.html#a6ca072c4dc05e392f0c0114b483f8dc2" title="Lance l&#39;action asynchrone d&#39;émission d&#39;un beep." alt="" coords="545,42,700,69"/>
-<area shape="rect" id="node6" href="$classLedBar.html#a76595197ac9045d04f108bed1f3ac4fd" title="Lance l&#39;action d&#39;allumer toutes les leds." alt="" coords="553,93,693,120"/>
-<area shape="rect" id="node7" href="$classLedBar.html#a714ebd39a178ddd3d602deed7af0bf56" title="Lance l&#39;action d&#39;allumer les leds selon la valeur hexValue." alt="" coords="535,144,711,170"/>
-<area shape="rect" id="node8" href="$classLedBar.html#a77df047f6a8fadf44a3d24d51eb27f68" title="Lance l&#39;action d&#39;éteindre toutes les leds." alt="" coords="551,194,694,221"/>
-<area shape="rect" id="node9" href="$classLedBar.html#a985018b17b5051935a30d19e32880e11" title="Lance l&#39;action de changer le statut d&#39;une led en tache parallele sur l&#39;actionmanager." alt="" coords="559,296,686,322"/>
-<area shape="rect" id="node10" href="$classO__LedBarTest.html#af9e0e172d13b334cda0fe32bb659b414" title=" " alt="" coords="289,346,427,373"/>
-<area shape="rect" id="node11" href="$classLedBar.html#ad37f92ef4b6487afc785d739a59a32aa" title="Désactive une led spécifique." alt="" coords="285,245,431,272"/>
-<area shape="rect" id="node12" href="$classLedBar.html#af2eb11c44122b3206a657eb3b0b6f05e" title="Active une led spécifique." alt="" coords="286,296,430,322"/>
-<area shape="rect" id="node14" href="$classSensors.html#a1ef07aeea0536ccf34e310d831e71ef0" title=" " alt="" coords="525,498,720,525"/>
-<area shape="rect" id="node18" href="$classServoObjectsSystem.html#a60de17986f65700a7659b22edda2faef" title="move 1 servo." alt="" coords="544,880,701,922"/>
-<area shape="rect" id="node29" href="$classServoObjectsSystem.html#a209d4e6a24c8cd26c76168c08e330655" title="move 2 servos." alt="" coords="544,1011,701,1052"/>
-<area shape="rect" id="node30" href="$classLedBar.html#ac680352e575b6a86e40e0d9143db38d7" title="Lance l&#39;action de faire alterner les leds selon les valeurs hexValue et hexValueNext." alt="" coords="521,346,724,373"/>
-<area shape="rect" id="node31" href="$classLedBar.html#a2fb2bd9ec3e7fcb7451cb859db3a6846" title="Lance l&#39;action de faire clignoter une led nb fois tous les timeus." alt="" coords="525,397,721,424"/>
-<area shape="rect" id="node32" href="$classLedBar.html#a4e3205aef3a0d44b623d4f8434235cbb" title="Lance l&#39;action d&#39;allumer alternativement les leds à la &quot;K2000&quot;." alt="" coords="532,448,713,474"/>
-<area shape="rect" id="node15" href="$classO__State__DecisionMakerIA.html#a96d1f2a7618d607fd10cc51b9111e653" title="Execute l&#39;action." alt="" coords="5,470,195,511"/>
-<area shape="rect" id="node16" href="$classO__IAByPathTest.html#a3f57f585ff1382a52bf7f79a28d43629" title="Execute le test." alt="" coords="282,448,434,474"/>
-<area shape="rect" id="node17" href="$classO__SensorsTest.html#ae3b998034225e16586ded4ba3bd419e5" title="Execute le test." alt="" coords="285,498,431,525"/>
-<area shape="rect" id="node19" href="$classOPOS6UL__ActionsExtended.html#a946560d21bc7c1a12be600b16e07c93a" title="Déploie le bras droit en position d&#39;action." alt="" coords="259,718,457,759"/>
-<area shape="rect" id="node21" href="$classOPOS6UL__ActionsExtended.html#a67daef275b861004d118273c7e2564c2" title="Place le bras droit en position initiale (replié)." alt="" coords="259,783,457,824"/>
-<area shape="rect" id="node22" href="$classOPOS6UL__ActionsExtended.html#a5b32b355b6907dda48874f40dc9101eb" title="Déploie le bras gauche en position d&#39;action." alt="" coords="259,848,457,890"/>
-<area shape="rect" id="node23" href="$classOPOS6UL__ActionsExtended.html#ad3b7d5a26040d5780cc43a5a9ead9ad3" title="Place le bras gauche en position initiale (replié)." alt="" coords="259,914,457,955"/>
-<area shape="rect" id="node24" href="$classOPOS6UL__ActionsExtended.html#a44856498aa3839098211785a1fe0b6a3" title="Déploie la banderole (action de fin de match)." alt="" coords="259,550,457,591"/>
-<area shape="rect" id="node25" href="$classOPOS6UL__ActionsExtended.html#ae63e06f334f5095383387aa9ff68c8a3" title="Initialise le servo de la banderole à la position repliée." alt="" coords="259,979,457,1020"/>
-<area shape="rect" id="node26" href="$classOPOS6UL__ActionsExtended.html#a565acda2ce4cdd1be8263835465d0fdc" title="Initialise le bras gauche (épaule, coude, poignet) à la position de repos." alt="" coords="259,1044,457,1086"/>
-<area shape="rect" id="node27" href="$classOPOS6UL__ActionsExtended.html#a50a3db095faaaf15ec9630d9abcfb5d4" title="Initialise les deux bras (gauche et droit) à la position de repos." alt="" coords="259,1110,457,1151"/>
-<area shape="rect" id="node28" href="$classOPOS6UL__ActionsExtended.html#a298422faffadf81c4350cd47464d3f0a" title="Initialise le bras droit (épaule, coude, poignet) à la position de repos." alt="" coords="259,1175,457,1216"/>
-<area shape="rect" id="node20" href="$classO__ServoObjectsTest.html#aabfa9ba518070128940062ed11028ca7" title="Execute le test." alt="" coords="10,790,190,817"/>
-<area shape="rect" id="node34" href="$classO__State__Init.html#abc19788b7457d1f819245dd28367fe91" title="Exécute l&#39;état d&#39;initialisation." alt="" coords="278,666,438,693"/>
-<area shape="rect" id="node36" href="$classAsservDriver.html#a636bf5413d2cf0419f188a4965340758" title="Actions de nettoyage avant l&#39;arret du programme." alt="" coords="788,1073,991,1100"/>
-<area shape="rect" id="node38" href="$classAsservDriverSimu.html#a66f474eaf4d3fc68ec571bcbe73d2326" title="Actions de nettoyage avant l&#39;arret du programme." alt="" coords="772,1124,1007,1150"/>
-<area shape="rect" id="node39" href="$classtest_1_1ThreadTest.html#ab50f7c14a8011c9e19f2631835bbbe46" title="Vérifie le démarrage, l&#39;exécution et l&#39;attente de fin d&#39;un thread." alt="" coords="527,1142,718,1183"/>
-<area shape="rect" id="node37" href="$classAsservDriver.html#aaeb3c80c8a079c812af38273f825c537" title="Assisted movement mode =)" alt="" coords="543,1076,703,1118"/>
-<area shape="rect" id="node41" href="$classutils_1_1Thread.html#a61b6c3d0b87570254646120b323b89f7" title="Cette méthode sert de point d&#39;entrée pour l&#39;appel à pcreate_thread." alt="" coords="1067,1225,1246,1252"/>
-<area shape="rect" id="node42" href="$classutils_1_1Thread.html#a430ee2b8962147b587157fac97932219" title="Lance le thread." alt="" coords="819,1225,960,1252"/>
-<area shape="rect" id="node43" href="$classAsservDriverSimu.html#a48708465356ac7b1ec3f15c835a991ad" title="Constructor." alt="" coords="527,1207,718,1248"/>
-<area shape="rect" id="node44" href="$classOPOS6UL__RobotExtended.html#a3af6cff5115c7ae70f7a797d9e90e66a" title="Initialise l&#39;état du robot et le décisionmaker IA." alt="" coords="528,1272,717,1314"/>
-<area shape="rect" id="node45" href="$PosixTimerBench_8cpp.html#aaf124ed55219ceac7271238db400ef67" title=" " alt="" coords="581,1338,664,1365"/>
-<area shape="rect" id="node46" href="$classAsservEsialR.html#a7a808d4593c732619d2d281faf150611" title=" " alt="" coords="529,1389,717,1416"/>
-<area shape="rect" id="node49" href="$classRobot.html#a46c797e9dba7c96927fa881851309bf0" title="Arrête le timer d&#39;asservissement et le gestionnaire d&#39;actions." alt="" coords="1055,1327,1259,1368"/>
-<area shape="rect" id="node50" href="$classRobot.html#a924320124b09c2f2ac1621aa210d5f38" title="Destructor." alt="" coords="831,1334,948,1361"/>
+<area shape="rect" id="node1" title="Retourne l&#39;état courant du thread." alt="" coords="1579,1153,1723,1180"/>
+<area shape="rect" id="node2" href="$classActions.html#a637e05ac19e873621b1e123c2ff29990" title="Indique si le gestionnaire d&#39;actions est démarré." alt="" coords="1085,717,1228,744"/>
+<area shape="rect" id="node39" href="$classutils_1_1Thread.html#acc5214a88eab5c3bd421e7ee06f66b1a" title="Indique si le thread est terminé ou pas encore démarré." alt="" coords="1069,1103,1245,1129"/>
+<area shape="rect" id="node44" href="$classutils_1_1Thread.html#a46589324e8fc0735c20268db70d34aa5" title="Modifie l&#39;état du thread (thread&#45;safe)." alt="" coords="1336,1153,1501,1180"/>
+<area shape="rect" id="node47" href="$classtest_1_1ThreadTest.html#a6c8d29fa04a545a3c602c220804e8fb5" title="Vérifie les transitions d&#39;état CREATED → STARTED → STOPPED." alt="" coords="526,1259,719,1285"/>
+<area shape="rect" id="node48" href="$classActions.html#a2dca3495645f189f728586d4157c699c" title="Arrete le thread sensorManager et actionManager." alt="" coords="1307,1309,1531,1336"/>
+<area shape="rect" id="node3" href="$classActions.html#a710f952f5942e626d73e47733a8848b0" title="Ajout d&#39;une action." alt="" coords="818,157,961,184"/>
+<area shape="rect" id="node13" href="$classActions.html#a173e3bb37b9cbb0e5ef423b1719b7afd" title="Ajout d&#39;un timer standard." alt="" coords="819,576,959,603"/>
+<area shape="rect" id="node37" href="$classActions.html#adf0dec391b032c0b36b329a3f039001e" title="Active les actions." alt="" coords="569,964,677,991"/>
+<area shape="rect" id="node4" href="$classO__ActionManagerTimerTest.html#ab88b301cdfa06385c521335dd27932c9" title="Execute le test." alt="" coords="243,797,473,824"/>
+<area shape="rect" id="node5" href="$classSoundBar.html#a6ca072c4dc05e392f0c0114b483f8dc2" title="Lance l&#39;action asynchrone d&#39;émission d&#39;un beep." alt="" coords="545,208,700,235"/>
+<area shape="rect" id="node6" href="$classLedBar.html#a76595197ac9045d04f108bed1f3ac4fd" title="Lance l&#39;action d&#39;allumer toutes les leds." alt="" coords="553,5,693,32"/>
+<area shape="rect" id="node7" href="$classLedBar.html#a714ebd39a178ddd3d602deed7af0bf56" title="Lance l&#39;action d&#39;allumer les leds selon la valeur hexValue." alt="" coords="535,56,711,83"/>
+<area shape="rect" id="node8" href="$classLedBar.html#a77df047f6a8fadf44a3d24d51eb27f68" title="Lance l&#39;action d&#39;éteindre toutes les leds." alt="" coords="551,107,694,133"/>
+<area shape="rect" id="node9" href="$classLedBar.html#a985018b17b5051935a30d19e32880e11" title="Lance l&#39;action de changer le statut d&#39;une led en tache parallele sur l&#39;actionmanager." alt="" coords="559,157,686,184"/>
+<area shape="rect" id="node10" href="$classO__LedBarTest.html#af9e0e172d13b334cda0fe32bb659b414" title=" " alt="" coords="289,157,427,184"/>
+<area shape="rect" id="node11" href="$classLedBar.html#ad37f92ef4b6487afc785d739a59a32aa" title="Désactive une led spécifique." alt="" coords="285,56,431,83"/>
+<area shape="rect" id="node12" href="$classLedBar.html#af2eb11c44122b3206a657eb3b0b6f05e" title="Active une led spécifique." alt="" coords="286,107,430,133"/>
+<area shape="rect" id="node14" href="$classSensors.html#a1ef07aeea0536ccf34e310d831e71ef0" title=" " alt="" coords="525,1076,720,1103"/>
+<area shape="rect" id="node22" href="$classServoObjectsSystem.html#a60de17986f65700a7659b22edda2faef" title="move 1 servo." alt="" coords="544,527,701,569"/>
+<area shape="rect" id="node33" href="$classServoObjectsSystem.html#a209d4e6a24c8cd26c76168c08e330655" title="move 2 servos." alt="" coords="544,634,701,675"/>
+<area shape="rect" id="node34" href="$classLedBar.html#ac680352e575b6a86e40e0d9143db38d7" title="Lance l&#39;action de faire alterner les leds selon les valeurs hexValue et hexValueNext." alt="" coords="521,356,724,383"/>
+<area shape="rect" id="node35" href="$classLedBar.html#a2fb2bd9ec3e7fcb7451cb859db3a6846" title="Lance l&#39;action de faire clignoter une led nb fois tous les timeus." alt="" coords="525,468,721,495"/>
+<area shape="rect" id="node36" href="$classLedBar.html#a4e3205aef3a0d44b623d4f8434235cbb" title="Lance l&#39;action d&#39;allumer alternativement les leds à la &quot;K2000&quot;." alt="" coords="532,275,713,301"/>
+<area shape="rect" id="node15" href="$classO__State__DecisionMakerIA.html#a96d1f2a7618d607fd10cc51b9111e653" title="Execute l&#39;action." alt="" coords="5,915,195,957"/>
+<area shape="rect" id="node16" href="$classO__Asserv__SquareTest.html#a16a0bf866c8070611cfa8952e3ef64d8" title=" " alt="" coords="263,1000,453,1027"/>
+<area shape="rect" id="node17" href="$classO__AsservLineRotateTest.html#ac54536863ccc3f6bc0ce3f30e99e1b70" title=" " alt="" coords="254,1051,462,1077"/>
+<area shape="rect" id="node18" href="$classO__AsservTest.html#a87e2ffa360e3e12ff5c7b81b1952a04f" title=" " alt="" coords="31,471,169,497"/>
+<area shape="rect" id="node19" href="$classO__AsservXYRotateTest.html#a13ccb691e37bdddc94ca53b29311e39a" title=" " alt="" coords="259,1101,457,1128"/>
+<area shape="rect" id="node20" href="$classO__IAByPathTest.html#a3f57f585ff1382a52bf7f79a28d43629" title="Execute le test." alt="" coords="282,1152,434,1179"/>
+<area shape="rect" id="node21" href="$classO__SensorsTest.html#ae3b998034225e16586ded4ba3bd419e5" title="Execute le test." alt="" coords="285,1203,431,1229"/>
+<area shape="rect" id="node23" href="$classOPOS6UL__ActionsExtended.html#a946560d21bc7c1a12be600b16e07c93a" title="Déploie le bras droit en position d&#39;action." alt="" coords="259,339,457,381"/>
+<area shape="rect" id="node25" href="$classOPOS6UL__ActionsExtended.html#a67daef275b861004d118273c7e2564c2" title="Place le bras droit en position initiale (replié)." alt="" coords="259,405,457,446"/>
+<area shape="rect" id="node26" href="$classOPOS6UL__ActionsExtended.html#a5b32b355b6907dda48874f40dc9101eb" title="Déploie le bras gauche en position d&#39;action." alt="" coords="259,470,457,511"/>
+<area shape="rect" id="node27" href="$classOPOS6UL__ActionsExtended.html#ad3b7d5a26040d5780cc43a5a9ead9ad3" title="Place le bras gauche en position initiale (replié)." alt="" coords="259,274,457,315"/>
+<area shape="rect" id="node28" href="$classOPOS6UL__ActionsExtended.html#a44856498aa3839098211785a1fe0b6a3" title="Déploie la banderole (action de fin de match)." alt="" coords="259,535,457,577"/>
+<area shape="rect" id="node29" href="$classOPOS6UL__ActionsExtended.html#ae63e06f334f5095383387aa9ff68c8a3" title="Initialise le servo de la banderole à la position repliée." alt="" coords="259,209,457,250"/>
+<area shape="rect" id="node30" href="$classOPOS6UL__ActionsExtended.html#a565acda2ce4cdd1be8263835465d0fdc" title="Initialise le bras gauche (épaule, coude, poignet) à la position de repos." alt="" coords="259,666,457,707"/>
+<area shape="rect" id="node31" href="$classOPOS6UL__ActionsExtended.html#a50a3db095faaaf15ec9630d9abcfb5d4" title="Initialise les deux bras (gauche et droit) à la position de repos." alt="" coords="259,731,457,773"/>
+<area shape="rect" id="node32" href="$classOPOS6UL__ActionsExtended.html#a298422faffadf81c4350cd47464d3f0a" title="Initialise le bras droit (épaule, coude, poignet) à la position de repos." alt="" coords="259,601,457,642"/>
+<area shape="rect" id="node24" href="$classO__ServoObjectsTest.html#aabfa9ba518070128940062ed11028ca7" title="Execute le test." alt="" coords="10,412,190,439"/>
+<area shape="rect" id="node38" href="$classO__State__Init.html#abc19788b7457d1f819245dd28367fe91" title="Exécute l&#39;état d&#39;initialisation." alt="" coords="278,949,438,976"/>
+<area shape="rect" id="node40" href="$classAsservDriver.html#a636bf5413d2cf0419f188a4965340758" title="Actions de nettoyage avant l&#39;arret du programme." alt="" coords="788,1052,991,1079"/>
+<area shape="rect" id="node42" href="$classAsservDriverSimu.html#a66f474eaf4d3fc68ec571bcbe73d2326" title="Actions de nettoyage avant l&#39;arret du programme." alt="" coords="772,1103,1007,1129"/>
+<area shape="rect" id="node43" href="$classtest_1_1ThreadTest.html#ab50f7c14a8011c9e19f2631835bbbe46" title="Vérifie le démarrage, l&#39;exécution et l&#39;attente de fin d&#39;un thread." alt="" coords="527,1193,718,1234"/>
+<area shape="rect" id="node41" href="$classAsservDriver.html#aaeb3c80c8a079c812af38273f825c537" title="Assisted movement mode =)" alt="" coords="543,1127,703,1169"/>
+<area shape="rect" id="node45" href="$classutils_1_1Thread.html#a61b6c3d0b87570254646120b323b89f7" title="Cette méthode sert de point d&#39;entrée pour l&#39;appel à pcreate_thread." alt="" coords="1067,1153,1246,1180"/>
+<area shape="rect" id="node46" href="$classutils_1_1Thread.html#a430ee2b8962147b587157fac97932219" title="Lance le thread." alt="" coords="819,1153,960,1180"/>
+<area shape="rect" id="node49" href="$classRobot.html#a46c797e9dba7c96927fa881851309bf0" title="Arrête le timer d&#39;asservissement et le gestionnaire d&#39;actions." alt="" coords="1055,1306,1259,1347"/>
+<area shape="rect" id="node50" href="$classRobot.html#a924320124b09c2f2ac1621aa210d5f38" title="Destructor." alt="" coords="831,1313,948,1340"/>
 </map>

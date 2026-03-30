@@ -1,25 +1,30 @@
 <map id="src/common/interface/AColorDriver.hpp" name="src/common/interface/AColorDriver.hpp">
-<area shape="rect" id="node1" title="Interface abstraite du driver de capteur couleur." alt="" coords="3277,5,3441,47"/>
-<area shape="rect" id="node2" href="$OPOS6UL__ActionsExtended_8hpp.html" title="Extension des actions du robot pour la carte OPOS6UL." alt="" coords="1572,95,1759,136"/>
-<area shape="rect" id="node17" href="$GroveColorSensor_8hpp.html" title="Définition de la classe GroveColorSensor. http://wiki.seeed.cc/Grove&#45;I2C_Color_Sensor/." alt="" coords="3031,95,3222,136"/>
-<area shape="rect" id="node19" href="$ColorDriver_8hpp.html" title="Implementation SIMU du driver de capteur couleur." alt="" coords="3246,102,3471,129"/>
-<area shape="rect" id="node21" href="$DriverFactories_8cpp.html" title="Factory create() pour le build SIMU." alt="" coords="3494,191,3743,218"/>
-<area shape="rect" id="node22" href="$ColorDriverManualTest_8hpp.html" title="Définition de la classe ColorDriverManualTest." alt="" coords="3684,95,3911,136"/>
+<area shape="rect" id="node1" title="Interface abstraite du driver de capteur couleur." alt="" coords="4330,5,4494,47"/>
+<area shape="rect" id="node2" href="$OPOS6UL__ActionsExtended_8hpp.html" title="Extension des actions du robot pour la carte OPOS6UL." alt="" coords="2037,95,2224,136"/>
+<area shape="rect" id="node22" href="$GroveColorSensor_8hpp.html" title="Définition de la classe GroveColorSensor. http://wiki.seeed.cc/Grove&#45;I2C_Color_Sensor/." alt="" coords="4085,95,4275,136"/>
+<area shape="rect" id="node24" href="$ColorDriver_8hpp.html" title="Implementation SIMU du driver de capteur couleur." alt="" coords="4299,102,4525,129"/>
+<area shape="rect" id="node26" href="$DriverFactories_8cpp.html" title="Factory create() pour le build SIMU." alt="" coords="4547,191,4797,218"/>
+<area shape="rect" id="node27" href="$ColorDriverManualTest_8hpp.html" title="Définition de la classe ColorDriverManualTest." alt="" coords="4737,95,4964,136"/>
 <area shape="rect" id="node3" href="$O__ActionManagerTimerTest_8cpp.html" title="Implémentation de la classe O_ActionManagerTimerTest." alt="" coords="5,184,189,225"/>
-<area shape="rect" id="node4" href="$O__ButtonBarTest_8cpp.html" title="Implémentation de la classe O_ButtonBarTest." alt="" coords="213,184,400,225"/>
-<area shape="rect" id="node5" href="$O__IAbyPathTest_8cpp.html" title="Implementation de la classe O_IAByPathTest." alt="" coords="424,184,624,225"/>
-<area shape="rect" id="node6" href="$O__LcdBoardTest_8cpp.html" title="Implémentation de la classe O_LcdBoardTest." alt="" coords="648,184,851,225"/>
-<area shape="rect" id="node7" href="$O__LedBarTest_8cpp.html" title="Implementation de la classe O_LedBarTest." alt="" coords="875,184,1063,225"/>
-<area shape="rect" id="node8" href="$O__SensorsTest_8cpp.html" title="Implémentation de la classe O_SensorsTest." alt="" coords="1088,184,1283,225"/>
-<area shape="rect" id="node9" href="$O__ServoObjectsTest_8cpp.html" title="Implémentation de la classe O_ServoObjectsTest." alt="" coords="1307,184,1536,225"/>
-<area shape="rect" id="node10" href="$O__ServoStepTest_8cpp.html" title="Implémentation de la classe O_ServoStepTest." alt="" coords="1561,184,1770,225"/>
-<area shape="rect" id="node11" href="$O__State__DecisionMakerIA_8cpp.html" title="Implémentation de la classe O_State_DecisionMakerIA." alt="" coords="1794,184,1971,225"/>
-<area shape="rect" id="node12" href="$O__State__Init_8cpp.html" title="Implémentation de la classe O_State_Init." alt="" coords="1995,184,2173,225"/>
-<area shape="rect" id="node13" href="$O__State__WaitEndOfMatch_8cpp.html" title="Implémentation de la classe O_State_WaitEndOfMatch." alt="" coords="2197,184,2374,225"/>
-<area shape="rect" id="node14" href="$O__TiretteTest_8cpp.html" title="Implémentation de la classe O_TiretteTest." alt="" coords="2399,184,2585,225"/>
-<area shape="rect" id="node15" href="$OPOS6UL__ActionsExtended_8cpp.html" title="Implémentation de la classe OPOS6UL_ActionsExtended." alt="" coords="2609,184,2796,225"/>
-<area shape="rect" id="node16" href="$OPOS6UL__RobotExtended_8cpp.html" title="Implémentation de la classe OPOS6UL_RobotExtended." alt="" coords="2820,184,3007,225"/>
-<area shape="rect" id="node18" href="$GroveColorSensor_8cpp.html" title="Implémentation de la classe GroveColorSensor concernant l&#39;utilisation du détecteur Grove TSC3414." alt="" coords="3031,184,3222,225"/>
-<area shape="rect" id="node20" href="$ColorDriver_8cpp.html" title="Implementation SIMU du driver de capteur couleur." alt="" coords="3247,191,3471,218"/>
-<area shape="rect" id="node23" href="$ColorDriverManualTest_8cpp.html" title="Implémentation de la classe ColorDriverManualTest." alt="" coords="3768,184,3995,225"/>
+<area shape="rect" id="node4" href="$O__Asserv__CalageTest_8cpp.html" title="Implémentation de la classe O_Asserv_CalageTest." alt="" coords="213,184,400,225"/>
+<area shape="rect" id="node5" href="$O__Asserv__SquareTest_8cpp.html" title="Implémentation de la classe O_Asserv_SquareTest." alt="" coords="424,184,611,225"/>
+<area shape="rect" id="node6" href="$O__AsservLineRotateTest_8cpp.html" title="Implémentation de la classe O_AsservLineRotateTest." alt="" coords="635,184,821,225"/>
+<area shape="rect" id="node7" href="$O__AsservTest_8cpp.html" title="Implémentation de la classe O_AsservTest." alt="" coords="845,184,1032,225"/>
+<area shape="rect" id="node8" href="$O__AsservXYRotateTest_8cpp.html" title="Implémentation de la classe O_AsservXYRotateTest." alt="" coords="1056,184,1243,225"/>
+<area shape="rect" id="node9" href="$O__ButtonBarTest_8cpp.html" title="Implémentation de la classe O_ButtonBarTest." alt="" coords="1267,184,1453,225"/>
+<area shape="rect" id="node10" href="$O__IAbyPathTest_8cpp.html" title="Implementation de la classe O_IAByPathTest." alt="" coords="1477,184,1677,225"/>
+<area shape="rect" id="node11" href="$O__LcdBoardTest_8cpp.html" title="Implémentation de la classe O_LcdBoardTest." alt="" coords="1701,184,1904,225"/>
+<area shape="rect" id="node12" href="$O__LedBarTest_8cpp.html" title="Implementation de la classe O_LedBarTest." alt="" coords="1929,184,2117,225"/>
+<area shape="rect" id="node13" href="$O__SensorsTest_8cpp.html" title="Implémentation de la classe O_SensorsTest." alt="" coords="2141,184,2336,225"/>
+<area shape="rect" id="node14" href="$O__ServoObjectsTest_8cpp.html" title="Implémentation de la classe O_ServoObjectsTest." alt="" coords="2360,184,2589,225"/>
+<area shape="rect" id="node15" href="$O__ServoStepTest_8cpp.html" title="Implémentation de la classe O_ServoStepTest." alt="" coords="2614,184,2823,225"/>
+<area shape="rect" id="node16" href="$O__State__DecisionMakerIA_8cpp.html" title="Implémentation de la classe O_State_DecisionMakerIA." alt="" coords="2847,184,3025,225"/>
+<area shape="rect" id="node17" href="$O__State__Init_8cpp.html" title="Implémentation de la classe O_State_Init." alt="" coords="3049,184,3226,225"/>
+<area shape="rect" id="node18" href="$O__State__WaitEndOfMatch_8cpp.html" title="Implémentation de la classe O_State_WaitEndOfMatch." alt="" coords="3250,184,3427,225"/>
+<area shape="rect" id="node19" href="$O__TiretteTest_8cpp.html" title="Implémentation de la classe O_TiretteTest." alt="" coords="3452,184,3639,225"/>
+<area shape="rect" id="node20" href="$OPOS6UL__ActionsExtended_8cpp.html" title="Implémentation de la classe OPOS6UL_ActionsExtended." alt="" coords="3663,184,3849,225"/>
+<area shape="rect" id="node21" href="$OPOS6UL__RobotExtended_8cpp.html" title="Implémentation de la classe OPOS6UL_RobotExtended." alt="" coords="3873,184,4060,225"/>
+<area shape="rect" id="node23" href="$GroveColorSensor_8cpp.html" title="Implémentation de la classe GroveColorSensor concernant l&#39;utilisation du détecteur Grove TSC3414." alt="" coords="4085,184,4275,225"/>
+<area shape="rect" id="node25" href="$ColorDriver_8cpp.html" title="Implementation SIMU du driver de capteur couleur." alt="" coords="4300,191,4524,218"/>
+<area shape="rect" id="node28" href="$ColorDriverManualTest_8cpp.html" title="Implémentation de la classe ColorDriverManualTest." alt="" coords="4821,184,5048,225"/>
 </map>

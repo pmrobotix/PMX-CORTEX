@@ -1,8 +1,11 @@
 <map id="Robot::setMyColor" name="Robot::setMyColor">
-<area shape="rect" id="node1" title="Enregistre la couleur du robot." alt="" coords="553,63,696,90"/>
-<area shape="rect" id="node2" href="$classRobot.html#ae8cede2564e5b9229da095991c064ae4" title="Démarre le robot (test fonctionnel ou match)." alt="" coords="373,13,477,39"/>
-<area shape="rect" id="node5" href="$classO__State__Init.html#abc19788b7457d1f819245dd28367fe91" title="Exécute l&#39;état d&#39;initialisation." alt="" coords="345,63,505,90"/>
-<area shape="rect" id="node6" href="$classO__SensorsTest.html#ae3b998034225e16586ded4ba3bd419e5" title="Execute le test." alt="" coords="353,114,498,141"/>
+<area shape="rect" id="node1" title="Enregistre la couleur du robot." alt="" coords="584,139,727,166"/>
+<area shape="rect" id="node2" href="$classRobot.html#ae8cede2564e5b9229da095991c064ae4" title="Démarre le robot (test fonctionnel ou match)." alt="" coords="389,13,493,39"/>
+<area shape="rect" id="node5" href="$classO__State__Init.html#abc19788b7457d1f819245dd28367fe91" title="Exécute l&#39;état d&#39;initialisation." alt="" coords="361,63,521,90"/>
+<area shape="rect" id="node6" href="$classO__Asserv__CalageTest.html#ad731f64308b62269f060e74c0282e30f" title=" " alt="" coords="345,114,536,141"/>
+<area shape="rect" id="node7" href="$classO__Asserv__SquareTest.html#a16a0bf866c8070611cfa8952e3ef64d8" title=" " alt="" coords="345,165,536,191"/>
+<area shape="rect" id="node8" href="$classO__AsservTest.html#a87e2ffa360e3e12ff5c7b81b1952a04f" title=" " alt="" coords="371,215,510,242"/>
+<area shape="rect" id="node9" href="$classO__SensorsTest.html#ae3b998034225e16586ded4ba3bd419e5" title="Execute le test." alt="" coords="368,266,513,293"/>
 <area shape="rect" id="node3" href="$classOPOS6UL__RobotExtended.html#a3af6cff5115c7ae70f7a797d9e90e66a" title="Initialise l&#39;état du robot et le décisionmaker IA." alt="" coords="108,5,297,47"/>
 <area shape="rect" id="node4" href="$src_2bot-opos6ul_2Main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,60,39"/>
 </map>
