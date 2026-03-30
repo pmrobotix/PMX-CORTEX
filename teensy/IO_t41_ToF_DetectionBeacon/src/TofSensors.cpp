@@ -1,18 +1,25 @@
-/*
- * TofSensors.cpp
+/**
+ * @file TofSensors.cpp
+ * @brief Implementation de la detection 360° par capteurs VL53L1X.
  *
- *  Created on: Jan 25, 2021
- *      Author: cho (PM-ROBOTIX)
+ * Architecture multi-thread :
+ * - loopvl1 : acquisition des 9 capteurs Front (Wire1)
+ * - loopvl2 : acquisition des 9 capteurs Back  (Wire)
+ * - tof_loop (main loop) : synchronisation, filtrage, calcul de positions
+ *
+ * Pipeline : acquisition parallele → filtrage → calcul positions → registres I2C
+ *
+ * @author cho (PM-ROBOTIX)
+ * @date Jan 25, 2021
  */
 
 #include "INO_ToF_DetectionBeacon.h"
 #include "TofSensors.h"
 #include <i2c_register_slave.h>
 
-//Nouvelle config avec detecteurs
-// front[9] back[9]
-//front[9]:Violet41-Jaune40-Orange39-Rouge38-Marron37-Noir36-Blanc35-Gris34-violet33
-//Back[9]:Violet20-Jaune21-Orange22-Rouge23-Marron4-Noir3-Blanc2-Gris1-violet0
+/// Pins XSHUT (shutdown) des 18 capteurs VL53L1X.
+/// Front[9] : pins 23,22,21,20,0,1,2,3,4 (couleurs: Violet-Jaune-Orange-Rouge-Marron-Noir-Blanc-Gris-Violet)
+/// Back[9]  : pins 32,31,30,29,28,27,26,6,5
 int shutd_pin[NumOfSensors] = { 23, 22, 21, 20, 0, 1, 2, 3, 4, 32, 31, 30, 29, 28, 27, 26, 6, 5 };
 
 #ifdef SENSORS_VL_CLOSED_COLLISION_ACTIVATED
@@ -20,18 +27,19 @@ int shutd_pin[NumOfSensors] = { 23, 22, 21, 20, 0, 1, 2, 3, 4, 32, 31, 30, 29, 2
 int shutd_pin_collision[NumOfCollisionSensors + NumOfCollisionSensors] = { 40, 39, 38, 37, 36, 35, 34, 33 };
 #endif
 
-//centre des SPADs d'après le tableau (inversé de gauche vers la droite à cause du sens des VL)
+/// Centre optique de chaque zone SPAD (inverse gauche→droite a cause du sens de montage des VL).
+/// @see Table of Optical Centers dans la datasheet VL53L1X.
 int center[16] = { 251, 243, 235, 227, 219, 211, 203, 195, 187, 179, 171, 163, 155, 147, 139, 131 };
 
-char buffer[255];
+char buffer[255]; ///< Buffer temporaire pour formatage serie.
 
-SFEVL53L1X vl[NumOfSensors];
-VL53L1X_Result_t res[NumOfZonesPerSensor * NumOfSensors];
+SFEVL53L1X vl[NumOfSensors];                          ///< Instances des 18 capteurs VL53L1X.
+VL53L1X_Result_t res[NumOfZonesPerSensor * NumOfSensors]; ///< Resultats bruts (72 zones).
 
-Threads::Mutex registers_new_data_lock;
-Threads::Mutex filteredResultWorkingCopy_mutex;
-Threads::Mutex l1_mutex;
-Threads::Mutex l2_mutex;
+Threads::Mutex registers_new_data_lock;          ///< Protege l'ecriture des registres I2C.
+Threads::Mutex filteredResultWorkingCopy_mutex;   ///< Protege la copie de travail des donnees filtrees.
+Threads::Mutex l1_mutex;                          ///< Synchronisation thread Front.
+Threads::Mutex l2_mutex;                          ///< Synchronisation thread Back.
 
 #ifdef SENSORS_VL_CLOSED_COLLISION_ACTIVATED
 SFEVL53L1X vl_collision[NumOfCollisionSensors + NumOfCollisionSensors];
@@ -45,36 +53,34 @@ uint16_t SigPerSPAD_coll[NumOfZonesPerSensor * NumOfSensors];
 uint16_t Ambient_coll[NumOfZonesPerSensor * NumOfSensors];
 #endif
 
-int nb_active_filtered_sensors;
-int nb_active_filtered_sensors_mode2;
-volatile int videoMode;
+int nb_active_filtered_sensors;        ///< Compteur de zones actives (detection main proche < 160mm).
+int nb_active_filtered_sensors_mode2;  ///< Compteur de zones actives mode 2 (detection tres proche < 60mm).
+volatile int videoMode;                ///< Mode d'affichage LED : 0=normal, 1=video (main couvre tout), 2=tres proche.
 extern int video_infinite;
-int latency_thread_error = 0;
-int latency = 0;
+int latency_thread_error = 0;          ///< Flag d'erreur de latence des threads (>90ms).
+int latency = 0;                       ///< Compteur pour reset du flag latency_thread_error apres 5 cycles OK.
 
-//initialise the settings
-// Register 0. Number of Robot which may to be detected, default 3.
-// Register 1. Writable. Sets the mode for led display. 0 => OFF. 100 => FULL ON. 50 => Half luminosity.
-// Register 2. Points à afficher
-// Register 2. NOT use yet
+/// Configuration I2C esclave — registres Settings (inscriptibles par le master).
 Settings settings = { 0x03, 0x01, 0x00, 0x00 };
 
-Registers registers; //data pret pour la demande I2C
+/// Registres de sortie (lecture seule par le master) — donnees de detection.
+Registers registers;
+/// Esclave I2C sur bus Slave2, adresse 0x2D.
 I2CRegisterSlave registerSlave = I2CRegisterSlave(Slave2, (uint8_t*) &settings, sizeof(Settings), (uint8_t*) &registers,
 		sizeof(Registers));
 
-uint16_t filteredResult[NumOfZonesPerSensor * NumOfSensors];
-uint16_t filteredResultPrevious[NumOfZonesPerSensor * NumOfSensors];
-uint16_t filteredResultWorkingCopy[NumOfZonesPerSensor * NumOfSensors];
-uint16_t distance_t[NumOfZonesPerSensor * NumOfSensors];
-uint16_t greenHandDistance[NumOfZonesPerSensor * NumOfSensors]; //working result utilisé pour l'affichage LED
-uint8_t status_t[NumOfZonesPerSensor * NumOfSensors];
-bool connected_t[NumOfZonesPerSensor * NumOfSensors];
-uint16_t NumSPADs_t[NumOfZonesPerSensor * NumOfSensors];
-uint16_t SigPerSPAD_t[NumOfZonesPerSensor * NumOfSensors];
-uint16_t Ambient_t[NumOfZonesPerSensor * NumOfSensors];
+uint16_t filteredResult[NumOfZonesPerSensor * NumOfSensors];            ///< Distances filtrees par zone (72 valeurs). 1 = pas de detection.
+uint16_t filteredResultPrevious[NumOfZonesPerSensor * NumOfSensors];    ///< Copie du cycle precedent (pour correction des zeros).
+uint16_t filteredResultWorkingCopy[NumOfZonesPerSensor * NumOfSensors]; ///< Copie thread-safe pour le calcul et l'affichage LED.
+uint16_t distance_t[NumOfZonesPerSensor * NumOfSensors];                ///< Distances brutes (sans filtrage) par zone.
+uint16_t greenHandDistance[NumOfZonesPerSensor * NumOfSensors];         ///< Distances validees pour affichage LED vert (main proche).
+uint8_t status_t[NumOfZonesPerSensor * NumOfSensors];    ///< Status VL53L1X par zone (0=RangeValid, 5=erreur/timeout).
+bool connected_t[NumOfZonesPerSensor * NumOfSensors];    ///< Etat de connexion par zone (false = capteur offline).
+uint16_t NumSPADs_t[NumOfZonesPerSensor * NumOfSensors]; ///< Nombre de SPADs actifs par zone (qualite du signal).
+uint16_t SigPerSPAD_t[NumOfZonesPerSensor * NumOfSensors]; ///< Signal par SPAD par zone (intensite du retour).
+uint16_t Ambient_t[NumOfZonesPerSensor * NumOfSensors];  ///< Lumiere ambiante par zone (bruit de fond).
 
-uint16_t handDistance[NumOfZonesPerSensor * NumOfSensors]; //working for detection
+uint16_t handDistance[NumOfZonesPerSensor * NumOfSensors]; ///< Distance de travail pour detection main proche.
 
 //uint16_t OffsetCal[NumOfZonesPerSensor * 9] = { 60, 110, 134, 95, 60, 110, 134,
 //		95, 60, 110, 134, 95, 60, 110, 134, 95, 60, 110, 134, 95, 60, 110, 134,
@@ -83,14 +89,28 @@ uint16_t handDistance[NumOfZonesPerSensor * NumOfSensors]; //working for detecti
 //		117, 0, 85, 31, 117, 0, 85, 31, 117, 0, 85, 31, 117, 0, 85, 31, 117, 0,
 //		85, 31, 117, 0, 85, 31, 117, 0, 85, 31, 117 };
 
-volatile bool tofVLReadyForCalculation = false;
+volatile bool tofVLReadyForCalculation = false;  ///< Flag de synchro : donnees pretes pour calcul.
 //volatile bool tofVLunblock = false;
-volatile int shared_endloop1 = 0;
-volatile int shared_endloop2 = 0;
+volatile int shared_endloop1 = 0;  ///< Flag de fin du thread Front (1 = termine).
+volatile int shared_endloop2 = 0;  ///< Flag de fin du thread Back (1 = termine).
 
 //elapsedMicros elapsedT_us = 0;
 
-//Calcul et filtrage
+/**
+ * @brief Calcule la position des robots adverses a partir des distances filtrees.
+ *
+ * Algorithme en 3 etapes :
+ * 1. Identification des groupes de zones contigues (= 1 robot adverse)
+ *    avec gestion du chevauchement circulaire (zone 71 → zone 0)
+ * 2. Calcul de l'angle moyen et de la distance moyenne par robot
+ *    (rejet du minimum pour robustesse)
+ * 3. Conversion polaire → cartesien (x, y) par trigonometrie
+ *
+ * @param decalage_deg Offset angulaire de calibration (degres).
+ * @param new_values   Registres de sortie a remplir (positions, zones, distances).
+ * @param fresult      Tableau des distances filtrees par zone (72 valeurs, 1 = pas de detection).
+ * @return Nombre de robots detectes (0 a 4 max).
+ */
 int8_t calculPosition(float decalage_deg, Registers &new_values, uint16_t *fresult)
 {
 
@@ -421,6 +441,11 @@ int8_t calculPosition(float decalage_deg, Registers &new_values, uint16_t *fresu
 	return final_nb_bots;
 }
 
+/**
+ * @brief Scanne un bus I2C et affiche les peripheriques trouves sur le port serie.
+ * @param w Bus I2C a scanner (Wire ou Wire1).
+ * @return Nombre de peripheriques detectes.
+ */
 int scani2c(TwoWire w)
 {
 	Serial.println("I2C scanner. Scanning ...");
@@ -446,6 +471,14 @@ int scani2c(TwoWire w)
 	return count;
 }
 
+/**
+ * @brief ISR appelee apres lecture I2C par le master OPOS6UL.
+ *
+ * Remet a zero le bit "new data" (bit0 de flags) pour signaler
+ * que les donnees courantes ont ete lues.
+ *
+ * @param reg_num Numero du registre lu par le master.
+ */
 void on_read_isr(uint8_t reg_num)
 {
 	// Clear the "new data" bit so the master knows it's
@@ -453,6 +486,17 @@ void on_read_isr(uint8_t reg_num)
 	registers.flags = registers.flags & 0xFE; //mise a zero du BIT0
 }
 
+/**
+ * @brief Initialise les 18 capteurs VL53L1X et demarre les threads d'acquisition.
+ *
+ * Sequence :
+ * 1. Configure l'esclave I2C (adresse 0x2D) et l'ISR de lecture
+ * 2. Associe chaque capteur a son bus I2C (Wire1 pour Front, Wire pour Back)
+ * 3. Active les capteurs un par un via XSHUT et les re-adresse (0x15 a 0x26)
+ * 4. Configure chaque capteur : mode Short, timing budget, periode inter-mesures
+ * 5. Scanne les bus I2C pour verifier la presence des capteurs
+ * 6. Lance les threads loopvl1 (Front) et loopvl2 (Back)
+ */
 void tof_setup()
 {
 	//threads.delay(4000);
@@ -649,7 +693,24 @@ void tof_setup()
 	//tofVLReadyForCalculation = true; //pour démarrer la synchro
 }
 
-//Attention pas de delay dans cette fonction pour ne pas ralentir la main loop
+/**
+ * @brief Boucle principale de traitement ToF — appelee depuis loop().
+ *
+ * Etapes :
+ * 1. Attend la fin des 2 threads d'acquisition (shared_endloop1/2)
+ * 2. Applique les filtres de correction sur les donnees brutes :
+ *    - Remplacement des zeros par la valeur precedente
+ *    - Rejet des faux positifs via SigPerSPAD, NumSPADs, Status
+ *    - Calcul greenHandDistance pour affichage LED
+ * 3. Copie thread-safe des donnees filtrees (filteredResultWorkingCopy)
+ * 4. Relance les threads d'acquisition
+ * 5. Calcul des positions via calculPosition()
+ * 6. Mise a jour des registres I2C (protegee par mutex)
+ * 7. Detection du mode video (main proche couvrant le champ)
+ *
+ * @note Pas de delay() dans cette fonction pour ne pas ralentir la main loop.
+ * @param debug Si != 0, affiche les donnees detaillees sur le port serie.
+ */
 void tof_loop(int debug)
 {
 	elapsedMicros elapsedT_us = 0;
@@ -1202,7 +1263,21 @@ void tof_loop(int debug)
  *
  * To set the center, set the pad that is to the right and above the exact center of the region you'd like to measure as your opticalCenter*/
 
-//Front loop
+/**
+ * @brief Thread d'acquisition des 9 capteurs Front (bus Wire1).
+ *
+ * Boucle infinie qui pour chaque cycle :
+ * 1. Attend le signal de demarrage (shared_endloop1 == 0)
+ * 2. Pour chaque zone SPAD (0 a 3) de chaque capteur (0 a 8) :
+ *    - Configure le ROI et demarre la mesure
+ *    - Attend les donnees avec timeout (TIMING_UDGET_IN_MS * 3 ms)
+ *    - Filtre selon NumSPADs, SigPerSPAD, Ambient et Status
+ *    - Stocke dans filteredResult[] avec inversion de zone (3-z)
+ * 3. Signale la fin (shared_endloop1 = 1)
+ *
+ * @note Les zones sont inversees (3-z) car les capteurs sont montes
+ *       avec les SPADs dans le sens oppose.
+ */
 void loopvl1()
 {
 //	tofVLReadyForCalculation = false;
@@ -1218,6 +1293,16 @@ void loopvl1()
 		{
 			threads.yield();
 		}
+		// checkID desactive pour test — le timeout sur checkForDataReady suffit
+		// for (int n = 0; n < NumOfSensors / 2; n++)
+		// {
+		// 	if (!vl[n].checkID())
+		// 	{
+		// 		Serial.println("VL_FRONT[" + String(n) + "] OFFLINE");
+		// 		for (int zz = 0; zz < NumOfZonesPerSensor; zz++)
+		// 			connected_t[(NumOfZonesPerSensor * n) + zz] = false;
+		// 	}
+		// }
 		for (int z = 0; z < NumOfZonesPerSensor; z++)
 		{
 #ifdef SENSORS_VL_CLOSED_COLLISION_ACTIVATED
@@ -1234,7 +1319,6 @@ void loopvl1()
 			for (int n = 0; n < NumOfSensors / 2; n++)
 			{ //NumOfSensors
 
-				if (!vl[n].checkID()) connected_t[(NumOfZonesPerSensor * n) + z] = false;
 				if (connected_t[(NumOfZonesPerSensor * n) + z])
 				{
 					vl[n].setROI(WidthOfSPADsPerZone, 8, center[NumOfSPADsShiftPerZone * z + NumOfSPADsToStartZone]);
@@ -1271,10 +1355,25 @@ void loopvl1()
 
 				if (connected_t[(NumOfZonesPerSensor * n) + z])
 				{
-
+					elapsedMillis timeout_ms = 0;
 					while (!vl[n].checkForDataReady())
 					{
 						threads.yield();
+						if (timeout_ms > TIMING_UDGET_IN_MS * 3)
+						{
+							Serial.println("VL_FRONT[" + String(n) + "] TIMEOUT zone " + String(z));
+							for (int zz = 0; zz < NumOfZonesPerSensor; zz++)
+								connected_t[(NumOfZonesPerSensor * n) + zz] = false;
+							break;
+						}
+					}
+					if (!connected_t[(NumOfZonesPerSensor * n) + z])
+					{
+						// capteur desactive par timeout
+						filteredResult[(NumOfZonesPerSensor * n) + (3 - z)] = 1;
+						distance_t[(NumOfZonesPerSensor * n) + (3 - z)] = 1;
+						status_t[(NumOfZonesPerSensor * n) + (3 - z)] = 5;
+						continue;
 					}
 
 					//vl[n].setOffset(OffsetCal[(NumOfZonesPerSensor * n) + z]);
@@ -1489,6 +1588,10 @@ void loopvl1()
 	}
 }
 
+/**
+ * @brief Thread d'acquisition des 9 capteurs Back (bus Wire).
+ * @see loopvl1() — meme logique pour les capteurs 9 a 17.
+ */
 void loopvl2()
 {
 	//int ontime = 1;
@@ -1510,6 +1613,16 @@ void loopvl2()
 //		tofVLReadyForCalculation = false;
 		//threads.yield();
 
+		// checkID desactive pour test — le timeout sur checkForDataReady suffit
+		// for (int n = (NumOfSensors / 2); n < NumOfSensors; n++)
+		// {
+		// 	if (!vl[n].checkID())
+		// 	{
+		// 		Serial.println("VL_BACK[" + String(n) + "] OFFLINE");
+		// 		for (int zz = 0; zz < NumOfZonesPerSensor; zz++)
+		// 			connected_t[(NumOfZonesPerSensor * n) + zz] = false;
+		// 	}
+		// }
 		for (int z = 0; z < NumOfZonesPerSensor; z++)
 		{
 
@@ -1527,7 +1640,6 @@ void loopvl2()
 			for (int n = (NumOfSensors / 2); n < NumOfSensors; n++)
 			{ //NumOfSensors
 
-				if (!vl[n].checkID()) connected_t[(NumOfZonesPerSensor * n) + z] = false;
 				if (connected_t[(NumOfZonesPerSensor * n) + z])
 				{
 					vl[n].setROI(WidthOfSPADsPerZone, 8, center[NumOfSPADsShiftPerZone * z + NumOfSPADsToStartZone]);
@@ -1566,15 +1678,27 @@ void loopvl2()
 
 				if (connected_t[(NumOfZonesPerSensor * n) + z])
 				{
-					while (!vl[n].checkForDataReady()) // || !tofVLunblock)
+					elapsedMillis timeout_ms = 0;
+					while (!vl[n].checkForDataReady())
 					{
 						threads.yield();
-						//
-//						Serial.print(" 2.waitdata");
-//						Serial.println(tofVLunblock);
+						if (timeout_ms > TIMING_UDGET_IN_MS * 3)
+						{
+							Serial.println("VL_BACK[" + String(n) + "] TIMEOUT zone " + String(z));
+							for (int zz = 0; zz < NumOfZonesPerSensor; zz++)
+								connected_t[(NumOfZonesPerSensor * n) + zz] = false;
+							break;
+						}
 					}
-//					if (!tofVLunblock)
-//					{
+					if (!connected_t[(NumOfZonesPerSensor * n) + z])
+					{
+						// capteur desactive par timeout
+						filteredResult[(NumOfZonesPerSensor * n) + (3 - z)] = 1;
+						distance_t[(NumOfZonesPerSensor * n) + (3 - z)] = 1;
+						status_t[(NumOfZonesPerSensor * n) + (3 - z)] = 5;
+						continue;
+					}
+
 					//vl[n].setOffset(OffsetCal[(NumOfZonesPerSensor * n) + z]);
 					//vl[n].setXTalk(OffsetCalxTalk[(NumOfZonesPerSensor * n) + z]);
 					vl[n].getResult(&res[(NumOfZonesPerSensor * n) + z]);
