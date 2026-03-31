@@ -61,7 +61,7 @@
             // Build un preset au choix
             "label": "Build ALL",
             "type": "shell",
-            "command": "cmake --build --preset ${input:buildPreset} -j$(nproc)",
+            "command": "cmake --preset ${input:buildPreset} && cmake --build --preset ${input:buildPreset} -j$(nproc)",
             "options": {
                 "cwd": "${workspaceFolder}",
                 "statusbar": {
@@ -128,12 +128,12 @@
             // Rapatrie les fichiers SVG generes sur la carte
             "label": "ARM: Recup SVG",
             "type": "shell",
-            "command": "sshpass -p pmx scp -o StrictHostKeyChecking=no root@${input:targetIP}:/root/pmx/*.svg /home/pmx/recup/ && echo '🤖 Bip Positronik, Successful transmission, captain Cho !'",
+            "command": "sshpass -p pmx scp -o StrictHostKeyChecking=no root@${input:targetIP}:/root/pmx/*.svg ${workspaceFolder}/build-arm-release/bin/ && echo '🤖 Bip Positronik, Successful transmission, captain Cho !'",
             "options": {
                 "cwd": "${workspaceFolder}",
                 "statusbar": {
                     "hide": false,
-                    "label": "$(file-media) Recup SVG",
+                    "label": "$(file-media) Recup Log",
                     "color": "#DCDCAA"
                 }
             },
@@ -144,7 +144,7 @@
             // Ouvre le log SVG dans le navigateur
             "label": "SVG Log: Ouvrir",
             "type": "shell",
-            "command": "setsid firefox ${workspaceFolder}/build-${input:buildPreset}/resources-svg/index.html 2>/dev/null",
+            "command": "setsid firefox ${workspaceFolder}/build-${input:buildPreset}/bin/index.html 2>/dev/null",
             "options": {
                 "cwd": "${workspaceFolder}",
                 "statusbar": {

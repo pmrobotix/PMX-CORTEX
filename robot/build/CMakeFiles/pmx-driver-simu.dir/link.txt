@@ -1,2 +1,0 @@
-/usr/bin/ar qc libpmx-driver-simu.a CMakeFiles/pmx-driver-simu.dir/src/driver-simu/DriverFactories.cpp.o CMakeFiles/pmx-driver-simu.dir/src/driver-simu/SoundDriver.cpp.o CMakeFiles/pmx-driver-simu.dir/src/driver-simu/RobotPositionShared.cpp.o CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ServoUsingMotorDriver.cpp.o CMakeFiles/pmx-driver-simu.dir/src/driver-simu/ActionDriver.cpp.o
-/usr/bin/ranlib libpmx-driver-simu.a

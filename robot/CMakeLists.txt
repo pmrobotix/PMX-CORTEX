@@ -5,6 +5,10 @@ project(PMX-CORTEX LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# --- Répertoires de sortie ---
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+
 # --- Options communes ---
 add_compile_options(-Wall -pthread)
 
@@ -241,11 +245,14 @@ if(DRIVER_LIB)
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
             ${CMAKE_SOURCE_DIR}/src/bot-opos6ul/config_OPOS6UL_Robot.txt
             $<TARGET_FILE_DIR:bot-opos6ul>/config_OPOS6UL_Robot.txt
-        # Ressources SVG pour le log (index.html + table)
-        COMMAND ${CMAKE_COMMAND} -E copy_directory
-            ${CMAKE_SOURCE_DIR}/src/common/log/resources-svg
-            $<TARGET_FILE_DIR:bot-opos6ul>/resources-svg
-        COMMENT "Copie hardware.conf + config asserv + resources-svg dans le repertoire de build"
+        # Ressources SVG pour le log (index.html + table directement dans bin/)
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            ${CMAKE_SOURCE_DIR}/src/common/log/resources-svg/index.html
+            $<TARGET_FILE_DIR:bot-opos6ul>/index.html
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            ${CMAKE_SOURCE_DIR}/src/common/log/resources-svg/table.png
+            $<TARGET_FILE_DIR:bot-opos6ul>/table.png
+        COMMENT "Copie hardware.conf + config asserv + index.html + table.png dans bin/"
     )
 endif()
 

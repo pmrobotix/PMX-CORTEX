@@ -25,11 +25,12 @@
         //font-weight: bold;
     //}
      .big-btn {
-        width: 180px;
-        height: 50px;
+        width: 170px;
+        height: 46px;
+        font-size: 30px;
     }
-     .input[type="button"] {
-     font-size: 40px;
+     input[type="button"] {
+     font-size: 30px;
      font-weight: bold;
      }
 </style>
@@ -68,11 +69,16 @@
 <br/><br/><br/><br/>
      <input type=button name=type id='table-bt' value='TABLE'
           onclick="setVisibility('table');" class="input button big-btn">
+<br/><br/><br/><br/><br/>
+     <label for="tableOpacity">Opacité table:</label><br/><br/><br/><br/>
+     <input type="range" id="tableOpacity" min="0" max="100" value="40" style="width:170px;"
+          oninput="document.getElementById('table').style.opacity = this.value / 100; document.getElementById('opacityVal').textContent = this.value + '%';">
+     <br/><span id="opacityVal">40%</span>
 
 </div>
 
-     <div id="table" style="opacity: 0.4; position:absolute; left:200px; top:200px; width:0px; height:0px; z-index:10;display:inline">
-<object data="table2024.svg" type="image/svg+xml" style="width:3000px; height:2000px;"></object>
+     <div id="table" style="opacity: 0.4; position:absolute; left:200px; top:200px; width:3000px; height:2000px; z-index:10;display:inline">
+<img src="table.png" style="position:absolute; left:0px; top:0px; width:3000px; height:2000px;">
 </div>
 
 <div id="svgIA" style="opacity: 0.2; position:absolute; left:0px; top:0px; width:3400px; height:2500px; z-index:20;display:inline" >

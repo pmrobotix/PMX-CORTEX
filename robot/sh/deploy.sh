@@ -75,7 +75,7 @@ cd "$ROBOT_DIR_SRC"
 cmake --preset arm-release 2>&1 | tail -1
 cmake --build --preset arm-release --target "$TARGET" -j6 2>&1 | tail -3
 
-BUILD_DIR="$ROBOT_DIR_SRC/build-arm-release"
+BUILD_DIR="$ROBOT_DIR_SRC/build-arm-release/bin"
 BINARY="$BUILD_DIR/$TARGET"
 
 if [ ! -f "$BINARY" ]; then
