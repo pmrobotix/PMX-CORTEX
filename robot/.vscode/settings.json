@@ -5,5 +5,7 @@
     "cmake.buildArgs": ["--parallel", "12"],
     "cmake.buildBeforeRun": true,
     "cmake.provideTasks": false,
-    "tasks.statusbar.default.hide": true
+    "tasks.statusbar.default.hide": true,
+    "webhint.enableTelemetry": "ask",
+    "webhint.ignore": ["no-inline-styles"]
 }
