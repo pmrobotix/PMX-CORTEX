@@ -1,6 +1,45 @@
 /*!
  * \file
  * \brief Implémentation de la classe O_AsservLineRotateTest.
+ *
+ * Exemples de lignes de commande (args: d a back [d2..d5 a2..a5 back2..back5]) :
+ * Options : /m 0=relatif(defaut) 1=absolu  /s vitesse%  /r repetitions  /p pathfinding  /B detection  /+ x y a
+ *
+ *   --- Mode relatif (defaut, /m 0) - marche avant ---
+ *
+ *   # Ligne droite 300mm
+ *   ./bot-opos6ul t /n 8 300
+ *
+ *   # Carré de 300mm (rotation relative +90°)
+ *   ./bot-opos6ul t /n 8 300 90 0  300 90 0  300 90 0  300 90 0 /+ 500 500 0
+ *
+ *   # Carré de 300mm répété 3 fois
+ *   ./bot-opos6ul t /n 8 300 90 0  300 90 0  300 90 0  300 90 0 /r 3 /+ 500 500 0
+ *
+ *   # Aller-retour 500mm (demi-tour relatif 180°), 5 fois
+ *   ./bot-opos6ul t /n 8 500 180 0 /r 5 /+ 500 500 0
+ *
+ *   # Triangle équilatéral 400mm (rotation relative +120°)
+ *   ./bot-opos6ul t /n 8 400 120 0  400 120 0  400 120 0 /+ 500 500 0
+ *
+ *   --- Mode relatif - marche arrière (back=1) ---
+ *
+ *   # Carré de 300mm en marche arrière : demi-tour puis 4 segments back
+ *   ./bot-opos6ul t /n 8 0 180 0  300 90 1  300 90 1  300 90 1  300 90 1 /+ 500 500 0
+ *
+ *   # Carré de 300mm en marche arrière répété 3 fois
+ *   ./bot-opos6ul t /n 8 0 180 0  300 90 1  300 90 1  300 90 1  300 90 1 /r 3 /+ 500 500 0
+ *
+ *   # Ligne 200mm en marche arrière, vitesse 30%
+ *   ./bot-opos6ul t /n 8 200 -1 1 /s 30 /+ 500 500 0
+ *
+ *   --- Mode absolu (/m 1) ---
+ *
+ *   # Carré de 300mm (orientations absolues 90°, 180°, 270°, 0°)
+ *   ./bot-opos6ul t /n 8 300 90 0  300 180 0  300 270 0  300 0 0 /m 1 /+ 500 500 0
+ *
+ *   # Ligne 400mm puis orientation absolue vers 45°
+ *   ./bot-opos6ul t /n 8 400 45 0 /m 1 /+ 500 500 0
  */
 
 #include "O_AsservLineRotateTest.hpp"
@@ -40,9 +79,13 @@ void O_AsservLineRotateTest::configureConsoleArgs(int argc, char **argv)
 	robot.getArgs().addArgument("a4", "angle degres", "-1");
 	robot.getArgs().addArgument("back4", "backwards[0,1]", "0");
 
+	robot.getArgs().addArgument("d5", "distance mm", "-1");
+	robot.getArgs().addArgument("a5", "angle degres", "-1");
+	robot.getArgs().addArgument("back5", "backwards[0,1]", "0");
+
 	//mode de drive
 	Arguments::Option cOptMode('m', "mode used for test");
-	cOptMode.addArgument("mode", "1:relative 2:absolute", "1");
+	cOptMode.addArgument("mode", "0:relative 1:absolute", "0");
 	robot.getArgs().addOption(cOptMode);
 
 	//mode de pathfinding
@@ -59,6 +102,11 @@ void O_AsservLineRotateTest::configureConsoleArgs(int argc, char **argv)
 	Arguments::Option cOptdetect('B', "Detection Balise");
 	cOptdetect.addArgument("detection", "[0-1]", "1");
 	robot.getArgs().addOption(cOptdetect);
+
+	//repetition du cycle
+	Arguments::Option cOptRepeat('r', "nombre de repetitions du cycle");
+	cOptRepeat.addArgument("repeat", "nombre de repetitions", "1");
+	robot.getArgs().addOption(cOptRepeat);
 
 	Arguments::Option cOpt('+', "Coordinates x,y,a");
 	cOpt.addArgument("coordx", "coord x mm", "300.0");
@@ -94,6 +142,10 @@ void O_AsservLineRotateTest::run(int argc, char **argv)
 	float d4 = 0.0;
 	float a4 = 0.0;
 	bool back4 = false;
+
+	float d5 = 0.0;
+	float a5 = 0.0;
+	bool back5 = false;
 
 	int B = 0;
 	int m = 0;
@@ -171,6 +223,22 @@ void O_AsservLineRotateTest::run(int argc, char **argv)
 		logger().info() << "Arg back4 set " << args["back4"] << ", back4 = " << back4 << logs::end;
 	}
 
+	if (args["d5"] != "0")
+	{
+		d5 = atof(args["d5"].c_str());
+		logger().info() << "Arg d5 set " << args["d5"] << ", d5 = " << d5 << logs::end;
+	}
+	if (args["a5"] != "0")
+	{
+		a5 = atof(args["a5"].c_str());
+		logger().info() << "Arg a5 set " << args["a5"] << ", a5 = " << a5 << logs::end;
+	}
+	if (args["back5"] != "0")
+	{
+		back5 = atoi(args["back5"].c_str());
+		logger().info() << "Arg back5 set " << args["back5"] << ", back5 = " << back5 << logs::end;
+	}
+
 	B = atoi(args['B']["detection"].c_str());
 	logger().info() << "Arg B set " << args['B']["detection"] << ", B = " << B << logs::end;
 
@@ -182,6 +250,9 @@ void O_AsservLineRotateTest::run(int argc, char **argv)
 
 	pathfindingMode = atoi(args['p']["pmode"].c_str());
 	logger().info() << "Arg p set " << args['p']["pmode"] << ", pathfindingMode = " << pathfindingMode << logs::end;
+
+	int repeat = atoi(args['r']["repeat"].c_str());
+	logger().info() << "Arg r set " << args['r']["repeat"] << ", repeat = " << repeat << logs::end;
 
 	coordx = atof(args['+']["coordx"].c_str());
 	coordy = atof(args['+']["coordy"].c_str());
@@ -218,7 +289,11 @@ void O_AsservLineRotateTest::run(int argc, char **argv)
 
 	TRAJ_STATE ts = TRAJ_IDLE;
 
-	for (int nb = 1; nb <= 4; nb++)
+	for (int rep = 1; rep <= repeat; rep++)
+	{
+	logger().info() << "=== REPETITION " << rep << "/" << repeat << " ===" << logs::end;
+
+	for (int nb = 1; nb <= 5; nb++)
 	{
 
 		if (nb == 1)
@@ -245,6 +320,12 @@ void O_AsservLineRotateTest::run(int argc, char **argv)
 			aa = a4;
 			dd = d4;
 		}
+		if (nb == 5)
+		{
+			bback = back5;
+			aa = a5;
+			dd = d5;
+		}
 
 		if (dd != -1)
 		{
@@ -264,6 +345,7 @@ void O_AsservLineRotateTest::run(int argc, char **argv)
 							<< logs::end;
 					robot.asserv().resetEmergencyOnTraj(" doLine: " + ts);
 				}
+				/*
 				utils::sleep_for_micros(1000000);
 				logger().info() <<  " doline 2 " << logs::end;
 				ts = robot.asserv().doLine(dd);
@@ -290,7 +372,7 @@ void O_AsservLineRotateTest::run(int argc, char **argv)
 					logger().info() << robot.asserv().getTraj(ts) << " =====  CONFIRMED AFTER n ;WHAT TO DO ?"
 							<< logs::end;
 					robot.asserv().resetEmergencyOnTraj(" doLine: " + ts);
-				}
+				}*/
 
 			} else if (pathfindingMode == 1)
 			{
@@ -338,12 +420,13 @@ void O_AsservLineRotateTest::run(int argc, char **argv)
 			if (ts >= TRAJ_INTERRUPTED)
 			{
 				logger().info() << robot.asserv().getTraj(ts)
-						<< " doRelativeRotateDeg =====  CONFIRMED AFTER 1 turn ;WHAT TO DO ?" << logs::end;
+						<< " doAbsoluteRotateTo =====  CONFIRMED AFTER 1 turn ;WHAT TO DO ?" << logs::end;
 				robot.asserv().resetEmergencyOnTraj(" doAbsoluteRotateTo: " + ts);
 			}
 			robot.svgPrintPosition();
 		}
 	}
+	} // fin repetition
 
 	robot.svgPrintPosition();
 

@@ -23,9 +23,22 @@
 #include "thread/Thread.hpp"
 #include <sys/mman.h>
 #include <cerrno>
+#include <csignal>
 #include <cstring>
 
 using namespace std;
+
+// Handler SIGINT (Ctrl+C) : ferme proprement les fichiers SVG, flush les logs, puis quitte.
+static void sigintHandler(int)
+{
+    // 1) Écrit </g></svg> dans le buffer du logger SVG
+    OPOS6UL_RobotExtended &robot = OPOS6UL_RobotExtended::instance();
+    robot.svgPrintEndOfFile();
+    // 2) Flush les buffers mémoire vers les fichiers (SvgAppender) et ferme les logs
+    logs::LoggerFactory::instance().stopLog();
+    // 3) exit() appelle les destructeurs et flush les streams (contrairement à _exit)
+    exit(0);
+}
 
 int main(int argc, char** argv)
 {
@@ -38,6 +51,9 @@ int main(int argc, char** argv)
     }
 
     utils::set_realtime_priority(50, "Main"); //set priority MAX 99
+
+    // Capture Ctrl+C pour fermer proprement les SVG
+    signal(SIGINT, sigintHandler);
 
     //Specific Robot BigPMX
     OPOS6UL_RobotExtended &robot = OPOS6UL_RobotExtended::instance();

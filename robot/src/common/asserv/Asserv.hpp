@@ -79,24 +79,27 @@ protected:
 public:
 
     /*!
-     * \brief Verifie si le driver d'asservissement est connecte.
+     * \brief Vérifie si le driver d'asservissement est connecté (liaison série ou simulateur).
+     * \return true si la connexion est active.
      */
     bool is_connected() { return asservdriver_->is_connected(); }
 
     /*!
-     * \brief Constructor.
-     *
+     * \brief Constructeur.
+     * \param botId Identifiant du robot (ex: "OPOS6UL"), utilisé pour instancier le bon driver.
+     * \param robot Pointeur vers l'objet Robot parent (accès aux positions partagées).
      */
-    Asserv(std::string botId, Robot *robot); //TODO robot is deprecated ?
+    Asserv(std::string botId, Robot *robot);
 
     /*!
-     * \brief Destructor.
+     * \brief Destructeur. Libère le driver et l'asserv interne.
      */
     virtual ~Asserv();
 
-
     /*!
-     * \brief return the name of trajectory state.
+     * \brief Retourne le nom lisible d'un état de trajectoire (pour les logs).
+     * \param ts État de trajectoire (enum TRAJ_STATE).
+     * \return Chaîne décrivant l'état (ex: "TRAJ_FINISHED", "TRAJ_NEAR_OBSTACLE").
      */
     std::string getTraj(TRAJ_STATE ts)
     {
@@ -124,152 +127,503 @@ public:
     	}
     }
 
-    //FONCTIONS DE BASE de l'ASSERV
+    // ========== FONCTIONS DE BASE — ENCODEURS ET MOTEURS ==========
+
     /*!
-     * \brief reset Encoders.
+     * \brief Remet à zéro les compteurs des encodeurs gauche et droit.
      */
     void resetEncoders();
+
     /*!
-     * \brief get accumulated ticks of encoders
+     * \brief Lit les compteurs accumulés des encodeurs (ticks absolus).
+     * \param[out] countR Compteur encodeur droit.
+     * \param[out] countL Compteur encodeur gauche.
      */
     void getEncodersCounts(int *countR, int *countL);
+
     /*!
-     * \brief get delta ticks of encoders since last call.
+     * \brief Lit le delta de ticks des encodeurs depuis le dernier appel.
+     *        Utile pour l'odométrie incrémentale.
+     * \param[out] deltaCountR Delta encodeur droit.
+     * \param[out] deltaCountL Delta encodeur gauche.
      */
     void getDeltaEncodersCounts(int *deltaCountR, int *deltaCountL);
+
     /*!
-     * \brief run Left Motor.
-     * timems < 0 => use duty_cycle, run forever
-     * timems = 0 => use speed (include internal regulation for lego)
-     * timems > 0 => use speed with a running time (include internal regulation for lego)
+     * \brief Commande le moteur gauche.
+     * \param power Puissance (positif = avant, négatif = arrière).
+     * \param timems Durée en ms. <0 : duty cycle permanent, 0 : régulation vitesse, >0 : régulation avec durée.
      */
     void runMotorLeft(int power, int timems);
+
     /*!
-     * \brief run Right Motor.
-     * timems < 0 => use duty_cycle, run forever
-     * timems = 0 => use speed (include internal regulation for lego)
-     * timems > 0 => use speed with a running time (include internal regulation for lego)
+     * \brief Commande le moteur droit.
+     * \param power Puissance (positif = avant, négatif = arrière).
+     * \param timems Durée en ms. <0 : duty cycle permanent, 0 : régulation vitesse, >0 : régulation avec durée.
      */
     void runMotorRight(int power, int timems);
+
     /*!
-     * \brief stop Motors.
+     * \brief Arrête les deux moteurs immédiatement.
      */
     void stopMotors();
 
-    //FONCTIONS SUPLLEMENTAIRES de l'ASSERV
+    // ========== CONFIGURATION VITESSE ==========
 
+    /*!
+     * \brief Retourne la valeur de vitesse lente (en %).
+     */
     int getLowSpeedvalue();
+
+    /*!
+     * \brief Définit la valeur de vitesse lente (en %).
+     * \param value Pourcentage de vitesse lente (ex: 30 = 30%).
+     */
     void setLowSpeedvalue(int value);
 
+    /*!
+     * \brief Retourne la valeur max de vitesse en distance (en %).
+     */
     int getMaxSpeedDistValue();
+
+    /*!
+     * \brief Définit la valeur max de vitesse en distance (en %).
+     */
     void setMaxSpeedDistValue(int value);
 
-//    ROBOTPOSITION convertPositionToRepereTable(float d_mm, float x_mm, float y_mm, float theta_deg, float *x_botpos,
-//            float *y_botpos);
+    // ========== FILTRAGE POSITION ET DÉTECTION ==========
+
+    /*!
+     * \brief Vérifie si une position (x,y) est à l'intérieur de la table.
+     *        Fonction pure virtuelle — doit être implémentée par chaque robot.
+     * \param x_botpos Position X en mm.
+     * \param y_botpos Position Y en mm.
+     * \return true si la position est dans les limites de la table.
+     */
     virtual bool filtre_IsInsideTableXY(int x_botpos, int y_botpos) = 0;
 
+    /*!
+     * \brief Callback appelé en fin de trajectoire pour gérer les actions post-mouvement.
+     *        Peut être surchargé par les robots spécifiques.
+     */
     virtual void endWhatTodo();
 
-    //Gestion de l'asservissement
+    // ========== GESTION DE L'ASSERVISSEMENT ==========
+
+    /*!
+     * \brief Démarre le timer de mouvement et l'odométrie.
+     *        Active le thread d'asservissement et optionnellement le maintien en position.
+     * \param assistedHandlingEnabled true pour activer le maintien en position (assistedHandling).
+     */
     virtual void startMotionTimerAndOdo(bool assistedHandlingEnabled);
 
+    /*!
+     * \brief Active/désactive la vitesse lente en marche avant.
+     * \param enable true pour activer.
+     * \param percent Pourcentage de vitesse (0 = valeur par défaut).
+     */
     void setLowSpeedForward(bool enable, int percent = 0);
+
+    /*!
+     * \brief Active/désactive la vitesse lente en marche arrière.
+     * \param enable true pour activer.
+     * \param percent Pourcentage de vitesse (0 = valeur par défaut).
+     */
     virtual void setLowSpeedBackward(bool enable, int percent = 0);
+
+    /*!
+     * \brief Définit la vitesse maximale en distance et en angle.
+     * \param enable true pour activer la limitation, false pour revenir à la vitesse normale.
+     * \param speed_dist_percent Vitesse max en distance (0-100%).
+     * \param speed_angle_percent Vitesse max en angle (0-100%).
+     */
     void setMaxSpeed(bool enable, int speed_dist_percent=0, int speed_angle_percent=0);
 
-    virtual void setPositionAndColor(float x_mm, float y_mm, float theta_degrees, bool matchColor); //matchColor = 0 =>en bas à gauche du log svg
+    /*!
+     * \brief Définit la position initiale du robot et la couleur de match.
+     *        Applique automatiquement la symétrie si matchColor != 0 (inversion X et angle).
+     * \param x_mm Position X en mm (dans le repère couleur primaire).
+     * \param y_mm Position Y en mm.
+     * \param theta_degrees Angle en degrés.
+     * \param matchColor false = couleur primaire (bas-gauche), true = couleur secondaire (symétrie X).
+     */
+    virtual void setPositionAndColor(float x_mm, float y_mm, float theta_degrees, bool matchColor);
+
+    /*!
+     * \brief Définit directement la position réelle du robot (sans conversion couleur).
+     * \param x_mm Position X brute en mm.
+     * \param y_mm Position Y brute en mm.
+     * \param thetaInRad Angle en radians.
+     */
     virtual void setPositionReal(float x_mm, float y_mm, float thetaInRad);
 
-    virtual bool filtre_IsInsideTable(int dist_detect_mm, int lateral_pos_sensor_mm, std::string desc = ""); //TODO acorriger
-    //virtual bool filtre_IsInFront(int threshold_mm, int dist_mm, int x_mm, int y_mm, float theta);
-    //virtual bool filtre_IsInBack(int threshold_mm, int dist_mm, int x_mm, int y_mm, float theta);
+    /*!
+     * \brief Vérifie si un obstacle détecté est à l'intérieur de la table.
+     *        Doit être surchargé par chaque robot pour tenir compte de sa géométrie.
+     * \param dist_detect_mm Distance de détection en mm.
+     * \param lateral_pos_sensor_mm Position latérale du capteur en mm.
+     * \param desc Description pour le log.
+     * \return true si l'obstacle est dans la table.
+     */
+    virtual bool filtre_IsInsideTable(int dist_detect_mm, int lateral_pos_sensor_mm, std::string desc = "");
 
-    virtual void warnFrontDetectionOnTraj(int frontlevel, float x_adv__mm, float y_adv_mm); // X, Y dans le repère du robot
-    virtual void warnBackDetectionOnTraj(int backlevel, float x_adv_mm, float y_adv_mm); // X, Y dans le repère du robot
+    /*!
+     * \brief Callback de détection d'obstacle devant le robot pendant une trajectoire.
+     *        Gère les niveaux d'alerte : 2=vitesse normale, 3=ralentir, 4=arrêt d'urgence.
+     * \param frontlevel Niveau de détection (2, 3 ou 4).
+     * \param x_adv__mm Position X de l'adversaire dans le repère robot.
+     * \param y_adv_mm Position Y de l'adversaire dans le repère robot.
+     */
+    virtual void warnFrontDetectionOnTraj(int frontlevel, float x_adv__mm, float y_adv_mm);
 
-    virtual void update_adv(); //TODO remove
+    /*!
+     * \brief Callback de détection d'obstacle derrière le robot pendant une trajectoire.
+     *        Gère les niveaux d'alerte : -2=vitesse normale, -3=ralentir, -4=arrêt d'urgence.
+     * \param backlevel Niveau de détection (-2, -3 ou -4).
+     * \param x_adv_mm Position X de l'adversaire dans le repère robot.
+     * \param y_adv_mm Position Y de l'adversaire dans le repère robot.
+     */
+    virtual void warnBackDetectionOnTraj(int backlevel, float x_adv_mm, float y_adv_mm);
 
+    /*!
+     * \brief Met à jour la position de l'adversaire. À surcharger par le robot.
+     */
+    virtual void update_adv();
+
+    /*!
+     * \brief Réinitialise l'arrêt d'urgence après une interruption de trajectoire.
+     *        Permet au robot de reprendre ses mouvements après un obstacle.
+     * \param message Description pour le log (contexte de l'appel).
+     */
     void resetEmergencyOnTraj(std::string message = "default");
 
+    /*!
+     * \brief Déclenche un arrêt d'urgence : interrompt la trajectoire en cours.
+     */
     void setEmergencyStop();
 
-    //modes d'arret de l'asservissement
+    // ========== MODES D'ARRÊT ==========
+
+    /*!
+     * \brief Arrête le timer de mouvement et l'odométrie.
+     *        Stoppe le thread d'asservissement.
+     */
     virtual void stopMotionTimerAndOdo();
-    void disablePID(); //TODO deprecated ? utiliser pour activer la QuadRamp
+
+    /*!
+     * \brief Désactive le PID et active la QuadRamp (rampe d'accélération).
+     */
+    void disablePID();
+
+    /*!
+     * \brief Libère les moteurs (roue libre, plus d'asservissement).
+     *        Le robot peut être poussé à la main.
+     */
     void freeMotion();
+
+    /*!
+     * \brief Active le maintien en position (les moteurs résistent aux perturbations).
+     */
     void assistedHandling();
 
+    // ========== LECTURE DE POSITION ==========
+
+    /*!
+     * \brief Retourne la dernière position connue de l'adversaire.
+     * \return Position (x, y, theta) de l'adversaire en mm/rad.
+     */
     ROBOTPOSITION pos_getAdvPosition();
+
+    /*!
+     * \brief Retourne la position courante du robot (depuis l'odométrie).
+     *        Met aussi à jour la position partagée (sharedPosition) pour les capteurs.
+     * \return Position (x, y, theta) du robot en mm/rad.
+     */
     ROBOTPOSITION pos_getPosition();
+
+    /*!
+     * \brief Retourne la position X courante du robot en mm.
+     */
     float pos_getX_mm();
+
+    /*!
+     * \brief Retourne la position Y courante du robot en mm.
+     */
     float pos_getY_mm();
-    // angle in radian
+
+    /*!
+     * \brief Retourne l'angle courant du robot en radians.
+     */
     float pos_getTheta();
-    // angle in degrees
+
+    /*!
+     * \brief Retourne l'angle courant du robot en degrés.
+     */
     float pos_getThetaInDegree();
 
-//FONCTIONS de DEPLACEMENT
+    // ========== DÉPLACEMENTS GOTO (position absolue sur la table) ==========
+
+    /*!
+     * \brief Déplacement vers (x,y) en mode chaîné (n'attend pas l'arrêt complet avant le prochain ordre).
+     *        Applique la symétrie couleur sur X. Utile pour enchaîner des points de passage.
+     * \param xMM Position X cible en mm (repère couleur primaire).
+     * \param yMM Position Y cible en mm.
+     * \return État de la trajectoire.
+     */
     TRAJ_STATE gotoChain(float xMM, float yMM);
+
+    /*!
+     * \brief Déplacement vers (x,y) avec arrêt complet à l'arrivée.
+     *        Le robot tourne d'abord face au point, puis avance en ligne droite.
+     * \param xMM Position X cible en mm (repère couleur primaire).
+     * \param yMM Position Y cible en mm.
+     * \return État de la trajectoire.
+     */
     TRAJ_STATE gotoXY(float xMM, float yMM);
+
+    /*!
+     * \brief Déplacement en marche arrière vers (x,y).
+     *        Le robot tourne dos au point, puis recule en ligne droite.
+     * \param xMM Position X cible en mm (repère couleur primaire).
+     * \param yMM Position Y cible en mm.
+     * \return État de la trajectoire.
+     */
     TRAJ_STATE gotoReverse(float xMM, float yMM);
+
+    /*!
+     * \brief Déplacement en marche arrière chaîné vers (x,y).
+     * \param xMM Position X cible en mm (repère couleur primaire).
+     * \param yMM Position Y cible en mm.
+     * \return État de la trajectoire.
+     */
     TRAJ_STATE gotoReverseChain(float xMM, float yMM);
 
-    //relative motion (depends on current position of the robot)
-    TRAJ_STATE doLine(float dist_mm); // if distance <0, move backward
+    // ========== DÉPLACEMENTS RELATIFS (par rapport à la position courante) ==========
+
+    /*!
+     * \brief Avance (ou recule) en ligne droite d'une distance donnée.
+     *        Pendant l'avance, la détection arrière est ignorée (et inversement).
+     * \param dist_mm Distance en mm. Positif = avancer, négatif = reculer.
+     * \return État de la trajectoire.
+     */
+    TRAJ_STATE doLine(float dist_mm);
+
+    /*!
+     * \brief Rotation relative d'un angle en degrés par rapport à l'orientation courante.
+     *        Positif = sens trigonométrique (gauche), négatif = sens horaire (droite).
+     * \param degreesRelative Angle relatif en degrés.
+     * \param rotate_ignoring_opponent true pour ignorer la détection adverse pendant la rotation.
+     * \return État de la trajectoire.
+     */
     TRAJ_STATE doRelativeRotateDeg(float degreesRelative, bool rotate_ignoring_opponent = true);
+
+    /*!
+     * \brief Rotation relative d'un angle en radians par rapport à l'orientation courante.
+     * \param radRelative Angle relatif en radians.
+     * \param rotate_ignoring_opponent true pour ignorer la détection adverse pendant la rotation.
+     * \return État de la trajectoire.
+     */
     TRAJ_STATE doRelativeRotateRad(float radRelative, bool rotate_ignoring_opponent = true);
-    TRAJ_STATE doRelativeRotateByMatchColor(float thetaInDegreeRelative, bool rotate_ignoring_opponent = true); //prend automatiquement un angle dans un sens ou dans l'autre suivant la couleur de match
+
+    /*!
+     * \brief Rotation relative avec inversion automatique selon la couleur de match.
+     *        Couleur primaire : angle tel quel. Couleur secondaire : angle inversé (-angle).
+     * \param thetaInDegreeRelative Angle relatif en degrés (repère couleur primaire).
+     * \param rotate_ignoring_opponent true pour ignorer la détection adverse.
+     * \return État de la trajectoire.
+     */
+    TRAJ_STATE doRelativeRotateByMatchColor(float thetaInDegreeRelative, bool rotate_ignoring_opponent = true);
+
+    /*!
+     * \brief Rotation absolue vers un angle donné sur le terrain.
+     *        Calcule la rotation relative nécessaire depuis l'angle courant,
+     *        en appliquant la symétrie couleur de match.
+     * \param thetaInDegreeAbsolute Angle cible en degrés (repère couleur primaire, 0° = axe X+).
+     * \param rotate_ignore_opponent true pour ignorer la détection adverse.
+     * \return État de la trajectoire.
+     */
     TRAJ_STATE doAbsoluteRotateTo(float thetaInDegreeAbsolute, bool rotate_ignore_opponent = true);
 
+    /*!
+     * \brief Tourne le robot face à un point (x,y) du terrain.
+     * \param xMM Position X du point en mm (repère couleur primaire).
+     * \param yMM Position Y du point en mm.
+     * \param back_face true pour tourner le dos au point au lieu de lui faire face.
+     * \return État de la trajectoire.
+     */
     TRAJ_STATE doFaceTo(float xMM, float yMM, bool back_face = false);
 
+    // ========== CALAGE (recalage contre un mur/bordure) ==========
+
+    /*!
+     * \brief Calage contre un mur avec timeout. Le robot avance lentement jusqu'au blocage.
+     *        Désactive la régulation angulaire pendant le calage.
+     * \param dist_mm Distance max en mm (positif=avant, négatif=arrière).
+     * \param percent Pourcentage de vitesse lente.
+     * \param timeout_ms Timeout en ms (non encore implémenté).
+     * \return État de la trajectoire.
+     */
     TRAJ_STATE doCalageNew(float dist_mm, int percent, float timeout_ms);
 
+    /*!
+     * \brief Calage simple : avance lentement et s'arrête au blocage mécanique.
+     * \param d Distance en mm (positif=avant, négatif=arrière).
+     * \param percent Pourcentage de vitesse lente.
+     * \return État de la trajectoire.
+     */
     TRAJ_STATE doCalage(int d, int percent);
+
+    /*!
+     * \brief Calage en 2 phases : phase 1 avec régulation, phase 2 en ligne directe.
+     * \param d Distance en mm.
+     * \param percent Pourcentage de vitesse lente.
+     * \return État de la trajectoire.
+     */
     TRAJ_STATE doCalage2(int d, int percent);
 
+    // ========== PIVOT (rotation autour d'une roue) ==========
 
-    //pivot motion
+    /*!
+     * \brief Pivote autour de la roue gauche (la roue gauche reste quasi immobile).
+     * \param powerL Puissance moteur gauche.
+     * \param powerR Puissance moteur droit.
+     * \param timemsR Durée en ms.
+     */
     void doRunPivotLeft(int powerL, int powerR, int timemsR);
+
+    /*!
+     * \brief Pivote autour de la roue droite (la roue droite reste quasi immobile).
+     * \param powerL Puissance moteur gauche.
+     * \param powerR Puissance moteur droit.
+     * \param timemsL Durée en ms.
+     */
     void doRunPivotRight(int powerL, int powerR, int timemsL);
 
+    // ========== DÉPLACEMENTS COMPOSÉS (avance + rotation) ==========
 
+    /*!
+     * \brief Avance vers (x,y) puis tourne vers l'angle donné. (deprecated)
+     * \param xMM Position X cible en mm.
+     * \param yMM Position Y cible en mm.
+     * \param thetaInDegree Angle final en degrés.
+     * \param rotate_ignore_opponent true pour ignorer la détection pendant la rotation.
+     * \return État de la trajectoire.
+     */
     TRAJ_STATE doMoveForwardAndRotateTo(float xMM, float yMM, float thetaInDegree, bool rotate_ignore_opponent = true);
+
+    /*!
+     * \brief Recule vers (x,y) : tourne d'abord dos au point, puis recule en ligne droite.
+     * \param xMM Position X cible en mm.
+     * \param yMM Position Y cible en mm.
+     * \param rotate_ignored true pour ignorer la détection pendant la rotation initiale.
+     * \return État de la trajectoire.
+     */
     TRAJ_STATE doMoveBackwardTo(float xMM, float yMM, bool rotate_ignored = false);
+
+    /*!
+     * \brief Recule vers (x,y) puis tourne vers l'angle donné. (deprecated)
+     * \param xMM Position X cible en mm.
+     * \param yMM Position Y cible en mm.
+     * \param thetaInDegree Angle final en degrés.
+     * \return État de la trajectoire.
+     */
     TRAJ_STATE doMoveBackwardAndRotateTo(float xMM, float yMM, float thetaInDegree);
+
+    /*!
+     * \brief Avance vers (x,y) : tourne d'abord face au point, puis avance en ligne droite.
+     *        Si le robot est déjà très proche (<5mm), retourne TRAJ_FINISHED directement.
+     * \param xMM Position X cible en mm.
+     * \param yMM Position Y cible en mm.
+     * \param rotate_ignored true pour ignorer la détection pendant la rotation initiale.
+     * \param adjustment Ajustement de distance en mm (ajouté à la distance calculée).
+     * \return État de la trajectoire.
+     */
     TRAJ_STATE doMoveForwardTo(float xMM, float yMM, bool rotate_ignored = false, float adjustment = 0);
 
-    //http://nains-games.com/2014/12/intersection-de-deux-cercles.html
+    // ========== RECALAGE PAR TRIANGULATION (intersection de 2 cercles) ==========
+
+    /*!
+     * \brief Calcule l'intersection de 2 cercles pour déterminer la position réelle.
+     *        Ref: http://nains-games.com/2014/12/intersection-de-deux-cercles.html
+     * \param x1,y1,d1 Centre et rayon du cercle 1 (position départ, distance parcourue).
+     * \param x2,y2,d2 Centre et rayon du cercle 2 (position capteur, distance mesurée).
+     * \param robot_size_l_mm Demi-largeur du robot (pour filtrer la bonne solution).
+     * \return tuple(erreur, x, y) : erreur<=0 si pas de solution, >0 sinon.
+     */
     std::tuple<int, float, float> eq_2CirclesCrossed_getXY(float x1, float y1, float d1, float x2, float y2, float d2,
             float robot_size_l_mm);
+
+    /*!
+     * \brief Résout l'équation du 2nd degré issue de l'intersection des cercles.
+     * \return tuple(erreur, x, y).
+     */
     std::tuple<int, float, float> eq_2nd_deg_getXY(float a, float b, float A, float B, float C, float robot_size_l_mm);
+
+    /*!
+     * \brief Calcule le discriminant delta = B² - 4AC.
+     */
     float eq_2nd_deg_getDelta(float A, float B, float C);
 
     /*!
-     * pos_x_start_mm
-     * pos_y_start_mm
-     * p
-     * delta_j_mm
-     * delta_k_mm
-     * mesure_mm
-     * robot_size_l_mm largeur du robot à partir du centre
+     * \brief Corrige la position réelle du robot par triangulation avec un capteur de distance.
+     *        Utilise la distance parcourue depuis un point connu + une mesure capteur
+     *        pour recalculer (x, y, theta) par intersection de cercles.
+     * \param pos_x_start_mm Position X de départ en mm.
+     * \param pos_y_start_mm Position Y de départ en mm.
+     * \param p Position courante du robot (odométrie).
+     * \param delta_j_mm Offset X du capteur par rapport au centre du robot.
+     * \param delta_k_mm Offset Y du capteur par rapport au centre du robot.
+     * \param mesure_mm Distance mesurée par le capteur en mm.
+     * \param robot_size_l_mm Demi-largeur du robot en mm (pour filtrer les solutions).
+     * \return >0 si recalage réussi, <=0 sinon.
      */
     int adjustRealPosition(float pos_x_start_mm, float pos_y_start_mm, ROBOTPOSITION p, float delta_j_mm,
             float delta_k_mm, float mesure_mm, float robot_size_l_mm);
 
-    //attention la couleur de match doit deja etre effectué !
+    /*!
+     * \brief Corrige la dérive latérale du robot côté droit par mesure de bordure.
+     *        Compare la distance théorique à la bordure avec la distance mesurée.
+     *        Attention : la couleur de match doit déjà être appliquée.
+     * \param d2_theo_bordure_mm Distance théorique à la bordure en mm.
+     * \param d2b_bordure_mm Distance mesurée à la bordure en mm.
+     * \param x_depart_mm Position X de départ en mm.
+     * \param y_depart_mm Position Y de départ en mm.
+     * \return true si correction appliquée (écart >= 5mm), false sinon.
+     */
     bool calculateDriftRightSideAndSetPos(float d2_theo_bordure_mm, float d2b_bordure_mm, float x_depart_mm,
             float y_depart_mm);
+
+    /*!
+     * \brief Corrige la dérive latérale du robot côté gauche par mesure de bordure.
+     * \param d2_theo_bordure_mm Distance théorique à la bordure en mm.
+     * \param d2b_bordure_mm Distance mesurée à la bordure en mm.
+     * \param x_depart_mm Position X de départ en mm.
+     * \param y_depart_mm Position Y de départ en mm.
+     * \return true si correction appliquée (écart >= 5mm), false sinon.
+     */
     bool calculateDriftLeftSideAndSetPos(float d2_theo_bordure_mm, float d2b_bordure_mm, float x_depart_mm,
             float y_depart_mm);
 
+    /*!
+     * \brief Définit la couleur de match (détermine la symétrie X du terrain).
+     * \param c false = couleur primaire (pas de symétrie), true = couleur secondaire (symétrie X).
+     */
     void setMatchColorPosition(bool c)
     {
         matchColorPosition_ = c;
     }
 
-    //transformation suivant la couleur de match
-    inline float changeMatchX(float x_mm, float width = 0.0)//TODO replace by getMatchX
+    // ========== UTILITAIRES DE CONVERSION COULEUR/ANGLE ==========
+
+    /*!
+     * \brief Convertit une coordonnée X selon la couleur de match.
+     *        Couleur primaire : retourne x_mm + width.
+     *        Couleur secondaire : retourne (3000 - x_mm - width) pour la symétrie.
+     * \param x_mm Coordonnée X en mm (repère couleur primaire).
+     * \param width Décalage additionnel en mm (ex: demi-largeur robot).
+     * \return Coordonnée X convertie.
+     */
+    inline float changeMatchX(float x_mm, float width = 0.0)
     {
         //printf("matchcolor:%d", matchColorPosition_);
         //logger().error() << "color==" << matchColorPosition_ << " width=" << width<< logs::end;
@@ -279,6 +633,9 @@ public:
         return x_mm + width;
     }
 
+    /*!
+     * \brief Variante de changeMatchX : en couleur primaire, ne rajoute pas width.
+     */
     inline float changeMatchXMin(float x_mm, float width = 0.0)
     {
         //printf("matchcolor:%d", matchColorPosition_);
@@ -289,6 +646,13 @@ public:
         return x_mm;
     }
 
+    /*!
+     * \brief Convertit un angle en radians selon la couleur de match.
+     *        Couleur primaire : angle inchangé.
+     *        Couleur secondaire : applique la symétrie (PI - angle), wrappé sur [0, 2PI].
+     * \param rad Angle en radians (repère couleur primaire).
+     * \return Angle converti en radians.
+     */
     inline float changeMatchAngleRad(float rad)
     {
         if (matchColorPosition_ != 0) {
@@ -299,11 +663,17 @@ public:
         return rad;
     }
 
+    /*!
+     * \brief Convertit des degrés en radians.
+     */
     inline float degToRad(float deg)
     {
         return deg * M_PI / 180.0;
     }
 
+    /*!
+     * \brief Convertit des radians en degrés.
+     */
     inline float radToDeg(float rad)
     {
         return rad * 180.0 / M_PI;

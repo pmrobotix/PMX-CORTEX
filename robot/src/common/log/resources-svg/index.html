@@ -42,21 +42,36 @@
 
 <script>
      function setVisibility(id) {
-
-
           if(document.getElementById(id).style.display == 'none'){
-
                document.getElementById(id).style.display = 'inline';
                document.getElementById(id+'-bt').style.fontWeight = 'bold';
-
+               localStorage.setItem('vis_' + id, 'inline');
           }else{
-
                document.getElementById(id).style.display = 'none';
                document.getElementById(id+'-bt').style.fontWeight = 'normal';
-
+               localStorage.setItem('vis_' + id, 'none');
           }
-
      }
+
+     function restoreState() {
+          var layers = ['svgAPF', 'svgIA', 'svgSensors', 'table'];
+          for (var i = 0; i < layers.length; i++) {
+               var id = layers[i];
+               var saved = localStorage.getItem('vis_' + id);
+               if (saved !== null) {
+                    document.getElementById(id).style.display = saved;
+                    document.getElementById(id + '-bt').style.fontWeight = (saved === 'inline') ? 'bold' : 'normal';
+               }
+          }
+          var savedOpacity = localStorage.getItem('tableOpacity');
+          if (savedOpacity !== null) {
+               document.getElementById('tableOpacity').value = savedOpacity;
+               document.getElementById('table').style.opacity = savedOpacity / 100;
+               document.getElementById('opacityVal').textContent = savedOpacity + '%';
+          }
+     }
+
+     window.addEventListener('load', restoreState);
 </script>
 
 </head>
@@ -77,7 +92,7 @@
 <br/><br/><br/><br/><br/>
      <label for="tableOpacity">Opacité table:</label><br/><br/><br/><br/>
      <input type="range" id="tableOpacity" min="0" max="100" value="40" style="width:170px;"
-          oninput="document.getElementById('table').style.opacity = this.value / 100; document.getElementById('opacityVal').textContent = this.value + '%';">
+          oninput="document.getElementById('table').style.opacity = this.value / 100; document.getElementById('opacityVal').textContent = this.value + '%'; localStorage.setItem('tableOpacity', this.value);">
      <br/><span id="opacityVal">40%</span>
 
 </div>

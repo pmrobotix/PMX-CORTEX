@@ -31,7 +31,7 @@ OPOS6UL_ActionsExtended::OPOS6UL_ActionsExtended(std::string botId, Robot *robot
 	{
 		ledbar_.set(0, LED_OFF);
 		lcd2x16_.init();
-		logger().info() << "Hardware status: LcdShield OK" << logs::end;
+		logger().debug() << "Hardware status: LcdShield OK" << logs::end;
 	}
 
 	// LED 1 = Tirette/Switch (PCA9555 I2C)
@@ -42,7 +42,7 @@ OPOS6UL_ActionsExtended::OPOS6UL_ActionsExtended(std::string botId, Robot *robot
 	else
 	{
 		ledbar_.set(1, LED_OFF);
-		logger().info() << "Hardware status: Tirette OK" << logs::end;
+		logger().debug() << "Hardware status: Tirette OK" << logs::end;
 	}
 
 	// LED 2 = BeaconSensors (Teensy I2C)
@@ -53,7 +53,7 @@ OPOS6UL_ActionsExtended::OPOS6UL_ActionsExtended(std::string botId, Robot *robot
 	else
 	{
 		ledbar_.set(2, LED_OFF);
-		logger().info() << "Hardware status: BeaconSensors OK" << logs::end;
+		logger().debug() << "Hardware status: BeaconSensors OK" << logs::end;
 	}
 
 	// LED 3 = GroveColorSensor (TCS3414 I2C)
@@ -64,7 +64,7 @@ OPOS6UL_ActionsExtended::OPOS6UL_ActionsExtended(std::string botId, Robot *robot
 	else
 	{
 		ledbar_.set(3, LED_OFF);
-		logger().info() << "Hardware status: GroveColorSensor OK" << logs::end;
+		logger().debug() << "Hardware status: GroveColorSensor OK" << logs::end;
 	}
 
 	// LED 4 = Servos AX12 (Teensy CCAx12 I2C)
@@ -78,7 +78,7 @@ OPOS6UL_ActionsExtended::OPOS6UL_ActionsExtended(std::string botId, Robot *robot
 	else
 	{
 		ledbar_.set(4, LED_OFF);
-		logger().info() << "Hardware status: Servos AX12 OK" << logs::end;
+		logger().debug() << "Hardware status: Servos AX12 OK" << logs::end;
 	}
 
 	// LED 5-6 = (reserve)
@@ -93,7 +93,7 @@ OPOS6UL_ActionsExtended::OPOS6UL_ActionsExtended(std::string botId, Robot *robot
 	else
 	{
 		ledbar_.set(7, LED_OFF);
-		logger().info() << "Hardware status: AsservDriver OK" << logs::end;
+		logger().debug() << "Hardware status: AsservDriver OK" << logs::end;
 	}
 	/*
 	 //config AX12 2023

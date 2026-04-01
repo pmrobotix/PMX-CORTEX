@@ -8,37 +8,37 @@
 #include "thread/Thread.hpp"
 #include "../Robot.hpp"
 
-Asserv::Asserv(std::string botId, Robot *robot) //TODO utiliser uniquement robot, puis robot->getID() dans le create en dessous
+// Constructeur : instancie le driver d'asserv (ext ou interne) et initialise les paramètres par défaut.
+// Le type d'asserv par défaut est ASSERV_INT_ESIALR (asservissement interne ESIAL).
+Asserv::Asserv(std::string botId, Robot *robot)
 {
-
+	// Création du driver de communication (série/simu) selon le botId
 	asservdriver_ = AAsservDriver::create(botId, robot->sharedPosition());
 	probot_ = robot;
 
-	useAsservType_ = ASSERV_INT_ESIALR; //default internal asserv
+	useAsservType_ = ASSERV_INT_ESIALR; // par défaut : asserv interne ESIAL
 	emergencyStop_ = false;
 
-	//init des objets
+	// Instanciation de l'asserv interne si sélectionnée
 	if (useAsservType_ == ASSERV_INT_ESIALR)
-		pAsservEsialR_ = new AsservEsialR(robot); //TODO necessaire pour svg, botcodeur, et motors, essayer de donner uniquement l'asserv avec ce qu'il faut... a reflechir
+		pAsservEsialR_ = new AsservEsialR(robot);
 	else
 		pAsservEsialR_ = NULL;
 
+	// Flags de détection temporaire (désactivent la détection pendant certains mouvements)
 	temp_ignoreBackDetection_ = false;
 	temp_ignoreFrontDetection_ = false;
 	temp_forceRotation_ = false;
 
-	matchColorPosition_ = false;
+	matchColorPosition_ = false; // couleur primaire par défaut
 
-	adv_pos_centre_ = { -100.0, -100.0, 0, 0 };
+	adv_pos_centre_ = { -100.0, -100.0, 0, 0 }; // position adversaire inconnue
 
-	//Configuration TABLE
-	//table horizontale
+	// Dimensions de la table : 3000mm en horizontal (Coupe de France standard)
 	x_ground_table_ = 3000;
-	//table verticale
-	//x_ground_table_ = 2000;
 
-	lowSpeedvalue_ = 30; //valeur par defaut qui est surchargée par chaque extension robot
-	maxSpeedDistValue_ = 200;
+	lowSpeedvalue_ = 30;     // % vitesse lente (surchargé par chaque robot)
+	maxSpeedDistValue_ = 200; // vitesse max distance par défaut
 
 }
 Asserv::~Asserv()
@@ -77,6 +77,7 @@ Asserv::~Asserv()
  }
  */
 
+// Appelé en fin de trajectoire. Délègue au driver actif.
 void Asserv::endWhatTodo()
 {
 	if (useAsservType_ == ASSERV_INT_ESIALR)
@@ -113,16 +114,16 @@ void Asserv::startMotionTimerAndOdo(bool assistedHandlingEnabled)
 	}
 }
 
+// Arrête le thread d'asservissement et l'odométrie.
+// EXT : désactive le manager de mouvement.
+// INT_ESIALR : stoppe l'asserv interne.
 void Asserv::stopMotionTimerAndOdo()
 {
-
 	if (useAsservType_ == ASSERV_EXT)
 	{
-		//asservdriver_->path_InterruptTrajectory(); //TODO path_InterruptTrajectory() utile ? car crash en coredump sur le lego en SIMU
-		asservdriver_->motion_ActivateManager(false); //cancel the thread
+		asservdriver_->motion_ActivateManager(false);
 	} else if (useAsservType_ == ASSERV_INT_ESIALR)
 	{
-		//pAsservEsialR_->path_InterruptTrajectory();//TODO path_InterruptTrajectory() utile ?
 		pAsservEsialR_->stopAsserv();
 	}
 }
@@ -192,7 +193,9 @@ void Asserv::assistedHandling()
 	else if (useAsservType_ == ASSERV_INT_ESIALR) pAsservEsialR_->motion_AssistedHandling();
 }
 
-//WARNING matchColor = 0 => en bas à gauche
+// Définit la position initiale et applique la symétrie couleur de match.
+// matchColor=0 (primaire) : coordonnées telles quelles (bas-gauche du terrain).
+// matchColor=1 (secondaire) : X est miroir (3000-X), angle est miroir (PI-angle).
 void Asserv::setPositionAndColor(float x_mm, float y_mm, float thetaInDegrees_, bool matchColor = 0)
 {
 	setMatchColorPosition(matchColor);
@@ -423,6 +426,12 @@ void Asserv::setMaxSpeedDistValue(int value)
 	maxSpeedDistValue_ = value;
 }
 
+// Callback de détection frontale pendant une trajectoire.
+// Niveaux d'alerte :
+//   2 : adversaire éloigné → repasse en vitesse normale
+//   3 : adversaire proche → réduit la vitesse (maxSpeedDistValue)
+//   4 : adversaire très proche → arrêt d'urgence (setEmergencyStop)
+// Ignoré si on est en rotation forcée ou si la détection avant est désactivée.
 void Asserv::warnFrontDetectionOnTraj(int frontlevel, float x_adv_detect_mm, float y_adv_detect_mm)
 {
 //	logger().error() << "temp_forceRotation_ = " << temp_forceRotation_ << " temp_ignoreFrontDetection_="
@@ -483,7 +492,9 @@ void Asserv::warnFrontDetectionOnTraj(int frontlevel, float x_adv_detect_mm, flo
 	 << logs::end;*/
 }
 
-void Asserv::warnBackDetectionOnTraj(int backlevel, float x_adv_detect_mm, float y_adv_detect_mm) //x positif devant le robot, y positif le coté gauche
+// Callback de détection arrière pendant une trajectoire.
+// Niveaux : -2 (éloigné), -3 (proche, ralentir), -4 (très proche, arrêt d'urgence).
+void Asserv::warnBackDetectionOnTraj(int backlevel, float x_adv_detect_mm, float y_adv_detect_mm)
 {
 	if (temp_forceRotation_) return;
 	if (temp_ignoreBackDetection_) return;
@@ -605,9 +616,13 @@ TRAJ_STATE Asserv::gotoReverseChain(float xMM, float yMM)
 	return ts;
 }
 
-TRAJ_STATE Asserv::doLine(float dist_mm) // if distance <0, move backward
+// Avance ou recule en ligne droite.
+// Pendant l'avance (dist>0), on ignore la détection arrière car pas pertinente.
+// Pendant la marche arrière (dist<0), on ignore la détection avant.
+// Bloquant : attend la fin du mouvement ou une interruption.
+TRAJ_STATE Asserv::doLine(float dist_mm)
 {
-
+	// Désactive la détection du côté opposé au sens de déplacement
 	if (dist_mm > 0)
 	{
 		temp_ignoreBackDetection_ = true;
@@ -625,6 +640,7 @@ TRAJ_STATE Asserv::doLine(float dist_mm) // if distance <0, move backward
 	else
 		ts = TRAJ_ERROR;
 
+	// Réactive la détection après le mouvement
 	if (dist_mm > 0)
 	{
 		temp_ignoreBackDetection_ = false;
@@ -636,17 +652,20 @@ TRAJ_STATE Asserv::doLine(float dist_mm) // if distance <0, move backward
 	return ts;
 }
 
+// Rotation relative en degrés : convertit en radians et délègue à doRelativeRotateRad.
+// ATTENTION : bug hérité — ts n'est pas initialisé par le retour de doRelativeRotateRad.
 TRAJ_STATE Asserv::doRelativeRotateDeg(float degreesRelative, bool rotate_ignoring_opponent)
 {
-
 	TRAJ_STATE ts;
-	//float radians = (degreesRelative * M_PI) / 180.0f;
 	float rad = degToRad(degreesRelative);
-	doRelativeRotateRad(rad, rotate_ignoring_opponent);
+	ts = doRelativeRotateRad(rad, rotate_ignoring_opponent);
 
 	return ts;
 }
 
+// Rotation relative en radians. Bloquant.
+// Si rotate_ignoring_opponent=true, la détection adverse est ignorée pendant la rotation
+// (temp_forceRotation_ empêche warnFront/BackDetection de déclencher un arrêt).
 TRAJ_STATE Asserv::doRelativeRotateRad(float radiansRelative, bool rotate_ignoring_opponent)
 {
 	TRAJ_STATE ts;
@@ -695,7 +714,10 @@ TRAJ_STATE Asserv::doFaceTo(float xMM, float yMM, bool back_face)
 	return ts;
 }
 
-//absolute motion (depends on current position of the robot, thinking in the first color of match) [-179;0;+180] of the field
+// Rotation absolue vers un angle donné sur le terrain.
+// Calcul : angle_cible_converti - angle_courant = rotation relative nécessaire.
+// La symétrie couleur est appliquée via changeMatchAngleRad.
+// Le résultat est wrappé sur [-PI, PI] via WrapAngle2PI pour prendre le chemin le plus court.
 TRAJ_STATE Asserv::doAbsoluteRotateTo(float thetaInDegreeAbsolute, bool rotate_ignoring_opponent)
 {
 	float rad = changeMatchAngleRad(degToRad(thetaInDegreeAbsolute)) - pos_getTheta();
@@ -709,7 +731,10 @@ TRAJ_STATE Asserv::doAbsoluteRotateTo(float thetaInDegreeAbsolute, bool rotate_i
 	return ts;
 }
 
-//Move forward jusquà une position donnée en fonction de la position du robot (getPos)
+// Avance vers un point (x,y) : 2 étapes.
+// 1) Rotation absolue pour faire face au point (avec gestion collision selon rotate_ignoring_opponent)
+// 2) doLine de la distance euclidienne calculée (+ adjustment_mm optionnel)
+// Si déjà très proche du point (<5mm en dx ET dy), retourne directement TRAJ_FINISHED.
 TRAJ_STATE Asserv::doMoveForwardTo(float xMM, float yMM, bool rotate_ignoring_opponent, float adjustment_mm)
 {
 	float dx = changeMatchX(xMM) - pos_getX_mm();
@@ -1083,7 +1108,9 @@ bool Asserv::calculateDriftLeftSideAndSetPos(float d2_theo_bordure_mm, float d2b
 
 }
 
-void Asserv::doRunPivotLeft(int powerL, int powerR, int timems) //tourner en pivot sur la roue gauche
+// Pivot autour de la roue gauche : désactive la régulation, actionne les moteurs,
+// attend la durée, puis réactive la régulation et le maintien en position.
+void Asserv::doRunPivotLeft(int powerL, int powerR, int timems)
 {
 	if (useAsservType_ == ASSERV_INT_ESIALR)
 	{
@@ -1112,7 +1139,8 @@ void Asserv::doRunPivotLeft(int powerL, int powerR, int timems) //tourner en piv
 	}
 }
 
-void Asserv::doRunPivotRight(int powerL, int powerR, int timems) //tourner en pivot sur la roue gauche
+// Pivot autour de la roue droite : même principe que doRunPivotLeft.
+void Asserv::doRunPivotRight(int powerL, int powerR, int timems)
 {
 	if (useAsservType_ == ASSERV_INT_ESIALR)
 	{
