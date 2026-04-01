@@ -159,5 +159,5 @@ void O_Asserv_SquareTest::run(int argc, char** argv)
             << " degrees=" << robot.asserv().pos_getThetaInDegree()
             << logs::end;
 
-    logger().info() << "Happy End." << logs::end;
+    logger().info() << robot.getID() << " " << this->name() << " Happy End" << " N° " << this->position() << logs::end;
 }

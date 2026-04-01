@@ -18,5 +18,5 @@ void O_GroveColorTest::run(int argc, char** argv)
 
     //TODO implémenter le test capteur couleur
 
-    logger().info() << "Happy End." << logs::end;
+    logger().info() << robot.getID() << " " << this->name() << " Happy End" << " N° " << this->position() << logs::end;
 }

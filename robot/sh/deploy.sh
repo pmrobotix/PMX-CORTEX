@@ -89,6 +89,10 @@ $STRIP -s "$BINARY"
 SIZE=$(du -h "$BINARY" | cut -f1)
 info "Taille : $SIZE"
 
+# --- Synchro heure locale vers la carte ---
+info "Synchro heure vers $ROBOT_IP..."
+$SSH_CMD "date -s '$(date -u '+%Y-%m-%d %H:%M:%S')'" > /dev/null 2>&1 || true
+
 # --- Deploy ---
 info "Deploy $TARGET vers $ROBOT_USER@$ROBOT_IP:$ROBOT_DIR/"
 $SSH_CMD "mkdir -p $ROBOT_DIR" 2>/dev/null || true

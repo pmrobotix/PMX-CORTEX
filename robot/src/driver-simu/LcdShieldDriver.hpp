@@ -10,6 +10,7 @@
 
 #include <stddef.h>
 #include <cstdint>
+#include <string>
 
 #include "interface/ALcdShieldDriver.hpp"
 #include "log/LoggerFactory.hpp"
@@ -47,7 +48,6 @@ public:
 	void setBacklightOn() override;
 	void setBacklightOff() override;
 	void setCursor(uint8_t, uint8_t) override;
-	size_t write(uint8_t value) override;
 	void print_content_string(std::string str, int row, int col = 1) override;
 	void print_content_integer(int value, int row, int col = 1) override;
 

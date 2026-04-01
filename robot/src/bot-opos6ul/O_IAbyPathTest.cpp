@@ -90,7 +90,7 @@ void O_IAByPathTest::run(int argc, char** argv)
     robot.chrono().start();
     robot.ia().iAbyPath().ia_start(); //launch IA
 
-    logger().info() << "Happy End - " << robot.chrono().getElapsedTimeInSec() << " sec" << logs::end;
+    logger().info() << robot.getID() << " " << this->name() << " Happy End" << " N° " << this->position() << logs::end;
 }
 
 void O_IAByPathTest::IASetup()

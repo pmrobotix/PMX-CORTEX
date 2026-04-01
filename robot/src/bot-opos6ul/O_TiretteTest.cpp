@@ -24,5 +24,5 @@ void O_TiretteTest::run(int argc, char** argv)
     }
 
 
-    logger().info() << "Happy End." << logs::end;
+    logger().info() << robot.getID() << " " << this->name() << " Happy End" << " N° " << this->position() << logs::end;
 }

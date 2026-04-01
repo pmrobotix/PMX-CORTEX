@@ -180,5 +180,5 @@ void O_Asserv_CalageTest::run(int argc, char **argv)
                 << " a=" << pnew.theta << " degrees=" << pnew.theta * 180 / M_PI << logs::end;
     }
 
-    logger().info() << "Happy End." << logs::end;
+    logger().info() << robot.getID() << " " << this->name() << " Happy End" << " N° " << this->position() << logs::end;
 }

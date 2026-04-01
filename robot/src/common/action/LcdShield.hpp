@@ -11,7 +11,6 @@
 #include <string>
 
 #include "log/LoggerFactory.hpp"
-#include "utils/Print.hpp"
 #include "AActionsElement.hpp"
 
 class ALcdShieldDriver;
@@ -19,7 +18,7 @@ class ALcdShieldDriver;
 /*!
  * \brief Gestion de l'écran LCD du robot.
  */
-class LcdShield: public AActionsElement, public Print
+class LcdShield: public AActionsElement
 {
 private:
 
@@ -111,27 +110,28 @@ public:
      */
 
     /*!
-     * \brief Écrit un octet sur l'écran LCD.
-     * \param value Octet à écrire.
-     * \return Nombre d'octets écrits.
-     */
-    virtual size_t write(uint8_t value);
-
-    /*!
-     * \brief Affiche une chaîne de caractères à une position donnée.
+     * \brief Affiche une chaîne de caractères sur l'écran LCD.
      * \param str Texte à afficher.
-     * \param row Ligne d'affichage.
-     * \param col Colonne d'affichage (par défaut 1).
      */
-    void display_content_string(std::string str, int row, int col=1);
+    void print(const char* str);
 
     /*!
-     * \brief Affiche un entier à une position donnée.
-     * \param value Valeur entière à afficher.
-     * \param row Ligne d'affichage.
-     * \param col Colonne d'affichage (par défaut 1).
+     * \brief Affiche une chaîne de caractères sur l'écran LCD.
+     * \param str Texte à afficher.
      */
-    void display_content_integer(int value, int row, int col=1);
+    void print(const std::string& str);
+
+    /*!
+     * \brief Affiche un entier sur l'écran LCD.
+     * \param value Valeur entière à afficher.
+     */
+    void print(int value);
+
+    /*!
+     * \brief Affiche une chaîne suivie d'un retour à la ligne.
+     * \param str Texte à afficher.
+     */
+    void println(const char* str);
 
 
     /*!

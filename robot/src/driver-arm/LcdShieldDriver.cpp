@@ -63,18 +63,15 @@ void LcdShieldDriver::setCursor(uint8_t col, uint8_t row)
     Adafruit_RGBLCDShield::instance().setCursor(col, row);
 }
 
-size_t LcdShieldDriver::write(uint8_t value)
-{
-    size_t s = Adafruit_RGBLCDShield::instance().write__(value);
-    return s;
-}
-
 void LcdShieldDriver::print_content_string(std::string str, int row, int col)
 {
-
+    for (char c : str)
+    {
+        Adafruit_RGBLCDShield::instance().write__(static_cast<uint8_t>(c));
+    }
 }
 
 void LcdShieldDriver::print_content_integer(int value, int row, int col)
 {
-
+    print_content_string(std::to_string(value), row, col);
 }

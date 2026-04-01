@@ -57,7 +57,6 @@ add_library(pmx-common STATIC
     # utils
     src/common/utils/Chronometer.cpp
     src/common/utils/itoa.cpp
-    src/common/utils/WString.cpp
     # log
     src/common/log/Level.cpp
     src/common/log/Logger.cpp
@@ -109,8 +108,6 @@ add_library(pmx-common STATIC
     src/common/action/SoundBar.cpp
     src/common/action/Tirette.cpp
     src/common/action/Sensors.cpp
-    # utils (Arduino Print)
-    src/common/utils/Print.cpp
     # hardware config
     src/common/HardwareConfig.cpp
 )

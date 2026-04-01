@@ -70,13 +70,6 @@ public:
 	virtual void setCursor(uint8_t col, uint8_t row) = 0;
 
 	/*!
-	 * \brief Ecrit un octet brut sur l'ecran.
-	 * \param value Octet a ecrire.
-	 * \return Nombre d'octets ecrits.
-	 */
-	virtual size_t write(uint8_t value) = 0;
-
-	/*!
 	 * \brief Affiche une chaine a une position donnee.
 	 * \param str Chaine a afficher.
 	 * \param row Ligne (1-based).

@@ -131,5 +131,5 @@ void O_AsservCalibrationTest::run(int argc, char** argv)
         sleep(1);
     }
 
-    logger().info() << "Happy End." << logs::end;
+    logger().info() << robot.getID() << " " << this->name() << " Happy End" << " N° " << this->position() << logs::end;
 }

@@ -40,5 +40,5 @@ void O_ButtonBarTest::run(int argc, char** argv)
     //logger().info() << "Please press ENTER" << logs::end;
     //robot.actions().buttonBar().waitPressed(BUTTON_ENTER_KEY);
 
-    logger().info() << "Happy End." << logs::end;
+    logger().info() << robot.getID() << " " << this->name() << " Happy End" << " N° " << this->position() << logs::end;
 }

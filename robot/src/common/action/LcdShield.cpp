@@ -59,18 +59,22 @@ void LcdShield::reset()
     setCursor(0, 0);
 }
 
-//for Print
-size_t LcdShield::write(uint8_t value)
+void LcdShield::print(const char* str)
 {
-    return lcdshielddriver_->write(value);
+    lcdshielddriver_->print_content_string(str, 0, 0);
 }
 
-void LcdShield::display_content_string(std::string str, int row, int col)
+void LcdShield::print(const std::string& str)
 {
-    lcdshielddriver_->print_content_string(str, row, col);
+    lcdshielddriver_->print_content_string(str, 0, 0);
 }
 
-void LcdShield::display_content_integer(int value, int row, int col)
+void LcdShield::print(int value)
 {
-    lcdshielddriver_->print_content_integer(value, row, col);
+    lcdshielddriver_->print_content_integer(value, 0, 0);
+}
+
+void LcdShield::println(const char* str)
+{
+    lcdshielddriver_->print_content_string(str, 0, 0);
 }

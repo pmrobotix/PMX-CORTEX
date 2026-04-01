@@ -56,7 +56,6 @@ public:
 	virtual void suite();
 
 	void test();
-	size_t print(const std::string &s);
 
 };
 }
