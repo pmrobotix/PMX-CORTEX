@@ -2,6 +2,7 @@ __pycache__/
 *.pyc
 
 # Répertoires de build CMake
+build/
 build-*/
 
 # Fichiers objets et binaires
