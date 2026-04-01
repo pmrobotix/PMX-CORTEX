@@ -32,8 +32,8 @@ bool O_IAbyPathTest_action1()
 
     robot.ia().iAbyPath().goToZone("zone_1", &zone);
 
-    ts = robot.ia().iAbyPath().doPathForwardAndRotateTo(zone.x, zone.y, zone.theta);
-    if (ts != TRAJ_IDLE) {
+    ts = robot.ia().iAbyPath().doPathForwardAndRotateTo(zone.x, zone.y, radToDeg(zone.theta));
+    if (ts != TRAJ_FINISHED) {
         robot.logger().info() << "________action1 ts=" << ts << logs::end;
         return false;
     }
@@ -54,8 +54,8 @@ bool O_IAByPathTest_action2()
 
     robot.ia().iAbyPath().goToZone("zone_2", &zone);
 
-    ts = robot.ia().iAbyPath().doPathForwardAndRotateTo(zone.x, zone.y, zone.theta);
-    if (ts != TRAJ_IDLE) {
+    ts = robot.ia().iAbyPath().doPathForwardAndRotateTo(zone.x, zone.y, radToDeg(zone.theta));
+    if (ts != TRAJ_FINISHED) {
         robot.logger().info() << "_________action2 ts=" << ts << logs::end;
         return false;
     }
