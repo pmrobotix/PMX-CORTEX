@@ -104,16 +104,15 @@ public:
     void odo_SetPosition(float x_mm, float y_mm, float angle_rad);
     ROBOTPOSITION odo_GetPosition();
 
-    int path_GetLastCommandStatus();
-    void path_InterruptTrajectory();
+    void emergencyStop();
 //    void path_CollisionOnTrajectory();
 //    void path_CollisionRearOnTrajectory();
 //    void path_CancelTrajectory();
-    void path_ResetEmergencyStop();
+    void resetEmergencyStop();
     TRAJ_STATE motion_DoLine(float dist_mm);
     TRAJ_STATE motion_DoFace(float x_mm, float y_mm, bool back_face = false);
     TRAJ_STATE motion_DoRotate(float angle_radians);
-    TRAJ_STATE motion_DoArcRotate(float angle_radians, float radius);
+    TRAJ_STATE motion_DoOrbitalTurn(float angle_radians, bool forward, bool turnRight);
 
     TRAJ_STATE motion_Goto(float x_mm, float y_mm);
     TRAJ_STATE motion_GotoReverse(float x_mm, float y_mm);
@@ -121,8 +120,7 @@ public:
     TRAJ_STATE motion_GotoReverseChain(float x_mm, float y_mm);
 
     void motion_FreeMotion(void);
-    void motion_DisablePID();           //! just disable PID
-    void motion_AssistedHandling(void);           //! Assisted movement mode =)
+    void motion_AssistedHandling(void);
     void motion_ActivateManager(bool enable);
     void motion_setLowSpeedForward(bool enable, int percent = 0);
     void motion_setLowSpeedBackward(bool enable, int percent = 0);
@@ -136,27 +134,13 @@ public:
 
     void motion_ActivateQuadRamp(bool enable);
 
-    //FCT NON utilisee : commandes directes concernant les moteurs et codeurs
-    void setMotorLeftPosition(int power, long ticks);
-    void setMotorRightPosition(int power, long ticks);
+    // Stubs bas niveau (utilisés par tests O_* et Asserv.cpp)
     void setMotorLeftPower(int power, int time);
     void setMotorRightPower(int power, int time);
     void stopMotors();
-    void stopMotorLeft();
-    void stopMotorRight();
-    int getMotorLeftCurrent();
-    int getMotorRightCurrent();
-    long getLeftExternalEncoder();
-    long getRightExternalEncoder();
     void getCountsExternal(int32_t* countR, int32_t* countL);
     void getDeltaCountsExternal(int32_t* deltaR, int32_t* deltaL);
-    long getLeftInternalEncoder();
-    long getRightInternalEncoder();
-    void getCountsInternal(int32_t* countR, int32_t* countL);
-
     void resetEncoders();
-    void resetInternalEncoders();
-    void resetExternalEncoders();
 
 };
 

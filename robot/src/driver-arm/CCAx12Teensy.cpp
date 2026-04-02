@@ -34,7 +34,7 @@ bool CCAx12Teensy::connect(short int i2c_aAddr)
 	int err = setLedOff(3);
 	if (err >= 0) {
 		connected_ = true;
-		logger().info() << "Hardware status: CCAx12Teensy OK" << logs::end;
+		logger().debug() << "Hardware status: CCAx12Teensy OK" << logs::end;
 	} else {
 		connected_ = false;
 		logger().error() << "Hardware status: CCAx12Teensy is NOT connected !" << logs::end;

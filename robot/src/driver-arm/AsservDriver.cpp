@@ -14,15 +14,17 @@ using namespace std;
 #include "HardwareConfig.hpp"
 #include "../driver-simu/AsservDriver.hpp"
 
-AAsservDriver* AAsservDriver::create(string botid, ARobotPositionShared *robotpos)
-{
-	if (!HardwareConfig::instance().isEnabled("AsservDriver")) {
-		static AsservDriverSimu *instance = new AsservDriverSimu(botid, robotpos);
-		return instance;
-	}
-	static AsservDriver *instance = new AsservDriver();
-	return instance;
-}
+// Factory AsservDriverSimu + AsservDriver (protocole ASCII)
+// Commenté — on utilise la version CBOR dans AsservCborDriver.cpp
+// AAsservDriver* AAsservDriver::create(string botid, ARobotPositionShared *robotpos)
+// {
+// 	if (!HardwareConfig::instance().isEnabled("AsservDriver")) {
+// 		static AsservDriverSimu *instance = new AsservDriverSimu(botid, robotpos);
+// 		return instance;
+// 	}
+// 	static AsservDriver *instance = new AsservDriver();
+// 	return instance;
+// }
 
 AsservDriver::AsservDriver() :
 		// //OPOS6UL_UART5=>1 ; OPOS6UL_UART4=>0
@@ -52,6 +54,11 @@ AsservDriver::AsservDriver() :
 		serial_.RTS(false);
 
 		nucleo_flushSerial();
+
+		// Handshake : envoyer "###" pour débloquer le commandInput de la Nucleo.
+		// Sans cela, la Nucleo ignore toutes les commandes série (protection
+		// contre le bruit sur RX quand l'OPOS6UL n'est pas connectée).
+		serial_.writeString("###");
 
 		// Test de presence : on attend une reponse de la Nucleo (timeout 500ms)
 		char testBuf[100] = { 0 };
@@ -344,57 +351,10 @@ void AsservDriver::execute()
 
 }
 
-void AsservDriver::setMotorLeftPosition(int power, long ticks)
-{
-//TODO
-}
-
-void AsservDriver::setMotorRightPosition(int power, long ticks)
-{
-//TODO
-}
-
-void AsservDriver::setMotorLeftPower(int power, int timems)
-{
-//TODO
-}
-
-void AsservDriver::setMotorRightPower(int power, int timems)
-{
-//TODO
-}
-
-long AsservDriver::getLeftExternalEncoder()
-{
-	return 0;
-}
-long AsservDriver::getRightExternalEncoder()
-{
-	return 0;
-}
-
-long AsservDriver::getLeftInternalEncoder()
-{
-	return 0;
-}
-long AsservDriver::getRightInternalEncoder()
-{
-	return 0;
-}
-
-void AsservDriver::resetEncoders()
-{
-//TODO
-}
-
-void AsservDriver::resetInternalEncoders()
-{
-//TODO
-}
-void AsservDriver::resetExternalEncoders()
-{
-//TODO
-}
+// Stubs bas niveau (utilisés par tests O_* et Asserv.cpp)
+void AsservDriver::setMotorLeftPower(int, int) {}
+void AsservDriver::setMotorRightPower(int, int) {}
+void AsservDriver::resetEncoders() {}
 
 
 void AsservDriver::stopMotors() //DEPRECATED en asserv ext ?? ne pas faire de h halt (il faut faire un reset apres
@@ -405,36 +365,6 @@ void AsservDriver::stopMotors() //DEPRECATED en asserv ext ?? ne pas faire de h 
 	{
 		motion_FreeMotion();
 	}
-}
-void AsservDriver::stopMotorLeft()
-{
-	if (!asservCardStarted_)
-		logger().error() << "stopMotorLeft() ERROR MBED NOT STARTED " << asservCardStarted_ << logs::end;
-	else
-	{
-		logger().error() << "stopMotorLeft() ERROR DO NOT USE " << logs::end;
-		motion_FreeMotion();
-	}
-
-}
-void AsservDriver::stopMotorRight()
-{
-	if (!asservCardStarted_)
-		logger().error() << "stopMotorRight() ERROR MBED NOT STARTED " << asservCardStarted_ << logs::end;
-	else
-	{
-		logger().error() << "stopMotorLeft() ERROR DO NOT USE " << logs::end;
-		motion_FreeMotion();
-	}
-}
-
-int AsservDriver::getMotorLeftCurrent()
-{
-	return 0;
-}
-int AsservDriver::getMotorRightCurrent()
-{
-	return 0;
 }
 
 void AsservDriver::odo_SetPosition(float x_mm, float y_mm, float angle_rad)
@@ -490,16 +420,12 @@ ROBOTPOSITION AsservDriver::odo_GetPosition()
 	return p_;
 }
 
-//TODO path_GetLastCommandStatus deprecated ? A supprimer
-int AsservDriver::path_GetLastCommandStatus()
-{
-	return -1;
-}
 
-void AsservDriver::path_InterruptTrajectory()
+
+void AsservDriver::emergencyStop()
 {
 	if (!asservCardStarted_)
-		logger().debug() << "path_InterruptTrajectory() ERROR MBED NOT STARTED " << asservCardStarted_ << logs::end;
+		logger().debug() << "emergencyStop() ERROR MBED NOT STARTED " << asservCardStarted_ << logs::end;
 	else
 	{
 		m_pos.lock();
@@ -572,14 +498,14 @@ void AsservDriver::path_CancelTrajectory()
 	}
 }
 */
-void AsservDriver::path_ResetEmergencyStop()
+void AsservDriver::resetEmergencyStop()
 {
 
 	if (!asservCardStarted_)
-		logger().debug() << "path_ResetEmergencyStop() ERROR MBED NOT STARTED " << asservCardStarted_ << logs::end;
+		logger().debug() << "resetEmergencyStop() ERROR MBED NOT STARTED " << asservCardStarted_ << logs::end;
 	else
 	{
-		logger().debug() << "path_ResetEmergencyStop() !! " << logs::end;
+		logger().debug() << "resetEmergencyStop() !! " << logs::end;
 
 		m_pos.lock();
 		p_.asservStatus = 0;
@@ -787,11 +713,6 @@ TRAJ_STATE AsservDriver::motion_DoRotate(float angle_radians)
 		return nucleo_waitEndOfTraj();
 	}
 }
-TRAJ_STATE AsservDriver::motion_DoArcRotate(float angle_radians, float radius)
-{
-//TODO motion_DoArcRotate
-	return TRAJ_ERROR;
-}
 
 TRAJ_STATE AsservDriver::motion_Goto(float x_mm, float y_mm)
 {
@@ -926,6 +847,13 @@ void AsservDriver::motion_setMaxSpeed(bool enable, int speed_dist_percent, int s
 
 }
 
+TRAJ_STATE AsservDriver::motion_DoOrbitalTurn(float angle_radians, bool forward, bool turnRight)
+{
+	// Non supporté par le protocole ASCII SerialIO
+	logger().error() << "motion_DoOrbitalTurn: not supported in ASCII protocol" << logs::end;
+	return TRAJ_ERROR;
+}
+
 void AsservDriver::motion_FreeMotion(void) // TODO En fait Stopmotors = freemotion ?
 {
 	if (!asservCardStarted_)
@@ -936,12 +864,6 @@ void AsservDriver::motion_FreeMotion(void) // TODO En fait Stopmotors = freemoti
 	{
 		nucleo_writeSerialSTR("M0\n");
 	}
-}
-void AsservDriver::motion_DisablePID() //TODO deprecated  mm chose que Freemotion ???
-{
-
-	motion_FreeMotion();
-
 }
 void AsservDriver::motion_AssistedHandling(void)
 {

@@ -96,60 +96,33 @@ public:
     bool is_connected() override;
     void endWhatTodo();
 
-    //commandes directes concernant les moteurs
-    void setMotorLeftPosition(int power, long ticks);
-    void setMotorRightPosition(int power, long ticks);
+    // Stubs bas niveau (utilisés par tests O_* et Asserv.cpp)
     void setMotorLeftPower(int power, int time);
     void setMotorRightPower(int power, int time);
     void stopMotors();
-    void stopMotorLeft();
-    void stopMotorRight();
-    int getMotorLeftCurrent();
-    int getMotorRightCurrent();
-
-    //commandes concernant les codeurs
-    long getLeftExternalEncoder();
-    long getRightExternalEncoder();
-
-    //TODO
-    void getCountsExternal(int32_t* countR, int32_t* countL){} //TODO getCountsExternal
-    void getDeltaCountsExternal(int32_t* deltaR, int32_t* deltaL){} //TODO getDeltaCountsExternal
-    void getCountsInternal(int32_t* countR, int32_t* countL){} //TODO getCountsInternal
-
-    long getLeftInternalEncoder();
-    long getRightInternalEncoder();
+    void getCountsExternal(int32_t* countR, int32_t* countL){}
+    void getDeltaCountsExternal(int32_t* deltaR, int32_t* deltaL){}
     void resetEncoders();
-    void resetInternalEncoders();
-    void resetExternalEncoders();
-
-    //commandes optionnelles de gestion externe
-    //deprecated
-    //void enableHardRegulation(bool enable);
 
     //fonctions asservissements externe par defaut
     void odo_SetPosition(float x_mm, float y_mm, float angle_rad);
     ROBOTPOSITION odo_GetPosition();
-    int path_GetLastCommandStatus();
-    void path_InterruptTrajectory();
-//    void path_CollisionOnTrajectory();
-//    void path_CollisionRearOnTrajectory();
-//    void path_CancelTrajectory();
-    void path_ResetEmergencyStop();
+    void emergencyStop();
+
+    void resetEmergencyStop();
     TRAJ_STATE motion_DoLine(float dist_mm);
     TRAJ_STATE motion_DoFace(float x_mm, float y_mm, bool back_reversed);
     //TRAJ_STATE motion_DoFaceReverse(float x_mm, float y_mm);
     TRAJ_STATE motion_DoRotate(float angle_radians); //relative rotation
-    TRAJ_STATE motion_DoArcRotate(float angle_radians, float radius);
+    TRAJ_STATE motion_DoOrbitalTurn(float angle_radians, bool forward, bool turnRight);
     TRAJ_STATE motion_Goto(float x_mm, float y_mm);
     TRAJ_STATE motion_GotoReverse(float x_mm, float y_mm);
     TRAJ_STATE motion_GotoChain(float x_mm, float y_mm);
     TRAJ_STATE motion_GotoReverseChain(float x_mm, float y_mm);
 
     void motion_FreeMotion(void);
-    void motion_DisablePID();		//! just disable PID Deprecated
-    void motion_AssistedHandling(void);		//! Assisted movement mode =)
+    void motion_AssistedHandling(void);
     void motion_ActivateManager(bool enable);
-    //void motion_setLowSpeed(bool enable);
     void motion_setLowSpeedForward(bool enable, int percent); //TODO remove enable
     void motion_setLowSpeedBackward(bool enable, int percent); //TODO remove enable
     void motion_setMaxSpeed(bool enable, int speed_dist_percent = 0, int speed_angle_percent=0);
@@ -157,11 +130,7 @@ public:
     //Functions deprecated
     void motion_ActivateReguDist(bool enable);
     void motion_ActivateReguAngle(bool enable);
-    //void motion_ResetReguDist();
-    //void motion_ResetReguAngle();
-    //TRAJ_STATE motion_DoDirectLine(float dist_mm);
-
-
+  
 
     /*!
      * \brief Constructor.

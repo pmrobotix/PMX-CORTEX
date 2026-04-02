@@ -138,7 +138,7 @@
                 }
             },
             "problemMatcher": [],
-            "presentation": { "reveal": "always", "panel": "shared", "close": true }
+            "presentation": { "reveal": "always", "panel": "shared", "focus": true }
         },
         {
             // Ouvre le log SVG dans le navigateur

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.21)
-project(PMX-CORTEX LANGUAGES CXX)
+project(PMX-CORTEX LANGUAGES CXX C)
 
 # --- Standard C++ ---
 set(CMAKE_CXX_STANDARD 17)
@@ -165,13 +165,20 @@ if(TARGET_PLATFORM STREQUAL "ARM")
         src/driver-arm/MD25.cpp
         src/driver-arm/ServoUsingMotorDriver.cpp
         src/driver-arm/ActionDriver.cpp
+        src/driver-arm/AsservCborDriver.cpp
+        src/driver-arm/cbor/CborFrameDecoder.cpp
     )
+
+    # qcbor library (CBOR encode/decode, C language)
+    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../libs/qcbor
+        ${CMAKE_CURRENT_BINARY_DIR}/libs/qcbor)
 
     target_include_directories(pmx-driver-arm PUBLIC
         src/driver-arm
+        ${CMAKE_CURRENT_SOURCE_DIR}/../libs/crc
     )
 
-    target_link_libraries(pmx-driver-arm PUBLIC pmx-common pmx-driver-stub as_devices as_devices_cpp)
+    target_link_libraries(pmx-driver-arm PUBLIC pmx-common pmx-driver-stub as_devices as_devices_cpp qcbor)
 
     set(DRIVER_LIB pmx-driver-arm)
 else()

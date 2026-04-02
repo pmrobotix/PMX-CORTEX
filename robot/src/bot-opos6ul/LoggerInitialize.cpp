@@ -40,7 +40,8 @@ void logs::LoggerFactory::initialize()
     add(logs::Level::INFO, "Sensors4OPOS6UL_Robot", "svgsensors");
 
 
-    //SVG specific en parallele //TODO ca pose pb de lock
+    //SVG specific en parallele 
+    add(logs::Level::INFO, "AsservCborDriver.SVG", "svg");
     add(logs::Level::INFO, "AsservDriver.OPO.SVG", "svg");
     add(logs::Level::INFO, "AsservDriver.SIMU.SVG", "svg");
 

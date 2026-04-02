@@ -381,8 +381,8 @@ void Asserv::setEmergencyStop()
 		emergencyStop_ = true;
 
 		if (useAsservType_ == ASSERV_EXT)
-			asservdriver_->path_InterruptTrajectory();
-		else if (useAsservType_ == ASSERV_INT_ESIALR) pAsservEsialR_->path_InterruptTrajectory();
+			asservdriver_->emergencyStop();
+		else if (useAsservType_ == ASSERV_INT_ESIALR) pAsservEsialR_->emergencyStop();
 	}
 
 }
@@ -397,8 +397,8 @@ void Asserv::resetEmergencyOnTraj(std::string message)
 	logger().debug() << "=====   resetEmergencyOnTraj message = " << message << logs::end;
 	emergencyStop_ = false;
 	if (useAsservType_ == ASSERV_EXT)
-		asservdriver_->path_ResetEmergencyStop();
-	else if (useAsservType_ == ASSERV_INT_ESIALR) pAsservEsialR_->path_ResetEmergencyStop();
+		asservdriver_->resetEmergencyStop();
+	else if (useAsservType_ == ASSERV_INT_ESIALR) pAsservEsialR_->resetEmergencyStop();
 }
 
 void Asserv::update_adv()

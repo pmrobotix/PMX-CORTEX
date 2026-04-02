@@ -29,7 +29,7 @@ bool GpioPCA9555::setup()
 		return connected_;
 	} else {
 		connected_ = true;
-		logger().info() << "Hardware status: GpioPCA9555 OK" << logs::end;
+		logger().debug() << "Hardware status: GpioPCA9555 OK" << logs::end;
 		write_i2c(OUT_P0, 0x00);          // RAZ sorties
 		write_i2c(CONFIG_P1, 0xFF);       // Port1 = entrees
 		write_i2c(IN_P1, 0x00);

@@ -3,6 +3,15 @@
 ## Migrations en cours
 
 - [Configuration hardware dynamique](HARDWARE_CONFIG.md) — Activation/désactivation des drivers via fichier `hardware.conf` pour l'intégration progressive
+- [Communication asserv](ASSERV_MIGRATION_COMMUNICATION.md) — Migration communication série ancien raspIO → SerialIO/RaspIO
+
+### Règles de migration PMX → PMX-CORTEX
+
+1. **Validation obligatoire** — Chaque modification doit être validée par l'utilisateur avant d'être appliquée. Aucun changement sans confirmation et explication pertinente.
+2. **Conserver la configuration robot PMX** — Les paramètres, réglages et configurations du robot PMX doivent être préservés tels quels. Aucune modification de configuration sans validation et justification claire.
+3. **Dossier `old/`** — Les fichiers remplacés ne sont pas supprimés : ils sont déplacés dans un dossier `old/` au même niveau. Cela permet de comparer et de revenir en arrière. On nettoiera une fois que tout fonctionne.
+4. **Comparaison PMX2025** — En cas de doute, comparer avec la version PMX2025 (ancien projet `/home/pmx/git/PMX/`).
+5. **Vérification PlotJuggler** — Après chaque étape qui compile et fonctionne, vérifier que les courbes d'asservissement sont toujours disponibles dans PlotJuggler (`plotjuggler_asservstream_plugin`). La communication série et le format des données doivent rester compatibles.
 
 ## Hardware status LEDs
 

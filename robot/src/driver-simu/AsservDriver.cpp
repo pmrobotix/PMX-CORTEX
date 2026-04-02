@@ -452,37 +452,17 @@ void AsservDriverSimu::getDeltaCountsExternal(int32_t *deltaR, int32_t *deltaL)
 	*deltaL = (int) currentLeftCounter_;
 }
 
-//recupere les ticks codeur accummulés
-void AsservDriverSimu::getCountsInternal(int32_t *countR, int32_t *countL)
-{
-	//TODO getCountsInternal
-	logger().error() << "TODO getCountsInternal !!!!!" << logs::end;
-}
-
-//recupere les ticks codeur accummulés
-long AsservDriverSimu::getLeftExternalEncoder()
-{
-	computeCounterL();
-//    logger().debug() << "getLeftExternalEncoder=" << leftCounter_ << logs::end;
-	return (long) leftCounter_; //ticks
-}
-//+/- 2,147,483,648
-long AsservDriverSimu::getRightExternalEncoder()
-{
-	computeCounterR();
-//    logger().debug() << "getRightExternalEncoder=" << rightCounter_ << logs::end;
-	return (long) rightCounter_; //ticks
-}
 
 long AsservDriverSimu::getLeftInternalEncoder()
 {
-	return (long) getLeftExternalEncoder();
+	computeCounterL();
+	return (long) leftCounter_;
 }
 
-//+/- 2,147,483,648
 long AsservDriverSimu::getRightInternalEncoder()
 {
-	return (long) getRightExternalEncoder();
+	computeCounterR();
+	return (long) rightCounter_;
 }
 
 void AsservDriverSimu::resetEncoders()
@@ -500,16 +480,6 @@ void AsservDriverSimu::resetEncoders()
 	currentRightCounter_ = 0.0;
 	mutexR_.unlock();
 	computeCounterR();
-}
-void AsservDriverSimu::resetInternalEncoders()
-{
-	//TODO
-	logger().error() << "TODO resetInternalEncoders !!!!!" << logs::end;
-}
-void AsservDriverSimu::resetExternalEncoders()
-{
-	//TODO
-	logger().error() << "TODO resetExternalEncoders !!!!!" << logs::end;
 }
 
 void AsservDriverSimu::stopMotors()
@@ -539,18 +509,6 @@ void AsservDriverSimu::stopMotorRight()
 	logger().debug() << "stopMotorRight !!!!!" << logs::end;
 }
 
-int AsservDriverSimu::getMotorLeftCurrent()
-{
-	logger().error() << "TODO getMotorLeftCurrent !!!!!" << logs::end;
-	return 0;
-
-}
-int AsservDriverSimu::getMotorRightCurrent()
-{
-	logger().error() << "TODO getMotorRightCurrent !!!!!" << logs::end;
-	return 0;
-}
-
 void AsservDriverSimu::odo_SetPosition(float x_mm, float y_mm, float angle_rad)
 {
 	m_pos.lock();
@@ -563,11 +521,7 @@ ROBOTPOSITION AsservDriverSimu::odo_GetPosition()
 {
 	return p_;
 }
-int AsservDriverSimu::path_GetLastCommandStatus()
-{
-	return -1;
-}
-void AsservDriverSimu::path_InterruptTrajectory()
+void AsservDriverSimu::emergencyStop()
 {
 	m_pos.lock();
 	p_.asservStatus = 2;
@@ -577,7 +531,7 @@ void AsservDriverSimu::path_InterruptTrajectory()
 	stopMotorRight();
 }
 
-void AsservDriverSimu::path_ResetEmergencyStop()
+void AsservDriverSimu::resetEmergencyStop()
 {
 	m_pos.lock();
 	p_.asservStatus = 0;
@@ -746,11 +700,59 @@ TRAJ_STATE AsservDriverSimu::motion_DoRotate(float angle_radians)
 	return TRAJ_FINISHED;
 }
 
-TRAJ_STATE AsservDriverSimu::motion_DoArcRotate(float angle_radians, float radius)
+// Orbital turn : rotation autour d'une roue (pivot sur une roue immobile).
+// turnRight = true → pivot roue droite, forward = direction de marche.
+TRAJ_STATE AsservDriverSimu::motion_DoOrbitalTurn(float angle_radians, bool forward, bool turnRight)
 {
 	if (emergencyStop_) return TRAJ_INTERRUPTED;
-	logger().error() << "TODO motion_DoArcRotate !!!!!" << logs::end;
-	return TRAJ_ERROR;
+
+	m_pos.lock();
+	p_.asservStatus = 1;
+	float theta_init = p_.theta;
+	float x_init = p_.x;
+	float y_init = p_.y;
+	m_pos.unlock();
+
+	// Entraxe des roues (même valeur que dans la config asserv)
+	// TODO: rendre configurable via le constructeur
+	float entraxe_mm = 234.4f;
+	float r = entraxe_mm / 2.0f;
+
+	// Centre de rotation = roue pivot
+	// turnRight → pivot roue droite → centre à -90° de theta
+	// turnLeft  → pivot roue gauche → centre à +90° de theta
+	float perpAngle = turnRight ? (theta_init - M_PI / 2) : (theta_init + M_PI / 2);
+	float cx = x_init + r * cos(perpAngle);
+	float cy = y_init + r * sin(perpAngle);
+
+	// Adapter le signe de l'angle selon forward/turnRight (comme le Nucleo)
+	float effectiveAngle = angle_radians;
+	if (turnRight && forward) effectiveAngle = -effectiveAngle;
+	if (!turnRight && !forward) effectiveAngle = -effectiveAngle;
+
+	int increment_time_us = periodTime_us_ * 4;
+	int nb_increment = 20;
+	float delta_angle = effectiveAngle / nb_increment;
+
+	// Offset pour retrouver la position du robot depuis le centre de rotation
+	float offset = turnRight ? M_PI / 2 : -M_PI / 2;
+
+	for (int nb = 0; nb < nb_increment; nb++)
+	{
+		if (emergencyStop_) return TRAJ_INTERRUPTED;
+
+		m_pos.lock();
+		p_.theta = WrapAngle2PI(p_.theta + delta_angle);
+		p_.x = cx + r * cos(p_.theta + offset);
+		p_.y = cy + r * sin(p_.theta + offset);
+		m_pos.unlock();
+		utils::sleep_for_micros(increment_time_us);
+	}
+
+	if (emergencyStop_) return TRAJ_INTERRUPTED;
+
+	utils::sleep_for_micros(increment_time_us * 5);
+	return TRAJ_FINISHED;
 }
 
 TRAJ_STATE AsservDriverSimu::motion_Goto(float x_mm, float y_mm)
@@ -797,10 +799,6 @@ void AsservDriverSimu::motion_FreeMotion()
 {
 	stopMotorLeft();
 	stopMotorRight();
-}
-void AsservDriverSimu::motion_DisablePID()
-{ //DEPRECATED
-	motion_FreeMotion();
 }
 void AsservDriverSimu::motion_AssistedHandling()
 {

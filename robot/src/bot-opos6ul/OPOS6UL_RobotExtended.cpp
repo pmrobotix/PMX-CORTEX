@@ -30,6 +30,9 @@ OPOS6UL_RobotExtended::OPOS6UL_RobotExtended()
     OPOS6UL_SvgWriterExtended *p_svg = new OPOS6UL_SvgWriterExtended(id_);
     setSVG(p_svg);
 
+    //init SVG log file AVANT la création de l'asserv (le thread CBOR écrit dans le SVG dès le start)
+    p_svg->beginHeader();
+
     OPOS6UL_AsservExtended * p_asserv = new OPOS6UL_AsservExtended(id_, this);
     //asserv_default_ = p_asserv_;
     setAsserv(p_asserv);
@@ -40,9 +43,6 @@ OPOS6UL_RobotExtended::OPOS6UL_RobotExtended()
     p_ia_ = new OPOS6UL_IAExtended(id_, this);
 
     decisionMaker_ = NULL;
-
-    //init SVG log file
-    p_svg->beginHeader();
 
     points = 0;
     //2023

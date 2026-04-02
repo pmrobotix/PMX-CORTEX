@@ -366,90 +366,13 @@ void AsservEsialR::loadConfig()
     //printf("Version configuration : %ld\r\n", Config::configVersion);
 }
 
-void AsservEsialR::setMotorLeftPosition(int power, long ticks)
-{
-    logger().error() << "TODO setMotorLeftPosition !!!" << logs::end;
-}
-void AsservEsialR::setMotorRightPosition(int power, long ticks)
-{
-    logger().error() << "TODO setMotorRightPosition !!!" << logs::end;
-}
-void AsservEsialR::setMotorLeftPower(int power, int timems)
-{
-    logger().error() << "TODO setMotorLeftPower !!!" << logs::end;
-}
-void AsservEsialR::setMotorRightPower(int power, int timems)
-{
-    logger().error() << "TODO setMotorRightPower !!!" << logs::end;
-}
-void AsservEsialR::stopMotors()
-{
-    logger().error() << "TODO stopMotors !!!" << logs::end;
-}
-void AsservEsialR::stopMotorLeft()
-{
-    logger().error() << "TODO stopMotorLeft !!!" << logs::end;
-}
-void AsservEsialR::stopMotorRight()
-{
-    logger().error() << "TODO stopMotorRight !!!" << logs::end;
-}
-int AsservEsialR::getMotorLeftCurrent()
-{
-    logger().error() << "TODO getMotorLeftCurrent !!!" << logs::end;
-    return 0;
-}
-int AsservEsialR::getMotorRightCurrent()
-{
-    logger().error() << "TODO getMotorRightCurrent !!!" << logs::end;
-    return 0;
-}
-long AsservEsialR::getLeftExternalEncoder()
-{
-    logger().error() << "TODO getLeftExternalEncoder !!!" << logs::end;
-    return -99;
-}
-void AsservEsialR::getCountsExternal(int32_t *countR, int32_t *countL)
-{
-    logger().error() << "TODO getCountsExternal !!!" << logs::end;
-}
-
-void AsservEsialR::getDeltaCountsExternal(int32_t *countR, int32_t *countL)
-{
-    logger().error() << "TODO getDeltaCountsExternal !!!" << logs::end;
-}
-
-long AsservEsialR::getRightExternalEncoder()
-{
-    logger().error() << "TODO getRightExternalEncoder !!!" << logs::end;
-    return -99;
-}
-long AsservEsialR::getLeftInternalEncoder()
-{
-    logger().error() << "TODO getLeftInternalEncoder !!!" << logs::end;
-    return -99;
-}
-long AsservEsialR::getRightInternalEncoder()
-{
-    logger().error() << "TODO getRightInternalEncoder !!!" << logs::end;
-    return -99;
-}
-void AsservEsialR::getCountsInternal(int32_t *countR, int32_t *countL)
-{
-    logger().error() << "TODO getCountsInternal !!!" << logs::end;
-}
-void AsservEsialR::resetEncoders()
-{
-    logger().error() << "TODO resetEncoders !!!" << logs::end;
-}
-void AsservEsialR::resetInternalEncoders()
-{
-    logger().error() << "TODO resetInternalEncoders !!!" << logs::end;
-}
-void AsservEsialR::resetExternalEncoders()
-{
-    logger().error() << "TODO resetExternalEncoders !!!" << logs::end;
-}
+// Stubs bas niveau (utilisés par tests O_* et Asserv.cpp)
+void AsservEsialR::setMotorLeftPower(int, int) {}
+void AsservEsialR::setMotorRightPower(int, int) {}
+void AsservEsialR::stopMotors() {}
+void AsservEsialR::getCountsExternal(int32_t*, int32_t*) {}
+void AsservEsialR::getDeltaCountsExternal(int32_t*, int32_t*) {}
+void AsservEsialR::resetEncoders() {}
 
 void AsservEsialR::odo_SetPosition(float x_mm, float y_mm, float angle_rad)
 {
@@ -496,17 +419,10 @@ ROBOTPOSITION AsservEsialR::odo_GetPosition()
     return p_;
 }
 
-int AsservEsialR::path_GetLastCommandStatus()
-{
-    //TODO path_GetLastCommandStatus deprecated ?
-
-    logger().error() << "TODO DEPRECATED ? path_GetLastCommandStatus !!!!!!!!!!!!!" << logs::end;
-    return -1;
-}
-void AsservEsialR::path_InterruptTrajectory()
+void AsservEsialR::emergencyStop()
 {
     lock();
-    //printf("path_InterruptTrajectory() sent !!!!!\n");
+    //printf("emergencyStop() sent !!!!!\n");
     commandM_->setEmergencyStop();
     pathStatus_ = TRAJ_INTERRUPTED;
     unlock();
@@ -546,10 +462,10 @@ void AsservEsialR::path_CancelTrajectory()
     unlock();
 }
 */
-void AsservEsialR::path_ResetEmergencyStop()
+void AsservEsialR::resetEmergencyStop()
 {
     lock();
-    logger().debug() << "______________________path_ResetEmergencyStop() !!!!!!!!!!!!!! " << logs::end;
+    logger().debug() << "______________________resetEmergencyStop() !!!!!!!!!!!!!! " << logs::end;
     commandM_->resetEmergencyStop();
     pathStatus_ = TRAJ_IDLE;
     unlock();
@@ -653,10 +569,9 @@ TRAJ_STATE AsservEsialR::motion_DoRotate(float angle_radians)
     unlock();
     return waitEndOfTraj();
 }
-TRAJ_STATE AsservEsialR::motion_DoArcRotate(float angle_radians, float radius)
+TRAJ_STATE AsservEsialR::motion_DoOrbitalTurn(float angle_radians, bool forward, bool turnRight)
 {
-    logger().error() << "motion_DoArcRotate TODO !" << logs::end;
-    //TODO motion_DoArcRotate
+    logger().error() << "motion_DoOrbitalTurn not supported in EsialR" << logs::end;
     return TRAJ_ERROR;
 }
 
@@ -721,12 +636,6 @@ void AsservEsialR::motion_FreeMotion(void)
 
     commandM_->perform_On(false);
     unlock();
-}
-
-//DEPRECEATED
-void AsservEsialR::motion_DisablePID()
-{
-    motion_FreeMotion();
 }
 
 void AsservEsialR::motion_AssistedHandling(void)

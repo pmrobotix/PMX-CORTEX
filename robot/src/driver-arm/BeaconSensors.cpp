@@ -64,7 +64,7 @@ bool BeaconSensors::begin(Settings settings)
         logger().error() << "Hardware status: BeaconSensors is NOT connected (getData failed) !" << logs::end;
     } else {
         connected_BeaconSensors_ = true;
-        logger().info() << "Hardware status: BeaconSensors OK" << logs::end;
+        logger().debug() << "Hardware status: BeaconSensors OK" << logs::end;
     }
 
     return connected_BeaconSensors_;

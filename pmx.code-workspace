@@ -93,11 +93,17 @@
 					"-c", "shutdown"
 				],
 				"options": {
-					"cwd": "${workspaceFolder:asserv_chibios}/src/Robots/PMX"
+					"cwd": "${workspaceFolder:asserv_chibios}/src/Robots/PMX",
+					"statusbar": {
+						"hide": false,
+						"label": "$(zap) B+Flash Nucleo",
+						"color": "#E5C07B"
+					}
 				},
 				"group": "none",
 				"problemMatcher": [],
-				"dependsOn": "asserv_chibios: build PMX"
+				"dependsOn": "asserv_chibios: build PMX",
+				"presentation": { "reveal": "always", "panel": "shared", "focus": true }
 			},
 			{
 				"label": "asserv_chibios: clean PMX",

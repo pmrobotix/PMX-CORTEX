@@ -27,7 +27,7 @@ SwitchDriver::SwitchDriver()
 	if (!c)
 		logger().error() << "Hardware status: SwitchDriver is NOT connected (GpioPCA9555) !" << logs::end;
 	else
-		logger().info() << "Hardware status: SwitchDriver OK" << logs::end;
+		logger().debug() << "Hardware status: SwitchDriver OK" << logs::end;
 }
 
 SwitchDriver::~SwitchDriver()

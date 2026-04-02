@@ -59,7 +59,7 @@ bool Adafruit_RGBLCDShield::begin(uint8_t, uint8_t lines, uint8_t dotsize) //col
         return connected_;
     } else {
         connected_ = true;
-        logger().info() << "Hardware status: Adafruit_RGBLCDShield OK" << logs::end;
+        logger().debug() << "Hardware status: Adafruit_RGBLCDShield OK" << logs::end;
 
         _i2c.pinMode(8, OUTPUT);
         _i2c.pinMode(6, OUTPUT);

@@ -87,123 +87,16 @@ public:
 	virtual void endWhatTodo() = 0;
 
 	// ---- Controle direct moteurs (bas niveau) ----
+	// Note: setMotorLeftPower/RightPower, stopMotors, getCountsExternal
+	// sont gardes car utilises par des tests O_* et Asserv.cpp.
+	// Les autres methodes deprecated ont ete supprimees (dead code).
 
-	/*!
-	 * \brief Commande le moteur gauche en position.
-	 * \param power Puissance appliquee (0-100).
-	 * \param ticks Position cible en ticks encodeur.
-	 */
-	virtual void setMotorLeftPosition(int power, long ticks) = 0;
-
-	/*!
-	 * \brief Commande le moteur droit en position.
-	 * \param power Puissance appliquee (0-100).
-	 * \param ticks Position cible en ticks encodeur.
-	 */
-	virtual void setMotorRightPosition(int power, long ticks) = 0;
-
-	/*!
-	 * \brief Commande le moteur gauche en puissance pendant un temps donne.
-	 * \param power Puissance appliquee (0-100).
-	 * \param time_ms Duree en millisecondes.
-	 */
 	virtual void setMotorLeftPower(int power, int time_ms) = 0;
-
-	/*!
-	 * \brief Commande le moteur droit en puissance pendant un temps donne.
-	 * \param power Puissance appliquee (0-100).
-	 * \param time_ms Duree en millisecondes.
-	 */
 	virtual void setMotorRightPower(int power, int time_ms) = 0;
-
-	/*!
-	 * \brief Lit la valeur de l'encodeur externe gauche.
-	 * \return Valeur cumulee en ticks.
-	 */
-	virtual long getLeftExternalEncoder() = 0;
-
-	/*!
-	 * \brief Lit la valeur de l'encodeur externe droit.
-	 * \return Valeur cumulee en ticks.
-	 */
-	virtual long getRightExternalEncoder() = 0;
-
-	/*!
-	 * \brief Lit les compteurs externes cumules (ticks).
-	 * \param[out] countR Compteur droit.
-	 * \param[out] countL Compteur gauche.
-	 */
-	virtual void getCountsExternal(int32_t *countR, int32_t *countL) = 0;
-
-	/*!
-	 * \brief Lit le delta des compteurs externes depuis le dernier appel.
-	 * \param[out] deltaR Delta droit en ticks.
-	 * \param[out] deltaL Delta gauche en ticks.
-	 */
-	virtual void getDeltaCountsExternal(int32_t *deltaR, int32_t *deltaL) = 0;
-
-	/*!
-	 * \brief Lit la valeur de l'encodeur interne gauche.
-	 * \return Valeur cumulee en ticks.
-	 */
-	virtual long getLeftInternalEncoder() = 0;
-
-	/*!
-	 * \brief Lit la valeur de l'encodeur interne droit.
-	 * \return Valeur cumulee en ticks.
-	 */
-	virtual long getRightInternalEncoder() = 0;
-
-	/*!
-	 * \brief Lit les compteurs internes cumules.
-	 * \param[out] countR Compteur droit.
-	 * \param[out] countL Compteur gauche.
-	 */
-	virtual void getCountsInternal(int32_t *countR, int32_t *countL) = 0;
-
-	/*!
-	 * \brief Remet a zero tous les encodeurs.
-	 */
-	virtual void resetEncoders() = 0;
-
-	/*!
-	 * \brief Remet a zero les encodeurs internes.
-	 */
-	virtual void resetInternalEncoders() = 0;
-
-	/*!
-	 * \brief Remet a zero les encodeurs externes.
-	 */
-	virtual void resetExternalEncoders() = 0;
-
-	/*!
-	 * \brief Arrete les deux moteurs.
-	 */
 	virtual void stopMotors() = 0;
-
-	/*!
-	 * \brief Arrete le moteur gauche.
-	 */
-	virtual void stopMotorLeft() = 0;
-
-	/*!
-	 * \brief Arrete le moteur droit.
-	 */
-	virtual void stopMotorRight() = 0;
-
-	/*!
-	 * \brief Lit le courant du moteur gauche.
-	 * \return Courant en mA.
-	 * \deprecated Stub dans toutes les implementations.
-	 */
-	virtual int getMotorLeftCurrent() = 0;
-
-	/*!
-	 * \brief Lit le courant du moteur droit.
-	 * \return Courant en mA.
-	 * \deprecated Stub dans toutes les implementations.
-	 */
-	virtual int getMotorRightCurrent() = 0;
+	virtual void getCountsExternal(int32_t *countR, int32_t *countL) = 0;
+	virtual void getDeltaCountsExternal(int32_t *deltaR, int32_t *deltaL) = 0;
+	virtual void resetEncoders() = 0;
 
 	// ---- Asservissement externe (haut niveau) ----
 
@@ -228,21 +121,14 @@ public:
 	virtual ROBOTPOSITION odo_GetPosition() = 0;
 
 	/*!
-	 * \brief Lit le statut de la derniere commande.
-	 * \return Code de statut.
-	 * \deprecated Retourne -1 dans toutes les implementations.
-	 */
-	virtual int path_GetLastCommandStatus() = 0;
-
-	/*!
 	 * \brief Interrompt la trajectoire en cours (arret d'urgence logiciel).
 	 */
-	virtual void path_InterruptTrajectory() = 0;
+	virtual void emergencyStop() = 0;
 
 	/*!
 	 * \brief Reinitialise l'arret d'urgence pour permettre un nouveau mouvement.
 	 */
-	virtual void path_ResetEmergencyStop() = 0;
+	virtual void resetEmergencyStop() = 0;
 
 	// ---- Commandes de mouvement ----
 
@@ -270,12 +156,13 @@ public:
 	virtual TRAJ_STATE motion_DoRotate(float angle_radians) = 0;
 
 	/*!
-	 * \brief Effectue une rotation en arc de cercle.
-	 * \param angle_radians Angle de l'arc en radians.
-	 * \param radius Rayon de courbure en mm.
+	 * \brief Effectue une rotation orbitale (pivot sur une roue).
+	 * \param angle_radians Angle de rotation en radians.
+	 * \param forward true = marche avant, false = marche arriere.
+	 * \param turnRight true = pivot roue droite, false = pivot roue gauche.
 	 * \return Etat de la trajectoire a la fin du mouvement.
 	 */
-	virtual TRAJ_STATE motion_DoArcRotate(float angle_radians, float radius) = 0;
+	virtual TRAJ_STATE motion_DoOrbitalTurn(float angle_radians, bool forward, bool turnRight) = 0;
 
 	/*!
 	 * \brief Deplace le robot vers un point (marche avant).
@@ -315,11 +202,6 @@ public:
 	 * \brief Passe en roue libre (aucun asservissement).
 	 */
 	virtual void motion_FreeMotion(void) = 0;
-
-	/*!
-	 * \brief Desactive le PID et stoppe les moteurs.
-	 */
-	virtual void motion_DisablePID(void) = 0;
 
 	/*!
 	 * \brief Active le mode deplacement assiste (PID actif).
