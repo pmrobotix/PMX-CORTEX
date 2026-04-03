@@ -54,7 +54,7 @@
 			"testPreset":       { "statusBarVisibility": "hidden" },
 			"launch":           { "statusBarVisibility": "visible" },
 			"launchTarget":     { "statusBarVisibility": "visible" },
-			"debug":            { "statusBarVisibility": "hidden" }
+			"debug":            { "statusBarVisibility": "visible" }
 		},
 		"git.scanRepositories": [
 			"../asserv_chibios",
