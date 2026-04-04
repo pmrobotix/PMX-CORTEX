@@ -130,71 +130,24 @@ public:
 	 */
 	virtual void resetEmergencyStop() = 0;
 
-	// ---- Commandes de mouvement ----
-
 	/*!
-	 * \brief Oriente le robot face a un point.
-	 * \param x_mm Coordonnee X cible en mm.
-	 * \param y_mm Coordonnee Y cible en mm.
-	 * \param back_face true pour faire face avec l'arriere du robot.
+	 * \brief Attend la fin de la trajectoire en cours.
 	 * \return Etat de la trajectoire a la fin du mouvement.
 	 */
-	virtual TRAJ_STATE motion_DoFace(float x_mm, float y_mm, bool back_face) = 0;
+	virtual TRAJ_STATE waitEndOfTraj() = 0;
 
-	/*!
-	 * \brief Avance ou recule en ligne droite.
-	 * \param dist_mm Distance en mm (positif = avant, negatif = arriere).
-	 * \return Etat de la trajectoire a la fin du mouvement.
-	 */
-	virtual TRAJ_STATE motion_DoLine(float dist_mm) = 0;
+	// ---- Commandes de mouvement (non-bloquantes) ----
+	// Envoient la commande et retournent immédiatement.
+	// Appeler waitEndOfTraj() pour attendre la fin du mouvement.
 
-	/*!
-	 * \brief Effectue une rotation sur place.
-	 * \param angle_radians Angle de rotation en radians.
-	 * \return Etat de la trajectoire a la fin du mouvement.
-	 */
-	virtual TRAJ_STATE motion_DoRotate(float angle_radians) = 0;
-
-	/*!
-	 * \brief Effectue une rotation orbitale (pivot sur une roue).
-	 * \param angle_radians Angle de rotation en radians.
-	 * \param forward true = marche avant, false = marche arriere.
-	 * \param turnRight true = pivot roue droite, false = pivot roue gauche.
-	 * \return Etat de la trajectoire a la fin du mouvement.
-	 */
-	virtual TRAJ_STATE motion_DoOrbitalTurn(float angle_radians, bool forward, bool turnRight) = 0;
-
-	/*!
-	 * \brief Deplace le robot vers un point (marche avant).
-	 * \param x_mm Coordonnee X cible en mm.
-	 * \param y_mm Coordonnee Y cible en mm.
-	 * \return Etat de la trajectoire a la fin du mouvement.
-	 */
-	virtual TRAJ_STATE motion_Goto(float x_mm, float y_mm) = 0;
-
-	/*!
-	 * \brief Deplace le robot vers un point (marche arriere).
-	 * \param x_mm Coordonnee X cible en mm.
-	 * \param y_mm Coordonnee Y cible en mm.
-	 * \return Etat de la trajectoire a la fin du mouvement.
-	 */
-	virtual TRAJ_STATE motion_GotoReverse(float x_mm, float y_mm) = 0;
-
-	/*!
-	 * \brief Deplace le robot vers un point sans s'arreter (enchainement).
-	 * \param x_mm Coordonnee X cible en mm.
-	 * \param y_mm Coordonnee Y cible en mm.
-	 * \return Etat de la trajectoire a la fin du mouvement.
-	 */
-	virtual TRAJ_STATE motion_GotoChain(float x_mm, float y_mm) = 0;
-
-	/*!
-	 * \brief Deplace le robot vers un point en marche arriere sans s'arreter.
-	 * \param x_mm Coordonnee X cible en mm.
-	 * \param y_mm Coordonnee Y cible en mm.
-	 * \return Etat de la trajectoire a la fin du mouvement.
-	 */
-	virtual TRAJ_STATE motion_GotoReverseChain(float x_mm, float y_mm) = 0;
+	virtual void motion_DoFace(float x_mm, float y_mm, bool back_face) = 0;
+	virtual void motion_DoLine(float dist_mm) = 0;
+	virtual void motion_DoRotate(float angle_radians) = 0;
+	virtual void motion_DoOrbitalTurn(float angle_radians, bool forward, bool turnRight) = 0;
+	virtual void motion_Goto(float x_mm, float y_mm) = 0;
+	virtual void motion_GotoReverse(float x_mm, float y_mm) = 0;
+	virtual void motion_GotoChain(float x_mm, float y_mm) = 0;
+	virtual void motion_GotoReverseChain(float x_mm, float y_mm) = 0;
 
 	// ---- Controle du mode de deplacement ----
 
@@ -247,6 +200,14 @@ public:
 	 * \deprecated Utilise uniquement par ARM et EsialR.
 	 */
 	virtual void motion_ActivateReguAngle(bool enable) = 0;
+
+	// ---- Simulation ----
+
+	/*!
+	 * \brief Multiplicateur de temps pour la simulation (SIMU uniquement).
+	 *        0.0 = instantane, 1.0 = temps reel. Ne fait rien en ARM.
+	 */
+	virtual void setSimuSpeedMultiplier(float) {}
 
 };
 

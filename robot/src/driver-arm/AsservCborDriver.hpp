@@ -59,7 +59,7 @@ private:
     // Envoi bas niveau de la trame complète
     void sendFrame(const uint8_t *cborPayload, size_t cborLen);
 
-    TRAJ_STATE waitEndOfTraj();
+    void prepareCommand(int countdown);
 
     uint8_t txBuffer_[128];
 
@@ -78,6 +78,7 @@ public:
 
     bool is_connected() override;
     void endWhatTodo();
+    TRAJ_STATE waitEndOfTraj() override;
 
     // Bas niveau — stubs (utilisés par tests O_* uniquement)
     void setMotorLeftPower(int power, int time);
@@ -93,15 +94,15 @@ public:
     void emergencyStop();
     void resetEmergencyStop();
 
-    // Commandes de mouvement
-    TRAJ_STATE motion_DoLine(float dist_mm);
-    TRAJ_STATE motion_DoFace(float x_mm, float y_mm, bool back_reversed);
-    TRAJ_STATE motion_DoRotate(float angle_radians);
-    TRAJ_STATE motion_DoOrbitalTurn(float angle_radians, bool forward, bool turnRight);
-    TRAJ_STATE motion_Goto(float x_mm, float y_mm);
-    TRAJ_STATE motion_GotoReverse(float x_mm, float y_mm);
-    TRAJ_STATE motion_GotoChain(float x_mm, float y_mm);
-    TRAJ_STATE motion_GotoReverseChain(float x_mm, float y_mm);
+    // Commandes de mouvement (non-bloquantes)
+    void motion_DoLine(float dist_mm);
+    void motion_DoFace(float x_mm, float y_mm, bool back_reversed);
+    void motion_DoRotate(float angle_radians);
+    void motion_DoOrbitalTurn(float angle_radians, bool forward, bool turnRight);
+    void motion_Goto(float x_mm, float y_mm);
+    void motion_GotoReverse(float x_mm, float y_mm);
+    void motion_GotoChain(float x_mm, float y_mm);
+    void motion_GotoReverseChain(float x_mm, float y_mm);
 
     // Modes de mouvement
     void motion_FreeMotion(void);

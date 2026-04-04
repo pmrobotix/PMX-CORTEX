@@ -87,10 +87,14 @@ public:
     void enable(PlaygroundObjectID id, bool enable);
 
 
-    //TODO a tester avec le testunitaire en XY
+    // [DEPRECATED] Utiliser Navigator::pathTo() / pathToAndFaceTo() / pathToAndRotateAbsDeg()
+    [[deprecated("Utiliser Navigator::pathToAndFaceTo()")]]
     TRAJ_STATE doPathForwardAndFaceTo(float xMM, float yMM, float f_x, float f_y);
+    [[deprecated("Utiliser Navigator::pathToAndRotateAbsDeg()")]]
     TRAJ_STATE doPathForwardAndRotateTo(float x, float y, float AbsThetaInDegree);
+    [[deprecated("Utiliser Navigator::pathTo()")]]
     TRAJ_STATE doPathForwardTo(float xMM, float yMM, bool rotate_ignored_detection = false);
+    [[deprecated("Utiliser Navigator::pathToReverse()")]]
     TRAJ_STATE doPathBackwardTo(float xMM, float yMM, bool rotate_ignored_detection = false);
 
 
@@ -100,17 +104,22 @@ public:
 //    TRAJ_STATE whileDoLine(float distMM, bool rotate_ignoring_opponent = true, int wait_tempo_us = 2000000,
 //    		int nb_near_obstacle = 2, int nb_collision = 2, int reculOnObstacleMm = 0, int reculOnCollisionMm = 0,
 //    		bool ignore_collision = 0);
-//TODO à trasferer sur Robot
+    // [DEPRECATED] Utiliser Navigator a la place
+    [[deprecated("Utiliser Navigator::goTo() ou Navigator::pathTo()")]]
     TRAJ_STATE whileMoveForwardTo(float xMM, float yMM, bool rotate_ignored_detection, int wait_tempo_us,
             int nb_near_obstacle, int nb_collision, bool byPathfinding = false, int reculOnObstacleMm = 0,
 			int reculOnCollisionMm = 0, bool ignore_collision = false);
+    [[deprecated("Utiliser Navigator::goToReverse() ou Navigator::pathToReverse()")]]
     TRAJ_STATE whileMoveBackwardTo(float xMM, float yMM, bool rotate_ignored_detection, int wait_tempo_us,
             int nb_near_obstacle, int nb_collision, bool byPathfinding = false, int reculOnObstacleMm = 0,
 			int reculOnCollisionMm = 0);
+    [[deprecated("Utiliser Navigator::rotateToAbsoluteDeg()")]]
     TRAJ_STATE whileMoveRotateTo(float AbsoluteThetaInDegree, int wait_tempo_us, int nb_collision);
+    [[deprecated("Utiliser Navigator::goToAndRotateAbsDeg() ou Navigator::pathToAndRotateAbsDeg()")]]
     TRAJ_STATE whileMoveForwardAndRotateTo(float xMM, float yMM, float AbsoluteThetaInDegree,
             bool rotate_ignored_detection, int wait_tempo_us, int nb_near_obstacle, int nb_collision,
             bool byPathfinding = false, int reculMm=0, bool ignore_collision = false);
+    [[deprecated("Utiliser Navigator::backwardAndRotateTo()")]]
     TRAJ_STATE whileMoveBackwardAndRotateTo(float xMM, float yMM, float AbsoluteThetaInDegree,
                 bool rotate_ignored_detection, int wait_tempo_us, int nb_near_obstacle, int nb_collision,
                 bool byPathfinding = false, int reculMm=0);

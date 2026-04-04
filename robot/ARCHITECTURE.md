@@ -492,7 +492,7 @@ Ancien : AAsservDriver (47 méthodes, interface gonflée)
 | Deprecated (path_GetLastCommandStatus) | 1 | returns -1 | returns -1 | returns -1 | **Code mort** |
 | **Total** | **~47** | | | | |
 
-*EsialR : GotoChain non implémenté.
+*EsialR : GotoChain utilise addGoToEnchainement (enchainement sans arret).
 
 ### Solution cible : deux interfaces
 
@@ -1232,14 +1232,390 @@ Prérequis kernel (en cours) : `CONFIG_PREEMPT=y`, `CONFIG_HZ=1000`, I2C déjà 
   - Réduit la latence de réveil du `read()` de ~10ms à <1ms
   - Critique pour la communication haute fréquence avec la Teensy
 
-- ⬜ **4. `clock_nanosleep` absolu — Boucles sans dérive**
+- ✅ **4. `clock_nanosleep` absolu — Boucles sans dérive**
   - Remplacer les `sleep_for()` / `usleep()` par `clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, ...)`
   - Cible un instant absolu : si le traitement prend 2ms sur une période de 5ms, le sleep ne dure que 3ms
   - Insensible aux changements d'horloge (NTP)
 
-- ⬜ **5. Priorités IRQ via `chrt` — Protéger serial/I2C du WiFi**
+- ✅ **5. Priorités IRQ via `chrt` — Protéger serial/I2C du WiFi**
   - Script init qui monte la priorité des threads IRQ UART et I2C au-dessus du WiFi :
     - IRQ UART : `chrt -f -p 90`
     - IRQ I2C : `chrt -f -p 85`
     - WiFi : reste à la priorité par défaut (50)
   - Empêche un transfert WiFi de bloquer les threads critiques
+
+## Navigator — Refactoring navigation (planifié)
+
+### Problème
+
+La logique de retry (boucle while + gestion obstacle/collision/recul) est dupliquée dans :
+- `Robot::whileDoLine()` — retry sur `doLine()`
+- `IAbyPath::whileMoveForwardTo()` — retry sur `doMoveForwardTo()` ou `doPathForwardTo()`
+- `IAbyPath::whileMoveBackwardTo()` — retry sur `doMoveBackwardTo()` ou `doPathBackwardTo()`
+- `IAbyPath::whileMoveRotateTo()` — retry sur rotation
+- `IAbyPath::whileMoveForwardAndRotateTo()` — retry sur avance + rotation
+- `IAbyPath::whileMoveBackwardAndRotateTo()` — retry sur recul + rotation
+
+6 copies du même pattern while/retry/obstacle/collision/recul.
+
+### Solution : classe Navigator
+
+Nouvelle classe `src/common/navigator/Navigator` qui factorise toute la logique de retry en une seule méthode `executeWithRetry()`.
+
+#### Hiérarchie des couches
+
+```
+┌───────────────────────────────────────────────────────────────────┐
+│  NIVEAU 3 — Stratégie / Match                                     │
+│  (O_State_DecisionMakerIA, actions de zone)                       │
+│  Utilise Navigator + IAbyPath (zones, actions)                    │
+└──────────────────────────────┬────────────────────────────────────┘
+                               │
+┌──────────────────────────────▼────────────────────────────────────┐
+│  NIVEAU 2 — Navigator (NOUVEAU)                                   │
+│                                                                   │
+│  Retry unifié : executeWithRetry()                                │
+│                                                                   │
+│  Mouvements :    line, goTo, goToReverse                          │
+│  Waypoints :     manualPath(wps, policy, PathMode)                │
+│  Pathfinding :   pathTo, pathToReverse (A* via IAbyPath)          │
+│  Rotations :     rotateDeg, rotateToAbsoluteDeg, faceTo,          │
+│                  reverseFaceTo                                    │
+│  Combinaisons :  goToAndRotateAbsDeg, goToAndRotateRelDeg,        │
+│                  goToAndFaceTo, pathToAndRotateAbsDeg,             │
+│                  pathToAndRotateRelDeg, pathToAndFaceTo            │
+└──────────────────────────────┬────────────────────────────────────┘
+                               │
+                ┌──────────────┼──────────────┐
+                ▼                             ▼
+┌───────────────────────┐           ┌───────────────────────┐
+│  NIVEAU 1 — Asserv    │           │  IAbyPath              │
+│  (inchangé)           │           │  (inchangé)            │
+│                       │           │                       │
+│  doLine()             │           │  playgroundFindPath() │
+│  doMoveForwardTo()    │           │  → FoundPath*         │
+│  doMoveBackwardTo()   │           │                       │
+│  gotoXY()             │           │  + zones, actions,    │
+│  gotoReverse()        │           │    playground, toSVG  │
+│  doFaceTo()           │           │                       │
+│  doAbsoluteRotateTo() │           └───────────────────────┘
+│  doRelativeRotateDeg()│
+│  resetEmergencyOnTraj │
+│  ()                   │
+└───────────┬───────────┘
+            │
+┌───────────▼───────────┐
+│  NIVEAU 0             │
+│  AAsservDriver        │
+│  (inchangé)           │
+│                       │
+│  motion_DoLine()      │
+│  motion_Goto()        │
+│  motion_GotoChain()   │
+│  waitEndOfTraj()      │
+│                       │
+│  Implémentations :    │
+│  ARM, SIMU, EsialR    │
+└───────────────────────┘
+```
+
+#### Dépendances Navigator
+
+```
+Navigator
+   ├──► Asserv (via Robot*) — mouvements directs (1 tentative)
+   └──► IAbyPath — calcul chemin A* → liste de waypoints
+```
+
+#### API Navigator
+
+```cpp
+struct Waypoint { float x; float y; bool reverse = false; };
+
+struct RetryPolicy {
+    int waitTempoUs;            // attente entre tentatives (us)
+    int maxObstacleRetries;     // nb max retry obstacle
+    int maxCollisionRetries;    // nb max retry collision
+    int reculObstacleMm;        // recul apres obstacle (0=aucun)
+    int reculCollisionMm;       // recul apres collision (0=aucun)
+    bool rotateIgnoringOpponent;
+    bool ignoreCollision;
+
+    // Presets
+    static RetryPolicy noRetry();      // 1 essai, pas de retry
+    static RetryPolicy standard();     // 2 essais, pas de recul
+    static RetryPolicy aggressive();   // 5 essais, recul 50mm
+    static RetryPolicy patient();      // 20 essais obstacle
+};
+
+// Mode d'execution des waypoints
+enum PathMode {
+    STOP,            // envoi un par un, arret a chaque point (gotoXY + wait)
+    CHAIN,           // envoi groupe, arret a chaque point (gotoXY sans wait intermediaire)
+    CHAIN_NONSTOP    // envoi groupe, pas d'arret (gotoChain sans wait + gotoXY final)
+};
+
+class Navigator {
+public:
+    Navigator(Robot* robot, IAbyPath* iap);
+
+    // --- Mouvements simples (defaut: pas de retry) ---
+    TRAJ_STATE line(float distMm, RetryPolicy policy = RetryPolicy::noRetry());
+    TRAJ_STATE goTo(float x, float y, RetryPolicy policy = RetryPolicy::noRetry());
+    TRAJ_STATE goToReverse(float x, float y, RetryPolicy policy = RetryPolicy::noRetry());
+
+    // --- Rotations (defaut: pas de retry) ---
+    TRAJ_STATE rotateDeg(float degRelative, RetryPolicy policy = RetryPolicy::noRetry());
+    TRAJ_STATE rotateToAbsoluteDeg(float thetaDeg, RetryPolicy policy = RetryPolicy::noRetry());
+    TRAJ_STATE faceTo(float x, float y, RetryPolicy policy = RetryPolicy::noRetry());
+    TRAJ_STATE reverseFaceTo(float x, float y, RetryPolicy policy = RetryPolicy::noRetry());
+
+    // --- Suite de waypoints manuels ---
+    TRAJ_STATE manualPath(const std::vector<Waypoint>& waypoints,
+                          RetryPolicy policy = RetryPolicy::standard(),
+                          PathMode mode = STOP);
+
+    // --- Pathfinding A* (IAbyPath calcule le chemin) ---
+    TRAJ_STATE pathTo(float x, float y,
+                      RetryPolicy policy = RetryPolicy::standard(),
+                      PathMode mode = STOP);
+    TRAJ_STATE pathToReverse(float x, float y,
+                             RetryPolicy policy = RetryPolicy::standard(),
+                             PathMode mode = STOP);
+
+    // --- Combinaisons mouvement + rotation finale ---
+    TRAJ_STATE goToAndRotateAbsDeg(float x, float y, float thetaDeg, RetryPolicy policy = RetryPolicy::standard());
+    TRAJ_STATE goToAndRotateRelDeg(float x, float y, float degRelative, RetryPolicy policy = RetryPolicy::standard());
+    TRAJ_STATE goToAndFaceTo(float x, float y, float fx, float fy, RetryPolicy policy = RetryPolicy::standard());
+    TRAJ_STATE pathToAndRotateAbsDeg(float x, float y, float thetaDeg, RetryPolicy policy = RetryPolicy::standard());
+    TRAJ_STATE pathToAndRotateRelDeg(float x, float y, float degRelative, RetryPolicy policy = RetryPolicy::standard());
+    TRAJ_STATE pathToAndFaceTo(float x, float y, float fx, float fy, RetryPolicy policy = RetryPolicy::standard());
+
+private:
+    // Coeur unique : boucle while/retry/obstacle/collision/recul
+    TRAJ_STATE executeWithRetry(std::function<TRAJ_STATE()> moveFunc,
+                                 const RetryPolicy& policy, int reculDir = -1);
+
+    // Calcule les waypoints via IAbyPath::playgroundFindPath()
+    std::vector<Waypoint> computePath(float x, float y, bool reverse = false);
+
+    Robot* robot_;
+    IAbyPath* iap_;
+};
+```
+
+#### PathMode — modes d'execution des waypoints
+
+```
+STOP :          ●──stop──●──stop──●──stop──●   envoi 1 par 1, arret chaque point
+CHAIN :         ●──stop──●──stop──●──stop──●   envoi groupe, arret chaque point
+CHAIN_NONSTOP : ●────────●────────●──stop──●   envoi groupe, pas d'arret (sauf dernier)
+```
+
+| PathMode | Envoi | Arret entre points | Commande intermediaire | Commande finale |
+|---|---|---|---|---|
+| `STOP` | un par un + wait | oui | `gotoXY` + `waitEndOfTraj` | `gotoXY` + `waitEndOfTraj` |
+| `CHAIN` | groupé | oui | `gotoXY` (sans wait) | `gotoXY` + `waitEndOfTraj` |
+| `CHAIN_NONSTOP` | groupé | non | `gotoChain` (sans wait) | `gotoXY` + `waitEndOfTraj` |
+
+La Nucleo (asserv_chibios) gère la queue de waypoints en interne.
+
+| Driver | STOP | CHAIN | CHAIN_NONSTOP |
+|---|---|---|---|
+| ARM (série) | OK | OK | OK |
+| SIMU | OK | fallback STOP | fallback STOP |
+| EsialR | OK | fallback STOP | OK (addGoToEnchainement) |
+
+**Envoi sans attente (mode CHAIN/CHAIN_NONSTOP)** :
+
+Navigator utilise `Asserv::gotoSend()` / `gotoChainSend()` (envoi sans `waitEndOfTraj`)
+puis `Asserv::waitTraj()` une seule fois a la fin. Sur le driver ARM, les commandes
+sont envoyées en série a la Nucleo qui les bufferise dans sa queue. Sur EsialR,
+`motion_GotoChain` utilise `addGoToEnchainement` (non-bloquant, queue interne),
+tandis que `motion_Goto` reste bloquant (fallback STOP pour le mode CHAIN).
+
+**Note SIMU / EsialR** :
+- Les 3 modes fonctionnent sans erreur.
+- CHAIN_NONSTOP utilise `addGoToEnchainement` d'EsialR (enchainement réel, pas de fallback).
+- CHAIN utilise `motion_Goto` qui est bloquant en EsialR (comportement identique a STOP).
+- Sur le vrai robot (Nucleo), CHAIN_NONSTOP donne une trajectoire fluide sans arret.
+
+#### Tracé SVG des trajectoires
+
+Navigator trace automatiquement les segments sur le SVG via `SvgWriter::writeLine()`.
+
+| Commande | Couleur SVG | Style |
+|---|---|---|
+| manualPath STOP | *(rien, points odométrie existants)* | |
+| manualPath CHAIN | *(rien, points odométrie existants)* | |
+| manualPath CHAIN_NONSTOP | Vert | Pointillés `- - - -` |
+| goTo / goToReverse (direct) | Bleu | Continu `──────` |
+| pathTo STOP | Rouge | Continu `──────` |
+| pathTo CHAIN | Rouge | Continu `──────` |
+| pathTo CHAIN_NONSTOP | Rouge | Pointillés `- - - -` |
+
+#### Fichiers
+
+| Fichier | Contenu |
+|---|---|
+| `src/common/navigator/RetryPolicy.hpp` | Struct RetryPolicy + presets |
+| `src/common/navigator/Navigator.hpp` | Header classe Navigator + struct Waypoint + enum PathMode |
+| `src/common/navigator/Navigator.cpp` | Implémentation (executeWithRetry + toutes les méthodes) |
+
+#### Ce qui reste inchangé dans IAbyPath
+
+- Zones : `ia_createZone()`, `ia_getZone()`, `goToZone()`
+- Actions séquentielles : `ia_addAction()`, `ia_start()`
+- Playground : `playgroundFindPath()`, `enable()`, `toSVG()`
+- Les méthodes `doPath*` et `while*` existantes restent en place (deprecated progressivement)
+
+#### Migration (incrémentale)
+
+Les méthodes `while*` de IAbyPath et `Robot::whileDoLine()` restent en place.
+Le code de match existant continue de fonctionner.
+On migre les appelants un par un vers Navigator, puis on supprime les anciennes méthodes.
+
+#### Refactoring nommage (planifié)
+
+Convention : **verbe + complément + qualificateur**, pas de préfixe `do`.
+
+| Action | Navigator (niveau 2) | Asserv (ancien → nouveau) | AAsservDriver (ancien → nouveau) |
+|---|---|---|---|
+| Ligne droite | `line` | `doLine` → `line` | `motion_DoLine` → `motion_Line` |
+| Aller à (x,y) | `goTo` | `gotoXY` → `goTo` | `motion_Goto` → `motion_GoTo` |
+| Reculer à (x,y) | `goToReverse` | `gotoReverse` → `goToReverse` | `motion_GotoReverse` → `motion_GoToReverse` |
+| Aller chaîné | — | `gotoChain` → `goToChain` | `motion_GotoChain` → `motion_GoToChain` |
+| Reculer chaîné | — | `gotoReverseChain` → `goToReverseChain` | `motion_GotoReverseChain` → `motion_GoToReverseChain` |
+| Envoi goto sans wait | — | `gotoSend` → `goToSend` | — |
+| Envoi chain sans wait | — | `gotoChainSend` → `goToChainSend` | — |
+| Envoi reverse sans wait | — | `gotoReverseSend` → `goToReverseSend` | — |
+| Envoi reverse chain sans wait | — | `gotoReverseChainSend` → `goToReverseChainSend` | — |
+| Attente fin traj | — | `waitTraj` ✅ | `waitEndOfTraj` ✅ |
+| Rotation relative deg | `rotateDeg` | `doRelativeRotateDeg` → `rotateDeg` | `motion_DoRotate` → `motion_RotateRad` (radians) |
+| Rotation relative rad | — | `doRelativeRotateRad` → `rotateRad` | — (le driver est toujours en rad) |
+| Rotation par couleur deg | — | `doRelativeRotateByMatchColor` → `rotateByMatchColorDeg` | — |
+| Rotation absolue deg | `rotateToAbsoluteDeg` → `rotateAbsDeg` | `doAbsoluteRotateTo` → `rotateAbsDeg` | — |
+| Face vers (x,y) | `faceTo` | `doFaceTo` → `faceTo` | `motion_DoFace` → `motion_FaceTo` |
+| Dos vers (x,y) | `reverseFaceTo` | — | — |
+| Avancer vers (x,y) | — | `doMoveForwardTo` → `moveForwardTo` | — |
+| Reculer vers (x,y) | — | `doMoveBackwardTo` → `moveBackwardTo` | — |
+| Avancer+rotation | — | `doMoveForwardAndRotateTo` → `moveForwardAndRotateTo` | — |
+| Reculer+rotation | — | `doMoveBackwardAndRotateTo` → `moveBackwardAndRotateTo` | — |
+| Calage | — | `doCalage` → `calage` | — |
+| Calage2 | — | `doCalage2` → `calage2` | — |
+| CalageNew | — | `doCalageNew` → `calageNew` | — |
+| Pivot gauche | — | `doRunPivotLeft` → `pivotLeft` | — |
+| Pivot droit | — | `doRunPivotRight` → `pivotRight` | — |
+| Orbital turn deg | `orbitalTurnDeg` | `orbitalTurnDeg` | `motion_DoOrbitalTurn` → `motion_OrbitalTurnRad` |
+
+**Convention unités dans les noms** :
+- `Deg` dans le nom = paramètre en degrés (Navigator, Asserv)
+- `Rad` dans le nom = paramètre en radians (Driver)
+- La conversion deg→rad se fait **une seule fois** dans Asserv avant d'appeler le driver
+- Le driver travaille **toujours en radians**
+- Navigator travaille **toujours en degrés**
+
+**TODO drivers ARM (commandes non supportées)** :
+- `AsservDriver` (ASCII) : `motion_DoOrbitalTurn` → à implémenter côté Nucleo (protocole série)
+- `AsservCborDriver` (CBOR) : `motion_GotoReverseChain` → à ajouter au protocole CBOR
+
+Fichiers impactés : `AAsservDriver.hpp` (8), `Asserv.hpp/.cpp` (18),
+`Navigator.hpp/.cpp` (1), drivers ARM/SIMU/EsialR (8 chacun),
+appelants (tests, IA, match) (~50+ occurrences).
+
+#### Exemple avant/après
+
+```cpp
+// AVANT (10 paramètres, illisible)
+robot.ia().iAbyPath().whileMoveForwardAndRotateTo(
+    zone.x, zone.y, radToDeg(zone.theta),
+    ROTATION_WITH_DETECTION, 2000000, 20, 10, NO_PATHFINDING);
+
+// APRÈS
+nav.goToAndRotateAbsDeg(zone.x, zone.y, radToDeg(zone.theta),
+    RetryPolicy::patient());
+
+// AVANT (waypoints manuels, pas possible directement)
+robot.asserv().doMoveForwardTo(300, 500);
+robot.asserv().doMoveForwardTo(600, 800);
+robot.asserv().doMoveForwardTo(900, 800);
+
+// APRÈS — arret a chaque point (defaut)
+nav.manualPath({{300, 500}, {600, 800}, {900, 800}},
+    RetryPolicy::aggressive());
+
+// APRÈS — envoi groupe, arret a chaque point
+nav.manualPath({{300, 500}, {600, 800}, {900, 800}},
+    RetryPolicy::aggressive(), CHAIN);
+
+// APRÈS — envoi groupe, trajectoire fluide (le plus rapide)
+nav.manualPath({{300, 500}, {600, 800}, {900, 800}},
+    RetryPolicy::aggressive(), CHAIN_NONSTOP);
+
+// AVANT (pathfinding)
+robot.ia().iAbyPath().whileMoveForwardTo(
+    x, y, true, 2000000, 5, 5, true, 50, 0, false);
+
+// APRÈS — pathfinding avec arret a chaque waypoint (defaut)
+nav.pathTo(x, y, RetryPolicy::aggressive());
+
+// APRÈS — pathfinding en trajectoire fluide
+nav.pathTo(x, y, RetryPolicy::aggressive(), CHAIN_NONSTOP);
+
+// --- Rotations ---
+
+// AVANT
+robot.asserv().doRelativeRotateDeg(90);
+robot.asserv().doAbsoluteRotateTo(180);
+robot.asserv().doFaceTo(x, y);
+
+// APRÈS — sans retry (1 seul essai, equivalent asserv direct)
+nav.rotateDeg(90, RetryPolicy::noRetry());
+nav.rotateToAbsoluteDeg(180, RetryPolicy::noRetry());
+nav.faceTo(x, y, RetryPolicy::noRetry());
+nav.reverseFaceTo(x, y, RetryPolicy::noRetry());
+
+// APRÈS — avec retry
+nav.rotateDeg(90, RetryPolicy::aggressive());
+nav.rotateToAbsoluteDeg(180, RetryPolicy::patient());
+nav.faceTo(x, y, RetryPolicy::standard());
+```
+
+#### Évolution future : DecisionMaker + interruptions
+
+Toutes les commandes Navigator sont **bloquantes** : elles retournent un `TRAJ_STATE` final
+après avoir épuisé les retries de la RetryPolicy. Navigator ne prend **aucune décision
+stratégique** — il exécute et remonte le résultat.
+
+C'est le **DecisionMaker** (niveau 3) qui décide quoi faire après un échec :
+changer de cible, contourner, abandonner, retenter avec une autre policy, etc.
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  DecisionMaker (niveau 3) — DÉCIDE                       │
+│                                                         │
+│  ts = nav.goTo(x, y, RetryPolicy::aggressive());       │
+│                                                         │
+│  if (ts == TRAJ_NEAR_OBSTACLE)                          │
+│      → stratégie : contourner ? changer de cible ?      │
+│  if (ts == TRAJ_COLLISION)                              │
+│      → stratégie : reculer ? essayer un autre chemin ?  │
+│  if (ts == TRAJ_IMPOSSIBLE)                             │
+│      → stratégie : abandonner cette action ?            │
+│  if (ts == TRAJ_FINISHED)                               │
+│      → action suivante                                  │
+└────────────────────────┬────────────────────────────────┘
+                         │
+┌────────────────────────▼────────────────────────────────┐
+│  Navigator (niveau 2) — EXÉCUTE                          │
+│                                                         │
+│  Retry mécanique selon RetryPolicy                      │
+│  Aucune décision stratégique                            │
+│  Retourne TRAJ_STATE final au DecisionMaker             │
+└─────────────────────────────────────────────────────────┘
+```
+
+Cette séparation permet de :
+- Tester Navigator indépendamment (retry pur, pas de logique métier)
+- Faire évoluer la stratégie du DecisionMaker sans toucher à Navigator
+- Gérer les interruptions (fin de match 90s, changement de priorité) au niveau DecisionMaker

@@ -80,7 +80,6 @@ private:
     int nucleo_writeSerial(char c);
     int nucleo_writeSerialSTR(std::string str);
 
-    TRAJ_STATE nucleo_waitEndOfTraj();
 
     void parseAsservPosition(std::string str);
 
@@ -110,15 +109,16 @@ public:
     void emergencyStop();
 
     void resetEmergencyStop();
-    TRAJ_STATE motion_DoLine(float dist_mm);
-    TRAJ_STATE motion_DoFace(float x_mm, float y_mm, bool back_reversed);
-    //TRAJ_STATE motion_DoFaceReverse(float x_mm, float y_mm);
-    TRAJ_STATE motion_DoRotate(float angle_radians); //relative rotation
-    TRAJ_STATE motion_DoOrbitalTurn(float angle_radians, bool forward, bool turnRight);
-    TRAJ_STATE motion_Goto(float x_mm, float y_mm);
-    TRAJ_STATE motion_GotoReverse(float x_mm, float y_mm);
-    TRAJ_STATE motion_GotoChain(float x_mm, float y_mm);
-    TRAJ_STATE motion_GotoReverseChain(float x_mm, float y_mm);
+    TRAJ_STATE waitEndOfTraj() override;
+
+    void motion_DoLine(float dist_mm);
+    void motion_DoFace(float x_mm, float y_mm, bool back_reversed);
+    void motion_DoRotate(float angle_radians);
+    void motion_DoOrbitalTurn(float angle_radians, bool forward, bool turnRight);
+    void motion_Goto(float x_mm, float y_mm);
+    void motion_GotoReverse(float x_mm, float y_mm);
+    void motion_GotoChain(float x_mm, float y_mm);
+    void motion_GotoReverseChain(float x_mm, float y_mm);
 
     void motion_FreeMotion(void);
     void motion_AssistedHandling(void);

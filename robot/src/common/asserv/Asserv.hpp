@@ -4,6 +4,7 @@
 #include <cmath>
 #include <string>
 #include <tuple>
+#include <vector>
 
 #include "log/LoggerFactory.hpp"
 #include "interface/AAsservDriver.hpp"
@@ -398,6 +399,41 @@ public:
      */
     TRAJ_STATE gotoReverseChain(float xMM, float yMM);
 
+    /*!
+     * \brief Definit le multiplicateur de temps pour la simulation (SIMU uniquement).
+     *        0.0 = instantane, 1.0 = temps reel. Ignore en ARM.
+     */
+    void setSimuSpeedMultiplier(float multiplier);
+
+    // ========== ENVOI SANS ATTENTE (pour mode CHAIN) ==========
+
+    /*!
+     * \brief Envoie un goto au driver sans attendre la fin (pas de waitEndOfTraj).
+     *        Utilise la commande "g" (arret au point).
+     */
+    void gotoSend(float xMM, float yMM);
+
+    /*!
+     * \brief Envoie un gotoChain au driver sans attendre (commande "e", pas d'arret).
+     */
+    void gotoChainSend(float xMM, float yMM);
+
+    /*!
+     * \brief Envoie un gotoReverse au driver sans attendre.
+     */
+    void gotoReverseSend(float xMM, float yMM);
+
+    /*!
+     * \brief Envoie un gotoReverseChain au driver sans attendre.
+     */
+    void gotoReverseChainSend(float xMM, float yMM);
+
+    /*!
+     * \brief Attend la fin de la trajectoire en cours (ou de la queue de commandes).
+     * \return Etat final de la trajectoire.
+     */
+    TRAJ_STATE waitTraj();
+
     // ========== DÉPLACEMENTS RELATIFS (par rapport à la position courante) ==========
 
     /*!
@@ -489,14 +525,20 @@ public:
      * \param powerR Puissance moteur droit.
      * \param timemsR Durée en ms.
      */
+    /*!
+     * \brief Rotation orbitale asservie autour d'une roue.
+     *        Le robot tourne d'un angle donne autour de la roue pivot.
+     * \param angleDeg Angle de rotation en degres.
+     * \param forward true = marche avant, false = marche arriere.
+     * \param turnRight true = pivot roue droite, false = pivot roue gauche.
+     * \return Etat de la trajectoire.
+     */
+    TRAJ_STATE orbitalTurnDeg(float angleDeg, bool forward, bool turnRight);
+
+    [[deprecated("Utiliser orbitalTurnDeg() a la place (asservi)")]]
     void doRunPivotLeft(int powerL, int powerR, int timemsR);
 
-    /*!
-     * \brief Pivote autour de la roue droite (la roue droite reste quasi immobile).
-     * \param powerL Puissance moteur gauche.
-     * \param powerR Puissance moteur droit.
-     * \param timemsL Durée en ms.
-     */
+    [[deprecated("Utiliser orbitalTurnDeg() a la place (asservi)")]]
     void doRunPivotRight(int powerL, int powerR, int timemsL);
 
     // ========== DÉPLACEMENTS COMPOSÉS (avance + rotation) ==========

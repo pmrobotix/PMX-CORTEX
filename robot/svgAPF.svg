@@ -131,3 +131,203 @@ xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <text x="3200" y="0" dx="1" dy="20" fill="#444444" font-size="30">3200</text>
 </g>
 <g transform="translate(200,2200)">
+<use x="50" y="-450" xlink:href="#bot-OPOS6UL" transform="rotate(-0,200,-300)" />
+<use x="150" y="-450" xlink:href="#bot-OPOS6UL" transform="rotate(-0,300,-300)" />
+<use x="150" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-0,300,-300)" />
+<use x="150" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-0,300,-300)" />
+<use x="150" y="-550" xlink:href="#bot-OPOS6UL" transform="rotate(-90,300,-400)" />
+<use x="150" y="-550" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-90,300,-400)" />
+<use x="150" y="-550" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-90,300,-400)" />
+<line x1='300' y1='-300' x2='300' y2='-400' stroke='blue' stroke-width='2' />
+<use x="150" y="-550" xlink:href="#bot-OPOS6UL-BLUE" transform="rotate(-90,300,-400)" />
+<use x="50" y="-550" xlink:href="#bot-OPOS6UL" transform="rotate(-6.83019e-06,200,-400)" />
+<use x="50" y="-550" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-6.83019e-06,200,-400)" />
+<use x="50" y="-550" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-6.83019e-06,200,-400)" />
+<line x1='300' y1='-400' x2='200' y2='-400' stroke='blue' stroke-width='2' />
+<use x="50" y="-550" xlink:href="#bot-OPOS6UL-BLUE" transform="rotate(-6.83019e-06,200,-400)" />
+<use x="50" y="-550" xlink:href="#bot-OPOS6UL" transform="rotate(90,200,-400)" />
+<use x="50" y="-550" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(90,200,-400)" />
+<use x="50" y="-550" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(90,200,-400)" />
+<use x="50" y="-450" xlink:href="#bot-OPOS6UL" transform="rotate(90,200,-300)" />
+<use x="50" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(90,200,-300)" />
+<use x="50" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(90,200,-300)" />
+<use x="50" y="-450" xlink:href="#bot-OPOS6UL" transform="rotate(-45,200,-300)" />
+<use x="50" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-45,200,-300)" />
+<use x="50" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-45,200,-300)" />
+<use x="50" y="-450" xlink:href="#bot-OPOS6UL" transform="rotate(-90,200,-300)" />
+<use x="50" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-90,200,-300)" />
+<use x="50" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-90,200,-300)" />
+<use x="50" y="-450" xlink:href="#bot-OPOS6UL" transform="rotate(90,200,-300)" />
+<use x="50" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(90,200,-300)" />
+<use x="50" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(90,200,-300)" />
+<use x="50" y="-450" xlink:href="#bot-OPOS6UL" transform="rotate(-0,200,-300)" />
+<use x="50" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-0,200,-300)" />
+<use x="50" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-0,200,-300)" />
+<use x="50" y="-450" xlink:href="#bot-OPOS6UL-BLACK" transform="rotate(-0,200,-300)" />
+<circle cx="200" cy="-300" r="1" fill="blue" /><line x1="200" y1="-300" x2="225" y2="-300" stroke-width="0.1" stroke="grey"  />
+<use x="650" y="-450" xlink:href="#bot-OPOS6UL" transform="rotate(-0,800,-300)" />
+<use x="850" y="-450" xlink:href="#bot-OPOS6UL" transform="rotate(-0,1000,-300)" />
+<use x="850" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-0,1000,-300)" />
+<use x="850" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-0,1000,-300)" />
+<line x1='800' y1='-300' x2='1000' y2='-300' stroke='blue' stroke-width='2' />
+<use x="850" y="-450" xlink:href="#bot-OPOS6UL-BLUE" transform="rotate(-0,1000,-300)" />
+<use x="850" y="-450" xlink:href="#bot-OPOS6UL" transform="rotate(-90,1000,-300)" />
+<use x="850" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-90,1000,-300)" />
+<use x="850" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-90,1000,-300)" />
+<use x="850" y="-650" xlink:href="#bot-OPOS6UL" transform="rotate(-90,1000,-500)" />
+<use x="850" y="-650" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-90,1000,-500)" />
+<use x="850" y="-650" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-90,1000,-500)" />
+<line x1='1000' y1='-300' x2='1000' y2='-500' stroke='blue' stroke-width='2' />
+<use x="850" y="-650" xlink:href="#bot-OPOS6UL-BLUE" transform="rotate(-90,1000,-500)" />
+<use x="850" y="-650" xlink:href="#bot-OPOS6UL" transform="rotate(-0,1000,-500)" />
+<use x="850" y="-650" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-0,1000,-500)" />
+<use x="850" y="-650" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-0,1000,-500)" />
+<use x="650" y="-650" xlink:href="#bot-OPOS6UL" transform="rotate(180,800,-500)" />
+<use x="650" y="-650" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(180,800,-500)" />
+<use x="650" y="-650" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(180,800,-500)" />
+<line x1='1000' y1='-500' x2='800' y2='-500' stroke='blue' stroke-width='2' />
+<use x="650" y="-650" xlink:href="#bot-OPOS6UL-BLUE" transform="rotate(180,800,-500)" />
+<use x="650" y="-650" xlink:href="#bot-OPOS6UL" transform="rotate(90,800,-500)" />
+<use x="650" y="-650" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(90,800,-500)" />
+<use x="650" y="-650" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(90,800,-500)" />
+<use x="650" y="-450" xlink:href="#bot-OPOS6UL" transform="rotate(90,800,-300)" />
+<use x="650" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(90,800,-300)" />
+<use x="650" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(90,800,-300)" />
+<line x1='800' y1='-500' x2='800' y2='-300' stroke='blue' stroke-width='2' />
+<use x="650" y="-450" xlink:href="#bot-OPOS6UL-BLUE" transform="rotate(90,800,-300)" />
+<use x="650" y="-450" xlink:href="#bot-OPOS6UL" transform="rotate(-0,800,-300)" />
+<use x="650" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-0,800,-300)" />
+<use x="650" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-0,800,-300)" />
+<use x="650" y="-450" xlink:href="#bot-OPOS6UL-BLACK" transform="rotate(-0,800,-300)" />
+<use x="50" y="-1350" xlink:href="#bot-OPOS6UL" transform="rotate(-0,200,-1200)" />
+<use x="50" y="-1350" xlink:href="#bot-OPOS6UL" transform="rotate(-0,200,-1200)" />
+<use x="250" y="-1350" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-0,400,-1200)" />
+<use x="250" y="-1350" xlink:href="#bot-OPOS6UL" transform="rotate(-90,400,-1200)" />
+<use x="250" y="-1550" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-90,400,-1400)" />
+<use x="250" y="-1550" xlink:href="#bot-OPOS6UL" transform="rotate(180,400,-1400)" />
+<use x="50" y="-1550" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-180,200,-1400)" />
+<use x="50" y="-1550" xlink:href="#bot-OPOS6UL" transform="rotate(90,200,-1400)" />
+<use x="50" y="-1350" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(90,200,-1200)" />
+<use x="50" y="-1350" xlink:href="#bot-OPOS6UL" transform="rotate(90,200,-1200)" />
+<use x="50" y="-1350" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(90,200,-1200)" />
+<use x="50" y="-1350" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(90,200,-1200)" />
+<use x="50" y="-1350" xlink:href="#bot-OPOS6UL" transform="rotate(-0,200,-1200)" />
+<use x="50" y="-1350" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-0,200,-1200)" />
+<use x="50" y="-1350" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-0,200,-1200)" />
+<use x="50" y="-1350" xlink:href="#bot-OPOS6UL-BLACK" transform="rotate(-0,200,-1200)" />
+<use x="650" y="-1350" xlink:href="#bot-OPOS6UL" transform="rotate(-0,800,-1200)" />
+<line x1='800' y1='-1200' x2='1100' y2='-1200' stroke='green' stroke-width='3' />
+<line x1='1100' y1='-1200' x2='1100' y2='-1500' stroke='green' stroke-width='3' />
+<line x1='1100' y1='-1500' x2='800' y2='-1500' stroke='green' stroke-width='3' />
+<line x1='800' y1='-1500' x2='800' y2='-1200' stroke='green' stroke-width='3' />
+<use x="650" y="-1350" xlink:href="#bot-OPOS6UL" transform="rotate(-0,800,-1200)" />
+<use x="650" y="-1350" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(90,800,-1200)" />
+<use x="650" y="-1350" xlink:href="#bot-OPOS6UL" transform="rotate(90,800,-1200)" />
+<use x="650" y="-1350" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(90,800,-1200)" />
+<use x="650" y="-1350" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(90,800,-1200)" />
+<use x="650" y="-1350" xlink:href="#bot-OPOS6UL" transform="rotate(-0,800,-1200)" />
+<use x="650" y="-1350" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-0,800,-1200)" />
+<use x="650" y="-1350" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-0,800,-1200)" />
+<use x="650" y="-1350" xlink:href="#bot-OPOS6UL-BLACK" transform="rotate(-0,800,-1200)" />
+<use x="1350" y="-450" xlink:href="#bot-OPOS6UL" transform="rotate(-0,1500,-300)" />
+<line x1='1500' y1='-300' x2='1900' y2='-300' stroke='green' stroke-width='3' stroke-dasharray='10,5' />
+<line x1='1900' y1='-300' x2='1900' y2='-700' stroke='green' stroke-width='3' stroke-dasharray='10,5' />
+<line x1='1900' y1='-700' x2='1500' y2='-700' stroke='green' stroke-width='3' stroke-dasharray='10,5' />
+<line x1='1500' y1='-700' x2='1500' y2='-300' stroke='green' stroke-width='3' stroke-dasharray='10,5' />
+<use x="1350" y="-450" xlink:href="#bot-OPOS6UL" transform="rotate(-0,1500,-300)" />
+<use x="1350" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(90,1500,-300)" />
+<use x="1350" y="-450" xlink:href="#bot-OPOS6UL" transform="rotate(90,1500,-300)" />
+<use x="1350" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(90,1500,-300)" />
+<use x="1350" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(90,1500,-300)" />
+<use x="1350" y="-450" xlink:href="#bot-OPOS6UL" transform="rotate(-0,1500,-300)" />
+<use x="1350" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-0,1500,-300)" />
+<use x="1350" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-0,1500,-300)" />
+<use x="1350" y="-450" xlink:href="#bot-OPOS6UL-BLACK" transform="rotate(-0,1500,-300)" />
+<use x="2050" y="-450" xlink:href="#bot-OPOS6UL" transform="rotate(-0,2200,-300)" />
+<use x="2350" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-0,2500,-300)" />
+<use x="2350" y="-450" xlink:href="#bot-OPOS6UL" transform="rotate(-119.982,2500,-300)" />
+<use x="2200" y="-710" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-119.982,2350,-560)" />
+<use x="2200" y="-710" xlink:href="#bot-OPOS6UL" transform="rotate(119.982,2350,-560)" />
+<use x="2050" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(119.982,2200,-300)" />
+<use x="2050" y="-450" xlink:href="#bot-OPOS6UL" transform="rotate(119.982,2200,-300)" />
+<use x="2050" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(119.982,2200,-300)" />
+<use x="2050" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(119.982,2200,-300)" />
+<line x1='2200' y1='-300' x2='2500' y2='-300' stroke='green' stroke-width='3' />
+<line x1='2500' y1='-300' x2='2350' y2='-560' stroke='green' stroke-width='3' />
+<line x1='2350' y1='-560' x2='2200' y2='-300' stroke='green' stroke-width='3' />
+<use x="2050" y="-450" xlink:href="#bot-OPOS6UL" transform="rotate(-0,2200,-300)" />
+<use x="2050" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(119.982,2200,-300)" />
+<use x="2050" y="-450" xlink:href="#bot-OPOS6UL" transform="rotate(119.982,2200,-300)" />
+<use x="2050" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(119.982,2200,-300)" />
+<use x="2050" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(119.982,2200,-300)" />
+<line x1='2200' y1='-300' x2='2500' y2='-300' stroke='green' stroke-width='3' stroke-dasharray='10,5' />
+<line x1='2500' y1='-300' x2='2350' y2='-560' stroke='green' stroke-width='3' stroke-dasharray='10,5' />
+<line x1='2350' y1='-560' x2='2200' y2='-300' stroke='green' stroke-width='3' stroke-dasharray='10,5' />
+<use x="2050" y="-450" xlink:href="#bot-OPOS6UL" transform="rotate(-0,2200,-300)" />
+<use x="2050" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(119.982,2200,-300)" />
+<use x="2050" y="-450" xlink:href="#bot-OPOS6UL" transform="rotate(119.982,2200,-300)" />
+<use x="2050" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(119.982,2200,-300)" />
+<use x="2050" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(119.982,2200,-300)" />
+<use x="2050" y="-450" xlink:href="#bot-OPOS6UL-BLACK" transform="rotate(119.982,2200,-300)" />
+<use x="1350" y="-1350" xlink:href="#bot-OPOS6UL" transform="rotate(-0,1500,-1200)" />
+<use x="1467.2" y="-1232.8" xlink:href="#bot-OPOS6UL" transform="rotate(90,1617.2,-1082.8)" />
+<use x="1467.2" y="-1232.8" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(90,1617.2,-1082.8)" />
+<use x="1467.2" y="-1232.8" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(90,1617.2,-1082.8)" />
+<use x="1584.4" y="-1115.6" xlink:href="#bot-OPOS6UL" transform="rotate(-1.70755e-06,1734.4,-965.6)" />
+<use x="1584.4" y="-1115.6" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-1.70755e-06,1734.4,-965.6)" />
+<use x="1584.4" y="-1115.6" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-1.70755e-06,1734.4,-965.6)" />
+<use x="1467.2" y="-998.4" xlink:href="#bot-OPOS6UL" transform="rotate(-90,1617.2,-848.4)" />
+<use x="1467.2" y="-998.4" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-90,1617.2,-848.4)" />
+<use x="1467.2" y="-998.4" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-90,1617.2,-848.4)" />
+<use x="1350" y="-881.2" xlink:href="#bot-OPOS6UL" transform="rotate(1.70755e-06,1500,-731.2)" />
+<use x="1350" y="-881.2" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(1.70755e-06,1500,-731.2)" />
+<circle cx="1500" cy="-731.2" r="1" fill="blue" /><line x1="1500" y1="-731.2" x2="1525" y2="-731.2" stroke-width="0.1" stroke="grey"  />
+<use x="1350" y="-881.2" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(1.70755e-06,1500,-731.2)" />
+<use x="1350" y="-1350" xlink:href="#bot-OPOS6UL" transform="rotate(-90,1500,-1200)" />
+<use x="1350" y="-1350" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-90,1500,-1200)" />
+<use x="1350" y="-1350" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-90,1500,-1200)" />
+<line x1='1500' y1='-731.2' x2='1500' y2='-1200' stroke='blue' stroke-width='2' />
+<use x="1350" y="-1350" xlink:href="#bot-OPOS6UL-BLUE" transform="rotate(-90,1500,-1200)" />
+<use x="1350" y="-1350" xlink:href="#bot-OPOS6UL" transform="rotate(-0,1500,-1200)" />
+<use x="1350" y="-1350" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-0,1500,-1200)" />
+<use x="1350" y="-1350" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-0,1500,-1200)" />
+<use x="1350" y="-1350" xlink:href="#bot-OPOS6UL-BLACK" transform="rotate(-0,1500,-1200)" />
+<use x="1350" y="-1350" xlink:href="#bot-OPOS6UL" transform="rotate(-0,1500,-1200)" />
+<line x1='1500' y1='-1200' x2='1500' y2='-1500' stroke='red' stroke-width='4' />
+<use x="1350" y="-1350" xlink:href="#bot-OPOS6UL" transform="rotate(-90,1500,-1200)" />
+<use x="1350" y="-1650" xlink:href="#bot-OPOS6UL-RED" transform="rotate(-90,1500,-1500)" />
+<use x="1350" y="-1650" xlink:href="#bot-OPOS6UL" transform="rotate(-90,1500,-1500)" />
+<use x="1350" y="-1650" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-90,1500,-1500)" />
+<use x="1350" y="-1650" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-90,1500,-1500)" />
+<line x1='1500' y1='-1500' x2='1900' y2='-1500' stroke='red' stroke-width='4' />
+<use x="1350" y="-1650" xlink:href="#bot-OPOS6UL" transform="rotate(-0,1500,-1500)" />
+<use x="1750" y="-1650" xlink:href="#bot-OPOS6UL-RED" transform="rotate(-0,1900,-1500)" />
+<use x="1750" y="-1650" xlink:href="#bot-OPOS6UL" transform="rotate(-0,1900,-1500)" />
+<use x="1750" y="-1650" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-0,1900,-1500)" />
+<use x="1750" y="-1650" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-0,1900,-1500)" />
+<use x="1750" y="-1650" xlink:href="#bot-OPOS6UL" transform="rotate(-0,1900,-1500)" />
+<use x="1750" y="-1650" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-0,1900,-1500)" />
+<use x="1750" y="-1650" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-0,1900,-1500)" />
+<line x1='1900' y1='-1500' x2='1775' y2='-1325' stroke='red' stroke-width='4' />
+<line x1='1775' y1='-1325' x2='1500' y2='-1200' stroke='red' stroke-width='4' />
+<use x="1750" y="-1650" xlink:href="#bot-OPOS6UL" transform="rotate(-54.4623,1900,-1500)" />
+<use x="1625" y="-1475" xlink:href="#bot-OPOS6UL-RED" transform="rotate(-54.4623,1775,-1325)" />
+<use x="1625" y="-1475" xlink:href="#bot-OPOS6UL" transform="rotate(-24.444,1775,-1325)" />
+<use x="1350" y="-1350" xlink:href="#bot-OPOS6UL-RED" transform="rotate(-24.444,1500,-1200)" />
+<use x="1350" y="-1350" xlink:href="#bot-OPOS6UL" transform="rotate(-24.444,1500,-1200)" />
+<use x="1350" y="-1350" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-24.444,1500,-1200)" />
+<use x="1350" y="-1350" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-24.444,1500,-1200)" />
+<use x="1350" y="-1350" xlink:href="#bot-OPOS6UL" transform="rotate(-0,1500,-1200)" />
+<use x="1350" y="-1350" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-0,1500,-1200)" />
+<use x="1350" y="-1350" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-0,1500,-1200)" />
+<use x="1350" y="-1350" xlink:href="#bot-OPOS6UL-BLACK" transform="rotate(-0,1500,-1200)" />
+<use x="1350" y="-1650" xlink:href="#bot-OPOS6UL" transform="rotate(-0,1500,-1500)" />
+<line x1='1500' y1='-1500' x2='1900' y2='-1800' stroke='red' stroke-width='4' />
+<use x="1350" y="-1650" xlink:href="#bot-OPOS6UL" transform="rotate(-36.8699,1500,-1500)" />
+<use x="1750" y="-1950" xlink:href="#bot-OPOS6UL-RED" transform="rotate(-36.8699,1900,-1800)" />
+<use x="1750" y="-1950" xlink:href="#bot-OPOS6UL" transform="rotate(-36.8699,1900,-1800)" />
+<use x="1750" y="-1950" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-36.8699,1900,-1800)" />
+<use x="1750" y="-1950" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-36.8699,1900,-1800)" />
+<use x="1750" y="-1950" xlink:href="#bot-OPOS6UL-BLACK" transform="rotate(-36.8699,1900,-1800)" />
+</g>
+</svg>

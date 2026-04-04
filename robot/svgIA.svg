@@ -1,16 +1,35 @@
 <?xml version="1.0" standalone="no" ?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="3400px" height="2500px" xmlns="http://www.w3.org/2000/svg" version="1.1" >
+<svg width="2000px" height="3000px" xmlns="http://www.w3.org/2000/svg" version="1.1" >
 	<g transform="translate(200,2200) scale(1,-1)" >
-	<polygon points="0,0 3400,0 3400,2500 0,2500 " fill="rgb(255,255,255)" stroke-width="5" stroke="rgb(255,0,0)" />
-	<polygon points="0,0 129,0 129,2000 0,2000 " fill="rgb(0,255,255)" stroke-width="0" stroke="rgb(0,255,255)" />
-	<polygon points="3000,0 2871,0 2871,2000 3000,2000 " fill="rgb(0,255,255)" stroke-width="0" stroke="rgb(0,255,255)" />
-	<polygon points="0,0 3000,0 3000,129 0,129 " fill="rgb(0,255,255)" stroke-width="0" stroke="rgb(0,255,255)" />
-	<polygon points="0,1871 3000,1871 3000,3871 0,3871 " fill="rgb(0,255,255)" stroke-width="0" stroke="rgb(0,255,255)" />
-	<polygon points="250,-100 147.487,147.487 -100,250 -347.487,147.487 -450,-100 -347.487,-347.487 -100,-450 147.487,-347.487 " fill="rgb(0,255,255)" stroke-width="0" stroke="rgb(0,255,255)" />
-	<line x1="0" y1="2000" x2="0" y2="1871" stroke-width="0.5" stroke="rgb(238,238,238)" />
-	<line x1="3000" y1="0" x2="3000" y2="0" stroke-width="0.5" stroke="rgb(238,238,238)" />
-	<line x1="3000" y1="2000" x2="3000" y2="1871" stroke-width="0.5" stroke="rgb(238,238,238)" />
+	<polygon points="0,0 2000,0 2000,3000 0,3000 " fill="rgb(255,255,255)" stroke-width="5" stroke="rgb(255,0,0)" />
+	<polygon points="1775,1475 1775,1325 1625,1325 1625,1475 " fill="rgb(0,255,255)" stroke-width="0" stroke="rgb(0,255,255)" />
+	<polygon points="375,1475 375,1325 225,1325 225,1475 " fill="rgb(0,255,255)" stroke-width="0" stroke="rgb(0,255,255)" />
+	<line x1="0" y1="0" x2="0" y2="0" stroke-width="0.5" stroke="rgb(238,238,238)" />
+	<line x1="0" y1="0" x2="1775" y2="1325" stroke-width="0.5" stroke="rgb(238,238,238)" />
+	<line x1="0" y1="0" x2="1625" y2="1325" stroke-width="0.5" stroke="rgb(238,238,238)" />
+	<line x1="0" y1="0" x2="1625" y2="1475" stroke-width="0.5" stroke="rgb(238,238,238)" />
+	<line x1="0" y1="0" x2="375" y2="1325" stroke-width="0.5" stroke="rgb(238,238,238)" />
+	<line x1="0" y1="0" x2="225" y2="1325" stroke-width="0.5" stroke="rgb(238,238,238)" />
+	<line x1="0" y1="0" x2="225" y2="1475" stroke-width="0.5" stroke="rgb(238,238,238)" />
+	<line x1="0" y1="0" x2="1775" y2="1325" stroke-width="0.5" stroke="rgb(238,238,238)" />
+	<line x1="0" y1="0" x2="1625" y2="1325" stroke-width="0.5" stroke="rgb(238,238,238)" />
+	<line x1="0" y1="0" x2="1625" y2="1475" stroke-width="0.5" stroke="rgb(238,238,238)" />
+	<line x1="0" y1="0" x2="375" y2="1325" stroke-width="0.5" stroke="rgb(238,238,238)" />
+	<line x1="0" y1="0" x2="225" y2="1325" stroke-width="0.5" stroke="rgb(238,238,238)" />
+	<line x1="0" y1="0" x2="225" y2="1475" stroke-width="0.5" stroke="rgb(238,238,238)" />
+	<line x1="1775" y1="1475" x2="1775" y2="1325" stroke-width="0.5" stroke="rgb(238,238,238)" />
+	<line x1="1775" y1="1475" x2="1625" y2="1475" stroke-width="0.5" stroke="rgb(238,238,238)" />
+	<line x1="1775" y1="1325" x2="1625" y2="1325" stroke-width="0.5" stroke="rgb(238,238,238)" />
+	<line x1="1625" y1="1325" x2="1625" y2="1475" stroke-width="0.5" stroke="rgb(238,238,238)" />
+	<line x1="1625" y1="1325" x2="375" y2="1475" stroke-width="0.5" stroke="rgb(238,238,238)" />
+	<line x1="1625" y1="1325" x2="375" y2="1325" stroke-width="0.5" stroke="rgb(238,238,238)" />
+	<line x1="1625" y1="1475" x2="375" y2="1475" stroke-width="0.5" stroke="rgb(238,238,238)" />
+	<line x1="1625" y1="1475" x2="375" y2="1325" stroke-width="0.5" stroke="rgb(238,238,238)" />
+	<line x1="375" y1="1475" x2="375" y2="1325" stroke-width="0.5" stroke="rgb(238,238,238)" />
+	<line x1="375" y1="1475" x2="225" y2="1475" stroke-width="0.5" stroke="rgb(238,238,238)" />
+	<line x1="375" y1="1325" x2="225" y2="1325" stroke-width="0.5" stroke="rgb(238,238,238)" />
+	<line x1="225" y1="1325" x2="225" y2="1475" stroke-width="0.5" stroke="rgb(238,238,238)" />
 </g>
 </svg>
 

@@ -21,16 +21,17 @@ OPOS6UL_IAExtended::OPOS6UL_IAExtended(std::string botId, Robot *robot) :
     area_C4 = Playground::INVALID;
     area_B3 = Playground::INVALID;
 
-    //terrain horizontal
-    p_ = new SymmetricalPlayground(0.0, 0.0, 3400.0, 2500.0, 0.5, 1.0, 1500.0);
-    //terrain vertical
-    //p_ = new SymmetricalPlayground(0.0, 0.0, 2400.0, 3200.0, 0.5, 1.0, 1000.0);
-
-    initPlayground();
+    p_ = nullptr;
+    // initPlayground() n'est plus appele dans le constructeur.
+    // Il doit etre appele explicitement par le match (O_State_DecisionMakerIA)
+    // ou par chaque test fonctionnel avec son propre playground.
 
 }
 
 void OPOS6UL_IAExtended::initPlayground() {
+    //terrain horizontal
+    p_ = new SymmetricalPlayground(0.0, 0.0, 3400.0, 2500.0, 0.5, 1.0, 1500.0);
+
     //bordure terrain horizontal
     p_->add_rectangle_lower_left(0, 0, 129, 2000, 0); //cote gauche
     p_->add_rectangle_lower_left(3000, 0, -129, 2000, 0); //cote droit

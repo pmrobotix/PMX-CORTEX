@@ -20,6 +20,7 @@
 #include "FileAppenderTest.hpp"
 #include "SvgAppenderTest.hpp"
 #include "ActionManagerTimerTest.hpp"
+#include "RetryPolicyTest.hpp"
 
 int main(int argc, char** argv)
 {
@@ -40,6 +41,7 @@ int main(int argc, char** argv)
     suite.addTest(new test::FileAppenderTest());
     suite.addTest(new test::SvgAppenderTest());
     suite.addTest(new test::ActionManagerTimerTest());
+    suite.addTest(new test::RetryPolicyTest());
 
     suite.run();
 

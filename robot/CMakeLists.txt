@@ -93,6 +93,8 @@ add_library(pmx-common STATIC
     src/common/ia/IA.cpp
     src/common/ia/IAbyPath.cpp
     src/common/ia/IAbyZone.cpp
+    # navigator
+    src/common/navigator/Navigator.cpp
     # utils
     src/common/utils/Arguments.cpp
     src/common/utils/ConsoleManager.cpp
@@ -222,6 +224,8 @@ if(DRIVER_LIB)
         src/bot-opos6ul/O_ActionManagerTimerTest.cpp
         src/bot-opos6ul/O_IAbyPathTest.cpp
         src/bot-opos6ul/O_AsservLineRotateTest.cpp
+        src/bot-opos6ul/O_AsservWaypointTest.cpp
+        src/bot-opos6ul/O_NavigatorMovementTest.cpp
         src/bot-opos6ul/O_AsservXYRotateTest.cpp
         src/bot-opos6ul/O_AsservTest.cpp
         src/bot-opos6ul/O_AsservCalibrationTest.cpp
@@ -291,6 +295,7 @@ add_executable(common-test
     test/common/FileAppenderTest.cpp
     test/common/SvgAppenderTest.cpp
     test/common/ActionManagerTimerTest.cpp
+    test/common/RetryPolicyTest.cpp
 )
 
 target_link_libraries(common-test PRIVATE pmx-suite)
@@ -304,9 +309,10 @@ if(DRIVER_LIB)
         test/driver/LoggerInitialize.cpp
         test/driver/LedDriverTest.cpp
         test/driver/SwitchDriverTest.cpp
+        test/driver/NavigatorTest.cpp
     )
 
-    target_link_libraries(driver-test PRIVATE pmx-suite ${DRIVER_LIB})
+    target_link_libraries(driver-test PRIVATE pmx-suite ${DRIVER_LIB} pmx-common ${DRIVER_LIB})
 
     # =============================================
     # Cible test : manual-test (verification visuelle/physique)

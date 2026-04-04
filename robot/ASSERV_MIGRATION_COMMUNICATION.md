@@ -333,9 +333,9 @@ Supprimer de `AAsservDriver.hpp` et de **toutes** les implémentations (EsialR, 
 - [x] Créer `CborFrameDecoder` (décodeur trames position CBOR)
 - [x] Créer `AsservCborDriver` (encode commandes CBOR, décode position, waitEndOfTraj avec cmd_id)
 - [x] Mettre à jour `CMakeLists.txt`
-- [ ] Mettre à jour `AAsservDriver::create()` pour utiliser `AsservCborDriver`
-- [ ] Côté Nucleo : remplacer `Opos6ulSerialIO` par `SerialCbor` dans `main.cpp`
-- [ ] Test de bout en bout
+- [x] Mettre à jour `AAsservDriver::create()` pour utiliser `AsservCborDriver`
+- [x] Côté Nucleo : remplacer `Opos6ulSerialIO` par `SerialCbor` dans `main.cpp`
+- [x] Test de bout en bout
 
 ### Phase 6 — Commandes non-bloquantes + gotoChain (pathfinding fluide)
 

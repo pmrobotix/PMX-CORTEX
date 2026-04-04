@@ -46,7 +46,7 @@ AsservDriverSimu::AsservDriverSimu(std::string botid, ARobotPositionShared *aRob
 	{
 		//CONFIGURATION OPOS6UL / PMX SIMULATEUR CONSOLE
 		simuTicksPerMeter_ = 130566.0f; //nb ticks for 1000mm
-		simuMaxSpeed_ = 1.0; //m/s
+		simuMaxSpeed_ = 0.5; //m/s
 		simuMaxPower_ = 100.0; //127.0;
 		periodTime_us_ = 2000;
 		asservSimuStarted_ = true;
@@ -57,6 +57,7 @@ AsservDriverSimu::AsservDriverSimu(std::string botid, ARobotPositionShared *aRob
 	}
 
 	simuCurrentSpeed_ = simuMaxSpeed_;
+	simuSpeedMultiplier_ = 1.0; // temps reel par defaut
 
 	//reset position
 	p_.x = 0.0;
@@ -539,9 +540,16 @@ void AsservDriverSimu::resetEmergencyStop()
 	emergencyStop_ = false;
 }
 
-TRAJ_STATE AsservDriverSimu::motion_DoFace(float x_mm, float y_mm, bool back_face)
+TRAJ_STATE AsservDriverSimu::waitEndOfTraj()
 {
+	// Le simu est déjà bloquant dans les motion_* — le mouvement est terminé quand ils retournent
 	if (emergencyStop_) return TRAJ_INTERRUPTED;
+	return TRAJ_FINISHED;
+}
+
+void AsservDriverSimu::motion_DoFace(float x_mm, float y_mm, bool back_face)
+{
+	if (emergencyStop_) return;
 	m_pos.lock();
 	float x_init = p_.x;
 	float y_init = p_.y;
@@ -571,12 +579,12 @@ TRAJ_STATE AsservDriverSimu::motion_DoFace(float x_mm, float y_mm, bool back_fac
 
 	motion_DoRotate(deltaTheta);
 
-	return TRAJ_FINISHED;
+	return;
 }
 
-TRAJ_STATE AsservDriverSimu::motion_DoLine(float dist_mm)
+void AsservDriverSimu::motion_DoLine(float dist_mm)
 {
-	if (emergencyStop_) return TRAJ_INTERRUPTED;
+	if (emergencyStop_) return;
 //calcul du point d'arrivé
 	m_pos.lock();
 	float x_init = p_.x;
@@ -620,7 +628,7 @@ TRAJ_STATE AsservDriverSimu::motion_DoLine(float dist_mm)
 	for (int nb = 0; nb < nb_increment; nb++)
 	{
 
-		if (emergencyStop_) return TRAJ_INTERRUPTED;
+		if (emergencyStop_) return;
 
 		m_pos.lock();
 		//cas droite verticale
@@ -637,7 +645,8 @@ TRAJ_STATE AsservDriverSimu::motion_DoLine(float dist_mm)
 		}
 		m_pos.unlock();
 
-		utils::sleep_for_micros(increment_time_us);
+		if (simuSpeedMultiplier_ > 0)
+			utils::sleep_for_micros(increment_time_us * simuSpeedMultiplier_);
 	}
 
 	m_pos.lock();
@@ -652,16 +661,17 @@ TRAJ_STATE AsservDriverSimu::motion_DoLine(float dist_mm)
 	}
 	m_pos.unlock();
 
-	if (emergencyStop_) return TRAJ_INTERRUPTED;
+	if (emergencyStop_) return;
 
-	utils::sleep_for_micros(increment_time_us * 5); //fois 5 non necessaire ?
-	return TRAJ_FINISHED;
+	if (simuSpeedMultiplier_ > 0)
+		utils::sleep_for_micros(increment_time_us * 5 * simuSpeedMultiplier_);
+	return;
 }
 
 //Rotation relative
-TRAJ_STATE AsservDriverSimu::motion_DoRotate(float angle_radians)
+void AsservDriverSimu::motion_DoRotate(float angle_radians)
 {
-	if (emergencyStop_) return TRAJ_INTERRUPTED;
+	if (emergencyStop_) return;
 
 	m_pos.lock();
 	p_.asservStatus = 1; //running
@@ -675,13 +685,14 @@ TRAJ_STATE AsservDriverSimu::motion_DoRotate(float angle_radians)
 	float temp_angle = angle_radians / nb_increment;
 	for (int nb = 0; nb < nb_increment; nb++)
 	{
-		if (emergencyStop_) return TRAJ_INTERRUPTED;
+		if (emergencyStop_) return;
 
 		m_pos.lock();
 		float temp = p_.theta + temp_angle;
 		p_.theta = WrapAngle2PI(temp);
 		m_pos.unlock();
-		utils::sleep_for_micros(increment_time_us);
+		if (simuSpeedMultiplier_ > 0)
+			utils::sleep_for_micros(increment_time_us * simuSpeedMultiplier_);
 	}
 
 	m_pos.lock();
@@ -692,19 +703,20 @@ TRAJ_STATE AsservDriverSimu::motion_DoRotate(float angle_radians)
 	if (emergencyStop_)
 	{
 		logger().error() << " AsservDriverSimu::motion_DoRotate emergencyStop_ !!!!!" << logs::end;
-		return TRAJ_INTERRUPTED;
+		return;
 	}
 
-	utils::sleep_for_micros(increment_time_us * 7); //fois 7 non necessaire ?
+	if (simuSpeedMultiplier_ > 0)
+		utils::sleep_for_micros(increment_time_us * 7 * simuSpeedMultiplier_);
 
-	return TRAJ_FINISHED;
+	return;
 }
 
 // Orbital turn : rotation autour d'une roue (pivot sur une roue immobile).
 // turnRight = true → pivot roue droite, forward = direction de marche.
-TRAJ_STATE AsservDriverSimu::motion_DoOrbitalTurn(float angle_radians, bool forward, bool turnRight)
+void AsservDriverSimu::motion_DoOrbitalTurn(float angle_radians, bool forward, bool turnRight)
 {
-	if (emergencyStop_) return TRAJ_INTERRUPTED;
+	if (emergencyStop_) return;
 
 	m_pos.lock();
 	p_.asservStatus = 1;
@@ -739,25 +751,27 @@ TRAJ_STATE AsservDriverSimu::motion_DoOrbitalTurn(float angle_radians, bool forw
 
 	for (int nb = 0; nb < nb_increment; nb++)
 	{
-		if (emergencyStop_) return TRAJ_INTERRUPTED;
+		if (emergencyStop_) return;
 
 		m_pos.lock();
 		p_.theta = WrapAngle2PI(p_.theta + delta_angle);
 		p_.x = cx + r * cos(p_.theta + offset);
 		p_.y = cy + r * sin(p_.theta + offset);
 		m_pos.unlock();
-		utils::sleep_for_micros(increment_time_us);
+		if (simuSpeedMultiplier_ > 0)
+			utils::sleep_for_micros(increment_time_us * simuSpeedMultiplier_);
 	}
 
-	if (emergencyStop_) return TRAJ_INTERRUPTED;
+	if (emergencyStop_) return;
 
-	utils::sleep_for_micros(increment_time_us * 5);
-	return TRAJ_FINISHED;
+	if (simuSpeedMultiplier_ > 0)
+		utils::sleep_for_micros(increment_time_us * 5 * simuSpeedMultiplier_);
+	return;
 }
 
-TRAJ_STATE AsservDriverSimu::motion_Goto(float x_mm, float y_mm)
+void AsservDriverSimu::motion_Goto(float x_mm, float y_mm)
 {
-	if (emergencyStop_) return TRAJ_INTERRUPTED;
+	if (emergencyStop_) return;
 	motion_DoFace(x_mm, y_mm);
 
 	m_pos.lock();
@@ -766,12 +780,12 @@ TRAJ_STATE AsservDriverSimu::motion_Goto(float x_mm, float y_mm)
 	m_pos.unlock();
 
 	float dist = sqrt(dx * dx + dy * dy);
-	return motion_DoLine(dist);
+	motion_DoLine(dist);
 }
 
-TRAJ_STATE AsservDriverSimu::motion_GotoReverse(float x_mm, float y_mm)
+void AsservDriverSimu::motion_GotoReverse(float x_mm, float y_mm)
 {
-	if (emergencyStop_) return TRAJ_INTERRUPTED;
+	if (emergencyStop_) return;
 	motion_DoFace(x_mm, y_mm, true);
 
 	m_pos.lock();
@@ -779,20 +793,20 @@ TRAJ_STATE AsservDriverSimu::motion_GotoReverse(float x_mm, float y_mm)
 	float dy = y_mm - p_.y;
 	m_pos.unlock();
 	float dist = sqrt(dx * dx + dy * dy);
-	return motion_DoLine(-dist);
+	motion_DoLine(-dist);
 
 }
 
-TRAJ_STATE AsservDriverSimu::motion_GotoChain(float x_mm, float y_mm)
+void AsservDriverSimu::motion_GotoChain(float x_mm, float y_mm)
 {
-	if (emergencyStop_) return TRAJ_INTERRUPTED;
-	return motion_Goto(x_mm, y_mm);
+	if (emergencyStop_) return;
+	motion_Goto(x_mm, y_mm);
 }
 
-TRAJ_STATE AsservDriverSimu::motion_GotoReverseChain(float x_mm, float y_mm)
+void AsservDriverSimu::motion_GotoReverseChain(float x_mm, float y_mm)
 {
-	if (emergencyStop_) return TRAJ_INTERRUPTED;
-	return motion_GotoReverse(x_mm, y_mm);
+	if (emergencyStop_) return;
+	motion_GotoReverse(x_mm, y_mm);
 }
 
 void AsservDriverSimu::motion_FreeMotion()
@@ -861,5 +875,5 @@ void AsservDriverSimu::motion_ActivateReguAngle(bool enable)
  TRAJ_STATE AsservDriverSimu::motion_DoDirectLine(float dist_mm)
  {
  logger().error() << "motion_DoDirectLine NOT IMPLEMENTED  !!!!!" << logs::end;
- return TRAJ_ERROR;
+ return;
  }*/

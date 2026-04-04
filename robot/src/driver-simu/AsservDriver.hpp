@@ -53,6 +53,7 @@ private:
     int periodTime_us_;
 
     float simuCurrentSpeed_; //en m/s
+    float simuSpeedMultiplier_; //multiplicateur de vitesse simu (0=instantane, 1=reel)
 
     utils::Chronometer chrono_;
 
@@ -135,15 +136,16 @@ public:
 
     void emergencyStop();
     void resetEmergencyStop();
+    TRAJ_STATE waitEndOfTraj() override;
 
-    TRAJ_STATE motion_DoFace(float x_mm, float y_mm, bool back_face = false);
-    TRAJ_STATE motion_DoLine(float dist_mm);
-    TRAJ_STATE motion_DoRotate(float angle_radians);
-    TRAJ_STATE motion_DoOrbitalTurn(float angle_radians, bool forward, bool turnRight);
-    TRAJ_STATE motion_Goto(float x_mm, float y_mm);
-    TRAJ_STATE motion_GotoReverse(float x_mm, float y_mm);
-    TRAJ_STATE motion_GotoChain(float x_mm, float y_mm);
-    TRAJ_STATE motion_GotoReverseChain(float x_mm, float y_mm);
+    void motion_DoFace(float x_mm, float y_mm, bool back_face = false);
+    void motion_DoLine(float dist_mm);
+    void motion_DoRotate(float angle_radians);
+    void motion_DoOrbitalTurn(float angle_radians, bool forward, bool turnRight);
+    void motion_Goto(float x_mm, float y_mm);
+    void motion_GotoReverse(float x_mm, float y_mm);
+    void motion_GotoChain(float x_mm, float y_mm);
+    void motion_GotoReverseChain(float x_mm, float y_mm);
 
     void motion_FreeMotion();
     void motion_AssistedHandling();
@@ -154,6 +156,12 @@ public:
 
     void motion_ActivateReguDist(bool enable);
     void motion_ActivateReguAngle(bool enable);
+
+    /*!
+     * \brief Definit le multiplicateur de temps pour la simulation.
+     * \param multiplier 0.0 = instantane (pas de sleep), 1.0 = temps reel, 0.1 = 10x plus rapide.
+     */
+    void setSimuSpeedMultiplier(float multiplier) override { simuSpeedMultiplier_ = multiplier; }
 
 
     /*void motion_ResetReguDist();

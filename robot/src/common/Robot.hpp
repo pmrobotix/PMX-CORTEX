@@ -147,8 +147,9 @@ public:
 	virtual ~Robot();
 
 	/*!
-	 * \brief Fonctions de motion intelligente en plusieurs essais.
+	 * \brief [DEPRECATED] Utiliser Navigator::line() a la place.
 	 */
+	[[deprecated("Utiliser Navigator::line() a la place")]]
 	TRAJ_STATE whileDoLine(float distMM, bool rotate_ignoring_opponent = true, int wait_tempo_us = 2000000,
 	    		int nb_near_obstacle = 2, int nb_collision = 2, int reculOnObstacleMm = 0, int reculOnCollisionMm = 0,
 	    		bool ignore_collision = 0);

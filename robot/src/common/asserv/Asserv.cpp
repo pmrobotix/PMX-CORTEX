@@ -557,9 +557,9 @@ TRAJ_STATE Asserv::gotoChain(float xMM, float yMM)
 	//temp_ignoreRearCollision_ = true;
 	TRAJ_STATE ts;
 	if (useAsservType_ == ASSERV_EXT)
-		ts = asservdriver_->motion_GotoChain(x_match, yMM);
+		{ asservdriver_->motion_GotoChain(x_match, yMM); ts = asservdriver_->waitEndOfTraj(); }
 	else if (useAsservType_ == ASSERV_INT_ESIALR)
-		ts = pAsservEsialR_->motion_GotoChain(x_match, yMM);
+		{ pAsservEsialR_->motion_GotoChain(x_match, yMM); ts = pAsservEsialR_->waitEndOfTraj(); }
 	else
 		ts = TRAJ_ERROR;
 	//temp_ignoreRearCollision_ = false;
@@ -573,9 +573,9 @@ TRAJ_STATE Asserv::gotoXY(float xMM, float yMM)
 
 	TRAJ_STATE ts;
 	if (useAsservType_ == ASSERV_EXT)
-		ts = asservdriver_->motion_Goto(x_match, yMM);
+		{ asservdriver_->motion_Goto(x_match, yMM); ts = asservdriver_->waitEndOfTraj(); }
 	else if (useAsservType_ == ASSERV_INT_ESIALR)
-		ts = pAsservEsialR_->motion_Goto(x_match, yMM);
+		{ pAsservEsialR_->motion_Goto(x_match, yMM); ts = pAsservEsialR_->waitEndOfTraj(); }
 
 	else
 		ts = TRAJ_ERROR;
@@ -590,9 +590,9 @@ TRAJ_STATE Asserv::gotoReverse(float xMM, float yMM)
 	//temp_ignoreFrontCollision_ = true;
 	TRAJ_STATE ts;
 	if (useAsservType_ == ASSERV_EXT)
-		ts = asservdriver_->motion_GotoReverse(x_match, yMM);
+		{ asservdriver_->motion_GotoReverse(x_match, yMM); ts = asservdriver_->waitEndOfTraj(); }
 	else if (useAsservType_ == ASSERV_INT_ESIALR)
-		ts = pAsservEsialR_->motion_GotoReverse(x_match, yMM);
+		{ pAsservEsialR_->motion_GotoReverse(x_match, yMM); ts = pAsservEsialR_->waitEndOfTraj(); }
 
 	else
 		ts = TRAJ_ERROR;
@@ -606,13 +606,71 @@ TRAJ_STATE Asserv::gotoReverseChain(float xMM, float yMM)
 	//temp_ignoreFrontCollision_ = true;
 	TRAJ_STATE ts;
 	if (useAsservType_ == ASSERV_EXT)
-		ts = asservdriver_->motion_GotoReverseChain(x_match, yMM);
+		{ asservdriver_->motion_GotoReverseChain(x_match, yMM); ts = asservdriver_->waitEndOfTraj(); }
 	else if (useAsservType_ == ASSERV_INT_ESIALR)
-		ts = pAsservEsialR_->motion_GotoReverseChain(x_match, yMM);
+		{ pAsservEsialR_->motion_GotoReverseChain(x_match, yMM); ts = pAsservEsialR_->waitEndOfTraj(); }
 
 	else
 		ts = TRAJ_ERROR;
 	//temp_ignoreFrontCollision_ = false;
+	return ts;
+}
+
+void Asserv::setSimuSpeedMultiplier(float multiplier)
+{
+	if (asservdriver_ != nullptr)
+		asservdriver_->setSimuSpeedMultiplier(multiplier);
+}
+
+// =============================================================================
+// Envoi sans attente (pour mode CHAIN dans Navigator)
+// =============================================================================
+
+void Asserv::gotoSend(float xMM, float yMM)
+{
+	float x_match = changeMatchX(xMM);
+	if (useAsservType_ == ASSERV_EXT)
+		asservdriver_->motion_Goto(x_match, yMM);
+	else if (useAsservType_ == ASSERV_INT_ESIALR)
+		pAsservEsialR_->motion_Goto(x_match, yMM);
+}
+
+void Asserv::gotoChainSend(float xMM, float yMM)
+{
+	float x_match = changeMatchX(xMM);
+	if (useAsservType_ == ASSERV_EXT)
+		asservdriver_->motion_GotoChain(x_match, yMM);
+	else if (useAsservType_ == ASSERV_INT_ESIALR)
+		pAsservEsialR_->motion_GotoChain(x_match, yMM);
+}
+
+void Asserv::gotoReverseSend(float xMM, float yMM)
+{
+	float x_match = changeMatchX(xMM);
+	if (useAsservType_ == ASSERV_EXT)
+		asservdriver_->motion_GotoReverse(x_match, yMM);
+	else if (useAsservType_ == ASSERV_INT_ESIALR)
+		pAsservEsialR_->motion_GotoReverse(x_match, yMM);
+}
+
+void Asserv::gotoReverseChainSend(float xMM, float yMM)
+{
+	float x_match = changeMatchX(xMM);
+	if (useAsservType_ == ASSERV_EXT)
+		asservdriver_->motion_GotoReverseChain(x_match, yMM);
+	else if (useAsservType_ == ASSERV_INT_ESIALR)
+		pAsservEsialR_->motion_GotoReverseChain(x_match, yMM);
+}
+
+TRAJ_STATE Asserv::waitTraj()
+{
+	TRAJ_STATE ts;
+	if (useAsservType_ == ASSERV_EXT)
+		ts = asservdriver_->waitEndOfTraj();
+	else if (useAsservType_ == ASSERV_INT_ESIALR)
+		ts = pAsservEsialR_->waitEndOfTraj();
+	else
+		ts = TRAJ_ERROR;
 	return ts;
 }
 
@@ -634,9 +692,9 @@ TRAJ_STATE Asserv::doLine(float dist_mm)
 	TRAJ_STATE ts;
 
 	if (useAsservType_ == ASSERV_EXT)
-		ts = asservdriver_->motion_DoLine(dist_mm);
+		{ asservdriver_->motion_DoLine(dist_mm); ts = asservdriver_->waitEndOfTraj(); }
 	else if (useAsservType_ == ASSERV_INT_ESIALR)
-		ts = pAsservEsialR_->motion_DoLine(dist_mm);
+		{ pAsservEsialR_->motion_DoLine(dist_mm); ts = pAsservEsialR_->waitEndOfTraj(); }
 	else
 		ts = TRAJ_ERROR;
 
@@ -671,9 +729,9 @@ TRAJ_STATE Asserv::doRelativeRotateRad(float radiansRelative, bool rotate_ignori
 	TRAJ_STATE ts;
 	temp_forceRotation_ = rotate_ignoring_opponent;
 	if (useAsservType_ == ASSERV_EXT)
-		ts = asservdriver_->motion_DoRotate(radiansRelative);
+		{ asservdriver_->motion_DoRotate(radiansRelative); ts = asservdriver_->waitEndOfTraj(); }
 	else if (useAsservType_ == ASSERV_INT_ESIALR)
-		ts = pAsservEsialR_->motion_DoRotate(radiansRelative);
+		{ pAsservEsialR_->motion_DoRotate(radiansRelative); ts = pAsservEsialR_->waitEndOfTraj(); }
 	else
 		ts = TRAJ_ERROR;
 
@@ -703,9 +761,9 @@ TRAJ_STATE Asserv::doFaceTo(float xMM, float yMM, bool back_face)
 	TRAJ_STATE ts;
 
 	if (useAsservType_ == ASSERV_EXT)
-		ts = asservdriver_->motion_DoFace(x_match, yMM, back_face);
+		{ asservdriver_->motion_DoFace(x_match, yMM, back_face); ts = asservdriver_->waitEndOfTraj(); }
 	else if (useAsservType_ == ASSERV_INT_ESIALR)
-		ts = pAsservEsialR_->motion_DoFace(x_match, yMM, back_face);
+		{ pAsservEsialR_->motion_DoFace(x_match, yMM, back_face); ts = pAsservEsialR_->waitEndOfTraj(); }
 	else
 		ts = TRAJ_ERROR;
 
@@ -1108,6 +1166,20 @@ bool Asserv::calculateDriftLeftSideAndSetPos(float d2_theo_bordure_mm, float d2b
 
 }
 
+// Rotation orbitale asservie autour d'une roue.
+TRAJ_STATE Asserv::orbitalTurnDeg(float angleDeg, bool forward, bool turnRight)
+{
+	float rad = degToRad(angleDeg);
+	TRAJ_STATE ts;
+	if (useAsservType_ == ASSERV_EXT)
+		{ asservdriver_->motion_DoOrbitalTurn(rad, forward, turnRight); ts = asservdriver_->waitEndOfTraj(); }
+	else if (useAsservType_ == ASSERV_INT_ESIALR)
+		{ pAsservEsialR_->motion_DoOrbitalTurn(rad, forward, turnRight); ts = pAsservEsialR_->waitEndOfTraj(); }
+	else
+		ts = TRAJ_ERROR;
+	return ts;
+}
+
 // Pivot autour de la roue gauche : désactive la régulation, actionne les moteurs,
 // attend la durée, puis réactive la régulation et le maintien en position.
 void Asserv::doRunPivotLeft(int powerL, int powerR, int timems)
@@ -1186,7 +1258,7 @@ TRAJ_STATE Asserv::doCalage2(int distmm, int percent)
 		TRAJ_STATE ts = TRAJ_IDLE;
 		while (ts == TRAJ_IDLE)
 		{
-			ts = pAsservEsialR_->motion_DoDirectLine(distmm); //sans asservissement L/R
+			{ pAsservEsialR_->motion_DoDirectLine(distmm); ts = pAsservEsialR_->waitEndOfTraj(); } //sans asservissement L/R
 			std::this_thread::yield();
 		}
 
@@ -1196,7 +1268,7 @@ TRAJ_STATE Asserv::doCalage2(int distmm, int percent)
 		pAsservEsialR_->motion_ActivateReguDist(true);
 		resetEmergencyOnTraj("doCalage phase 1");
 
-		ts = pAsservEsialR_->motion_DoDirectLine(distmm); //sans asservissement L/R
+		{ pAsservEsialR_->motion_DoDirectLine(distmm); ts = pAsservEsialR_->waitEndOfTraj(); } //sans asservissement L/R
 
 		//pAsservEsialR_->path_CancelTrajectory();
 		pAsservEsialR_->motion_setLowSpeedForward(false);
@@ -1233,7 +1305,7 @@ TRAJ_STATE Asserv::doCalage(int distmm, int percent)
 
 		pAsservEsialR_->motion_AssistedHandling();
 		//TRAJ_STATE ts = TRAJ_OK;
-		TRAJ_STATE ts = pAsservEsialR_->motion_DoDirectLine(distmm); //sans asservissement L/R
+		pAsservEsialR_->motion_DoDirectLine(distmm); TRAJ_STATE ts = pAsservEsialR_->waitEndOfTraj(); //sans asservissement L/R
 
 		//pAsservEsialR_->path_CancelTrajectory();
 		pAsservEsialR_->motion_setLowSpeedForward(false);
@@ -1257,7 +1329,7 @@ TRAJ_STATE Asserv::doCalage(int distmm, int percent)
 //        asservdriver_->motion_ActivateReguDist(true);
 		asservdriver_->motion_AssistedHandling();
 
-		TRAJ_STATE ts = asservdriver_->motion_DoLine(distmm); //sans asservissement L/R
+		asservdriver_->motion_DoLine(distmm); TRAJ_STATE ts = asservdriver_->waitEndOfTraj(); //sans asservissement L/R
 
 		asservdriver_->motion_setLowSpeedForward(false);
 		asservdriver_->motion_setLowSpeedBackward(false);
@@ -1288,7 +1360,7 @@ TRAJ_STATE Asserv::doCalageNew(float dist_mm, int percent, float timeout_ms) // 
 
 		//TODO implementer le timeout ??
 
-		TRAJ_STATE ts = pAsservEsialR_->motion_DoDirectLine(dist_mm); //sans asservissement L/R
+		pAsservEsialR_->motion_DoDirectLine(dist_mm); TRAJ_STATE ts = pAsservEsialR_->waitEndOfTraj(); //sans asservissement L/R
 
 		//pAsservEsialR_->path_CancelTrajectory();
 		pAsservEsialR_->motion_setLowSpeedForward(false);
@@ -1312,7 +1384,7 @@ TRAJ_STATE Asserv::doCalageNew(float dist_mm, int percent, float timeout_ms) // 
         asservdriver_->motion_ActivateReguDist(true);
 
         //TODO implementer le timeout ??
-		TRAJ_STATE ts = asservdriver_->motion_DoLine(dist_mm);
+		asservdriver_->motion_DoLine(dist_mm); TRAJ_STATE ts = asservdriver_->waitEndOfTraj();
 
 		asservdriver_->motion_setLowSpeedForward(false);
 		asservdriver_->motion_setLowSpeedBackward(false);

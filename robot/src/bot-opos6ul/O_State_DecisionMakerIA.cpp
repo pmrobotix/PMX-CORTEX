@@ -180,6 +180,9 @@ void O_State_DecisionMakerIA::execute()
 
 	logger().info() << __FUNCTION__ << " Strategy to be applied = " << robot.strategy() << logs::end;
 
+	// Init du playground (obstacles du terrain) pour le pathfinding
+	robot.ia().initPlayground();
+
 	if (robot.strategy() == "tabletest")
 	{
 		IASetupActivitiesZoneTableTest();

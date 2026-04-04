@@ -94,30 +94,27 @@ public:
     void initAsserv();
     void stopAsserv();
     void resetAsserv();
-    TRAJ_STATE waitEndOfTraj();
+    TRAJ_STATE waitEndOfTraj() override;
     int getAsservStatus();
 
     bool is_connected() override { return true; }
     void endWhatTodo();
 
-    //fonctions asservissements externe par defaut
     void odo_SetPosition(float x_mm, float y_mm, float angle_rad);
     ROBOTPOSITION odo_GetPosition();
 
     void emergencyStop();
-//    void path_CollisionOnTrajectory();
-//    void path_CollisionRearOnTrajectory();
-//    void path_CancelTrajectory();
     void resetEmergencyStop();
-    TRAJ_STATE motion_DoLine(float dist_mm);
-    TRAJ_STATE motion_DoFace(float x_mm, float y_mm, bool back_face = false);
-    TRAJ_STATE motion_DoRotate(float angle_radians);
-    TRAJ_STATE motion_DoOrbitalTurn(float angle_radians, bool forward, bool turnRight);
 
-    TRAJ_STATE motion_Goto(float x_mm, float y_mm);
-    TRAJ_STATE motion_GotoReverse(float x_mm, float y_mm);
-    TRAJ_STATE motion_GotoChain(float x_mm, float y_mm);
-    TRAJ_STATE motion_GotoReverseChain(float x_mm, float y_mm);
+    void motion_DoLine(float dist_mm);
+    void motion_DoFace(float x_mm, float y_mm, bool back_face = false);
+    void motion_DoRotate(float angle_radians);
+    void motion_DoOrbitalTurn(float angle_radians, bool forward, bool turnRight);
+    void motion_Goto(float x_mm, float y_mm);
+    void motion_GotoReverse(float x_mm, float y_mm);
+    void motion_GotoChain(float x_mm, float y_mm);
+    void motion_GotoReverseChain(float x_mm, float y_mm);
+    void motion_DoDirectLine(float dist_mm);
 
     void motion_FreeMotion(void);
     void motion_AssistedHandling(void);
@@ -130,7 +127,6 @@ public:
     void motion_ActivateReguAngle(bool enable);
     void motion_ResetReguDist();
     void motion_ResetReguAngle();
-    TRAJ_STATE motion_DoDirectLine(float dist_mm);
 
     void motion_ActivateQuadRamp(bool enable);
 

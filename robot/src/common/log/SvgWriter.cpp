@@ -168,3 +168,22 @@ void SvgWriter::writeTextCustom(float x, float y, std::string text, std::string 
 		}
 	}
 }
+
+void SvgWriter::writeLine(float x1_mm, float y1_mm, float x2_mm, float y2_mm,
+                          const std::string& color, float width, bool dashed)
+{
+	if (!done_)
+	{
+		if (logger().isActive(logs::Level::INFO))
+		{
+			this->lock();
+			// inversion du y pour affichage dans le bon sens dans le SVG
+			logger().info() << "<line x1='" << x1_mm << "' y1='" << -y1_mm
+			                << "' x2='" << x2_mm << "' y2='" << -y2_mm
+			                << "' stroke='" << color << "' stroke-width='" << width << "'"
+			                << (dashed ? " stroke-dasharray='10,5'" : "")
+			                << " />" << logs::end;
+			this->unlock();
+		}
+	}
+}

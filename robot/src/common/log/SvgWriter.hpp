@@ -162,6 +162,19 @@ public:
 	 */
 	virtual void pathPolyline(std::string points) = 0;
 
+	/*!
+	 * \brief Dessine une ligne entre deux points avec couleur et style.
+	 * \param x1_mm Position X depart en mm.
+	 * \param y1_mm Position Y depart en mm.
+	 * \param x2_mm Position X arrivee en mm.
+	 * \param y2_mm Position Y arrivee en mm.
+	 * \param color Couleur SVG (ex: "blue", "red", "green", "#FF0000").
+	 * \param width Epaisseur du trait en pixels.
+	 * \param dashed true pour un trait en pointilles.
+	 */
+	void writeLine(float x1_mm, float y1_mm, float x2_mm, float y2_mm,
+	               const std::string& color, float width, bool dashed = false);
+
 };
 
 #endif

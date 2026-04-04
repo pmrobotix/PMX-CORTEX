@@ -515,13 +515,13 @@ void AsservDriver::resetEmergencyStop()
 	}
 }
 
-TRAJ_STATE AsservDriver::motion_DoLine(float dist_mm) //v4 +d
+void AsservDriver::motion_DoLine(float dist_mm) //v4 +d
 {
 
 	if (!asservCardStarted_)
 	{
 		logger().debug() << "motion_DoLine() ERROR MBED NOT STARTED " << asservCardStarted_ << logs::end;
-		return TRAJ_ERROR;
+		return;
 	} else
 	{
 
@@ -534,7 +534,7 @@ TRAJ_STATE AsservDriver::motion_DoLine(float dist_mm) //v4 +d
 		m_statusCountDown.unlock();
 
 		nucleo_writeSerialSTR("v" + to_string((int) (dist_mm)) + "\n");
-		return nucleo_waitEndOfTraj();
+		
 	}
 }
 
@@ -543,7 +543,7 @@ TRAJ_STATE AsservDriver::motion_DoLine(float dist_mm) //v4 +d
 //2 emergency stop/halted
 //3 blocked
 
-TRAJ_STATE AsservDriver::nucleo_waitEndOfTraj()
+TRAJ_STATE AsservDriver::waitEndOfTraj()
 {
 	if (!asservCardStarted_)
 	{
@@ -578,9 +578,9 @@ TRAJ_STATE AsservDriver::nucleo_waitEndOfTraj()
 		}
 //		if (p_.asservStatus == 0 &&p_.queueSize == 0)
 //			//if (p_.asservStatus != 1)
-//			return TRAJ_FINISHED;
+//			return TRAJ_ERROR;
 //		else
-//			return TRAJ_INTERRUPTED;
+//			return TRAJ_ERROR;
 
 		logger().debug() << "__nucleo_waitEndOfTraj end   p_.asservStatus= "	<< p_.asservStatus
 							<< " p_.queueSize= "	<< p_.queueSize<< logs::end;
@@ -590,14 +590,14 @@ TRAJ_STATE AsservDriver::nucleo_waitEndOfTraj()
 			return TRAJ_COLLISION;
 		} else if (p_.asservStatus == 0 && p_.queueSize == 0)
 		{
-				return TRAJ_FINISHED;
+				return TRAJ_ERROR;
 
 		} else if (p_.asservStatus == 2)
 		{
 			//			logger().error() << "_______________________waitEndOfTraj() EMERGENCY STOP OCCURRED  pathStatus_= "
 			//					<< pathStatus_ << " p_.asservStatus=" << p_.asservStatus << logs::end;
 			//return pathStatus_;
-			return TRAJ_INTERRUPTED;
+			return TRAJ_ERROR;
 		} else
 		{
 			logger().error() << "____nucleo_waitEndOfTraj else ERROR STATUT IMPOSSIBLE !!! p_.asservStatus="
@@ -611,7 +611,7 @@ TRAJ_STATE AsservDriver::nucleo_waitEndOfTraj()
 	}
 }
 /*
-TRAJ_STATE AsservDriver::nucleo_waitEndOfTraj()
+TRAJ_STATE AsservDriver::waitEndOfTraj()
 {
 
 	if (!asservCardStarted_)
@@ -642,14 +642,14 @@ TRAJ_STATE AsservDriver::nucleo_waitEndOfTraj()
 			if (statusCountDown_ <= 0)
 			{
 				statusCountDown_ = 5;
-				return TRAJ_FINISHED;
+				return TRAJ_ERROR;
 			}
 		} else if (p_.asservStatus == 2)
 		{
 			//			logger().error() << "_______________________waitEndOfTraj() EMERGENCY STOP OCCURRED  pathStatus_= "
 			//					<< pathStatus_ << " p_.asservStatus=" << p_.asservStatus << logs::end;
 			return pathStatus_;
-			//return TRAJ_INTERRUPTED;
+			//return TRAJ_ERROR;
 		} else
 		{
 			logger().error() << "____nucleo_waitEndOfTraj else ERROR STATUT IMPOSSIBLE !!! p_.asservStatus="
@@ -659,16 +659,16 @@ TRAJ_STATE AsservDriver::nucleo_waitEndOfTraj()
 		}
 		logger().error() << "nucleo_waitEndOfTraj INTERRUPTED !!! p_.asservStatus=" << p_.asservStatus
 				<< " pathStatus_=" << pathStatus_ << " statusCountDown_=" << statusCountDown_ << logs::end;
-		return TRAJ_INTERRUPTED;
+		return TRAJ_ERROR;
 	}
 }*/
 
-TRAJ_STATE AsservDriver::motion_DoFace(float x_mm, float y_mm, bool back_reversed)
+void AsservDriver::motion_DoFace(float x_mm, float y_mm, bool back_reversed)
 {
 	if (!asservCardStarted_)
 	{
 		logger().debug() << "motion_DoFace() ERROR NUCLEO NOT STARTED " << asservCardStarted_ << logs::end;
-		return TRAJ_ERROR;
+		return;
 	} else
 	{
 		m_pos.lock();
@@ -685,12 +685,12 @@ TRAJ_STATE AsservDriver::motion_DoFace(float x_mm, float y_mm, bool back_reverse
 		{
 			//TODO reverse in asserv
 		}
-		return nucleo_waitEndOfTraj();
+		
 	}
 }
 
 //Rotation relative
-TRAJ_STATE AsservDriver::motion_DoRotate(float angle_radians)
+void AsservDriver::motion_DoRotate(float angle_radians)
 {
 
 	//logger().error() << "motion_DoRotate() angle_radians=" << angle_radians << logs::end;
@@ -698,7 +698,7 @@ TRAJ_STATE AsservDriver::motion_DoRotate(float angle_radians)
 	if (!asservCardStarted_)
 	{
 		logger().debug() << "motion_DoRotate() ERROR NUCLEO NOT STARTED " << asservCardStarted_ << logs::end;
-		return TRAJ_ERROR;
+		return;
 	} else
 	{
 		m_pos.lock();
@@ -710,17 +710,17 @@ TRAJ_STATE AsservDriver::motion_DoRotate(float angle_radians)
 		m_statusCountDown.unlock();
 
 		nucleo_writeSerialSTR("t" + to_string(radToDeg(angle_radians)) + "\n");
-		return nucleo_waitEndOfTraj();
+		
 	}
 }
 
-TRAJ_STATE AsservDriver::motion_Goto(float x_mm, float y_mm)
+void AsservDriver::motion_Goto(float x_mm, float y_mm)
 {
 
 	if (!asservCardStarted_)
 	{
 		logger().debug() << "motion_Goto() ERROR NUCLEO NOT STARTED " << asservCardStarted_ << logs::end;
-		return TRAJ_ERROR;
+		return;
 	} else
 	{
 		m_pos.lock();
@@ -732,17 +732,17 @@ TRAJ_STATE AsservDriver::motion_Goto(float x_mm, float y_mm)
 		m_statusCountDown.unlock();
 
 		nucleo_writeSerialSTR("g" + to_string((int) (x_mm)) + "#" + to_string((int) (y_mm)) + "\n");
-		return nucleo_waitEndOfTraj();
+		
 	}
 }
 
-TRAJ_STATE AsservDriver::motion_GotoReverse(float x_mm, float y_mm)
+void AsservDriver::motion_GotoReverse(float x_mm, float y_mm)
 {
 
 	if (!asservCardStarted_)
 	{
 		logger().debug() << "motion_GotoReverse() ERROR NUCLEO NOT STARTED " << asservCardStarted_ << logs::end;
-		return TRAJ_ERROR;
+		return;
 	} else
 	{
 		m_pos.lock();
@@ -754,18 +754,18 @@ TRAJ_STATE AsservDriver::motion_GotoReverse(float x_mm, float y_mm)
 		m_statusCountDown.unlock();
 
 		nucleo_writeSerialSTR("b" + to_string((int) (x_mm)) + "#" + to_string((int) (y_mm)) + "\n");
-		return nucleo_waitEndOfTraj();
+		
 	}
 }
 
 //add
-TRAJ_STATE AsservDriver::motion_GotoChain(float x_mm, float y_mm)
+void AsservDriver::motion_GotoChain(float x_mm, float y_mm)
 {
 
 	if (!asservCardStarted_)
 	{
 		logger().debug() << "motion_GotoChain() ERROR NUCLEO NOT STARTED " << asservCardStarted_ << logs::end;
-		return TRAJ_ERROR;
+		return;
 	} else
 	{
 		m_pos.lock();
@@ -777,17 +777,17 @@ TRAJ_STATE AsservDriver::motion_GotoChain(float x_mm, float y_mm)
 		m_statusCountDown.unlock();
 
 		nucleo_writeSerialSTR("e" + to_string((int) (x_mm)) + "#" + to_string((int) (y_mm)) + "\n");
-		return nucleo_waitEndOfTraj();
+		
 	}
 }
 
-TRAJ_STATE AsservDriver::motion_GotoReverseChain(float x_mm, float y_mm)
+void AsservDriver::motion_GotoReverseChain(float x_mm, float y_mm)
 {
 
 	if (!asservCardStarted_)
 	{
 		logger().debug() << "motion_GotoReverseChain() ERROR NUCLEO NOT STARTED " << asservCardStarted_ << logs::end;
-		return TRAJ_ERROR;
+		return;
 	} else
 	{
 		m_pos.lock();
@@ -799,7 +799,7 @@ TRAJ_STATE AsservDriver::motion_GotoReverseChain(float x_mm, float y_mm)
 		m_statusCountDown.unlock();
 
 		nucleo_writeSerialSTR("n" + to_string((int) (x_mm)) + "#" + to_string((int) (y_mm)) + "\n");
-		return nucleo_waitEndOfTraj();
+		
 	}
 }
 
@@ -847,11 +847,11 @@ void AsservDriver::motion_setMaxSpeed(bool enable, int speed_dist_percent, int s
 
 }
 
-TRAJ_STATE AsservDriver::motion_DoOrbitalTurn(float angle_radians, bool forward, bool turnRight)
+void AsservDriver::motion_DoOrbitalTurn(float angle_radians, bool forward, bool turnRight)
 {
 	// Non supporté par le protocole ASCII SerialIO
 	logger().error() << "motion_DoOrbitalTurn: not supported in ASCII protocol" << logs::end;
-	return TRAJ_ERROR;
+	return;
 }
 
 void AsservDriver::motion_FreeMotion(void) // TODO En fait Stopmotors = freemotion ?
@@ -992,10 +992,10 @@ int AsservDriver::nucleo_writeSerialSTR(string str)
  TRAJ_STATE AsservDriver::motion_DoDirectLine(float dist_mm)
  {
  logger().error() << "motion_DoDirectLine() NOT IMPLEMENTED " << asservCardStarted_ << logs::end;
- return TRAJ_ERROR;
+ return;
  if (!asservCardStarted_) {
  logger().debug() << "motion_DoDirectLine() ERROR MBED NOT STARTED " << asservCardStarted_ << logs::end;
- return TRAJ_ERROR;
+ return;
  } else {
 
  unsigned char d[4];
@@ -1008,7 +1008,7 @@ int AsservDriver::nucleo_writeSerialSTR(string str)
  logger().debug() << "motion_DoDirectLine() DISTmm=" << mm.f << " meters=" << dist_meters << logs::end;
  mbed_writeI2c('V', 4, d);
 
- return nucleo_waitEndOfTraj();
+ 
  }
  }
 

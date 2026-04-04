@@ -326,79 +326,70 @@ TRAJ_STATE AsservCborDriver::waitEndOfTraj()
 }
 
 // ============================================================================
-// Commandes de mouvement
+// Commandes de mouvement (non-bloquantes : envoient la commande et retournent)
+// Appeler waitEndOfTraj() séparément pour attendre la fin.
 // ============================================================================
 
-TRAJ_STATE AsservCborDriver::motion_DoLine(float dist_mm)
+void AsservCborDriver::prepareCommand(int countdown)
 {
-    if (!asservCardStarted_) return TRAJ_ERROR;
     m_pos.lock(); p_.asservStatus = 1; m_pos.unlock();
-    m_statusCountDown.lock(); statusCountDown_ = 2; m_statusCountDown.unlock();
+    m_statusCountDown.lock(); statusCountDown_ = countdown; m_statusCountDown.unlock();
+}
+
+void AsservCborDriver::motion_DoLine(float dist_mm)
+{
+    if (!asservCardStarted_) return;
+    prepareCommand(2);
     sendCmd(CMD_STRAIGHT, dist_mm);
-    return waitEndOfTraj();
 }
 
-TRAJ_STATE AsservCborDriver::motion_DoRotate(float angle_radians)
+void AsservCborDriver::motion_DoRotate(float angle_radians)
 {
-    if (!asservCardStarted_) return TRAJ_ERROR;
-    m_pos.lock(); p_.asservStatus = 1; m_pos.unlock();
-    m_statusCountDown.lock(); statusCountDown_ = 2; m_statusCountDown.unlock();
+    if (!asservCardStarted_) return;
+    prepareCommand(2);
     sendCmd(CMD_TURN, (float)(angle_radians * 180.0 / M_PI));
-    return waitEndOfTraj();
 }
 
-TRAJ_STATE AsservCborDriver::motion_DoFace(float x_mm, float y_mm, bool back_reversed)
+void AsservCborDriver::motion_DoFace(float x_mm, float y_mm, bool back_reversed)
 {
-    if (!asservCardStarted_) return TRAJ_ERROR;
-    m_pos.lock(); p_.asservStatus = 1; m_pos.unlock();
-    m_statusCountDown.lock(); statusCountDown_ = 2; m_statusCountDown.unlock();
+    if (!asservCardStarted_) return;
+    prepareCommand(2);
     // TODO: back_reversed non supporté par SerialCbor (face=22 ne gère pas le reverse)
     sendCmd(CMD_FACE, x_mm, y_mm);
-    return waitEndOfTraj();
 }
 
-TRAJ_STATE AsservCborDriver::motion_Goto(float x_mm, float y_mm)
+void AsservCborDriver::motion_Goto(float x_mm, float y_mm)
 {
-    if (!asservCardStarted_) return TRAJ_ERROR;
-    m_pos.lock(); p_.asservStatus = 1; m_pos.unlock();
-    m_statusCountDown.lock(); statusCountDown_ = 2; m_statusCountDown.unlock();
+    if (!asservCardStarted_) return;
+    prepareCommand(2);
     sendCmd(CMD_GOTO_FRONT, x_mm, y_mm);
-    return waitEndOfTraj();
 }
 
-TRAJ_STATE AsservCborDriver::motion_GotoReverse(float x_mm, float y_mm)
+void AsservCborDriver::motion_GotoReverse(float x_mm, float y_mm)
 {
-    if (!asservCardStarted_) return TRAJ_ERROR;
-    m_pos.lock(); p_.asservStatus = 1; m_pos.unlock();
-    m_statusCountDown.lock(); statusCountDown_ = 2; m_statusCountDown.unlock();
+    if (!asservCardStarted_) return;
+    prepareCommand(2);
     sendCmd(CMD_GOTO_BACK, x_mm, y_mm);
-    return waitEndOfTraj();
 }
 
-TRAJ_STATE AsservCborDriver::motion_GotoChain(float x_mm, float y_mm)
+void AsservCborDriver::motion_GotoChain(float x_mm, float y_mm)
 {
-    if (!asservCardStarted_) return TRAJ_ERROR;
-    m_pos.lock(); p_.asservStatus = 1; m_pos.unlock();
-    m_statusCountDown.lock(); statusCountDown_ = 5; m_statusCountDown.unlock();
+    if (!asservCardStarted_) return;
+    prepareCommand(5);
     sendCmd(CMD_GOTO_NOSTOP, x_mm, y_mm);
-    return waitEndOfTraj();
 }
 
-TRAJ_STATE AsservCborDriver::motion_GotoReverseChain(float x_mm, float y_mm)
+void AsservCborDriver::motion_GotoReverseChain(float x_mm, float y_mm)
 {
-    // Pas de commande CBOR pour goto reverse chain — non supporté par SerialCbor
     logger().error() << "motion_GotoReverseChain: not supported in CBOR protocol" << logs::end;
-    return TRAJ_ERROR;
 }
 
-TRAJ_STATE AsservCborDriver::motion_DoOrbitalTurn(float angle_radians, bool forward, bool turnRight)
+void AsservCborDriver::motion_DoOrbitalTurn(float angle_radians, bool forward, bool turnRight)
 {
-    if (!asservCardStarted_) return TRAJ_ERROR;
-    m_pos.lock(); p_.asservStatus = 1; m_pos.unlock();
-    m_statusCountDown.lock(); statusCountDown_ = 2; m_statusCountDown.unlock();
+    if (!asservCardStarted_) return;
+    prepareCommand(2);
     float angleDeg = (float)(angle_radians * 180.0 / M_PI);
     sendCmd(CMD_ORBITAL_TURN, angleDeg, forward ? 1.0f : 0.0f, turnRight ? 1.0f : 0.0f);
-    return waitEndOfTraj();
 }
 
 // ============================================================================
