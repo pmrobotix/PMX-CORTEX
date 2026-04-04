@@ -11,6 +11,7 @@
 #include "action/Sensors.hpp"
 #include "interface/AAsservDriver.hpp"
 #include "ia/IAbyPath.hpp"
+#include "navigator/Navigator.hpp"
 #include "Robot.hpp"
 #include "utils/Chronometer.hpp"
 #include "log/Logger.hpp"
@@ -80,8 +81,10 @@ void O_IAByPathTest::run(int argc, char** argv)
     IASetup();
     initPlayground();
 
+    Navigator nav(&robot, &robot.ia().iAbyPath());
+
     robot.svgPrintPosition();
-    robot.asserv().line(155);
+    nav.line(155);
     robot.svgPrintPosition();
 
     robot.actions().start();

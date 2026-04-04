@@ -13,6 +13,7 @@
 #include "asserv/Asserv.hpp"
 #include "ia/IAbyPath.hpp"
 #include "interface/AAsservDriver.hpp"
+#include "navigator/Navigator.hpp"
 #include "Robot.hpp"
 #include "utils/Chronometer.hpp"
 #include "log/Logger.hpp"
@@ -55,9 +56,10 @@ bool O_end_of_match_top()
 
 	robot.displayPoints();
 
+	Navigator nav(&robot, &robot.ia().iAbyPath());
+
 	robot.logger().info() << __FUNCTION__ << " start zone_end_top x=" << zone.x << " y=" << zone.y << logs::end;
-	ts = robot.ia().iAbyPath().whileMoveForwardAndRotateTo(zone.x, zone.y, radToDeg(zone.theta), ROTATION_WITH_DETECTION,
-			2000000, 20, 10, NO_PATHFINDING);
+	ts = nav.moveForwardToAndRotateAbsDeg(zone.x, zone.y, radToDeg(zone.theta), RetryPolicy::patient());
 	if (ts != TRAJ_FINISHED)
 	{
 		robot.logger().error() << __FUNCTION__ << " zone_end_top  ===== PB COLLISION FINALE - Que fait-on? ts=" << ts
@@ -76,7 +78,7 @@ bool O_end_of_match_top()
 		utils::sleep_for_secs(1);
 	}
 
-	ts = robot.asserv().line(451);
+	ts = nav.line(451);
 	robot.svgPrintPosition();
 
 	robot.points += 20;
@@ -105,8 +107,11 @@ bool O_push_prise_bas()
 	robot.actions().sensors().setIgnoreBackNearObstacle(true, true, true);
 	robot.logger().info() << __FUNCTION__ << " start push_prise_bas x=" << zone.x << " y=" << zone.y << logs::end;
 	robot.ia().iAbyPath().goToZone("zone_prise_bas", &zone);
-	ts = robot.ia().iAbyPath().whileMoveForwardAndRotateTo(zone.x, zone.y, radToDeg(zone.theta), ROTATION_WITH_DETECTION,
-			1000000, 30, 30, NO_PATHFINDING);
+
+	Navigator nav(&robot, &robot.ia().iAbyPath());
+	RetryPolicy policyPrise = { 1000000, 30, 30, 0, 0, true, false };
+
+	ts = nav.moveForwardToAndRotateAbsDeg(zone.x, zone.y, radToDeg(zone.theta), policyPrise);
 	if (ts != TRAJ_FINISHED)
 	{
 		robot.logger().error() << __FUNCTION__ << " zone_prise_bas  ===== PB COLLISION FINALE - Que fait-on? ts=" << ts
@@ -117,7 +122,8 @@ bool O_push_prise_bas()
 	}
 	robot.svgPrintPosition();
 
-	ts = robot.ia().iAbyPath().whileMoveForwardTo(775, 200, ROTATION_WITH_DETECTION, 1000000, 10, 10, NO_PATHFINDING);
+	RetryPolicy policyPush = { 1000000, 10, 10, 0, 0, true, false };
+	ts = nav.moveForwardTo(775, 200, policyPush);
 	if (ts != TRAJ_FINISHED)
 	{
 		robot.logger().error() << __FUNCTION__ << " 775, 200  ===== PB COLLISION FINALE - Que fait-on? ts=" << ts
@@ -204,9 +210,11 @@ void O_State_DecisionMakerIA::execute()
 
 	logger().info() << __FUNCTION__ << " executing..." << logs::end;
 
+	Navigator nav(&robot, &robot.ia().iAbyPath());
+
 	TRAJ_STATE ts = TRAJ_IDLE;
 	//On recule pour deposer le drapeau
-	ts = robot.asserv().line(-79);
+	ts = nav.line(-79);
 
 	robot.actions().ax12_GO_banderole();
 	std::this_thread::sleep_for(std::chrono::seconds(1));
@@ -214,7 +222,7 @@ void O_State_DecisionMakerIA::execute()
 	robot.points += 20;
 	robot.displayPoints();
 	robot.asserv().setMaxSpeed(true, 40, 40);
-	ts = robot.asserv().line(150);
+	ts = nav.line(150);
 
 	//On ajoute le timer de detection
 	robot.actions().sensors().setIgnoreFrontNearObstacle(true, false, true);

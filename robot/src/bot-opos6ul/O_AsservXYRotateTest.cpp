@@ -12,6 +12,7 @@
 #include "utils/Arguments.hpp"
 #include "interface/AAsservDriver.hpp"
 #include "ia/IAbyPath.hpp"
+#include "navigator/Navigator.hpp"
 #include "Robot.hpp"
 #include "utils/Chronometer.hpp"
 #include "log/Logger.hpp"
@@ -131,6 +132,7 @@ void O_AsservXYRotateTest::run(int argc, char **argv)
 	//vitesse reduite
 	robot.asserv().setMaxSpeed(true, s, s);
 
+	Navigator nav(&robot, &robot.ia().iAbyPath());
 	TRAJ_STATE ts = TRAJ_IDLE;
 
 	for (int num = 1; num <= nb; num++)
@@ -152,7 +154,8 @@ void O_AsservXYRotateTest::run(int argc, char **argv)
 				bool frontcenter = robot.actions().sensors().getAvailableFrontCenter();
 				logger().info() << "frontcenter=" << frontcenter << " " << logs::end;
 
-				ts = robot.ia().iAbyPath().whileMoveForwardTo(x_dest, y_dest, false, 1000000, 5, 10, false);
+				RetryPolicy policyFwd = { 1000000, 5, 10, 0, 0, false, false };
+				ts = nav.moveForwardTo(x_dest, y_dest, policyFwd);
 				if (ts == TRAJ_INTERRUPTED)
 				{
 					logger().info() << "===== TRAJ_NEAR_OBSTACLE CONFIRMED" << logs::end;
@@ -181,8 +184,9 @@ void O_AsservXYRotateTest::run(int argc, char **argv)
 				robot.actions().sensors().setIgnoreFrontNearObstacle(true, true, true);
 				robot.actions().sensors().setIgnoreBackNearObstacle(true, false, true);
 
-				ts = robot.ia().iAbyPath().whileMoveBackwardTo(robot.asserv().pos_getX_mm() + d,
-						robot.asserv().pos_getY_mm(), false, 1000000, 3, 2, false);
+				RetryPolicy policyBack = { 1000000, 3, 2, 0, 0, false, false };
+				ts = nav.moveBackwardTo(robot.asserv().pos_getX_mm() + d,
+						robot.asserv().pos_getY_mm(), policyBack);
 				if (ts == TRAJ_INTERRUPTED)
 				{
 					logger().info() << "===== TRAJ_NEAR_OBSTACLE CONFIRMED" << logs::end;
@@ -202,7 +206,8 @@ void O_AsservXYRotateTest::run(int argc, char **argv)
 			robot.actions().sensors().setIgnoreFrontNearObstacle(true, true, true);
 			robot.actions().sensors().setIgnoreBackNearObstacle(true, true, true);
 
-			ts = robot.ia().iAbyPath().whileMoveRotateTo(a, 1000000, 2);
+			RetryPolicy policyRot = { 1000000, 2, 2, 0, 0, true, false };
+			ts = nav.rotateAbsDeg(a, policyRot);
 
 			if (ts == TRAJ_INTERRUPTED)
 			{
@@ -226,19 +231,20 @@ void O_AsservXYRotateTest::run(int argc, char **argv)
 				robot.actions().sensors().setIgnoreFrontNearObstacle(true, false, true);
 				robot.actions().sensors().setIgnoreBackNearObstacle(true, true, true);
 
-				ts = robot.ia().iAbyPath().whileMoveForwardTo(x, y, true, 1000000, 20, 2);
+				RetryPolicy policyFwd2 = { 1000000, 20, 2, 0, 0, true, false };
+				ts = nav.moveForwardTo(x, y, policyFwd2);
 
 				if (ts == TRAJ_INTERRUPTED)
 				{
 					logger().error() << "===== TRAJ_NEAR_OBSTACLE CONFIRMED" << logs::end;
 					robot.asserv().resetEmergencyOnTraj(
-							"robot.ia().iAbyPath().whileMoveForwardTo FINAL TRAJ_NEAR_OBSTACLE");
+							"nav.moveForwardTo FINAL TRAJ_NEAR_OBSTACLE");
 				}
 				if (ts == TRAJ_COLLISION)
 				{
 					logger().error() << "===== COLLISION ASSERV CONFIRMED" << logs::end;
 					robot.asserv().resetEmergencyOnTraj(
-							"robot.ia().iAbyPath().whileMoveForwardTo FINAL TRAJ_COLLISION");
+							"nav.moveForwardTo FINAL TRAJ_COLLISION");
 				}
 
 				robot.svgPrintPosition();
@@ -248,19 +254,20 @@ void O_AsservXYRotateTest::run(int argc, char **argv)
 				robot.actions().sensors().setIgnoreFrontNearObstacle(true, true, true);
 				robot.actions().sensors().setIgnoreBackNearObstacle(true, false, true);
 
-				ts = robot.ia().iAbyPath().whileMoveBackwardTo(x, y, true, 1000000, 20, 3);
+				RetryPolicy policyBack2 = { 1000000, 20, 3, 0, 0, true, false };
+				ts = nav.moveBackwardTo(x, y, policyBack2);
 
 				if (ts == TRAJ_INTERRUPTED)
 				{
 					logger().error() << "===== TRAJ_NEAR_OBSTACLE CONFIRMED" << logs::end;
 					robot.asserv().resetEmergencyOnTraj(
-							"robot.ia().iAbyPath().whileMoveBackwardTo FINAL TRAJ_NEAR_OBSTACLE");
+							"nav.moveBackwardTo FINAL TRAJ_NEAR_OBSTACLE");
 				}
 				if (ts == TRAJ_COLLISION)
 				{
 					logger().error() << "===== COLLISION ASSERV CONFIRMED" << logs::end;
 					robot.asserv().resetEmergencyOnTraj(
-							"robot.ia().iAbyPath().whileMoveBackwardTo FINAL TRAJ_COLLISION");
+							"nav.moveBackwardTo FINAL TRAJ_COLLISION");
 				}
 
 				robot.svgPrintPosition();
@@ -272,7 +279,8 @@ void O_AsservXYRotateTest::run(int argc, char **argv)
 			robot.actions().sensors().setIgnoreFrontNearObstacle(true, true, true);
 			robot.actions().sensors().setIgnoreBackNearObstacle(true, true, true);
 
-			ts = robot.ia().iAbyPath().whileMoveRotateTo(a, 1000000, 2);
+			RetryPolicy policyRot2 = { 1000000, 2, 2, 0, 0, true, false };
+			ts = nav.rotateAbsDeg(a, policyRot2);
 
 			if (ts == TRAJ_INTERRUPTED)
 			{

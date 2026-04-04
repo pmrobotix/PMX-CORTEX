@@ -658,7 +658,8 @@ TRAJ_STATE IAbyPath::whileDoLine(float distMM, bool rotate_ignoring_opponent, in
 	return ts;
 }*/
 
-//TODO rename whilePathForwardAndRotateTo
+// [DEPRECATED] Remplace par Navigator::moveForwardTo() / Navigator::goTo() avec RetryPolicy
+/*
 TRAJ_STATE IAbyPath::whileMoveForwardTo(float xMM, float yMM, bool rotate_ignoring_opponent, int wait_tempo_us,
 		int nb_near_obstacle, int nb_collision, bool byPathfinding, int reculOnObstacleMm, int reculOnCollisionMm,
 		bool ignore_collision)
@@ -780,7 +781,10 @@ TRAJ_STATE IAbyPath::whileMoveForwardTo(float xMM, float yMM, bool rotate_ignori
 
 	return ts;
 }
-//TODO rename whilePathBackwardTo
+*/
+
+// [DEPRECATED] Remplace par Navigator::moveBackwardTo() / Navigator::goToReverse() avec RetryPolicy
+/*
 TRAJ_STATE IAbyPath::whileMoveBackwardTo(float xMM, float yMM, bool rotate_ignoring_opponent, int wait_tempo_us,
 		int nb_near_obstacle, int nb_collision, bool byPathfinding, int reculOnObstacleMm, int reculOnCollisionMm)
 {
@@ -872,7 +876,10 @@ TRAJ_STATE IAbyPath::whileMoveBackwardTo(float xMM, float yMM, bool rotate_ignor
 
 	return ts;
 }
+*/
 
+// [DEPRECATED] Remplace par Navigator::rotateAbsDeg() avec RetryPolicy
+/*
 TRAJ_STATE IAbyPath::whileMoveRotateTo(float AbsoluteThetaInDegree, int wait_tempo_us, int nb_collision)
 {
 
@@ -928,7 +935,10 @@ TRAJ_STATE IAbyPath::whileMoveRotateTo(float AbsoluteThetaInDegree, int wait_tem
 	//robot_->svgPrintPosition(1);
 	return ts;
 }
+*/
 
+// [DEPRECATED] Remplace par Navigator::moveForwardToAndRotateAbsDeg() avec RetryPolicy
+/*
 TRAJ_STATE IAbyPath::whileMoveForwardAndRotateTo(float xMM, float yMM, float absoluteThetaInDegree,
 		bool rotate_ignored_detection, int wait_tempo_us, int nb_near_obstacle, int nb_collision, bool byPathfinding,
 		int reculMm, bool ignore_collision)
@@ -944,7 +954,10 @@ TRAJ_STATE IAbyPath::whileMoveForwardAndRotateTo(float xMM, float yMM, float abs
 	ts = whileMoveRotateTo(absoluteThetaInDegree, wait_tempo_us, nb_collision);
 	return ts;
 }
+*/
 
+// [DEPRECATED] Remplace par Navigator::moveBackwardTo() + Navigator::rotateAbsDeg() avec RetryPolicy
+/*
 TRAJ_STATE IAbyPath::whileMoveBackwardAndRotateTo(float xMM, float yMM, float absoluteThetaInDegree,
 		bool rotate_ignored_detection, int wait_tempo_us, int nb_near_obstacle, int nb_collision, bool byPathfinding,
 		int reculMm)
@@ -960,3 +973,4 @@ TRAJ_STATE IAbyPath::whileMoveBackwardAndRotateTo(float xMM, float yMM, float ab
 	ts = whileMoveRotateTo(absoluteThetaInDegree, wait_tempo_us, nb_collision);
 	return ts;
 }
+*/

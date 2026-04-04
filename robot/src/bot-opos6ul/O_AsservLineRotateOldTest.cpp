@@ -51,6 +51,7 @@
 #include "utils/Arguments.hpp"
 #include "interface/AAsservDriver.hpp"
 #include "ia/IAbyPath.hpp"
+#include "navigator/Navigator.hpp"
 #include "Robot.hpp"
 #include "utils/Chronometer.hpp"
 #include "log/Logger.hpp"
@@ -376,7 +377,9 @@ void O_AsservLineRotateOldTest::run(int argc, char **argv)
 
 			} else if (pathfindingMode == 1)
 			{
-				ts = robot.whileDoLine(dd, false, 2000000, 5, 5, 50);
+				Navigator nav(&robot);
+				RetryPolicy policyLine = { 2000000, 5, 5, 50, 0, false, false };
+				ts = nav.line(dd, policyLine);
 				if (ts >= TRAJ_INTERRUPTED)
 				{
 					logger().info() << robot.asserv().getTraj(ts) << " =====  CONFIRMED AFTER n ;WHAT TO DO ?"

@@ -2,11 +2,30 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "CMake Target",
+            "name": "Run (sans debug)",
             "type": "cppdbg",
             "request": "launch",
             "program": "${command:cmake.launchTargetPath}",
-            "args": [],
+            "args": ["t", "/n", "1"],
+            "cwd": "${command:cmake.launchTargetDirectory}",
+            "stopAtEntry": false,
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Disable debug for run mode",
+                    "text": "-gdb-set detach-on-fork on",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "Debug (F5)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${command:cmake.launchTargetPath}",
+            "args": ["t", "/n", "1"],
             "cwd": "${command:cmake.launchTargetDirectory}",
             "stopAtEntry": false,
             "environment": [],

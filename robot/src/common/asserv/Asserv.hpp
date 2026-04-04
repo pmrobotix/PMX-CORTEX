@@ -402,6 +402,11 @@ public:
     /*!
      * \brief Definit le multiplicateur de temps pour la simulation (SIMU uniquement).
      *        0.0 = instantane, 1.0 = temps reel. Ignore en ARM.
+     *
+     *        Note : a 0 (instantane), les points bleus odometriques (writePosition_BotPos)
+     *        sont quasi absents du SVG car la boucle PID n'a pas le temps de tourner
+     *        entre les mouvements. A 1.0 (temps reel), la trace complete point par point
+     *        est visible sur le SVG.
      */
     void setSimuSpeedMultiplier(float multiplier);
 
@@ -541,46 +546,21 @@ public:
     [[deprecated("Utiliser orbitalTurnDeg() a la place (asservi)")]]
     void pivotRight(int powerL, int powerR, int timemsL);
 
-    // ========== DÉPLACEMENTS COMPOSÉS (avance + rotation) ==========
+    // ========== DÉPLACEMENTS COMPOSÉS (rotation explicite + ligne droite) ==========
+    // Note : ces méthodes sont utilisées en interne par Navigator.
+    // Le code client doit utiliser Navigator::moveForwardTo() / moveBackwardTo() etc.
 
-    /*!
-     * \brief Avance vers (x,y) puis tourne vers l'angle donné. (deprecated)
-     * \param xMM Position X cible en mm.
-     * \param yMM Position Y cible en mm.
-     * \param thetaInDegree Angle final en degrés.
-     * \param rotate_ignore_opponent true pour ignorer la détection pendant la rotation.
-     * \return État de la trajectoire.
-     */
-    TRAJ_STATE moveForwardAndRotateTo(float xMM, float yMM, float thetaInDegree, bool rotate_ignore_opponent = true);
+    [[deprecated("Utiliser Navigator::moveForwardTo()")]]
+    TRAJ_STATE moveForwardTo(float xMM, float yMM, bool rotate_ignored = false, float adjustment = 0);
 
-    /*!
-     * \brief Recule vers (x,y) : tourne d'abord dos au point, puis recule en ligne droite.
-     * \param xMM Position X cible en mm.
-     * \param yMM Position Y cible en mm.
-     * \param rotate_ignored true pour ignorer la détection pendant la rotation initiale.
-     * \return État de la trajectoire.
-     */
+    [[deprecated("Utiliser Navigator::moveBackwardTo()")]]
     TRAJ_STATE moveBackwardTo(float xMM, float yMM, bool rotate_ignored = false);
 
-    /*!
-     * \brief Recule vers (x,y) puis tourne vers l'angle donné. (deprecated)
-     * \param xMM Position X cible en mm.
-     * \param yMM Position Y cible en mm.
-     * \param thetaInDegree Angle final en degrés.
-     * \return État de la trajectoire.
-     */
-    TRAJ_STATE moveBackwardAndRotateTo(float xMM, float yMM, float thetaInDegree);
+    [[deprecated("Utiliser Navigator::moveForwardToAndRotateAbsDeg()")]]
+    TRAJ_STATE moveForwardAndRotateTo(float xMM, float yMM, float thetaInDegree, bool rotate_ignore_opponent = true);
 
-    /*!
-     * \brief Avance vers (x,y) : tourne d'abord face au point, puis avance en ligne droite.
-     *        Si le robot est déjà très proche (<5mm), retourne TRAJ_FINISHED directement.
-     * \param xMM Position X cible en mm.
-     * \param yMM Position Y cible en mm.
-     * \param rotate_ignored true pour ignorer la détection pendant la rotation initiale.
-     * \param adjustment Ajustement de distance en mm (ajouté à la distance calculée).
-     * \return État de la trajectoire.
-     */
-    TRAJ_STATE moveForwardTo(float xMM, float yMM, bool rotate_ignored = false, float adjustment = 0);
+    [[deprecated("Utiliser Navigator::moveBackwardTo() + Navigator::rotateAbsDeg()")]]
+    TRAJ_STATE moveBackwardAndRotateTo(float xMM, float yMM, float thetaInDegree);
 
     // ========== RECALAGE PAR TRIANGULATION (intersection de 2 cercles) ==========
 

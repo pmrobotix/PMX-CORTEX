@@ -347,3 +347,24 @@ if(DRIVER_LIB)
 
     target_link_libraries(bench PRIVATE pmx-suite)
 endif()
+
+# =============================================
+# CTest — lancement des tests depuis le repertoire bin/
+# pour que les SVG et fichiers de config soient au bon endroit
+# =============================================
+enable_testing()
+
+add_test(NAME common-test
+    COMMAND $<TARGET_FILE:common-test>
+    WORKING_DIRECTORY $<TARGET_FILE_DIR:common-test>)
+
+if(DRIVER_LIB)
+    add_test(NAME driver-test
+        COMMAND $<TARGET_FILE:driver-test>
+        WORKING_DIRECTORY $<TARGET_FILE_DIR:driver-test>)
+
+    add_test(NAME bot-opos6ul-nav-test
+        COMMAND $<TARGET_FILE:bot-opos6ul> t /n 10
+        WORKING_DIRECTORY $<TARGET_FILE_DIR:bot-opos6ul>)
+    set_tests_properties(bot-opos6ul-nav-test PROPERTIES TIMEOUT 120)
+endif()

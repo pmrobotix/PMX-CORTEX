@@ -12,6 +12,7 @@
 #include "utils/Arguments.hpp"
 #include "interface/AAsservDriver.hpp"
 #include "ia/IAbyPath.hpp"
+#include "navigator/Navigator.hpp"
 #include "Robot.hpp"
 #include "utils/Chronometer.hpp"
 #include "log/Logger.hpp"
@@ -131,11 +132,14 @@ void O_AsservTest::run(int argc, char **argv)
 	bool frontcenter = robot.actions().sensors().getAvailableFrontCenter();
 	logger().info() << "frontcenter=" << frontcenter << " " << logs::end;
 
+	Navigator nav(&robot, &robot.ia().iAbyPath());
+	RetryPolicy policy = { 1000000, 5, 5, 0, 0, true, false };
+
 	logger().info() << "GOTO x=" << x << " y=" << y << logs::end;
-	ts = robot.ia().iAbyPath().whileMoveForwardTo(x, y, true, 1000000, 5, 5, false);
+	ts = nav.moveForwardTo(x, y, policy);
 	if (ts != TRAJ_FINISHED)
 	{
-		robot.logger().error() << " whileMoveForwardTo  ===== PB COLLISION FINALE - Que fait-on? ts=" << ts
+		robot.logger().error() << " moveForwardTo  ===== PB COLLISION FINALE - Que fait-on? ts=" << ts
 				<< logs::end;
 		robot.asserv().resetEmergencyOnTraj();
 	}
@@ -157,10 +161,11 @@ void O_AsservTest::run(int argc, char **argv)
 	{
 		logger().info() << "GOTO2 x2=" << x2 << " y2=" << y2 << logs::end;
 
-		TRAJ_STATE ts = robot.ia().iAbyPath().whileMoveForwardTo(x2, y2, true, 3000000, 3, 3, false);
+		RetryPolicy policy2 = { 3000000, 3, 3, 0, 0, true, false };
+		TRAJ_STATE ts = nav.moveForwardTo(x2, y2, policy2);
 		if (ts != TRAJ_FINISHED)
 		{
-			robot.logger().error() << " whileMoveForwardTo x2,y2  ===== PB COLLISION FINALE - Que fait-on? ts=" << ts
+			robot.logger().error() << " moveForwardTo x2,y2  ===== PB COLLISION FINALE - Que fait-on? ts=" << ts
 					<< logs::end;
 			robot.asserv().resetEmergencyOnTraj();
 		}
@@ -183,10 +188,11 @@ void O_AsservTest::run(int argc, char **argv)
 	{
 		logger().info() << "GOTO2 x3=" << x3 << " y3=" << y3 << logs::end;
 
-		TRAJ_STATE ts = robot.ia().iAbyPath().whileMoveForwardTo(x3, y3, true, 3000000, 3, 3, false);
+		RetryPolicy policy3 = { 3000000, 3, 3, 0, 0, true, false };
+		TRAJ_STATE ts = nav.moveForwardTo(x3, y3, policy3);
 		if (ts != TRAJ_FINISHED)
 		{
-			robot.logger().error() << " whileMoveForwardTo x3,y3  ===== PB COLLISION FINALE - Que fait-on? ts=" << ts
+			robot.logger().error() << " moveForwardTo x3,y3  ===== PB COLLISION FINALE - Que fait-on? ts=" << ts
 					<< logs::end;
 			robot.asserv().resetEmergencyOnTraj();
 		}

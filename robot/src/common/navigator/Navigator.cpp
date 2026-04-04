@@ -262,17 +262,17 @@ void Navigator::svgTraceWaypoints(float x_start, float y_start,
 
 TRAJ_STATE Navigator::line(float distMm, RetryPolicy policy)
 {
-    float x_init = robot_->asserv().pos_getX_mm();
-    float y_init = robot_->asserv().pos_getY_mm();
+    float x_before = robot_->asserv().pos_getX_mm();
+    float y_before = robot_->asserv().pos_getY_mm();
     float d_restant = distMm;
     int reculDir = (distMm >= 0) ? -1 : 1;
 
-    return executeWithRetry(
-        [this, distMm, x_init, y_init, &d_restant]() {
+    TRAJ_STATE ts = executeWithRetry(
+        [this, distMm, x_before, y_before, &d_restant]() {
             TRAJ_STATE ts = robot_->asserv().line(d_restant);
             // Recalcul distance restante
-            float dx = robot_->asserv().pos_getX_mm() - x_init;
-            float dy = robot_->asserv().pos_getY_mm() - y_init;
+            float dx = robot_->asserv().pos_getX_mm() - x_before;
+            float dy = robot_->asserv().pos_getY_mm() - y_before;
             float parcourue = std::sqrt(dx * dx + dy * dy);
             d_restant = distMm - parcourue;
             logger().debug() << "d_parcourue=" << parcourue
@@ -282,9 +282,58 @@ TRAJ_STATE Navigator::line(float distMm, RetryPolicy policy)
         policy,
         reculDir
     );
+
+    robot_->svgw().writeLine(x_before, y_before,
+        robot_->asserv().pos_getX_mm(), robot_->asserv().pos_getY_mm(),
+        "blue", 2);
+    robot_->svgPrintPosition(4); // BLUE
+
+    return ts;
 }
 
 TRAJ_STATE Navigator::goTo(float x, float y, RetryPolicy policy)
+{
+    float x_before = robot_->asserv().pos_getX_mm();
+    float y_before = robot_->asserv().pos_getY_mm();
+
+    TRAJ_STATE ts = executeWithRetry(
+        [this, x, y]() {
+            return robot_->asserv().goTo(x, y);
+        },
+        policy,
+        -1
+    );
+
+    robot_->svgw().writeLine(x_before, y_before,
+        robot_->asserv().pos_getX_mm(), robot_->asserv().pos_getY_mm(),
+        "blue", 2);
+    robot_->svgPrintPosition(4); // BLUE
+
+    return ts;
+}
+
+TRAJ_STATE Navigator::goToReverse(float x, float y, RetryPolicy policy)
+{
+    float x_before = robot_->asserv().pos_getX_mm();
+    float y_before = robot_->asserv().pos_getY_mm();
+
+    TRAJ_STATE ts = executeWithRetry(
+        [this, x, y]() {
+            return robot_->asserv().goToReverse(x, y);
+        },
+        policy,
+        1
+    );
+
+    robot_->svgw().writeLine(x_before, y_before,
+        robot_->asserv().pos_getX_mm(), robot_->asserv().pos_getY_mm(),
+        "blue", 2);
+    robot_->svgPrintPosition(4); // BLUE
+
+    return ts;
+}
+
+TRAJ_STATE Navigator::moveForwardTo(float x, float y, RetryPolicy policy)
 {
     float x_before = robot_->asserv().pos_getX_mm();
     float y_before = robot_->asserv().pos_getY_mm();
@@ -305,7 +354,7 @@ TRAJ_STATE Navigator::goTo(float x, float y, RetryPolicy policy)
     return ts;
 }
 
-TRAJ_STATE Navigator::goToReverse(float x, float y, RetryPolicy policy)
+TRAJ_STATE Navigator::moveBackwardTo(float x, float y, RetryPolicy policy)
 {
     float x_before = robot_->asserv().pos_getX_mm();
     float y_before = robot_->asserv().pos_getY_mm();
@@ -376,13 +425,23 @@ TRAJ_STATE Navigator::reverseFaceTo(float x, float y, RetryPolicy policy)
 
 TRAJ_STATE Navigator::orbitalTurnDeg(float angleDeg, bool forward, bool turnRight, RetryPolicy policy)
 {
-    return executeWithRetry(
+    float x_before = robot_->asserv().pos_getX_mm();
+    float y_before = robot_->asserv().pos_getY_mm();
+
+    TRAJ_STATE ts = executeWithRetry(
         [this, angleDeg, forward, turnRight]() {
             return robot_->asserv().orbitalTurnDeg(angleDeg, forward, turnRight);
         },
         policy,
         0
     );
+
+    robot_->svgw().writeLine(x_before, y_before,
+        robot_->asserv().pos_getX_mm(), robot_->asserv().pos_getY_mm(),
+        "blue", 2);
+    robot_->svgPrintPosition(4); // BLUE
+
+    return ts;
 }
 
 // =============================================================================
@@ -502,6 +561,8 @@ TRAJ_STATE Navigator::pathToReverse(float x, float y, RetryPolicy policy, PathMo
 // Combinaisons mouvement + rotation finale
 // =============================================================================
 
+
+
 TRAJ_STATE Navigator::goToAndRotateAbsDeg(float x, float y, float thetaDeg, RetryPolicy policy)
 {
     TRAJ_STATE ts = goTo(x, y, policy);
@@ -526,6 +587,39 @@ TRAJ_STATE Navigator::goToAndFaceTo(float x, float y, float fx, float fy, RetryP
     return faceTo(fx, fy, policy);
 }
 
+
+// =============================================================================
+// Combinaisons composees (moveForwardTo) + rotation finale
+// =============================================================================
+
+TRAJ_STATE Navigator::moveForwardToAndRotateAbsDeg(float x, float y, float thetaDeg, RetryPolicy policy)
+{
+    TRAJ_STATE ts = moveForwardTo(x, y, policy);
+    if (ts != TRAJ_FINISHED)
+        return ts;
+    return rotateAbsDeg(thetaDeg, policy);
+}
+
+TRAJ_STATE Navigator::moveForwardToAndRotateRelDeg(float x, float y, float degRelative, RetryPolicy policy)
+{
+    TRAJ_STATE ts = moveForwardTo(x, y, policy);
+    if (ts != TRAJ_FINISHED)
+        return ts;
+    return rotateDeg(degRelative, policy);
+}
+
+TRAJ_STATE Navigator::moveForwardToAndFaceTo(float x, float y, float fx, float fy, RetryPolicy policy)
+{
+    TRAJ_STATE ts = moveForwardTo(x, y, policy);
+    if (ts != TRAJ_FINISHED)
+        return ts;
+    return faceTo(fx, fy, policy);
+}
+
+// =============================================================================
+// Pathfinding combinaisons
+// =============================================================================
+
 TRAJ_STATE Navigator::pathToAndRotateAbsDeg(float x, float y, float thetaDeg, RetryPolicy policy)
 {
     TRAJ_STATE ts = pathTo(x, y, policy);
@@ -549,3 +643,5 @@ TRAJ_STATE Navigator::pathToAndFaceTo(float x, float y, float fx, float fy, Retr
         return ts;
     return faceTo(fx, fy, policy);
 }
+
+//TODO pathToAndFaceBackTo

@@ -13,6 +13,7 @@
 #include "action/Sensors.hpp"
 #include "utils/Arguments.hpp"
 #include "interface/AAsservDriver.hpp"
+#include "navigator/Navigator.hpp"
 #include "Robot.hpp"
 #include "log/Logger.hpp"
 #include "OPOS6UL_ActionsExtended.hpp"
@@ -74,7 +75,7 @@ void O_Asserv_CalageTest::run(int argc, char **argv)
         robot.asserv().startMotionTimerAndOdo(true);
         robot.asserv().setPositionAndColor(70, 450.0, 0.0, (robot.getMyColor() != PMXYELLOW));
 
-        robot.asserv().moveForwardAndRotateTo(1680, 255, 0);
+        { Navigator nav(&robot); nav.moveForwardToAndRotateAbsDeg(1680, 255, 0); }
 
         float mesure_mm = d;
 
@@ -101,7 +102,7 @@ void O_Asserv_CalageTest::run(int argc, char **argv)
         robot.asserv().startMotionTimerAndOdo(true);
         robot.asserv().setPositionAndColor(70, 450.0, 0.0, (robot.getMyColor() != PMXYELLOW));
 
-        robot.asserv().moveForwardAndRotateTo(1680, 255, 0);
+        { Navigator nav(&robot); nav.moveForwardToAndRotateAbsDeg(1680, 255, 0); }
 
         float mesure_mm = d;
 
@@ -128,7 +129,7 @@ void O_Asserv_CalageTest::run(int argc, char **argv)
         robot.asserv().startMotionTimerAndOdo(true);
         robot.asserv().setPositionAndColor(470, 1000.0, 0.0, (robot.getMyColor() != PMXYELLOW));
 
-        robot.asserv().moveForwardAndRotateTo(1780, 280, 0);
+        { Navigator nav(&robot); nav.moveForwardToAndRotateAbsDeg(1780, 280, 0); }
 
         ROBOTPOSITION p = robot.asserv().pos_getPosition();
         logger().info() << "POS before : x=" << p.x << " y=" << p.y << " a=" << p.theta << " degrees="
@@ -157,7 +158,7 @@ void O_Asserv_CalageTest::run(int argc, char **argv)
         robot.asserv().startMotionTimerAndOdo(true);
         robot.asserv().setPositionAndColor(470, 1000.0, 0.0, (robot.getMyColor() != PMXYELLOW));
 
-        robot.asserv().moveForwardAndRotateTo(1780, 280, 0);
+        { Navigator nav(&robot); nav.moveForwardToAndRotateAbsDeg(1780, 280, 0); }
 
         ROBOTPOSITION p = robot.asserv().pos_getPosition();
         logger().info() << "POS before : x=" << p.x << " y=" << p.y << " a=" << p.theta << " degrees="

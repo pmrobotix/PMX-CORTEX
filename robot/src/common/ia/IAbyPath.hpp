@@ -104,25 +104,15 @@ public:
 //    TRAJ_STATE whileDoLine(float distMM, bool rotate_ignoring_opponent = true, int wait_tempo_us = 2000000,
 //    		int nb_near_obstacle = 2, int nb_collision = 2, int reculOnObstacleMm = 0, int reculOnCollisionMm = 0,
 //    		bool ignore_collision = 0);
-    // [DEPRECATED] Utiliser Navigator a la place
-    [[deprecated("Utiliser Navigator::goTo() ou Navigator::pathTo()")]]
-    TRAJ_STATE whileMoveForwardTo(float xMM, float yMM, bool rotate_ignored_detection, int wait_tempo_us,
-            int nb_near_obstacle, int nb_collision, bool byPathfinding = false, int reculOnObstacleMm = 0,
-			int reculOnCollisionMm = 0, bool ignore_collision = false);
-    [[deprecated("Utiliser Navigator::goToReverse() ou Navigator::pathToReverse()")]]
-    TRAJ_STATE whileMoveBackwardTo(float xMM, float yMM, bool rotate_ignored_detection, int wait_tempo_us,
-            int nb_near_obstacle, int nb_collision, bool byPathfinding = false, int reculOnObstacleMm = 0,
-			int reculOnCollisionMm = 0);
-    [[deprecated("Utiliser Navigator::rotateAbsDeg()")]]
-    TRAJ_STATE whileMoveRotateTo(float AbsoluteThetaInDegree, int wait_tempo_us, int nb_collision);
-    [[deprecated("Utiliser Navigator::goToAndRotateAbsDeg() ou Navigator::pathToAndRotateAbsDeg()")]]
-    TRAJ_STATE whileMoveForwardAndRotateTo(float xMM, float yMM, float AbsoluteThetaInDegree,
-            bool rotate_ignored_detection, int wait_tempo_us, int nb_near_obstacle, int nb_collision,
-            bool byPathfinding = false, int reculMm=0, bool ignore_collision = false);
-    [[deprecated("Utiliser Navigator::backwardAndRotateTo()")]]
-    TRAJ_STATE whileMoveBackwardAndRotateTo(float xMM, float yMM, float AbsoluteThetaInDegree,
-                bool rotate_ignored_detection, int wait_tempo_us, int nb_near_obstacle, int nb_collision,
-                bool byPathfinding = false, int reculMm=0);
+    // [DEPRECATED] Supprime — utiliser Navigator avec RetryPolicy a la place
+    // Voir Navigator::moveForwardTo(), goTo(), moveBackwardTo(), goToReverse(),
+    //      rotateAbsDeg(), moveForwardToAndRotateAbsDeg(), etc.
+    //
+    // TRAJ_STATE whileMoveForwardTo(...);
+    // TRAJ_STATE whileMoveBackwardTo(...);
+    // TRAJ_STATE whileMoveRotateTo(...);
+    // TRAJ_STATE whileMoveForwardAndRotateTo(...);
+    // TRAJ_STATE whileMoveBackwardAndRotateTo(...);
 
 
 

@@ -54,6 +54,35 @@
                 "bot-opos6ul"
             ],
             "default": "bot-opos6ul"
+        },
+        {
+            "id": "simuPreset",
+            "type": "pickString",
+            "description": "Build SIMU",
+            "options": [
+                { "label": "SIMU Debug",   "value": "simu-debug" },
+                { "label": "SIMU Release", "value": "simu-release" }
+            ],
+            "default": "simu-debug"
+        },
+        {
+            "id": "simuBin",
+            "type": "pickString",
+            "description": "Executable a lancer",
+            "options": [
+                "bot-opos6ul",
+                "driver-test",
+                "common-test",
+                "manual-test",
+                "bench"
+            ],
+            "default": "bot-opos6ul"
+        },
+        {
+            "id": "simuArgs",
+            "type": "promptString",
+            "description": "Arguments (ex: m, t /n 1, t /n 5 /s 40)",
+            "default": "t /n 1"
         }
     ],
     "tasks": [
@@ -155,6 +184,22 @@
             },
             "problemMatcher": [],
             "presentation": { "reveal": "never" }
+        },
+        {
+            // Run un exe SIMU avec cwd = bin/ (les SVG vont au bon endroit)
+            "label": "SIMU: Run",
+            "type": "shell",
+            "command": "echo '📂 cwd:' $(pwd) && ${workspaceFolder}/build-${input:simuPreset}/bin/${input:simuBin} ${input:simuArgs}",
+            "options": {
+                "cwd": "${workspaceFolder}/build-${input:simuPreset}/bin",
+                "statusbar": {
+                    "hide": false,
+                    "label": "$(play) Run",
+                    "color": "#98C379"
+                }
+            },
+            "problemMatcher": [],
+            "presentation": { "reveal": "always", "panel": "shared", "focus": true, "clear": true }
         },
         {
             // Generation de la documentation Doxygen

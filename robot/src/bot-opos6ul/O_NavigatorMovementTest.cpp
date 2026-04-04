@@ -481,7 +481,7 @@ void O_NavigatorMovementTest::run(int argc, char** argv)
     robot.asserv().assistedHandling();
 
     // Mode instantane pour tests rapides (0=instantane, 1.0=temps reel)
-    robot.asserv().setSimuSpeedMultiplier(0);
+    robot.asserv().setSimuSpeedMultiplier(2.0);
 
     passed_ = 0;
     failed_ = 0;

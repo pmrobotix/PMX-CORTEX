@@ -10,6 +10,7 @@
 
 #include "action/Sensors.hpp"
 #include "utils/Arguments.hpp"
+#include "navigator/Navigator.hpp"
 #include "Robot.hpp"
 #include "utils/Chronometer.hpp"
 #include "log/Logger.hpp"
@@ -80,9 +81,11 @@ void O_Asserv_SquareTest::run(int argc, char** argv)
 
     chrono.start();
 
+    Navigator nav(&robot);
+
     for (int n = 1; n <= nb; n++) {
         logger().info() << "moveForwardTo(" << x << ", " << y << ")" << logs::end;
-        robot.asserv().moveForwardTo(x, y);
+        nav.moveForwardTo(x, y);
 
         robot.asserv().getEncodersCounts(&right, &left);
         ROBOTPOSITION p = robot.asserv().pos_getPosition();
@@ -96,7 +99,7 @@ void O_Asserv_SquareTest::run(int argc, char** argv)
         robot.svgPrintPosition();
 
         logger().info() << "moveForwardTo(" << x + d << ", " << y << ")" << logs::end;
-        robot.asserv().moveForwardTo(x + d, y);
+        nav.moveForwardTo(x + d, y);
 
         robot.asserv().getEncodersCounts(&right, &left);
         p = robot.asserv().pos_getPosition();
@@ -110,7 +113,7 @@ void O_Asserv_SquareTest::run(int argc, char** argv)
         robot.svgPrintPosition();
 
         logger().info() << "moveForwardTo(" << x + d << ", " << y + d << ")" << logs::end;
-        robot.asserv().moveForwardTo(x + d, y + d);
+        nav.moveForwardTo(x + d, y + d);
 
         robot.asserv().getEncodersCounts(&right, &left);
         p = robot.asserv().pos_getPosition();
@@ -124,7 +127,7 @@ void O_Asserv_SquareTest::run(int argc, char** argv)
         robot.svgPrintPosition();
 
         logger().info() << "moveForwardTo(" << x << ", " << y + d << ")" << logs::end;
-        robot.asserv().moveForwardTo(x, y + d);
+        nav.moveForwardTo(x, y + d);
 
         robot.asserv().getEncodersCounts(&right, &left);
         p = robot.asserv().pos_getPosition();
@@ -137,8 +140,8 @@ void O_Asserv_SquareTest::run(int argc, char** argv)
 
         robot.svgPrintPosition();
 
-        logger().info() << "moveForwardAndRotateTo(" << x << ", " << y << ", 0.0)" << logs::end;
-        robot.asserv().moveForwardAndRotateTo(x, y, 0.0);
+        logger().info() << "moveForwardToAndRotateAbsDeg(" << x << ", " << y << ", 0.0)" << logs::end;
+        nav.moveForwardToAndRotateAbsDeg(x, y, 0.0);
 
         robot.asserv().getEncodersCounts(&right, &left);
         p = robot.asserv().pos_getPosition();

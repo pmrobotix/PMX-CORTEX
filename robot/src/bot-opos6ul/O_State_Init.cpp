@@ -6,6 +6,7 @@
 #include "O_State_Init.hpp"
 
 #include "action/LcdShield.hpp"
+#include "navigator/Navigator.hpp"
 #include "Robot.hpp"
 #include "log/Logger.hpp"
 #include "OPOS6UL_ActionsExtended.hpp"
@@ -472,8 +473,10 @@ void O_State_Init::setPos()
 //		if(ts >=2 )
 //					logger().info() << "ts = robot.asserv().faceTo state=" << ts << logs::end;
 
-	ts = robot.asserv().line(80);
-	//ts = robot.asserv().moveForwardAndRotateTo(1275, 300, 135.0, true);
+	Navigator nav(&robot);
+
+	ts = nav.line(80);
+	//ts = nav.moveForwardToAndRotateAbsDeg(1275, 300, 135.0);
 	if (ts != TRAJ_FINISHED)
 	{
 		robot.logger().error() << "setPos : 1275, 300, 135.0  ===== PB COLLISION FINALE - Que fait-on? ts=" << ts
