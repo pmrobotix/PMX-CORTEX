@@ -42,6 +42,7 @@ enum CborCmdType {
     CMD_GOTO_NOSTOP          = 25,
     CMD_SET_POSITION         = 26,
     CMD_FACE_BACK            = 27,
+    CMD_GOTO_BACK_NOSTOP     = 28,
     CMD_ORBITAL_TURN         = 30,
 };
 
@@ -388,7 +389,9 @@ void AsservCborDriver::motion_GoToChain(float x_mm, float y_mm)
 
 void AsservCborDriver::motion_GoBackToChain(float x_mm, float y_mm)
 {
-    logger().error() << "motion_GoBackToChain: not supported in CBOR protocol" << logs::end;
+    if (!asservCardStarted_) return;
+    prepareCommand(5);
+    sendCmd(CMD_GOTO_BACK_NOSTOP, x_mm, y_mm);
 }
 
 void AsservCborDriver::motion_OrbitalTurnRad(float angle_radians, bool forward, bool turnRight)

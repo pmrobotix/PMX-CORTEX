@@ -1276,14 +1276,15 @@ Nouvelle classe `src/common/navigator/Navigator` qui factorise toute la logique 
 │                                                                   │
 │  Retry unifié : executeWithRetry()                                │
 │                                                                   │
-│  Mouvements :    line, goTo, goToReverse                          │
+│  Mouvements :    line, goTo, goBackTo                             │
 │  Waypoints :     manualPath(wps, policy, PathMode)                │
-│  Pathfinding :   pathTo, pathToReverse (A* via IAbyPath)          │
-│  Rotations :     rotateDeg, rotateToAbsoluteDeg, faceTo,          │
-│                  reverseFaceTo                                    │
+│  Pathfinding :   pathTo, pathBackTo (A* via IAbyPath)             │
+│  Rotations :     rotateDeg, rotateAbsDeg, faceTo, faceBackTo      │
 │  Combinaisons :  goToAndRotateAbsDeg, goToAndRotateRelDeg,        │
-│                  goToAndFaceTo, pathToAndRotateAbsDeg,             │
-│                  pathToAndRotateRelDeg, pathToAndFaceTo            │
+│                  goToAndFaceTo, goToAndFaceBackTo,                 │
+│                  moveForwardToAndFaceTo, moveForwardToAndFaceBackTo│
+│                  pathToAndRotateAbsDeg, pathToAndRotateRelDeg,     │
+│                  pathToAndFaceTo, pathToAndFaceBackTo              │
 └──────────────────────────────┬────────────────────────────────────┘
                                │
                 ┌──────────────┼──────────────┐
@@ -1362,13 +1363,17 @@ public:
     // --- Mouvements simples (defaut: pas de retry) ---
     TRAJ_STATE line(float distMm, RetryPolicy policy = RetryPolicy::noRetry());
     TRAJ_STATE goTo(float x, float y, RetryPolicy policy = RetryPolicy::noRetry());
-    TRAJ_STATE goToReverse(float x, float y, RetryPolicy policy = RetryPolicy::noRetry());
+    TRAJ_STATE goBackTo(float x, float y, RetryPolicy policy = RetryPolicy::noRetry());
+
+    // --- Mouvements composes (rotation + ligne droite, defaut: pas de retry) ---
+    TRAJ_STATE moveForwardTo(float x, float y, RetryPolicy policy = RetryPolicy::noRetry());
+    TRAJ_STATE moveBackwardTo(float x, float y, RetryPolicy policy = RetryPolicy::noRetry());
 
     // --- Rotations (defaut: pas de retry) ---
     TRAJ_STATE rotateDeg(float degRelative, RetryPolicy policy = RetryPolicy::noRetry());
-    TRAJ_STATE rotateToAbsoluteDeg(float thetaDeg, RetryPolicy policy = RetryPolicy::noRetry());
+    TRAJ_STATE rotateAbsDeg(float thetaDeg, RetryPolicy policy = RetryPolicy::noRetry());
     TRAJ_STATE faceTo(float x, float y, RetryPolicy policy = RetryPolicy::noRetry());
-    TRAJ_STATE reverseFaceTo(float x, float y, RetryPolicy policy = RetryPolicy::noRetry());
+    TRAJ_STATE faceBackTo(float x, float y, RetryPolicy policy = RetryPolicy::noRetry());
 
     // --- Suite de waypoints manuels ---
     TRAJ_STATE manualPath(const std::vector<Waypoint>& waypoints,
@@ -1379,17 +1384,26 @@ public:
     TRAJ_STATE pathTo(float x, float y,
                       RetryPolicy policy = RetryPolicy::standard(),
                       PathMode mode = STOP);
-    TRAJ_STATE pathToReverse(float x, float y,
-                             RetryPolicy policy = RetryPolicy::standard(),
-                             PathMode mode = STOP);
+    TRAJ_STATE pathBackTo(float x, float y,
+                          RetryPolicy policy = RetryPolicy::standard(),
+                          PathMode mode = STOP);
 
     // --- Combinaisons mouvement + rotation finale ---
+    // goTo combos
     TRAJ_STATE goToAndRotateAbsDeg(float x, float y, float thetaDeg, RetryPolicy policy = RetryPolicy::standard());
     TRAJ_STATE goToAndRotateRelDeg(float x, float y, float degRelative, RetryPolicy policy = RetryPolicy::standard());
     TRAJ_STATE goToAndFaceTo(float x, float y, float fx, float fy, RetryPolicy policy = RetryPolicy::standard());
+    TRAJ_STATE goToAndFaceBackTo(float x, float y, float fx, float fy, RetryPolicy policy = RetryPolicy::standard());
+    // moveForwardTo combos
+    TRAJ_STATE moveForwardToAndRotateAbsDeg(float x, float y, float thetaDeg, RetryPolicy policy = RetryPolicy::standard());
+    TRAJ_STATE moveForwardToAndRotateRelDeg(float x, float y, float degRelative, RetryPolicy policy = RetryPolicy::standard());
+    TRAJ_STATE moveForwardToAndFaceTo(float x, float y, float fx, float fy, RetryPolicy policy = RetryPolicy::standard());
+    TRAJ_STATE moveForwardToAndFaceBackTo(float x, float y, float fx, float fy, RetryPolicy policy = RetryPolicy::standard());
+    // pathTo combos
     TRAJ_STATE pathToAndRotateAbsDeg(float x, float y, float thetaDeg, RetryPolicy policy = RetryPolicy::standard());
     TRAJ_STATE pathToAndRotateRelDeg(float x, float y, float degRelative, RetryPolicy policy = RetryPolicy::standard());
     TRAJ_STATE pathToAndFaceTo(float x, float y, float fx, float fy, RetryPolicy policy = RetryPolicy::standard());
+    TRAJ_STATE pathToAndFaceBackTo(float x, float y, float fx, float fy, RetryPolicy policy = RetryPolicy::standard());
 
 private:
     // Coeur unique : boucle while/retry/obstacle/collision/recul
@@ -1449,7 +1463,7 @@ Navigator trace automatiquement les segments sur le SVG via `SvgWriter::writeLin
 | manualPath STOP | *(rien, points odométrie existants)* | |
 | manualPath CHAIN | *(rien, points odométrie existants)* | |
 | manualPath CHAIN_NONSTOP | Vert | Pointillés `- - - -` |
-| goTo / goToReverse (direct) | Bleu | Continu `──────` |
+| goTo / goBackTo (direct) | Bleu | Continu `──────` |
 | pathTo STOP | Rouge | Continu `──────` |
 | pathTo CHAIN | Rouge | Continu `──────` |
 | pathTo CHAIN_NONSTOP | Rouge | Pointillés `- - - -` |
@@ -1471,9 +1485,11 @@ Navigator trace automatiquement les segments sur le SVG via `SvgWriter::writeLin
 
 #### Migration (incrémentale)
 
-Les méthodes `while*` de IAbyPath et `Robot::whileDoLine()` restent en place.
-Le code de match existant continue de fonctionner.
-On migre les appelants un par un vers Navigator, puis on supprime les anciennes méthodes.
+Les méthodes `while*` de IAbyPath sont supprimées (remplacées par Navigator avec RetryPolicy).
+Les méthodes `doPath*` de IAbyPath sont deprecated mais encore utilisées en interne :
+- `doPathForwardTo`, `doPathBackwardTo`, `doPathForwardAndFaceTo`, `doPathForwardAndRotateTo`
+- Appelants restants : IAbyPath interne + `O_IAbyPathTest.cpp`
+- À migrer vers Navigator::pathTo / pathBackTo / pathToAndFaceTo / pathToAndRotateAbsDeg
 
 #### Refactoring nommage (done)
 
@@ -1483,20 +1499,20 @@ Convention : **verbe + complément + qualificateur**, pas de préfixe `do`.
 |---|---|---|---|
 | Ligne droite | `line` | `doLine` → `line` | `motion_DoLine` → `motion_Line` |
 | Aller à (x,y) | `goTo` | `gotoXY` → `goTo` | `motion_Goto` → `motion_GoTo` |
-| Reculer à (x,y) | `goToReverse` | `gotoReverse` → `goToReverse` | `motion_GotoReverse` → `motion_GoToReverse` |
+| Reculer à (x,y) | `goBackTo` | `gotoReverse` → `goBackTo` | `motion_GotoReverse` → `motion_GoBackTo` |
 | Aller chaîné | — | `gotoChain` → `goToChain` | `motion_GotoChain` → `motion_GoToChain` |
-| Reculer chaîné | — | `gotoReverseChain` → `goToReverseChain` | `motion_GotoReverseChain` → `motion_GoToReverseChain` |
+| Reculer chaîné | — | `gotoReverseChain` → `goBackToChain` | `motion_GotoReverseChain` → `motion_GoBackToChain` |
 | Envoi goto sans wait | — | `gotoSend` → `goToSend` | — |
 | Envoi chain sans wait | — | `gotoChainSend` → `goToChainSend` | — |
-| Envoi reverse sans wait | — | `gotoReverseSend` → `goToReverseSend` | — |
-| Envoi reverse chain sans wait | — | `gotoReverseChainSend` → `goToReverseChainSend` | — |
+| Envoi back sans wait | — | `gotoReverseSend` → `goBackToSend` | — |
+| Envoi back chain sans wait | — | `gotoReverseChainSend` → `goBackToChainSend` | — |
 | Attente fin traj | — | `waitTraj` ✅ | `waitEndOfTraj` ✅ |
 | Rotation relative deg | `rotateDeg` | `doRelativeRotateDeg` → `rotateDeg` | `motion_DoRotate` → `motion_RotateRad` (radians) |
 | Rotation relative rad | — | `doRelativeRotateRad` → `rotateRad` | — (le driver est toujours en rad) |
 | Rotation par couleur deg | — | `doRelativeRotateByMatchColor` → `rotateByMatchColorDeg` | — |
-| Rotation absolue deg | `rotateToAbsoluteDeg` → `rotateAbsDeg` | `doAbsoluteRotateTo` → `rotateAbsDeg` | — |
+| Rotation absolue deg | `rotateAbsDeg` | `doAbsoluteRotateTo` → `rotateAbsDeg` | — |
 | Face vers (x,y) | `faceTo` | `doFaceTo` → `faceTo` | `motion_DoFace` → `motion_FaceTo` |
-| Dos vers (x,y) | `reverseFaceTo` | — | — |
+| Dos vers (x,y) | `faceBackTo` | — → `faceBackTo` | — → `motion_FaceBackTo` |
 | Avancer vers (x,y) | — | `doMoveForwardTo` → `moveForwardTo` | — |
 | Reculer vers (x,y) | — | `doMoveBackwardTo` → `moveBackwardTo` | — |
 | Avancer+rotation | — | `doMoveForwardAndRotateTo` → `moveForwardAndRotateTo` | — |
@@ -1516,8 +1532,7 @@ Convention : **verbe + complément + qualificateur**, pas de préfixe `do`.
 - Navigator travaille **toujours en degrés**
 
 **TODO drivers ARM (commandes non supportées)** :
-- `AsservDriver` (ASCII) : `motion_DoOrbitalTurn` → à implémenter côté Nucleo (protocole série)
-- `AsservCborDriver` (CBOR) : `motion_GotoReverseChain` → à ajouter au protocole CBOR
+- `AsservDriver` (ASCII) : `motion_FaceBackTo` → à implémenter côté Nucleo (commande série)
 
 Fichiers impactés : `AAsservDriver.hpp` (8), `Asserv.hpp/.cpp` (18),
 `Navigator.hpp/.cpp` (1), drivers ARM/SIMU/EsialR (8 chacun),
@@ -1571,13 +1586,13 @@ robot.asserv().doFaceTo(x, y);
 
 // APRÈS — sans retry (1 seul essai, equivalent asserv direct)
 nav.rotateDeg(90, RetryPolicy::noRetry());
-nav.rotateToAbsoluteDeg(180, RetryPolicy::noRetry());
+nav.rotateAbsDeg(180, RetryPolicy::noRetry());
 nav.faceTo(x, y, RetryPolicy::noRetry());
-nav.reverseFaceTo(x, y, RetryPolicy::noRetry());
+nav.faceBackTo(x, y, RetryPolicy::noRetry());
 
 // APRÈS — avec retry
 nav.rotateDeg(90, RetryPolicy::aggressive());
-nav.rotateToAbsoluteDeg(180, RetryPolicy::patient());
+nav.rotateAbsDeg(180, RetryPolicy::patient());
 nav.faceTo(x, y, RetryPolicy::standard());
 ```
 

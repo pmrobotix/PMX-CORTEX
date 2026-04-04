@@ -156,7 +156,6 @@ if(TARGET_PLATFORM STREQUAL "ARM")
         src/driver-arm/RobotPositionShared.cpp
         src/driver-arm/Adafruit_MCP23017.cpp
         src/driver-arm/Adafruit_RGBLCDShield.cpp
-        src/driver-arm/AsservDriver.cpp
         src/driver-arm/BeaconSensors.cpp
         src/driver-arm/CCAx12Teensy.cpp
         src/driver-arm/Gp2y0e02b.cpp
