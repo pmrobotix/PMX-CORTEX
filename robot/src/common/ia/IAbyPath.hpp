@@ -113,7 +113,7 @@ public:
     TRAJ_STATE whileMoveBackwardTo(float xMM, float yMM, bool rotate_ignored_detection, int wait_tempo_us,
             int nb_near_obstacle, int nb_collision, bool byPathfinding = false, int reculOnObstacleMm = 0,
 			int reculOnCollisionMm = 0);
-    [[deprecated("Utiliser Navigator::rotateToAbsoluteDeg()")]]
+    [[deprecated("Utiliser Navigator::rotateAbsDeg()")]]
     TRAJ_STATE whileMoveRotateTo(float AbsoluteThetaInDegree, int wait_tempo_us, int nb_collision);
     [[deprecated("Utiliser Navigator::goToAndRotateAbsDeg() ou Navigator::pathToAndRotateAbsDeg()")]]
     TRAJ_STATE whileMoveForwardAndRotateTo(float xMM, float yMM, float AbsoluteThetaInDegree,

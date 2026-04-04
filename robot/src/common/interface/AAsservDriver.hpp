@@ -140,14 +140,14 @@ public:
 	// Envoient la commande et retournent immédiatement.
 	// Appeler waitEndOfTraj() pour attendre la fin du mouvement.
 
-	virtual void motion_DoFace(float x_mm, float y_mm, bool back_face) = 0;
-	virtual void motion_DoLine(float dist_mm) = 0;
-	virtual void motion_DoRotate(float angle_radians) = 0;
-	virtual void motion_DoOrbitalTurn(float angle_radians, bool forward, bool turnRight) = 0;
-	virtual void motion_Goto(float x_mm, float y_mm) = 0;
-	virtual void motion_GotoReverse(float x_mm, float y_mm) = 0;
-	virtual void motion_GotoChain(float x_mm, float y_mm) = 0;
-	virtual void motion_GotoReverseChain(float x_mm, float y_mm) = 0;
+	virtual void motion_FaceTo(float x_mm, float y_mm, bool back_face) = 0;
+	virtual void motion_Line(float dist_mm) = 0;
+	virtual void motion_RotateRad(float angle_radians) = 0;
+	virtual void motion_OrbitalTurnRad(float angle_radians, bool forward, bool turnRight) = 0;
+	virtual void motion_GoTo(float x_mm, float y_mm) = 0;
+	virtual void motion_GoToReverse(float x_mm, float y_mm) = 0;
+	virtual void motion_GoToChain(float x_mm, float y_mm) = 0;
+	virtual void motion_GoToReverseChain(float x_mm, float y_mm) = 0;
 
 	// ---- Controle du mode de deplacement ----
 

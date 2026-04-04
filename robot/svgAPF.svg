@@ -164,13 +164,13 @@ xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <use x="50" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-0,200,-300)" />
 <use x="50" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-0,200,-300)" />
 <use x="50" y="-450" xlink:href="#bot-OPOS6UL-BLACK" transform="rotate(-0,200,-300)" />
-<circle cx="200" cy="-300" r="1" fill="blue" /><line x1="200" y1="-300" x2="225" y2="-300" stroke-width="0.1" stroke="grey"  />
 <use x="650" y="-450" xlink:href="#bot-OPOS6UL" transform="rotate(-0,800,-300)" />
 <use x="850" y="-450" xlink:href="#bot-OPOS6UL" transform="rotate(-0,1000,-300)" />
 <use x="850" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-0,1000,-300)" />
 <use x="850" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-0,1000,-300)" />
 <line x1='800' y1='-300' x2='1000' y2='-300' stroke='blue' stroke-width='2' />
 <use x="850" y="-450" xlink:href="#bot-OPOS6UL-BLUE" transform="rotate(-0,1000,-300)" />
+<circle cx="1000" cy="-300" r="1" fill="blue" /><line x1="1000" y1="-300" x2="1025" y2="-300" stroke-width="0.1" stroke="grey"  />
 <use x="850" y="-450" xlink:href="#bot-OPOS6UL" transform="rotate(-90,1000,-300)" />
 <use x="850" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-90,1000,-300)" />
 <use x="850" y="-450" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-90,1000,-300)" />
@@ -281,7 +281,6 @@ xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <use x="1467.2" y="-998.4" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-90,1617.2,-848.4)" />
 <use x="1350" y="-881.2" xlink:href="#bot-OPOS6UL" transform="rotate(1.70755e-06,1500,-731.2)" />
 <use x="1350" y="-881.2" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(1.70755e-06,1500,-731.2)" />
-<circle cx="1500" cy="-731.2" r="1" fill="blue" /><line x1="1500" y1="-731.2" x2="1525" y2="-731.2" stroke-width="0.1" stroke="grey"  />
 <use x="1350" y="-881.2" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(1.70755e-06,1500,-731.2)" />
 <use x="1350" y="-1350" xlink:href="#bot-OPOS6UL" transform="rotate(-90,1500,-1200)" />
 <use x="1350" y="-1350" xlink:href="#bot-OPOS6UL-GREEN" transform="rotate(-90,1500,-1200)" />
@@ -331,3 +330,4 @@ xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <use x="1750" y="-1950" xlink:href="#bot-OPOS6UL-BLACK" transform="rotate(-36.8699,1900,-1800)" />
 </g>
 </svg>
+<circle cx="1900" cy="-1800" r="1" fill="blue" /><line x1="1900" y1="-1800" x2="1920" y2="-1815" stroke-width="0.1" stroke="grey"  />

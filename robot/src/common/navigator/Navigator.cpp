@@ -74,7 +74,7 @@ TRAJ_STATE Navigator::executeWithRetry(std::function<TRAJ_STATE()> moveFunc,
             if (policy.reculObstacleMm > 0)
             {
                 float reculDist = reculDir * policy.reculObstacleMm;
-                TRAJ_STATE tr = robot_->asserv().doLine(reculDist);
+                TRAJ_STATE tr = robot_->asserv().line(reculDist);
                 if (tr != TRAJ_FINISHED && tr != TRAJ_IDLE)
                 {
                     robot_->asserv().resetEmergencyOnTraj("Navigator recul obstacle");
@@ -107,7 +107,7 @@ TRAJ_STATE Navigator::executeWithRetry(std::function<TRAJ_STATE()> moveFunc,
             if (policy.reculCollisionMm > 0)
             {
                 float reculDist = reculDir * policy.reculCollisionMm;
-                TRAJ_STATE tr = robot_->asserv().doLine(reculDist);
+                TRAJ_STATE tr = robot_->asserv().line(reculDist);
                 if (tr != TRAJ_FINISHED && tr != TRAJ_IDLE)
                 {
                     robot_->asserv().resetEmergencyOnTraj("Navigator recul collision");
@@ -154,7 +154,7 @@ TRAJ_STATE Navigator::executeWaypoints(const std::vector<Waypoint>& waypoints,
             float x_match = robot_->asserv().changeMatchX(first.x);
             if (policy.rotateIgnoringOpponent)
             {
-                TRAJ_STATE ts = robot_->asserv().doFaceTo(x_match, first.y, first.reverse);
+                TRAJ_STATE ts = robot_->asserv().faceTo(x_match, first.y, first.reverse);
                 if (ts != TRAJ_FINISHED)
                 {
                     return ts;
@@ -173,16 +173,16 @@ TRAJ_STATE Navigator::executeWaypoints(const std::vector<Waypoint>& waypoints,
             if (wp.reverse)
             {
                 if (isNonstop && !isLast)
-                    robot_->asserv().gotoReverseChainSend(x_match, wp.y);
+                    robot_->asserv().goToReverseChainSend(x_match, wp.y);
                 else
-                    robot_->asserv().gotoReverseSend(x_match, wp.y);
+                    robot_->asserv().goToReverseSend(x_match, wp.y);
             }
             else
             {
                 if (isNonstop && !isLast)
-                    robot_->asserv().gotoChainSend(x_match, wp.y);
+                    robot_->asserv().goToChainSend(x_match, wp.y);
                 else
-                    robot_->asserv().gotoSend(x_match, wp.y);
+                    robot_->asserv().goToSend(x_match, wp.y);
             }
         }
 
@@ -209,7 +209,7 @@ TRAJ_STATE Navigator::executeWaypoints(const std::vector<Waypoint>& waypoints,
         // Rotation vers le point
         if (policy.rotateIgnoringOpponent)
         {
-            ts = robot_->asserv().doFaceTo(x_match, wp.y, wp.reverse);
+            ts = robot_->asserv().faceTo(x_match, wp.y, wp.reverse);
             if (ts != TRAJ_FINISHED)
             {
                 currentIndex = i;
@@ -220,9 +220,9 @@ TRAJ_STATE Navigator::executeWaypoints(const std::vector<Waypoint>& waypoints,
 
         // Deplacement
         if (wp.reverse)
-            ts = robot_->asserv().gotoReverse(x_match, wp.y);
+            ts = robot_->asserv().goToReverse(x_match, wp.y);
         else
-            ts = robot_->asserv().gotoXY(x_match, wp.y);
+            ts = robot_->asserv().goTo(x_match, wp.y);
 
         robot_->svgPrintPosition(svgBotColor);
 
@@ -269,7 +269,7 @@ TRAJ_STATE Navigator::line(float distMm, RetryPolicy policy)
 
     return executeWithRetry(
         [this, distMm, x_init, y_init, &d_restant]() {
-            TRAJ_STATE ts = robot_->asserv().doLine(d_restant);
+            TRAJ_STATE ts = robot_->asserv().line(d_restant);
             // Recalcul distance restante
             float dx = robot_->asserv().pos_getX_mm() - x_init;
             float dy = robot_->asserv().pos_getY_mm() - y_init;
@@ -291,7 +291,7 @@ TRAJ_STATE Navigator::goTo(float x, float y, RetryPolicy policy)
 
     TRAJ_STATE ts = executeWithRetry(
         [this, x, y, &policy]() {
-            return robot_->asserv().doMoveForwardTo(x, y, policy.rotateIgnoringOpponent);
+            return robot_->asserv().moveForwardTo(x, y, policy.rotateIgnoringOpponent);
         },
         policy,
         -1
@@ -312,7 +312,7 @@ TRAJ_STATE Navigator::goToReverse(float x, float y, RetryPolicy policy)
 
     TRAJ_STATE ts = executeWithRetry(
         [this, x, y, &policy]() {
-            return robot_->asserv().doMoveBackwardTo(x, y, policy.rotateIgnoringOpponent);
+            return robot_->asserv().moveBackwardTo(x, y, policy.rotateIgnoringOpponent);
         },
         policy,
         1
@@ -334,18 +334,18 @@ TRAJ_STATE Navigator::rotateDeg(float degRelative, RetryPolicy policy)
 {
     return executeWithRetry(
         [this, degRelative, &policy]() {
-            return robot_->asserv().doRelativeRotateDeg(degRelative, policy.rotateIgnoringOpponent);
+            return robot_->asserv().rotateDeg(degRelative, policy.rotateIgnoringOpponent);
         },
         policy,
         0
     );
 }
 
-TRAJ_STATE Navigator::rotateToAbsoluteDeg(float thetaDeg, RetryPolicy policy)
+TRAJ_STATE Navigator::rotateAbsDeg(float thetaDeg, RetryPolicy policy)
 {
     return executeWithRetry(
         [this, thetaDeg, &policy]() {
-            return robot_->asserv().doAbsoluteRotateTo(thetaDeg, policy.rotateIgnoringOpponent);
+            return robot_->asserv().rotateAbsDeg(thetaDeg, policy.rotateIgnoringOpponent);
         },
         policy,
         0
@@ -356,7 +356,7 @@ TRAJ_STATE Navigator::faceTo(float x, float y, RetryPolicy policy)
 {
     return executeWithRetry(
         [this, x, y]() {
-            return robot_->asserv().doFaceTo(x, y, false);
+            return robot_->asserv().faceTo(x, y, false);
         },
         policy,
         0
@@ -367,7 +367,7 @@ TRAJ_STATE Navigator::reverseFaceTo(float x, float y, RetryPolicy policy)
 {
     return executeWithRetry(
         [this, x, y]() {
-            return robot_->asserv().doFaceTo(x, y, true);
+            return robot_->asserv().faceTo(x, y, true);
         },
         policy,
         0
@@ -507,7 +507,7 @@ TRAJ_STATE Navigator::goToAndRotateAbsDeg(float x, float y, float thetaDeg, Retr
     TRAJ_STATE ts = goTo(x, y, policy);
     if (ts != TRAJ_FINISHED)
         return ts;
-    return rotateToAbsoluteDeg(thetaDeg, policy);
+    return rotateAbsDeg(thetaDeg, policy);
 }
 
 TRAJ_STATE Navigator::goToAndRotateRelDeg(float x, float y, float degRelative, RetryPolicy policy)
@@ -531,7 +531,7 @@ TRAJ_STATE Navigator::pathToAndRotateAbsDeg(float x, float y, float thetaDeg, Re
     TRAJ_STATE ts = pathTo(x, y, policy);
     if (ts != TRAJ_FINISHED)
         return ts;
-    return rotateToAbsoluteDeg(thetaDeg, policy);
+    return rotateAbsDeg(thetaDeg, policy);
 }
 
 TRAJ_STATE Navigator::pathToAndRotateRelDeg(float x, float y, float degRelative, RetryPolicy policy)

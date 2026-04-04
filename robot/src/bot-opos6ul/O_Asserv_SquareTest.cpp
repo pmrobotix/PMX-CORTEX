@@ -81,8 +81,8 @@ void O_Asserv_SquareTest::run(int argc, char** argv)
     chrono.start();
 
     for (int n = 1; n <= nb; n++) {
-        logger().info() << "doMoveForwardTo(" << x << ", " << y << ")" << logs::end;
-        robot.asserv().doMoveForwardTo(x, y);
+        logger().info() << "moveForwardTo(" << x << ", " << y << ")" << logs::end;
+        robot.asserv().moveForwardTo(x, y);
 
         robot.asserv().getEncodersCounts(&right, &left);
         ROBOTPOSITION p = robot.asserv().pos_getPosition();
@@ -95,8 +95,8 @@ void O_Asserv_SquareTest::run(int argc, char** argv)
 
         robot.svgPrintPosition();
 
-        logger().info() << "doMoveForwardTo(" << x + d << ", " << y << ")" << logs::end;
-        robot.asserv().doMoveForwardTo(x + d, y);
+        logger().info() << "moveForwardTo(" << x + d << ", " << y << ")" << logs::end;
+        robot.asserv().moveForwardTo(x + d, y);
 
         robot.asserv().getEncodersCounts(&right, &left);
         p = robot.asserv().pos_getPosition();
@@ -109,8 +109,8 @@ void O_Asserv_SquareTest::run(int argc, char** argv)
 
         robot.svgPrintPosition();
 
-        logger().info() << "doMoveForwardTo(" << x + d << ", " << y + d << ")" << logs::end;
-        robot.asserv().doMoveForwardTo(x + d, y + d);
+        logger().info() << "moveForwardTo(" << x + d << ", " << y + d << ")" << logs::end;
+        robot.asserv().moveForwardTo(x + d, y + d);
 
         robot.asserv().getEncodersCounts(&right, &left);
         p = robot.asserv().pos_getPosition();
@@ -123,8 +123,8 @@ void O_Asserv_SquareTest::run(int argc, char** argv)
 
         robot.svgPrintPosition();
 
-        logger().info() << "doMoveForwardTo(" << x << ", " << y + d << ")" << logs::end;
-        robot.asserv().doMoveForwardTo(x, y + d);
+        logger().info() << "moveForwardTo(" << x << ", " << y + d << ")" << logs::end;
+        robot.asserv().moveForwardTo(x, y + d);
 
         robot.asserv().getEncodersCounts(&right, &left);
         p = robot.asserv().pos_getPosition();
@@ -137,8 +137,8 @@ void O_Asserv_SquareTest::run(int argc, char** argv)
 
         robot.svgPrintPosition();
 
-        logger().info() << "doMoveForwardAndRotateTo(" << x << ", " << y << ", 0.0)" << logs::end;
-        robot.asserv().doMoveForwardAndRotateTo(x, y, 0.0);
+        logger().info() << "moveForwardAndRotateTo(" << x << ", " << y << ", 0.0)" << logs::end;
+        robot.asserv().moveForwardAndRotateTo(x, y, 0.0);
 
         robot.asserv().getEncodersCounts(&right, &left);
         p = robot.asserv().pos_getPosition();

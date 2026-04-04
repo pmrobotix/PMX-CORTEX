@@ -76,7 +76,7 @@ bool O_end_of_match_top()
 		utils::sleep_for_secs(1);
 	}
 
-	ts = robot.asserv().doLine(451);
+	ts = robot.asserv().line(451);
 	robot.svgPrintPosition();
 
 	robot.points += 20;
@@ -206,7 +206,7 @@ void O_State_DecisionMakerIA::execute()
 
 	TRAJ_STATE ts = TRAJ_IDLE;
 	//On recule pour deposer le drapeau
-	ts = robot.asserv().doLine(-79);
+	ts = robot.asserv().line(-79);
 
 	robot.actions().ax12_GO_banderole();
 	std::this_thread::sleep_for(std::chrono::seconds(1));
@@ -214,7 +214,7 @@ void O_State_DecisionMakerIA::execute()
 	robot.points += 20;
 	robot.displayPoints();
 	robot.asserv().setMaxSpeed(true, 40, 40);
-	ts = robot.asserv().doLine(150);
+	ts = robot.asserv().line(150);
 
 	//On ajoute le timer de detection
 	robot.actions().sensors().setIgnoreFrontNearObstacle(true, false, true);

@@ -424,7 +424,7 @@ TRAJ_STATE IAbyPath::doPathForwardTo(float xMM, float yMM, bool rotate_ignoring_
 
 				logger().info() << " ======> PATH GOTO " << node->x << "," << node->y << logs::end;
 
-				//ts = robot_->asserv()->doMoveForwardTo(robot_->asserv()->getRelativeX(node->x), node->y,
+				//ts = robot_->asserv()->moveForwardTo(robot_->asserv()->getRelativeX(node->x), node->y,
 				//        rotate_ignored_detection); //inversement de x car doMoveForwardTo va aussi le refaire.
 
 				//TODO SIMU A coder par l'asserv driver
@@ -437,14 +437,14 @@ TRAJ_STATE IAbyPath::doPathForwardTo(float xMM, float yMM, bool rotate_ignoring_
 //                    logger().info() << " ======> PATH doFaceTo rotate_ignored_detection=false ! " << node->x << ","
 //                            << node->y << logs::end;
 					//on tourne pour se degager si robot adverse devant
-					ts = robot_->passerv()->doFaceTo(robot_->passerv()->changeMatchX(node->x), node->y);
+					ts = robot_->passerv()->faceTo(robot_->passerv()->changeMatchX(node->x), node->y);
 					//rotate_ignored_detection = false;
 					robot_->svgPrintPosition();
 				}
 
 				//TODO utilsier la boucle while
 
-				ts = robot_->passerv()->gotoXY(robot_->passerv()->changeMatchX(node->x), node->y);
+				ts = robot_->passerv()->goTo(robot_->passerv()->changeMatchX(node->x), node->y);
 //                logger().info() << " ======> PATH GOTO ts=" << ts << " nodex,y=" << node->x << "," << node->y
 //                        << logs::end;
 				robot_->svgPrintPosition();
@@ -454,7 +454,7 @@ TRAJ_STATE IAbyPath::doPathForwardTo(float xMM, float yMM, bool rotate_ignoring_
 				}
 //                } else {
 //                    //ts = robot_->asserv()->gotoChain(robot_->asserv()->getRelativeX(node->x), node->y);
-//                    ts = robot_->asserv()->gotoXY(robot_->asserv()->getRelativeX(node->x), node->y);
+//                    ts = robot_->asserv()->goTo(robot_->asserv()->getRelativeX(node->x), node->y);
 //
 //                }
 
@@ -520,12 +520,12 @@ TRAJ_STATE IAbyPath::doPathBackwardTo(float xMM, float yMM, bool rotate_ignoring
 				if (rotate_ignoring_opponent)
 				{
 					//on tourne pour se degager si robot adverse devant
-					ts = robot_->passerv()->doFaceTo(robot_->passerv()->changeMatchX(node->x), node->y);
-					ts = robot_->passerv()->doRelativeRotateDeg(180, rotate_ignoring_opponent); //TODO A creer un doFaceBack
+					ts = robot_->passerv()->faceTo(robot_->passerv()->changeMatchX(node->x), node->y);
+					ts = robot_->passerv()->rotateDeg(180, rotate_ignoring_opponent); //TODO A creer un doFaceBack
 					robot_->svgPrintPosition();
 				}
 
-				ts = robot_->passerv()->gotoReverse(robot_->passerv()->changeMatchX(node->x), node->y);
+				ts = robot_->passerv()->goToReverse(robot_->passerv()->changeMatchX(node->x), node->y);
 				robot_->svgPrintPosition();
 				if (ts != TRAJ_FINISHED)
 				{
@@ -555,7 +555,7 @@ TRAJ_STATE IAbyPath::doPathForwardAndFaceTo(float xMM, float yMM, float f_x, flo
 		return ts;
 	}
 
-	ts = robot_->passerv()->doFaceTo(f_x, f_y);
+	ts = robot_->passerv()->faceTo(f_x, f_y);
 	robot_->svgPrintPosition();
 	if (ts != TRAJ_FINISHED)
 	{
@@ -575,7 +575,7 @@ TRAJ_STATE IAbyPath::doPathForwardAndRotateTo(float xMM, float yMM, float absThe
 		return ts;
 	}
 
-	ts = robot_->passerv()->doAbsoluteRotateTo(absThetaInDegree, true);
+	ts = robot_->passerv()->rotateAbsDeg(absThetaInDegree, true);
 	robot_->svgPrintPosition();
 	if (ts != TRAJ_FINISHED)
 	{
@@ -606,7 +606,7 @@ TRAJ_STATE IAbyPath::whileDoLine(float distMM, bool rotate_ignoring_opponent, in
 	{
 
 		//calcul de la distance restante en fonction de la couleur de match
-		ts = robot_->passerv()->doLine(d_restant);
+		ts = robot_->passerv()->line(d_restant);
 		robot_->displayTS(ts);
 
 		// nouvelle position: distance parcourue
@@ -679,7 +679,7 @@ TRAJ_STATE IAbyPath::whileMoveForwardTo(float xMM, float yMM, bool rotate_ignori
 		} else
 		{
 			//Avance avec l'asserv en direct
-			ts = robot_->passerv()->doMoveForwardTo(xMM, yMM, rotate_ignoring_opponent);
+			ts = robot_->passerv()->moveForwardTo(xMM, yMM, rotate_ignoring_opponent);
 		}
 
 		//logger().info() << "____________while ... doMoveForwardTo f=" << f << " ts=" << ts << logs::end;
@@ -797,7 +797,7 @@ TRAJ_STATE IAbyPath::whileMoveBackwardTo(float xMM, float yMM, bool rotate_ignor
 
 		} else
 		{
-			ts = robot_->passerv()->doMoveBackwardTo(xMM, yMM, rotate_ignoring_opponent);
+			ts = robot_->passerv()->moveBackwardTo(xMM, yMM, rotate_ignoring_opponent);
 		}
 		if (ts != TRAJ_FINISHED)
 		{
@@ -812,7 +812,7 @@ TRAJ_STATE IAbyPath::whileMoveBackwardTo(float xMM, float yMM, bool rotate_ignor
 				if (f < 2) robot_->passerv()->resetEmergencyOnTraj(); //pour autoriser le level de detection
 				if (reculOnObstacleMm > 0)
 				{
-					TRAJ_STATE tr = robot_->passerv()->doLine(reculOnObstacleMm);
+					TRAJ_STATE tr = robot_->passerv()->line(reculOnObstacleMm);
 					if (tr != TRAJ_IDLE)
 					{
 						robot_->passerv()->resetEmergencyOnTraj("doLineAbs(reculOnObstacleMm); TRAJ_NEAR_OBSTACLE"); //pour autoriser le level de detection 1 puis 2
@@ -831,7 +831,7 @@ TRAJ_STATE IAbyPath::whileMoveBackwardTo(float xMM, float yMM, bool rotate_ignor
 				if (reculOnCollisionMm > 0)
 				{
 					//robot_->logger().info() << "IAbyPath::whileMoveForwardTo RECUL de mm=" << reculOnCollisionMm << logs::end;
-					TRAJ_STATE tr = robot_->passerv()->doLine(reculOnCollisionMm);
+					TRAJ_STATE tr = robot_->passerv()->line(reculOnCollisionMm);
 					if (tr != TRAJ_IDLE)
 					{
 						robot_->passerv()->resetEmergencyOnTraj("doLineAbs(reculOnCollisionMm); TRAJ_COLLISION"); //pour autoriser le level de detection 1 puis 2
@@ -888,7 +888,7 @@ TRAJ_STATE IAbyPath::whileMoveRotateTo(float AbsoluteThetaInDegree, int wait_tem
 	while (ts != TRAJ_FINISHED)
 	{
 
-		ts = robot_->passerv()->doAbsoluteRotateTo(AbsoluteThetaInDegree);
+		ts = robot_->passerv()->rotateAbsDeg(AbsoluteThetaInDegree);
 
 		robot_->svgPrintPosition(1);
 		robot_->displayTS(ts);

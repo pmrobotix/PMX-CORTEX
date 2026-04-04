@@ -105,12 +105,12 @@ public:
     TRAJ_STATE line(float distMm, RetryPolicy policy = RetryPolicy::noRetry());
 
     /*!
-     * \brief Avance vers (x,y) : faceTo + gotoXY.
+     * \brief Avance vers (x,y) : faceTo + goTo.
      */
     TRAJ_STATE goTo(float x, float y, RetryPolicy policy = RetryPolicy::noRetry());
 
     /*!
-     * \brief Recule vers (x,y) : reverseFaceTo + gotoReverse.
+     * \brief Recule vers (x,y) : reverseFaceTo + goToReverse.
      */
     TRAJ_STATE goToReverse(float x, float y, RetryPolicy policy = RetryPolicy::noRetry());
 
@@ -124,7 +124,7 @@ public:
     /*!
      * \brief Rotation absolue en degres (repere terrain).
      */
-    TRAJ_STATE rotateToAbsoluteDeg(float thetaDeg, RetryPolicy policy = RetryPolicy::noRetry());
+    TRAJ_STATE rotateAbsDeg(float thetaDeg, RetryPolicy policy = RetryPolicy::noRetry());
 
     /*!
      * \brief Tourne face a un point (x,y).

@@ -1475,7 +1475,7 @@ Les méthodes `while*` de IAbyPath et `Robot::whileDoLine()` restent en place.
 Le code de match existant continue de fonctionner.
 On migre les appelants un par un vers Navigator, puis on supprime les anciennes méthodes.
 
-#### Refactoring nommage (planifié)
+#### Refactoring nommage (done)
 
 Convention : **verbe + complément + qualificateur**, pas de préfixe `do`.
 

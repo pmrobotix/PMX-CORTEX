@@ -13,7 +13,7 @@
  * \brief Test de l'asservissement : parcours en carré.
  *
  * Effectue un carré de côté d à partir de la position (x, y),
- * en utilisant doMoveForwardTo pour chaque sommet.
+ * en utilisant moveForwardTo pour chaque sommet.
  */
 class O_Asserv_SquareTest: public FunctionalTest
 {

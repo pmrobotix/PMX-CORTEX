@@ -76,7 +76,7 @@ TRAJ_STATE Robot::whileDoLine(float distMM, bool rotate_ignoring_opponent, int w
 	{
 		ts = TRAJ_IDLE;
 		//calcul de la distance restante en fonction de la couleur de match
-		ts = asserv().doLine(d_restant);
+		ts = asserv().line(d_restant);
 		displayTS(ts);
 
 		// nouvelle position: distance parcourue
@@ -105,7 +105,7 @@ TRAJ_STATE Robot::whileDoLine(float distMM, bool rotate_ignoring_opponent, int w
 			{
 				if (distMM < 0)
 					reculOnObstacleMm = -reculOnObstacleMm;
-				TRAJ_STATE tr = asserv().doLine(reculOnObstacleMm);
+				TRAJ_STATE tr = asserv().line(reculOnObstacleMm);
 				if (tr != TRAJ_IDLE)
 				{
 					asserv().resetEmergencyOnTraj("Robot::whileDoLine(-reculOnObstacleMm); TRAJ_INTERRUPTED!");

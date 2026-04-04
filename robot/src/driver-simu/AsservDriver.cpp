@@ -547,7 +547,7 @@ TRAJ_STATE AsservDriverSimu::waitEndOfTraj()
 	return TRAJ_FINISHED;
 }
 
-void AsservDriverSimu::motion_DoFace(float x_mm, float y_mm, bool back_face)
+void AsservDriverSimu::motion_FaceTo(float x_mm, float y_mm, bool back_face)
 {
 	if (emergencyStop_) return;
 	m_pos.lock();
@@ -577,12 +577,12 @@ void AsservDriverSimu::motion_DoFace(float x_mm, float y_mm, bool back_face)
 	logger().debug() << "t_init=" << (t_init * 180.0f) / M_PI << " deltaTheta deg=" << (deltaTheta * 180.0f) / M_PI
 			<< " thetaCible=" << (thetaCible * 180.0f) / M_PI << logs::end;
 
-	motion_DoRotate(deltaTheta);
+	motion_RotateRad(deltaTheta);
 
 	return;
 }
 
-void AsservDriverSimu::motion_DoLine(float dist_mm)
+void AsservDriverSimu::motion_Line(float dist_mm)
 {
 	if (emergencyStop_) return;
 //calcul du point d'arrivé
@@ -669,7 +669,7 @@ void AsservDriverSimu::motion_DoLine(float dist_mm)
 }
 
 //Rotation relative
-void AsservDriverSimu::motion_DoRotate(float angle_radians)
+void AsservDriverSimu::motion_RotateRad(float angle_radians)
 {
 	if (emergencyStop_) return;
 
@@ -702,7 +702,7 @@ void AsservDriverSimu::motion_DoRotate(float angle_radians)
 
 	if (emergencyStop_)
 	{
-		logger().error() << " AsservDriverSimu::motion_DoRotate emergencyStop_ !!!!!" << logs::end;
+		logger().error() << " AsservDriverSimu::motion_RotateRad emergencyStop_ !!!!!" << logs::end;
 		return;
 	}
 
@@ -714,7 +714,7 @@ void AsservDriverSimu::motion_DoRotate(float angle_radians)
 
 // Orbital turn : rotation autour d'une roue (pivot sur une roue immobile).
 // turnRight = true → pivot roue droite, forward = direction de marche.
-void AsservDriverSimu::motion_DoOrbitalTurn(float angle_radians, bool forward, bool turnRight)
+void AsservDriverSimu::motion_OrbitalTurnRad(float angle_radians, bool forward, bool turnRight)
 {
 	if (emergencyStop_) return;
 
@@ -769,10 +769,10 @@ void AsservDriverSimu::motion_DoOrbitalTurn(float angle_radians, bool forward, b
 	return;
 }
 
-void AsservDriverSimu::motion_Goto(float x_mm, float y_mm)
+void AsservDriverSimu::motion_GoTo(float x_mm, float y_mm)
 {
 	if (emergencyStop_) return;
-	motion_DoFace(x_mm, y_mm);
+	motion_FaceTo(x_mm, y_mm);
 
 	m_pos.lock();
 	float dx = x_mm - p_.x;
@@ -780,33 +780,33 @@ void AsservDriverSimu::motion_Goto(float x_mm, float y_mm)
 	m_pos.unlock();
 
 	float dist = sqrt(dx * dx + dy * dy);
-	motion_DoLine(dist);
+	motion_Line(dist);
 }
 
-void AsservDriverSimu::motion_GotoReverse(float x_mm, float y_mm)
+void AsservDriverSimu::motion_GoToReverse(float x_mm, float y_mm)
 {
 	if (emergencyStop_) return;
-	motion_DoFace(x_mm, y_mm, true);
+	motion_FaceTo(x_mm, y_mm, true);
 
 	m_pos.lock();
 	float dx = x_mm - p_.x;
 	float dy = y_mm - p_.y;
 	m_pos.unlock();
 	float dist = sqrt(dx * dx + dy * dy);
-	motion_DoLine(-dist);
+	motion_Line(-dist);
 
 }
 
-void AsservDriverSimu::motion_GotoChain(float x_mm, float y_mm)
+void AsservDriverSimu::motion_GoToChain(float x_mm, float y_mm)
 {
 	if (emergencyStop_) return;
-	motion_Goto(x_mm, y_mm);
+	motion_GoTo(x_mm, y_mm);
 }
 
-void AsservDriverSimu::motion_GotoReverseChain(float x_mm, float y_mm)
+void AsservDriverSimu::motion_GoToReverseChain(float x_mm, float y_mm)
 {
 	if (emergencyStop_) return;
-	motion_GotoReverse(x_mm, y_mm);
+	motion_GoToReverse(x_mm, y_mm);
 }
 
 void AsservDriverSimu::motion_FreeMotion()

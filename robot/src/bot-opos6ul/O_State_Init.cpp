@@ -454,8 +454,8 @@ void O_State_Init::setPos()
 	//robot.asserv().setLowSpeedForward(true, 50); //35 battery et 50 secteur
 
 	//ts = robot.asserv().doLineAbs(100);
-//		ts = robot.asserv().doMoveForwardTo(300, 1800);
-//		ts = robot.asserv().doFaceTo(1000, 1600);
+//		ts = robot.asserv().moveForwardTo(300, 1800);
+//		ts = robot.asserv().faceTo(1000, 1600);
 //	}else
 //	{
 	//robot.asserv().setLowSpeedForward(true, 40);
@@ -465,15 +465,15 @@ void O_State_Init::setPos()
 //		ts = robot.asserv().doLineAbs(50);
 //		if(ts >=2 )
 //			logger().info() << "ts = robot.asserv().doLineAbs(50) state=" << ts << logs::end;
-//		ts = robot.asserv().doMoveForwardTo(250, 230);
+//		ts = robot.asserv().moveForwardTo(250, 230);
 //		if(ts >=2 )
-//					logger().info() << "ts = robot.asserv().doMoveForwardTo state=" << ts << logs::end;
-//		ts = robot.asserv().doFaceTo(800, 230);
+//					logger().info() << "ts = robot.asserv().moveForwardTo state=" << ts << logs::end;
+//		ts = robot.asserv().faceTo(800, 230);
 //		if(ts >=2 )
-//					logger().info() << "ts = robot.asserv().doFaceTo state=" << ts << logs::end;
+//					logger().info() << "ts = robot.asserv().faceTo state=" << ts << logs::end;
 
-	ts = robot.asserv().doLine(80);
-	//ts = robot.asserv().doMoveForwardAndRotateTo(1275, 300, 135.0, true);
+	ts = robot.asserv().line(80);
+	//ts = robot.asserv().moveForwardAndRotateTo(1275, 300, 135.0, true);
 	if (ts != TRAJ_FINISHED)
 	{
 		robot.logger().error() << "setPos : 1275, 300, 135.0  ===== PB COLLISION FINALE - Que fait-on? ts=" << ts
@@ -486,9 +486,9 @@ void O_State_Init::setPos()
 	/*
 	 ts = robot.asserv().doLineAbs(200);
 	 robot.actions().ax12_init();
-	 ts = robot.asserv().doMoveForwardTo(600, 450);
+	 ts = robot.asserv().moveForwardTo(600, 450);
 	 robot.actions().ax12_init();
-	 ts = robot.asserv().doMoveBackwardAndRotateTo(70 + 150, 450 + 13, 0.0);
+	 ts = robot.asserv().moveBackwardAndRotateTo(70 + 150, 450 + 13, 0.0);
 	 */
 	//robot.asserv().displayTS(ts);
 	robot.svgPrintPosition();

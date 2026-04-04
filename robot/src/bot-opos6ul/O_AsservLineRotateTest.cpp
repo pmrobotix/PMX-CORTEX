@@ -195,11 +195,11 @@ void O_AsservLineRotateTest::run(int argc, char **argv)
 			if (navMode == 0)
 			{
 				// Mode 0 : asserv direct (pas de retry)
-				ts = robot.asserv().doLine(dd);
+				ts = robot.asserv().line(dd);
 				if (ts >= TRAJ_INTERRUPTED)
 				{
 					logger().info() << robot.asserv().getTraj(ts) << " WHAT TO DO ?" << logs::end;
-					robot.asserv().resetEmergencyOnTraj("doLine: " + robot.asserv().getTraj(ts));
+					robot.asserv().resetEmergencyOnTraj("line: " + robot.asserv().getTraj(ts));
 				}
 			}
 			else if (navMode == 1)
@@ -226,11 +226,11 @@ void O_AsservLineRotateTest::run(int argc, char **argv)
 					}
 					else
 					{
-						ts = robot.asserv().doRelativeRotateDeg(aa);
+						ts = robot.asserv().rotateDeg(aa);
 						if (ts >= TRAJ_INTERRUPTED)
 						{
-							logger().info() << robot.asserv().getTraj(ts) << " doRelativeRotateDeg ECHEC" << logs::end;
-							robot.asserv().resetEmergencyOnTraj("doRelativeRotateDeg: " + robot.asserv().getTraj(ts));
+							logger().info() << robot.asserv().getTraj(ts) << " rotateDeg ECHEC" << logs::end;
+							robot.asserv().resetEmergencyOnTraj("rotateDeg: " + robot.asserv().getTraj(ts));
 						}
 					}
 				}
@@ -239,15 +239,15 @@ void O_AsservLineRotateTest::run(int argc, char **argv)
 					// Rotation absolue
 					if (navMode >= 1)
 					{
-						ts = nav.rotateToAbsoluteDeg(aa, policy);
+						ts = nav.rotateAbsDeg(aa, policy);
 					}
 					else
 					{
-						ts = robot.asserv().doAbsoluteRotateTo(aa);
+						ts = robot.asserv().rotateAbsDeg(aa);
 						if (ts >= TRAJ_INTERRUPTED)
 						{
-							logger().info() << robot.asserv().getTraj(ts) << " doAbsoluteRotateTo ECHEC" << logs::end;
-							robot.asserv().resetEmergencyOnTraj("doAbsoluteRotateTo: " + robot.asserv().getTraj(ts));
+							logger().info() << robot.asserv().getTraj(ts) << " rotateAbsDeg ECHEC" << logs::end;
+							robot.asserv().resetEmergencyOnTraj("rotateAbsDeg: " + robot.asserv().getTraj(ts));
 						}
 					}
 				}

@@ -551,31 +551,31 @@ void Asserv::warnBackDetectionOnTraj(int backlevel, float x_adv_detect_mm, float
 	 << logs::end;*/
 }
 
-TRAJ_STATE Asserv::gotoChain(float xMM, float yMM)
+TRAJ_STATE Asserv::goToChain(float xMM, float yMM)
 {
 	float x_match = changeMatchX(xMM);
 	//temp_ignoreRearCollision_ = true;
 	TRAJ_STATE ts;
 	if (useAsservType_ == ASSERV_EXT)
-		{ asservdriver_->motion_GotoChain(x_match, yMM); ts = asservdriver_->waitEndOfTraj(); }
+		{ asservdriver_->motion_GoToChain(x_match, yMM); ts = asservdriver_->waitEndOfTraj(); }
 	else if (useAsservType_ == ASSERV_INT_ESIALR)
-		{ pAsservEsialR_->motion_GotoChain(x_match, yMM); ts = pAsservEsialR_->waitEndOfTraj(); }
+		{ pAsservEsialR_->motion_GoToChain(x_match, yMM); ts = pAsservEsialR_->waitEndOfTraj(); }
 	else
 		ts = TRAJ_ERROR;
 	//temp_ignoreRearCollision_ = false;
 	return ts;
 }
 
-TRAJ_STATE Asserv::gotoXY(float xMM, float yMM)
+TRAJ_STATE Asserv::goTo(float xMM, float yMM)
 {
 	float x_match = changeMatchX(xMM);
 //temp_ignoreRearCollision_ = true;
 
 	TRAJ_STATE ts;
 	if (useAsservType_ == ASSERV_EXT)
-		{ asservdriver_->motion_Goto(x_match, yMM); ts = asservdriver_->waitEndOfTraj(); }
+		{ asservdriver_->motion_GoTo(x_match, yMM); ts = asservdriver_->waitEndOfTraj(); }
 	else if (useAsservType_ == ASSERV_INT_ESIALR)
-		{ pAsservEsialR_->motion_Goto(x_match, yMM); ts = pAsservEsialR_->waitEndOfTraj(); }
+		{ pAsservEsialR_->motion_GoTo(x_match, yMM); ts = pAsservEsialR_->waitEndOfTraj(); }
 
 	else
 		ts = TRAJ_ERROR;
@@ -584,15 +584,15 @@ TRAJ_STATE Asserv::gotoXY(float xMM, float yMM)
 	return ts;
 }
 
-TRAJ_STATE Asserv::gotoReverse(float xMM, float yMM)
+TRAJ_STATE Asserv::goToReverse(float xMM, float yMM)
 {
 	float x_match = changeMatchX(xMM);
 	//temp_ignoreFrontCollision_ = true;
 	TRAJ_STATE ts;
 	if (useAsservType_ == ASSERV_EXT)
-		{ asservdriver_->motion_GotoReverse(x_match, yMM); ts = asservdriver_->waitEndOfTraj(); }
+		{ asservdriver_->motion_GoToReverse(x_match, yMM); ts = asservdriver_->waitEndOfTraj(); }
 	else if (useAsservType_ == ASSERV_INT_ESIALR)
-		{ pAsservEsialR_->motion_GotoReverse(x_match, yMM); ts = pAsservEsialR_->waitEndOfTraj(); }
+		{ pAsservEsialR_->motion_GoToReverse(x_match, yMM); ts = pAsservEsialR_->waitEndOfTraj(); }
 
 	else
 		ts = TRAJ_ERROR;
@@ -600,15 +600,15 @@ TRAJ_STATE Asserv::gotoReverse(float xMM, float yMM)
 	return ts;
 }
 
-TRAJ_STATE Asserv::gotoReverseChain(float xMM, float yMM)
+TRAJ_STATE Asserv::goToReverseChain(float xMM, float yMM)
 {
 	float x_match = changeMatchX(xMM);
 	//temp_ignoreFrontCollision_ = true;
 	TRAJ_STATE ts;
 	if (useAsservType_ == ASSERV_EXT)
-		{ asservdriver_->motion_GotoReverseChain(x_match, yMM); ts = asservdriver_->waitEndOfTraj(); }
+		{ asservdriver_->motion_GoToReverseChain(x_match, yMM); ts = asservdriver_->waitEndOfTraj(); }
 	else if (useAsservType_ == ASSERV_INT_ESIALR)
-		{ pAsservEsialR_->motion_GotoReverseChain(x_match, yMM); ts = pAsservEsialR_->waitEndOfTraj(); }
+		{ pAsservEsialR_->motion_GoToReverseChain(x_match, yMM); ts = pAsservEsialR_->waitEndOfTraj(); }
 
 	else
 		ts = TRAJ_ERROR;
@@ -626,40 +626,40 @@ void Asserv::setSimuSpeedMultiplier(float multiplier)
 // Envoi sans attente (pour mode CHAIN dans Navigator)
 // =============================================================================
 
-void Asserv::gotoSend(float xMM, float yMM)
+void Asserv::goToSend(float xMM, float yMM)
 {
 	float x_match = changeMatchX(xMM);
 	if (useAsservType_ == ASSERV_EXT)
-		asservdriver_->motion_Goto(x_match, yMM);
+		asservdriver_->motion_GoTo(x_match, yMM);
 	else if (useAsservType_ == ASSERV_INT_ESIALR)
-		pAsservEsialR_->motion_Goto(x_match, yMM);
+		pAsservEsialR_->motion_GoTo(x_match, yMM);
 }
 
-void Asserv::gotoChainSend(float xMM, float yMM)
+void Asserv::goToChainSend(float xMM, float yMM)
 {
 	float x_match = changeMatchX(xMM);
 	if (useAsservType_ == ASSERV_EXT)
-		asservdriver_->motion_GotoChain(x_match, yMM);
+		asservdriver_->motion_GoToChain(x_match, yMM);
 	else if (useAsservType_ == ASSERV_INT_ESIALR)
-		pAsservEsialR_->motion_GotoChain(x_match, yMM);
+		pAsservEsialR_->motion_GoToChain(x_match, yMM);
 }
 
-void Asserv::gotoReverseSend(float xMM, float yMM)
+void Asserv::goToReverseSend(float xMM, float yMM)
 {
 	float x_match = changeMatchX(xMM);
 	if (useAsservType_ == ASSERV_EXT)
-		asservdriver_->motion_GotoReverse(x_match, yMM);
+		asservdriver_->motion_GoToReverse(x_match, yMM);
 	else if (useAsservType_ == ASSERV_INT_ESIALR)
-		pAsservEsialR_->motion_GotoReverse(x_match, yMM);
+		pAsservEsialR_->motion_GoToReverse(x_match, yMM);
 }
 
-void Asserv::gotoReverseChainSend(float xMM, float yMM)
+void Asserv::goToReverseChainSend(float xMM, float yMM)
 {
 	float x_match = changeMatchX(xMM);
 	if (useAsservType_ == ASSERV_EXT)
-		asservdriver_->motion_GotoReverseChain(x_match, yMM);
+		asservdriver_->motion_GoToReverseChain(x_match, yMM);
 	else if (useAsservType_ == ASSERV_INT_ESIALR)
-		pAsservEsialR_->motion_GotoReverseChain(x_match, yMM);
+		pAsservEsialR_->motion_GoToReverseChain(x_match, yMM);
 }
 
 TRAJ_STATE Asserv::waitTraj()
@@ -678,7 +678,7 @@ TRAJ_STATE Asserv::waitTraj()
 // Pendant l'avance (dist>0), on ignore la détection arrière car pas pertinente.
 // Pendant la marche arrière (dist<0), on ignore la détection avant.
 // Bloquant : attend la fin du mouvement ou une interruption.
-TRAJ_STATE Asserv::doLine(float dist_mm)
+TRAJ_STATE Asserv::line(float dist_mm)
 {
 	// Désactive la détection du côté opposé au sens de déplacement
 	if (dist_mm > 0)
@@ -692,9 +692,9 @@ TRAJ_STATE Asserv::doLine(float dist_mm)
 	TRAJ_STATE ts;
 
 	if (useAsservType_ == ASSERV_EXT)
-		{ asservdriver_->motion_DoLine(dist_mm); ts = asservdriver_->waitEndOfTraj(); }
+		{ asservdriver_->motion_Line(dist_mm); ts = asservdriver_->waitEndOfTraj(); }
 	else if (useAsservType_ == ASSERV_INT_ESIALR)
-		{ pAsservEsialR_->motion_DoLine(dist_mm); ts = pAsservEsialR_->waitEndOfTraj(); }
+		{ pAsservEsialR_->motion_Line(dist_mm); ts = pAsservEsialR_->waitEndOfTraj(); }
 	else
 		ts = TRAJ_ERROR;
 
@@ -710,13 +710,13 @@ TRAJ_STATE Asserv::doLine(float dist_mm)
 	return ts;
 }
 
-// Rotation relative en degrés : convertit en radians et délègue à doRelativeRotateRad.
-// ATTENTION : bug hérité — ts n'est pas initialisé par le retour de doRelativeRotateRad.
-TRAJ_STATE Asserv::doRelativeRotateDeg(float degreesRelative, bool rotate_ignoring_opponent)
+// Rotation relative en degrés : convertit en radians et délègue à rotateRad.
+// ATTENTION : bug hérité — ts n'est pas initialisé par le retour de rotateRad.
+TRAJ_STATE Asserv::rotateDeg(float degreesRelative, bool rotate_ignoring_opponent)
 {
 	TRAJ_STATE ts;
 	float rad = degToRad(degreesRelative);
-	ts = doRelativeRotateRad(rad, rotate_ignoring_opponent);
+	ts = rotateRad(rad, rotate_ignoring_opponent);
 
 	return ts;
 }
@@ -724,14 +724,14 @@ TRAJ_STATE Asserv::doRelativeRotateDeg(float degreesRelative, bool rotate_ignori
 // Rotation relative en radians. Bloquant.
 // Si rotate_ignoring_opponent=true, la détection adverse est ignorée pendant la rotation
 // (temp_forceRotation_ empêche warnFront/BackDetection de déclencher un arrêt).
-TRAJ_STATE Asserv::doRelativeRotateRad(float radiansRelative, bool rotate_ignoring_opponent)
+TRAJ_STATE Asserv::rotateRad(float radiansRelative, bool rotate_ignoring_opponent)
 {
 	TRAJ_STATE ts;
 	temp_forceRotation_ = rotate_ignoring_opponent;
 	if (useAsservType_ == ASSERV_EXT)
-		{ asservdriver_->motion_DoRotate(radiansRelative); ts = asservdriver_->waitEndOfTraj(); }
+		{ asservdriver_->motion_RotateRad(radiansRelative); ts = asservdriver_->waitEndOfTraj(); }
 	else if (useAsservType_ == ASSERV_INT_ESIALR)
-		{ pAsservEsialR_->motion_DoRotate(radiansRelative); ts = pAsservEsialR_->waitEndOfTraj(); }
+		{ pAsservEsialR_->motion_RotateRad(radiansRelative); ts = pAsservEsialR_->waitEndOfTraj(); }
 	else
 		ts = TRAJ_ERROR;
 
@@ -741,34 +741,34 @@ TRAJ_STATE Asserv::doRelativeRotateRad(float radiansRelative, bool rotate_ignori
 }
 
 //prend automatiquement un angle dans un sens ou dans l'autre suivant la couleur de match
-TRAJ_STATE Asserv::doRelativeRotateByMatchColor(float thetaInDegreeRelative, bool rotate_ignoring_opponent)
+TRAJ_STATE Asserv::rotateByMatchColorDeg(float thetaInDegreeRelative, bool rotate_ignoring_opponent)
 {
 	if (matchColorPosition_ != 0)
 	{
-		return doRelativeRotateDeg(-thetaInDegreeRelative, rotate_ignoring_opponent); //couleur de match secondaire
+		return rotateDeg(-thetaInDegreeRelative, rotate_ignoring_opponent); //couleur de match secondaire
 	} else
-		return doRelativeRotateDeg(thetaInDegreeRelative, rotate_ignoring_opponent); //couleur de match primaire
+		return rotateDeg(thetaInDegreeRelative, rotate_ignoring_opponent); //couleur de match primaire
 }
 
-TRAJ_STATE Asserv::doFaceTo(float xMM, float yMM, bool back_face)
+TRAJ_STATE Asserv::faceTo(float xMM, float yMM, bool back_face)
 {
-//    logger().error() << "1.============ doFaceTo temp_forceRotation_ = true;"  << logs::end;
+//    logger().error() << "1.============ faceTo temp_forceRotation_ = true;"  << logs::end;
 	temp_forceRotation_ = true; //attention on ne prend pas en compte l'adversaire
 
 	float x_match = changeMatchX(xMM);
-//logger().error() << "doFaceTo xMM=" << xMM << " yMM=" << yMM << logs::end;
+//logger().error() << "faceTo xMM=" << xMM << " yMM=" << yMM << logs::end;
 
 	TRAJ_STATE ts;
 
 	if (useAsservType_ == ASSERV_EXT)
-		{ asservdriver_->motion_DoFace(x_match, yMM, back_face); ts = asservdriver_->waitEndOfTraj(); }
+		{ asservdriver_->motion_FaceTo(x_match, yMM, back_face); ts = asservdriver_->waitEndOfTraj(); }
 	else if (useAsservType_ == ASSERV_INT_ESIALR)
-		{ pAsservEsialR_->motion_DoFace(x_match, yMM, back_face); ts = pAsservEsialR_->waitEndOfTraj(); }
+		{ pAsservEsialR_->motion_FaceTo(x_match, yMM, back_face); ts = pAsservEsialR_->waitEndOfTraj(); }
 	else
 		ts = TRAJ_ERROR;
 
 	temp_forceRotation_ = false;
-//    logger().error() << "2.============ doFaceTo temp_forceRotation_ = true;"  << logs::end;
+//    logger().error() << "2.============ faceTo temp_forceRotation_ = true;"  << logs::end;
 	return ts;
 }
 
@@ -776,7 +776,7 @@ TRAJ_STATE Asserv::doFaceTo(float xMM, float yMM, bool back_face)
 // Calcul : angle_cible_converti - angle_courant = rotation relative nécessaire.
 // La symétrie couleur est appliquée via changeMatchAngleRad.
 // Le résultat est wrappé sur [-PI, PI] via WrapAngle2PI pour prendre le chemin le plus court.
-TRAJ_STATE Asserv::doAbsoluteRotateTo(float thetaInDegreeAbsolute, bool rotate_ignoring_opponent)
+TRAJ_STATE Asserv::rotateAbsDeg(float thetaInDegreeAbsolute, bool rotate_ignoring_opponent)
 {
 	float rad = changeMatchAngleRad(degToRad(thetaInDegreeAbsolute)) - pos_getTheta();
 
@@ -784,22 +784,22 @@ TRAJ_STATE Asserv::doAbsoluteRotateTo(float thetaInDegreeAbsolute, bool rotate_i
 
 	logger().debug() << "==== doRotateTo degrees=" << radToDeg(rad) << " thetaInDegreeAbsolute="
 			<< thetaInDegreeAbsolute << logs::end;
-	TRAJ_STATE ts = doRelativeRotateRad(rad, rotate_ignoring_opponent);
+	TRAJ_STATE ts = rotateRad(rad, rotate_ignoring_opponent);
 
 	return ts;
 }
 
 // Avance vers un point (x,y) : 2 étapes.
 // 1) Rotation absolue pour faire face au point (avec gestion collision selon rotate_ignoring_opponent)
-// 2) doLine de la distance euclidienne calculée (+ adjustment_mm optionnel)
+// 2) line de la distance euclidienne calculée (+ adjustment_mm optionnel)
 // Si déjà très proche du point (<5mm en dx ET dy), retourne directement TRAJ_FINISHED.
-TRAJ_STATE Asserv::doMoveForwardTo(float xMM, float yMM, bool rotate_ignoring_opponent, float adjustment_mm)
+TRAJ_STATE Asserv::moveForwardTo(float xMM, float yMM, bool rotate_ignoring_opponent, float adjustment_mm)
 {
 	float dx = changeMatchX(xMM) - pos_getX_mm();
 	float dy = yMM - pos_getY_mm();
 	if (std::abs(dx) < 5.0 && std::abs(dy) < 5.0)
 	{
-		logger().info() << "___ TRAJ_FINISHED __doMoveForwardTo (std::abs(dx) < 5.0 && std::abs(dy) < 5.0)"
+		logger().info() << "___ TRAJ_FINISHED __moveForwardTo (std::abs(dx) < 5.0 && std::abs(dy) < 5.0)"
 				<< logs::end;
 		return TRAJ_FINISHED;
 	}
@@ -807,7 +807,7 @@ TRAJ_STATE Asserv::doMoveForwardTo(float xMM, float yMM, bool rotate_ignoring_op
 
 	aRadian = WrapAngle2PI(aRadian);
 
-	logger().debug() << "doMoveForwardTo doRotateTo degrees=" << (aRadian * 180.0f) / M_PI << " dx=" << dx << " dy="
+	logger().debug() << "moveForwardTo doRotateTo degrees=" << (aRadian * 180.0f) / M_PI << " dx=" << dx << " dy="
 			<< dy << "  (aRadian * 180.0f) / M_PI)= " << (aRadian * 180.0f) / M_PI << " get="
 			<< radToDeg(changeMatchAngleRad(aRadian)) << " xMM=" << xMM << " yMM=" << yMM << " getX=" << pos_getX_mm()
 			<< " getY=" << pos_getY_mm() << logs::end;
@@ -818,7 +818,7 @@ TRAJ_STATE Asserv::doMoveForwardTo(float xMM, float yMM, bool rotate_ignoring_op
 	temp_forceRotation_ = rotate_ignoring_opponent;
 	//temp_forceRotation_ = false;
 
-	ts = doAbsoluteRotateTo(radToDeg(changeMatchAngleRad(aRadian)), rotate_ignoring_opponent);
+	ts = rotateAbsDeg(radToDeg(changeMatchAngleRad(aRadian)), rotate_ignoring_opponent);
 	if (ts != TRAJ_FINISHED)
 	{
 		if (!rotate_ignoring_opponent)
@@ -828,17 +828,17 @@ TRAJ_STATE Asserv::doMoveForwardTo(float xMM, float yMM, bool rotate_ignoring_op
 			if (ts >= TRAJ_INTERRUPTED) //||ts == TRAJ_COLLISION || ts == TRAJ_COLLISION_REAR)
 			{
 				//on resette
-				resetEmergencyOnTraj("doMoveForwardTo rotate_ignoring_opponent TRAJ_INTERRUPTED");
-				//logger().error() << "doMoveForwardTo rotate_ignoring_opponent resetEmergencyOnTraj TRAJ_COLLISION" << logs::end;
+				resetEmergencyOnTraj("moveForwardTo rotate_ignoring_opponent TRAJ_INTERRUPTED");
+				//logger().error() << "moveForwardTo rotate_ignoring_opponent resetEmergencyOnTraj TRAJ_COLLISION" << logs::end;
 				//on renvoi pour dire qu'on est en collision en  tournant
 				//return ts;
 				//count_rotation_ignored++;
 				//if (count_rotation_ignored > 10) break;
 			} else
 			{
-				resetEmergencyOnTraj("doMoveForwardTo rotate_ignoring_opponent TRAJ_OTHERS!!!! ");
+				resetEmergencyOnTraj("moveForwardTo rotate_ignoring_opponent TRAJ_OTHERS!!!! ");
 
-				//logger().error() << "doMoveForwardTo ROTATION TRAJ ERROR CAS NON DESIRE  car on ignore l'adversaire!!!!!!!   => on passe au doline !!! ts=" << ts << logs::end;
+				//logger().error() << "moveForwardTo ROTATION TRAJ ERROR CAS NON DESIRE  car on ignore l'adversaire!!!!!!!   => on passe au doline !!! ts=" << ts << logs::end;
 				//return ts;
 			}
 		}
@@ -846,12 +846,12 @@ TRAJ_STATE Asserv::doMoveForwardTo(float xMM, float yMM, bool rotate_ignoring_op
 	temp_forceRotation_ = false;
 
 	float dist = sqrt(dx * dx + dy * dy);
-	logger().debug() << " __doMoveForwardTo dist sqrt(dx * dx + dy * dy)=" << dist << logs::end;
+	logger().debug() << " __moveForwardTo dist sqrt(dx * dx + dy * dy)=" << dist << logs::end;
 
-	return doLine(dist + adjustment_mm);
+	return line(dist + adjustment_mm);
 
 }
-TRAJ_STATE Asserv::doMoveBackwardTo(float xMM, float yMM, bool rotate_ignoring_opponent)
+TRAJ_STATE Asserv::moveBackwardTo(float xMM, float yMM, bool rotate_ignoring_opponent)
 {
 	xMM = changeMatchX(xMM);
 
@@ -866,14 +866,14 @@ TRAJ_STATE Asserv::doMoveBackwardTo(float xMM, float yMM, bool rotate_ignoring_o
 
 	temp_forceRotation_ = rotate_ignoring_opponent;
 
-	TRAJ_STATE ts = doAbsoluteRotateTo(radToDeg(changeMatchAngleRad(aRadian)));
+	TRAJ_STATE ts = rotateAbsDeg(radToDeg(changeMatchAngleRad(aRadian)));
 	if (ts != TRAJ_FINISHED)
 	{
 		if (!rotate_ignoring_opponent)
 			return ts;
 		else
 		{
-			resetEmergencyOnTraj("doMoveBackwardTo rotate_ignored");
+			resetEmergencyOnTraj("moveBackwardTo rotate_ignored");
 			//logger().error() << " __on passe au doline !!!"  << logs::end;
 		}
 	}
@@ -881,28 +881,28 @@ TRAJ_STATE Asserv::doMoveBackwardTo(float xMM, float yMM, bool rotate_ignoring_o
 	temp_forceRotation_ = false;
 
 	float dist = sqrt(dx * dx + dy * dy);
-	return doLine(-dist);
+	return line(-dist);
 }
 
 //deprecated ?
-TRAJ_STATE Asserv::doMoveForwardAndRotateTo(float xMM, float yMM, float thetaInDegree, bool rotate_ignore_opponent)
+TRAJ_STATE Asserv::moveForwardAndRotateTo(float xMM, float yMM, float thetaInDegree, bool rotate_ignore_opponent)
 {
-	logger().error() << "doMoveForwardAndRotateTo deprecated !!!" << logs::end;
+	logger().error() << "moveForwardAndRotateTo deprecated !!!" << logs::end;
 	TRAJ_STATE ts;
-	ts = doMoveForwardTo(xMM, yMM, rotate_ignore_opponent);
+	ts = moveForwardTo(xMM, yMM, rotate_ignore_opponent);
 	if (ts != TRAJ_FINISHED) return ts;
 
-	ts = doAbsoluteRotateTo(thetaInDegree);
+	ts = rotateAbsDeg(thetaInDegree);
 	return ts;
 }
 //deprecated ?
-TRAJ_STATE Asserv::doMoveBackwardAndRotateTo(float xMM, float yMM, float thetaInDegree)
+TRAJ_STATE Asserv::moveBackwardAndRotateTo(float xMM, float yMM, float thetaInDegree)
 {
-	logger().error() << "doMoveBackwardAndRotateTo deprecated !!!" << logs::end;
+	logger().error() << "moveBackwardAndRotateTo deprecated !!!" << logs::end;
 	TRAJ_STATE ts;
-	ts = doMoveBackwardTo(xMM, yMM);
+	ts = moveBackwardTo(xMM, yMM);
 	if (ts != TRAJ_FINISHED) return ts;
-	ts = doAbsoluteRotateTo(thetaInDegree);
+	ts = rotateAbsDeg(thetaInDegree);
 	return ts;
 }
 
@@ -1172,9 +1172,9 @@ TRAJ_STATE Asserv::orbitalTurnDeg(float angleDeg, bool forward, bool turnRight)
 	float rad = degToRad(angleDeg);
 	TRAJ_STATE ts;
 	if (useAsservType_ == ASSERV_EXT)
-		{ asservdriver_->motion_DoOrbitalTurn(rad, forward, turnRight); ts = asservdriver_->waitEndOfTraj(); }
+		{ asservdriver_->motion_OrbitalTurnRad(rad, forward, turnRight); ts = asservdriver_->waitEndOfTraj(); }
 	else if (useAsservType_ == ASSERV_INT_ESIALR)
-		{ pAsservEsialR_->motion_DoOrbitalTurn(rad, forward, turnRight); ts = pAsservEsialR_->waitEndOfTraj(); }
+		{ pAsservEsialR_->motion_OrbitalTurnRad(rad, forward, turnRight); ts = pAsservEsialR_->waitEndOfTraj(); }
 	else
 		ts = TRAJ_ERROR;
 	return ts;
@@ -1182,7 +1182,7 @@ TRAJ_STATE Asserv::orbitalTurnDeg(float angleDeg, bool forward, bool turnRight)
 
 // Pivot autour de la roue gauche : désactive la régulation, actionne les moteurs,
 // attend la durée, puis réactive la régulation et le maintien en position.
-void Asserv::doRunPivotLeft(int powerL, int powerR, int timems)
+void Asserv::pivotLeft(int powerL, int powerR, int timems)
 {
 	if (useAsservType_ == ASSERV_INT_ESIALR)
 	{
@@ -1203,7 +1203,7 @@ void Asserv::doRunPivotLeft(int powerL, int powerR, int timems)
 		pAsservEsialR_->motion_ActivateReguAngle(true);
 		pAsservEsialR_->motion_ActivateReguDist(true);
 		pAsservEsialR_->motion_AssistedHandling();
-		resetEmergencyOnTraj("doRunPivotLeft");
+		resetEmergencyOnTraj("pivotLeft");
 	} else if (useAsservType_ == ASSERV_EXT)
 	{
 
@@ -1211,8 +1211,8 @@ void Asserv::doRunPivotLeft(int powerL, int powerR, int timems)
 	}
 }
 
-// Pivot autour de la roue droite : même principe que doRunPivotLeft.
-void Asserv::doRunPivotRight(int powerL, int powerR, int timems)
+// Pivot autour de la roue droite : même principe que pivotLeft.
+void Asserv::pivotRight(int powerL, int powerR, int timems)
 {
 	if (useAsservType_ == ASSERV_INT_ESIALR)
 	{
@@ -1233,7 +1233,7 @@ void Asserv::doRunPivotRight(int powerL, int powerR, int timems)
 		pAsservEsialR_->motion_ActivateReguAngle(true);
 		pAsservEsialR_->motion_ActivateReguDist(true);
 		pAsservEsialR_->motion_AssistedHandling();
-		resetEmergencyOnTraj("doRunPivotRight");
+		resetEmergencyOnTraj("pivotRight");
 	} else if (useAsservType_ == ASSERV_EXT)
 	{
 
@@ -1241,7 +1241,7 @@ void Asserv::doRunPivotRight(int powerL, int powerR, int timems)
 	}
 }
 
-TRAJ_STATE Asserv::doCalage2(int distmm, int percent)
+TRAJ_STATE Asserv::calage2(int distmm, int percent)
 {
 	if (useAsservType_ == ASSERV_INT_ESIALR)
 	{
@@ -1289,7 +1289,7 @@ TRAJ_STATE Asserv::doCalage2(int distmm, int percent)
 	return TRAJ_ERROR;
 }
 
-TRAJ_STATE Asserv::doCalage(int distmm, int percent)
+TRAJ_STATE Asserv::calage(int distmm, int percent)
 {
 
 	if (useAsservType_ == ASSERV_INT_ESIALR)
@@ -1329,7 +1329,7 @@ TRAJ_STATE Asserv::doCalage(int distmm, int percent)
 //        asservdriver_->motion_ActivateReguDist(true);
 		asservdriver_->motion_AssistedHandling();
 
-		asservdriver_->motion_DoLine(distmm); TRAJ_STATE ts = asservdriver_->waitEndOfTraj(); //sans asservissement L/R
+		asservdriver_->motion_Line(distmm); TRAJ_STATE ts = asservdriver_->waitEndOfTraj(); //sans asservissement L/R
 
 		asservdriver_->motion_setLowSpeedForward(false);
 		asservdriver_->motion_setLowSpeedBackward(false);
@@ -1343,7 +1343,7 @@ TRAJ_STATE Asserv::doCalage(int distmm, int percent)
 		return TRAJ_ERROR;
 }
 
-TRAJ_STATE Asserv::doCalageNew(float dist_mm, int percent, float timeout_ms) // if distance <0, move backward
+TRAJ_STATE Asserv::calageNew(float dist_mm, int percent, float timeout_ms) // if distance <0, move backward
 {
 	if (useAsservType_ == ASSERV_INT_ESIALR)
 	{
@@ -1384,7 +1384,7 @@ TRAJ_STATE Asserv::doCalageNew(float dist_mm, int percent, float timeout_ms) // 
         asservdriver_->motion_ActivateReguDist(true);
 
         //TODO implementer le timeout ??
-		asservdriver_->motion_DoLine(dist_mm); TRAJ_STATE ts = asservdriver_->waitEndOfTraj();
+		asservdriver_->motion_Line(dist_mm); TRAJ_STATE ts = asservdriver_->waitEndOfTraj();
 
 		asservdriver_->motion_setLowSpeedForward(false);
 		asservdriver_->motion_setLowSpeedBackward(false);

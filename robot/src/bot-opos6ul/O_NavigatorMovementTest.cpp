@@ -137,8 +137,8 @@ void O_NavigatorMovementTest::loop1_DirectMoves()
     checkPosition(sx, sy, 5, "retour depart");
 
     // Rotations sur place
-    ts = nav.rotateToAbsoluteDeg(45);
-    checkResult(ts, TRAJ_FINISHED, "rotateToAbsoluteDeg(45)");
+    ts = nav.rotateAbsDeg(45);
+    checkResult(ts, TRAJ_FINISHED, "rotateAbsDeg(45)");
     checkAngle(45, 2, "angle 45");
 
     ts = nav.faceTo(sx, sy + 100);
@@ -149,7 +149,7 @@ void O_NavigatorMovementTest::loop1_DirectMoves()
     checkResult(ts, TRAJ_FINISHED, "reverseFaceTo(0,+100)");
     checkAngle(-90, 2, "reverseFaceTo = -90");
 
-    ts = nav.rotateToAbsoluteDeg(sa);
+    ts = nav.rotateAbsDeg(sa);
     checkResult(ts, TRAJ_FINISHED, "retour angle initial");
 
     checkPosition(sx, sy, 5, "boucle 1 retour pos");
@@ -196,7 +196,7 @@ void O_NavigatorMovementTest::loop2_Combinations()
     // retour
     ts = nav.goTo(sx, sy);
     checkResult(ts, TRAJ_FINISHED, "retour depart");
-    nav.rotateToAbsoluteDeg(sa);
+    nav.rotateAbsDeg(sa);
     checkPosition(sx, sy, 5, "boucle 2 retour pos");
     checkAngle(sa, 2, "boucle 2 retour angle");
     robot.svgPrintPosition(5);
@@ -226,7 +226,7 @@ void O_NavigatorMovementTest::loop3_ManualPathStop()
         {{sx + 200, sy}, {sx + 200, sy + 200}, {sx, sy + 200}, {sx, sy}},
         RetryPolicy::noRetry(), STOP);
     checkResult(ts, TRAJ_FINISHED, "manualPath STOP carre 200mm");
-    nav.rotateToAbsoluteDeg(sa);
+    nav.rotateAbsDeg(sa);
     checkPosition(sx, sy, 10, "boucle 3 retour pos");
     checkAngle(sa, 2, "boucle 3 retour angle");
     robot.svgPrintPosition(5);
@@ -251,7 +251,7 @@ void O_NavigatorMovementTest::loop4_ManualPathChain()
         {{sx + 300, sy}, {sx + 300, sy + 300}, {sx, sy + 300}, {sx, sy}},
         RetryPolicy::noRetry(), CHAIN);
     checkResult(ts, TRAJ_FINISHED, "manualPath CHAIN carre 300mm");
-    nav.rotateToAbsoluteDeg(sa);
+    nav.rotateAbsDeg(sa);
     checkPosition(sx, sy, 10, "boucle 4 retour pos");
     checkAngle(sa, 2, "boucle 4 retour angle");
     robot.svgPrintPosition(5);
@@ -276,7 +276,7 @@ void O_NavigatorMovementTest::loop5_ManualPathChainNonstop()
         {{sx + 400, sy}, {sx + 400, sy + 400}, {sx, sy + 400}, {sx, sy}},
         RetryPolicy::noRetry(), CHAIN_NONSTOP);
     checkResult(ts, TRAJ_FINISHED, "manualPath CHAIN_NONSTOP carre 400mm");
-    nav.rotateToAbsoluteDeg(sa);
+    nav.rotateAbsDeg(sa);
     checkPosition(sx, sy, 10, "boucle 5 retour pos");
     checkAngle(sa, 2, "boucle 5 retour angle");
     robot.svgPrintPosition(5);
@@ -365,7 +365,7 @@ void O_NavigatorMovementTest::loop9_OrbitalTurn()
     // Retour par goTo + rotation
     ts = nav.goTo(sx, sy);
     checkResult(ts, TRAJ_FINISHED, "retour position");
-    nav.rotateToAbsoluteDeg(sa);
+    nav.rotateAbsDeg(sa);
     checkPosition(sx, sy, 20, "boucle 9 retour pos");
     checkAngle(sa, 2, "boucle 9 retour angle");
 
@@ -428,7 +428,7 @@ void O_NavigatorMovementTest::loop7_Pathfinding()
     // pathToReverse retour
     ts = nav.pathToReverse(sx, sy);
     checkResult(ts, TRAJ_FINISHED, "pathToReverse retour");
-    nav.rotateToAbsoluteDeg(sa);
+    nav.rotateAbsDeg(sa);
     checkPosition(sx, sy, 15, "boucle 7 retour pos");
     checkAngle(sa, 2, "boucle 7 retour angle");
 

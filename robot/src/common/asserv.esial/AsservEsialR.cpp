@@ -536,14 +536,14 @@ TRAJ_STATE AsservEsialR::waitEndOfTraj()
         return TRAJ_ERROR;
 }
 
-void AsservEsialR::motion_DoLine(float dist_mm)
+void AsservEsialR::motion_Line(float dist_mm)
 {
     lock();
     commandM_->addStraightLine(dist_mm);
     unlock();
     waitEndOfTraj();
 }
-void AsservEsialR::motion_DoFace(float x_mm, float y_mm, bool back_face)
+void AsservEsialR::motion_FaceTo(float x_mm, float y_mm, bool back_face)
 {
 	if (back_face)
 	{
@@ -556,20 +556,20 @@ void AsservEsialR::motion_DoFace(float x_mm, float y_mm, bool back_face)
 		commandM_->addGoToAngle(x_mm, y_mm);
 		unlock();
 	}
-//    logger().error() << "_______________________motion_DoFace waitEndOfTraj()  pathStatus_= " << pathStatus_
+//    logger().error() << "_______________________motion_FaceTo waitEndOfTraj()  pathStatus_= " << pathStatus_
 //            << logs::end;
 
     waitEndOfTraj();
 }
 
-void AsservEsialR::motion_DoRotate(float angle_radians)
+void AsservEsialR::motion_RotateRad(float angle_radians)
 {
     lock();
     commandM_->addTurn((angle_radians * 180.0) / M_PI);
     unlock();
     waitEndOfTraj();
 }
-void AsservEsialR::motion_DoOrbitalTurn(float angle_radians, bool forward, bool turnRight)
+void AsservEsialR::motion_OrbitalTurnRad(float angle_radians, bool forward, bool turnRight)
 {
     // Simulation geometrique de l'orbital turn via le PID interne.
     // Calcul de la position finale apres rotation autour d'une roue.
@@ -601,8 +601,8 @@ void AsservEsialR::motion_DoOrbitalTurn(float angle_radians, bool forward, bool 
     float y_final = cy + r * sin(theta_final + offset);
 
     // Executer : rotation puis goto vers la position finale
-    motion_DoRotate(effectiveAngle);
-    motion_Goto(x_final, y_final);
+    motion_RotateRad(effectiveAngle);
+    motion_GoTo(x_final, y_final);
 }
 
 void AsservEsialR::motion_DoDirectLine(float dist_mm)
@@ -616,9 +616,9 @@ void AsservEsialR::motion_DoDirectLine(float dist_mm)
         return;
 }
 
-void AsservEsialR::motion_Goto(float x_mm, float y_mm)
+void AsservEsialR::motion_GoTo(float x_mm, float y_mm)
 {
-    motion_DoFace(x_mm, y_mm);
+    motion_FaceTo(x_mm, y_mm);
 
     lock();
     float dx = x_mm - p_.x;
@@ -626,13 +626,13 @@ void AsservEsialR::motion_Goto(float x_mm, float y_mm)
     unlock();
 
     float dist = sqrt(dx * dx + dy * dy);
-    motion_DoLine(dist);
+    motion_Line(dist);
 }
 
 
-void AsservEsialR::motion_GotoReverse(float x_mm, float y_mm)
+void AsservEsialR::motion_GoToReverse(float x_mm, float y_mm)
 {
-    motion_DoFace(x_mm, y_mm, true);
+    motion_FaceTo(x_mm, y_mm, true);
 
     lock();
     float dx = x_mm - p_.x;
@@ -640,10 +640,10 @@ void AsservEsialR::motion_GotoReverse(float x_mm, float y_mm)
     unlock();
 
     float dist = sqrt(dx * dx + dy * dy);
-    motion_DoLine(-dist);
+    motion_Line(-dist);
 }
 
-void AsservEsialR::motion_GotoChain(float x_mm, float y_mm)
+void AsservEsialR::motion_GoToChain(float x_mm, float y_mm)
 {
     // Utilise addGoToEnchainement : pas d'arret si commande suivante en queue
     lock();
@@ -652,11 +652,11 @@ void AsservEsialR::motion_GotoChain(float x_mm, float y_mm)
     // Pas de waitEndOfTraj : on laisse la queue s'accumuler
 }
 
-void AsservEsialR::motion_GotoReverseChain(float x_mm, float y_mm)
+void AsservEsialR::motion_GoToReverseChain(float x_mm, float y_mm)
 {
     // TODO : pas de addGoToBackEnchainement dans CommandManagerA
     // Fallback sur GotoReverse normal
-    motion_GotoReverse(x_mm, y_mm);
+    motion_GoToReverse(x_mm, y_mm);
 }
 
 void AsservEsialR::motion_FreeMotion(void)

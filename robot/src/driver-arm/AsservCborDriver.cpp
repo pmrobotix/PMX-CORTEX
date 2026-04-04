@@ -336,21 +336,21 @@ void AsservCborDriver::prepareCommand(int countdown)
     m_statusCountDown.lock(); statusCountDown_ = countdown; m_statusCountDown.unlock();
 }
 
-void AsservCborDriver::motion_DoLine(float dist_mm)
+void AsservCborDriver::motion_Line(float dist_mm)
 {
     if (!asservCardStarted_) return;
     prepareCommand(2);
     sendCmd(CMD_STRAIGHT, dist_mm);
 }
 
-void AsservCborDriver::motion_DoRotate(float angle_radians)
+void AsservCborDriver::motion_RotateRad(float angle_radians)
 {
     if (!asservCardStarted_) return;
     prepareCommand(2);
     sendCmd(CMD_TURN, (float)(angle_radians * 180.0 / M_PI));
 }
 
-void AsservCborDriver::motion_DoFace(float x_mm, float y_mm, bool back_reversed)
+void AsservCborDriver::motion_FaceTo(float x_mm, float y_mm, bool back_reversed)
 {
     if (!asservCardStarted_) return;
     prepareCommand(2);
@@ -358,33 +358,33 @@ void AsservCborDriver::motion_DoFace(float x_mm, float y_mm, bool back_reversed)
     sendCmd(CMD_FACE, x_mm, y_mm);
 }
 
-void AsservCborDriver::motion_Goto(float x_mm, float y_mm)
+void AsservCborDriver::motion_GoTo(float x_mm, float y_mm)
 {
     if (!asservCardStarted_) return;
     prepareCommand(2);
     sendCmd(CMD_GOTO_FRONT, x_mm, y_mm);
 }
 
-void AsservCborDriver::motion_GotoReverse(float x_mm, float y_mm)
+void AsservCborDriver::motion_GoToReverse(float x_mm, float y_mm)
 {
     if (!asservCardStarted_) return;
     prepareCommand(2);
     sendCmd(CMD_GOTO_BACK, x_mm, y_mm);
 }
 
-void AsservCborDriver::motion_GotoChain(float x_mm, float y_mm)
+void AsservCborDriver::motion_GoToChain(float x_mm, float y_mm)
 {
     if (!asservCardStarted_) return;
     prepareCommand(5);
     sendCmd(CMD_GOTO_NOSTOP, x_mm, y_mm);
 }
 
-void AsservCborDriver::motion_GotoReverseChain(float x_mm, float y_mm)
+void AsservCborDriver::motion_GoToReverseChain(float x_mm, float y_mm)
 {
-    logger().error() << "motion_GotoReverseChain: not supported in CBOR protocol" << logs::end;
+    logger().error() << "motion_GoToReverseChain: not supported in CBOR protocol" << logs::end;
 }
 
-void AsservCborDriver::motion_DoOrbitalTurn(float angle_radians, bool forward, bool turnRight)
+void AsservCborDriver::motion_OrbitalTurnRad(float angle_radians, bool forward, bool turnRight)
 {
     if (!asservCardStarted_) return;
     prepareCommand(2);

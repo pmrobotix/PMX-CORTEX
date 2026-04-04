@@ -63,7 +63,7 @@ void O_Asserv_CalageTest::run(int argc, char **argv)
         robot.svgPrintPosition();
 
         logger().info() << "GO distance calage mm=" << d << logs::end;
-        robot.asserv().doCalage(d, 30);
+        robot.asserv().calage(d, 30);
         logger().info() << "p= " << p.x << " " << p.y << " mm " << p.theta * 180.0f / M_PI << "° "
                 << p.asservStatus << logs::end;
         robot.svgPrintPosition();
@@ -74,7 +74,7 @@ void O_Asserv_CalageTest::run(int argc, char **argv)
         robot.asserv().startMotionTimerAndOdo(true);
         robot.asserv().setPositionAndColor(70, 450.0, 0.0, (robot.getMyColor() != PMXYELLOW));
 
-        robot.asserv().doMoveForwardAndRotateTo(1680, 255, 0);
+        robot.asserv().moveForwardAndRotateTo(1680, 255, 0);
 
         float mesure_mm = d;
 
@@ -101,7 +101,7 @@ void O_Asserv_CalageTest::run(int argc, char **argv)
         robot.asserv().startMotionTimerAndOdo(true);
         robot.asserv().setPositionAndColor(70, 450.0, 0.0, (robot.getMyColor() != PMXYELLOW));
 
-        robot.asserv().doMoveForwardAndRotateTo(1680, 255, 0);
+        robot.asserv().moveForwardAndRotateTo(1680, 255, 0);
 
         float mesure_mm = d;
 
@@ -128,7 +128,7 @@ void O_Asserv_CalageTest::run(int argc, char **argv)
         robot.asserv().startMotionTimerAndOdo(true);
         robot.asserv().setPositionAndColor(470, 1000.0, 0.0, (robot.getMyColor() != PMXYELLOW));
 
-        robot.asserv().doMoveForwardAndRotateTo(1780, 280, 0);
+        robot.asserv().moveForwardAndRotateTo(1780, 280, 0);
 
         ROBOTPOSITION p = robot.asserv().pos_getPosition();
         logger().info() << "POS before : x=" << p.x << " y=" << p.y << " a=" << p.theta << " degrees="
@@ -157,7 +157,7 @@ void O_Asserv_CalageTest::run(int argc, char **argv)
         robot.asserv().startMotionTimerAndOdo(true);
         robot.asserv().setPositionAndColor(470, 1000.0, 0.0, (robot.getMyColor() != PMXYELLOW));
 
-        robot.asserv().doMoveForwardAndRotateTo(1780, 280, 0);
+        robot.asserv().moveForwardAndRotateTo(1780, 280, 0);
 
         ROBOTPOSITION p = robot.asserv().pos_getPosition();
         logger().info() << "POS before : x=" << p.x << " y=" << p.y << " a=" << p.theta << " degrees="

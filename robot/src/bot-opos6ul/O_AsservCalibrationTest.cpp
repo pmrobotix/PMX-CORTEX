@@ -120,14 +120,14 @@ void O_AsservCalibrationTest::run(int argc, char** argv)
     if (step == 4) {
         logger().info() << "ETAPE 4 : on avance pour regler D" << logs::end;
         robot.asserv().assistedHandling();
-        robot.asserv().doLine(100);
+        robot.asserv().line(100);
         sleep(1);
     }
 
     if (step == 5) {
         logger().info() << "ETAPE 5 : on tourne pour regler D" << logs::end;
         robot.asserv().assistedHandling();
-        robot.asserv().doRelativeRotateDeg(90);
+        robot.asserv().rotateDeg(90);
         sleep(1);
     }
 

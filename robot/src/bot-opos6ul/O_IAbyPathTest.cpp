@@ -81,7 +81,7 @@ void O_IAByPathTest::run(int argc, char** argv)
     initPlayground();
 
     robot.svgPrintPosition();
-    robot.asserv().doLine(155);
+    robot.asserv().line(155);
     robot.svgPrintPosition();
 
     robot.actions().start();

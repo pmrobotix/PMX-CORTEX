@@ -371,7 +371,7 @@ public:
      * \param yMM Position Y cible en mm.
      * \return État de la trajectoire.
      */
-    TRAJ_STATE gotoChain(float xMM, float yMM);
+    TRAJ_STATE goToChain(float xMM, float yMM);
 
     /*!
      * \brief Déplacement vers (x,y) avec arrêt complet à l'arrivée.
@@ -380,7 +380,7 @@ public:
      * \param yMM Position Y cible en mm.
      * \return État de la trajectoire.
      */
-    TRAJ_STATE gotoXY(float xMM, float yMM);
+    TRAJ_STATE goTo(float xMM, float yMM);
 
     /*!
      * \brief Déplacement en marche arrière vers (x,y).
@@ -389,7 +389,7 @@ public:
      * \param yMM Position Y cible en mm.
      * \return État de la trajectoire.
      */
-    TRAJ_STATE gotoReverse(float xMM, float yMM);
+    TRAJ_STATE goToReverse(float xMM, float yMM);
 
     /*!
      * \brief Déplacement en marche arrière chaîné vers (x,y).
@@ -397,7 +397,7 @@ public:
      * \param yMM Position Y cible en mm.
      * \return État de la trajectoire.
      */
-    TRAJ_STATE gotoReverseChain(float xMM, float yMM);
+    TRAJ_STATE goToReverseChain(float xMM, float yMM);
 
     /*!
      * \brief Definit le multiplicateur de temps pour la simulation (SIMU uniquement).
@@ -411,22 +411,22 @@ public:
      * \brief Envoie un goto au driver sans attendre la fin (pas de waitEndOfTraj).
      *        Utilise la commande "g" (arret au point).
      */
-    void gotoSend(float xMM, float yMM);
+    void goToSend(float xMM, float yMM);
 
     /*!
-     * \brief Envoie un gotoChain au driver sans attendre (commande "e", pas d'arret).
+     * \brief Envoie un goToChain au driver sans attendre (commande "e", pas d'arret).
      */
-    void gotoChainSend(float xMM, float yMM);
+    void goToChainSend(float xMM, float yMM);
 
     /*!
-     * \brief Envoie un gotoReverse au driver sans attendre.
+     * \brief Envoie un goToReverse au driver sans attendre.
      */
-    void gotoReverseSend(float xMM, float yMM);
+    void goToReverseSend(float xMM, float yMM);
 
     /*!
-     * \brief Envoie un gotoReverseChain au driver sans attendre.
+     * \brief Envoie un goToReverseChain au driver sans attendre.
      */
-    void gotoReverseChainSend(float xMM, float yMM);
+    void goToReverseChainSend(float xMM, float yMM);
 
     /*!
      * \brief Attend la fin de la trajectoire en cours (ou de la queue de commandes).
@@ -442,7 +442,7 @@ public:
      * \param dist_mm Distance en mm. Positif = avancer, négatif = reculer.
      * \return État de la trajectoire.
      */
-    TRAJ_STATE doLine(float dist_mm);
+    TRAJ_STATE line(float dist_mm);
 
     /*!
      * \brief Rotation relative d'un angle en degrés par rapport à l'orientation courante.
@@ -451,7 +451,7 @@ public:
      * \param rotate_ignoring_opponent true pour ignorer la détection adverse pendant la rotation.
      * \return État de la trajectoire.
      */
-    TRAJ_STATE doRelativeRotateDeg(float degreesRelative, bool rotate_ignoring_opponent = true);
+    TRAJ_STATE rotateDeg(float degreesRelative, bool rotate_ignoring_opponent = true);
 
     /*!
      * \brief Rotation relative d'un angle en radians par rapport à l'orientation courante.
@@ -459,7 +459,7 @@ public:
      * \param rotate_ignoring_opponent true pour ignorer la détection adverse pendant la rotation.
      * \return État de la trajectoire.
      */
-    TRAJ_STATE doRelativeRotateRad(float radRelative, bool rotate_ignoring_opponent = true);
+    TRAJ_STATE rotateRad(float radRelative, bool rotate_ignoring_opponent = true);
 
     /*!
      * \brief Rotation relative avec inversion automatique selon la couleur de match.
@@ -468,7 +468,7 @@ public:
      * \param rotate_ignoring_opponent true pour ignorer la détection adverse.
      * \return État de la trajectoire.
      */
-    TRAJ_STATE doRelativeRotateByMatchColor(float thetaInDegreeRelative, bool rotate_ignoring_opponent = true);
+    TRAJ_STATE rotateByMatchColorDeg(float thetaInDegreeRelative, bool rotate_ignoring_opponent = true);
 
     /*!
      * \brief Rotation absolue vers un angle donné sur le terrain.
@@ -478,7 +478,7 @@ public:
      * \param rotate_ignore_opponent true pour ignorer la détection adverse.
      * \return État de la trajectoire.
      */
-    TRAJ_STATE doAbsoluteRotateTo(float thetaInDegreeAbsolute, bool rotate_ignore_opponent = true);
+    TRAJ_STATE rotateAbsDeg(float thetaInDegreeAbsolute, bool rotate_ignore_opponent = true);
 
     /*!
      * \brief Tourne le robot face à un point (x,y) du terrain.
@@ -487,7 +487,7 @@ public:
      * \param back_face true pour tourner le dos au point au lieu de lui faire face.
      * \return État de la trajectoire.
      */
-    TRAJ_STATE doFaceTo(float xMM, float yMM, bool back_face = false);
+    TRAJ_STATE faceTo(float xMM, float yMM, bool back_face = false);
 
     // ========== CALAGE (recalage contre un mur/bordure) ==========
 
@@ -499,7 +499,7 @@ public:
      * \param timeout_ms Timeout en ms (non encore implémenté).
      * \return État de la trajectoire.
      */
-    TRAJ_STATE doCalageNew(float dist_mm, int percent, float timeout_ms);
+    TRAJ_STATE calageNew(float dist_mm, int percent, float timeout_ms);
 
     /*!
      * \brief Calage simple : avance lentement et s'arrête au blocage mécanique.
@@ -507,7 +507,7 @@ public:
      * \param percent Pourcentage de vitesse lente.
      * \return État de la trajectoire.
      */
-    TRAJ_STATE doCalage(int d, int percent);
+    TRAJ_STATE calage(int d, int percent);
 
     /*!
      * \brief Calage en 2 phases : phase 1 avec régulation, phase 2 en ligne directe.
@@ -515,7 +515,7 @@ public:
      * \param percent Pourcentage de vitesse lente.
      * \return État de la trajectoire.
      */
-    TRAJ_STATE doCalage2(int d, int percent);
+    TRAJ_STATE calage2(int d, int percent);
 
     // ========== PIVOT (rotation autour d'une roue) ==========
 
@@ -536,10 +536,10 @@ public:
     TRAJ_STATE orbitalTurnDeg(float angleDeg, bool forward, bool turnRight);
 
     [[deprecated("Utiliser orbitalTurnDeg() a la place (asservi)")]]
-    void doRunPivotLeft(int powerL, int powerR, int timemsR);
+    void pivotLeft(int powerL, int powerR, int timemsR);
 
     [[deprecated("Utiliser orbitalTurnDeg() a la place (asservi)")]]
-    void doRunPivotRight(int powerL, int powerR, int timemsL);
+    void pivotRight(int powerL, int powerR, int timemsL);
 
     // ========== DÉPLACEMENTS COMPOSÉS (avance + rotation) ==========
 
@@ -551,7 +551,7 @@ public:
      * \param rotate_ignore_opponent true pour ignorer la détection pendant la rotation.
      * \return État de la trajectoire.
      */
-    TRAJ_STATE doMoveForwardAndRotateTo(float xMM, float yMM, float thetaInDegree, bool rotate_ignore_opponent = true);
+    TRAJ_STATE moveForwardAndRotateTo(float xMM, float yMM, float thetaInDegree, bool rotate_ignore_opponent = true);
 
     /*!
      * \brief Recule vers (x,y) : tourne d'abord dos au point, puis recule en ligne droite.
@@ -560,7 +560,7 @@ public:
      * \param rotate_ignored true pour ignorer la détection pendant la rotation initiale.
      * \return État de la trajectoire.
      */
-    TRAJ_STATE doMoveBackwardTo(float xMM, float yMM, bool rotate_ignored = false);
+    TRAJ_STATE moveBackwardTo(float xMM, float yMM, bool rotate_ignored = false);
 
     /*!
      * \brief Recule vers (x,y) puis tourne vers l'angle donné. (deprecated)
@@ -569,7 +569,7 @@ public:
      * \param thetaInDegree Angle final en degrés.
      * \return État de la trajectoire.
      */
-    TRAJ_STATE doMoveBackwardAndRotateTo(float xMM, float yMM, float thetaInDegree);
+    TRAJ_STATE moveBackwardAndRotateTo(float xMM, float yMM, float thetaInDegree);
 
     /*!
      * \brief Avance vers (x,y) : tourne d'abord face au point, puis avance en ligne droite.
@@ -580,7 +580,7 @@ public:
      * \param adjustment Ajustement de distance en mm (ajouté à la distance calculée).
      * \return État de la trajectoire.
      */
-    TRAJ_STATE doMoveForwardTo(float xMM, float yMM, bool rotate_ignored = false, float adjustment = 0);
+    TRAJ_STATE moveForwardTo(float xMM, float yMM, bool rotate_ignored = false, float adjustment = 0);
 
     // ========== RECALAGE PAR TRIANGULATION (intersection de 2 cercles) ==========
 

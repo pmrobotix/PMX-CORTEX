@@ -515,12 +515,12 @@ void AsservDriver::resetEmergencyStop()
 	}
 }
 
-void AsservDriver::motion_DoLine(float dist_mm) //v4 +d
+void AsservDriver::motion_Line(float dist_mm) //v4 +d
 {
 
 	if (!asservCardStarted_)
 	{
-		logger().debug() << "motion_DoLine() ERROR MBED NOT STARTED " << asservCardStarted_ << logs::end;
+		logger().debug() << "motion_Line() ERROR MBED NOT STARTED " << asservCardStarted_ << logs::end;
 		return;
 	} else
 	{
@@ -663,11 +663,11 @@ TRAJ_STATE AsservDriver::waitEndOfTraj()
 	}
 }*/
 
-void AsservDriver::motion_DoFace(float x_mm, float y_mm, bool back_reversed)
+void AsservDriver::motion_FaceTo(float x_mm, float y_mm, bool back_reversed)
 {
 	if (!asservCardStarted_)
 	{
-		logger().debug() << "motion_DoFace() ERROR NUCLEO NOT STARTED " << asservCardStarted_ << logs::end;
+		logger().debug() << "motion_FaceTo() ERROR NUCLEO NOT STARTED " << asservCardStarted_ << logs::end;
 		return;
 	} else
 	{
@@ -690,14 +690,14 @@ void AsservDriver::motion_DoFace(float x_mm, float y_mm, bool back_reversed)
 }
 
 //Rotation relative
-void AsservDriver::motion_DoRotate(float angle_radians)
+void AsservDriver::motion_RotateRad(float angle_radians)
 {
 
-	//logger().error() << "motion_DoRotate() angle_radians=" << angle_radians << logs::end;
+	//logger().error() << "motion_RotateRad() angle_radians=" << angle_radians << logs::end;
 
 	if (!asservCardStarted_)
 	{
-		logger().debug() << "motion_DoRotate() ERROR NUCLEO NOT STARTED " << asservCardStarted_ << logs::end;
+		logger().debug() << "motion_RotateRad() ERROR NUCLEO NOT STARTED " << asservCardStarted_ << logs::end;
 		return;
 	} else
 	{
@@ -714,12 +714,12 @@ void AsservDriver::motion_DoRotate(float angle_radians)
 	}
 }
 
-void AsservDriver::motion_Goto(float x_mm, float y_mm)
+void AsservDriver::motion_GoTo(float x_mm, float y_mm)
 {
 
 	if (!asservCardStarted_)
 	{
-		logger().debug() << "motion_Goto() ERROR NUCLEO NOT STARTED " << asservCardStarted_ << logs::end;
+		logger().debug() << "motion_GoTo() ERROR NUCLEO NOT STARTED " << asservCardStarted_ << logs::end;
 		return;
 	} else
 	{
@@ -736,12 +736,12 @@ void AsservDriver::motion_Goto(float x_mm, float y_mm)
 	}
 }
 
-void AsservDriver::motion_GotoReverse(float x_mm, float y_mm)
+void AsservDriver::motion_GoToReverse(float x_mm, float y_mm)
 {
 
 	if (!asservCardStarted_)
 	{
-		logger().debug() << "motion_GotoReverse() ERROR NUCLEO NOT STARTED " << asservCardStarted_ << logs::end;
+		logger().debug() << "motion_GoToReverse() ERROR NUCLEO NOT STARTED " << asservCardStarted_ << logs::end;
 		return;
 	} else
 	{
@@ -759,12 +759,12 @@ void AsservDriver::motion_GotoReverse(float x_mm, float y_mm)
 }
 
 //add
-void AsservDriver::motion_GotoChain(float x_mm, float y_mm)
+void AsservDriver::motion_GoToChain(float x_mm, float y_mm)
 {
 
 	if (!asservCardStarted_)
 	{
-		logger().debug() << "motion_GotoChain() ERROR NUCLEO NOT STARTED " << asservCardStarted_ << logs::end;
+		logger().debug() << "motion_GoToChain() ERROR NUCLEO NOT STARTED " << asservCardStarted_ << logs::end;
 		return;
 	} else
 	{
@@ -781,12 +781,12 @@ void AsservDriver::motion_GotoChain(float x_mm, float y_mm)
 	}
 }
 
-void AsservDriver::motion_GotoReverseChain(float x_mm, float y_mm)
+void AsservDriver::motion_GoToReverseChain(float x_mm, float y_mm)
 {
 
 	if (!asservCardStarted_)
 	{
-		logger().debug() << "motion_GotoReverseChain() ERROR NUCLEO NOT STARTED " << asservCardStarted_ << logs::end;
+		logger().debug() << "motion_GoToReverseChain() ERROR NUCLEO NOT STARTED " << asservCardStarted_ << logs::end;
 		return;
 	} else
 	{
@@ -847,10 +847,10 @@ void AsservDriver::motion_setMaxSpeed(bool enable, int speed_dist_percent, int s
 
 }
 
-void AsservDriver::motion_DoOrbitalTurn(float angle_radians, bool forward, bool turnRight)
+void AsservDriver::motion_OrbitalTurnRad(float angle_radians, bool forward, bool turnRight)
 {
 	// Non supporté par le protocole ASCII SerialIO
-	logger().error() << "motion_DoOrbitalTurn: not supported in ASCII protocol" << logs::end;
+	logger().error() << "motion_OrbitalTurnRad: not supported in ASCII protocol" << logs::end;
 	return;
 }
 
