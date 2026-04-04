@@ -114,7 +114,7 @@ public:
     /*!
      * \brief Recule vers (x,y) via le driver (rotation+translation en 1 commande).
      */
-    TRAJ_STATE goToReverse(float x, float y, RetryPolicy policy = RetryPolicy::noRetry());
+    TRAJ_STATE goBackTo(float x, float y, RetryPolicy policy = RetryPolicy::noRetry());
 
     // ---- Compose : rotation explicite puis ligne droite ----
 
@@ -150,7 +150,7 @@ public:
     /*!
      * \brief Tourne dos a un point (x,y).
      */
-    TRAJ_STATE reverseFaceTo(float x, float y, RetryPolicy policy = RetryPolicy::noRetry());
+    TRAJ_STATE faceBackTo(float x, float y, RetryPolicy policy = RetryPolicy::noRetry());
 
     /*!
      * \brief Rotation orbitale asservie autour d'une roue (pivot asservi).
@@ -185,9 +185,9 @@ public:
     /*!
      * \brief Idem pathTo en marche arriere.
      */
-    TRAJ_STATE pathToReverse(float x, float y,
-                             RetryPolicy policy = RetryPolicy::standard(),
-                             PathMode mode = STOP);
+    TRAJ_STATE pathBackTo(float x, float y,
+                          RetryPolicy policy = RetryPolicy::standard(),
+                          PathMode mode = STOP);
 
     // ========== COMBINAISONS MOUVEMENT + ROTATION FINALE ==========
 
@@ -196,18 +196,21 @@ public:
     TRAJ_STATE goToAndRotateAbsDeg(float x, float y, float thetaDeg, RetryPolicy policy = RetryPolicy::standard());
     TRAJ_STATE goToAndRotateRelDeg(float x, float y, float degRelative, RetryPolicy policy = RetryPolicy::standard());
     TRAJ_STATE goToAndFaceTo(float x, float y, float fx, float fy, RetryPolicy policy = RetryPolicy::standard());
+    TRAJ_STATE goToAndFaceBackTo(float x, float y, float fx, float fy, RetryPolicy policy = RetryPolicy::standard());
 
     // ---- Combos composees (moveForwardTo) ----
 
     TRAJ_STATE moveForwardToAndRotateAbsDeg(float x, float y, float thetaDeg, RetryPolicy policy = RetryPolicy::standard());
     TRAJ_STATE moveForwardToAndRotateRelDeg(float x, float y, float degRelative, RetryPolicy policy = RetryPolicy::standard());
     TRAJ_STATE moveForwardToAndFaceTo(float x, float y, float fx, float fy, RetryPolicy policy = RetryPolicy::standard());
+    TRAJ_STATE moveForwardToAndFaceBackTo(float x, float y, float fx, float fy, RetryPolicy policy = RetryPolicy::standard());
 
     // ---- Pathfinding combos ----
 
     TRAJ_STATE pathToAndRotateAbsDeg(float x, float y, float thetaDeg, RetryPolicy policy = RetryPolicy::standard());
     TRAJ_STATE pathToAndRotateRelDeg(float x, float y, float degRelative, RetryPolicy policy = RetryPolicy::standard());
     TRAJ_STATE pathToAndFaceTo(float x, float y, float fx, float fy, RetryPolicy policy = RetryPolicy::standard());
+    TRAJ_STATE pathToAndFaceBackTo(float x, float y, float fx, float fy, RetryPolicy policy = RetryPolicy::standard());
 };
 
 #endif

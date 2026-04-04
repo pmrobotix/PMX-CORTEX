@@ -96,7 +96,7 @@ bool O_NavigatorMovementTest::checkAngle(float expectedDeg, float tolerance, con
 
 // =============================================================================
 // Boucle 1 — Mouvements directs (bleu) — carre 100mm
-// line, goTo, goToReverse, rotations — retour au depart
+// line, goTo, goBackTo, rotations — retour au depart
 // =============================================================================
 
 void O_NavigatorMovementTest::loop1_DirectMoves()
@@ -122,10 +122,10 @@ void O_NavigatorMovementTest::loop1_DirectMoves()
     checkResult(ts, TRAJ_FINISHED, "goTo(+100,+100)");
     checkPosition(sx + 100, sy + 100, 5, "goTo -> +100,+100");
 
-    // goToReverse retour en X
-    ts = nav.goToReverse(sx, sy + 100);
-    checkResult(ts, TRAJ_FINISHED, "goToReverse(0,+100)");
-    checkPosition(sx, sy + 100, 5, "goToReverse -> 0,+100");
+    // goBackTo retour en X
+    ts = nav.goBackTo(sx, sy + 100);
+    checkResult(ts, TRAJ_FINISHED, "goBackTo(0,+100)");
+    checkPosition(sx, sy + 100, 5, "goBackTo -> 0,+100");
 
     // rotateDeg(-90) puis line(100) pour revenir
     ts = nav.rotateDeg(-90);
@@ -145,9 +145,9 @@ void O_NavigatorMovementTest::loop1_DirectMoves()
     checkResult(ts, TRAJ_FINISHED, "faceTo(0,+100)");
     checkAngle(90, 2, "faceTo = 90");
 
-    ts = nav.reverseFaceTo(sx, sy + 100);
-    checkResult(ts, TRAJ_FINISHED, "reverseFaceTo(0,+100)");
-    checkAngle(-90, 2, "reverseFaceTo = -90");
+    ts = nav.faceBackTo(sx, sy + 100);
+    checkResult(ts, TRAJ_FINISHED, "faceBackTo(0,+100)");
+    checkAngle(-90, 2, "faceBackTo = -90");
 
     ts = nav.rotateAbsDeg(sa);
     checkResult(ts, TRAJ_FINISHED, "retour angle initial");
@@ -398,7 +398,7 @@ void O_NavigatorMovementTest::initPlayground()
 
 // =============================================================================
 // Boucle 7 — Pathfinding (rouge)
-// pathTo, pathToAndRotate, pathToReverse — retour
+// pathTo, pathToAndRotate, pathBackTo — retour
 // =============================================================================
 
 void O_NavigatorMovementTest::loop7_Pathfinding()
@@ -425,9 +425,9 @@ void O_NavigatorMovementTest::loop7_Pathfinding()
     checkPosition(sx + 400, sy + 300, 15, "pathToAndRotateAbsDeg position");
     checkAngle(0, 2, "angle 0");
 
-    // pathToReverse retour
-    ts = nav.pathToReverse(sx, sy);
-    checkResult(ts, TRAJ_FINISHED, "pathToReverse retour");
+    // pathBackTo retour
+    ts = nav.pathBackTo(sx, sy);
+    checkResult(ts, TRAJ_FINISHED, "pathBackTo retour");
     nav.rotateAbsDeg(sa);
     checkPosition(sx, sy, 15, "boucle 7 retour pos");
     checkAngle(sa, 2, "boucle 7 retour angle");

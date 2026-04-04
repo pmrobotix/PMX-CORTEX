@@ -242,7 +242,7 @@ int BeaconSensors::ScanBus()
 
 int BeaconSensors::readRegnBytes(unsigned char command, unsigned char *aData, uint nb)
 {
-    return (int) i2c_BeaconSensors_.readReg(command, aData, nb + 1);
+    return (int) i2c_BeaconSensors_.readReg(command, aData, nb);
 }
 
 unsigned char BeaconSensors::readAddr(unsigned char address)

@@ -525,7 +525,7 @@ TRAJ_STATE IAbyPath::doPathBackwardTo(float xMM, float yMM, bool rotate_ignoring
 					robot_->svgPrintPosition();
 				}
 
-				ts = robot_->passerv()->goToReverse(robot_->passerv()->changeMatchX(node->x), node->y);
+				ts = robot_->passerv()->goBackTo(robot_->passerv()->changeMatchX(node->x), node->y);
 				robot_->svgPrintPosition();
 				if (ts != TRAJ_FINISHED)
 				{
@@ -783,7 +783,7 @@ TRAJ_STATE IAbyPath::whileMoveForwardTo(float xMM, float yMM, bool rotate_ignori
 }
 */
 
-// [DEPRECATED] Remplace par Navigator::moveBackwardTo() / Navigator::goToReverse() avec RetryPolicy
+// [DEPRECATED] Remplace par Navigator::moveBackwardTo() / Navigator::goBackTo() avec RetryPolicy
 /*
 TRAJ_STATE IAbyPath::whileMoveBackwardTo(float xMM, float yMM, bool rotate_ignoring_opponent, int wait_tempo_us,
 		int nb_near_obstacle, int nb_collision, bool byPathfinding, int reculOnObstacleMm, int reculOnCollisionMm)

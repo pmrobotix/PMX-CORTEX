@@ -41,6 +41,7 @@ enum CborCmdType {
     CMD_GOTO_BACK            = 24,
     CMD_GOTO_NOSTOP          = 25,
     CMD_SET_POSITION         = 26,
+    CMD_FACE_BACK            = 27,
     CMD_ORBITAL_TURN         = 30,
 };
 
@@ -350,12 +351,18 @@ void AsservCborDriver::motion_RotateRad(float angle_radians)
     sendCmd(CMD_TURN, (float)(angle_radians * 180.0 / M_PI));
 }
 
-void AsservCborDriver::motion_FaceTo(float x_mm, float y_mm, bool back_reversed)
+void AsservCborDriver::motion_FaceTo(float x_mm, float y_mm)
 {
     if (!asservCardStarted_) return;
     prepareCommand(2);
-    // TODO: back_reversed non supporté par SerialCbor (face=22 ne gère pas le reverse)
     sendCmd(CMD_FACE, x_mm, y_mm);
+}
+
+void AsservCborDriver::motion_FaceBackTo(float x_mm, float y_mm)
+{
+    if (!asservCardStarted_) return;
+    prepareCommand(2);
+    sendCmd(CMD_FACE_BACK, x_mm, y_mm);
 }
 
 void AsservCborDriver::motion_GoTo(float x_mm, float y_mm)
@@ -365,7 +372,7 @@ void AsservCborDriver::motion_GoTo(float x_mm, float y_mm)
     sendCmd(CMD_GOTO_FRONT, x_mm, y_mm);
 }
 
-void AsservCborDriver::motion_GoToReverse(float x_mm, float y_mm)
+void AsservCborDriver::motion_GoBackTo(float x_mm, float y_mm)
 {
     if (!asservCardStarted_) return;
     prepareCommand(2);
@@ -379,9 +386,9 @@ void AsservCborDriver::motion_GoToChain(float x_mm, float y_mm)
     sendCmd(CMD_GOTO_NOSTOP, x_mm, y_mm);
 }
 
-void AsservCborDriver::motion_GoToReverseChain(float x_mm, float y_mm)
+void AsservCborDriver::motion_GoBackToChain(float x_mm, float y_mm)
 {
-    logger().error() << "motion_GoToReverseChain: not supported in CBOR protocol" << logs::end;
+    logger().error() << "motion_GoBackToChain: not supported in CBOR protocol" << logs::end;
 }
 
 void AsservCborDriver::motion_OrbitalTurnRad(float angle_radians, bool forward, bool turnRight)

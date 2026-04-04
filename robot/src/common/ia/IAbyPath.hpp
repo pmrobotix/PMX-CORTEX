@@ -94,7 +94,7 @@ public:
     TRAJ_STATE doPathForwardAndRotateTo(float x, float y, float AbsThetaInDegree);
     [[deprecated("Utiliser Navigator::pathTo()")]]
     TRAJ_STATE doPathForwardTo(float xMM, float yMM, bool rotate_ignored_detection = false);
-    [[deprecated("Utiliser Navigator::pathToReverse()")]]
+    [[deprecated("Utiliser Navigator::pathBackTo()")]]
     TRAJ_STATE doPathBackwardTo(float xMM, float yMM, bool rotate_ignored_detection = false);
 
 
@@ -105,7 +105,7 @@ public:
 //    		int nb_near_obstacle = 2, int nb_collision = 2, int reculOnObstacleMm = 0, int reculOnCollisionMm = 0,
 //    		bool ignore_collision = 0);
     // [DEPRECATED] Supprime — utiliser Navigator avec RetryPolicy a la place
-    // Voir Navigator::moveForwardTo(), goTo(), moveBackwardTo(), goToReverse(),
+    // Voir Navigator::moveForwardTo(), goTo(), moveBackwardTo(), goBackTo(),
     //      rotateAbsDeg(), moveForwardToAndRotateAbsDeg(), etc.
     //
     // TRAJ_STATE whileMoveForwardTo(...);

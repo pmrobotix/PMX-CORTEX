@@ -486,15 +486,15 @@ TRAJ_STATE Asserv::goTo(float xMM, float yMM)
 	return ts;
 }
 
-TRAJ_STATE Asserv::goToReverse(float xMM, float yMM)
+TRAJ_STATE Asserv::goBackTo(float xMM, float yMM)
 {
 	float x_match = changeMatchX(xMM);
 	//temp_ignoreFrontCollision_ = true;
 	TRAJ_STATE ts;
 	if (useAsservType_ == ASSERV_EXT)
-		{ asservdriver_->motion_GoToReverse(x_match, yMM); ts = asservdriver_->waitEndOfTraj(); }
+		{ asservdriver_->motion_GoBackTo(x_match, yMM); ts = asservdriver_->waitEndOfTraj(); }
 	else if (useAsservType_ == ASSERV_INT_ESIALR)
-		{ pAsservEsialR_->motion_GoToReverse(x_match, yMM); ts = pAsservEsialR_->waitEndOfTraj(); }
+		{ pAsservEsialR_->motion_GoBackTo(x_match, yMM); ts = pAsservEsialR_->waitEndOfTraj(); }
 
 	else
 		ts = TRAJ_ERROR;
@@ -502,15 +502,15 @@ TRAJ_STATE Asserv::goToReverse(float xMM, float yMM)
 	return ts;
 }
 
-TRAJ_STATE Asserv::goToReverseChain(float xMM, float yMM)
+TRAJ_STATE Asserv::goBackToChain(float xMM, float yMM)
 {
 	float x_match = changeMatchX(xMM);
 	//temp_ignoreFrontCollision_ = true;
 	TRAJ_STATE ts;
 	if (useAsservType_ == ASSERV_EXT)
-		{ asservdriver_->motion_GoToReverseChain(x_match, yMM); ts = asservdriver_->waitEndOfTraj(); }
+		{ asservdriver_->motion_GoBackToChain(x_match, yMM); ts = asservdriver_->waitEndOfTraj(); }
 	else if (useAsservType_ == ASSERV_INT_ESIALR)
-		{ pAsservEsialR_->motion_GoToReverseChain(x_match, yMM); ts = pAsservEsialR_->waitEndOfTraj(); }
+		{ pAsservEsialR_->motion_GoBackToChain(x_match, yMM); ts = pAsservEsialR_->waitEndOfTraj(); }
 
 	else
 		ts = TRAJ_ERROR;
@@ -546,22 +546,22 @@ void Asserv::goToChainSend(float xMM, float yMM)
 		pAsservEsialR_->motion_GoToChain(x_match, yMM);
 }
 
-void Asserv::goToReverseSend(float xMM, float yMM)
+void Asserv::goBackToSend(float xMM, float yMM)
 {
 	float x_match = changeMatchX(xMM);
 	if (useAsservType_ == ASSERV_EXT)
-		asservdriver_->motion_GoToReverse(x_match, yMM);
+		asservdriver_->motion_GoBackTo(x_match, yMM);
 	else if (useAsservType_ == ASSERV_INT_ESIALR)
-		pAsservEsialR_->motion_GoToReverse(x_match, yMM);
+		pAsservEsialR_->motion_GoBackTo(x_match, yMM);
 }
 
-void Asserv::goToReverseChainSend(float xMM, float yMM)
+void Asserv::goBackToChainSend(float xMM, float yMM)
 {
 	float x_match = changeMatchX(xMM);
 	if (useAsservType_ == ASSERV_EXT)
-		asservdriver_->motion_GoToReverseChain(x_match, yMM);
+		asservdriver_->motion_GoBackToChain(x_match, yMM);
 	else if (useAsservType_ == ASSERV_INT_ESIALR)
-		pAsservEsialR_->motion_GoToReverseChain(x_match, yMM);
+		pAsservEsialR_->motion_GoBackToChain(x_match, yMM);
 }
 
 TRAJ_STATE Asserv::waitTraj()
@@ -652,25 +652,39 @@ TRAJ_STATE Asserv::rotateByMatchColorDeg(float thetaInDegreeRelative, bool rotat
 		return rotateDeg(thetaInDegreeRelative, rotate_ignoring_opponent); //couleur de match primaire
 }
 
-TRAJ_STATE Asserv::faceTo(float xMM, float yMM, bool back_face)
+TRAJ_STATE Asserv::faceTo(float xMM, float yMM)
 {
-//    logger().error() << "1.============ faceTo temp_forceRotation_ = true;"  << logs::end;
-	temp_forceRotation_ = true; //attention on ne prend pas en compte l'adversaire
-
+	temp_forceRotation_ = true;
 	float x_match = changeMatchX(xMM);
-//logger().error() << "faceTo xMM=" << xMM << " yMM=" << yMM << logs::end;
 
 	TRAJ_STATE ts;
 
 	if (useAsservType_ == ASSERV_EXT)
-		{ asservdriver_->motion_FaceTo(x_match, yMM, back_face); ts = asservdriver_->waitEndOfTraj(); }
+		{ asservdriver_->motion_FaceTo(x_match, yMM); ts = asservdriver_->waitEndOfTraj(); }
 	else if (useAsservType_ == ASSERV_INT_ESIALR)
-		{ pAsservEsialR_->motion_FaceTo(x_match, yMM, back_face); ts = pAsservEsialR_->waitEndOfTraj(); }
+		{ pAsservEsialR_->motion_FaceTo(x_match, yMM); ts = pAsservEsialR_->waitEndOfTraj(); }
 	else
 		ts = TRAJ_ERROR;
 
 	temp_forceRotation_ = false;
-//    logger().error() << "2.============ faceTo temp_forceRotation_ = true;"  << logs::end;
+	return ts;
+}
+
+TRAJ_STATE Asserv::faceBackTo(float xMM, float yMM)
+{
+	temp_forceRotation_ = true;
+	float x_match = changeMatchX(xMM);
+
+	TRAJ_STATE ts;
+
+	if (useAsservType_ == ASSERV_EXT)
+		{ asservdriver_->motion_FaceBackTo(x_match, yMM); ts = asservdriver_->waitEndOfTraj(); }
+	else if (useAsservType_ == ASSERV_INT_ESIALR)
+		{ pAsservEsialR_->motion_FaceBackTo(x_match, yMM); ts = pAsservEsialR_->waitEndOfTraj(); }
+	else
+		ts = TRAJ_ERROR;
+
+	temp_forceRotation_ = false;
 	return ts;
 }
 

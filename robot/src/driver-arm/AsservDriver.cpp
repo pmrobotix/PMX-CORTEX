@@ -663,7 +663,7 @@ TRAJ_STATE AsservDriver::waitEndOfTraj()
 	}
 }*/
 
-void AsservDriver::motion_FaceTo(float x_mm, float y_mm, bool back_reversed)
+void AsservDriver::motion_FaceTo(float x_mm, float y_mm)
 {
 	if (!asservCardStarted_)
 	{
@@ -679,13 +679,27 @@ void AsservDriver::motion_FaceTo(float x_mm, float y_mm, bool back_reversed)
 		statusCountDown_ = 2;
 		m_statusCountDown.unlock();
 
-		if (back_reversed == false)
-			nucleo_writeSerialSTR("f" + to_string((int) (x_mm)) + "#" + to_string((int) (y_mm)) + "\n");
-		else
-		{
-			//TODO reverse in asserv
-		}
-		
+		nucleo_writeSerialSTR("f" + to_string((int) (x_mm)) + "#" + to_string((int) (y_mm)) + "\n");
+	}
+}
+
+void AsservDriver::motion_FaceBackTo(float x_mm, float y_mm)
+{
+	if (!asservCardStarted_)
+	{
+		logger().debug() << "motion_FaceBackTo() ERROR NUCLEO NOT STARTED " << asservCardStarted_ << logs::end;
+		return;
+	} else
+	{
+		m_pos.lock();
+		p_.asservStatus = 1;
+		m_pos.unlock();
+
+		m_statusCountDown.lock();
+		statusCountDown_ = 2;
+		m_statusCountDown.unlock();
+
+		//TODO faceBackTo command in asserv nucleo
 	}
 }
 
@@ -736,12 +750,12 @@ void AsservDriver::motion_GoTo(float x_mm, float y_mm)
 	}
 }
 
-void AsservDriver::motion_GoToReverse(float x_mm, float y_mm)
+void AsservDriver::motion_GoBackTo(float x_mm, float y_mm)
 {
 
 	if (!asservCardStarted_)
 	{
-		logger().debug() << "motion_GoToReverse() ERROR NUCLEO NOT STARTED " << asservCardStarted_ << logs::end;
+		logger().debug() << "motion_GoBackTo() ERROR NUCLEO NOT STARTED " << asservCardStarted_ << logs::end;
 		return;
 	} else
 	{
@@ -781,12 +795,12 @@ void AsservDriver::motion_GoToChain(float x_mm, float y_mm)
 	}
 }
 
-void AsservDriver::motion_GoToReverseChain(float x_mm, float y_mm)
+void AsservDriver::motion_GoBackToChain(float x_mm, float y_mm)
 {
 
 	if (!asservCardStarted_)
 	{
-		logger().debug() << "motion_GoToReverseChain() ERROR NUCLEO NOT STARTED " << asservCardStarted_ << logs::end;
+		logger().debug() << "motion_GoBackToChain() ERROR NUCLEO NOT STARTED " << asservCardStarted_ << logs::end;
 		return;
 	} else
 	{

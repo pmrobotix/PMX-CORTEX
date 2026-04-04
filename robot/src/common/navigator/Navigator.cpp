@@ -154,7 +154,9 @@ TRAJ_STATE Navigator::executeWaypoints(const std::vector<Waypoint>& waypoints,
             float x_match = robot_->asserv().changeMatchX(first.x);
             if (policy.rotateIgnoringOpponent)
             {
-                TRAJ_STATE ts = robot_->asserv().faceTo(x_match, first.y, first.reverse);
+                TRAJ_STATE ts = first.reverse
+                    ? robot_->asserv().faceBackTo(x_match, first.y)
+                    : robot_->asserv().faceTo(x_match, first.y);
                 if (ts != TRAJ_FINISHED)
                 {
                     return ts;
@@ -173,9 +175,9 @@ TRAJ_STATE Navigator::executeWaypoints(const std::vector<Waypoint>& waypoints,
             if (wp.reverse)
             {
                 if (isNonstop && !isLast)
-                    robot_->asserv().goToReverseChainSend(x_match, wp.y);
+                    robot_->asserv().goBackToChainSend(x_match, wp.y);
                 else
-                    robot_->asserv().goToReverseSend(x_match, wp.y);
+                    robot_->asserv().goBackToSend(x_match, wp.y);
             }
             else
             {
@@ -209,7 +211,9 @@ TRAJ_STATE Navigator::executeWaypoints(const std::vector<Waypoint>& waypoints,
         // Rotation vers le point
         if (policy.rotateIgnoringOpponent)
         {
-            ts = robot_->asserv().faceTo(x_match, wp.y, wp.reverse);
+            ts = wp.reverse
+                ? robot_->asserv().faceBackTo(x_match, wp.y)
+                : robot_->asserv().faceTo(x_match, wp.y);
             if (ts != TRAJ_FINISHED)
             {
                 currentIndex = i;
@@ -220,7 +224,7 @@ TRAJ_STATE Navigator::executeWaypoints(const std::vector<Waypoint>& waypoints,
 
         // Deplacement
         if (wp.reverse)
-            ts = robot_->asserv().goToReverse(x_match, wp.y);
+            ts = robot_->asserv().goBackTo(x_match, wp.y);
         else
             ts = robot_->asserv().goTo(x_match, wp.y);
 
@@ -312,14 +316,14 @@ TRAJ_STATE Navigator::goTo(float x, float y, RetryPolicy policy)
     return ts;
 }
 
-TRAJ_STATE Navigator::goToReverse(float x, float y, RetryPolicy policy)
+TRAJ_STATE Navigator::goBackTo(float x, float y, RetryPolicy policy)
 {
     float x_before = robot_->asserv().pos_getX_mm();
     float y_before = robot_->asserv().pos_getY_mm();
 
     TRAJ_STATE ts = executeWithRetry(
         [this, x, y]() {
-            return robot_->asserv().goToReverse(x, y);
+            return robot_->asserv().goBackTo(x, y);
         },
         policy,
         1
@@ -405,18 +409,18 @@ TRAJ_STATE Navigator::faceTo(float x, float y, RetryPolicy policy)
 {
     return executeWithRetry(
         [this, x, y]() {
-            return robot_->asserv().faceTo(x, y, false);
+            return robot_->asserv().faceTo(x, y);
         },
         policy,
         0
     );
 }
 
-TRAJ_STATE Navigator::reverseFaceTo(float x, float y, RetryPolicy policy)
+TRAJ_STATE Navigator::faceBackTo(float x, float y, RetryPolicy policy)
 {
     return executeWithRetry(
         [this, x, y]() {
-            return robot_->asserv().faceTo(x, y, true);
+            return robot_->asserv().faceBackTo(x, y);
         },
         policy,
         0
@@ -537,7 +541,7 @@ TRAJ_STATE Navigator::pathTo(float x, float y, RetryPolicy policy, PathMode mode
     );
 }
 
-TRAJ_STATE Navigator::pathToReverse(float x, float y, RetryPolicy policy, PathMode mode)
+TRAJ_STATE Navigator::pathBackTo(float x, float y, RetryPolicy policy, PathMode mode)
 {
     return executeWithRetry(
         [this, x, y, &policy, mode]() {
@@ -587,6 +591,14 @@ TRAJ_STATE Navigator::goToAndFaceTo(float x, float y, float fx, float fy, RetryP
     return faceTo(fx, fy, policy);
 }
 
+TRAJ_STATE Navigator::goToAndFaceBackTo(float x, float y, float fx, float fy, RetryPolicy policy)
+{
+    TRAJ_STATE ts = goTo(x, y, policy);
+    if (ts != TRAJ_FINISHED)
+        return ts;
+    return faceBackTo(fx, fy, policy);
+}
+
 
 // =============================================================================
 // Combinaisons composees (moveForwardTo) + rotation finale
@@ -614,6 +626,14 @@ TRAJ_STATE Navigator::moveForwardToAndFaceTo(float x, float y, float fx, float f
     if (ts != TRAJ_FINISHED)
         return ts;
     return faceTo(fx, fy, policy);
+}
+
+TRAJ_STATE Navigator::moveForwardToAndFaceBackTo(float x, float y, float fx, float fy, RetryPolicy policy)
+{
+    TRAJ_STATE ts = moveForwardTo(x, y, policy);
+    if (ts != TRAJ_FINISHED)
+        return ts;
+    return faceBackTo(fx, fy, policy);
 }
 
 // =============================================================================
@@ -644,4 +664,10 @@ TRAJ_STATE Navigator::pathToAndFaceTo(float x, float y, float fx, float fy, Retr
     return faceTo(fx, fy, policy);
 }
 
-//TODO pathToAndFaceBackTo
+TRAJ_STATE Navigator::pathToAndFaceBackTo(float x, float y, float fx, float fy, RetryPolicy policy)
+{
+    TRAJ_STATE ts = pathTo(x, y, policy);
+    if (ts != TRAJ_FINISHED)
+        return ts;
+    return faceBackTo(fx, fy, policy);
+}

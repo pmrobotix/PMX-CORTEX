@@ -543,23 +543,20 @@ void AsservEsialR::motion_Line(float dist_mm)
     unlock();
     waitEndOfTraj();
 }
-void AsservEsialR::motion_FaceTo(float x_mm, float y_mm, bool back_face)
+void AsservEsialR::motion_FaceTo(float x_mm, float y_mm)
 {
-	if (back_face)
-	{
-		lock();
-		commandM_->addGoToAngleReverse(x_mm, y_mm);
-		unlock();
-	}else
-	{
-		lock();
-		commandM_->addGoToAngle(x_mm, y_mm);
-		unlock();
-	}
-//    logger().error() << "_______________________motion_FaceTo waitEndOfTraj()  pathStatus_= " << pathStatus_
-//            << logs::end;
+	lock();
+	commandM_->addGoToAngle(x_mm, y_mm);
+	unlock();
+	waitEndOfTraj();
+}
 
-    waitEndOfTraj();
+void AsservEsialR::motion_FaceBackTo(float x_mm, float y_mm)
+{
+	lock();
+	commandM_->addGoToAngleReverse(x_mm, y_mm);
+	unlock();
+	waitEndOfTraj();
 }
 
 void AsservEsialR::motion_RotateRad(float angle_radians)
@@ -630,9 +627,9 @@ void AsservEsialR::motion_GoTo(float x_mm, float y_mm)
 }
 
 
-void AsservEsialR::motion_GoToReverse(float x_mm, float y_mm)
+void AsservEsialR::motion_GoBackTo(float x_mm, float y_mm)
 {
-    motion_FaceTo(x_mm, y_mm, true);
+    motion_FaceBackTo(x_mm, y_mm);
 
     lock();
     float dx = x_mm - p_.x;
@@ -652,11 +649,11 @@ void AsservEsialR::motion_GoToChain(float x_mm, float y_mm)
     // Pas de waitEndOfTraj : on laisse la queue s'accumuler
 }
 
-void AsservEsialR::motion_GoToReverseChain(float x_mm, float y_mm)
+void AsservEsialR::motion_GoBackToChain(float x_mm, float y_mm)
 {
     // TODO : pas de addGoToBackEnchainement dans CommandManagerA
     // Fallback sur GotoReverse normal
-    motion_GoToReverse(x_mm, y_mm);
+    motion_GoBackTo(x_mm, y_mm);
 }
 
 void AsservEsialR::motion_FreeMotion(void)

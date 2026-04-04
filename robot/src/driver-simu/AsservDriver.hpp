@@ -138,14 +138,15 @@ public:
     void resetEmergencyStop();
     TRAJ_STATE waitEndOfTraj() override;
 
-    void motion_FaceTo(float x_mm, float y_mm, bool back_face = false);
+    void motion_FaceTo(float x_mm, float y_mm);
+    void motion_FaceBackTo(float x_mm, float y_mm);
     void motion_Line(float dist_mm);
     void motion_RotateRad(float angle_radians);
     void motion_OrbitalTurnRad(float angle_radians, bool forward, bool turnRight);
     void motion_GoTo(float x_mm, float y_mm);
-    void motion_GoToReverse(float x_mm, float y_mm);
+    void motion_GoBackTo(float x_mm, float y_mm);
     void motion_GoToChain(float x_mm, float y_mm);
-    void motion_GoToReverseChain(float x_mm, float y_mm);
+    void motion_GoBackToChain(float x_mm, float y_mm);
 
     void motion_FreeMotion();
     void motion_AssistedHandling();

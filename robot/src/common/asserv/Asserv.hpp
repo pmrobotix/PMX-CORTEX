@@ -389,7 +389,7 @@ public:
      * \param yMM Position Y cible en mm.
      * \return État de la trajectoire.
      */
-    TRAJ_STATE goToReverse(float xMM, float yMM);
+    TRAJ_STATE goBackTo(float xMM, float yMM);
 
     /*!
      * \brief Déplacement en marche arrière chaîné vers (x,y).
@@ -397,7 +397,7 @@ public:
      * \param yMM Position Y cible en mm.
      * \return État de la trajectoire.
      */
-    TRAJ_STATE goToReverseChain(float xMM, float yMM);
+    TRAJ_STATE goBackToChain(float xMM, float yMM);
 
     /*!
      * \brief Definit le multiplicateur de temps pour la simulation (SIMU uniquement).
@@ -424,14 +424,14 @@ public:
     void goToChainSend(float xMM, float yMM);
 
     /*!
-     * \brief Envoie un goToReverse au driver sans attendre.
+     * \brief Envoie un goBackTo au driver sans attendre.
      */
-    void goToReverseSend(float xMM, float yMM);
+    void goBackToSend(float xMM, float yMM);
 
     /*!
-     * \brief Envoie un goToReverseChain au driver sans attendre.
+     * \brief Envoie un goBackToChain au driver sans attendre.
      */
-    void goToReverseChainSend(float xMM, float yMM);
+    void goBackToChainSend(float xMM, float yMM);
 
     /*!
      * \brief Attend la fin de la trajectoire en cours (ou de la queue de commandes).
@@ -486,13 +486,20 @@ public:
     TRAJ_STATE rotateAbsDeg(float thetaInDegreeAbsolute, bool rotate_ignore_opponent = true);
 
     /*!
-     * \brief Tourne le robot face à un point (x,y) du terrain.
-     * \param xMM Position X du point en mm (repère couleur primaire).
+     * \brief Tourne le robot face a un point (x,y) du terrain.
+     * \param xMM Position X du point en mm (repere couleur primaire).
      * \param yMM Position Y du point en mm.
-     * \param back_face true pour tourner le dos au point au lieu de lui faire face.
-     * \return État de la trajectoire.
+     * \return Etat de la trajectoire.
      */
-    TRAJ_STATE faceTo(float xMM, float yMM, bool back_face = false);
+    TRAJ_STATE faceTo(float xMM, float yMM);
+
+    /*!
+     * \brief Tourne le robot dos a un point (x,y) du terrain.
+     * \param xMM Position X du point en mm (repere couleur primaire).
+     * \param yMM Position Y du point en mm.
+     * \return Etat de la trajectoire.
+     */
+    TRAJ_STATE faceBackTo(float xMM, float yMM);
 
     // ========== CALAGE (recalage contre un mur/bordure) ==========
 
@@ -525,12 +532,6 @@ public:
     // ========== PIVOT (rotation autour d'une roue) ==========
 
     /*!
-     * \brief Pivote autour de la roue gauche (la roue gauche reste quasi immobile).
-     * \param powerL Puissance moteur gauche.
-     * \param powerR Puissance moteur droit.
-     * \param timemsR Durée en ms.
-     */
-    /*!
      * \brief Rotation orbitale asservie autour d'une roue.
      *        Le robot tourne d'un angle donne autour de la roue pivot.
      * \param angleDeg Angle de rotation en degres.
@@ -550,15 +551,27 @@ public:
     // Note : ces méthodes sont utilisées en interne par Navigator.
     // Le code client doit utiliser Navigator::moveForwardTo() / moveBackwardTo() etc.
 
+    /*!
+     * \brief [DEPRECATED] Avance vers (x,y) : rotation face au point, puis ligne droite.
+     */
     [[deprecated("Utiliser Navigator::moveForwardTo()")]]
     TRAJ_STATE moveForwardTo(float xMM, float yMM, bool rotate_ignored = false, float adjustment = 0);
 
+    /*!
+     * \brief [DEPRECATED] Recule vers (x,y) : rotation dos au point, puis ligne droite arriere.
+     */
     [[deprecated("Utiliser Navigator::moveBackwardTo()")]]
     TRAJ_STATE moveBackwardTo(float xMM, float yMM, bool rotate_ignored = false);
 
+    /*!
+     * \brief [DEPRECATED] Avance vers (x,y) puis tourne vers l'angle donne.
+     */
     [[deprecated("Utiliser Navigator::moveForwardToAndRotateAbsDeg()")]]
     TRAJ_STATE moveForwardAndRotateTo(float xMM, float yMM, float thetaInDegree, bool rotate_ignore_opponent = true);
 
+    /*!
+     * \brief [DEPRECATED] Recule vers (x,y) puis tourne vers l'angle donne.
+     */
     [[deprecated("Utiliser Navigator::moveBackwardTo() + Navigator::rotateAbsDeg()")]]
     TRAJ_STATE moveBackwardAndRotateTo(float xMM, float yMM, float thetaInDegree);
 
