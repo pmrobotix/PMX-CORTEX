@@ -7,6 +7,7 @@
 #include "O_AsservLineRotateOldTest.hpp"
 #include "O_AsservWaypointTest.hpp"
 #include "O_NavigatorMovementTest.hpp"
+#include "O_NavigatorBackTest.hpp"
 #include "O_AsservXYRotateTest.hpp"
 #include "O_AsservTest.hpp"
 #include "O_GroveColorTest.hpp"
@@ -72,6 +73,7 @@ int main(int argc, char** argv)
     robot.getConsoleManager().add(new O_AsservLineRotateTest());
     robot.getConsoleManager().add(new O_AsservWaypointTest());
     robot.getConsoleManager().add(new O_NavigatorMovementTest());
+    robot.getConsoleManager().add(new O_NavigatorBackTest());
     //robot.getConsoleManager().add(new O_AsservLineRotateOldTest()); // deprecated : ancien test sans Navigator
     robot.getConsoleManager().add(new O_AsservXYRotateTest());
     robot.getConsoleManager().add(new O_AsservTest());

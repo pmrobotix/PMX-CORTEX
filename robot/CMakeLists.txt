@@ -225,6 +225,7 @@ if(DRIVER_LIB)
         src/bot-opos6ul/O_AsservLineRotateTest.cpp
         src/bot-opos6ul/O_AsservWaypointTest.cpp
         src/bot-opos6ul/O_NavigatorMovementTest.cpp
+        src/bot-opos6ul/O_NavigatorBackTest.cpp
         src/bot-opos6ul/O_AsservXYRotateTest.cpp
         src/bot-opos6ul/O_AsservTest.cpp
         src/bot-opos6ul/O_AsservCalibrationTest.cpp

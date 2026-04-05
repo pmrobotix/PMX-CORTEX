@@ -71,6 +71,7 @@ void logs::LoggerFactory::initialize()
     add(logs::Level::DEBUG, "O_AsservWaypointTest", "console");
     add(logs::Level::DEBUG, "Navigator", "console");
     add(logs::Level::DEBUG, "O_NavigatorMovementTest", "console");
+    add(logs::Level::DEBUG, "O_NavigatorBackTest", "console");
     add(logs::Level::INFO, "O_AsservTest", "console");
     add(logs::Level::INFO, "O_ButtonBarTest", "console");
     add(logs::Level::INFO, "O_GroveColorTest", "console");
