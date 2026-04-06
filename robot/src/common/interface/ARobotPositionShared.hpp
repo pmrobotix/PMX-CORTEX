@@ -90,6 +90,8 @@ inline float WrapAngle2PI(float rad)
  * \brief Interface abstraite d'acces a la position partagee du robot.
  *
  * Fournit un acces thread-safe a la position du robot sur la table.
+ * Inclut un buffer circulaire de 20 positions (getPositionAt) pour
+ * la synchronisation avec les mesures beacon (delta t1_us).
  * Utilisee par l'asservissement (ecriture) et par les capteurs/strategie (lecture).
  */
 class ARobotPositionShared {

@@ -1,6 +1,9 @@
 /*!
  * \file
- * \brief Implémentation de la classe O_SensorsTest.
+ * \brief Test fonctionnel des capteurs de detection (balise beacon).
+ *
+ * Log les positions adversaires, niveaux de detection,
+ * timing beacon (beacon_seq, beacon_delay_us) et position adversaire.
  */
 
 #include "O_SensorsTest.hpp"

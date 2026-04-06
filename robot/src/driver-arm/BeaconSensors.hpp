@@ -1,3 +1,10 @@
+/*!
+ * \file
+ * \brief Communication I2C avec la balise Teensy (BeaconSensors).
+ *
+ * Lit les registres I2C de la Teensy (0x2D) : positions adversaires,
+ * distances collision (c1-c8), timing de mesure (t1-t4_us, seq).
+ */
 
 #ifndef DRIVER_OPOS6UL_ARM_BEACONSENSORS_HPP_
 #define DRIVER_OPOS6UL_ARM_BEACONSENSORS_HPP_

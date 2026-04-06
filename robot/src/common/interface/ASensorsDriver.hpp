@@ -19,6 +19,9 @@ class Robot;
 
 /*!
  * \brief Position d'un robot adversaire detecte par la balise.
+ *
+ * Inclut le delta temps de mesure beacon (t_us) pour la synchronisation
+ * avec le buffer circulaire de positions dans ARobotPositionShared.
  */
 class RobotPos
 {

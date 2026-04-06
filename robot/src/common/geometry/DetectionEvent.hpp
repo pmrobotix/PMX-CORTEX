@@ -3,6 +3,7 @@
  * \brief Evenement de detection d'obstacle.
  *
  * Structure partagee entre Sensors (producteur) et Navigator/IA (consommateurs).
+ * Inclut beacon_delay_us et beacon_seq pour le debug de synchronisation.
  * Contient la position de l'adversaire detecte, le niveau de menace,
  * et le timestamp de la detection pour la synchronisation.
  *
