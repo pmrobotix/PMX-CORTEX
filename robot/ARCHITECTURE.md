@@ -58,6 +58,10 @@ robot/
 │   │   │   ├── ASoundDriver.hpp
 │   │   │   └── ASwitchDriver.hpp
 │   │   │
+│   │   ├── geometry/                    # Géométrie table et zones obstacles
+│   │   │   ├── TableGeometry.hpp         # Dimensions table + isPointInsideTable()
+│   │   │   └── ObstacleZone.cpp/hpp      # Classification obstacles par zones (logique pure)
+│   │   │
 │   │   ├── action/                     # Gestion actions et périphériques
 │   │   │   ├── AActionsElement.hpp
 │   │   │   ├── ActionManagerTimer.cpp/hpp  # ◆ THREAD (event-driven, sem_wait)
@@ -253,28 +257,24 @@ robot/
 │   │   ├── UnitTestSuite.cpp/hpp       #   runner / agrégateur
 │   │   └── UnitTestAppender.cpp/hpp    #   appender logging test
 │   │
-│   ├── common/                         # Common-UnitTest
-│   │   ├── Main.cpp                    #   point d'entrée
+│   ├── common/                         # Common-UnitTest (logique pure, pas de driver)
+│   │   ├── Main.cpp
 │   │   ├── LoggerInitialize.cpp
-│   │   ├── DriverStubs.cpp             #   stubs interfaces driver pour linker
 │   │   ├── ActionManagerTimerTest.cpp/hpp
 │   │   ├── ChronometerTest.cpp/hpp
 │   │   ├── LoggerTest.cpp/hpp
-│   │   ├── ReadWriteTest.cpp/hpp
 │   │   ├── ThreadTest.cpp/hpp
-│   │   └── TimerFactoryTest.cpp/hpp
+│   │   ├── RetryPolicyTest.cpp/hpp
+│   │   ├── TableGeometryTest.cpp/hpp   #   géométrie table (stub position local)
+│   │   └── ObstacleZoneTest.cpp/hpp    #   classification obstacles (logique pure)
 │   │
-│   ├── driver/                         # Driver-UnitTest (tests partagés ARM+SIMU)
+│   ├── driver/                         # Driver-UnitTest (contrat interfaces, ARM+SIMU)
 │   │   ├── Main.cpp
 │   │   ├── LoggerInitialize.cpp
-│   │   ├── AsservDriverTest.cpp/hpp
-│   │   ├── SensorDriverTest.cpp/hpp
 │   │   ├── LedDriverTest.cpp/hpp
-│   │   ├── ServoDriverTest.cpp/hpp
 │   │   ├── SwitchDriverTest.cpp/hpp
-│   │   ├── ColorDriverTest.cpp/hpp     #   (ARM seulement)
-│   │   ├── LcdShieldDriverTest.cpp/hpp #   (ARM seulement)
-│   │   └── ButtonDriverTest.cpp/hpp    #   (SIMU seulement)
+│   │   ├── SensorsDriverTest.cpp/hpp
+│   │   └── NavigatorTest.cpp/hpp       #   (SIMU seulement)
 │   │
 │   └── main_test.cpp                  # Test validation plateforme (existant)
 │
@@ -402,6 +402,59 @@ cmake --build --preset arm-release --target opos6ul
 # --- Tout compiler d'un coup ---
 cmake --build --preset simu-debug
 ```
+
+## Position partagée du robot (ARobotPositionShared)
+
+### Rôle
+
+`ARobotPositionShared` est le **point central d'accès à la position du robot** sur la table.
+Elle fournit un accès thread-safe en lecture/écriture à la structure `ROBOTPOSITION` (x, y, theta en mm/rad).
+
+### Pattern singleton
+
+L'implémentation (SIMU et ARM) utilise un **singleton statique** :
+
+```cpp
+ARobotPositionShared* ARobotPositionShared::create()
+{
+    static RobotPositionShared *instance = new RobotPositionShared();
+    return instance;
+}
+```
+
+**Conséquence importante** : `create()` retourne toujours la même instance. Ne **jamais** `delete` le pointeur retourné — c'est un singleton dont la durée de vie est celle du programme.
+
+### Qui l'utilise
+
+| Composant | Usage | Accès |
+|---|---|---|
+| Asserv / AsservDriver | Écriture de la position courante (odométrie) | `setRobotPosition()` |
+| Sensors | Lecture pour projeter les détections capteurs | `getRobotPosition()` |
+| TableGeometry | Lecture pour `isSensorReadingInsideTable()` | `getRobotPosition()` |
+| SvgWriter | Lecture pour tracer la position | `getRobotPosition()` |
+| Robot | Propriétaire du singleton (`sharedPosition_`) | `sharedPosition()` |
+
+### Structure ROBOTPOSITION
+
+```cpp
+struct sRobotPosition {
+    float x;                // Position X en mm
+    float y;                // Position Y en mm
+    float theta;            // Angle en radians
+    int asservStatus;       // 0=idle, 1=running, 2=emergency stop, 3=blocked
+    unsigned int queueSize; // Commandes en file d'attente
+    unsigned int debug_nb;  // Compteur debug
+};
+```
+
+### Utilitaires dans le même header
+
+| Fonction | Usage |
+|---|---|
+| `degToRad(float)` / `radToDeg(float)` | Conversion d'angles |
+| `WrapAngle2PI(float)` | Normalise dans ]-π, π] |
+| `cmpf(float, float, epsilon)` | Comparaison flottants avec tolérance |
+| `convertPositionBeaconToRepereTable(...)` | Projette une détection balise (polaire) en coordonnées table |
 
 ## Threads et boucles (◆)
 
@@ -878,7 +931,7 @@ SIMU + ARM + test unitaire via l'interface abstraite.
 | LcdShieldDriver | ✅ | ✅ | LcdShieldDriverManualTest | ✅ |
 | ServoDriver | ✅ | ✅ | ServoDriverManualTest | ✅ |
 | ServoUsingMotorDriver | ✅ | ✅ | — | ✅ |
-| SensorsDriver | ✅ | ✅ | SensorDriverManualTest | ✅ |
+| SensorsDriver | ✅ | ✅ | SensorsDriverTest (9 UT) + SensorDriverManualTest | ✅ |
 | RobotPositionShared | ✅ | ✅ | — | ✅ |
 | ColorDriver | ✅ | ✅ | ColorDriverManualTest | ✅ |
 | AsservDriver | ✅ | ✅ | AsservDriverManualTest | ✅ |
@@ -894,7 +947,7 @@ SIMU + ARM + test unitaire via l'interface abstraite.
 | Actions | `common/action/` | — | ✅ |
 | LedBar | `common/action/` | O_LedBarTest | ✅ |
 | ButtonBar | `common/action/` | O_ButtonBarTest | ✅ |
-| Sensors | `common/action/` | O_SensorsTest | ✅ (test non migré) |
+| Sensors | `common/action/` | O_SensorsTest (fonctionnel) | ✅ (logique pure extraite → ObstacleZone) |
 | ServoObjectsSystem | `common/action/` | O_ServoObjectsTest | ✅ (test non migré) |
 | ServoUsingMotor | `common/action/` | — | ✅ |
 | Tirette | `common/action/` | O_TiretteTest | ✅ |
@@ -905,6 +958,8 @@ SIMU + ARM + test unitaire via l'interface abstraite.
 
 | Classe | Dossier cible | Test | Statut |
 |---|---|---|---|
+| TableGeometry | `common/geometry/` | TableGeometryTest (12 UT) | ✅ (nouveau) |
+| ObstacleZone | `common/geometry/` | ObstacleZoneTest (12 UT) | ✅ (extrait de Sensors) |
 | Asserv | `common/asserv/` | — | ✅ |
 | AsservEsialR (+ sous-modules) | `common/asserv.esial/` | O_AsservEsialTest | ✅ (test non migré) |
 | Automate / AAutomateState | `common/state/` | — | ✅ |

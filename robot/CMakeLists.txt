@@ -110,6 +110,7 @@ add_library(pmx-common STATIC
     src/common/action/SoundBar.cpp
     src/common/action/Tirette.cpp
     src/common/action/Sensors.cpp
+    src/common/geometry/ObstacleZone.cpp
     # hardware config
     src/common/HardwareConfig.cpp
 )
@@ -296,6 +297,8 @@ add_executable(common-test
     test/common/SvgAppenderTest.cpp
     test/common/ActionManagerTimerTest.cpp
     test/common/RetryPolicyTest.cpp
+    test/common/TableGeometryTest.cpp
+    test/common/ObstacleZoneTest.cpp
 )
 
 target_link_libraries(common-test PRIVATE pmx-suite)
@@ -310,6 +313,8 @@ if(DRIVER_LIB)
         test/driver/LedDriverTest.cpp
         test/driver/SwitchDriverTest.cpp
         test/driver/NavigatorTest.cpp
+        test/driver/SensorsDriverTest.cpp
+        # SensorsTest supprime : logique pure → ObstacleZoneTest (common-test), integration → O_SensorsTest
     )
 
     target_link_libraries(driver-test PRIVATE pmx-suite ${DRIVER_LIB} pmx-common ${DRIVER_LIB})

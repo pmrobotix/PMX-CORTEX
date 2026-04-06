@@ -9,6 +9,7 @@
 
 #include "action/LcdShield.hpp"
 #include "action/LedBar.hpp"
+#include "geometry/TableGeometry.hpp"
 #include "utils/Chronometer.hpp"
 #include "log/Logger.hpp"
 #include "thread/Thread.hpp"
@@ -25,6 +26,9 @@ OPOS6UL_RobotExtended::OPOS6UL_RobotExtended()
     id_ = "OPOS6UL_Robot";
     myColor_ = PMXNOCOLOR;
     cArgs_.setDescription("(c) PM-ROBOTIX OPOS6UL_Robot");
+
+    // Table 3000x2000 avec marge de 90mm (Coupe de France 2026)
+    setTableGeometry(new TableGeometry(3000, 2000, 90, sharedPosition_));
 
     //on ecrase les versions par default avec la version extended
     OPOS6UL_SvgWriterExtended *p_svg = new OPOS6UL_SvgWriterExtended(id_);

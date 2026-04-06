@@ -25,7 +25,6 @@
 class TestAsserv : public Asserv {
 public:
     TestAsserv(std::string botId, Robot* robot) : Asserv(botId, robot) {}
-    bool filtre_IsInsideTableXY(int, int) override { return true; }
 };
 
 // SvgWriter stub pour les tests (methodes pure virtual)

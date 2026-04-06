@@ -261,16 +261,6 @@ float Asserv::pos_getThetaInDegree()
 	return (pos_getTheta() * 180.0f) / M_PI;
 }
 
-//TODO a corriger
-//doit etre surcharger par robot , pour les detecteur de proxymité
-bool Asserv::filtre_IsInsideTable(int dist_detect_mm, int lateral_pos_sensor_mm, std::string desc)
-{
-
-	logger().debug() << "Asserv::filtre_IsInsideTable Surcharge à faire par config Robot!!!!!!!!" << logs::end;
-	return false;
-
-}
-
 void Asserv::setEmergencyStop()
 {
 	logger().debug() << "Asserv::setEmergencyStop() !!!!!!!!!!!" << logs::end;

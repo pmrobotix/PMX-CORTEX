@@ -10,6 +10,7 @@
 #include "thread/Thread.hpp"
 #include "asserv/Asserv.hpp"
 #include "interface/ARobotPositionShared.hpp"
+#include "geometry/TableGeometry.hpp"
 #include "Actions.hpp"
 //#include "../../Log/simple_svg_1.0.0_cho.hpp"
 //#include "simple_svg_1.0.0.hpp"
@@ -22,33 +23,12 @@ Sensors::Sensors(Actions &actions, Robot *robot) :
 {
 	sensorsdriver_ = ASensorsDriver::create(robot->getID(), robot->sharedPosition());
 
-	remove_outside_table_ = true;
-
-//    addThresholdDiameterOpponent_mm(300);
-	addThresholdFront(0, 0, 0);
-	addThresholdFrontVeryClosed(0, 0, 0);
-	addThresholdBack(0, 0, 0);
-	addThresholdBackVeryClosed(0, 0, 0);
-	addConfigFront(false, false, false);
-	addConfigBack(false, false, false);
-
-	setIgnoreAllFrontNearObstacle(false);
-	setIgnoreAllBackNearObstacle(false);
-
-	adv_is_detected_front_right_ = false;
-	adv_is_detected_front_left_ = false;
-	adv_is_detected_back_right_ = false;
-	adv_is_detected_back_left_ = false;
+	// ObstacleZone est initialise par son constructeur (tout a zero/false)
 
 	x_adv_mm = -1.0;
 	y_adv_mm = -1.0;
 
 	opponents_last_positions.clear();
-
-	//2023
-//    is_cake_there_in_D2_ = true;
-//    is_cake_there_in_D5_ = true;
-//    is_cake_there_in_A5_ = true;
 
 	/*
 	 int xdim = 3400;
@@ -135,78 +115,7 @@ SensorsTimer::SensorsTimer(Sensors &sensors, int timeSpan_ms, std::string name) 
 	this->init(name_, timeSpan_ms * 1000);
 }
 
-void Sensors::remove_outside_table(bool enable)
-{
-	remove_outside_table_ = enable;
-}
-
-//void Sensors::addThresholdDiameterOpponent_mm(int diam)
-//{
-//    diameterOpponent_mm_ = diam;
-//}
-
-void Sensors::addThresholdFront(int left, int center, int right)
-{
-	frontLeftThreshold_ = left;
-	frontCenterThreshold_ = center;
-	frontRightThreshold_ = right;
-}
-void Sensors::addThresholdFrontVeryClosed(int left, int center, int right)
-{
-	frontLeftVeryClosedThreshold_ = left;
-	frontCenterVeryClosedThreshold_ = center;
-	frontRightVeryClosedThreshold_ = right;
-}
-void Sensors::addThresholdBack(int left, int center, int right)
-{
-	backLeftThreshold_ = left;
-	backCenterThreshold_ = center;
-	backRightThreshold_ = right;
-}
-void Sensors::addThresholdBackVeryClosed(int left, int center, int right)
-{
-	backLeftVeryClosedThreshold_ = left;
-	backCenterVeryClosedThreshold_ = center;
-	backRightVeryClosedThreshold_ = right;
-}
-
-void Sensors::addConfigFront(bool left, bool center, bool right)
-{
-	enableFrontLeft_ = left;
-	enableFrontCenter_ = center;
-	enableFrontRight_ = right;
-}
-void Sensors::addConfigBack(bool left, bool center, bool right)
-{
-	enableBackLeft_ = left;
-	enableBackCenter_ = center;
-	enableBackRight_ = right;
-}
-
-void Sensors::setIgnoreFrontNearObstacle(bool ignoreLeft, bool ignoreCenter, bool ignoreRight)
-{
-	ignoreFrontLeft_ = ignoreLeft;
-	ignoreFrontCenter_ = ignoreCenter;
-	ignoreFrontRight_ = ignoreRight;
-}
-void Sensors::setIgnoreBackNearObstacle(bool ignoreLeft, bool ignoreCenter, bool ignoreRight)
-{
-	ignoreBackLeft_ = ignoreLeft;
-	ignoreBackCenter_ = ignoreCenter;
-	ignoreBackRight_ = ignoreRight;
-}
-void Sensors::setIgnoreAllFrontNearObstacle(bool ignore)
-{
-	ignoreFrontLeft_ = ignore;
-	ignoreFrontCenter_ = ignore;
-	ignoreFrontRight_ = ignore;
-}
-void Sensors::setIgnoreAllBackNearObstacle(bool ignore)
-{
-	ignoreBackLeft_ = ignore;
-	ignoreBackCenter_ = ignore;
-	ignoreBackRight_ = ignore;
-}
+// Methodes de config, seuils, ignore, filtres : delegues inline vers obstacleZone_ (voir Sensors.hpp)
 
 ASensorsDriver::bot_positions Sensors::setPositionsAdvByBeacon()
 {
@@ -349,179 +258,24 @@ int Sensors::leftSide()
 
 //filtre is_in_front devant ou coté
 //0  0  0
-//3  3  3  // level 1 frontCenterThreshold_
-//2G 4  1D // level 2 frontCenterVeryClosedThreshold_ et back enterVeryClosedThreshold_
-//3  3  3  // level 1 backCenterThreshold_
+//3  3  3  // level 1 obstacleZone_.frontCenterThreshold()
+//2G 4  1D // level 2 obstacleZone_.frontCenterVeryClosedThreshold() et back enterVeryClosedThreshold_
+//3  3  3  // level 1 obstacleZone_.backCenterThreshold()
 //0  0  0
 
 //TODO NiceTOhave filtre is_in_front and back
 //99       9/99    99       // 1 jusqu'à 9 vecteur robot adv nous rentre dedans, vitesse reduite
-//3/30     1       2/20     // level 1 frontCenterThreshold_
-//97/-97G  0       98/-98D      // level 0 frontCenterVeryClosedThreshold_ => 0 arret complet
+//3/30     1       2/20     // level 1 obstacleZone_.frontCenterThreshold()
+//97/-97G  0       98/-98D      // level 0 obstacleZone_.frontCenterVeryClosedThreshold() => 0 arret complet
 //-3/-30   -1      -2/-20     // 2 ou 3 si vecteur entrant, 20 ou 30 si le robot adv s'en va;
 //-99      -9/-99  -99       //possibilité de créer new level si on veut avec plus de threshold
 
 //les coordonnées x_adv_mm, y_adv_mm sont sur le repère robot
-int Sensors::filtre_levelInFront(int threshold_LR_mm, int threshold_Front_mm, int threshold_veryclosed_front_mm,
-		float dist_adv_mm, float x_adv_mm, float y_adv_mm, float theta_adv_deg)
-{
+// filtre_levelInFront : delegue inline vers obstacleZone_ (voir Sensors.hpp)
 
-	logger().debug() << __FUNCTION__ << " threshold_LR_mm=" << threshold_LR_mm << " threshold_Front_mm="
-			<< threshold_Front_mm << " threshold_veryclosed_front_mm=" << threshold_veryclosed_front_mm << " dist_mm="
-			<< dist_adv_mm << " x_mm=" << x_adv_mm << " y_mm=" << y_adv_mm << " theta_adv_deg=" << theta_adv_deg
-			<< logs::end;
+// filtre_levelInBack : delegue inline vers obstacleZone_ (voir Sensors.hpp)
 
-	//position de l'adversaire
-	int xdist_adv = (int) x_adv_mm; //coordx (droite et gauche) à partir du centre du robot jusque le bord du robot adv
-	int ydist_adv = (int) y_adv_mm; //coordy (devant la balise!) à partir du centre du robot jusque le bord du robot adv
-
-	//patch balise!!!!!!!!!!!!!!!!
-	if (xdist_adv > 0) xdist_adv += 50;
-	if (xdist_adv < 0) xdist_adv -= 50;
-	if (ydist_adv > 0) ydist_adv += 50;
-	if (ydist_adv < 0) ydist_adv -= 50;
-
-	//si devant le robot adverse - axe y devant la balise, axe x sur la droite du robot
-	if (ydist_adv > 0)
-	{
-
-		// return 1 si c'est à droite en positif
-		if ((ydist_adv <= threshold_veryclosed_front_mm) && (xdist_adv >= threshold_LR_mm)
-				&& (xdist_adv <= threshold_Front_mm))
-		{
-			return 1;
-		}
-		// return 2 si c'est à gauche en positif
-		if ((ydist_adv <= threshold_veryclosed_front_mm) && (xdist_adv <= (-threshold_LR_mm))
-				&& (xdist_adv >= -threshold_Front_mm))
-		{
-			return 2;
-		}
-
-		if ((ydist_adv <= threshold_Front_mm) && (ydist_adv > threshold_veryclosed_front_mm)
-				&& (xdist_adv >= -threshold_Front_mm) && (xdist_adv <= threshold_Front_mm))
-		{
-			return 3;
-		}
-
-		//on renvoi 4 si c'est inf à closed threshold et si ce n'est pas sur les côtés
-		if ((ydist_adv <= threshold_veryclosed_front_mm) && (xdist_adv >= -threshold_LR_mm)
-				&& (xdist_adv <= threshold_LR_mm))
-		{
-
-			return 4;
-		}
-	}
-	return 0;
-
-}
-
-int Sensors::filtre_levelInBack(int threshold_LR_mm, int threshold_Back_mm, int threshold_veryclosed_back_mm,
-		float dist_adv_mm, float x_adv_mm, float y_adv_mm, float theta_adv_deg)
-{
-	logger().error() << __FUNCTION__ << " threshold_LR_mm=" << threshold_LR_mm << " threshold_Back_mm="
-			<< threshold_Back_mm << " threshold_veryclosed_back_mm=" << threshold_veryclosed_back_mm << " dist_mm="
-			<< dist_adv_mm << " x_adv_mm=" << x_adv_mm << " y_adv_mm=" << y_adv_mm << " theta_adv_deg=" << theta_adv_deg
-			<< logs::end;
-
-
-
-	int xdist_adv = (int) x_adv_mm; //coordx (droite et gauche) à partir du centre du robot jusque le bord du robot adv
-	int ydist_adv = (int) y_adv_mm; //coordy (devant la balise!) à partir du centre du robot jusque le bord du robot adv
-
-	//patch balise!!!!!!!!!!!!!!!!
-	if (xdist_adv > 0) xdist_adv += 50;
-	if (xdist_adv < 0) xdist_adv -= 50;
-	if (ydist_adv > 0) ydist_adv += 50;
-	if (ydist_adv < 0) ydist_adv -= 50;
-
-	//si devant le robot adverse - axe y devant la balise, axe x sur la droite du robot
-	if (ydist_adv < 0)
-	{
-
-		// return 1 si c'est à droite en positif
-		if ((ydist_adv >= -threshold_veryclosed_back_mm) && (xdist_adv >= threshold_LR_mm)
-				&& (xdist_adv <= threshold_Back_mm))
-		{
-			return -1;
-		}
-		// return 2 si c'est à gauche en positif
-		if ((ydist_adv >= -threshold_veryclosed_back_mm) && (xdist_adv <= (-threshold_LR_mm))
-				&& (xdist_adv >= -threshold_Back_mm))
-		{
-			return -2;
-		}
-
-		if ((ydist_adv >= -threshold_Back_mm) && (ydist_adv < -threshold_veryclosed_back_mm)
-				&& (xdist_adv >= -threshold_Back_mm) && (xdist_adv <= threshold_Back_mm))
-		{
-			return -3;
-		}
-
-		//on renvoi 4 si c'est inf à closed threshold et si ce n'est pas sur les côtés
-		if ((ydist_adv >= -threshold_veryclosed_back_mm) && (xdist_adv >= -threshold_LR_mm)
-				&& (xdist_adv <= threshold_LR_mm))
-		{
-			return -4;
-		}
-	}
-	return 0;
-	/*
-	 return 0;
-	 //    logger().debug() << "filtre_levelInFront dist_mm=" << dist_mm << " x_mm=" << x_mm << " y_mm=" << y_mm
-	 //            << " theta_deg=" << theta_deg << logs::end;
-
-	 //on renvoi 1 si c'est entre les 2 threshold
-	 int xdist_adv = x_mm; //coordx (devant la balise) à partir du centre du robot jusque le bord du robot adv
-	 int ydist_adv = abs(y_mm); //coordy (droite et gauche) à partir du centre du robot jusque le bord du robot adv
-
-	 //patch balise
-	 if (xdist_adv > 0) xdist_adv += 50;
-	 if (xdist_adv < 0) xdist_adv -= 50;
-	 if (ydist_adv > 0) ydist_adv += 50;
-	 if (ydist_adv < 0) ydist_adv -= 50;
-
-	 //si  le robot adverse est derriere
-	 if (x_mm < 0)
-	 {
-	 //on garde une bande de 10cm pour dire que c'est 2 et non 3 ou 4
-	 // return 3 si c'est à droite en positif
-	 if ((ydist_adv <= threshold_veryclosed_mm - 100) && (xdist_adv >= threshold_veryclosed_mm - 150)
-	 && (xdist_adv <= threshold_mm))
-	 {
-	 return 1;
-	 }
-	 // return 4 si c'est à gauche en positif
-	 if ((ydist_adv <= threshold_veryclosed_mm - 100) && (xdist_adv <= (-threshold_veryclosed_mm + 150))
-	 && (xdist_adv >= -threshold_mm))
-	 {
-	 return 2;
-	 }
-	 if ((ydist_adv <= threshold_mm) && (ydist_adv > threshold_veryclosed_mm))
-	 {
-	 return 3;
-	 }
-
-	 //on renvoi 2 si c'est inf à closed threshold et si ce n'est pas sur les côtés
-	 if ((ydist_adv <= threshold_veryclosed_mm) && (xdist_adv >= -threshold_veryclosed_mm)
-	 && (xdist_adv <= threshold_veryclosed_mm))
-	 {
-	 return 4;
-	 }
-	 }
-	 return 0;
-	 */
-}
-
-int Sensors::right(bool display)
-{
-	return (adv_is_detected_front_right_ | adv_is_detected_back_right_);
-}
-
-int Sensors::left(bool display)
-{
-	return (adv_is_detected_front_left_ | adv_is_detected_back_left_);
-}
+// right() et left() : delegues inline vers obstacleZone_ (voir Sensors.hpp)
 
 //retourne 0, sinon le niveau detecté 2 veryClosed, 1 first level
 int Sensors::front(bool display)
@@ -535,19 +289,19 @@ int Sensors::front(bool display)
 
 	int tfMin = 9999;
 
-	logger().debug() << "enable L=" << enableFrontLeft_ << " C=" << enableFrontCenter_ << " R=" << enableFrontRight_
+	logger().debug() << "enable L=" << obstacleZone_.enableFrontLeft() << " C=" << obstacleZone_.enableFrontCenter() << " R=" << obstacleZone_.enableFrontRight()
 			<< logs::end;
 
 	int level = 0;
 
-	if (enableFrontLeft_) //existance
+	if (obstacleZone_.enableFrontLeft()) //existance
 	{
-		bool fL_filter = this->robot()->passerv()->filtre_IsInsideTable(fL, -1, "fL"); //negatif = capteur placé à gauche
+		bool fL_filter = this->robot()->tableGeometry()->isSensorReadingInsideTable(fL, -1); //negatif = capteur placé à gauche
 		//logger().info() << " fL_filter= " << fL_filter << logs::end;
 		if (fL_filter)
 		{
 			{
-				if ((!ignoreFrontLeft_ && (fL < frontLeftThreshold_)))
+				if ((!obstacleZone_.ignoreFrontLeft() && (fL < obstacleZone_.frontLeftThreshold())))
 				{
 					if (display) logger().debug() << "1 frontLeft= " << fL << logs::end;
 
@@ -555,7 +309,7 @@ int Sensors::front(bool display)
 
 					level = 3;
 				}
-				if ((!ignoreFrontLeft_ && (fL < frontLeftVeryClosedThreshold_)))
+				if ((!obstacleZone_.ignoreFrontLeft() && (fL < obstacleZone_.frontLeftVeryClosedThreshold())))
 				{
 					if (display) logger().debug() << "2 frontLeft= " << fL << logs::end;
 					level = 4;
@@ -564,19 +318,19 @@ int Sensors::front(bool display)
 		}
 	}
 
-	if (enableFrontRight_)
+	if (obstacleZone_.enableFrontRight())
 	{
-		bool fR_filter = this->robot()->passerv()->filtre_IsInsideTable(fR, 1, "fR");
+		bool fR_filter = this->robot()->tableGeometry()->isSensorReadingInsideTable(fR, 1);
 		if (fR_filter)
 		{
-			if ((!ignoreFrontRight_ && (fR < frontRightThreshold_)))
+			if ((!obstacleZone_.ignoreFrontRight() && (fR < obstacleZone_.frontRightThreshold())))
 			{
 				if (display) logger().debug() << "1 frontRight= " << fR << logs::end;
 				//                tfR = fR;
 				if (fR > 60) if (tfMin > fR) tfMin = fR;
 				level = 3;
 			}
-			if ((!ignoreFrontRight_ && (fR < frontRightVeryClosedThreshold_)))
+			if ((!obstacleZone_.ignoreFrontRight() && (fR < obstacleZone_.frontRightVeryClosedThreshold())))
 			{
 				if (display) logger().debug() << "2 frontRight= " << fR << logs::end;
 				level = 4;
@@ -606,9 +360,9 @@ int Sensors::front(bool display)
 					botpos.d, botpos.x, botpos.y, botpos.theta_deg, &x_pos_adv_table, &y_pos_adv_table);
 
 			//filtre sur la table avec transformation de repere
-			inside_table = this->robot()->passerv()->filtre_IsInsideTableXY((int) x_pos_adv_table,
+			inside_table = this->robot()->tableGeometry()->isPointInsideTable((int) x_pos_adv_table,
 					(int) y_pos_adv_table);
-			if (!remove_outside_table_)
+			if (!obstacleZone_.removeOutsideTable())
 			{
 				inside_table = true;
 			}
@@ -621,9 +375,9 @@ int Sensors::front(bool display)
 
 				//filtre is_in_front devant ou coté
 				//0  0  0
-				//3  3  3  // level 1 frontCenterThreshold_
-				//2G 4  1D // level 2 frontCenterVeryClosedThreshold_ et backCenterVeryClosedThreshold_
-				//-3  -3  -3 // // level 1 backCenterThreshold_
+				//3  3  3  // level 1 obstacleZone_.frontCenterThreshold()
+				//2G 4  1D // level 2 obstacleZone_.frontCenterVeryClosedThreshold() et obstacleZone_.backCenterVeryClosedThreshold()
+				//-3  -3  -3 // // level 1 obstacleZone_.backCenterThreshold()
 				//0  0  0
 
 
@@ -635,8 +389,8 @@ int Sensors::front(bool display)
 
 
 
-				level_filtered = this->filtre_levelInFront(thresholdLR, frontCenterThreshold_,
-						frontCenterVeryClosedThreshold_, botpos.d, botpos.x, botpos.y, botpos.theta_deg);
+				level_filtered = this->filtre_levelInFront(thresholdLR, obstacleZone_.frontCenterThreshold(),
+						obstacleZone_.frontCenterVeryClosedThreshold(), botpos.d, botpos.x, botpos.y, botpos.theta_deg);
 				logger().debug() << __FUNCTION__ << " " << nb << " nbbots=" << botpos.nbDetectedBots
 						<< " level_filtered= " << level_filtered << logs::end;
 
@@ -647,7 +401,7 @@ int Sensors::front(bool display)
 						logger().debug() << level_filtered << " DROITE frontCenter xy= " << botpos.x << " " << botpos.y
 								<< logs::end;
 					level = 1;
-					adv_is_detected_front_right_ = true;
+					obstacleZone_.setDetectedFrontRight(true);
 				} else if (level_filtered == 2)
 				{
 					// GAUCHE
@@ -655,7 +409,7 @@ int Sensors::front(bool display)
 						logger().debug() << level_filtered << " GAUCHE frontCenter xy= " << botpos.x << " " << botpos.y
 								<< logs::end;
 					level = 2;
-					adv_is_detected_front_left_ = true;
+					obstacleZone_.setDetectedFrontLeft(true);
 
 				} else if (level_filtered == 3)
 				{
@@ -690,7 +444,7 @@ int Sensors::front(bool display)
 		}
 
 //TODO : a reinitialiser apres 1sec
-//                        adv_is_detected_front_right_ = false;
+//                        obstacleZone_.setDetectedFrontRight( = false;
 //                        adv_is_detected_front_left_ = false;
 
 	} else
@@ -730,19 +484,19 @@ int Sensors::back(bool display)
 
 	ASensorsDriver::bot_positions vpos;
 
-	if (enableBackLeft_)
+	if (obstacleZone_.enableBackLeft())
 	{
-		bool bL_filter = this->robot()->passerv()->filtre_IsInsideTable(-bL, -1, "bL");
+		bool bL_filter = this->robot()->tableGeometry()->isSensorReadingInsideTable(-bL, -1);
 		if (bL_filter)
 		{ //negatif = capteur placé à gauche
-			if ((!ignoreBackLeft_ && (bL < backLeftThreshold_)))
+			if ((!obstacleZone_.ignoreBackLeft() && (bL < obstacleZone_.backLeftThreshold())))
 			{
 				if (display) logger().info() << "1 backLeft= " << bL << logs::end;
 				//tfMin = bL;
 				if (bL > 60) if (tfMin > bL) tfMin = bL;
 				level = 3;
 			}
-			if ((!ignoreBackLeft_ && (bL < backLeftVeryClosedThreshold_)))
+			if ((!obstacleZone_.ignoreBackLeft() && (bL < obstacleZone_.backLeftVeryClosedThreshold())))
 			{
 				if (display) logger().info() << "2 backLeft= " << bL << logs::end;
 				level = 4;
@@ -750,18 +504,18 @@ int Sensors::back(bool display)
 		}
 	}
 
-	if (enableBackRight_)
+	if (obstacleZone_.enableBackRight())
 	{
-		bool bR_filter = this->robot()->passerv()->filtre_IsInsideTable(-bR, 1, "bR");
+		bool bR_filter = this->robot()->tableGeometry()->isSensorReadingInsideTable(-bR, 1);
 		if (bR_filter)
 		{
-			if ((!ignoreBackRight_ && (bR < backRightThreshold_)))
+			if ((!obstacleZone_.ignoreBackRight() && (bR < obstacleZone_.backRightThreshold())))
 			{
 				if (display) logger().info() << "1 backRight= " << bR << logs::end;
 				if (bR > 60) if (tfMin > bR) tfMin = bR;
 				level = 3;
 			}
-			if ((!ignoreBackRight_ && (bR < backRightVeryClosedThreshold_)))
+			if ((!obstacleZone_.ignoreBackRight() && (bR < obstacleZone_.backRightVeryClosedThreshold())))
 			{
 				if (display) logger().info() << "2 backRight= " << bR << logs::end;
 				level = 4;
@@ -791,9 +545,9 @@ int Sensors::back(bool display)
 					botpos.d, botpos.x, botpos.y, botpos.theta_deg, &x_pos_adv_table, &y_pos_adv_table);
 
 			//filtre sur la table avec transformation de repere
-			inside_table = this->robot()->passerv()->filtre_IsInsideTableXY((int) x_pos_adv_table,
+			inside_table = this->robot()->tableGeometry()->isPointInsideTable((int) x_pos_adv_table,
 					(int) y_pos_adv_table);
-			if (!remove_outside_table_)
+			if (!obstacleZone_.removeOutsideTable())
 			{
 				inside_table = true;
 			}
@@ -806,9 +560,9 @@ int Sensors::back(bool display)
 
 				//filtre is_in_front devant ou coté
 				//0  0  0
-				//3  3  3  // level 1 frontCenterThreshold_
-				//-2G -4  -1D // level 2 frontCenterVeryClosedThreshold_ et backCenterVeryClosedThreshold_
-				//-3  -3  -3 // // level 1 backCenterThreshold_ //TODO -3 ??? ou bien 4 et mettre 5 au milieu
+				//3  3  3  // level 1 obstacleZone_.frontCenterThreshold()
+				//-2G -4  -1D // level 2 obstacleZone_.frontCenterVeryClosedThreshold() et obstacleZone_.backCenterVeryClosedThreshold()
+				//-3  -3  -3 // // level 1 obstacleZone_.backCenterThreshold() //TODO -3 ??? ou bien 4 et mettre 5 au milieu
 				//0  0  0
 
 
@@ -820,8 +574,8 @@ int Sensors::back(bool display)
 
 
 
-				level_filtered = this->filtre_levelInBack(thresholdLR, backCenterThreshold_,
-						backCenterVeryClosedThreshold_, botpos.d, botpos.x, botpos.y, botpos.theta_deg);
+				level_filtered = this->filtre_levelInBack(thresholdLR, obstacleZone_.backCenterThreshold(),
+						obstacleZone_.backCenterVeryClosedThreshold(), botpos.d, botpos.x, botpos.y, botpos.theta_deg);
 //				logger().error() << __FUNCTION__ << " BACKWARD___ " << nb << " nbbots=" << botpos.nbDetectedBots
 //						<< " level_filtered= " << level_filtered << logs::end;
 
@@ -832,7 +586,7 @@ int Sensors::back(bool display)
 						logger().debug() << level_filtered << " DROITE backCenter xy= " << botpos.x << " " << botpos.y
 								<< logs::end;
 					level = -1;
-					adv_is_detected_front_right_ = true;
+					obstacleZone_.setDetectedFrontRight(true);
 				} else if (level_filtered == -2)
 				{
 					// GAUCHE
@@ -840,7 +594,7 @@ int Sensors::back(bool display)
 						logger().debug() << level_filtered << " GAUCHE backCenter xy= " << botpos.x << " " << botpos.y
 								<< logs::end;
 					level = -2;
-					adv_is_detected_front_left_ = true;
+					obstacleZone_.setDetectedFrontLeft(true);
 
 				} else if (level_filtered == -3)
 				{
@@ -872,7 +626,7 @@ int Sensors::back(bool display)
 		}
 
 		//TODO : a reinitialiser apres 1sec
-		//                        adv_is_detected_front_right_ = false;
+		//                        obstacleZone_.setDetectedFrontRight( = false;
 		//                        adv_is_detected_front_left_ = false;
 
 	} else
@@ -881,23 +635,23 @@ int Sensors::back(bool display)
 	}
 
 	/*
-	 if (enableBackLeft_)
+	 if (obstacleZone_.enableBackLeft())
 	 if (this->robot()->asserv()->filtre_IsInsideTable(-bL, -1)) {
-	 if ((!ignoreBackLeft_ && (bL < backLeftVeryClosedThreshold_))) {
+	 if ((!obstacleZone_.ignoreBackLeft() && (bL < obstacleZone_.backLeftVeryClosedThreshold()))) {
 	 logger().info() << "2 backLeft= " << bL << logs::end;
 	 level = 2;
 	 }
 	 }
-	 if (enableBackCenter_)
+	 if (obstacleZone_.enableBackCenter())
 	 if (this->robot()->asserv()->filtre_IsInsideTable(-bC, 0)) {
-	 if ((!ignoreBackCenter_ && (bC < backCenterVeryClosedThreshold_))) {
+	 if ((!ignoreBackCenter_ && (bC < obstacleZone_.backCenterVeryClosedThreshold()))) {
 	 logger().info() << "2 backCenter= " << bC << logs::end;
 	 level = 2;
 	 }
 	 }
-	 if (enableBackRight_)
+	 if (obstacleZone_.enableBackRight())
 	 if (this->robot()->asserv()->filtre_IsInsideTable(-bR, 1)) {
-	 if ((!ignoreBackRight_ && (bR < backRightVeryClosedThreshold_))) {
+	 if ((!obstacleZone_.ignoreBackRight() && (bR < obstacleZone_.backRightVeryClosedThreshold()))) {
 	 logger().info() << "2 backRight= " << bR << logs::end;
 	 level = 2;
 	 }

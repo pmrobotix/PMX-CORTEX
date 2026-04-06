@@ -18,6 +18,7 @@
 #include "utils/Chronometer.hpp"
 #include "AActionsElement.hpp"
 #include "timer/ITimerPosixListener.hpp"
+#include "geometry/ObstacleZone.hpp"
 
 class ASensorsDriver;
 class Robot;
@@ -36,52 +37,9 @@ private:
 
 	Robot *robot_;
 	ASensorsDriver *sensorsdriver_;
+	ObstacleZone obstacleZone_;
 
 	ASensorsDriver::bot_positions opponents_last_positions;
-
-	bool remove_outside_table_;
-
-	int frontLeftThreshold_;
-	int frontCenterThreshold_;
-	int frontRightThreshold_;
-
-	int frontLeftVeryClosedThreshold_;
-	int frontCenterVeryClosedThreshold_;
-	int frontRightVeryClosedThreshold_;
-
-	int backLeftThreshold_;
-	int backCenterThreshold_;
-	int backRightThreshold_;
-
-	int backLeftVeryClosedThreshold_;
-	int backCenterVeryClosedThreshold_;
-	int backRightVeryClosedThreshold_;
-
-	bool adv_is_detected_front_right_;
-	bool adv_is_detected_back_right_;
-	bool adv_is_detected_front_left_;
-	bool adv_is_detected_back_left_;
-
-	//2023
-	bool is_cake_there_in_D2_;
-	bool is_cake_there_in_D5_;
-	bool is_cake_there_in_A5_;
-
-	bool enableFrontLeft_;
-	bool enableFrontCenter_;
-	bool enableFrontRight_;
-
-	bool enableBackLeft_;
-	bool enableBackCenter_;
-	bool enableBackRight_;
-
-	bool ignoreFrontLeft_;
-	bool ignoreFrontCenter_;
-	bool ignoreFrontRight_;
-
-	bool ignoreBackLeft_;
-	bool ignoreBackCenter_;
-	bool ignoreBackRight_;
 public:
 
 	//distance de ce qu'il y a devant le robot
@@ -107,15 +65,10 @@ public:
 
 	void display(int n);
 
-	inline bool getAvailableFrontCenter()
-	{
-		return (enableFrontCenter_ & !ignoreFrontCenter_);
-	}
+	inline bool getAvailableFrontCenter() { return obstacleZone_.getAvailableFrontCenter(); }
+	inline bool getAvailableBackCenter() { return obstacleZone_.getAvailableBackCenter(); }
 
-	inline bool getAvailableBackCenter()
-	{
-		return (enableBackCenter_ & !ignoreBackCenter_);
-	}
+	ObstacleZone& obstacleZone() { return obstacleZone_; }
 
 	float MultipleRightSide(int nb);
 	float MultipleLeftSide(int nb);
@@ -139,30 +92,39 @@ public:
 	int back(bool display = false);
 
 	//detection adversaire
-	int right(bool display = false);
-	int left(bool display = false);
+	int right(bool display = false) { return obstacleZone_.right(); }
+	int left(bool display = false) { return obstacleZone_.left(); }
 
-	//activation des capteurs
-	void addConfigFront(bool left, bool center, bool right);
-	void addConfigBack(bool left, bool center, bool right);
+	// --- Delegation vers ObstacleZone (config, seuils, filtres) ---
 
-	void remove_outside_table(bool enable);
+	void addConfigFront(bool l, bool c, bool r) { obstacleZone_.addConfigFront(l, c, r); }
+	void addConfigBack(bool l, bool c, bool r) { obstacleZone_.addConfigBack(l, c, r); }
+
+	void remove_outside_table(bool enable) { obstacleZone_.setRemoveOutsideTable(enable); }
+
 	int filtre_levelInFront(int threshold_LR_mm, int threshold_Front_mm, int threshold_veryclosed_front_mm,
-			float dist_adv_mm, float x_adv_mm, float y_adv_mm, float theta_adv_deg);
+			float dist_adv_mm, float x_adv_mm, float y_adv_mm, float theta_adv_deg)
+	{
+		return obstacleZone_.filtre_levelInFront(threshold_LR_mm, threshold_Front_mm,
+				threshold_veryclosed_front_mm, dist_adv_mm, x_adv_mm, y_adv_mm, theta_adv_deg);
+	}
 
 	int filtre_levelInBack(int threshold_LR_mm, int threshold_Back_mm, int threshold_veryclosed_back_mm,
-			float dist_adv_mm, float x_adv_mm, float y_adv_mm, float theta_adv_deg);
+			float dist_adv_mm, float x_adv_mm, float y_adv_mm, float theta_adv_deg)
+	{
+		return obstacleZone_.filtre_levelInBack(threshold_LR_mm, threshold_Back_mm,
+				threshold_veryclosed_back_mm, dist_adv_mm, x_adv_mm, y_adv_mm, theta_adv_deg);
+	}
 
-	//configuration à partir du centre du robot
-	void addThresholdFront(int left, int center, int right);
-	void addThresholdBack(int left, int center, int right);
-	void addThresholdFrontVeryClosed(int left, int center, int right);
-	void addThresholdBackVeryClosed(int left, int center, int right);
+	void addThresholdFront(int l, int c, int r) { obstacleZone_.addThresholdFront(l, c, r); }
+	void addThresholdBack(int l, int c, int r) { obstacleZone_.addThresholdBack(l, c, r); }
+	void addThresholdFrontVeryClosed(int l, int c, int r) { obstacleZone_.addThresholdFrontVeryClosed(l, c, r); }
+	void addThresholdBackVeryClosed(int l, int c, int r) { obstacleZone_.addThresholdBackVeryClosed(l, c, r); }
 
-	void setIgnoreFrontNearObstacle(bool ignoreLeft, bool ignoreCenter, bool ignoreRight);
-	void setIgnoreBackNearObstacle(bool ignoreLeft, bool ignoreCenter, bool ignoreRight);
-	void setIgnoreAllFrontNearObstacle(bool ignore);
-	void setIgnoreAllBackNearObstacle(bool ignore);
+	void setIgnoreFrontNearObstacle(bool l, bool c, bool r) { obstacleZone_.setIgnoreFrontNearObstacle(l, c, r); }
+	void setIgnoreBackNearObstacle(bool l, bool c, bool r) { obstacleZone_.setIgnoreBackNearObstacle(l, c, r); }
+	void setIgnoreAllFrontNearObstacle(bool ignore) { obstacleZone_.setIgnoreAllFrontNearObstacle(ignore); }
+	void setIgnoreAllBackNearObstacle(bool ignore) { obstacleZone_.setIgnoreAllBackNearObstacle(ignore); }
 
 	//Ajoute le timer des sensors de detection
 	void addTimerSensors(int timespan_ms);

@@ -192,17 +192,6 @@ public:
      */
     void setMaxSpeedDistValue(int value);
 
-    // ========== FILTRAGE POSITION ET DÉTECTION ==========
-
-    /*!
-     * \brief Vérifie si une position (x,y) est à l'intérieur de la table.
-     *        Fonction pure virtuelle — doit être implémentée par chaque robot.
-     * \param x_botpos Position X en mm.
-     * \param y_botpos Position Y en mm.
-     * \return true si la position est dans les limites de la table.
-     */
-    virtual bool filtre_IsInsideTableXY(int x_botpos, int y_botpos) = 0;
-
     /*!
      * \brief Callback appelé en fin de trajectoire pour gérer les actions post-mouvement.
      *        Peut être surchargé par les robots spécifiques.
@@ -257,16 +246,6 @@ public:
      * \param thetaInRad Angle en radians.
      */
     virtual void setPositionReal(float x_mm, float y_mm, float thetaInRad);
-
-    /*!
-     * \brief Vérifie si un obstacle détecté est à l'intérieur de la table.
-     *        Doit être surchargé par chaque robot pour tenir compte de sa géométrie.
-     * \param dist_detect_mm Distance de détection en mm.
-     * \param lateral_pos_sensor_mm Position latérale du capteur en mm.
-     * \param desc Description pour le log.
-     * \return true si l'obstacle est dans la table.
-     */
-    virtual bool filtre_IsInsideTable(int dist_detect_mm, int lateral_pos_sensor_mm, std::string desc = "");
 
     /*!
      * \brief Callback de détection d'obstacle devant le robot pendant une trajectoire.

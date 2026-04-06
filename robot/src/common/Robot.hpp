@@ -18,6 +18,7 @@ class Asserv;
 class Actions;
 class Arguments;
 class ConsoleManager;
+class TableGeometry;
 
 /*!
  * \brief Couleur de l'équipe du robot sur la table.
@@ -119,6 +120,8 @@ protected:
 	Actions *actions_default_;
 
 	ARobotPositionShared *sharedPosition_;
+
+	TableGeometry *tableGeometry_;
 private:
 
 	//Asserv => asservissement
@@ -292,6 +295,22 @@ public:
 	inline void setActions(Actions *action)
 	{
 		actions_default_ = action;
+	}
+
+	/*!
+	 * \brief Retourne la geometrie de table du robot.
+	 */
+	inline TableGeometry* tableGeometry()
+	{
+		return tableGeometry_;
+	}
+
+	/*!
+	 * \brief Definit la geometrie de table du robot (propriete transferee).
+	 */
+	inline void setTableGeometry(TableGeometry *tg)
+	{
+		tableGeometry_ = tg;
 	}
 
 	/*!

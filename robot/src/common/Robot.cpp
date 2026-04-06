@@ -9,6 +9,7 @@
 #include <stdlib.h>
 
 #include "log/SvgWriter.hpp"
+#include "geometry/TableGeometry.hpp"
 #include "log/appender/TelemetryAppender.hpp"
 //#include "Asserv/MotorControl.hpp" // not migrated yet
 //#include "Asserv/MovingBase.hpp" // not migrated yet
@@ -48,11 +49,13 @@ Robot::Robot() :
 
     configureDefaultConsoleArgs();
     sharedPosition_ = ARobotPositionShared::create();
+    tableGeometry_ = nullptr; // chaque robot concret l'instancie via setTableGeometry()
 }
 
 Robot::~Robot() {
     svgPrintEndOfFile();
     stopMotionTimerAndActionManager();
+    delete tableGeometry_;
     //Stop le log s'il existe (core dump sinon)
     logs::LoggerFactory::instance().stopLog();
 }

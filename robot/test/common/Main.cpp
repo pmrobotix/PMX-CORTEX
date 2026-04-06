@@ -21,6 +21,8 @@
 #include "SvgAppenderTest.hpp"
 #include "ActionManagerTimerTest.hpp"
 #include "RetryPolicyTest.hpp"
+#include "TableGeometryTest.hpp"
+#include "ObstacleZoneTest.hpp"
 
 int main(int argc, char** argv)
 {
@@ -42,6 +44,8 @@ int main(int argc, char** argv)
     suite.addTest(new test::SvgAppenderTest());
     suite.addTest(new test::ActionManagerTimerTest());
     suite.addTest(new test::RetryPolicyTest());
+    suite.addTest(new test::TableGeometryTest());
+    suite.addTest(new test::ObstacleZoneTest());
 
     suite.run();
 

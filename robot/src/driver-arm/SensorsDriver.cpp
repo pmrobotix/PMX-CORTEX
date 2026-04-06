@@ -107,24 +107,22 @@ int SensorsDriver::sync()
 
 void SensorsDriver::addvPositionsAdv(float x, float y)
 {
-
+	vadv_.push_back(RobotPos(1, x, y, 0.0f, 0.0f));
 }
 void SensorsDriver::clearPositionsAdv()
 {
-
+	vadv_.clear();
 }
 
 int SensorsDriver::leftSide()
 {
-//    int dist_from_center_mm = 90;
-//    int d = gp2_2_.getDistanceMm() + dist_from_center_mm; //TODO  true if only 90° !!!!
-//    return d;
+	//TODO Sharp Gp2y0e02b non connecte => retourne "pas d'obstacle"
+	return 400;
 }
 int SensorsDriver::rightSide()
 {
-//    int dist_from_center_mm = 103;
-//    int d = gp2_1_.getDistanceMm() + dist_from_center_mm; //TODO  true if only 90° !!!!
-//    return d;
+	//TODO Sharp Gp2y0e02b non connecte => retourne "pas d'obstacle"
+	return 400;
 }
 //
 //int SensorsDriver::getFrontDistMmFromObject(int diagonal_dist_mm) //TODO position xy ?
@@ -208,13 +206,20 @@ int SensorsDriver::frontRight()
 
 int SensorsDriver::backLeft()
 {
-	return -1;
+	// c6_mm = AR GAUCHE HAUT (ToF zone arriere gauche)
+	if (regs_.c6_mm == 0) return 500;
+	if (regs_.c6_mm > 500) return 500;
+	return regs_.c6_mm;
 }
 int SensorsDriver::backCenter()
 {
+	// Pas de capteur ToF centre arriere dedie, utilise la balise (beacon)
 	return -1;
 }
 int SensorsDriver::backRight()
 {
-	return -1;
+	// c8_mm = AR DROIT HAUT (ToF zone arriere droite)
+	if (regs_.c8_mm == 0) return 500;
+	if (regs_.c8_mm > 500) return 500;
+	return regs_.c8_mm;
 }

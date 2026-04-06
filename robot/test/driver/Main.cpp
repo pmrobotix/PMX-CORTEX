@@ -16,6 +16,7 @@
 
 #include "LedDriverTest.hpp"
 #include "SwitchDriverTest.hpp"
+#include "SensorsDriverTest.hpp"
 #ifdef SIMU
 #include "NavigatorTest.hpp"
 #endif
@@ -31,6 +32,7 @@ int main(int, char**)
 
     suite.addTest(new test::LedDriverTest());
     suite.addTest(new test::SwitchDriverTest());
+    suite.addTest(new test::SensorsDriverTest());
 #ifdef SIMU
     suite.addTest(new test::NavigatorTest());
 #endif
