@@ -23,6 +23,7 @@
 #include "RetryPolicyTest.hpp"
 #include "TableGeometryTest.hpp"
 #include "ObstacleZoneTest.hpp"
+#include "DetectionEventTest.hpp"
 
 int main(int argc, char** argv)
 {
@@ -46,6 +47,7 @@ int main(int argc, char** argv)
     suite.addTest(new test::RetryPolicyTest());
     suite.addTest(new test::TableGeometryTest());
     suite.addTest(new test::ObstacleZoneTest());
+    suite.addTest(new test::DetectionEventTest());
 
     suite.run();
 

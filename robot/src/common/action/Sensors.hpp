@@ -19,6 +19,7 @@
 #include "AActionsElement.hpp"
 #include "timer/ITimerPosixListener.hpp"
 #include "geometry/ObstacleZone.hpp"
+#include "geometry/DetectionEvent.hpp"
 
 class ASensorsDriver;
 class Robot;
@@ -27,6 +28,7 @@ class Robot;
  * \brief Gestion des capteurs de detection et de distance.
  */
 class Sensors: public AActionsElement {
+	friend class SensorsTimer;  ///< SensorsTimer accede a lastDetection_ pour le timestamp
 private:
 
 	static inline const logs::Logger& logger()
@@ -38,11 +40,13 @@ private:
 	Robot *robot_;
 	ASensorsDriver *sensorsdriver_;
 	ObstacleZone obstacleZone_;
+	DetectionEvent lastDetection_;   ///< Cycle courant (ecrase toutes les 62ms)
+	DetectionEvent stopDetection_;   ///< Fige au moment d'un STOP (pour Navigator/IA)
 
 	ASensorsDriver::bot_positions opponents_last_positions;
 public:
 
-	//distance de ce qu'il y a devant le robot
+	//distance de ce qu'il y a devant le robot (legacy, utiliser lastDetection())
 	float x_adv_mm;
 	float y_adv_mm;
 
@@ -69,6 +73,23 @@ public:
 	inline bool getAvailableBackCenter() { return obstacleZone_.getAvailableBackCenter(); }
 
 	ObstacleZone& obstacleZone() { return obstacleZone_; }
+
+	/*!
+	 * \brief Retourne le dernier evenement de detection (cycle courant, 62ms).
+	 * Utilise par waitEndOfTrajWithDetection() pour decision temps reel.
+	 */
+	const DetectionEvent& lastDetection() const { return lastDetection_; }
+
+	/*!
+	 * \brief Retourne la detection figee au moment du dernier STOP.
+	 * Utilise par Navigator/DecisionMaker pour savoir pourquoi et ou.
+	 */
+	const DetectionEvent& stopDetection() const { return stopDetection_; }
+
+	/*!
+	 * \brief Fige le DetectionEvent courant (appele par Asserv au moment du STOP).
+	 */
+	void setStopDetection(const DetectionEvent& det) { stopDetection_ = det; }
 
 	float MultipleRightSide(int nb);
 	float MultipleLeftSide(int nb);
@@ -151,17 +172,11 @@ private:
 	int lastdetect_front_level_;
 	int lastdetect_back_level_;
 
-	bool lastfrontl2_temp_;
-	bool lastbackl2_temp_;
-
 	int nb_sensor_front_a_zero;
 	int nb_sensor_back_a_zero;
 
 	int nb_ensurefront4;
 	int nb_ensureback4;
-
-	int nb_sensor_level2;
-	int nb_sensor_b_level2;
 
 public:
 

@@ -102,13 +102,8 @@ SensorsTimer::SensorsTimer(Sensors &sensors, int timeSpan_ms, std::string name) 
 	nb_ensurefront4 = 0;
 	nb_ensureback4 = 0;
 
-	lastfrontl2_temp_ = false;
-	lastbackl2_temp_ = false;
-
 	nb_sensor_front_a_zero = 0;
 	nb_sensor_back_a_zero = 0;
-	nb_sensor_level2 = 0;
-	nb_sensor_b_level2 = 0;
 
 
 	//initialise le timer avec le nom et la periode.
@@ -394,6 +389,17 @@ int Sensors::front(bool display)
 				logger().debug() << __FUNCTION__ << " " << nb << " nbbots=" << botpos.nbDetectedBots
 						<< " level_filtered= " << level_filtered << logs::end;
 
+				// Capture position adversaire pour DetectionEvent
+				if (level_filtered >= 1)
+				{
+					x_adv_mm = x_pos_adv_table;
+					y_adv_mm = y_pos_adv_table;
+					lastDetection_.d_adv_mm = botpos.d;
+					lastDetection_.x_robot_mm = pos_robot_instantane.x;
+					lastDetection_.y_robot_mm = pos_robot_instantane.y;
+					lastDetection_.theta_robot_rad = pos_robot_instantane.theta;
+				}
+
 				if (level_filtered == 1)
 				{
 					// DROITE
@@ -470,7 +476,15 @@ int Sensors::front(bool display)
 //		}
 //	}
 
-	return level; // TODO Ajouter x_pos_adv_table et ypos de l'adversaire detecter, pourra servir de log dans l'asserv au lieu d'ici...
+	// Publication du DetectionEvent (front)
+	lastDetection_.frontLevel = level;
+	lastDetection_.x_adv_mm = x_adv_mm;
+	lastDetection_.y_adv_mm = y_adv_mm;
+	if (level >= 1) {
+		lastDetection_.valid = true;
+	}
+
+	return level;
 }
 
 int Sensors::back(bool display)
@@ -578,6 +592,17 @@ int Sensors::back(bool display)
 						obstacleZone_.backCenterVeryClosedThreshold(), botpos.d, botpos.x, botpos.y, botpos.theta_deg);
 //				logger().error() << __FUNCTION__ << " BACKWARD___ " << nb << " nbbots=" << botpos.nbDetectedBots
 //						<< " level_filtered= " << level_filtered << logs::end;
+
+				// Capture position adversaire pour DetectionEvent
+				if (level_filtered <= -1)
+				{
+					x_adv_mm = x_pos_adv_table;
+					y_adv_mm = y_pos_adv_table;
+					lastDetection_.d_adv_mm = botpos.d;
+					lastDetection_.x_robot_mm = pos_robot_instantane.x;
+					lastDetection_.y_robot_mm = pos_robot_instantane.y;
+					lastDetection_.theta_robot_rad = pos_robot_instantane.theta;
+				}
 
 				if (level_filtered == -1)
 				{
@@ -700,8 +725,15 @@ int Sensors::back(bool display)
 	 }
 	 }
 	 */
-	return level; //TODO retourner la position du robot qui a causé ce level  x_pos_adv_table, y_pos_adv_table
+	// Publication du DetectionEvent (back)
+	lastDetection_.backLevel = level;
+	lastDetection_.x_adv_mm = x_adv_mm;
+	lastDetection_.y_adv_mm = y_adv_mm;
+	if (level <= -1) {
+		lastDetection_.valid = true;
+	}
 
+	return level;
 }
 
 void Sensors::addTimerSensors(int timeSpan_ms)
@@ -728,141 +760,77 @@ void Sensors::stopTimerSensors()
 
 void SensorsTimer::onTimer(utils::Chronometer chrono)
 {
-//    logger().error() << ">> SensorsTimer::onTimer sensors_.getAvailableFrontCenter()="
-//            << sensors_.getAvailableFrontCenter() << logs::end;
+	// Reset detection event pour ce cycle
+	sensors_.lastDetection_.clear();
+	sensors_.lastDetection_.timestamp_us = chrono.getElapsedTimeInMicroSec();
 
-	//get all data sync adn save the position of the robot and precedent position
+	// 1. LECTURE — sync beacon I2C
 	int err = sensors_.sync("beacon_sync");
 	if (err < 0)
 	{
 		logger().error() << ">> SYNC BAD DATA! NO UPDATE" << logs::end;
 		return;
 	}
+
+	// 2. FILTRAGE AVANT — classification + debounce
 	if (sensors_.getAvailableFrontCenter())
 	{
 		int frontLevel = sensors_.front(true);
-		//printf("SensorsTimer::onTimer frontLevel=%d\n", frontLevel);
 
-		//si 1,2,3 on incremente, sinon si 0 on resette le compteur
+		// Debounce : compteur de stabilité
 		if (frontLevel <= 3)
-		{
 			nb_sensor_front_a_zero++;
-		} else
-		{
+		else
 			nb_sensor_front_a_zero = 0;
-		}
 
-		//si 4, on attend et on compte le nombre pour etre sur
 		if (frontLevel == 4)
-		{
 			nb_ensurefront4++;
-		} else
-		{
+		else
 			nb_ensurefront4 = 0;
-		}
 
-		//si 0,1,2,3,4 puis 4 ; arret du robot warn l'asserv en mode 4
-		if (lastdetect_front_level_ <= 4 && nb_ensurefront4 >= 2)
-		{            //=frontLevel ==4
-//            logger().error() << ">>  frontLevel=" << frontLevel
-//                    <<  "lastdetect_front_level_=" << lastdetect_front_level_
-//
-//                    << " nb_ensurefront4=" << nb_ensurefront4
-//                    << logs::end;
-			sensors_.robot()->passerv()->warnFrontDetectionOnTraj(frontLevel, sensors_.x_adv_mm, sensors_.y_adv_mm);
-		}
-
-		//si 4 puis 0,1,2,3 ; resetEmergency (pas besoin pour 3 puisque qu'on ne fait pas d'emergencystop pour 3)
-		if (lastdetect_front_level_ >= 4 && nb_sensor_front_a_zero >= 4)
-		{
-			sensors_.robot()->passerv()->resetEmergencyOnTraj("SensorsTimer front=0");
-			sensors_.robot()->resetDisplayObstacle();
-		}
-
-		//si 0,1,2,3,4 puis 3 ; low speed
-		if (frontLevel >= 3)
-		{
-			// TODO Ca pourrait etre mis dans la fonction Warn
-			//sensors_.robot()->passerv()->setLowSpeedForward(true, sensors_.robot()->passerv()->getLowSpeedvalue());
-			//sensors_.robot()->passerv()->setMaxSpeed(true, sensors_.robot()->passerv()->getMaxSpeedDistValue());
-			sensors_.robot()->passerv()->warnFrontDetectionOnTraj(frontLevel, sensors_.x_adv_mm, sensors_.y_adv_mm);
-		}
-
-//        if (lastdetect_front_level_ >= 3 && nb_sensor_front_a_zero >= 4) {
-//            //stop du robot et attente en remontant à l'ia
-//        }
-
-		//si 3 puis 0,1,2 ; vitesse normale => si 3 ou 4 puis 0,1,2 ; vitesse normale
-		if (lastdetect_front_level_ >= 3 && frontLevel <= 2)
-		{
-			//sensors_.robot()->passerv()->setLowSpeedForward(false);
-			//sensors_.robot()->passerv()->setMaxSpeed(false);
-			sensors_.robot()->passerv()->warnFrontDetectionOnTraj(frontLevel, sensors_.x_adv_mm, sensors_.y_adv_mm);
-			//sensors_.robot()->passerv()->resetEmergencyOnTraj("SensorsTimer front=0");
-			sensors_.robot()->resetDisplayObstacle();
-		}
+		// Publication du level debounced dans le DetectionEvent
+		// Level 4 confirmé seulement après 2 cycles consécutifs
+		if (nb_ensurefront4 >= 2)
+			sensors_.lastDetection_.frontLevel = 4;
+		else if (frontLevel >= 3)
+			sensors_.lastDetection_.frontLevel = 3;
+		else
+			sensors_.lastDetection_.frontLevel = frontLevel;
 
 		lastdetect_front_level_ = frontLevel;
-		sensors_.robot()->displayObstacle(frontLevel); //TODO a separer en displayObstacleFront et displayObstacleBack
-
+		sensors_.robot()->displayObstacle(frontLevel);
 	}
 
-//ARRIERE/////////////////////////////////////////////////////////////////
-
+	// 3. FILTRAGE ARRIERE — classification + debounce
 	if (sensors_.getAvailableBackCenter())
 	{
 		int backLevel = sensors_.back(true);
-		//printf("SensorsTimer::onTimer backLevel=%d\n", backLevel);
 
 		if (backLevel >= -3)
-		{
 			nb_sensor_back_a_zero++;
-		} else
-		{
+		else
 			nb_sensor_back_a_zero = 0;
-		}
 
 		if (backLevel == -4)
-		{
 			nb_ensureback4++;
-		} else
-		{
+		else
 			nb_ensureback4 = 0;
-		}
 
-
-		//si 0,1,2,3,4 puis 4 ; arret du robot warn
-		if (lastdetect_back_level_ >= -4 && nb_ensureback4 >= 2)
-		{
-			sensors_.robot()->passerv()->warnBackDetectionOnTraj(backLevel, sensors_.x_adv_mm, sensors_.y_adv_mm);
-		}
-
-		//si 4 puis 0,1,2,3 ; resetEmergency
-		if (lastdetect_back_level_ <= -4 && nb_sensor_back_a_zero >= 4)
-		{
-			sensors_.robot()->passerv()->resetEmergencyOnTraj("SensorsTimer back=si 4 puis 0,1,2,3 ; resetEmergency");
-			sensors_.robot()->resetDisplayObstacle();
-		}
-
-		//si 0,1,2,3,4 puis 3 ; low speed
-		if (backLevel <= -3)
-		{
-			//sensors_.robot()->passerv()->setLowSpeedForward(true, sensors_.robot()->passerv()->getLowSpeedvalue());
-			//sensors_.robot()->passerv()->setMaxSpeed(true, sensors_.robot()->passerv()->getMaxSpeedDistValue());
-			sensors_.robot()->passerv()->warnBackDetectionOnTraj(backLevel, sensors_.x_adv_mm, sensors_.y_adv_mm);
-		}
-
-		//si 3 puis 0,1,2 ; vitesse normale => si 3 ou 4 puis 0,1,2 ; vitesse normale
-		if (lastdetect_back_level_ <= -3 && backLevel >= -2)
-		{
-			sensors_.robot()->passerv()->warnBackDetectionOnTraj(backLevel, sensors_.x_adv_mm, sensors_.y_adv_mm);
-			sensors_.robot()->passerv()->resetEmergencyOnTraj("SensorsTimer back=si 3 puis 0,1,2 ; vitesse normale => si 3 ou 4 puis 0,1,2 ; vitesse normale");
-			sensors_.robot()->resetDisplayObstacle();
-		}
+		// Publication du level debounced
+		if (nb_ensureback4 >= 2)
+			sensors_.lastDetection_.backLevel = -4;
+		else if (backLevel <= -3)
+			sensors_.lastDetection_.backLevel = -3;
+		else
+			sensors_.lastDetection_.backLevel = backLevel;
 
 		lastdetect_back_level_ = backLevel;
-		sensors_.robot()->displayObstacle(backLevel); //TODO a separer en displayObstacleFront et displayObstacleBack
+		sensors_.robot()->displayObstacle(backLevel);
 	}
+
+	// Le DetectionEvent est maintenant prêt.
+	// waitEndOfTrajWithDetection() le consultera à 1ms.
+	// Aucun appel à l'Asserv ici.
 }
 
 void SensorsTimer::onTimerEnd(utils::Chronometer chrono)

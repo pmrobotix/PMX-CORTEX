@@ -188,8 +188,10 @@ TRAJ_STATE Navigator::executeWaypoints(const std::vector<Waypoint>& waypoints,
             }
         }
 
-        // Attendre la fin de la queue
-        TRAJ_STATE ts = robot_->asserv().waitTraj();
+        // Attendre la fin de la queue (dernier waypoint détermine le type de détection)
+        bool lastReverse = waypoints.back().reverse;
+        TRAJ_STATE ts = robot_->asserv().waitEndOfTrajWithDetection(
+                lastReverse ? Asserv::BACKWARD : Asserv::FORWARD);
         robot_->svgPrintPosition(svgBotColor);
 
         if (ts != TRAJ_FINISHED)

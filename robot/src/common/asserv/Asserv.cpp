@@ -7,6 +7,8 @@
 #include "log/Logger.hpp"
 #include "thread/Thread.hpp"
 #include "../Robot.hpp"
+#include "action/Sensors.hpp"
+#include "geometry/DetectionEvent.hpp"
 
 // Constructeur : instancie le driver d'asserv (ext ou interne) et initialise les paramètres par défaut.
 // Le type d'asserv par défaut est ASSERV_INT_ESIALR (asservissement interne ESIAL).
@@ -25,10 +27,7 @@ Asserv::Asserv(std::string botId, Robot *robot)
 	else
 		pAsservEsialR_ = NULL;
 
-	// Flags de détection temporaire (désactivent la détection pendant certains mouvements)
-	temp_ignoreBackDetection_ = false;
-	temp_ignoreFrontDetection_ = false;
-	temp_forceRotation_ = false;
+	// Les anciens flags temp_* sont supprimés — remplacés par MovementType
 
 	matchColorPosition_ = false; // couleur primaire par défaut
 
@@ -293,6 +292,106 @@ void Asserv::resetEmergencyOnTraj(std::string message)
 	else if (useAsservType_ == ASSERV_INT_ESIALR) pAsservEsialR_->resetEmergencyStop();
 }
 
+// =============================================================================
+// waitEndOfTrajWithDetection — boucle centrale de décision
+// =============================================================================
+//
+// Remplace l'ancien waitEndOfTraj() + warnFrontDetectionOnTraj().
+// Le SensorsTimer ne touche plus à l'Asserv — il ne fait que publier
+// le DetectionEvent. C'est ICI qu'on décide de stopper/ralentir.
+//
+// Status driver : 0=IDLE, 1=RUNNING, 2=EMERGENCY, 3=BLOCKED
+
+TRAJ_STATE Asserv::waitEndOfTrajWithDetection(MovementType type)
+{
+	// Phase 1 : attente que le mouvement démarre (status passe à 1)
+	int timeout = 0;
+	while (pos_getPosition().asservStatus != 1)
+	{
+		utils::sleep_for_micros(1000);
+		timeout++;
+		if (timeout > 100) // 100ms max pour démarrer
+		{
+			logger().debug() << "waitEndOfTrajWithDetection: start timeout" << logs::end;
+			break;
+		}
+	}
+
+	// Phase 2 : boucle d'attente avec consultation détection
+	timeout = 0;
+	while (true)
+	{
+		ROBOTPOSITION p = pos_getPosition();
+		int status = p.asservStatus;
+
+		// --- Fini normalement ---
+		if (status == 0) // IDLE
+		{
+			setMaxSpeed(false); // restaurer vitesse normale
+			return TRAJ_FINISHED;
+		}
+
+		// --- Blocage moteur (collision physique) ---
+		if (status == 3) // BLOCKED
+		{
+			return TRAJ_COLLISION;
+		}
+
+		// --- Emergency stop externe (déclenché par un autre appel) ---
+		if (status == 2) // EMERGENCY
+		{
+			return TRAJ_INTERRUPTED;
+		}
+
+		// --- Consultation du DetectionEvent (publié par SensorsTimer) ---
+		Sensors* sensors = probot_->sensors();
+		if (sensors != nullptr)
+		{
+			const DetectionEvent& det = sensors->lastDetection();
+
+			if (type == FORWARD)
+			{
+				if (det.frontLevel == 4)
+				{
+					setEmergencyStop();
+					sensors->setStopDetection(det);
+					logger().debug() << "waitEndOfTrajWithDetection FORWARD: STOP level 4"
+							<< " adv=(" << det.x_adv_mm << "," << det.y_adv_mm << ")" << logs::end;
+					return TRAJ_NEAR_OBSTACLE;
+				}
+				if (det.frontLevel >= 3)
+					setMaxSpeed(true, getMaxSpeedDistValue());
+				else
+					setMaxSpeed(false);
+			}
+			else if (type == BACKWARD)
+			{
+				if (det.backLevel == -4)
+				{
+					setEmergencyStop();
+					sensors->setStopDetection(det);
+					logger().debug() << "waitEndOfTrajWithDetection BACKWARD: STOP level -4"
+							<< " adv=(" << det.x_adv_mm << "," << det.y_adv_mm << ")" << logs::end;
+					return TRAJ_NEAR_OBSTACLE;
+				}
+				if (det.backLevel <= -3)
+					setMaxSpeed(true, getMaxSpeedDistValue());
+				else
+					setMaxSpeed(false);
+			}
+			// type == ROTATION : on ignore la détection
+		}
+
+		utils::sleep_for_micros(1000); // 1ms
+		timeout++;
+		if (timeout > 30000) // 30s timeout sécurité
+		{
+			logger().error() << "waitEndOfTrajWithDetection: TIMEOUT 30s" << logs::end;
+			return TRAJ_ERROR;
+		}
+	}
+}
+
 void Asserv::update_adv()
 {
 	logger().info() << "update_adv tob surcharged = " << logs::end;
@@ -320,192 +419,64 @@ void Asserv::setMaxSpeedDistValue(int value)
 
 // Callback de détection frontale pendant une trajectoire.
 // Niveaux d'alerte :
-//   2 : adversaire éloigné → repasse en vitesse normale
-//   3 : adversaire proche → réduit la vitesse (maxSpeedDistValue)
-//   4 : adversaire très proche → arrêt d'urgence (setEmergencyStop)
-// Ignoré si on est en rotation forcée ou si la détection avant est désactivée.
-void Asserv::warnFrontDetectionOnTraj(int frontlevel, float x_adv_detect_mm, float y_adv_detect_mm)
-{
-//	logger().error() << "temp_forceRotation_ = " << temp_forceRotation_ << " temp_ignoreFrontDetection_="
-//				<< temp_ignoreFrontDetection_ << logs::end;
-	if (temp_forceRotation_) return;
-	if (temp_ignoreFrontDetection_) return; //TODO back detection
+// warnFrontDetectionOnTraj : SUPPRIMÉ — remplacé par waitEndOfTrajWithDetection(FORWARD)
 
-//	logger().info() << "warnFrontDetectionOnTraj frontlevel = " << frontlevel << logs::end;
-//	logger().error() << "temp_forceRotation_ = " << temp_forceRotation_ << " temp_ignoreFrontDetection_="
-//			<< temp_ignoreFrontDetection_ << logs::end;
-
-	if (frontlevel == 2)
-	{
-		setMaxSpeed(false);
-		return;
-	}
-	//3  => on baisse la vitesse
-	if (frontlevel == 3)
-	{
-		//setLowSpeedBackward(true, getLowSpeedvalue());
-		setMaxSpeed(true, getMaxSpeedDistValue());
-		return;
-	}
-
-	if (frontlevel == 4)
-	{
-
-		//On ne fait un HALT que si l'asserv n'est pas a IDLE
-		ROBOTPOSITION p = pos_getPosition();
-
-		logger().debug() << __FUNCTION__ << " HAAAAAAAAAAAALT p.asservStatus = " << p.asservStatus << logs::end;
-		//if (true)
-//		if (p.asservStatus == 1) // && p.queueSize > 0)
-//		{
-			setEmergencyStop();
-//		}
-	}
-
-	/*
-	 //conversion de la position du le terrain et determination du centre du robot adverse
-	 float dist_centre_robot_mm = 200.0;
-	 float x_adv = 0.0;
-	 float y_adv = 0.0;
-	 if (x_adv_detect_mm >= 1.0 || y_adv_detect_mm > 1.0) {
-
-	 RobotPosition p_current = pos_getPosition();
-	 x_adv = p_current.x + ((x_adv_detect_mm + dist_centre_robot_mm) * cos(p_current.theta))
-	 - (y_adv_detect_mm * sin(p_current.theta));
-	 y_adv = p_current.y + ((x_adv_detect_mm + dist_centre_robot_mm) * sin(p_current.theta))
-	 + (y_adv_detect_mm * cos(p_current.theta));
-	 adv_pos_centre_ = { x_adv, y_adv, 0.0, 0 };
-
-	 } else {
-	 adv_pos_centre_ = { -100.0, -100.0, 0.0, 0 };
-	 }
-	 logger().debug() << "warnFrontCollisionOnTraj x_adv = " << x_adv << " y_adv = " << y_adv
-	 << "         x_adv_detect_mm = " << x_adv_detect_mm << " y_adv_detect_mm = " << y_adv_detect_mm
-	 << logs::end;*/
-}
-
-// Callback de détection arrière pendant une trajectoire.
-// Niveaux : -2 (éloigné), -3 (proche, ralentir), -4 (très proche, arrêt d'urgence).
-void Asserv::warnBackDetectionOnTraj(int backlevel, float x_adv_detect_mm, float y_adv_detect_mm)
-{
-	if (temp_forceRotation_) return;
-	if (temp_ignoreBackDetection_) return;
-//	logger().info() << "asserv warnBackDetectionOnTraj backlevel = " << backlevel << logs::end;
-//		logger().error() << "temp_forceRotation_ = " << temp_forceRotation_ << " temp_ignoreBackDetection_="
-//				<< temp_ignoreBackDetection_ << logs::end;
-
-
-
-	if (backlevel == -2)
-	{
-		setMaxSpeed(false);
-		return;
-	}
-	//3  => on baisse la vitesse
-	if (backlevel == -3)
-	{
-		//setLowSpeedBackward(true, getLowSpeedvalue());
-		setMaxSpeed(true, getMaxSpeedDistValue());
-		return;
-	}
-
-	if (backlevel == -4)
-	{
-		//On ne fait un HALT que si l'asserv n'est pas a IDLE
-		ROBOTPOSITION p = pos_getPosition();
-
-		//logger().debug() << __FUNCTION__ << " HAAAAAAAAAAAALT p.asservStatus = " << p.asservStatus << logs::end;
-		//if (true)
-		if (p.asservStatus == 1) // && p.queueSize > 0)
-		{
-			setEmergencyStop();
-		}
-	}
-	/*
-	 //conversion de la position du le terrain et determination du centre du robot adverse
-	 float dist_centre_robot_mm = 350.0;
-	 float x_adv = 0.0;
-	 float y_adv = 0.0;
-
-	 if (x_adv_detect_mm >= 1.0 || y_adv_detect_mm > 1.0) {
-	 RobotPosition p_current = pos_getPosition();
-	 x_adv = p_current.x + ((x_adv_detect_mm + dist_centre_robot_mm) * cos(p_current.theta))
-	 - (y_adv_detect_mm * sin(p_current.theta));
-	 y_adv = p_current.y + ((x_adv_detect_mm + dist_centre_robot_mm) * sin(p_current.theta))
-	 + (y_adv_detect_mm * cos(p_current.theta));
-	 adv_pos_centre_ = { x_adv, y_adv, 0.0, 0 };
-
-	 } else {
-	 adv_pos_centre_ = { -100.0, -100.0, 0.0, 0 };
-	 }
-	 logger().debug() << "warnBackCollisionOnTraj x_adv = " << x_adv << " y_adv = " << y_adv
-	 << "         x_adv_detect_mm = " << x_adv_detect_mm << " y_adv_detect_mm = " << y_adv_detect_mm
-	 << logs::end;*/
-}
+// warnBackDetectionOnTraj : SUPPRIMÉ — remplacé par waitEndOfTrajWithDetection(BACKWARD)
 
 TRAJ_STATE Asserv::goToChain(float xMM, float yMM)
 {
 	float x_match = changeMatchX(xMM);
-	//temp_ignoreRearCollision_ = true;
-	TRAJ_STATE ts;
+
 	if (useAsservType_ == ASSERV_EXT)
-		{ asservdriver_->motion_GoToChain(x_match, yMM); ts = asservdriver_->waitEndOfTraj(); }
+		asservdriver_->motion_GoToChain(x_match, yMM);
 	else if (useAsservType_ == ASSERV_INT_ESIALR)
-		{ pAsservEsialR_->motion_GoToChain(x_match, yMM); ts = pAsservEsialR_->waitEndOfTraj(); }
+		pAsservEsialR_->motion_GoToChain(x_match, yMM);
 	else
-		ts = TRAJ_ERROR;
-	//temp_ignoreRearCollision_ = false;
-	return ts;
+		return TRAJ_ERROR;
+
+	return waitEndOfTrajWithDetection(FORWARD);
 }
 
 TRAJ_STATE Asserv::goTo(float xMM, float yMM)
 {
 	float x_match = changeMatchX(xMM);
-//temp_ignoreRearCollision_ = true;
 
-	TRAJ_STATE ts;
 	if (useAsservType_ == ASSERV_EXT)
-		{ asservdriver_->motion_GoTo(x_match, yMM); ts = asservdriver_->waitEndOfTraj(); }
+		asservdriver_->motion_GoTo(x_match, yMM);
 	else if (useAsservType_ == ASSERV_INT_ESIALR)
-		{ pAsservEsialR_->motion_GoTo(x_match, yMM); ts = pAsservEsialR_->waitEndOfTraj(); }
-
+		pAsservEsialR_->motion_GoTo(x_match, yMM);
 	else
-		ts = TRAJ_ERROR;
-//temp_ignoreRearCollision_ = false;
+		return TRAJ_ERROR;
 
-	return ts;
+	return waitEndOfTrajWithDetection(FORWARD);
 }
 
 TRAJ_STATE Asserv::goBackTo(float xMM, float yMM)
 {
 	float x_match = changeMatchX(xMM);
-	//temp_ignoreFrontCollision_ = true;
-	TRAJ_STATE ts;
-	if (useAsservType_ == ASSERV_EXT)
-		{ asservdriver_->motion_GoBackTo(x_match, yMM); ts = asservdriver_->waitEndOfTraj(); }
-	else if (useAsservType_ == ASSERV_INT_ESIALR)
-		{ pAsservEsialR_->motion_GoBackTo(x_match, yMM); ts = pAsservEsialR_->waitEndOfTraj(); }
 
+	if (useAsservType_ == ASSERV_EXT)
+		asservdriver_->motion_GoBackTo(x_match, yMM);
+	else if (useAsservType_ == ASSERV_INT_ESIALR)
+		pAsservEsialR_->motion_GoBackTo(x_match, yMM);
 	else
-		ts = TRAJ_ERROR;
-	//temp_ignoreFrontCollision_ = false;
-	return ts;
+		return TRAJ_ERROR;
+
+	return waitEndOfTrajWithDetection(BACKWARD);
 }
 
 TRAJ_STATE Asserv::goBackToChain(float xMM, float yMM)
 {
 	float x_match = changeMatchX(xMM);
-	//temp_ignoreFrontCollision_ = true;
-	TRAJ_STATE ts;
-	if (useAsservType_ == ASSERV_EXT)
-		{ asservdriver_->motion_GoBackToChain(x_match, yMM); ts = asservdriver_->waitEndOfTraj(); }
-	else if (useAsservType_ == ASSERV_INT_ESIALR)
-		{ pAsservEsialR_->motion_GoBackToChain(x_match, yMM); ts = pAsservEsialR_->waitEndOfTraj(); }
 
+	if (useAsservType_ == ASSERV_EXT)
+		asservdriver_->motion_GoBackToChain(x_match, yMM);
+	else if (useAsservType_ == ASSERV_INT_ESIALR)
+		pAsservEsialR_->motion_GoBackToChain(x_match, yMM);
 	else
-		ts = TRAJ_ERROR;
-	//temp_ignoreFrontCollision_ = false;
-	return ts;
+		return TRAJ_ERROR;
+
+	return waitEndOfTrajWithDetection(BACKWARD);
 }
 
 void Asserv::setSimuSpeedMultiplier(float multiplier)
@@ -554,52 +525,20 @@ void Asserv::goBackToChainSend(float xMM, float yMM)
 		pAsservEsialR_->motion_GoBackToChain(x_match, yMM);
 }
 
-TRAJ_STATE Asserv::waitTraj()
-{
-	TRAJ_STATE ts;
-	if (useAsservType_ == ASSERV_EXT)
-		ts = asservdriver_->waitEndOfTraj();
-	else if (useAsservType_ == ASSERV_INT_ESIALR)
-		ts = pAsservEsialR_->waitEndOfTraj();
-	else
-		ts = TRAJ_ERROR;
-	return ts;
-}
+// waitTraj : SUPPRIMÉ — appeler directement waitEndOfTrajWithDetection()
 
 // Avance ou recule en ligne droite.
-// Pendant l'avance (dist>0), on ignore la détection arrière car pas pertinente.
-// Pendant la marche arrière (dist<0), on ignore la détection avant.
-// Bloquant : attend la fin du mouvement ou une interruption.
+// Le MovementType (FORWARD/BACKWARD) détermine quelle détection est active.
 TRAJ_STATE Asserv::line(float dist_mm)
 {
-	// Désactive la détection du côté opposé au sens de déplacement
-	if (dist_mm > 0)
-	{
-		temp_ignoreBackDetection_ = true;
-	} else
-	{
-		temp_ignoreFrontDetection_ = true;
-	}
-
-	TRAJ_STATE ts;
-
 	if (useAsservType_ == ASSERV_EXT)
-		{ asservdriver_->motion_Line(dist_mm); ts = asservdriver_->waitEndOfTraj(); }
+		asservdriver_->motion_Line(dist_mm);
 	else if (useAsservType_ == ASSERV_INT_ESIALR)
-		{ pAsservEsialR_->motion_Line(dist_mm); ts = pAsservEsialR_->waitEndOfTraj(); }
+		pAsservEsialR_->motion_Line(dist_mm);
 	else
-		ts = TRAJ_ERROR;
+		return TRAJ_ERROR;
 
-	// Réactive la détection après le mouvement
-	if (dist_mm > 0)
-	{
-		temp_ignoreBackDetection_ = false;
-	} else
-	{
-		temp_ignoreFrontDetection_ = false;
-	}
-
-	return ts;
+	return waitEndOfTrajWithDetection(dist_mm > 0 ? FORWARD : BACKWARD);
 }
 
 // Rotation relative en degrés : convertit en radians et délègue à rotateRad.
@@ -614,22 +553,17 @@ TRAJ_STATE Asserv::rotateDeg(float degreesRelative, bool rotate_ignoring_opponen
 }
 
 // Rotation relative en radians. Bloquant.
-// Si rotate_ignoring_opponent=true, la détection adverse est ignorée pendant la rotation
-// (temp_forceRotation_ empêche warnFront/BackDetection de déclencher un arrêt).
+// Les rotations ignorent la détection adversaire (MovementType::ROTATION).
 TRAJ_STATE Asserv::rotateRad(float radiansRelative, bool rotate_ignoring_opponent)
 {
-	TRAJ_STATE ts;
-	temp_forceRotation_ = rotate_ignoring_opponent;
 	if (useAsservType_ == ASSERV_EXT)
-		{ asservdriver_->motion_RotateRad(radiansRelative); ts = asservdriver_->waitEndOfTraj(); }
+		asservdriver_->motion_RotateRad(radiansRelative);
 	else if (useAsservType_ == ASSERV_INT_ESIALR)
-		{ pAsservEsialR_->motion_RotateRad(radiansRelative); ts = pAsservEsialR_->waitEndOfTraj(); }
+		pAsservEsialR_->motion_RotateRad(radiansRelative);
 	else
-		ts = TRAJ_ERROR;
+		return TRAJ_ERROR;
 
-	temp_forceRotation_ = false;
-
-	return ts;
+	return waitEndOfTrajWithDetection(ROTATION);
 }
 
 //prend automatiquement un angle dans un sens ou dans l'autre suivant la couleur de match
@@ -644,38 +578,30 @@ TRAJ_STATE Asserv::rotateByMatchColorDeg(float thetaInDegreeRelative, bool rotat
 
 TRAJ_STATE Asserv::faceTo(float xMM, float yMM)
 {
-	temp_forceRotation_ = true;
 	float x_match = changeMatchX(xMM);
 
-	TRAJ_STATE ts;
-
 	if (useAsservType_ == ASSERV_EXT)
-		{ asservdriver_->motion_FaceTo(x_match, yMM); ts = asservdriver_->waitEndOfTraj(); }
+		asservdriver_->motion_FaceTo(x_match, yMM);
 	else if (useAsservType_ == ASSERV_INT_ESIALR)
-		{ pAsservEsialR_->motion_FaceTo(x_match, yMM); ts = pAsservEsialR_->waitEndOfTraj(); }
+		pAsservEsialR_->motion_FaceTo(x_match, yMM);
 	else
-		ts = TRAJ_ERROR;
+		return TRAJ_ERROR;
 
-	temp_forceRotation_ = false;
-	return ts;
+	return waitEndOfTrajWithDetection(ROTATION);
 }
 
 TRAJ_STATE Asserv::faceBackTo(float xMM, float yMM)
 {
-	temp_forceRotation_ = true;
 	float x_match = changeMatchX(xMM);
 
-	TRAJ_STATE ts;
-
 	if (useAsservType_ == ASSERV_EXT)
-		{ asservdriver_->motion_FaceBackTo(x_match, yMM); ts = asservdriver_->waitEndOfTraj(); }
+		asservdriver_->motion_FaceBackTo(x_match, yMM);
 	else if (useAsservType_ == ASSERV_INT_ESIALR)
-		{ pAsservEsialR_->motion_FaceBackTo(x_match, yMM); ts = pAsservEsialR_->waitEndOfTraj(); }
+		pAsservEsialR_->motion_FaceBackTo(x_match, yMM);
 	else
-		ts = TRAJ_ERROR;
+		return TRAJ_ERROR;
 
-	temp_forceRotation_ = false;
-	return ts;
+	return waitEndOfTrajWithDetection(ROTATION);
 }
 
 // Rotation absolue vers un angle donné sur le terrain.
@@ -721,9 +647,6 @@ TRAJ_STATE Asserv::moveForwardTo(float xMM, float yMM, bool rotate_ignoring_oppo
 	TRAJ_STATE ts = TRAJ_IDLE;
 //	int count_rotation_ignored = 0;
 
-	temp_forceRotation_ = rotate_ignoring_opponent;
-	//temp_forceRotation_ = false;
-
 	ts = rotateAbsDeg(radToDeg(changeMatchAngleRad(aRadian)), rotate_ignoring_opponent);
 	if (ts != TRAJ_FINISHED)
 	{
@@ -749,8 +672,6 @@ TRAJ_STATE Asserv::moveForwardTo(float xMM, float yMM, bool rotate_ignoring_oppo
 			}
 		}
 	}
-	temp_forceRotation_ = false;
-
 	float dist = sqrt(dx * dx + dy * dy);
 	logger().debug() << " __moveForwardTo dist sqrt(dx * dx + dy * dy)=" << dist << logs::end;
 
@@ -770,8 +691,6 @@ TRAJ_STATE Asserv::moveBackwardTo(float xMM, float yMM, bool rotate_ignoring_opp
 	float aRadian = M_PI + atan2(dy, dx);
 	aRadian = WrapAngle2PI(aRadian);
 
-	temp_forceRotation_ = rotate_ignoring_opponent;
-
 	TRAJ_STATE ts = rotateAbsDeg(radToDeg(changeMatchAngleRad(aRadian)));
 	if (ts != TRAJ_FINISHED)
 	{
@@ -783,8 +702,6 @@ TRAJ_STATE Asserv::moveBackwardTo(float xMM, float yMM, bool rotate_ignoring_opp
 			//logger().error() << " __on passe au doline !!!"  << logs::end;
 		}
 	}
-
-	temp_forceRotation_ = false;
 
 	float dist = sqrt(dx * dx + dy * dy);
 	return line(-dist);

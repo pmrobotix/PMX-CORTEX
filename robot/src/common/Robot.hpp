@@ -19,6 +19,7 @@ class Actions;
 class Arguments;
 class ConsoleManager;
 class TableGeometry;
+class Sensors;
 
 /*!
  * \brief Couleur de l'équipe du robot sur la table.
@@ -122,6 +123,8 @@ protected:
 	ARobotPositionShared *sharedPosition_;
 
 	TableGeometry *tableGeometry_;
+
+	Sensors *sensors_;
 private:
 
 	//Asserv => asservissement
@@ -311,6 +314,22 @@ public:
 	inline void setTableGeometry(TableGeometry *tg)
 	{
 		tableGeometry_ = tg;
+	}
+
+	/*!
+	 * \brief Retourne le pointeur vers les capteurs du robot.
+	 */
+	inline Sensors* sensors()
+	{
+		return sensors_;
+	}
+
+	/*!
+	 * \brief Enregistre les capteurs du robot.
+	 */
+	inline void setSensors(Sensors *s)
+	{
+		sensors_ = s;
 	}
 
 	/*!

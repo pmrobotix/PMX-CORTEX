@@ -44,6 +44,9 @@ OPOS6UL_RobotExtended::OPOS6UL_RobotExtended()
     p_actions_ = new OPOS6UL_ActionsExtended(id_, this);
     actions_default_ = p_actions_;
 
+    // Enregistrer les Sensors dans Robot (centralisé, pas de lien triangulaire)
+    setSensors(&p_actions_->sensors());
+
     p_ia_ = new OPOS6UL_IAExtended(id_, this);
 
     decisionMaker_ = NULL;

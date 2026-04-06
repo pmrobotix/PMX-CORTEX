@@ -50,6 +50,7 @@ Robot::Robot() :
     configureDefaultConsoleArgs();
     sharedPosition_ = ARobotPositionShared::create();
     tableGeometry_ = nullptr; // chaque robot concret l'instancie via setTableGeometry()
+    sensors_ = nullptr;      // chaque robot concret l'instancie via setSensors()
 }
 
 Robot::~Robot() {

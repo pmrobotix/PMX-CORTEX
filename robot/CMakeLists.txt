@@ -299,6 +299,7 @@ add_executable(common-test
     test/common/RetryPolicyTest.cpp
     test/common/TableGeometryTest.cpp
     test/common/ObstacleZoneTest.cpp
+    test/common/DetectionEventTest.cpp
 )
 
 target_link_libraries(common-test PRIVATE pmx-suite)

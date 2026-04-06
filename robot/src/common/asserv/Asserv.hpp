@@ -13,6 +13,7 @@
 class AAsservDriver;
 class AsservEsialR;
 class Robot;
+class Sensors;
 
 /*!
  * Asservissement of the robot.It contains default elements.
@@ -32,6 +33,18 @@ private:
 
     bool emergencyStop_;
 
+    // Sensors accessible via probot_->sensors() (centralisé dans Robot)
+
+public:
+
+    /*!
+     * \brief Type de mouvement en cours (pour waitEndOfTrajWithDetection).
+     */
+    enum MovementType {
+        ROTATION,   ///< Rotation sur place : ignore la detection adversaire.
+        FORWARD,    ///< Translation avant : detection front active.
+        BACKWARD    ///< Translation arriere : detection back active.
+    };
 
 protected:
 
@@ -58,9 +71,8 @@ protected:
     AsservEsialR *pAsservEsialR_;
 
 
-    bool temp_ignoreBackDetection_;
-    bool temp_ignoreFrontDetection_;
-    bool temp_forceRotation_;
+    // temp_ignoreBackDetection_, temp_ignoreFrontDetection_, temp_forceRotation_
+    // SUPPRIMÉS — remplacés par MovementType dans waitEndOfTrajWithDetection()
 
     //0=>LEFT with coordinate x, y, angle
     //1=>RIGHT with coordinate 3000-x, y , -angle
@@ -247,23 +259,8 @@ public:
      */
     virtual void setPositionReal(float x_mm, float y_mm, float thetaInRad);
 
-    /*!
-     * \brief Callback de détection d'obstacle devant le robot pendant une trajectoire.
-     *        Gère les niveaux d'alerte : 2=vitesse normale, 3=ralentir, 4=arrêt d'urgence.
-     * \param frontlevel Niveau de détection (2, 3 ou 4).
-     * \param x_adv__mm Position X de l'adversaire dans le repère robot.
-     * \param y_adv_mm Position Y de l'adversaire dans le repère robot.
-     */
-    virtual void warnFrontDetectionOnTraj(int frontlevel, float x_adv__mm, float y_adv_mm);
-
-    /*!
-     * \brief Callback de détection d'obstacle derrière le robot pendant une trajectoire.
-     *        Gère les niveaux d'alerte : -2=vitesse normale, -3=ralentir, -4=arrêt d'urgence.
-     * \param backlevel Niveau de détection (-2, -3 ou -4).
-     * \param x_adv_mm Position X de l'adversaire dans le repère robot.
-     * \param y_adv_mm Position Y de l'adversaire dans le repère robot.
-     */
-    virtual void warnBackDetectionOnTraj(int backlevel, float x_adv_mm, float y_adv_mm);
+    // warnFrontDetectionOnTraj / warnBackDetectionOnTraj : SUPPRIMÉS
+    // Remplacés par waitEndOfTrajWithDetection() qui consulte le DetectionEvent
 
     /*!
      * \brief Met à jour la position de l'adversaire. À surcharger par le robot.
@@ -281,6 +278,22 @@ public:
      * \brief Déclenche un arrêt d'urgence : interrompt la trajectoire en cours.
      */
     void setEmergencyStop();
+
+    // setSensors supprimé — Asserv accède via probot_->sensors()
+
+    // ========== ATTENTE DE FIN DE TRAJECTOIRE AVEC DÉTECTION ==========
+
+    /*!
+     * \brief Attend la fin d'une trajectoire en consultant le DetectionEvent.
+     *
+     * Boucle toutes les 1ms. Consulte le status driver (fini/bloqué)
+     * ET le DetectionEvent publié par SensorsTimer (obstacle/ralentissement).
+     * Le SensorsTimer ne touche plus à l'Asserv — c'est cette méthode qui décide.
+     *
+     * \param type Type de mouvement : ROTATION (ignore détection), FORWARD ou BACKWARD.
+     * \return TRAJ_FINISHED, TRAJ_COLLISION ou TRAJ_NEAR_OBSTACLE.
+     */
+    TRAJ_STATE waitEndOfTrajWithDetection(MovementType type);
 
     // ========== MODES D'ARRÊT ==========
 
@@ -416,7 +429,7 @@ public:
      * \brief Attend la fin de la trajectoire en cours (ou de la queue de commandes).
      * \return Etat final de la trajectoire.
      */
-    TRAJ_STATE waitTraj();
+    // waitTraj : SUPPRIMÉ — appeler directement waitEndOfTrajWithDetection()
 
     // ========== DÉPLACEMENTS RELATIFS (par rapport à la position courante) ==========
 

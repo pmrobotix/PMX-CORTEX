@@ -4,6 +4,7 @@
 
 - [Configuration hardware dynamique](HARDWARE_CONFIG.md) — Activation/désactivation des drivers via fichier `hardware.conf` pour l'intégration progressive
 - [Communication asserv](ASSERV_MIGRATION_COMMUNICATION.md) — Migration communication série ancien raspIO → SerialIO/RaspIO
+- [Détection d'obstacles](SENSORS_DETECTION_MIGRATION.md) — Refactoring Sensors/ObstacleZone, simulation adversaire UDP, synchronisation beacon, SVG, DetectionEvent
 
 ### Règles de migration PMX → PMX-CORTEX
 
