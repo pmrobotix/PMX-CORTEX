@@ -344,9 +344,14 @@ int Sensors::front(bool display)
 			logger().debug() << __FUNCTION__ << " " << nb << " bots=" << botpos.nbDetectedBots << " x,y,deg= "
 					<< botpos.x << ", " << botpos.y << ", " << botpos.theta_deg << logs::end;
 
-			//Attention la position du robot doit etre setter avant pour le calcul
-			ROBOTPOSITION pos_robot_instantane = this->robot()->sharedPosition()->convertPositionBeaconToRepereTable(
-					botpos.d, botpos.x, botpos.y, botpos.theta_deg, &x_pos_adv_table, &y_pos_adv_table);
+			// Projection beacon→table avec posAtSync (position robot au moment du sync I2C)
+			ROBOTPOSITION posAtSync = {lastDetection_.x_robot_mm, lastDetection_.y_robot_mm,
+					lastDetection_.theta_robot_rad, 0, 0, 0};
+			float a = (posAtSync.theta - M_PI_2 + (botpos.theta_deg * M_PI / 180.0f));
+			a = WrapAngle2PI(a);
+			x_pos_adv_table = posAtSync.x + (botpos.d * cos(a));
+			y_pos_adv_table = posAtSync.y + (botpos.d * sin(a));
+			ROBOTPOSITION pos_robot_instantane = posAtSync;
 
 			//filtre sur la table avec transformation de repere
 			inside_table = this->robot()->tableGeometry()->isPointInsideTable((int) x_pos_adv_table,
@@ -548,9 +553,14 @@ int Sensors::back(bool display)
 			logger().debug() << __FUNCTION__ << " " << nb << " bots=" << botpos.nbDetectedBots << " x,y,deg= "
 					<< botpos.x << ", " << botpos.y << ", " << botpos.theta_deg << logs::end;
 
-			//Attention la position du grobot doit etre setter avant pour le calcul
-			ROBOTPOSITION pos_robot_instantane = this->robot()->sharedPosition()->convertPositionBeaconToRepereTable(
-					botpos.d, botpos.x, botpos.y, botpos.theta_deg, &x_pos_adv_table, &y_pos_adv_table);
+			// Projection beacon→table avec posAtSync (position robot au moment du sync I2C)
+			ROBOTPOSITION posAtSync = {lastDetection_.x_robot_mm, lastDetection_.y_robot_mm,
+					lastDetection_.theta_robot_rad, 0, 0, 0};
+			float a = (posAtSync.theta - M_PI_2 + (botpos.theta_deg * M_PI / 180.0f));
+			a = WrapAngle2PI(a);
+			x_pos_adv_table = posAtSync.x + (botpos.d * cos(a));
+			y_pos_adv_table = posAtSync.y + (botpos.d * sin(a));
+			ROBOTPOSITION pos_robot_instantane = posAtSync;
 
 			//filtre sur la table avec transformation de repere
 			inside_table = this->robot()->tableGeometry()->isPointInsideTable((int) x_pos_adv_table,
@@ -758,7 +768,13 @@ void SensorsTimer::onTimer(utils::Chronometer chrono)
 	sensors_.lastDetection_.clear();
 	sensors_.lastDetection_.timestamp_us = chrono.getElapsedTimeInMicroSec();
 
-	// 1. LECTURE — sync beacon I2C
+	// 1. LECTURE — sauver la position robot AVANT le sync I2C
+	//    pour réduire le décalage temporel lors de la projection beacon→table
+	ROBOTPOSITION posAtSync = sensors_.robot()->sharedPosition()->getRobotPosition(0);
+	sensors_.lastDetection_.x_robot_mm = posAtSync.x;
+	sensors_.lastDetection_.y_robot_mm = posAtSync.y;
+	sensors_.lastDetection_.theta_robot_rad = posAtSync.theta;
+
 	int err = sensors_.sync("beacon_sync");
 	if (err < 0)
 	{

@@ -245,7 +245,7 @@ Si un adversaire apparaît au waypoint 3 sur 5 :
 | 1 | DetectionEvent — structure + publication dans Sensors | ✅ |
 | 2 | `waitEndOfTrajWithDetection()` — centraliser la décision dans Asserv | ✅ |
 | 3 | Supprimer `SensorsTimer` décisionnel + flags `temp_*` + `warnDetection` | ✅ |
-| 4 | Fix synchronisation position beacon | ⬜ |
+| 4 | Synchronisation position beacon (posAtSync + doc pistes 2027) | ✅ |
 | 5 | Visualisation SVG capteurs L/R | ⬜ |
 | 6 | Simulation adversaire en SIMU via UDP | ⬜ |
 | 7 | Navigator + isOnPath pour reprise intelligente | ⬜ |
@@ -276,33 +276,63 @@ struct DetectionEvent {
 
 **Tests :** `DetectionEventTest` dans `test/common/` — construction, validité, timestamp.
 
-### Phase 2 — Fix synchronisation position beacon
+### Phase 4 — Synchronisation position beacon
 
-**Objectif :** Réduire l'erreur de ~120mm à ~20mm.
+#### Analyse du problème
 
-**Problème actuel :**
+La beacon Teensy mesure la position adversaire en **repère robot** (polaire → cartésien).
+L'OPOS6UL projette ensuite en coordonnées table via `convertPositionBeaconToRepereTable()`,
+en utilisant la position+angle du robot **au moment de la projection** (pas de la mesure).
+
 ```
-t=0ms     Beacon mesure la position adversaire
-t=62ms    SensorsTimer lit les données I2C
-t=62ms    front() appelle pos_getPosition() ← position robot ACTUELLE
-          Le robot a bougé de 62mm à 1m/s depuis la mesure
-          L'adversaire aussi → erreur cumulée ~120mm
-```
+Teensy:      mesure ToF toutes les ~40ms (4 zones avant + 4 arrière en parallèle)
+             calcule x,y en repère robot : x = dist * cos(angle), y = dist * sin(angle)
+             PAS de timestamp, PAS de connaissance du terrain
 
-**Solution :** Sauvegarder la position robot au moment exact du `sync("beacon_sync")`.
+SensorsTimer: lit I2C toutes les 62ms (décalé 0-62ms par rapport à la mesure)
 
-```cpp
-// Dans SensorsDriver::sync() ou Sensors::front()
-ROBOTPOSITION posAtSync_ = sharedPos_->getRobotPosition();
-// Utiliser posAtSync_ (pas la position courante) pour convertPositionBeaconToRepereTable
+Odométrie:   AsservEsialR 50ms (SIMU), CborDriver 100ms (ARM)
 ```
 
-**Modifications :**
-- `SensorsDriver::sync()` stocke `posAtSync_` (ARM et SIMU)
-- `Sensors::front()`/`back()` utilisent `posAtSync_` au lieu de `robot()->sharedPosition()->getRobotPosition()`
-- Accesseur `ROBOTPOSITION posAtSync()` dans `ASensorsDriver`
+**Latence totale inconnue** : entre 30ms (temps ToF + calcul Teensy) et ~100ms (timer + I2C).
 
-**Tests :** Test unitaire simulant un décalage temporel entre sync et lecture position.
+**Erreur en translation** (robot à 1m/s) : 50-100mm
+**Erreur en rotation** (robot à 180°/s, adv à 1500mm) : jusqu'à 463mm (sin(18°) * 1500)
+
+La rotation est le pire cas. L'erreur en translation est absorbée par le rayon de sécurité (410mm).
+
+#### Ce qu'on peut faire maintenant (solution de repli)
+
+1. **`posAtSync`** — Sauver la position robot au moment du sync I2C dans onTimer.
+   Réduit la partie contrôlable (62ms → ~1ms). Reste la latence Teensy (~30-50ms).
+
+2. **Tolérance configurable** — `BEACON_LATENCY_ESTIMATE_MS` dans la config robot.
+   Utilisée par isOnPath pour élargir le rayon : `safetyRadius += vitesse * latence`.
+
+3. **Ignorer la détection en rotation** — Déjà fait (MovementType::ROTATION).
+   C'est le cas le plus critique (erreur d'angle) et on l'évite.
+
+#### Piste 2027 : balise avec projection en coordonnées table
+
+La Teensy balise pourrait faire la projection en coordonnées table **elle-même** si elle
+connaît la position du robot au moment de la mesure. Deux approches :
+
+**A. Balises fixes au bord du terrain (meilleure solution)**
+Des balises à positions connues sur le terrain permettent à la Teensy de calculer
+sa propre position par triangulation, indépendamment de l'odométrie OPOS6UL.
+Avantage : position absolue, pas d'erreur cumulée d'odométrie.
+
+**B. OPOS6UL envoie sa position à la Teensy (solution de repli)**
+L'OPOS6UL envoie sa position+angle par I2C à la Teensy (registres d'écriture).
+La Teensy projette en coordonnées table au moment exact de la mesure ToF.
+Avantage : supprime le décalage temporel.
+Inconvénient : dépend de la précision de l'odométrie OPOS6UL.
+
+**C. Timestamp/séquence Teensy (solution intermédiaire)**
+La Teensy envoie un compteur de séquence avec chaque mesure.
+L'OPOS6UL stocke un historique de positions et retrouve la bonne.
+Avantage : pas de modification lourde de la Teensy.
+Inconvénient : historique + interpolation côté OPOS6UL.
 
 ### Phase 3 — Visualisation SVG capteurs L/R
 
