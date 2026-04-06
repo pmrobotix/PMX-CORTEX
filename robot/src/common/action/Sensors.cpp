@@ -110,7 +110,6 @@ SensorsTimer::SensorsTimer(Sensors &sensors, int timeSpan_ms, std::string name) 
 	this->init(name_, timeSpan_ms * 1000);
 }
 
-// Methodes de config, seuils, ignore, filtres : delegues inline vers obstacleZone_ (voir Sensors.hpp)
 
 ASensorsDriver::bot_positions Sensors::setPositionsAdvByBeacon()
 {
@@ -266,11 +265,6 @@ int Sensors::leftSide()
 //-99      -9/-99  -99       //possibilité de créer new level si on veut avec plus de threshold
 
 //les coordonnées x_adv_mm, y_adv_mm sont sur le repère robot
-// filtre_levelInFront : delegue inline vers obstacleZone_ (voir Sensors.hpp)
-
-// filtre_levelInBack : delegue inline vers obstacleZone_ (voir Sensors.hpp)
-
-// right() et left() : delegues inline vers obstacleZone_ (voir Sensors.hpp)
 
 //retourne 0, sinon le niveau detecté 2 veryClosed, 1 first level
 int Sensors::front(bool display)

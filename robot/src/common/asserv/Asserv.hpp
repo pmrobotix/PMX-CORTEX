@@ -33,7 +33,6 @@ private:
 
     bool emergencyStop_;
 
-    // Sensors accessible via probot_->sensors() (centralisé dans Robot)
 
 public:
 
@@ -70,9 +69,6 @@ protected:
      */
     AsservEsialR *pAsservEsialR_;
 
-
-    // temp_ignoreBackDetection_, temp_ignoreFrontDetection_, temp_forceRotation_
-    // SUPPRIMÉS — remplacés par MovementType dans waitEndOfTrajWithDetection()
 
     //0=>LEFT with coordinate x, y, angle
     //1=>RIGHT with coordinate 3000-x, y , -angle
@@ -259,9 +255,6 @@ public:
      */
     virtual void setPositionReal(float x_mm, float y_mm, float thetaInRad);
 
-    // warnFrontDetectionOnTraj / warnBackDetectionOnTraj : SUPPRIMÉS
-    // Remplacés par waitEndOfTrajWithDetection() qui consulte le DetectionEvent
-
     /*!
      * \brief Met à jour la position de l'adversaire. À surcharger par le robot.
      */
@@ -278,8 +271,6 @@ public:
      * \brief Déclenche un arrêt d'urgence : interrompt la trajectoire en cours.
      */
     void setEmergencyStop();
-
-    // setSensors supprimé — Asserv accède via probot_->sensors()
 
     // ========== ATTENTE DE FIN DE TRAJECTOIRE AVEC DÉTECTION ==========
 
@@ -429,7 +420,6 @@ public:
      * \brief Attend la fin de la trajectoire en cours (ou de la queue de commandes).
      * \return Etat final de la trajectoire.
      */
-    // waitTraj : SUPPRIMÉ — appeler directement waitEndOfTrajWithDetection()
 
     // ========== DÉPLACEMENTS RELATIFS (par rapport à la position courante) ==========
 

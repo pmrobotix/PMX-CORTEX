@@ -27,7 +27,6 @@ Asserv::Asserv(std::string botId, Robot *robot)
 	else
 		pAsservEsialR_ = NULL;
 
-	// Les anciens flags temp_* sont supprimés — remplacés par MovementType
 
 	matchColorPosition_ = false; // couleur primaire par défaut
 
@@ -419,10 +418,6 @@ void Asserv::setMaxSpeedDistValue(int value)
 
 // Callback de détection frontale pendant une trajectoire.
 // Niveaux d'alerte :
-// warnFrontDetectionOnTraj : SUPPRIMÉ — remplacé par waitEndOfTrajWithDetection(FORWARD)
-
-// warnBackDetectionOnTraj : SUPPRIMÉ — remplacé par waitEndOfTrajWithDetection(BACKWARD)
-
 TRAJ_STATE Asserv::goToChain(float xMM, float yMM)
 {
 	float x_match = changeMatchX(xMM);
@@ -525,7 +520,6 @@ void Asserv::goBackToChainSend(float xMM, float yMM)
 		pAsservEsialR_->motion_GoBackToChain(x_match, yMM);
 }
 
-// waitTraj : SUPPRIMÉ — appeler directement waitEndOfTrajWithDetection()
 
 // Avance ou recule en ligne droite.
 // Le MovementType (FORWARD/BACKWARD) détermine quelle détection est active.
