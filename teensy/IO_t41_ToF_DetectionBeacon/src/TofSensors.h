@@ -137,6 +137,13 @@ struct Registers {
 	uint16_t z4_5 = 0;         ///< Reg 122. Distance zone 5 du robot 4 (mm).
 	uint16_t z4_6 = 0;         ///< Reg 124. Distance zone 6 du robot 4 (mm).
 	uint16_t z4_7 = 0;         ///< Reg 126. Distance zone 7 du robot 4 (mm).
+
+	// --- Timing de mesure par robot (pour synchronisation OPOS6UL) ---
+	uint16_t t1_us = 0;        ///< Reg 128. Delta moyen mesure robot 1 (us depuis debut cycle).
+	uint16_t t2_us = 0;        ///< Reg 130. Delta moyen mesure robot 2.
+	uint16_t t3_us = 0;        ///< Reg 132. Delta moyen mesure robot 3.
+	uint16_t t4_us = 0;        ///< Reg 134. Delta moyen mesure robot 4.
+	uint32_t seq = 0;          ///< Reg 136. Numero de sequence (incremente chaque cycle).
 };
 
 /**

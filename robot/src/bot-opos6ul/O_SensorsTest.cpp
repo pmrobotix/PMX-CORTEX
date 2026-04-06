@@ -11,6 +11,7 @@
 
 #include "action/Sensors.hpp"
 #include "interface/ASensorsDriver.hpp"
+#include "geometry/DetectionEvent.hpp"
 #include "Robot.hpp"
 #include "asserv/Asserv.hpp"
 #include "utils/Chronometer.hpp"
@@ -108,7 +109,13 @@ void O_SensorsTest::run(int argc, char** argv) {
 
         front = robot.actions().sensors().front(1);
         back = robot.actions().sensors().back(1);
-        logger().info() << " f=" << front << " b=" << back << logs::end;
+
+        const DetectionEvent& det = robot.actions().sensors().lastDetection();
+        logger().info() << " f=" << front << " b=" << back
+                << " beacon_seq=" << det.beacon_seq
+                << " beacon_delay=" << det.beacon_delay_us << "us"
+                << " adv=(" << det.x_adv_mm << "," << det.y_adv_mm << ")"
+                << logs::end;
 
         utils::sleep_for_micros(1000000);
     }

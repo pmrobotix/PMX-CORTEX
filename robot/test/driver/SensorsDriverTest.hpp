@@ -94,6 +94,11 @@ public:
 	 * \brief Verifie que displayNumber() ne crash pas.
 	 */
 	void testDisplayNumberNoCrash();
+
+	/*!
+	 * \brief Verifie que getBeaconSeq() retourne 0 (pas de beacon en test).
+	 */
+	void testBeaconSeqDefault();
 };
 
 }

@@ -10,6 +10,7 @@
 #ifndef ASENSORSDRIVER_HPP_
 #define ASENSORSDRIVER_HPP_
 
+#include <cstdint>
 #include <string>
 #include <vector>
 
@@ -27,6 +28,7 @@ public:
 	float y;             ///< Position Y de l'adversaire en mm (coordonnees table).
 	float theta_deg;     ///< Angle de l'adversaire par rapport a l'avant du robot en degres.
 	float d;             ///< Distance du centre robot au centre adversaire en mm.
+	uint16_t t_us;       ///< Delta temps de mesure beacon (us depuis debut cycle Teensy). 0 en SIMU.
 
 	/*!
 	 * \brief Constructeur.
@@ -35,14 +37,16 @@ public:
 	 * \param y_ Position Y en mm.
 	 * \param a_ Angle en degres.
 	 * \param d_ Distance en mm.
+	 * \param t_us_ Delta temps mesure beacon en us (0 si inconnu/SIMU).
 	 */
-	RobotPos(int nb, float x_, float y_, float a_, float d_)
+	RobotPos(int nb, float x_, float y_, float a_, float d_, uint16_t t_us_ = 0)
 	{
 		nbDetectedBots = nb;
 		x = x_;
 		y = y_;
 		theta_deg = a_;
 		d = d_;
+		t_us = t_us_;
 	}
 };
 
@@ -156,6 +160,12 @@ public:
 	 * \note Utilise uniquement en mode SIMU.
 	 */
 	virtual void clearPositionsAdv() = 0;
+
+	/*!
+	 * \brief Retourne le numero de sequence beacon (debug).
+	 * \return 0 en SIMU, incremente chaque cycle en ARM.
+	 */
+	virtual uint32_t getBeaconSeq() { return 0; }
 
 	virtual ~ASensorsDriver()
 	{

@@ -200,6 +200,19 @@ Registers BeaconSensors::getData()
     logger().debug() << " d1:" << regs.d1_mm << " " << regs.d2_mm << " " << regs.d3_mm << " " << regs.d4_mm
             << logs::end;
 
+    // Lecture des registres timing (t1-t4_us + seq) à l'offset 128
+    err = readRegnBytes(128, buf, 12);
+    if (err >= 0) {
+        regs.t1_us = buf[0] | (buf[1] << 8);
+        regs.t2_us = buf[2] | (buf[3] << 8);
+        regs.t3_us = buf[4] | (buf[5] << 8);
+        regs.t4_us = buf[6] | (buf[7] << 8);
+        regs.seq = buf[8] | (buf[9] << 8) | (buf[10] << 16) | (buf[11] << 24);
+
+        logger().debug() << " t1:" << regs.t1_us << "us t2:" << regs.t2_us
+                << "us seq:" << regs.seq << logs::end;
+    }
+
     return regs;
 }
 

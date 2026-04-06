@@ -245,11 +245,13 @@ Si un adversaire apparaît au waypoint 3 sur 5 :
 | 1 | DetectionEvent — structure + publication dans Sensors | ✅ |
 | 2 | `waitEndOfTrajWithDetection()` — centraliser la décision dans Asserv | ✅ |
 | 3 | Supprimer `SensorsTimer` décisionnel + flags `temp_*` + `warnDetection` | ✅ |
-| 4 | Synchronisation position beacon (posAtSync + doc pistes 2027) | ✅ |
+| 4 | Synchronisation beacon : posAtSync + delta Teensy (t1_us) + buffer circulaire positions | ✅ |
+| 4b | Firmware Teensy : zone_timestamp_us + t1-t4_us + seq dans registres I2C | ✅ |
+| 4c | OPOS6UL : lecture t1-t4_us/seq + RobotPos.t_us + historique getPositionAt() | ✅ |
 | 5 | Visualisation SVG capteurs L/R | ⬜ |
 | 6 | Simulation adversaire en SIMU via UDP | ⬜ |
 | 7 | Navigator + isOnPath pour reprise intelligente | ⬜ |
-| 8 | Prédiction position adversaire (optionnel) | ⬜ |
+| 8 | Prédiction position adversaire | ⬜ optionnel 2027, non prioritaire |
 
 ### Phase 1 — DetectionEvent (remonter la position adversaire à l'IA)
 
@@ -333,6 +335,53 @@ La Teensy envoie un compteur de séquence avec chaque mesure.
 L'OPOS6UL stocke un historique de positions et retrouve la bonne.
 Avantage : pas de modification lourde de la Teensy.
 Inconvénient : historique + interpolation côté OPOS6UL.
+
+**D. Delta temps par robot détecté (solution retenue pour 2026)**
+
+La Teensy mesure les 4 zones séquentiellement (~15ms par zone) :
+```
+Zone 0:  t=0ms    → 9 capteurs en parallèle
+Zone 1:  t=16ms   → 9 capteurs en parallèle
+Zone 2:  t=32ms   → 9 capteurs en parallèle
+Zone 3:  t=48ms   → 9 capteurs en parallèle
+Calcul:  t=55ms   → calculPosition()
+```
+
+Si un adversaire est détecté sur les zones 2 et 3, les mesures datent de t=32ms et t=48ms.
+Le delta moyen = 40ms depuis le début du cycle mesure.
+
+**Modification Teensy :**
+- Sauver `t_start_loop = micros()` au début de chaque cycle
+- Pour chaque zone mesurée : `zone_timestamp_us[zone] = micros() - t_start_loop`
+- Dans `calculPosition()`, pour chaque robot détecté :
+  moyenner les timestamps des zones qui le composent
+- Nouveau registre par robot : `uint16_t t1_us` (delta moyen en µs, max 65535µs = 65ms)
+
+```cpp
+// Teensy : dans calculPosition()
+uint32_t sum_t = 0;
+for (int z = zone_start; z <= zone_end; z++)
+    sum_t += zone_timestamp_us[z % 72];
+new_values.t1_us = (uint16_t)(sum_t / nb_zones);
+```
+
+Nouveaux registres I2C :
+```
+t1_us : uint16_t  — delta moyen robot 1 (µs depuis début cycle)
+t2_us : uint16_t  — delta moyen robot 2
+t3_us : uint16_t  — delta moyen robot 3
+t4_us : uint16_t  — delta moyen robot 4
+seq   : uint32_t  — numéro de séquence (incrémenté chaque cycle)
+```
+
+**Modification OPOS6UL :**
+- Historique circulaire de ~10 positions (500ms à 50ms/échantillon)
+- Au moment du sync I2C : `t_mesure = t_sync - t1_us - latence_I2C`
+- Chercher la position robot la plus proche dans l'historique
+- Utiliser cette position pour la projection beacon→table
+
+**Gain estimé :** erreur résiduelle ~5-10ms → ~5-10mm en translation, ~1-2° en rotation.
+Suffisant pour la coupe 2026 (1 robot adverse cette année).
 
 ### Phase 3 — Visualisation SVG capteurs L/R
 

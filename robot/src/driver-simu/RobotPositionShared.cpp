@@ -28,6 +28,7 @@ void RobotPositionShared::setRobotPosition(ROBOTPOSITION p)
     this->lock();
     p_ = p;
     t_set_us_ = chrono_.getElapsedTimeInMicroSec();
+    pushHistory(p, (uint32_t)(t_set_us_ / 1000));
     this->unlock();
 }
 

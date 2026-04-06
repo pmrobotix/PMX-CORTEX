@@ -11,6 +11,7 @@
 #define _AROBOTPOSSHARED_HPP_
 
 #include <cmath>
+#include <cstdint>
 
 #include "utils/Chronometer.hpp"
 
@@ -144,14 +145,67 @@ public:
 		return p;
 	}
 
+	// ========== Historique de positions (buffer circulaire) ==========
+
+	static const int HISTORY_SIZE = 20;  ///< ~1 seconde a 50ms/echantillon
+
+	/*!
+	 * \brief Ajoute la position courante dans l'historique.
+	 *        Appele par les implementations de setRobotPosition().
+	 * \param p Position a enregistrer.
+	 * \param timestamp_ms Timestamp en ms (depuis chrono_ ou autre reference).
+	 */
+	void pushHistory(ROBOTPOSITION p, uint32_t timestamp_ms)
+	{
+		history_[history_head_].pos = p;
+		history_[history_head_].timestamp_ms = timestamp_ms;
+		history_head_ = (history_head_ + 1) % HISTORY_SIZE;
+		if (history_count_ < HISTORY_SIZE) history_count_++;
+	}
+
+	/*!
+	 * \brief Retourne la position la plus proche du timestamp demande.
+	 * \param target_ms Timestamp cible en ms.
+	 * \return Position la plus proche. Si historique vide, retourne la position courante.
+	 */
+	ROBOTPOSITION getPositionAt(uint32_t target_ms)
+	{
+		if (history_count_ == 0) return getRobotPosition(0);
+
+		int best = 0;
+		uint32_t best_diff = UINT32_MAX;
+		for (int i = 0; i < history_count_; i++)
+		{
+			uint32_t diff = (history_[i].timestamp_ms > target_ms)
+					? (history_[i].timestamp_ms - target_ms)
+					: (target_ms - history_[i].timestamp_ms);
+			if (diff < best_diff)
+			{
+				best_diff = diff;
+				best = i;
+			}
+		}
+		return history_[best].pos;
+	}
+
 	virtual ~ARobotPositionShared()
 	{
 	}
 
 protected:
 
+	struct HistoryEntry {
+		ROBOTPOSITION pos;
+		uint32_t timestamp_ms;
+	};
+
+	HistoryEntry history_[HISTORY_SIZE];
+	int history_head_ = 0;
+	int history_count_ = 0;
+
 	ARobotPositionShared() :
-			chrono_("ARobotPositionShared")
+			chrono_("ARobotPositionShared"),
+			history_head_(0), history_count_(0)
 	{
 	}
 

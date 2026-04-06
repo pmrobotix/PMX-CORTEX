@@ -452,10 +452,6 @@ int Sensors::front(bool display)
 //                        obstacleZone_.setDetectedFrontRight( = false;
 //                        adv_is_detected_front_left_ = false;
 
-	} else
-	{
-		logger().error() << "ERROR NO getAvailableFrontCenter !!!!" << logs::end;
-
 	}
 //
 //	//Mise à jour de la position de l'adversaire via les capteurs de proximité
@@ -658,9 +654,6 @@ int Sensors::back(bool display)
 		//                        obstacleZone_.setDetectedFrontRight( = false;
 		//                        adv_is_detected_front_left_ = false;
 
-	} else
-	{
-		logger().error() << "ERROR NO getAvailableBackCenter !!!!" << logs::end;
 	}
 
 	/*
@@ -768,12 +761,8 @@ void SensorsTimer::onTimer(utils::Chronometer chrono)
 	sensors_.lastDetection_.clear();
 	sensors_.lastDetection_.timestamp_us = chrono.getElapsedTimeInMicroSec();
 
-	// 1. LECTURE — sauver la position robot AVANT le sync I2C
-	//    pour réduire le décalage temporel lors de la projection beacon→table
-	ROBOTPOSITION posAtSync = sensors_.robot()->sharedPosition()->getRobotPosition(0);
-	sensors_.lastDetection_.x_robot_mm = posAtSync.x;
-	sensors_.lastDetection_.y_robot_mm = posAtSync.y;
-	sensors_.lastDetection_.theta_robot_rad = posAtSync.theta;
+	// 1. LECTURE — sync beacon I2C
+	uint32_t t_sync_ms = (uint32_t)(chrono.getElapsedTimeInMicroSec() / 1000);
 
 	int err = sensors_.sync("beacon_sync");
 	if (err < 0)
@@ -781,6 +770,29 @@ void SensorsTimer::onTimer(utils::Chronometer chrono)
 		logger().error() << ">> SYNC BAD DATA! NO UPDATE" << logs::end;
 		return;
 	}
+
+	// Copier le seq beacon (debug)
+	sensors_.lastDetection_.beacon_seq = sensors_.sensorsdriver_->getBeaconSeq();
+
+	// Copier le t_us du premier robot détecté et chercher la position robot au moment de la mesure
+	ASensorsDriver::bot_positions vpos = sensors_.sensorsdriver_->getvPositionsAdv();
+	uint16_t beacon_delay_us = 0;
+	if (!vpos.empty())
+	{
+		beacon_delay_us = vpos[0].t_us;
+		sensors_.lastDetection_.beacon_delay_us = beacon_delay_us;
+	}
+
+	// Position robot au moment estimé de la mesure beacon
+	// t_mesure = t_sync - beacon_delay (le delta depuis le début du cycle Teensy)
+	uint32_t t_mesure_ms = t_sync_ms;
+	if (beacon_delay_us > 0)
+		t_mesure_ms = t_sync_ms - (beacon_delay_us / 1000);
+
+	ROBOTPOSITION posAtMeasure = sensors_.robot()->sharedPosition()->getPositionAt(t_mesure_ms);
+	sensors_.lastDetection_.x_robot_mm = posAtMeasure.x;
+	sensors_.lastDetection_.y_robot_mm = posAtMeasure.y;
+	sensors_.lastDetection_.theta_robot_rad = posAtMeasure.theta;
 
 	// 2. FILTRAGE AVANT — classification + debounce
 	if (sensors_.getAvailableFrontCenter())

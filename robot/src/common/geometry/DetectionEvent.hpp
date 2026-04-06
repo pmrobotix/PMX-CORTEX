@@ -39,6 +39,11 @@ struct DetectionEvent {
 	float y_robot_mm;  ///< Position Y robot au moment du sync beacon.
 	float theta_robot_rad; ///< Angle robot au moment du sync beacon.
 
+	// --- Timing beacon (debug/synchronisation) ---
+
+	uint16_t beacon_delay_us; ///< Delta mesure beacon du robot detecte (us depuis debut cycle Teensy).
+	uint32_t beacon_seq;      ///< Numero de sequence beacon (debug, incremente chaque cycle).
+
 	// --- Metadata ---
 
 	uint64_t timestamp_us;  ///< Timestamp de la detection (µs depuis demarrage chrono).
@@ -51,6 +56,7 @@ struct DetectionEvent {
 		: frontLevel(0), backLevel(0),
 		  x_adv_mm(-1.0f), y_adv_mm(-1.0f), d_adv_mm(-1.0f),
 		  x_robot_mm(0.0f), y_robot_mm(0.0f), theta_robot_rad(0.0f),
+		  beacon_delay_us(0), beacon_seq(0),
 		  timestamp_us(0), valid(false)
 	{
 	}
@@ -68,6 +74,8 @@ struct DetectionEvent {
 		x_robot_mm = 0.0f;
 		y_robot_mm = 0.0f;
 		theta_robot_rad = 0.0f;
+		beacon_delay_us = 0;
+		beacon_seq = 0;
 		timestamp_us = 0;
 		valid = false;
 	}

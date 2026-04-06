@@ -90,9 +90,13 @@ uint16_t handDistance[NumOfZonesPerSensor * NumOfSensors]; ///< Distance de trav
 //		85, 31, 117, 0, 85, 31, 117, 0, 85, 31, 117 };
 
 volatile bool tofVLReadyForCalculation = false;  ///< Flag de synchro : donnees pretes pour calcul.
-//volatile bool tofVLunblock = false;
 volatile int shared_endloop1 = 0;  ///< Flag de fin du thread Front (1 = termine).
 volatile int shared_endloop2 = 0;  ///< Flag de fin du thread Back (1 = termine).
+
+// --- Timestamps par zone pour synchronisation OPOS6UL ---
+volatile uint32_t t_start_loop_us = 0;  ///< Timestamp debut de cycle (micros()).
+uint32_t zone_timestamp_us[NumOfZonesPerSensor * NumOfSensors]; ///< Delta micros() par zone depuis t_start_loop.
+static uint32_t seq_counter = 0;  ///< Compteur de sequence global.
 
 //elapsedMicros elapsedT_us = 0;
 
@@ -438,6 +442,34 @@ int8_t calculPosition(float decalage_deg, Registers &new_values, uint16_t *fresu
 	new_values.d3_mm = dist[2];
 	new_values.d4_mm = dist[3];
 
+	// Calcul du delta temps moyen de mesure pour chaque robot détecté
+	uint16_t t_us[4] = {0, 0, 0, 0};
+	for (int i = 1; i <= final_nb_bots && i <= 4; i++)
+	{
+		uint16_t zone_start = tab[0 + 9 * (i - 1)];
+		uint16_t zone_count = tab[1 + 9 * (i - 1)];
+		uint32_t sum_t = 0;
+		int count = 0;
+		for (uint16_t z = zone_start; z < zone_start + zone_count; z++)
+		{
+			uint16_t zz = z % (NumOfZonesPerSensor * NumOfSensors);
+			if (zone_timestamp_us[zz] > 0)
+			{
+				sum_t += zone_timestamp_us[zz];
+				count++;
+			}
+		}
+		if (count > 0)
+			t_us[i - 1] = (uint16_t)(sum_t / count);
+	}
+	new_values.t1_us = t_us[0];
+	new_values.t2_us = t_us[1];
+	new_values.t3_us = t_us[2];
+	new_values.t4_us = t_us[3];
+
+	seq_counter++;
+	new_values.seq = seq_counter;
+
 	return final_nb_bots;
 }
 
@@ -724,6 +756,7 @@ void tof_loop(int debug)
 
 	//	attente synchronisation des DATA
 
+	t_start_loop_us = micros();  // reference temporelle du cycle
 	shared_endloop1 =0;
 	shared_endloop2 =0;
 	tofVLReadyForCalculation = false;
@@ -1414,6 +1447,9 @@ void loopvl1()
 					NumSPADs_t[(NumOfZonesPerSensor * n) + (3 - z)] = res[(NumOfZonesPerSensor * n) + z].NumSPADs;
 					SigPerSPAD_t[(NumOfZonesPerSensor * n) + (3 - z)] = res[(NumOfZonesPerSensor * n) + z].SigPerSPAD;
 					Ambient_t[(NumOfZonesPerSensor * n) + (3 - z)] = res[(NumOfZonesPerSensor * n) + z].Ambient;
+
+					// Timestamp de la mesure (delta us depuis debut cycle)
+					zone_timestamp_us[(NumOfZonesPerSensor * n) + (3 - z)] = micros() - t_start_loop_us;
 				} else
 				{
 					//ERROR
@@ -1737,6 +1773,9 @@ void loopvl2()
 					NumSPADs_t[(NumOfZonesPerSensor * n) + (3 - z)] = res[(NumOfZonesPerSensor * n) + z].NumSPADs;
 					SigPerSPAD_t[(NumOfZonesPerSensor * n) + (3 - z)] = res[(NumOfZonesPerSensor * n) + z].SigPerSPAD;
 					Ambient_t[(NumOfZonesPerSensor * n) + (3 - z)] = res[(NumOfZonesPerSensor * n) + z].Ambient;
+
+					// Timestamp de la mesure (delta us depuis debut cycle)
+					zone_timestamp_us[(NumOfZonesPerSensor * n) + (3 - z)] = micros() - t_start_loop_us;
 
 				} else
 				{

@@ -82,6 +82,8 @@ public:
     int rightSide();
     int leftSide();
 
+    uint32_t getBeaconSeq() override { return regs_.seq; }
+
 };
 
 #endif

@@ -116,8 +116,23 @@ Les capteurs VL53L1X sont lus par la Teensy en I2C master (Wire/Wire1), puis les
 | 24-55 | int16/float | Positions (x, y, angle) pour 4 robots |
 | 56-63 | int16 | Distances centre-a-centre (d1 a d4) |
 | 64-127 | uint8/uint16 | Donnees brutes des zones (z1 a z4) |
+| 128-135 | uint16 | Delta temps moyen de mesure par robot (t1-t4_us, en microsecondes depuis debut cycle) |
+| 136-139 | uint32 | Numero de sequence (incremente chaque cycle) |
 
 Le flag `new data` est remis a zero par l'ISR `on_read_isr` apres lecture par le master.
+
+### Timing de mesure (t1-t4_us, seq)
+
+Pour permettre a l'OPOS6UL de synchroniser la projection beacon→table avec la bonne
+position du robot, chaque mesure est horodatee :
+
+- `t_start_loop_us` : sauve `micros()` au debut de chaque cycle dans `tof_loop()`
+- `zone_timestamp_us[zone]` : sauve `micros() - t_start_loop_us` apres chaque lecture ToF
+- Pour chaque robot detecte, `calculPosition()` calcule la moyenne des timestamps des zones qui le composent
+- Le numero de sequence (`seq`) est incremente a chaque cycle pour detecter les doublons
+
+Exemple : si un adversaire est detecte sur les zones 2 et 3 (mesures a t=32ms et t=48ms
+depuis le debut du cycle), `t1_us = 40000` (40ms en microsecondes).
 
 ### HystFilter - Filtre a hysteresis
 

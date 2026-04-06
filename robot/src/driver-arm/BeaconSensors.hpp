@@ -110,6 +110,13 @@ struct Registers
     int16_t z4_6 = 0;         // Register 122.
     int16_t z4_7 = 0;         // Register 124.
 
+    // --- Timing de mesure (pour synchronisation OPOS6UL) ---
+    uint16_t t1_us = 0;      // Register 124. Delta moyen mesure robot 1 (us depuis debut cycle).
+    uint16_t t2_us = 0;      // Register 126. Delta moyen mesure robot 2.
+    uint16_t t3_us = 0;      // Register 128. Delta moyen mesure robot 3.
+    uint16_t t4_us = 0;      // Register 130. Delta moyen mesure robot 4.
+    uint32_t seq = 0;         // Register 132. Numero de sequence (incremente chaque cycle).
+
 };
 
 class BeaconSensors

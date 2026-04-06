@@ -18,6 +18,7 @@ void test::SensorsDriverTest::suite()
 	testBackSensorsDefaults();
 	testSideSensors();
 	testDisplayNumberNoCrash();
+	testBeaconSeqDefault();
 }
 
 void test::SensorsDriverTest::testCreate()
@@ -53,6 +54,7 @@ void test::SensorsDriverTest::testAddPosition()
 	this->assert(positions.size() == 1, "apres add, size == 1");
 	if (positions.size() == 1) {
 		this->assert(positions[0].nbDetectedBots == 1, "nbDetectedBots == 1");
+		this->assert(positions[0].t_us == 0, "t_us == 0 en simu (pas de beacon)");
 	}
 
 	// Nettoyage pour les tests suivants
@@ -98,4 +100,9 @@ void test::SensorsDriverTest::testDisplayNumberNoCrash()
 {
 	sensorsdriver->displayNumber(42);
 	this->assert(true, "displayNumber(42) sans crash");
+}
+
+void test::SensorsDriverTest::testBeaconSeqDefault()
+{
+	this->assert(sensorsdriver->getBeaconSeq() == 0, "getBeaconSeq() == 0 (pas de beacon)");
 }
