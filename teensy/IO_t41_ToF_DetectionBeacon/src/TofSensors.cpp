@@ -407,6 +407,25 @@ int8_t calculPosition(float decalage_deg, Registers &new_values, uint16_t *fresu
 	}
 //    Serial.println();
 
+	//filtrage des faux positifs (main posée sur la tete du robot)
+	int dist_min_mm = 200; //distance centre-a-centre minimum pour valider une detection
+	int valid_bots = 0;
+	for (int i = 1; i <= final_nb_bots; i++)
+	{
+		if (dist[i - 1] >= dist_min_mm)
+		{
+			if (valid_bots < i - 1)
+			{
+				//compacter : deplacer vers la position libre
+				for (int k = 0; k < 9; k++) tab[k + 9 * valid_bots] = tab[k + 9 * (i - 1)];
+				for (int k = 0; k < 3; k++) pos[k + 3 * valid_bots] = pos[k + 3 * (i - 1)];
+				dist[valid_bots] = dist[i - 1];
+			}
+			valid_bots++;
+		}
+	}
+	final_nb_bots = valid_bots;
+
 	//pour chaque balise detectée calcul des coordonnées x,y
 	//avec simplification et arrondi trigonometrique avec un seul sin/cos
 	for (int i = 1; i <= final_nb_bots; i++)
@@ -506,16 +525,18 @@ int scani2c(TwoWire w)
 /**
  * @brief ISR appelee apres lecture I2C par le master OPOS6UL.
  *
- * Remet a zero le bit "new data" (bit0 de flags) pour signaler
- * que les donnees courantes ont ete lues.
+ * Remet a zero le bit "new data" (bit0 de flags) seulement apres
+ * lecture des derniers registres (offset >= 128), garantissant que
+ * le master a lu toutes les donnees avant le clear.
  *
  * @param reg_num Numero du registre lu par le master.
  */
 void on_read_isr(uint8_t reg_num)
 {
-	// Clear the "new data" bit so the master knows it's
-	// already read this set of values.
-	registers.flags = registers.flags & 0xFE; //mise a zero du BIT0
+	// Clear "new data" seulement apres lecture des derniers registres (timing/seq)
+	if (reg_num >= 128) {
+		registers.flags = registers.flags & 0xFE; //mise a zero du BIT0
+	}
 }
 
 /**
@@ -920,7 +941,7 @@ void tof_loop(int debug)
 	Registers new_values;
 
 	//Calcul des positions
-	float decalage_deg = -22.0;
+	float decalage_deg = -110.0; // 0° = devant du robot (ancien: -22° convention math, corrigé: -22-88=-110)
 	filteredResultWorkingCopy_mutex.lock();
 	new_values.nbDetectedBots = calculPosition(decalage_deg, new_values, filteredResultWorkingCopy);
 	filteredResultWorkingCopy_mutex.unlock();
@@ -941,9 +962,8 @@ void tof_loop(int debug)
 	registers_new_data_lock.lock();
 	// Block copy new values over the top of the old values
 	// and then set the "new data" bit.
-	//registers.flags = 1 && 0x01;
-	registers.flags = registers.flags | 0x01;
 	memcpy(&registers, &new_values, sizeof(Registers));
+	registers.flags = registers.flags | 0x01;
 	registers_new_data_lock.unlock();
 
 	long t_endcalculation = elapsedT_us;
@@ -967,118 +987,121 @@ void tof_loop(int debug)
 	    Serial.println(new_values.c8_mm);
 	#endif
 
-	Serial.print("  FLAGS: ");
-	Serial.print(new_values.flags);
-	Serial.print(" NBBOTS: ");
-	Serial.print(new_values.nbDetectedBots);
+	if (debug)
+	{
+		Serial.print("  FLAGS: ");
+		Serial.print(new_values.flags);
+		Serial.print(" NBBOTS: ");
+		Serial.print(new_values.nbDetectedBots);
 
-	Serial.print(" xyad1: ");
-	Serial.print(new_values.x1_mm);
-	Serial.print(" ");
-	Serial.print(new_values.y1_mm);
-	Serial.print(" ");
-	Serial.print(new_values.a1_deg);
-	Serial.print(" ");
-	Serial.print(new_values.d1_mm);
-	Serial.print(" xyad2: ");
-	Serial.print(new_values.x2_mm);
-	Serial.print(" ");
-	Serial.print(new_values.y2_mm);
-	Serial.print(" ");
-	Serial.print(new_values.a2_deg);
-	Serial.print(" ");
-	Serial.print(new_values.d2_mm);
-	Serial.print(" xyad3: ");
-	Serial.print(new_values.x3_mm);
-	Serial.print(" ");
-	Serial.print(new_values.y3_mm);
-	Serial.print(" ");
-	Serial.print(new_values.a3_deg);
-	Serial.print(" ");
-	Serial.print(new_values.d3_mm);
-	Serial.print(" xyad4: ");
-	Serial.print(new_values.x4_mm);
-	Serial.print(" ");
-	Serial.print(new_values.y4_mm);
-	Serial.print(" ");
-	Serial.print(new_values.a4_deg);
-	Serial.print(" ");
-	Serial.print(new_values.d4_mm);
+		Serial.print(" xyad1: ");
+		Serial.print(new_values.x1_mm);
+		Serial.print(" ");
+		Serial.print(new_values.y1_mm);
+		Serial.print(" ");
+		Serial.print(new_values.a1_deg);
+		Serial.print(" ");
+		Serial.print(new_values.d1_mm);
+		Serial.print(" xyad2: ");
+		Serial.print(new_values.x2_mm);
+		Serial.print(" ");
+		Serial.print(new_values.y2_mm);
+		Serial.print(" ");
+		Serial.print(new_values.a2_deg);
+		Serial.print(" ");
+		Serial.print(new_values.d2_mm);
+		Serial.print(" xyad3: ");
+		Serial.print(new_values.x3_mm);
+		Serial.print(" ");
+		Serial.print(new_values.y3_mm);
+		Serial.print(" ");
+		Serial.print(new_values.a3_deg);
+		Serial.print(" ");
+		Serial.print(new_values.d3_mm);
+		Serial.print(" xyad4: ");
+		Serial.print(new_values.x4_mm);
+		Serial.print(" ");
+		Serial.print(new_values.y4_mm);
+		Serial.print(" ");
+		Serial.print(new_values.a4_deg);
+		Serial.print(" ");
+		Serial.print(new_values.d4_mm);
 
-	Serial.println();
-	Serial.print("  R1:");
-	Serial.print(new_values.z1_p);
-	Serial.print("(");
-	Serial.print(new_values.z1_n);
-	Serial.print("): ");
-	Serial.print(new_values.z1_1);
-	Serial.print(" ");
-	Serial.print(new_values.z1_2);
-	Serial.print(" ");
-	Serial.print(new_values.z1_3);
-	Serial.print(" ");
-	Serial.print(new_values.z1_4);
-	Serial.print(" ");
-	Serial.print(new_values.z1_5);
-	Serial.print(" ");
-	Serial.print(new_values.z1_6);
-	Serial.print(" ");
-	Serial.print(new_values.z1_7);
-	Serial.print("  R2:");
-	Serial.print(new_values.z2_p);
-	Serial.print("(");
-	Serial.print(new_values.z2_n);
-	Serial.print("): ");
-	Serial.print(new_values.z2_1);
-	Serial.print(" ");
-	Serial.print(new_values.z2_2);
-	Serial.print(" ");
-	Serial.print(new_values.z2_3);
-	Serial.print(" ");
-	Serial.print(new_values.z2_4);
-	Serial.print(" ");
-	Serial.print(new_values.z2_5);
-	Serial.print(" ");
-	Serial.print(new_values.z2_6);
-	Serial.print(" ");
-	Serial.print(new_values.z2_7);
-	Serial.print("  R3:");
-	Serial.print(new_values.z3_p);
-	Serial.print("(");
-	Serial.print(new_values.z3_n);
-	Serial.print("): ");
-	Serial.print(new_values.z3_1);
-	Serial.print(" ");
-	Serial.print(new_values.z3_2);
-	Serial.print(" ");
-	Serial.print(new_values.z3_3);
-	Serial.print(" ");
-	Serial.print(new_values.z3_4);
-	Serial.print(" ");
-	Serial.print(new_values.z3_5);
-	Serial.print(" ");
-	Serial.print(new_values.z3_6);
-	Serial.print(" ");
-	Serial.print(new_values.z3_7);
-	Serial.print("  R4:");
-	Serial.print(new_values.z4_p);
-	Serial.print("(");
-	Serial.print(new_values.z4_n);
-	Serial.print("): ");
-	Serial.print(new_values.z4_1);
-	Serial.print(" ");
-	Serial.print(new_values.z4_2);
-	Serial.print(" ");
-	Serial.print(new_values.z4_3);
-	Serial.print(" ");
-	Serial.print(new_values.z4_4);
-	Serial.print(" ");
-	Serial.print(new_values.z4_5);
-	Serial.print(" ");
-	Serial.print(new_values.z4_6);
-	Serial.print(" ");
-	Serial.print(new_values.z4_7);
-	Serial.println();
+		Serial.println();
+		Serial.print("  R1:");
+		Serial.print(new_values.z1_p);
+		Serial.print("(");
+		Serial.print(new_values.z1_n);
+		Serial.print("): ");
+		Serial.print(new_values.z1_1);
+		Serial.print(" ");
+		Serial.print(new_values.z1_2);
+		Serial.print(" ");
+		Serial.print(new_values.z1_3);
+		Serial.print(" ");
+		Serial.print(new_values.z1_4);
+		Serial.print(" ");
+		Serial.print(new_values.z1_5);
+		Serial.print(" ");
+		Serial.print(new_values.z1_6);
+		Serial.print(" ");
+		Serial.print(new_values.z1_7);
+		Serial.print("  R2:");
+		Serial.print(new_values.z2_p);
+		Serial.print("(");
+		Serial.print(new_values.z2_n);
+		Serial.print("): ");
+		Serial.print(new_values.z2_1);
+		Serial.print(" ");
+		Serial.print(new_values.z2_2);
+		Serial.print(" ");
+		Serial.print(new_values.z2_3);
+		Serial.print(" ");
+		Serial.print(new_values.z2_4);
+		Serial.print(" ");
+		Serial.print(new_values.z2_5);
+		Serial.print(" ");
+		Serial.print(new_values.z2_6);
+		Serial.print(" ");
+		Serial.print(new_values.z2_7);
+		Serial.print("  R3:");
+		Serial.print(new_values.z3_p);
+		Serial.print("(");
+		Serial.print(new_values.z3_n);
+		Serial.print("): ");
+		Serial.print(new_values.z3_1);
+		Serial.print(" ");
+		Serial.print(new_values.z3_2);
+		Serial.print(" ");
+		Serial.print(new_values.z3_3);
+		Serial.print(" ");
+		Serial.print(new_values.z3_4);
+		Serial.print(" ");
+		Serial.print(new_values.z3_5);
+		Serial.print(" ");
+		Serial.print(new_values.z3_6);
+		Serial.print(" ");
+		Serial.print(new_values.z3_7);
+		Serial.print("  R4:");
+		Serial.print(new_values.z4_p);
+		Serial.print("(");
+		Serial.print(new_values.z4_n);
+		Serial.print("): ");
+		Serial.print(new_values.z4_1);
+		Serial.print(" ");
+		Serial.print(new_values.z4_2);
+		Serial.print(" ");
+		Serial.print(new_values.z4_3);
+		Serial.print(" ");
+		Serial.print(new_values.z4_4);
+		Serial.print(" ");
+		Serial.print(new_values.z4_5);
+		Serial.print(" ");
+		Serial.print(new_values.z4_6);
+		Serial.print(" ");
+		Serial.print(new_values.z4_7);
+		Serial.println();
+	}
 
 	//VIDEO MODE
 
@@ -1097,12 +1120,14 @@ void tof_loop(int debug)
 			if ((handdist_mode2 > 10) & (handdist_mode2 < 60)) //1 est la valeur par defaut
 				nb_active_filtered_sensors_mode2++;
 
-			Serial.print(val);
-			Serial.print(",");
-			//Serial.print(" ");
+			if (debug)
+			{
+				Serial.print(val);
+				Serial.print(",");
+			}
 		}
 	}
-	Serial.println();
+	if (debug) Serial.println();
 
 	//change mode
 	if (nb_active_filtered_sensors > NumOfSensorsForVideoMode)
@@ -1114,7 +1139,7 @@ void tof_loop(int debug)
 
 	} else
 		videoMode = 0;
-	Serial.println(videoMode);
+	if (debug) Serial.println(videoMode);
 
 
 	threads.delay(1);//important!!
@@ -1245,11 +1270,14 @@ void tof_loop(int debug)
 	long t_endprintDebug = elapsedT_us;
 
 	//print debug time
-	Serial.println(
-			" t_start=" + String(t_start) + " t_threads=" + String(t_endwaitthreads - t_start) + " t_calcul="
-					+ String(t_endcalculation - t_endwaitthreads) + " t_print="
-					+ String(t_endprintDebug - t_endcalculation));
-	Serial.println();
+	if (debug)
+	{
+		Serial.println(
+				" t_start=" + String(t_start) + " t_threads=" + String(t_endwaitthreads - t_start) + " t_calcul="
+						+ String(t_endcalculation - t_endwaitthreads) + " t_print="
+						+ String(t_endprintDebug - t_endcalculation));
+		Serial.println();
+	}
 	if (t_endwaitthreads - t_start > 90000)
 	{
 		latency_thread_error = 1;

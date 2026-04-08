@@ -769,7 +769,8 @@ void add_display_pmx()
 		int led_dist = map(d_mm, 1000, 2200, 0, 7);
 		//int led_dist = map(d_mm, 1000, 2200, 0, 7);
 
-		int decalage = 4; //balise 2024
+		int decalage = 22; //balise 2024 (4 + 18 pour compenser decalage_deg -22 → -110)
+		//int decalage = 4; //balise 2024 (ancien, avant fix angle)
 		//int decalage = 2; //balise 2021
 		//int decalage = 0;    //balise 2022
 		int aa = (int) (a_deg);
