@@ -174,8 +174,13 @@ public:
     bool begin(Settings settings);
 
     /*!
-     *  \brief get distance in mm.
-     *  //every 250 ms
+     *  \brief Lit le registre flags (1 octet) pour verifier si de nouvelles donnees sont disponibles.
+     *  \return flags (bit0 = new data, bit7 = alive, 0xFF = erreur I2C)
+     */
+    uint8_t readFlag();
+
+    /*!
+     *  \brief Lit tous les registres de la balise.
      */
     Registers getData();
 

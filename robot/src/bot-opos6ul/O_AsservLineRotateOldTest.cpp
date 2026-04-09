@@ -274,7 +274,7 @@ void O_AsservLineRotateOldTest::run(int argc, char **argv)
 	if (B == 1)
 	{
 		//detection adverse
-		robot.actions().sensors().addTimerSensors(62);
+		robot.actions().sensors().addTimerSensors(20);
 
 		robot.actions().sensors().setIgnoreFrontNearObstacle(true, false, true);
 		robot.actions().sensors().setIgnoreBackNearObstacle(true, true, true);

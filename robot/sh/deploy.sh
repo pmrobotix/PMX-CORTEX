@@ -93,6 +93,10 @@ info "Taille : $SIZE"
 info "Synchro heure vers $ROBOT_IP..."
 $SSH_CMD "date -s '$(date -u '+%Y-%m-%d %H:%M:%S')'" > /dev/null 2>&1 || true
 
+# --- Kill ancien process (evite "Text file busy") ---
+info "Kill $TARGET (si en cours)..."
+$SSH_CMD "killall $TARGET 2>/dev/null" || true
+
 # --- Deploy ---
 info "Deploy $TARGET vers $ROBOT_USER@$ROBOT_IP:$ROBOT_DIR/"
 $SSH_CMD "mkdir -p $ROBOT_DIR" 2>/dev/null || true
@@ -100,11 +104,6 @@ $SCP_CMD "$BINARY" "$ROBOT_USER@$ROBOT_IP:$ROBOT_DIR/"
 
 # --- Run (optionnel) ---
 if [ "$RUN" = "run" ]; then
-    # Kill l'ancien process s'il tourne (uniquement bot-opos6ul)
-    if [ "$TARGET" = "bot-opos6ul" ]; then
-        info "Kill $TARGET (si en cours)..."
-        $SSH_CMD "killall $TARGET 2>/dev/null" || true
-    fi
     info "Execution $TARGET sur la carte..."
     echo "----------------------------------------"
     $SSH_CMD "cd $ROBOT_DIR && ./$TARGET"

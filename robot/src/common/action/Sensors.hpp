@@ -106,6 +106,9 @@ public:
 	//recupere la liste des positions adverses par la balise
 	ASensorsDriver::bot_positions setPositionsAdvByBeacon();
 
+	//lecture thread-safe des positions adverses (pour affichage/test, sans ecrire dans opponents_last_positions)
+	ASensorsDriver::bot_positions getPositionsAdv() { return sensorsdriver_->getvPositionsAdv(); }
+
 	void clearPositionsAdv();
 
 	//accès detection

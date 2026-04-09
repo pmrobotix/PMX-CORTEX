@@ -34,18 +34,23 @@ int set_realtime_priority(int p = 0, std::string name = "", ThreadId this_thread
 
 /*!
  * \brief Met en pause le thread courant pendant \a usec microsecondes.
+ * \note Utilise std::this_thread::sleep_for (immunise aux signaux POSIX/EINTR).
+ *       Ne pas utiliser clock_nanosleep directement car interrompu par les timers POSIX (SensorsTimer).
  */
 void sleep_for_micros(int64_t usec);
 
 /*!
  * \brief Met en pause le thread courant pendant \a msec millisecondes.
+ * \note Utilise std::this_thread::sleep_for (immunise aux signaux POSIX/EINTR).
  */
 void sleep_for_millis(int64_t msec);
 
 /*!
  * \brief Met en pause le thread courant pendant \a sec secondes.
+ * \note Utilise std::this_thread::sleep_for (immunise aux signaux POSIX/EINTR).
  */
 void sleep_for_secs(int64_t sec);
+
 
 /*!
  * \brief Structure pour gérer une boucle périodique sans dérive.

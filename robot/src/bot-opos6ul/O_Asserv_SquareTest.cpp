@@ -77,7 +77,7 @@ void O_Asserv_SquareTest::run(int argc, char** argv)
     robot.actions().start();
     robot.actions().sensors().setIgnoreFrontNearObstacle(false, false, false);
     robot.actions().sensors().setIgnoreBackNearObstacle(true, true, true);
-    robot.actions().sensors().addTimerSensors(200);
+    robot.actions().sensors().addTimerSensors(20);
 
     chrono.start();
 

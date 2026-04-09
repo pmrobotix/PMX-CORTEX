@@ -53,58 +53,58 @@ int SensorsDriver::getAnalogPinData() //TODO DEPRECATED
 
 ASensorsDriver::bot_positions SensorsDriver::getvPositionsAdv()
 {
-	//msync_.lock();
-	//bot_positions tmp = vadv_;
-	//msync_.unlock();
-	return vadv_;
+	msync_.lock();
+	bot_positions tmp = vadv_;
+	msync_.unlock();
+	return tmp;
 }
 int SensorsDriver::sync()
 {
-	logger().debug() << "beaconSensors_.getData()" << logs::end;
-	msync_.lock();
-
-	for (int t = 0; t <= 2; t++)
-	{
-		regs_ = beaconSensors_.getData();
-		if (regs_.flags == 0xFF)
-		{
-			logger().error() << "sync()...try again n° " << t << logs::end;
-			if (t >= 2)
-			{
-				logger().error() << "sync()...try 3 times and regs_.flags == 0xFF!!" << logs::end;
-				//printf("ERROR try 3 times and regs_.flags == 0xFF!!\n");
-				return -1;
-			}
-		} else
-			break;
+	// 1. Lecture I2C SANS lock (peut bloquer si beacon ne repond pas)
+	uint8_t flags = beaconSensors_.readFlag();
+	if (flags == 0xFF) {
+		logger().error() << "sync() readFlag error I2C" << logs::end;
+		return -1;
 	}
+	if (!(flags & 0x01)) {
+		// 0x80 = alive, pas de nouvelles donnees
+		return 0;
+	}
+
+	// 0x81 = nouvelles donnees disponibles, lecture complete
+	Registers regs = beaconSensors_.getData();
+	if (regs.flags == 0xFF) {
+		logger().error() << "sync() getData error I2C" << logs::end;
+		return -1;
+	}
+
+	// 2. Mise a jour des donnees partagees sous lock (bref)
+	msync_.lock();
+	regs_ = regs;
 	vadv_.clear();
 
-	if (vadv_.empty())
+	if (regs.nbDetectedBots >= 1)
 	{
-		if (regs_.nbDetectedBots >= 1)
-		{
-			vadv_.push_back(RobotPos((int) regs_.nbDetectedBots, regs_.x1_mm, regs_.y1_mm, regs_.a1_deg, regs_.d1_mm, regs_.t1_us));
-		}
-		if (regs_.nbDetectedBots >= 2)
-		{
-			vadv_.push_back(RobotPos((int) regs_.nbDetectedBots, regs_.x2_mm, regs_.y2_mm, regs_.a2_deg, regs_.d2_mm, regs_.t2_us));
-		}
-		if (regs_.nbDetectedBots >= 3)
-		{
-			vadv_.push_back(RobotPos((int) regs_.nbDetectedBots, regs_.x3_mm, regs_.y3_mm, regs_.a3_deg, regs_.d3_mm, regs_.t3_us));
-		}
-		if (regs_.nbDetectedBots >= 4)
-		{
-			vadv_.push_back(RobotPos((int) regs_.nbDetectedBots, regs_.x4_mm, regs_.y4_mm, regs_.a4_deg, regs_.d4_mm, regs_.t4_us));
-		}
+		vadv_.push_back(RobotPos((int) regs.nbDetectedBots, regs.x1_mm, regs.y1_mm, regs.a1_deg, regs.d1_mm, regs.t1_us));
+	}
+	if (regs.nbDetectedBots >= 2)
+	{
+		vadv_.push_back(RobotPos((int) regs.nbDetectedBots, regs.x2_mm, regs.y2_mm, regs.a2_deg, regs.d2_mm, regs.t2_us));
+	}
+	if (regs.nbDetectedBots >= 3)
+	{
+		vadv_.push_back(RobotPos((int) regs.nbDetectedBots, regs.x3_mm, regs.y3_mm, regs.a3_deg, regs.d3_mm, regs.t3_us));
+	}
+	if (regs.nbDetectedBots >= 4)
+	{
+		vadv_.push_back(RobotPos((int) regs.nbDetectedBots, regs.x4_mm, regs.y4_mm, regs.a4_deg, regs.d4_mm, regs.t4_us));
 	}
 
-	logger().debug() << "beacon seq:" << regs_.seq << " t1:" << regs_.t1_us << "us" << logs::end;
+	logger().debug() << "beacon seq:" << regs.seq << " t1:" << regs.t1_us << "us" << logs::end;
 
 	msync_.unlock();
 
-	return 0;
+	return 1; // nouvelles donnees lues
 }
 
 void SensorsDriver::addvPositionsAdv(float x, float y)

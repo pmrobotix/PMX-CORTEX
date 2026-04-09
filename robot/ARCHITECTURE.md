@@ -1,5 +1,9 @@
 # Architecture robot/ — PMX-CORTEX
 
+## Migrations effectuées
+
+- **Timers POSIX : SIGEV_SIGNAL → SIGEV_THREAD** (avril 2026) — Correction d'un bug historique de deadlock : les timers (SensorsTimer, ServoObjectsTimer, LedBarTimer) utilisaient SIGALRM qui interrompait le thread principal dans un signal handler, causant des deadlocks si un mutex était tenu. Migration vers SIGEV_THREAD (vrai thread séparé) avec `tryLock()` pour éviter l'accumulation de threads. Voir [section détaillée](#migration-sigev_signal--sigev_thread-avril-2026-). Même bug présent sur l'ancien robot EV3/PMX — voir [rétrospective EV3](#bug-historique-ev3--deadlock-sigalrm-rétrospective).
+
 ## Migrations en cours
 
 - [Configuration hardware dynamique](HARDWARE_CONFIG.md) — Activation/désactivation des drivers via fichier `hardware.conf` pour l'intégration progressive
@@ -18,16 +22,17 @@
 
 Au démarrage, les 8 LEDs vertes s'allument (lamp test 500ms), puis chacune s'éteint si le composant est OK. **LED allumée = erreur.**
 
-| LED | Composant | Bus | Classe driver |
-|---|---|---|---|
-| 0 | LcdShield | MCP23017 I2C | `LcdShieldDriver` |
-| 1 | Tirette/Switch | PCA9555 I2C | `SwitchDriver` |
-| 2 | BeaconSensors | Teensy I2C | `SensorsDriver` |
-| 3 | GroveColorSensor | TCS3414 I2C | `GroveColorSensor` |
-| 4 | Servos AX12 | Teensy CCAx12 I2C | `ServoDriver` |
-| 5 | *(réserve)* | | |
-| 6 | *(réserve)* | | |
-| 7 | AsservDriver | Nucleo série USB | `AsservDriver` |
+
+| LED | Composant        | Bus               | Classe driver      |
+| ----- | ------------------ | ------------------- | -------------------- |
+| 0   | LcdShield        | MCP23017 I2C      | `LcdShieldDriver`  |
+| 1   | Tirette/Switch   | PCA9555 I2C       | `SwitchDriver`     |
+| 2   | BeaconSensors    | Teensy I2C        | `SensorsDriver`    |
+| 3   | GroveColorSensor | TCS3414 I2C       | `GroveColorSensor` |
+| 4   | Servos AX12      | Teensy CCAx12 I2C | `ServoDriver`      |
+| 5   | *(réserve)*     |                   |                    |
+| 6   | *(réserve)*     |                   |                    |
+| 7   | AsservDriver     | Nucleo série USB | `AsservDriver`     |
 
 Tous les logs de diagnostic sont préfixés `Hardware status:` (filtrable via `grep "Hardware status"`).
 
@@ -299,16 +304,17 @@ robot/
 
 ### Détail des targets
 
-| Target | Type | Sources | Dépendances |
-|--------|------|---------|-------------|
-| `pmx-common` | STATIC | `src/common/**` | pthread |
-| `pmx-driver-arm` | STATIC | `src/driver-arm/**` | pmx-common, as_devices |
-| `pmx-driver-simu` | STATIC | `src/driver-simu/**` | pmx-common |
-| `pmx-suite` | STATIC | `test/suite/**` | pmx-common |
-| `common-test` | EXE | `test/common/**` | pmx-suite + **driver auto** |
-| `driver-test` | EXE | `test/driver/**` | pmx-suite + **driver auto** |
-| `opos6ul` | EXE | `src/bot/opos6ul/**` | pmx-common + **driver auto** |
-| `bot2` | EXE | `src/bot/bot2/**` | pmx-common + **driver auto** |
+
+| Target            | Type   | Sources              | Dépendances                |
+| ------------------- | -------- | ---------------------- | ----------------------------- |
+| `pmx-common`      | STATIC | `src/common/**`      | pthread                     |
+| `pmx-driver-arm`  | STATIC | `src/driver-arm/**`  | pmx-common, as_devices      |
+| `pmx-driver-simu` | STATIC | `src/driver-simu/**` | pmx-common                  |
+| `pmx-suite`       | STATIC | `test/suite/**`      | pmx-common                  |
+| `common-test`     | EXE    | `test/common/**`     | pmx-suite +**driver auto**  |
+| `driver-test`     | EXE    | `test/driver/**`     | pmx-suite +**driver auto**  |
+| `opos6ul`         | EXE    | `src/bot/opos6ul/**` | pmx-common +**driver auto** |
+| `bot2`            | EXE    | `src/bot/bot2/**`    | pmx-common +**driver auto** |
 
 ### Sélection automatique du driver
 
@@ -326,6 +332,7 @@ Pour ajouter `bot2`, il suffit de :
 
 1. Créer `src/bot/bot2/` avec ses propres `*Extended` et `config.txt`
 2. Ajouter dans CMakeLists.txt :
+
 ```cmake
 add_executable(bot2 src/bot/bot2/Main.cpp src/bot/bot2/Bot2_RobotExtended.cpp ...)
 target_link_libraries(bot2 pmx-common ${DRIVER_LIB} pthread)
@@ -336,42 +343,45 @@ Ils partagent `pmx-common` (Robot, Asserv, Actions base) et le même driver.
 
 ## Correspondance avec l'ancien projet PMX (Eclipse)
 
-| Ancien projet Eclipse | Nouveau dans robot/ |
-|---|---|
-| `Common-UnitTest_SIMU` | `cmake --preset simu-debug && cmake --build --preset simu-debug --target common-test` |
-| `Common-UnitTest_OPOS6UL_ARM` | `cmake --preset arm-debug && cmake --build --preset arm-debug --target common-test` |
-| `Driver-UnitTest_SIMU` | `cmake --preset simu-debug && cmake --build --preset simu-debug --target driver-test` |
-| `Driver-UnitTest_OPOS6UL_ARM` | `cmake --preset arm-debug && cmake --build --preset arm-debug --target driver-test` |
-| `Bot_ArmadeusOPOS6UL_SIMU` | `cmake --build --preset simu-debug --target opos6ul` |
-| `Bot_ArmadeusOPOS6UL_ARM` | `cmake --build --preset arm-debug --target opos6ul` |
-| Virtual folders (linked resources) | `target_link_libraries()` dans CMake |
-| Sélection du projet à builder | `--preset` + `--target` |
+
+| Ancien projet Eclipse              | Nouveau dans robot/                                                                   |
+| ------------------------------------ | --------------------------------------------------------------------------------------- |
+| `Common-UnitTest_SIMU`             | `cmake --preset simu-debug && cmake --build --preset simu-debug --target common-test` |
+| `Common-UnitTest_OPOS6UL_ARM`      | `cmake --preset arm-debug && cmake --build --preset arm-debug --target common-test`   |
+| `Driver-UnitTest_SIMU`             | `cmake --preset simu-debug && cmake --build --preset simu-debug --target driver-test` |
+| `Driver-UnitTest_OPOS6UL_ARM`      | `cmake --preset arm-debug && cmake --build --preset arm-debug --target driver-test`   |
+| `Bot_ArmadeusOPOS6UL_SIMU`         | `cmake --build --preset simu-debug --target opos6ul`                                  |
+| `Bot_ArmadeusOPOS6UL_ARM`          | `cmake --build --preset arm-debug --target opos6ul`                                   |
+| Virtual folders (linked resources) | `target_link_libraries()` dans CMake                                                  |
+| Sélection du projet à builder    | `--preset` + `--target`                                                               |
 
 ## Correspondance fichiers ancien PMX → nouveau
 
-| Ancien (PMX/src/) | Nouveau (robot/src/) |
-|---|---|
-| `Common/Interface.Driver/` | `common/interface/` |
-| `Common/Action/` | `common/action/` |
-| `Common/Asserv/` | `common/asserv/` |
-| `Common/State/` | `common/state/` |
-| `Common/IA/` | `common/ia/` |
-| `Common/Utils/` | `common/utils/` |
-| `Common/*.cpp/hpp` | `common/` (racine) |
-| `Log/` | `common/log/` |
-| `Thread/` | `common/thread/` |
-| `Asserv.Esial/` | `common/asserv-esial/` |
-| `Driver-OPOS6UL_ARM/` | `driver-arm/` |
-| `Driver-SIMU/` | `driver-simu/` |
-| `Bot-OPOS6UL/` | `bot/opos6ul/` |
-| `Bot-OPOS6UL.Main/` | `bot/opos6ul/` (Main.cpp + LoggerInitialize.cpp) |
 
-| Ancien (PMX/test/) | Nouveau (robot/test/) |
-|---|---|
-| `Suite/` | `suite/` |
-| `Common-Test.Main/` | `common/` |
-| `Driver-Test_OPOS6UL_ARM.Main/` | `driver/` |
-| `Driver-Test_SIMU.Main/` | `driver/` |
+| Ancien (PMX/src/)          | Nouveau (robot/src/)                             |
+| ---------------------------- | -------------------------------------------------- |
+| `Common/Interface.Driver/` | `common/interface/`                              |
+| `Common/Action/`           | `common/action/`                                 |
+| `Common/Asserv/`           | `common/asserv/`                                 |
+| `Common/State/`            | `common/state/`                                  |
+| `Common/IA/`               | `common/ia/`                                     |
+| `Common/Utils/`            | `common/utils/`                                  |
+| `Common/*.cpp/hpp`         | `common/` (racine)                               |
+| `Log/`                     | `common/log/`                                    |
+| `Thread/`                  | `common/thread/`                                 |
+| `Asserv.Esial/`            | `common/asserv-esial/`                           |
+| `Driver-OPOS6UL_ARM/`      | `driver-arm/`                                    |
+| `Driver-SIMU/`             | `driver-simu/`                                   |
+| `Bot-OPOS6UL/`             | `bot/opos6ul/`                                   |
+| `Bot-OPOS6UL.Main/`        | `bot/opos6ul/` (Main.cpp + LoggerInitialize.cpp) |
+
+
+| Ancien (PMX/test/)              | Nouveau (robot/test/) |
+| --------------------------------- | ----------------------- |
+| `Suite/`                        | `suite/`              |
+| `Common-Test.Main/`             | `common/`             |
+| `Driver-Test_OPOS6UL_ARM.Main/` | `driver/`             |
+| `Driver-Test_SIMU.Main/`        | `driver/`             |
 
 ## Commandes de build
 
@@ -427,13 +437,14 @@ ARobotPositionShared* ARobotPositionShared::create()
 
 ### Qui l'utilise
 
-| Composant | Usage | Accès |
-|---|---|---|
+
+| Composant             | Usage                                          | Accès               |
+| ----------------------- | ------------------------------------------------ | ---------------------- |
 | Asserv / AsservDriver | Écriture de la position courante (odométrie) | `setRobotPosition()` |
-| Sensors | Lecture pour projeter les détections capteurs | `getRobotPosition()` |
-| TableGeometry | Lecture pour `isSensorReadingInsideTable()` | `getRobotPosition()` |
-| SvgWriter | Lecture pour tracer la position | `getRobotPosition()` |
-| Robot | Propriétaire du singleton (`sharedPosition_`) | `sharedPosition()` |
+| Sensors               | Lecture pour projeter les détections capteurs | `getRobotPosition()` |
+| TableGeometry         | Lecture pour`isSensorReadingInsideTable()`     | `getRobotPosition()` |
+| SvgWriter             | Lecture pour tracer la position                | `getRobotPosition()` |
+| Robot                 | Propriétaire du singleton (`sharedPosition_`) | `sharedPosition()`   |
 
 ### Structure ROBOTPOSITION
 
@@ -450,16 +461,18 @@ struct sRobotPosition {
 
 ### Utilitaires dans le même header
 
-| Fonction | Usage |
-|---|---|
-| `degToRad(float)` / `radToDeg(float)` | Conversion d'angles |
-| `WrapAngle2PI(float)` | Normalise dans ]-π, π] |
-| `cmpf(float, float, epsilon)` | Comparaison flottants avec tolérance |
+
+| Fonction                                  | Usage                                                          |
+| ------------------------------------------- | ---------------------------------------------------------------- |
+| `degToRad(float)` / `radToDeg(float)`     | Conversion d'angles                                            |
+| `WrapAngle2PI(float)`                     | Normalise dans ]-π, π]                                       |
+| `cmpf(float, float, epsilon)`             | Comparaison flottants avec tolérance                          |
 | `convertPositionBeaconToRepereTable(...)` | Projette une détection balise (polaire) en coordonnées table |
 
 ## Threads et boucles (◆)
 
 Deux mécanismes d'exécution périodique :
+
 - **THREAD + LOOP** : hérite de `utils::Thread` (pthread, SCHED_FIFO), boucle `while(1)` dans `execute()`
 - **TIMER** : implémente `ITimerPosixListener`, callback `onTimer()` déclenché par SIGALRM via `ActionManagerTimer`
 
@@ -485,26 +498,28 @@ Main thread
 
 ### Détail des threads (THREAD + LOOP)
 
-| Fichier | Classe | Prio | Loop | Période | Rôle |
-|---------|--------|------|------|---------|------|
-| `common/asserv-esial/AsservEsialR` | AsservEsialR | 2 | `while(1)` + chronoTimer | **50ms** (20Hz) configurable | Odométrie, PID, commandes mouvement |
-| `driver-arm/AsservDriver` | AsservDriver | 2 | `while(1)` + sleep | **100ms** (~10Hz) | Lecture série carte ST, parse position |
-| `driver-arm/AsservDriver_mbed_i2c` | AsservDriver | 2 | `while(1)` + chronoTimer | variable | Variante I2C (ancien mbed) |
-| `driver-simu/AsservDriver` | AsservDriver | 2 | `while(1)` + timer | variable | Simulation moteurs (math pure) |
-| `common/action/ActionManagerTimer` | ActionManagerTimer | 2 | `while(!stop)` + sem_wait | event-driven | Queue d'actions async, gère les TIMER |
-| `common/log/LoggerFactory` | LoggerFactory | 0 | `while(!stop)` | non borné | Flush buffers log vers appenders |
-| `bot/opos6ul/states/O_State_DecisionMakerIA` | O_State_DecisionMakerIA | 3 | exécution unique | **une fois** | Stratégie match, appels mouvement bloquants |
+
+| Fichier                                      | Classe                  | Prio | Loop                      | Période                     | Rôle                                        |
+| ---------------------------------------------- | ------------------------- | ------ | --------------------------- | ------------------------------ | ---------------------------------------------- |
+| `common/asserv-esial/AsservEsialR`           | AsservEsialR            | 2    | `while(1)` + chronoTimer  | **50ms** (20Hz) configurable | Odométrie, PID, commandes mouvement         |
+| `driver-arm/AsservDriver`                    | AsservDriver            | 2    | `while(1)` + sleep        | **100ms** (~10Hz)            | Lecture série carte ST, parse position      |
+| `driver-arm/AsservDriver_mbed_i2c`           | AsservDriver            | 2    | `while(1)` + chronoTimer  | variable                     | Variante I2C (ancien mbed)                   |
+| `driver-simu/AsservDriver`                   | AsservDriver            | 2    | `while(1)` + timer        | variable                     | Simulation moteurs (math pure)               |
+| `common/action/ActionManagerTimer`           | ActionManagerTimer      | 2    | `while(!stop)` + sem_wait | event-driven                 | Queue d'actions async, gère les TIMER       |
+| `common/log/LoggerFactory`                   | LoggerFactory           | 0    | `while(!stop)`            | non borné                   | Flush buffers log vers appenders             |
+| `bot/opos6ul/states/O_State_DecisionMakerIA` | O_State_DecisionMakerIA | 3    | exécution unique         | **une fois**                 | Stratégie match, appels mouvement bloquants |
 
 ### Détail des timers (TIMER onTimer)
 
 Tous gérés par `ActionManagerTimer`, enregistrés via `actions().addTimer()`.
 
-| Fichier | Classe | Période | onTimer() fait quoi | Décide ? |
-|---------|--------|---------|---------------------|----------|
-| `common/action/Sensors` | SensorsTimer | **variable ms** | Lit beacon I2C, filtre niveaux 0-4, stoppe le robot | **OUI — problème (voir refactoring)** |
-| `common/action/ServoObjectsSystem` | ServoObjectsTimer | **50ms** | Calcule position interpolée, envoie commande servo | Oui (contrôle moteur servo) |
-| `common/action/LedBar` | LedBarTimer | **variable µs** | Anime LEDs (alternate, K2000, blink) | Non (affichage) |
-| `bot/opos6ul/tests/O_ActionManagerTimerTest` | TestTimer | **100-500ms** | Log messages | Non (test seulement) |
+
+| Fichier                                      | Classe            | Période         | onTimer() fait quoi                                 | Décide ?                               |
+| ---------------------------------------------- | ------------------- | ------------------ | ----------------------------------------------------- | ----------------------------------------- |
+| `common/action/Sensors`                      | SensorsTimer      | **variable ms**  | Lit beacon I2C, filtre niveaux 0-4, stoppe le robot | **OUI — problème (voir refactoring)** |
+| `common/action/ServoObjectsSystem`           | ServoObjectsTimer | **50ms**         | Calcule position interpolée, envoie commande servo | Oui (contrôle moteur servo)            |
+| `common/action/LedBar`                       | LedBarTimer       | **variable µs** | Anime LEDs (alternate, K2000, blink)                | Non (affichage)                         |
+| `bot/opos6ul/tests/O_ActionManagerTimerTest` | TestTimer         | **100-500ms**    | Log messages                                        | Non (test seulement)                    |
 
 ### Notes
 
@@ -518,6 +533,7 @@ Tous gérés par `ActionManagerTimer`, enregistrés via `actions().addTimer()`.
 ### Problème actuel (ancien PMX)
 
 L'interface `AAsservDriver` contient **47 méthodes** mais mélange deux responsabilités :
+
 - Commandes haut niveau (goTo, doLine, doRotate) → utilisées par le robot
 - Contrôle bas niveau moteurs (setPower, getEncoder) → utilisé seulement en simulation interne
 
@@ -532,19 +548,20 @@ Ancien : AAsservDriver (47 méthodes, interface gonflée)
 
 ### Analyse méthode par méthode
 
-| Groupe | Nb | ARM (carte ST) | SIMU | EsialR | Constat |
-|--------|----|----------------|------|--------|---------|
-| Moteurs directs (setPower, setPosition, stop) | 7 | STUB | FULL | STUB | SIMU seulement |
-| Encodeurs (getEncoder, getCounts, reset) | 11 | STUB | FULL | STUB | SIMU seulement |
-| Odométrie (setPosition, getPosition) | 2 | FULL | FULL | FULL | **Commun** |
-| Mouvements (doLine, doRotate, goto...) | 8 | FULL | FULL | FULL* | **Commun** |
-| Vitesse (setLowSpeed, setMaxSpeed) | 3 | FULL | FULL | PARTIEL | **Commun** |
-| Contrôle (freeMotion, activateManager...) | 4 | FULL | FULL | FULL | **Commun** |
-| Interruption (interrupt, resetEmergency) | 2 | FULL | FULL | FULL | **Commun** |
-| Régulation (activateReguDist/Angle) | 2 | FULL | STUB | FULL | ARM+EsialR |
-| Courant moteur (getMotorCurrent) | 2 | STUB | STUB | STUB | **Code mort** |
-| Deprecated (path_GetLastCommandStatus) | 1 | returns -1 | returns -1 | returns -1 | **Code mort** |
-| **Total** | **~47** | | | | |
+
+| Groupe                                        | Nb      | ARM (carte ST) | SIMU       | EsialR     | Constat        |
+| ----------------------------------------------- | --------- | ---------------- | ------------ | ------------ | ---------------- |
+| Moteurs directs (setPower, setPosition, stop) | 7       | STUB           | FULL       | STUB       | SIMU seulement |
+| Encodeurs (getEncoder, getCounts, reset)      | 11      | STUB           | FULL       | STUB       | SIMU seulement |
+| Odométrie (setPosition, getPosition)         | 2       | FULL           | FULL       | FULL       | **Commun**     |
+| Mouvements (doLine, doRotate, goto...)        | 8       | FULL           | FULL       | FULL*      | **Commun**     |
+| Vitesse (setLowSpeed, setMaxSpeed)            | 3       | FULL           | FULL       | PARTIEL    | **Commun**     |
+| Contrôle (freeMotion, activateManager...)    | 4       | FULL           | FULL       | FULL       | **Commun**     |
+| Interruption (interrupt, resetEmergency)      | 2       | FULL           | FULL       | FULL       | **Commun**     |
+| Régulation (activateReguDist/Angle)          | 2       | FULL           | STUB       | FULL       | ARM+EsialR     |
+| Courant moteur (getMotorCurrent)              | 2       | STUB           | STUB       | STUB       | **Code mort**  |
+| Deprecated (path_GetLastCommandStatus)        | 1       | returns -1     | returns -1 | returns -1 | **Code mort**  |
+| **Total**                                     | **~47** |                |            |            |                |
 
 *EsialR : GotoChain utilise addGoToEnchainement (enchainement sans arret).
 
@@ -552,15 +569,16 @@ Ancien : AAsservDriver (47 méthodes, interface gonflée)
 
 #### Répartition des 47 méthodes
 
-| Destination | Méthodes | Nb |
-|---|---|---|
-| **→ AAsserv** (haut niveau) | odo_SetPosition, odo_GetPosition, motion_DoLine, motion_DoRotate, motion_DoFace, motion_Goto, motion_GotoReverse, motion_GotoChain, motion_GotoReverseChain, motion_FreeMotion, motion_DisablePID, motion_AssistedHandling, motion_ActivateManager, motion_setLowSpeedForward, motion_setLowSpeedBackward, motion_setMaxSpeed, path_InterruptTrajectory, path_ResetEmergencyStop, endWhatTodo | **19** |
-| **→ AMotorDriver** (bas niveau) | setMotorLeftPower, setMotorRightPower, setMotorLeftPosition, setMotorRightPosition, stopMotorLeft, stopMotorRight, stopMotors, getLeftExternalEncoder, getRightExternalEncoder, getLeftInternalEncoder, getRightInternalEncoder, getCountsExternal, getDeltaCountsExternal, resetEncoders | **14** |
-| **→ À décider** (AAsserv ou spécifique) | motion_ActivateReguDist, motion_ActivateReguAngle, motion_DoArcRotate | **3** |
-| **→ Fusionnées** (doublons inutiles) | getCountsInternal, resetInternalEncoders, resetExternalEncoders → fusionnés dans AMotorDriver | **3** |
-| **→ Supprimées** (code mort) | getMotorLeftCurrent, getMotorRightCurrent, path_GetLastCommandStatus | **3** |
-| | **Total ancien** | **~47** |
-| | dont réellement utiles | **~36** |
+
+| Destination                                 | Méthodes                                                                                                                                                                                                                                                                                                                                                                                     | Nb      |
+| --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| **→ AAsserv** (haut niveau)                | odo_SetPosition, odo_GetPosition, motion_DoLine, motion_DoRotate, motion_DoFace, motion_Goto, motion_GotoReverse, motion_GotoChain, motion_GotoReverseChain, motion_FreeMotion, motion_DisablePID, motion_AssistedHandling, motion_ActivateManager, motion_setLowSpeedForward, motion_setLowSpeedBackward, motion_setMaxSpeed, path_InterruptTrajectory, path_ResetEmergencyStop, endWhatTodo | **19**  |
+| **→ AMotorDriver** (bas niveau)            | setMotorLeftPower, setMotorRightPower, setMotorLeftPosition, setMotorRightPosition, stopMotorLeft, stopMotorRight, stopMotors, getLeftExternalEncoder, getRightExternalEncoder, getLeftInternalEncoder, getRightInternalEncoder, getCountsExternal, getDeltaCountsExternal, resetEncoders                                                                                                     | **14**  |
+| **→ À décider** (AAsserv ou spécifique) | motion_ActivateReguDist, motion_ActivateReguAngle, motion_DoArcRotate                                                                                                                                                                                                                                                                                                                         | **3**   |
+| **→ Fusionnées** (doublons inutiles)      | getCountsInternal, resetInternalEncoders, resetExternalEncoders → fusionnés dans AMotorDriver                                                                                                                                                                                                                                                                                               | **3**   |
+| **→ Supprimées** (code mort)              | getMotorLeftCurrent, getMotorRightCurrent, path_GetLastCommandStatus                                                                                                                                                                                                                                                                                                                          | **3**   |
+|                                             | **Total ancien**                                                                                                                                                                                                                                                                                                                                                                              | **~47** |
+|                                             | dont réellement utiles                                                                                                                                                                                                                                                                                                                                                                       | **~36** |
 
 ```
 Robot / IA / States
@@ -657,24 +675,24 @@ Ce refactoring se fera **progressivement**, pas en une fois :
 
 ## Timers POSIX (ITimerPosixListener)
 
-Le système de timers utilise des signaux POSIX (SIGALRM) gérés par `ActionManagerTimer`.
+Le système de timers utilise `timer_create()` POSIX avec **SIGEV_THREAD**, géré par `ActionManagerTimer`.
 Chaque timer implémente `ITimerPosixListener` avec un callback `onTimer()` périodique.
 
 ### Liste des timers
 
-| Timer | Période | Fichier | onTimer() fait quoi | Décide ? |
-|-------|---------|---------|---------------------|----------|
-| **SensorsTimer** | variable (ms) | `common/action/Sensors.cpp/hpp` | Lit beacon I2C, filtre niveaux 0-4, **stoppe le robot** | **OUI — problème** |
-| **ServoObjectsTimer** | 50ms | `common/action/ServoObjectsSystem.cpp/hpp` | Interpole position servo, envoie commande PWM | Oui (contrôle moteur servo) |
-| **LedBarTimer** | variable (µs) | `common/action/LedBar.cpp/hpp` | Anime LEDs (alternate, K2000, blink) | Non (affichage) |
-| **TestTimer** | 100-500ms | `bot/opos6ul/tests/O_ActionManagerTimerTest` | Log messages (test seulement) | Non |
+| Timer                 | Période       | Fichier                                      | onTimer() fait quoi                                    | Décide ?                    |
+| ----------------------- | ---------------- | ---------------------------------------------- | -------------------------------------------------------- | ------------------------------ |
+| **SensorsTimer**      | variable (ms)  | `common/action/Sensors.cpp/hpp`              | Lit beacon I2C, filtre niveaux 0-4,**stoppe le robot** | **OUI — problème**         |
+| **ServoObjectsTimer** | 50ms           | `common/action/ServoObjectsSystem.cpp/hpp`   | Interpole position servo, envoie commande PWM          | Oui (contrôle moteur servo) |
+| **LedBarTimer**       | variable (µs) | `common/action/LedBar.cpp/hpp`               | Anime LEDs (alternate, K2000, blink)                   | Non (affichage)              |
+| **TestTimer**         | 100-500ms      | `bot/opos6ul/tests/O_ActionManagerTimerTest` | Log messages (test seulement)                          | Non                          |
 
 ### Mécanisme
 
 ```
 ActionManagerTimer (◆ THREAD, event-driven)
   │  gère une liste de ITimerPosixListener
-  │  chaque timer émet un SIGALRM à sa période
+  │  chaque timer est executé dans un thread séparé (SIGEV_THREAD)
   │
   ├── SensorsTimer ──→ onTimer() toutes les N ms
   ├── ServoObjectsTimer ──→ onTimer() toutes les 50ms
@@ -682,6 +700,70 @@ ActionManagerTimer (◆ THREAD, event-driven)
 ```
 
 Enregistrement via : `actions().addTimer(ITimerPosixListener* timer)`
+
+### Migration SIGEV_SIGNAL → SIGEV_THREAD (avril 2026) ✅
+
+#### Bug historique : deadlock par signal handler
+
+L'ancienne implémentation utilisait `SIGEV_SIGNAL` + `SIGALRM` : le timer POSIX envoyait
+un signal UNIX qui **interrompait le thread principal** pour exécuter `onTimer()` dans
+un signal handler (`alarmFunction`).
+
+**Problème critique** : le signal handler s'exécutait dans le contexte du thread interrompu.
+Si ce thread tenait un mutex au moment de l'interruption (ex: `msync_` dans SensorsDriver,
+ou le mutex SvgWriter), le callback `onTimer()` tentait de verrouiller le même mutex
+depuis le même thread → **deadlock** (mutex POSIX non-récursif par défaut).
+
+```
+Thread principal:  getvPositionsAdv() → msync_.lock()  ← tient le verrou
+                          ↑ SIGALRM interrompt ici
+Signal handler:    onTimer() → sync() → msync_.lock()  → DEADLOCK
+                   (même thread, même mutex non-récursif)
+```
+
+Ce bug se manifestait par des **blocages aléatoires** dont la fréquence augmentait
+avec le nombre de mutex utilisés. Il a probablement affecté aussi le robot EV3
+(PMX, brique Lego sous Debian Linux) qui utilisait le même mécanisme.
+
+De plus, utiliser `pthread_mutex_lock()` dans un signal handler est un **comportement
+indéfini** selon POSIX (fonction non async-signal-safe).
+
+#### Solution : SIGEV_THREAD
+
+`SIGEV_THREAD` demande à glibc de créer un **vrai thread séparé** pour chaque expiration
+du timer au lieu d'envoyer un signal. Les mutex fonctionnent normalement entre threads.
+
+| | SIGEV_SIGNAL (ancien) | SIGEV_THREAD (actuel) |
+|---|---|---|
+| Exécution | Signal handler dans le thread interrompu | Vrai thread séparé créé par glibc |
+| Mutex | **Deadlock** si le thread interrompu tient un mutex | Fonctionnement normal inter-thread |
+| Norme POSIX | Mutex dans signal handler = comportement indéfini | Conforme POSIX |
+| Latence | ~0 (interruption directe) | ~100µs (pthread_create sur ARM Cortex-A7) |
+| Pour timer ≥ 10ms | OK | OK (overhead < 1%) |
+
+Fichier modifié : `common/timer/ITimerPosixListener.hpp`
+
+#### Concurrence des callbacks
+
+`mAlarm_` (mutex statique) sérialise les exécutions de `onTimer()` : si le timer
+re-fire pendant qu'un callback est en cours, le nouveau thread attend la fin du précédent.
+
+#### Références
+
+- [timer_create(2)](https://man7.org/linux/man-pages/man2/timer_create.2.html)
+- [sigevent(7)](https://man7.org/linux/man-pages/man7/sigevent.7.html)
+- [Exemple TLPI ptmr_sigev_thread.c](https://man7.org/tlpi/code/online/dist/timers/ptmr_sigev_thread.c.html)
+
+#### Protection des données partagées (SensorsDriver)
+
+En parallèle de la migration SIGEV_THREAD, les accès concurrents dans SensorsDriver
+ont été corrigés :
+
+- `getvPositionsAdv()` : lecture de `vadv_` protégée par `msync_` (était commenté)
+- `sync()` : lectures I2C sorties du mutex pour ne verrouiller `msync_` que brièvement
+  lors de la mise à jour de `vadv_` et `regs_`
+- `setPositionsAdvByBeacon()` : réservé au timer (seul écrivain de `opponents_last_positions`)
+- `getPositionsAdv()` ajouté : lecture thread-safe pour les consommateurs (tests, IA, Navigator)
 
 ## Refactoring prévu : détection d'obstacles (SensorsTimer)
 
@@ -708,6 +790,7 @@ SensorsTimer::onTimer()          ← callback timer périodique
 ### Conséquences
 
 **Conflit de décision** entre IA et capteurs :
+
 ```
 DecisionMakerIA (thread prio 3) : "va à (500, 300)"
      │  motion_Goto() — bloquant
@@ -720,6 +803,7 @@ DecisionMakerIA                 : motion_Goto() retourne TRAJ_INTERRUPTED
 ```
 
 **État dispersé dans 4 classes** :
+
 ```
 SensorsDriver.vadv_                    ← positions brutes adversaire (mutex)
 Sensors.adv_is_detected_front_right_   ← flags détection
@@ -728,6 +812,7 @@ Asserv.temp_ignoreFrontDetection_      ← flag pour contourner le système
 ```
 
 **Pas de coordination** :
+
 - Stop immédiat level 4, pas de ralentissement progressif
 - Flags `temp_ignoreFrontDetection_` pour contourner → fragile
 - L'IA ne peut pas décider de contourner plutôt que stopper
@@ -815,13 +900,14 @@ bool isOnPath(Point adv, Point from, Point to, float safetyRadius) {
 L'approche `isOnPath` pourrait à terme remplacer `filtre_levelInFront/Back`, mais ce n'est pas
 encore décidé. Le tableau ci-dessous illustre les cas que ça résoudrait :
 
-| Situation | Avant (devant/derrière + flags) | Avec isOnPath |
-|---|---|---|
-| Rotation sur place, adversaire devant | STOP (faux positif) → `temp_ignoreFront=true` | Pas sur le chemin → OK |
-| Goto, adversaire sur le côté | STOP si dans le seuil frontal | Pas sur le chemin → OK |
-| Goto, adversaire pile sur la route | STOP | Sur le chemin → STOP (vrai positif) |
-| Pathfinding chaîné | Flags oubliés entre segments | Chaque segment vérifié indépendamment |
-| Goto composite (carte ST : rotation+translation) | Ne sait pas quelle phase → mauvaise décision | Vérifie le segment final, pas la phase |
+
+| Situation                                        | Avant (devant/derrière + flags)               | Avec isOnPath                            |
+| -------------------------------------------------- | ------------------------------------------------ | ------------------------------------------ |
+| Rotation sur place, adversaire devant            | STOP (faux positif) →`temp_ignoreFront=true`  | Pas sur le chemin → OK                  |
+| Goto, adversaire sur le côté                   | STOP si dans le seuil frontal                  | Pas sur le chemin → OK                  |
+| Goto, adversaire pile sur la route               | STOP                                           | Sur le chemin → STOP (vrai positif)     |
+| Pathfinding chaîné                             | Flags oubliés entre segments                  | Chaque segment vérifié indépendamment |
+| Goto composite (carte ST : rotation+translation) | Ne sait pas quelle phase → mauvaise décision | Vérifie le segment final, pas la phase  |
 
 ### Problème identifié : la reprise après un STOP
 
@@ -860,20 +946,22 @@ Niveau 2 — Vérification trajectoire (nouveau, pour la reprise)
 ```
 
 Cette approche reste à affiner. Questions ouvertes :
+
 - Quel rayon de sécurité pour isOnPath ?
 - Faut-il aussi vérifier les segments suivants du pathfinding ?
 - Comment gérer un adversaire qui bouge pendant la reprise ?
 
 ### Ce que ça change (résumé)
 
-| Avant | Après |
-|---|---|
-| SensorsTimer lit ET filtre ET stoppe le robot | SensorsTimer lit, publie les coordonnées adversaire |
+
+| Avant                                             | Après                                                        |
+| --------------------------------------------------- | --------------------------------------------------------------- |
+| SensorsTimer lit ET filtre ET stoppe le robot     | SensorsTimer lit, publie les coordonnées adversaire          |
 | L'IA ne sait pas pourquoi le robot s'est arrêté | L'IA reçoit l'événement + coordonnées, décide elle-même |
-| Reprise impossible si adversaire "devant" | Reprise autorisée si nouvelle trajectoire est libre |
-| Debounce dans le timer (état mélangé) | Debounce dans ObstacleDetector (logique pure, testable) |
-| Patch `+/-50mm` hardcodé dans le filtre | Calibration dans config.txt |
-| Impossible à tester sans hardware | ObstacleDetector = fonction pure, testable en SIMU |
+| Reprise impossible si adversaire "devant"         | Reprise autorisée si nouvelle trajectoire est libre          |
+| Debounce dans le timer (état mélangé)          | Debounce dans ObstacleDetector (logique pure, testable)       |
+| Patch`+/-50mm` hardcodé dans le filtre           | Calibration dans config.txt                                   |
+| Impossible à tester sans hardware                | ObstacleDetector = fonction pure, testable en SIMU            |
 
 ### Plan de migration
 
@@ -890,105 +978,112 @@ SIMU + ARM + test unitaire via l'interface abstraite.
 
 ### Étape 1 — Briques de base (aucune dépendance) ✅
 
-| Classe | Dossier cible | Test | Statut |
-|---|---|---|---|
-| Thread / Mutex | `common/thread/` | ThreadTest | ✅ |
-| Chronometer | `common/utils/` | ChronometerTest | ✅ |
-| Logger / LoggerFactory | `common/log/` | LoggerTest | ✅ |
+
+| Classe                 | Dossier cible    | Test            | Statut |
+| ------------------------ | ------------------ | ----------------- | -------- |
+| Thread / Mutex         | `common/thread/` | ThreadTest      | ✅     |
+| Chronometer            | `common/utils/`  | ChronometerTest | ✅     |
+| Logger / LoggerFactory | `common/log/`    | LoggerTest      | ✅     |
 
 ### Étape 2 — Framework de test ✅
 
-| Classe | Dossier cible | Statut |
-|---|---|---|
-| UnitTest | `test/suite/` | ✅ |
-| UnitTestSuite | `test/suite/` | ✅ |
+
+| Classe           | Dossier cible | Statut                   |
+| ------------------ | --------------- | -------------------------- |
+| UnitTest         | `test/suite/` | ✅                       |
+| UnitTestSuite    | `test/suite/` | ✅                       |
 | UnitTestAppender | `test/suite/` | ✅ (+ colorisation ANSI) |
 
 ### Étape 3 — Interfaces abstraites drivers ✅
 
-| Classe | Dossier cible | Statut |
-|---|---|---|
-| AAsservDriver | `common/interface/` | ✅ |
-| ASensorsDriver | `common/interface/` | ✅ |
-| ALedDriver | `common/interface/` | ✅ |
-| AButtonDriver | `common/interface/` | ✅ |
-| ASwitchDriver | `common/interface/` | ✅ |
-| AServoDriver | `common/interface/` | ✅ |
-| ALcdShieldDriver | `common/interface/` | ✅ |
-| ASoundDriver | `common/interface/` | ✅ |
-| AColorDriver | `common/interface/` | ✅ |
-| AServoUsingMotorDriver | `common/interface/` | ✅ |
-| AActionDriver | `common/interface/` | ✅ |
-| ARobotPositionShared | `common/interface/` | ✅ |
+
+| Classe                 | Dossier cible       | Statut |
+| ------------------------ | --------------------- | -------- |
+| AAsservDriver          | `common/interface/` | ✅     |
+| ASensorsDriver         | `common/interface/` | ✅     |
+| ALedDriver             | `common/interface/` | ✅     |
+| AButtonDriver          | `common/interface/` | ✅     |
+| ASwitchDriver          | `common/interface/` | ✅     |
+| AServoDriver           | `common/interface/` | ✅     |
+| ALcdShieldDriver       | `common/interface/` | ✅     |
+| ASoundDriver           | `common/interface/` | ✅     |
+| AColorDriver           | `common/interface/` | ✅     |
+| AServoUsingMotorDriver | `common/interface/` | ✅     |
+| AActionDriver          | `common/interface/` | ✅     |
+| ARobotPositionShared   | `common/interface/` | ✅     |
 
 ### Étape 4 — Drivers (SIMU + ARM + test) ✅
 
-| Driver | SIMU | ARM | Test | Statut |
-|---|---|---|---|---|
-| LedDriver | ✅ | ✅ | LedDriverTest | ✅ |
-| ButtonDriver | ✅ | ✅ | ButtonDriverManualTest | ✅ |
-| SwitchDriver | ✅ | ✅ | SwitchDriverTest | ✅ |
-| SoundDriver | ✅ | ✅ | — | ✅ |
-| LcdShieldDriver | ✅ | ✅ | LcdShieldDriverManualTest | ✅ |
-| ServoDriver | ✅ | ✅ | ServoDriverManualTest | ✅ |
-| ServoUsingMotorDriver | ✅ | ✅ | — | ✅ |
-| SensorsDriver | ✅ | ✅ | SensorsDriverTest (9 UT) + SensorDriverManualTest | ✅ |
-| RobotPositionShared | ✅ | ✅ | — | ✅ |
-| ColorDriver | ✅ | ✅ | ColorDriverManualTest | ✅ |
-| AsservDriver | ✅ | ✅ | AsservDriverManualTest | ✅ |
-| ActionDriver | ✅ | ✅ | — | ✅ |
+
+| Driver                | SIMU | ARM | Test                                              | Statut |
+| ----------------------- | ------ | ----- | --------------------------------------------------- | -------- |
+| LedDriver             | ✅   | ✅  | LedDriverTest                                     | ✅     |
+| ButtonDriver          | ✅   | ✅  | ButtonDriverManualTest                            | ✅     |
+| SwitchDriver          | ✅   | ✅  | SwitchDriverTest                                  | ✅     |
+| SoundDriver           | ✅   | ✅  | —                                                | ✅     |
+| LcdShieldDriver       | ✅   | ✅  | LcdShieldDriverManualTest                         | ✅     |
+| ServoDriver           | ✅   | ✅  | ServoDriverManualTest                             | ✅     |
+| ServoUsingMotorDriver | ✅   | ✅  | —                                                | ✅     |
+| SensorsDriver         | ✅   | ✅  | SensorsDriverTest (9 UT) + SensorDriverManualTest | ✅     |
+| RobotPositionShared   | ✅   | ✅  | —                                                | ✅     |
+| ColorDriver           | ✅   | ✅  | ColorDriverManualTest                             | ✅     |
+| AsservDriver          | ✅   | ✅  | AsservDriverManualTest                            | ✅     |
+| ActionDriver          | ✅   | ✅  | —                                                | ✅     |
 
 ### Étape 5 — Actions et timers ✅
 
-| Classe | Dossier cible | Test | Statut |
-|---|---|---|---|
-| IAction, ITimerListener, ITimerPosixListener | `common/timer/` | — | ✅ |
-| ActionManagerTimer | `common/timer/` | ActionManagerTimerTest (13 UT) + bench | ✅ |
-| AActionsElement | `common/action/` | — | ✅ |
-| Actions | `common/action/` | — | ✅ |
-| LedBar | `common/action/` | O_LedBarTest | ✅ |
-| ButtonBar | `common/action/` | O_ButtonBarTest | ✅ |
-| Sensors | `common/action/` | O_SensorsTest (fonctionnel) | ✅ (logique pure extraite → ObstacleZone) |
-| ServoObjectsSystem | `common/action/` | O_ServoObjectsTest | ✅ (test non migré) |
-| ServoUsingMotor | `common/action/` | — | ✅ |
-| Tirette | `common/action/` | O_TiretteTest | ✅ |
-| LcdShield | `common/action/` | O_LcdBoardTest | ✅ |
-| SoundBar | `common/action/` | — | ✅ |
+
+| Classe                                       | Dossier cible    | Test                                   | Statut                                     |
+| ---------------------------------------------- | ------------------ | ---------------------------------------- | -------------------------------------------- |
+| IAction, ITimerListener, ITimerPosixListener | `common/timer/`  | —                                     | ✅                                         |
+| ActionManagerTimer                           | `common/timer/`  | ActionManagerTimerTest (13 UT) + bench | ✅                                         |
+| AActionsElement                              | `common/action/` | —                                     | ✅                                         |
+| Actions                                      | `common/action/` | —                                     | ✅                                         |
+| LedBar                                       | `common/action/` | O_LedBarTest                           | ✅                                         |
+| ButtonBar                                    | `common/action/` | O_ButtonBarTest                        | ✅                                         |
+| Sensors                                      | `common/action/` | O_SensorsTest (fonctionnel)            | ✅ (logique pure extraite → ObstacleZone) |
+| ServoObjectsSystem                           | `common/action/` | O_ServoObjectsTest                     | ✅ (test non migré)                       |
+| ServoUsingMotor                              | `common/action/` | —                                     | ✅                                         |
+| Tirette                                      | `common/action/` | O_TiretteTest                          | ✅                                         |
+| LcdShield                                    | `common/action/` | O_LcdBoardTest                         | ✅                                         |
+| SoundBar                                     | `common/action/` | —                                     | ✅                                         |
 
 ### Étape 6 — Asserv, Robot et mouvement
 
-| Classe | Dossier cible | Test | Statut |
-|---|---|---|---|
-| TableGeometry | `common/geometry/` | TableGeometryTest (12 UT) | ✅ (nouveau) |
-| ObstacleZone | `common/geometry/` | ObstacleZoneTest (12 UT) | ✅ (extrait de Sensors) |
-| Asserv | `common/asserv/` | — | ✅ |
-| AsservEsialR (+ sous-modules) | `common/asserv.esial/` | O_AsservEsialTest | ✅ (test non migré) |
-| Automate / AAutomateState | `common/state/` | — | ✅ |
-| Arguments / ConsoleManager | `common/utils/` | — | ✅ |
-| Robot | `common/` | — | ✅ |
-| MotorControl / EncoderControl / MovingBase | — | — | ⬜ Non utilisés, non migrés |
-| IA / IAbyPath / IAbyZone | `common/ia/` | O_IAbyPathTest | ⬜ À migrer |
+
+| Classe                                     | Dossier cible          | Test                      | Statut                        |
+| -------------------------------------------- | ------------------------ | --------------------------- | ------------------------------- |
+| TableGeometry                              | `common/geometry/`     | TableGeometryTest (12 UT) | ✅ (nouveau)                  |
+| ObstacleZone                               | `common/geometry/`     | ObstacleZoneTest (12 UT)  | ✅ (extrait de Sensors)       |
+| Asserv                                     | `common/asserv/`       | —                        | ✅                            |
+| AsservEsialR (+ sous-modules)              | `common/asserv.esial/` | O_AsservEsialTest         | ✅ (test non migré)          |
+| Automate / AAutomateState                  | `common/state/`        | —                        | ✅                            |
+| Arguments / ConsoleManager                 | `common/utils/`        | —                        | ✅                            |
+| Robot                                      | `common/`              | —                        | ✅                            |
+| MotorControl / EncoderControl / MovingBase | —                     | —                        | ⬜ Non utilisés, non migrés |
+| IA / IAbyPath / IAbyZone                   | `common/ia/`           | O_IAbyPathTest            | ⬜ À migrer                  |
 
 ### Étape 7 — Bot OPOS6UL
 
-| Classe | Dossier cible | Test | Statut |
-|---|---|---|---|
-| OPOS6UL_RobotExtended | `bot-opos6ul/` | — | ✅ |
-| OPOS6UL_ActionsExtended | `bot-opos6ul/` | — | ✅ |
-| OPOS6UL_AsservExtended | `bot-opos6ul/` | O_AsservLineRotateTest | ✅ (test non migré) |
-| OPOS6UL_IAExtended | `bot-opos6ul/` | — | ✅ |
-| OPOS6UL_SvgWriterExtended | `bot-opos6ul/` | — | ✅ |
-| O_State_Init / DecisionMaker / WaitEnd | `bot-opos6ul/` | — | ✅ |
-| O_LedBarTest | `bot-opos6ul/` | — | ✅ |
-| O_TiretteTest | `bot-opos6ul/` | — | ✅ |
-| O_ButtonBarTest | `bot-opos6ul/` | — | ✅ |
-| O_LcdBoardTest | `bot-opos6ul/` | — | ✅ |
-| O_ActionManagerTimerTest | `bot-opos6ul/` | — | ✅ |
-| O_IAByPathTest | `bot-opos6ul/` | — | ✅ |
-| O_ServoStepTest | `bot-opos6ul/` | — | ✅ |
-| O_ServoObjectsTest | `bot-opos6ul/` | — | ✅ |
-| O_SensorsTest | `bot-opos6ul/` | — | ✅ |
-| Tests fonctionnels asserv (6) | `bot-opos6ul/` | — | ⬜ À migrer |
+
+| Classe                                 | Dossier cible  | Test                   | Statut               |
+| ---------------------------------------- | ---------------- | ------------------------ | ---------------------- |
+| OPOS6UL_RobotExtended                  | `bot-opos6ul/` | —                     | ✅                   |
+| OPOS6UL_ActionsExtended                | `bot-opos6ul/` | —                     | ✅                   |
+| OPOS6UL_AsservExtended                 | `bot-opos6ul/` | O_AsservLineRotateTest | ✅ (test non migré) |
+| OPOS6UL_IAExtended                     | `bot-opos6ul/` | —                     | ✅                   |
+| OPOS6UL_SvgWriterExtended              | `bot-opos6ul/` | —                     | ✅                   |
+| O_State_Init / DecisionMaker / WaitEnd | `bot-opos6ul/` | —                     | ✅                   |
+| O_LedBarTest                           | `bot-opos6ul/` | —                     | ✅                   |
+| O_TiretteTest                          | `bot-opos6ul/` | —                     | ✅                   |
+| O_ButtonBarTest                        | `bot-opos6ul/` | —                     | ✅                   |
+| O_LcdBoardTest                         | `bot-opos6ul/` | —                     | ✅                   |
+| O_ActionManagerTimerTest               | `bot-opos6ul/` | —                     | ✅                   |
+| O_IAByPathTest                         | `bot-opos6ul/` | —                     | ✅                   |
+| O_ServoStepTest                        | `bot-opos6ul/` | —                     | ✅                   |
+| O_ServoObjectsTest                     | `bot-opos6ul/` | —                     | ✅                   |
+| O_SensorsTest                          | `bot-opos6ul/` | —                     | ✅                   |
+| Tests fonctionnels asserv (6)          | `bot-opos6ul/` | —                     | ⬜ À migrer         |
 
 ## Organisation des tests
 
@@ -1029,27 +1124,29 @@ test/
 
 ### Targets CMake
 
-| Target | Type | CI ? | Quand l'utiliser |
-|---|---|---|---|
-| `common-test` | Unit test | Oui, doit passer | À chaque build |
-| `driver-test` | Unit test | Oui (SIMU), sur carte (ARM) | À chaque build |
-| `bench` | Benchmark | Non | Quand on optimise |
-| `manual-test` | Test visuel/physique | Non | Sur la carte, en atelier |
+
+| Target        | Type                 | CI ?                        | Quand l'utiliser         |
+| --------------- | ---------------------- | ----------------------------- | -------------------------- |
+| `common-test` | Unit test            | Oui, doit passer            | À chaque build          |
+| `driver-test` | Unit test            | Oui (SIMU), sur carte (ARM) | À chaque build          |
+| `bench`       | Benchmark            | Non                         | Quand on optimise        |
+| `manual-test` | Test visuel/physique | Non                         | Sur la carte, en atelier |
 
 ### Analyse qualité des tests PMX existants
 
-| Test ancien | Assertions réelles ? | Migration vers |
-|---|---|---|
-| ActionManagerTimerTest | Oui — vérifie compteurs | `common/` (unit test) |
-| LoggerTest | Oui — vérifie `expectedError()` | `common/` (unit test) |
-| ThreadTest | Partiel — vérifie calculs | `common/` (+ renforcer assertions) |
-| ChronometerTest | Non — log des timings | `bench/` + nouveau test dans `common/` avec assertions |
-| TimerFactoryTest | Non — observe les logs | `bench/` + nouveau test dans `common/` avec assertions |
-| ReadWriteTest | Non — benchmark I/O | `bench/` |
-| LedDriverTest (ARM) | Non — `assert(true)` | `manual/` |
-| ServoDriverTest (ARM) | Non — `assert(true)` | `manual/` |
-| AsservDriverTest | Non — `assert(true)` | `driver/` (+ assertions réelles) |
-| SensorDriverTest | Non — `assert(true)` | `driver/` (+ assertions réelles) |
+
+| Test ancien            | Assertions réelles ?            | Migration vers                                         |
+| ------------------------ | ---------------------------------- | -------------------------------------------------------- |
+| ActionManagerTimerTest | Oui — vérifie compteurs        | `common/` (unit test)                                  |
+| LoggerTest             | Oui — vérifie`expectedError()` | `common/` (unit test)                                  |
+| ThreadTest             | Partiel — vérifie calculs      | `common/` (+ renforcer assertions)                     |
+| ChronometerTest        | Non — log des timings           | `bench/` + nouveau test dans `common/` avec assertions |
+| TimerFactoryTest       | Non — observe les logs          | `bench/` + nouveau test dans `common/` avec assertions |
+| ReadWriteTest          | Non — benchmark I/O             | `bench/`                                               |
+| LedDriverTest (ARM)    | Non —`assert(true)`             | `manual/`                                              |
+| ServoDriverTest (ARM)  | Non —`assert(true)`             | `manual/`                                              |
+| AsservDriverTest       | Non —`assert(true)`             | `driver/` (+ assertions réelles)                      |
+| SensorDriverTest       | Non —`assert(true)`             | `driver/` (+ assertions réelles)                      |
 
 ## Déploiement ARM (OPOS6UL)
 
@@ -1066,12 +1163,13 @@ sudo apt install sshpass
 
 ### Adresses IP de la carte
 
-| Interface | IP | Usage |
-|---|---|---|
+
+| Interface            | IP              | Usage                        |
+| ---------------------- | ----------------- | ------------------------------ |
 | eth0 (câble direct) | `192.168.2.105` | En atelier, connexion fiable |
-| WiFi 5GHz AP | `192.168.3.103` | Sur le terrain, sans câble |
-| WiFi PMX | `192.168.2.107` | Réseau local PMX |
-| WiFi maison | `192.168.0.205` | Dev à domicile |
+| WiFi 5GHz AP         | `192.168.3.103` | Sur le terrain, sans câble  |
+| WiFi PMX             | `192.168.2.107` | Réseau local PMX            |
+| WiFi maison          | `192.168.0.205` | Dev à domicile              |
 
 ### Utilisation
 
@@ -1079,12 +1177,13 @@ sudo apt install sshpass
 
 Raccourci : **Ctrl+Shift+T** → menu des tasks :
 
-| Task | Description |
-|---|---|
-| `ARM: Deploy` | Build ARM + strip + scp vers `/root/pmx/` |
-| `ARM: Deploy + Run` | Idem + exécute sur la carte via SSH |
-| `ARM: Connect SSH` | Terminal SSH interactif dans `/root/pmx/` |
-| `ARM: Recup SVG` | Rapatrie les fichiers SVG depuis la carte |
+
+| Task                | Description                               |
+| --------------------- | ------------------------------------------- |
+| `ARM: Deploy`       | Build ARM + strip + scp vers`/root/pmx/`  |
+| `ARM: Deploy + Run` | Idem + exécute sur la carte via SSH      |
+| `ARM: Connect SSH`  | Terminal SSH interactif dans`/root/pmx/`  |
+| `ARM: Recup SVG`    | Rapatrie les fichiers SVG depuis la carte |
 
 Chaque task demande l'IP et le binaire via des menus déroulants.
 
@@ -1106,6 +1205,7 @@ bash sh/deploy.sh 192.168.3.103 opos6ul run
 ### Script `sh/deploy.sh`
 
 Étapes exécutées :
+
 1. `cmake --preset arm-release` + `cmake --build` sur la target demandée
 2. Strip du binaire (toolchain ARM)
 3. `scp` vers `root@IP:/root/pmx/`
@@ -1163,15 +1263,16 @@ Chaque méthode publique doit être documentée :
 
 ### Configuration
 
-| Paramètre | Valeur | Raison |
-|---|---|---|
-| `EXTRACT_ALL` | YES | Documente aussi les méthodes non commentées |
-| `EXTRACT_PRIVATE` | YES | Utile pour comprendre l'architecture interne |
-| `HAVE_DOT` | YES | Diagrammes de classes et d'appels (graphviz) |
-| `CLASS_GRAPH` | YES | Hiérarchie d'héritage |
-| `CALL_GRAPH` | YES | Graphe d'appels de fonctions |
-| `EXCLUDE` | `json.hpp` | nlohmann/json (24000 lignes, pas utile) |
-| `GENERATE_LATEX` | NO | HTML uniquement |
+
+| Paramètre        | Valeur     | Raison                                        |
+| ------------------- | ------------ | ----------------------------------------------- |
+| `EXTRACT_ALL`     | YES        | Documente aussi les méthodes non commentées |
+| `EXTRACT_PRIVATE` | YES        | Utile pour comprendre l'architecture interne  |
+| `HAVE_DOT`        | YES        | Diagrammes de classes et d'appels (graphviz)  |
+| `CLASS_GRAPH`     | YES        | Hiérarchie d'héritage                       |
+| `CALL_GRAPH`      | YES        | Graphe d'appels de fonctions                  |
+| `EXCLUDE`         | `json.hpp` | nlohmann/json (24000 lignes, pas utile)       |
+| `GENERATE_LATEX`  | NO         | HTML uniquement                               |
 
 ## Télémétrie réseau (UDP)
 
@@ -1203,8 +1304,9 @@ Chaque paquet UDP contient un objet JSON avec l'ID du robot, un timestamp, le te
 
 ### Configuration réseau
 
-| Destination | IP | Port |
-|---|---|---|
+
+| Destination      | IP              | Port |
+| ------------------ | ----------------- | ------ |
 | RPI (récepteur) | `192.168.3.101` | 9870 |
 
 La même IP est utilisée en SIMU et en ARM. La configuration est dans `src/bot-opos6ul/LoggerInitialize.cpp`.
@@ -1227,6 +1329,91 @@ add(logs::Level::INFO, "MonLogger", "net");
 ```
 
 Puis dans le code, utiliser `logger().telemetry(json)` pour envoyer des données JSON.
+
+## Bug historique EV3 — deadlock SIGALRM (rétrospective)
+
+### Contexte
+
+Le robot EV3 (LEGO Mindstorms, projet PMX) subissait des **arrêts intempestifs aléatoires**
+pendant les matchs : le programme se figeait sans message d'erreur, de façon non reproductible.
+Le bug n'a jamais été identifié à l'époque.
+
+### Cause identifiée (avril 2026)
+
+En corrigeant le même bug sur PMX-CORTEX/OPOS6UL, le mécanisme a été compris :
+le fichier `PMX/src/Common/Action/ITimerPosixListener.hpp` contient **exactement le même code**
+que PMX-CORTEX avant correction — `SIGEV_SIGNAL` + `SIGALRM` avec `pthread_mutex_lock()`
+dans le signal handler `alarmFunction()`.
+
+```
+Thread principal:  mutex.lock()          ← tient le verrou
+                       ↑ SIGALRM interrompt ici
+Signal handler:    mAlarm_.lock()        → DEADLOCK (même thread, mutex non-récursif)
+```
+
+`pthread_mutex_lock()` n'est **pas async-signal-safe** selon POSIX
+([signal-safety(7)](https://man7.org/linux/man-pages/man7/signal-safety.7.html)).
+L'appeler dans un signal handler est un comportement indéfini.
+
+### Pourquoi c'était pire sur l'EV3
+
+| | EV3 | OPOS6UL |
+|---|---|---|
+| Processeur | ARM926EJ-S (ARMv5TE) | i.MX6ULL Cortex-A7 |
+| Cœurs | **1 seul** | 1 |
+| RAM | 64 MB | 512 MB |
+| Toolchain | Sourcery CodeBench arm-2013.11-33 | Armadeus 7.0 (Buildroot) |
+| GCC | 4.8.1 | 10.3 |
+| glibc | 2.18 | 2.33 |
+| Kernel | 3.x (ev3dev, Debian) | 5.10 |
+
+Le processeur **mono-cœur** de l'EV3 rendait le deadlock **plus probable** : le signal
+SIGALRM est toujours délivré au thread qui tient le mutex (pas d'autre cœur disponible).
+Sur un multi-cœur, le signal peut être délivré à un autre thread qui ne tient pas le mutex.
+
+### SIGEV_THREAD était disponible
+
+`SIGEV_THREAD` est supporté par glibc depuis la version 2.3.2 (2003). La glibc 2.18
+de la toolchain arm-2013.11-33 le supportait pleinement. Le fix aurait pu être appliqué
+à l'époque.
+
+### Symptômes connus sur ev3dev cohérents avec ce bug
+
+- [ev3dev #243](https://github.com/ev3dev/ev3dev/issues/243) — freezes aléatoires avec périphériques I2C
+- [ev3dev #324](https://github.com/ev3dev/ev3dev/issues/324) — instabilité de timing des boucles
+- [LTP #925](https://github.com/linux-test-project/ltp/issues/925) — tests POSIX timer échouent sur ARM926EJ-S
+
+### C'est un bug classique en embarqué Linux
+
+Ce pattern (signal handler + mutex = deadlock) est une erreur connue dans les projets
+qui portent du code bare-metal/RTOS vers Linux (où les interruptions timer fonctionnent
+différemment) :
+
+- [IBM : "Mutex Bad In Signal Context"](https://www.ibm.com/support/pages/mutex-bad-signal-context)
+- ["Why you should avoid using SIGALRM for timer"](https://nativeguru.wordpress.com/2015/02/19/why-you-should-avoid-using-sigalrm-for-timer/) — scénario identique en embarqué
+- [iceoryx #179](https://github.com/eclipse/iceoryx/issues/179) — deadlock timer POSIX dans un middleware robotique
+- [grpc #24884](https://github.com/grpc/grpc/issues/24884) — deadlock mutex + signal handler dans gRPC
+- [GCC Bug #21240](https://gcc.gnu.org/bugzilla/show_bug.cgi?id=21240) — "Deadlock (pthread) in signal handler"
+
+### Correction appliquée (PMX-CORTEX uniquement)
+
+Migration `SIGEV_SIGNAL` → `SIGEV_THREAD` dans `ITimerPosixListener.hpp`.
+Voir [section migration détaillée](#migration-sigev_signal--sigev_thread-avril-2026-).
+
+Le code PMX original (`/home/pmx/git/PMX/src/Common/Action/ITimerPosixListener.hpp`)
+n'a **pas** été corrigé (projet archivé, plus maintenu).
+
+### Caveat SIGEV_THREAD : accumulation de threads
+
+Avec `SIGEV_THREAD`, glibc crée un **nouveau pthread pour chaque expiration** du timer.
+Si le callback (`onTimer()`) dure plus longtemps que la période du timer, les threads
+s'accumulent en attente sur `mAlarm_`, chacun allouant ~8MB de stack → OOM kill
+sur système embarqué à RAM limitée.
+
+**Solution** : `tryLock()` au lieu de `lock()` sur `mAlarm_`. Si le callback précédent
+est encore en cours, le nouveau thread sort immédiatement sans s'accumuler.
+Comportement identique à l'ancien SIGALRM (le signal était naturellement bloqué
+pendant l'exécution du handler).
 
 ## TODO
 
@@ -1265,35 +1452,37 @@ Objectif : réduire la latence worst-case des threads critiques (serial, I2C) de
 Prérequis kernel (en cours) : `CONFIG_PREEMPT=y`, `CONFIG_HZ=1000`, I2C déjà en 400 kHz.
 
 - ✅ **1. `mlockall()` — Verrouiller la mémoire**
+
   - Appeler `mlockall(MCL_CURRENT | MCL_FUTURE)` au début de `main()`, avant de lancer les threads
   - Empêche les page faults (stalls de 1-10ms) en verrouillant toute la mémoire en RAM
   - Coût : quelques Mo de RAM supplémentaires (négligeable sur 512 Mo)
-
 - ✅ **2. `SCHED_FIFO` par thread — Priorités temps-réel**
+
   - Assigner des priorités différenciées aux threads selon leur criticité
   - POSIX SCHED_FIFO : 99 = max, 1 = min, 0 = pas temps-réel (SCHED_OTHER)
   - Nécessite root ou `CAP_SYS_NICE`
 
-  | Thread | Priorité avant | Priorité après | Mode | Rôle |
-  |---|---|---|---|---|
-  | **AsservDriver** (driver-arm) | 3 | **80** | ARM | Comm série Teensy |
-  | **AsservEsialR** | 2 | **75** | SIMU | Boucle PID interne |
-  | **ActionManagerTimer** | 2 | **60** | ARM+SIMU | Actions/servos |
-  | **Main** | 50 | **50** | ARM+SIMU | Init/orchestration |
-  | **DecisionMakerIA** | 3 | **40** | ARM+SIMU | Stratégie match |
-  | **LoggerFactory** | 0 | **0** | ARM+SIMU | Logs best-effort |
 
+  | Thread                        | Priorité avant | Priorité après | Mode     | Rôle              |
+  | ------------------------------- | ----------------- | ------------------ | ---------- | -------------------- |
+  | **AsservDriver** (driver-arm) | 3               | **80**           | ARM      | Comm série Teensy |
+  | **AsservEsialR**              | 2               | **75**           | SIMU     | Boucle PID interne |
+  | **ActionManagerTimer**        | 2               | **60**           | ARM+SIMU | Actions/servos     |
+  | **Main**                      | 50              | **50**           | ARM+SIMU | Init/orchestration |
+  | **DecisionMakerIA**           | 3               | **40**           | ARM+SIMU | Stratégie match   |
+  | **LoggerFactory**             | 0               | **0**            | ARM+SIMU | Logs best-effort   |
 - ✅ **3. UART `ASYNC_LOW_LATENCY` — Réduire la latence série**
+
   - Activer le flag `ASYNC_LOW_LATENCY` via `ioctl(TIOCSSERIAL)` après `open()` du port série
   - Réduit la latence de réveil du `read()` de ~10ms à <1ms
   - Critique pour la communication haute fréquence avec la Teensy
-
 - ✅ **4. `clock_nanosleep` absolu — Boucles sans dérive**
+
   - Remplacer les `sleep_for()` / `usleep()` par `clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, ...)`
   - Cible un instant absolu : si le traitement prend 2ms sur une période de 5ms, le sleep ne dure que 3ms
   - Insensible aux changements d'horloge (NTP)
-
 - ✅ **5. Priorités IRQ via `chrt` — Protéger serial/I2C du WiFi**
+
   - Script init qui monte la priorité des threads IRQ UART et I2C au-dessus du WiFi :
     - IRQ UART : `chrt -f -p 90`
     - IRQ I2C : `chrt -f -p 85`
@@ -1305,6 +1494,7 @@ Prérequis kernel (en cours) : `CONFIG_PREEMPT=y`, `CONFIG_HZ=1000`, I2C déjà 
 ### Problème
 
 La logique de retry (boucle while + gestion obstacle/collision/recul) est dupliquée dans :
+
 - `Robot::whileDoLine()` — retry sur `doLine()`
 - `IAbyPath::whileMoveForwardTo()` — retry sur `doMoveForwardTo()` ou `doPathForwardTo()`
 - `IAbyPath::whileMoveBackwardTo()` — retry sur `doMoveBackwardTo()` ou `doPathBackwardTo()`
@@ -1482,19 +1672,21 @@ CHAIN :         ●──stop──●──stop──●──stop──●   e
 CHAIN_NONSTOP : ●────────●────────●──stop──●   envoi groupe, pas d'arret (sauf dernier)
 ```
 
-| PathMode | Envoi | Arret entre points | Commande intermediaire | Commande finale |
-|---|---|---|---|---|
-| `STOP` | un par un + wait | oui | `gotoXY` + `waitEndOfTraj` | `gotoXY` + `waitEndOfTraj` |
-| `CHAIN` | groupé | oui | `gotoXY` (sans wait) | `gotoXY` + `waitEndOfTraj` |
-| `CHAIN_NONSTOP` | groupé | non | `gotoChain` (sans wait) | `gotoXY` + `waitEndOfTraj` |
+
+| PathMode        | Envoi            | Arret entre points | Commande intermediaire     | Commande finale            |
+| ----------------- | ------------------ | -------------------- | ---------------------------- | ---------------------------- |
+| `STOP`          | un par un + wait | oui                | `gotoXY` + `waitEndOfTraj` | `gotoXY` + `waitEndOfTraj` |
+| `CHAIN`         | groupé          | oui                | `gotoXY` (sans wait)       | `gotoXY` + `waitEndOfTraj` |
+| `CHAIN_NONSTOP` | groupé          | non                | `gotoChain` (sans wait)    | `gotoXY` + `waitEndOfTraj` |
 
 La Nucleo (asserv_chibios) gère la queue de waypoints en interne.
 
-| Driver | STOP | CHAIN | CHAIN_NONSTOP |
-|---|---|---|---|
-| ARM (série) | OK | OK | OK |
-| SIMU | OK | fallback STOP | fallback STOP |
-| EsialR | OK | fallback STOP | OK (addGoToEnchainement) |
+
+| Driver       | STOP | CHAIN         | CHAIN_NONSTOP            |
+| -------------- | ------ | --------------- | -------------------------- |
+| ARM (série) | OK   | OK            | OK                       |
+| SIMU         | OK   | fallback STOP | fallback STOP            |
+| EsialR       | OK   | fallback STOP | OK (addGoToEnchainement) |
 
 **Envoi sans attente (mode CHAIN/CHAIN_NONSTOP)** :
 
@@ -1505,6 +1697,7 @@ sont envoyées en série a la Nucleo qui les bufferise dans sa queue. Sur EsialR
 tandis que `motion_Goto` reste bloquant (fallback STOP pour le mode CHAIN).
 
 **Note SIMU / EsialR** :
+
 - Les 3 modes fonctionnent sans erreur.
 - CHAIN_NONSTOP utilise `addGoToEnchainement` d'EsialR (enchainement réel, pas de fallback).
 - CHAIN utilise `motion_Goto` qui est bloquant en EsialR (comportement identique a STOP).
@@ -1514,23 +1707,25 @@ tandis que `motion_Goto` reste bloquant (fallback STOP pour le mode CHAIN).
 
 Navigator trace automatiquement les segments sur le SVG via `SvgWriter::writeLine()`.
 
-| Commande | Couleur SVG | Style |
-|---|---|---|
-| manualPath STOP | *(rien, points odométrie existants)* | |
-| manualPath CHAIN | *(rien, points odométrie existants)* | |
-| manualPath CHAIN_NONSTOP | Vert | Pointillés `- - - -` |
-| goTo / goBackTo (direct) | Bleu | Continu `──────` |
-| pathTo STOP | Rouge | Continu `──────` |
-| pathTo CHAIN | Rouge | Continu `──────` |
-| pathTo CHAIN_NONSTOP | Rouge | Pointillés `- - - -` |
+
+| Commande                 | Couleur SVG                           | Style                 |
+| -------------------------- | --------------------------------------- | ----------------------- |
+| manualPath STOP          | *(rien, points odométrie existants)* |                       |
+| manualPath CHAIN         | *(rien, points odométrie existants)* |                       |
+| manualPath CHAIN_NONSTOP | Vert                                  | Pointillés`- - - -`  |
+| goTo / goBackTo (direct) | Bleu                                  | Continu`──────` |
+| pathTo STOP              | Rouge                                 | Continu`──────` |
+| pathTo CHAIN             | Rouge                                 | Continu`──────` |
+| pathTo CHAIN_NONSTOP     | Rouge                                 | Pointillés`- - - -`  |
 
 #### Fichiers
 
-| Fichier | Contenu |
-|---|---|
-| `src/common/navigator/RetryPolicy.hpp` | Struct RetryPolicy + presets |
-| `src/common/navigator/Navigator.hpp` | Header classe Navigator + struct Waypoint + enum PathMode |
-| `src/common/navigator/Navigator.cpp` | Implémentation (executeWithRetry + toutes les méthodes) |
+
+| Fichier                                | Contenu                                                   |
+| ---------------------------------------- | ----------------------------------------------------------- |
+| `src/common/navigator/RetryPolicy.hpp` | Struct RetryPolicy + presets                              |
+| `src/common/navigator/Navigator.hpp`   | Header classe Navigator + struct Waypoint + enum PathMode |
+| `src/common/navigator/Navigator.cpp`   | Implémentation (executeWithRetry + toutes les méthodes) |
 
 #### Ce qui reste inchangé dans IAbyPath
 
@@ -1543,6 +1738,7 @@ Navigator trace automatiquement les segments sur le SVG via `SvgWriter::writeLin
 
 Les méthodes `while*` de IAbyPath sont supprimées (remplacées par Navigator avec RetryPolicy).
 Les méthodes `doPath*` de IAbyPath sont deprecated mais encore utilisées en interne :
+
 - `doPathForwardTo`, `doPathBackwardTo`, `doPathForwardAndFaceTo`, `doPathForwardAndRotateTo`
 - Appelants restants : IAbyPath interne + `O_IAbyPathTest.cpp`
 - À migrer vers Navigator::pathTo / pathBackTo / pathToAndFaceTo / pathToAndRotateAbsDeg
@@ -1551,36 +1747,38 @@ Les méthodes `doPath*` de IAbyPath sont deprecated mais encore utilisées en in
 
 Convention : **verbe + complément + qualificateur**, pas de préfixe `do`.
 
-| Action | Navigator (niveau 2) | Asserv (ancien → nouveau) | AAsservDriver (ancien → nouveau) |
-|---|---|---|---|
-| Ligne droite | `line` | `doLine` → `line` | `motion_DoLine` → `motion_Line` |
-| Aller à (x,y) | `goTo` | `gotoXY` → `goTo` | `motion_Goto` → `motion_GoTo` |
-| Reculer à (x,y) | `goBackTo` | `gotoReverse` → `goBackTo` | `motion_GotoReverse` → `motion_GoBackTo` |
-| Aller chaîné | — | `gotoChain` → `goToChain` | `motion_GotoChain` → `motion_GoToChain` |
-| Reculer chaîné | — | `gotoReverseChain` → `goBackToChain` | `motion_GotoReverseChain` → `motion_GoBackToChain` |
-| Envoi goto sans wait | — | `gotoSend` → `goToSend` | — |
-| Envoi chain sans wait | — | `gotoChainSend` → `goToChainSend` | — |
-| Envoi back sans wait | — | `gotoReverseSend` → `goBackToSend` | — |
-| Envoi back chain sans wait | — | `gotoReverseChainSend` → `goBackToChainSend` | — |
-| Attente fin traj | — | `waitTraj` ✅ | `waitEndOfTraj` ✅ |
-| Rotation relative deg | `rotateDeg` | `doRelativeRotateDeg` → `rotateDeg` | `motion_DoRotate` → `motion_RotateRad` (radians) |
-| Rotation relative rad | — | `doRelativeRotateRad` → `rotateRad` | — (le driver est toujours en rad) |
-| Rotation par couleur deg | — | `doRelativeRotateByMatchColor` → `rotateByMatchColorDeg` | — |
-| Rotation absolue deg | `rotateAbsDeg` | `doAbsoluteRotateTo` → `rotateAbsDeg` | — |
-| Face vers (x,y) | `faceTo` | `doFaceTo` → `faceTo` | `motion_DoFace` → `motion_FaceTo` |
-| Dos vers (x,y) | `faceBackTo` | — → `faceBackTo` | — → `motion_FaceBackTo` |
-| Avancer vers (x,y) | — | `doMoveForwardTo` → `moveForwardTo` | — |
-| Reculer vers (x,y) | — | `doMoveBackwardTo` → `moveBackwardTo` | — |
-| Avancer+rotation | — | `doMoveForwardAndRotateTo` → `moveForwardAndRotateTo` | — |
-| Reculer+rotation | — | `doMoveBackwardAndRotateTo` → `moveBackwardAndRotateTo` | — |
-| Calage | — | `doCalage` → `calage` | — |
-| Calage2 | — | `doCalage2` → `calage2` | — |
-| CalageNew | — | `doCalageNew` → `calageNew` | — |
-| Pivot gauche | — | `doRunPivotLeft` → `pivotLeft` | — |
-| Pivot droit | — | `doRunPivotRight` → `pivotRight` | — |
-| Orbital turn deg | `orbitalTurnDeg` | `orbitalTurnDeg` | `motion_DoOrbitalTurn` → `motion_OrbitalTurnRad` |
+
+| Action                     | Navigator (niveau 2) | Asserv (ancien → nouveau)                                | AAsservDriver (ancien → nouveau)                   |
+| ---------------------------- | ---------------------- | ----------------------------------------------------------- | ----------------------------------------------------- |
+| Ligne droite               | `line`               | `doLine` → `line`                                        | `motion_DoLine` → `motion_Line`                    |
+| Aller à (x,y)             | `goTo`               | `gotoXY` → `goTo`                                        | `motion_Goto` → `motion_GoTo`                      |
+| Reculer à (x,y)           | `goBackTo`           | `gotoReverse` → `goBackTo`                               | `motion_GotoReverse` → `motion_GoBackTo`           |
+| Aller chaîné             | —                   | `gotoChain` → `goToChain`                                | `motion_GotoChain` → `motion_GoToChain`            |
+| Reculer chaîné           | —                   | `gotoReverseChain` → `goBackToChain`                     | `motion_GotoReverseChain` → `motion_GoBackToChain` |
+| Envoi goto sans wait       | —                   | `gotoSend` → `goToSend`                                  | —                                                  |
+| Envoi chain sans wait      | —                   | `gotoChainSend` → `goToChainSend`                        | —                                                  |
+| Envoi back sans wait       | —                   | `gotoReverseSend` → `goBackToSend`                       | —                                                  |
+| Envoi back chain sans wait | —                   | `gotoReverseChainSend` → `goBackToChainSend`             | —                                                  |
+| Attente fin traj           | —                   | `waitTraj` ✅                                             | `waitEndOfTraj` ✅                                  |
+| Rotation relative deg      | `rotateDeg`          | `doRelativeRotateDeg` → `rotateDeg`                      | `motion_DoRotate` → `motion_RotateRad` (radians)   |
+| Rotation relative rad      | —                   | `doRelativeRotateRad` → `rotateRad`                      | — (le driver est toujours en rad)                  |
+| Rotation par couleur deg   | —                   | `doRelativeRotateByMatchColor` → `rotateByMatchColorDeg` | —                                                  |
+| Rotation absolue deg       | `rotateAbsDeg`       | `doAbsoluteRotateTo` → `rotateAbsDeg`                    | —                                                  |
+| Face vers (x,y)            | `faceTo`             | `doFaceTo` → `faceTo`                                    | `motion_DoFace` → `motion_FaceTo`                  |
+| Dos vers (x,y)             | `faceBackTo`         | — →`faceBackTo`                                         | — →`motion_FaceBackTo`                            |
+| Avancer vers (x,y)         | —                   | `doMoveForwardTo` → `moveForwardTo`                      | —                                                  |
+| Reculer vers (x,y)         | —                   | `doMoveBackwardTo` → `moveBackwardTo`                    | —                                                  |
+| Avancer+rotation           | —                   | `doMoveForwardAndRotateTo` → `moveForwardAndRotateTo`    | —                                                  |
+| Reculer+rotation           | —                   | `doMoveBackwardAndRotateTo` → `moveBackwardAndRotateTo`  | —                                                  |
+| Calage                     | —                   | `doCalage` → `calage`                                    | —                                                  |
+| Calage2                    | —                   | `doCalage2` → `calage2`                                  | —                                                  |
+| CalageNew                  | —                   | `doCalageNew` → `calageNew`                              | —                                                  |
+| Pivot gauche               | —                   | `doRunPivotLeft` → `pivotLeft`                           | —                                                  |
+| Pivot droit                | —                   | `doRunPivotRight` → `pivotRight`                         | —                                                  |
+| Orbital turn deg           | `orbitalTurnDeg`     | `orbitalTurnDeg`                                          | `motion_DoOrbitalTurn` → `motion_OrbitalTurnRad`   |
 
 **Convention unités dans les noms** :
+
 - `Deg` dans le nom = paramètre en degrés (Navigator, Asserv)
 - `Rad` dans le nom = paramètre en radians (Driver)
 - La conversion deg→rad se fait **une seule fois** dans Asserv avant d'appeler le driver
@@ -1588,6 +1786,7 @@ Convention : **verbe + complément + qualificateur**, pas de préfixe `do`.
 - Navigator travaille **toujours en degrés**
 
 **TODO drivers ARM (commandes non supportées)** :
+
 - `AsservDriver` (ASCII) : `motion_FaceBackTo` → à implémenter côté Nucleo (commande série)
 
 Fichiers impactés : `AAsservDriver.hpp` (8), `Asserv.hpp/.cpp` (18),
@@ -1687,6 +1886,7 @@ changer de cible, contourner, abandonner, retenter avec une autre policy, etc.
 ```
 
 Cette séparation permet de :
+
 - Tester Navigator indépendamment (retry pur, pas de logique métier)
 - Faire évoluer la stratégie du DecisionMaker sans toucher à Navigator
 - Gérer les interruptions (fin de match 90s, changement de priorité) au niveau DecisionMaker

@@ -2,9 +2,34 @@
  * \file
  * \brief Définition de l'interface ITimerPosixListener.
  *
- *  LINKER Add -lrt to your link command. timer_create and timer_settime are not part of the C Standard library.
- *  reference
- *  https://quirk.ch/2009/07/how-to-use-posix-timer-within-c-classes
+ * Timer periodique base sur timer_create() POSIX.
+ *
+ * ## Historique : migration SIGEV_SIGNAL → SIGEV_THREAD (avril 2026)
+ *
+ * L'ancienne implementation utilisait SIGEV_SIGNAL + SIGALRM :
+ * le timer envoyait un signal UNIX qui interrompait le thread principal
+ * pour executer le callback onTimer() dans un signal handler.
+ *
+ * **Probleme** : le signal handler s'executait dans le contexte du thread
+ * interrompu. Si ce thread tenait un mutex (msync_, SvgWriter, etc.),
+ * le callback essayait de verrouiller le meme mutex → deadlock.
+ * Ce bug causait des blocages aleatoires sur OPOS6UL (PMX-CORTEX)
+ * et probablement aussi sur EV3 (PMX, Debian Linux).
+ * Les mutex dans un signal handler sont de toute facon un comportement
+ * indefini POSIX (non async-signal-safe).
+ *
+ * **Solution** : SIGEV_THREAD fait creer un vrai thread par glibc pour
+ * chaque expiration du timer. Les mutex fonctionnent normalement entre
+ * threads. Le surcout (~100us de pthread_create sur ARM Cortex-A7) est
+ * negligeable pour des timers >= 10ms.
+ *
+ * References :
+ * - https://man7.org/linux/man-pages/man2/timer_create.2.html
+ * - https://man7.org/linux/man-pages/man7/sigevent.7.html
+ * - https://man7.org/tlpi/code/online/dist/timers/ptmr_sigev_thread.c.html
+ * - https://quirk.ch/2009/07/how-to-use-posix-timer-within-c-classes (implementation originale)
+ *
+ * LINKER : ajouter -lrt (timer_create/timer_settime ne sont pas dans la libc standard).
  */
 
 #ifndef COMMON_UTILS_ITIMERPOSIXLISTENER_HPP
@@ -64,27 +89,16 @@ public:
     {
         mfct_.lock();
         if (!started_) {
-            // Install the Timer
-            //std::cout << "Create the timer, name:" << this->name() << std::endl;
-            if (timer_create(CLOCK_REALTIME, &this->signalEvent, &this->timerID) != 0) { // timer id koennte mit private probleme geben
+            if (timer_create(CLOCK_REALTIME, &this->signalEvent, &this->timerID) != 0) {
                 std::cout << "ERROR ITimerPosixListener Could not create the timer name:" << this->name() << std::endl;
                 perror("Could not create the timer");
                 sleep(1);
                 exit(1);
             }
-            //std::cout << "install new signal handler, name:" << this->name() << std::endl;
-            if (sigaction(SIGALRM, &this->SignalAction, NULL)) {
-                std::cout << "ERROR ITimerPosixListener Could not install new signal handler, id:" << this->timerID
-                        << " name:" << this->name() << std::endl;
-                perror("Could not install new signal handler");
-                sleep(1);
-                exit(1);
-            }
-            //std::cout << "Set the timer and therefore it starts, name:" << this->name() << std::endl;
-            // Set the timer and therefore it starts...
+
+            // Pas de sigaction : SIGEV_THREAD cree un thread automatiquement
 
             if (timer_settime(this->timerID, 0, &this->timerSpecs, NULL) == -1) {
-
                 std::cout << "ERROR ITimerPosixListener Could not start timer, id:" << this->timerID << " name:"
                         << this->name() << std::endl;
                 perror("Could not start timer!");
@@ -92,7 +106,6 @@ public:
                 exit(1);
             }
 
-            //std::cout << "Starting Chrono.., name:" << this->name() << std::endl;
             if (!chrono.started())
                 chrono.start();
             started_ = true;
@@ -153,47 +166,34 @@ public:
     }
 
     /**
-     * The signal handler function with extended signature
+     * Callback pour SIGEV_THREAD : executee dans un vrai thread separe.
+     * Remplace l'ancien signal handler SIGALRM qui causait des deadlocks
+     * (le signal interrompait le thread principal, meme s'il tenait un mutex).
      */
-    //static void alarmFunction(int sigNumb, siginfo_t *si, void *uc) {
-    static void alarmFunction(int sigNumb, siginfo_t *si, void *uc)
+    static void timerThreadFunction(union sigval sv)
     {
+        // tryLock : si le callback precedent tourne encore, on saute cette expiration.
+        // Evite l'accumulation de threads (SIGEV_THREAD cree un thread par expiration)
+        // qui causerait un OOM kill sur systeme embarque.
+        if (!mAlarm_.tryLock()) {
+            return;
+        }
 
-        // lock mAlarm_
-        mAlarm_.lock();
+        ITimerPosixListener *ptrTimerPosix = reinterpret_cast<ITimerPosixListener*>(sv.sival_ptr);
 
-        //std::cout << "get the pointer out of the siginfo structure" << std::endl;
         mfct_.lock();
-// get the pointer out of the siginfo structure and asign it to a new pointer variable
-        ITimerPosixListener *ptrTimerPosix = reinterpret_cast<ITimerPosixListener*>(si->si_value.sival_ptr);
-// call the member function
-        //std::cout << "alarmFunction START, name:" << ptrTimerPosix->name() << " started=" << ptrTimerPosix->started_<< std::endl;
         if (!ptrTimerPosix->paused_ && ptrTimerPosix->started_) {
-            //std::cout << "alarmFunction 1a, name:" << ptrTimerPosix->name() << " started=" << ptrTimerPosix->started_<< std::endl;
-
             ptrTimerPosix->onTimer(ptrTimerPosix->chrono);
-
         }
         mfct_.unlock();
-        //std::cout << "alarmFunction 2a, name:" << ptrTimerPosix->name() << " started=" << ptrTimerPosix->started_                << std::endl;
-        if (ptrTimerPosix->requestToStop()) {
 
-            //std::cout << "alarmFunction 1b, name:" << ptrTimerPosix->name() << " started=" << ptrTimerPosix->started_<< std::endl;
+        if (ptrTimerPosix->requestToStop()) {
             mfct_.lock();
             ptrTimerPosix->onTimerEnd(ptrTimerPosix->chrono);
             mfct_.unlock();
-
-            //std::cout << "alarmFunction 2b, name:" << ptrTimerPosix->name() << " started=" << ptrTimerPosix->started_ << std::endl;
-
-
-
             ptrTimerPosix->remove(ptrTimerPosix->timerID);
-            //std::cout << "alarmFunction 3b, name:" << ptrTimerPosix->name() << " started=" << ptrTimerPosix->started_ << std::endl;
-
         }
-        //std::cout << "alarmFunction END, name:" << ptrTimerPosix->name() << " started=" << ptrTimerPosix->started_<< std::endl;
 
-        // unlock
         mAlarm_.unlock();
     }
 
@@ -214,14 +214,8 @@ protected:
     bool paused_;
     bool requestToStop_;
 
-    // Signal blocking set
-    sigset_t SigBlockSet;
-
     // The according signal event containing the this-pointer
     struct sigevent signalEvent;
-
-    // Defines the action for the signal -> thus signalAction ;-)
-    struct sigaction SignalAction;
 
     // The itimerspec structure for the timer
     struct itimerspec timerSpecs;
@@ -248,25 +242,13 @@ protected:
             this->timerSpecs.it_interval.tv_sec = 0;
         this->timerSpecs.it_interval.tv_nsec = (int) ((timeSpan_us_ % 1000000) * 1000.0);
 
-        // Clear the sa_mask
-        sigemptyset(&this->SignalAction.sa_mask);
-        // set the SA_SIGINFO flag to use the extended signal-handler function
-        this->SignalAction.sa_flags = SA_SIGINFO;
-
-        // Define sigaction method
-        // This function will be called by the signal
-        this->SignalAction.sa_sigaction = &ITimerPosixListener::alarmFunction;
-
-        // Define sigEvent
-        // This information will be forwarded to the signal-handler function
+        // SIGEV_THREAD : le timer cree un vrai thread pour chaque expiration
+        // (remplace SIGEV_SIGNAL/SIGALRM qui causait des deadlocks mutex)
         memset(&this->signalEvent, 0, sizeof(this->signalEvent));
-        // With the SIGEV_SIGNAL flag we say that there is sigev_value
-        this->signalEvent.sigev_notify = SIGEV_SIGNAL;
-        // Now it's possible to give a pointer to the object
+        this->signalEvent.sigev_notify = SIGEV_THREAD;
+        this->signalEvent.sigev_notify_function = &ITimerPosixListener::timerThreadFunction;
+        this->signalEvent.sigev_notify_attributes = NULL;
         this->signalEvent.sigev_value.sival_ptr = (void*) this;
-        // Declare this signal as Alarm Signal
-
-        this->signalEvent.sigev_signo = SIGALRM;
 
         mfct_.unlock();
 

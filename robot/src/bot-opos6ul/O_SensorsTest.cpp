@@ -79,48 +79,54 @@ void O_SensorsTest::run(int argc, char** argv) {
     robot.actions().sensors().setIgnoreBackNearObstacle(true, true, true);
 
     robot.actions().start();
-    robot.actions().sensors().addTimerSensors(62);
+    robot.actions().sensors().addTimerSensors(20);
     robot.chrono().start();
 
-    while (chrono.getElapsedTimeInSec() < 60) {
+    uint32_t last_seq = 0;
+    while (chrono.getElapsedTimeInSec() < 20) {
 
         robot.svgPrintPosition();
-        logger().info() << " pos x="
-                            << robot.asserv().pos_getX_mm()
-                            << " y="
-                            << robot.asserv().pos_getY_mm()
-                            << " a="
-                            << robot.asserv().pos_getThetaInDegree()
-                            << logs::end;
-        vadv = robot.actions().sensors().setPositionsAdvByBeacon();
+        vadv = robot.actions().sensors().getPositionsAdv();
 
-        for (ASensorsDriver::bot_positions::size_type i = 0; i < vadv.size(); i++) {
-            logger().info() << " vadv nb="
-                    << vadv.size()
-                    << " detected="
-                    << vadv[i].nbDetectedBots
-                    << " x="
-                    << vadv[i].x
-                    << " y="
-                    << vadv[i].y
-                    << " a="
-                    << vadv[i].theta_deg
-                    << " d="
-                    << vadv[i].d
+        const DetectionEvent& det = robot.actions().sensors().lastDetection();
+
+        // Afficher seulement si nouvelles donnees beacon
+        if (det.beacon_seq != 0 && det.beacon_seq != last_seq) {
+            last_seq = det.beacon_seq;
+
+            logger().info() << " t=" << chrono.getElapsedTimeInSec() << "s pos x="
+                                << robot.asserv().pos_getX_mm()
+                                << " y="
+                                << robot.asserv().pos_getY_mm()
+                                << " a="
+                                << robot.asserv().pos_getThetaInDegree()
+                                << logs::end;
+
+            for (ASensorsDriver::bot_positions::size_type i = 0; i < vadv.size(); i++) {
+                logger().info() << " vadv nb="
+                        << vadv.size()
+                        << " detected="
+                        << vadv[i].nbDetectedBots
+                        << " x="
+                        << vadv[i].x
+                        << " y="
+                        << vadv[i].y
+                        << " a="
+                        << vadv[i].theta_deg
+                        << " d="
+                        << vadv[i].d
+                        << logs::end;
+            }
+
+            logger().info() << " front=" << det.frontLevel << " back=" << det.backLevel
+                    << " beacon_seq=" << det.beacon_seq
+                    << " beacon_delay=" << det.beacon_delay_us << "us"
+                    << " adv=(" << det.x_adv_mm << "," << det.y_adv_mm << ")"
+                    << " valid=" << det.valid
                     << logs::end;
         }
 
-        front = robot.actions().sensors().front(1);
-        back = robot.actions().sensors().back(1);
-
-        const DetectionEvent& det = robot.actions().sensors().lastDetection();
-        logger().info() << " f=" << front << " b=" << back
-                << " beacon_seq=" << det.beacon_seq
-                << " beacon_delay=" << det.beacon_delay_us << "us"
-                << " adv=(" << det.x_adv_mm << "," << det.y_adv_mm << ")"
-                << logs::end;
-
-        utils::sleep_for_micros(1000000);
+        utils::sleep_for_micros(5000); // 5ms : suffisant pour ne rater aucun cycle beacon (~60ms)
     }
 
     //TEST par front recu

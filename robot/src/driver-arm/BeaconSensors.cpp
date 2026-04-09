@@ -84,6 +84,14 @@ void BeaconSensors::display(int number)
     }
 }
 
+uint8_t BeaconSensors::readFlag()
+{
+    if (!connected_BeaconSensors_) {
+        return 0xFF;
+    }
+    return readRegByte(DATA_BeaconSensors);
+}
+
 Registers BeaconSensors::getData()
 {
     unsigned char buf[18] = { 0 };

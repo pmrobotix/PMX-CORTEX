@@ -347,7 +347,8 @@ int Sensors::front(bool display)
 			// Projection beacon→table avec posAtSync (position robot au moment du sync I2C)
 			ROBOTPOSITION posAtSync = {lastDetection_.x_robot_mm, lastDetection_.y_robot_mm,
 					lastDetection_.theta_robot_rad, 0, 0, 0};
-			float a = (posAtSync.theta - M_PI_2 + (botpos.theta_deg * M_PI / 180.0f));
+			// Convention beacon : 0° = devant du robot, pas de décalage -PI/2
+			float a = (posAtSync.theta + (botpos.theta_deg * M_PI / 180.0f));
 			a = WrapAngle2PI(a);
 			x_pos_adv_table = posAtSync.x + (botpos.d * cos(a));
 			y_pos_adv_table = posAtSync.y + (botpos.d * sin(a));
@@ -552,7 +553,8 @@ int Sensors::back(bool display)
 			// Projection beacon→table avec posAtSync (position robot au moment du sync I2C)
 			ROBOTPOSITION posAtSync = {lastDetection_.x_robot_mm, lastDetection_.y_robot_mm,
 					lastDetection_.theta_robot_rad, 0, 0, 0};
-			float a = (posAtSync.theta - M_PI_2 + (botpos.theta_deg * M_PI / 180.0f));
+			// Convention beacon : 0° = devant du robot, pas de décalage -PI/2
+			float a = (posAtSync.theta + (botpos.theta_deg * M_PI / 180.0f));
 			a = WrapAngle2PI(a);
 			x_pos_adv_table = posAtSync.x + (botpos.d * cos(a));
 			y_pos_adv_table = posAtSync.y + (botpos.d * sin(a));
@@ -762,12 +764,18 @@ void SensorsTimer::onTimer(utils::Chronometer chrono)
 	sensors_.lastDetection_.timestamp_us = chrono.getElapsedTimeInMicroSec();
 
 	// 1. LECTURE — sync beacon I2C
-	uint32_t t_sync_ms = (uint32_t)(chrono.getElapsedTimeInMicroSec() / 1000);
+	// Utiliser le chrono de sharedPosition (même base que pushHistory)
+	uint32_t t_sync_ms = (uint32_t)(sensors_.robot()->sharedPosition()->chrono_.getElapsedTimeInMicroSec() / 1000);
 
 	int err = sensors_.sync("beacon_sync");
 	if (err < 0)
 	{
 		logger().error() << ">> SYNC BAD DATA! NO UPDATE" << logs::end;
+		return;
+	}
+	if (err == 0)
+	{
+		// Pas de nouvelles donnees beacon, on skip le traitement
 		return;
 	}
 
@@ -793,6 +801,11 @@ void SensorsTimer::onTimer(utils::Chronometer chrono)
 	sensors_.lastDetection_.x_robot_mm = posAtMeasure.x;
 	sensors_.lastDetection_.y_robot_mm = posAtMeasure.y;
 	sensors_.lastDetection_.theta_robot_rad = posAtMeasure.theta;
+
+	logger().debug() << "SYNC t_sync=" << t_sync_ms << "ms t_mesure=" << t_mesure_ms
+			<< "ms posAt=(" << posAtMeasure.x << "," << posAtMeasure.y
+			<< "," << (posAtMeasure.theta * 180.0f / M_PI) << "deg)"
+			<< " delay=" << beacon_delay_us << "us" << logs::end;
 
 	// 2. FILTRAGE AVANT — classification + debounce
 	if (sensors_.getAvailableFrontCenter())

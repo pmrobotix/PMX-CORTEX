@@ -123,7 +123,7 @@ void O_AsservTest::run(int argc, char **argv)
 
 	//detection adverse
 	robot.actions().start();
-	robot.actions().sensors().addTimerSensors(65);
+	robot.actions().sensors().addTimerSensors(20);
 	robot.chrono().start();
 
 	robot.actions().sensors().setIgnoreFrontNearObstacle(true, false, true);

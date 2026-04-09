@@ -73,8 +73,25 @@ Chaque sous-dossier dans `pamis/` est un PAMI indépendant.
 
 ## Règles pour Claude Code
 
+- Toujours fournir un résumé des modifications avec explications avant de coder — Présenter ce qui va être changé, pourquoi, et dans quels fichiers.
+- Avant de coder, vérifier la cohérence avec l'architecture existante en consultant les fichiers de référence (voir ci-dessous). Si une modification impacte l'architecture, le signaler et attendre validation.
 - Toujours demander confirmation avant de modifier des fichiers existants
 - Ne jamais modifier la toolchain Armadeus ou le BSP Buildroot
 - Proposer des solutions simples et testables
 - Expliquer les choix d'architecture quand c'est pertinent
 - Pas d'hallucination : si tu ne connais pas un détail hardware, dis-le
+
+## Fichiers de référence (robot/)
+
+Consulter ces fichiers avant toute modification pour vérifier la cohérence architecturale :
+
+| Fichier | Contenu |
+|---|---|
+| `robot/ARCHITECTURE.md` | Architecture globale, threads, timers, structure des dossiers, plan de migration AAsservDriver |
+| `robot/HARDWARE_CONFIG.md` | Configuration hardware dynamique (activation/désactivation drivers) |
+| `robot/ASSERV_MIGRATION_COMMUNICATION.md` | Migration communication série ancien raspIO → SerialIO/RaspIO |
+| `robot/SENSORS_DETECTION_MIGRATION.md` | Refactoring Sensors/ObstacleZone, beacon, détection, SVG |
+| `robot/ASSERV_BUG_GLITCH_I2C.md` | Bug glitch I2C asserv |
+| `robot/BUILD.md` | Instructions de build |
+| `robot/config/opos6ul/FLASH-OPOS6UL.md` | Procédure flash OPOS6UL |
+| `robot/config/opos6ul/CONFIG-STATUS.md` | Status configuration hardware |

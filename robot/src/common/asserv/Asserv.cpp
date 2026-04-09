@@ -307,9 +307,10 @@ TRAJ_STATE Asserv::waitEndOfTrajWithDetection(MovementType type)
 	int timeout = 0;
 	while (pos_getPosition().asservStatus != 1)
 	{
-		utils::sleep_for_micros(1000);
+		utils::sleep_for_micros(10000); // 10ms
+		std::this_thread::yield();
 		timeout++;
-		if (timeout > 100) // 100ms max pour démarrer
+		if (timeout > 10) // 100ms max pour démarrer (10 * 10ms)
 		{
 			logger().debug() << "waitEndOfTrajWithDetection: start timeout" << logs::end;
 			break;
@@ -381,11 +382,12 @@ TRAJ_STATE Asserv::waitEndOfTrajWithDetection(MovementType type)
 			// type == ROTATION : on ignore la détection
 		}
 
-		utils::sleep_for_micros(1000); // 1ms
+		utils::sleep_for_micros(10000); // 10ms — laisse du CPU aux autres threads
+		std::this_thread::yield();
 		timeout++;
-		if (timeout > 30000) // 30s timeout sécurité
+		if (timeout > 1000) // 10s timeout sécurité (1000 * 10ms)
 		{
-			logger().error() << "waitEndOfTrajWithDetection: TIMEOUT 30s" << logs::end;
+			logger().error() << "waitEndOfTrajWithDetection: TIMEOUT 10s" << logs::end;
 			return TRAJ_ERROR;
 		}
 	}
