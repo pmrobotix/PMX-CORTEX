@@ -170,6 +170,14 @@ public:
 	 */
 	virtual uint32_t getBeaconSeq() { return 0; }
 
+	/*!
+	 * \brief Retourne le timestamp (ms) du dernier sync I2C reussi.
+	 * \return Timestamp depuis le chrono partage. Plus precis que mesurer "avant sync()"
+	 *         car capture juste apres la detection de la nouvelle donnee beacon.
+	 *         0 en SIMU.
+	 */
+	virtual uint32_t getLastSyncMs() { return 0; }
+
 	virtual ~ASensorsDriver()
 	{
 	}

@@ -357,6 +357,15 @@ int Sensors::front(bool display)
 			//filtre sur la table avec transformation de repere
 			inside_table = this->robot()->tableGeometry()->isPointInsideTable((int) x_pos_adv_table,
 					(int) y_pos_adv_table);
+
+			// LOG DEBUG : afficher la projection meme quand elle est filtree
+			logger().debug() << __FUNCTION__ << " PROJ robot=(" << posAtSync.x << "," << posAtSync.y
+					<< "," << (posAtSync.theta * 180.0f / M_PI) << "deg)"
+					<< " beacon=(d=" << botpos.d << ",theta=" << botpos.theta_deg << "deg)"
+					<< " a_table=" << (a * 180.0f / M_PI) << "deg"
+					<< " adv_table=(" << x_pos_adv_table << "," << y_pos_adv_table << ")"
+					<< " inside=" << inside_table << logs::end;
+
 			if (!obstacleZone_.removeOutsideTable())
 			{
 				inside_table = true;
@@ -762,9 +771,6 @@ void SensorsTimer::onTimer(utils::Chronometer chrono)
 	sensors_.lastDetection_.timestamp_us = chrono.getElapsedTimeInMicroSec();
 
 	// 1. LECTURE — sync beacon I2C
-	// Utiliser le chrono de sharedPosition (même base que pushHistory)
-	uint32_t t_sync_ms = (uint32_t)(sensors_.robot()->sharedPosition()->chrono_.getElapsedTimeInMicroSec() / 1000);
-
 	int err = sensors_.sync("beacon_sync");
 	if (err < 0)
 	{
@@ -776,6 +782,11 @@ void SensorsTimer::onTimer(utils::Chronometer chrono)
 		// Pas de nouvelles donnees beacon, on skip le traitement
 		return;
 	}
+
+	// t_sync_ms = timestamp capture par le driver JUSTE apres le readFlag,
+	// avant la longue lecture getData() (~5-10ms). Plus precis qu'un timestamp
+	// pris en debut de onTimer() qui inclurait la latence readFlag.
+	uint32_t t_sync_ms = sensors_.sensorsdriver_->getLastSyncMs();
 
 	// Copier le seq beacon (debug)
 	sensors_.lastDetection_.beacon_seq = sensors_.sensorsdriver_->getBeaconSeq();
@@ -789,11 +800,22 @@ void SensorsTimer::onTimer(utils::Chronometer chrono)
 		sensors_.lastDetection_.beacon_delay_us = beacon_delay_us;
 	}
 
-	// Position robot au moment estimé de la mesure beacon
-	// t_mesure = t_sync - beacon_delay (le delta depuis le début du cycle Teensy)
-	uint32_t t_mesure_ms = t_sync_ms;
-	if (beacon_delay_us > 0)
-		t_mesure_ms = t_sync_ms - (beacon_delay_us / 1000);
+	// Position robot au moment estimé de la mesure beacon.
+	// beacon_delay_us = delta depuis le DEBUT du cycle Teensy jusqu'a la mesure ToF.
+	// t_sync_ms est capture cote driver juste apres readFlag (proche de la fin
+	// du cycle Teensy, latence I2C deja ecartee), donc :
+	//   T_debut_cycle = t_sync - duree_cycle_teensy
+	//   T_mesure       = T_debut_cycle + beacon_delay_us
+	//                  = t_sync - duree_cycle_teensy + beacon_delay_us
+	// Duree cycle Teensy mesuree empiriquement entre 40 et 60ms.
+	//
+	// TODO precision restante :
+	//  1) Recevoir la duree reelle du cycle Teensy dans un registre I2C (au lieu de la constante)
+	//  2) Reduire la periode du SensorsTimer de 20ms a 5ms pour reduire le jitter de polling
+	//     (entre la fin de cycle Teensy et la lecture du flag I2C par OPOS6UL : 0-20ms aleatoire)
+	//  3) Mieux : GPIO interrupt Teensy -> OPOS6UL a chaque fin de cycle, capture timestamp exact
+	static const uint32_t TEENSY_CYCLE_MS = 60;
+	uint32_t t_mesure_ms = t_sync_ms - TEENSY_CYCLE_MS + (beacon_delay_us / 1000);
 
 	ROBOTPOSITION posAtMeasure = sensors_.robot()->sharedPosition()->getPositionAt(t_mesure_ms);
 	sensors_.lastDetection_.x_robot_mm = posAtMeasure.x;

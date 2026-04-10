@@ -41,6 +41,9 @@ private:
     utils::Mutex msync_;
     bot_positions vadv_;  //tableau des pos des adv
 
+    ARobotPositionShared *robotpos_;  ///< Pour acceder au chrono partage (synchro beacon).
+    uint32_t last_sync_ms_;           ///< Timestamp capture juste apres readFlag (= proche de la fin de cycle Teensy).
+
 
 //    int getFrontDistMmFromObject(int diagonal_dist_mm);
 //    int getBackDistMmFromObject(int diagonal_dist_mm);
@@ -83,6 +86,14 @@ public:
     int leftSide();
 
     uint32_t getBeaconSeq() override { return regs_.seq; }
+
+    /*!
+     * \brief Retourne le timestamp (ms) du dernier sync I2C reussi (juste apres readFlag).
+     * \return Timestamp en ms depuis le chrono partage de RobotPositionShared.
+     *         Plus precis que mesurer "avant sync()" car la Teensy a fini son cycle
+     *         juste avant que readFlag ne renvoie 0x01 (nouvelle donnee disponible).
+     */
+    uint32_t getLastSyncMs() { return last_sync_ms_; }
 
 };
 

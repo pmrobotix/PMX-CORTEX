@@ -48,7 +48,7 @@ void logs::LoggerFactory::initialize()
     //COMMON
     add(logs::Level::INFO, "Asserv", "console");
     add(logs::Level::DEBUG, "IAbyPath", "console");
-    add(logs::Level::INFO, "Sensors", "console");
+    add(logs::Level::DEBUG, "Sensors", "console"); // DEBUG temporaire pour voir la projection
     add(logs::Level::DEBUG, "SensorsTimer", "console"); //TODO remettre en INFO après debug
     add(logs::Level::ERROR, "ServoObjectsSystem", "console");
     add(logs::Level::INFO, "ActionManagerTimer", "console");

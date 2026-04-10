@@ -22,7 +22,8 @@ ASensorsDriver* ASensorsDriver::create(std::string, ARobotPositionShared *robotp
 }
 
 SensorsDriver::SensorsDriver(ARobotPositionShared *robotpos) :
-		beaconSensors_(0, ADDRESS_BeaconSensors), connected_gp2y0e02b_(false) //, gp2_1_(0, ADDRESS_gp2y0e02b), gp2_2_(1, ADDRESS_gp2y0e02b)
+		beaconSensors_(0, ADDRESS_BeaconSensors), connected_gp2y0e02b_(false), //, gp2_1_(0, ADDRESS_gp2y0e02b), gp2_2_(1, ADDRESS_gp2y0e02b)
+		robotpos_(robotpos), last_sync_ms_(0)
 {
 
 	beacon_connected_ = beaconSensors_.begin(settings_);
@@ -69,6 +70,14 @@ int SensorsDriver::sync()
 	if (!(flags & 0x01)) {
 		// 0x80 = alive, pas de nouvelles donnees
 		return 0;
+	}
+
+	// Capture du timestamp JUSTE apres detection "new data" du flag I2C.
+	// C'est l'instant le plus proche de la fin du cycle Teensy : la latence du
+	// readFlag (~1ms) est faible et la latence du getData() suivant ne nous
+	// concerne plus puisqu'on enregistre le timestamp ici, pas apres getData.
+	if (robotpos_ != nullptr) {
+		last_sync_ms_ = (uint32_t)(robotpos_->chrono_.getElapsedTimeInMicroSec() / 1000);
 	}
 
 	// 0x81 = nouvelles donnees disponibles, lecture complete
