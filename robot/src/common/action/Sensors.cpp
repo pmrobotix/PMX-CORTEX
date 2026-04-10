@@ -752,9 +752,7 @@ void Sensors::addTimerSensors(int timeSpan_ms)
 void Sensors::stopTimerSensors()
 {
 	logger().debug() << "stopSensors" << logs::end;
-	this->actions().stopPTimer("Sensors");
-//this->actions().stopTimer("Sensors");
-
+	this->actions().scheduler().stopTimer("Sensors");
 }
 
 void SensorsTimer::onTimer(utils::Chronometer chrono)

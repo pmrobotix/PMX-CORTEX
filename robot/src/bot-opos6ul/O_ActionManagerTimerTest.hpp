@@ -11,7 +11,7 @@
 #include "action/IAction.hpp"
 #include "utils/FunctionalTest.hpp"
 #include "utils/Chronometer.hpp"
-#include "timer/ITimerPosixListener.hpp"
+#include "timer/ITimerScheduledListener.hpp"
 #include "log/Logger.hpp"
 #include "log/LoggerFactory.hpp"
 
@@ -117,7 +117,7 @@ public:
  * \brief Ce timer
  *
  */
-class TestTimer: public ITimerPosixListener
+class TestTimer: public ITimerScheduledListener
 {
 private:
 

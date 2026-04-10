@@ -10,38 +10,33 @@ Actions::Actions()
 
 void Actions::start()
 {
-    actionManagerTimer_.start("ActionManagerTimer", 60);
+    actionScheduler_.start("ActionTimerScheduler", 60);
 
     while (!is_started())
     {
         utils::sleep_for_micros(10000);
-        //printf(" wait actionManagerTimer_.start \n");
         std::this_thread::yield();
     }
 }
 
 bool Actions::is_started()
 {
-    if (actionManagerTimer_.state() == utils::STARTED)
-        return true;
-    else
-        return false;
+    return (actionScheduler_.state() == utils::STARTED);
 }
 
 void Actions::clearAll()
 {
-    actionManagerTimer_.clearActions();
-    actionManagerTimer_.clearTimers();
+    actionScheduler_.clearActions();
+    actionScheduler_.clearTimers();
 }
 
 void Actions::cancel()
 {
-    actionManagerTimer_.cancel();
+    actionScheduler_.cancel();
 }
 
 void Actions::waitAndStopManagers()
 {
-    if (actionManagerTimer_.state() == utils::STARTED)
-        //Attente de a fin de tous les timers
-        actionManagerTimer_.stop();
+    if (actionScheduler_.state() == utils::STARTED)
+        actionScheduler_.stop();
 }

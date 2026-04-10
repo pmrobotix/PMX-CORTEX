@@ -11,8 +11,7 @@
 #include "log/LoggerFactory.hpp"
 #include "interface/ALedDriver.hpp"
 #include "utils/Chronometer.hpp"
-#include "timer/ITimerListener.hpp"
-#include "timer/ITimerPosixListener.hpp"
+#include "timer/ITimerScheduledListener.hpp"
 #include "AActionsElement.hpp"
 #include "IAction.hpp"
 
@@ -328,7 +327,7 @@ public:
  * \brief Cette action permet de definir les timers concernant la barre de leds.
  *
  */
-class LedBarTimer: public ITimerPosixListener //ITimerListener
+class LedBarTimer: public ITimerScheduledListener
 {
 private:
 

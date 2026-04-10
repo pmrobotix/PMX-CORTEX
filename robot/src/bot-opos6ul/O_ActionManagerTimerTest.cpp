@@ -39,9 +39,9 @@ void O_ActionManagerTimerTest::run(int argc, char **argv)
 
     logger().info() << " stop timer1 add action7, stop timer2" << logs::end;
 
-    robot.actions().stopTimer("timer1");
+    robot.actions().scheduler().stopTimer("timer1");
     robot.actions().addAction(new TestAction(*this, "action7"));
-    robot.actions().stopTimer("timer2");
+    robot.actions().scheduler().stopTimer("timer2");
     sleep(2);
 
     logger().info() << robot.getID() << " " << this->name() << " Happy End" << " N° " << this->position() << logs::end;
@@ -69,10 +69,8 @@ TestTimer::TestTimer(O_ActionManagerTimerTest &amt, int timeSpan_ms, std::string
         amt_(amt), chrono_("TestTimer")
 {
     lasttime_ = 0;
-    name_ = name;
-    timeSpan_us_ = timeSpan_ms * 1000;
     logger().debug() << "timeSpan_ms=" << timeSpan_ms << logs::end;
-    this->init(name, timeSpan_us_);
+    this->init(name, timeSpan_ms * 1000);
 }
 
 void TestTimer::onTimer(utils::Chronometer chrono)

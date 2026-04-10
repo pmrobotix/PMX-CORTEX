@@ -263,8 +263,8 @@ ServoObjectsTimer::ServoObjectsTimer(ServoObjectsSystem &sOsS, int number_servos
 
 void ServoObjectsSystem::stopTimers()
 {
-	this->actions().stopPTimer("1");
-	this->actions().stopPTimer("2");
+	this->actions().scheduler().stopTimer("1");
+	this->actions().scheduler().stopTimer("2");
 }
 
 //void ServoObjectsSystem::deployByTimerTask(int servo, int percent, int keep_millisec)

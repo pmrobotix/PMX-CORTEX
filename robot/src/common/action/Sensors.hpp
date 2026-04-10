@@ -17,7 +17,7 @@
 #include "../Robot.hpp"
 #include "utils/Chronometer.hpp"
 #include "AActionsElement.hpp"
-#include "timer/ITimerPosixListener.hpp"
+#include "timer/ITimerScheduledListener.hpp"
 #include "geometry/ObstacleZone.hpp"
 #include "geometry/DetectionEvent.hpp"
 
@@ -159,8 +159,9 @@ public:
 
 /*!
  * \brief Le timer associe aux sensors de detection.
+ *        Tick par le scheduler unique ActionManagerTimerThread.
  */
-class SensorsTimer: public ITimerPosixListener
+class SensorsTimer: public ITimerScheduledListener
 {
 private:
 

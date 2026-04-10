@@ -10,7 +10,7 @@
 
 #include "log/Logger.hpp"
 #include "log/LoggerFactory.hpp"
-#include "timer/ActionManagerTimer.hpp"
+#include "timer/ActionTimerScheduler.hpp"
 #include "LedBar.hpp"
 
 class IAction;
@@ -32,9 +32,10 @@ private:
     }
 
     /*!
-     * \brief Assure la gestion des actions/timers du robot en mode asynchrone.
+     * \brief Scheduler unique : 1 thread pour toutes les IAction et tous
+     *        les ITimerScheduledListener.
      */
-    ActionManagerTimer actionManagerTimer_;
+    ActionTimerScheduler actionScheduler_;
 
 public:
 
@@ -53,67 +54,31 @@ public:
 
     /*!
      * \brief Ajout d'une action.
-     * \param action
-     *        L'action à ajouter.
+     * \param action L'action à ajouter.
      */
     inline void addAction(IAction *action)
     {
         if (!this->is_started()) {
-            logger().error() << "addAction ACTIONTIMER NOT STARTED !!" << logs::end;
+            logger().error() << "addAction ACTIONMANAGER NOT STARTED !!" << logs::end;
         }
-        actionManagerTimer_.addAction(action);
+        actionScheduler_.addAction(action);
     }
 
     /*!
-     * \brief Ajout d'un timer standard.
-     * \param timer Le timer à ajouter.
+     * \brief Ajout d'un timer dans le scheduler unique.
+     * \param timer Le ITimerScheduledListener a ajouter.
      */
-    inline void addTimer(ITimerListener *timer)
+    inline void addTimer(ITimerScheduledListener *timer)
     {
-        if (!this->is_started()) {
-            logger().error() << "addTimer ITimerListener ACTIONTIMER NOT STARTED !!" << logs::end;
-        }
-        actionManagerTimer_.addTimer(timer);
+        actionScheduler_.addTimer(timer);
     }
 
     /*!
-     * \brief Ajout d'un timer POSIX.
-     * \param timer Le timer POSIX à ajouter.
+     * \brief Acces direct au scheduler (pour stopTimer, findTimer, debug).
      */
-    inline void addTimer(ITimerPosixListener *timer)
+    inline ActionTimerScheduler& scheduler()
     {
-        if (!this->is_started()) {
-            logger().error() << "addTimerITimerPosixListener ACTIONTIMER NOT STARTED !!" << logs::end;
-        }
-        actionManagerTimer_.addTimer(timer);
-    }
-
-    /*!
-     * \brief Arrête un timer standard par son nom.
-     * \param name Nom du timer à arrêter.
-     */
-    inline void stopTimer(std::string name)
-    {
-        actionManagerTimer_.stopTimer(name);
-    }
-
-    /*!
-     * \brief Arrête un timer POSIX par son nom.
-     * \param name Nom du timer POSIX à arrêter.
-     */
-    inline void stopPTimer(std::string name)
-    {
-        actionManagerTimer_.stopPTimer(name);
-    }
-
-    /*!
-     * \brief Recherche un timer POSIX par son nom.
-     * \param name Nom du timer POSIX à rechercher.
-     * \return \c true si le timer existe, \c false sinon.
-     */
-    inline bool findPTimer(std::string name)
-    {
-        return actionManagerTimer_.findPTimer(name);
+        return actionScheduler_;
     }
 
     /*!

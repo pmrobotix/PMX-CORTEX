@@ -11,7 +11,7 @@
 #include "interface/AServoDriver.hpp"
 #include "utils/Chronometer.hpp"
 #include "AActionsElement.hpp"
-#include "timer/ITimerPosixListener.hpp"
+#include "timer/ITimerScheduledListener.hpp"
 
 #define TIMER_SERVO_PERIOD_US 50000
 /*!
@@ -241,7 +241,7 @@ public:
  * \brief Cette action permet de definir les timers concernant les servomotors.
  *
  */
-class ServoObjectsTimer: public ITimerPosixListener //public ITimerListener //
+class ServoObjectsTimer: public ITimerScheduledListener
 {
 private:
 

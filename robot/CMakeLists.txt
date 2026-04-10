@@ -70,6 +70,7 @@ add_library(pmx-common STATIC
     src/common/log/appender/TelemetryAppender.cpp
     # timer
     src/common/timer/ActionManagerTimer.cpp
+    src/common/timer/ActionTimerScheduler.cpp
     # state
     src/common/state/Automate.cpp
     # asserv (generique)
@@ -296,6 +297,7 @@ add_executable(common-test
     test/common/FileAppenderTest.cpp
     test/common/SvgAppenderTest.cpp
     test/common/ActionManagerTimerTest.cpp
+    test/common/ActionTimerSchedulerTest.cpp
     test/common/RetryPolicyTest.cpp
     test/common/TableGeometryTest.cpp
     test/common/ObstacleZoneTest.cpp
