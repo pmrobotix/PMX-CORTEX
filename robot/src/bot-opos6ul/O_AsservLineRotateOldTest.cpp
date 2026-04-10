@@ -260,8 +260,9 @@ void O_AsservLineRotateOldTest::run(int argc, char **argv)
 	coorda_deg = atof(args['+']["coorda"].c_str());
 	logger().info() << "COORD avec cx=" << coordx << " cy=" << coordy << " coorda=" << coorda_deg << logs::end;
 
-	robot.asserv().startMotionTimerAndOdo(false);
+	// setPositionAndColor AVANT startMotionTimerAndOdo
 	robot.asserv().setPositionAndColor(coordx, coordy, coorda_deg, (bool) (robot.getMyColor() != PMXYELLOW));
+	robot.asserv().startMotionTimerAndOdo(false);
 	robot.asserv().assistedHandling();
 
 	ROBOTPOSITION pos = robot.asserv().pos_getPosition();

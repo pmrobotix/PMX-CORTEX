@@ -35,12 +35,15 @@ using namespace std;
 // Handler SIGINT (Ctrl+C) : ferme proprement les fichiers SVG, flush les logs, puis quitte.
 static void sigintHandler(int)
 {
-    // 1) Écrit </g></svg> dans le buffer du logger SVG
     OPOS6UL_RobotExtended &robot = OPOS6UL_RobotExtended::instance();
+    // 1) Arreter les threads producteurs SVG (asserv CBOR + scheduler timers)
+    //    pour qu'aucun <circle> ne soit ecrit apres </svg>
+    robot.stopExtraActions();
+    // 2) Écrit </g></svg> dans le buffer du logger SVG
     robot.svgPrintEndOfFile();
-    // 2) Flush les buffers mémoire vers les fichiers (SvgAppender) et ferme les logs
+    // 3) Flush les buffers mémoire vers les fichiers (SvgAppender) et ferme les logs
     logs::LoggerFactory::instance().stopLog();
-    // 3) exit() appelle les destructeurs et flush les streams (contrairement à _exit)
+    // 4) exit() appelle les destructeurs et flush les streams (contrairement à _exit)
     exit(0);
 }
 

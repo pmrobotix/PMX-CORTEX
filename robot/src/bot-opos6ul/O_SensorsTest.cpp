@@ -62,9 +62,17 @@ void O_SensorsTest::run(int argc, char** argv) {
 */
 
 
-    //il faut mettre une position pour le filtre table
+    // ORDRE DE DEMARRAGE IMPORTANT :
+    // 1. setPositionAndColor = reference de match (couleur + position initiale).
+    //    Rien ne doit fonctionner avant : le set position remet tout a zero
+    //    cote Nucleo. Avant ce setPos, les positions recues du thread CBOR
+    //    sont les residus de la session precedente -> filtre par positionInitialized_.
+    robot.asserv().setPositionAndColor(200.0, 200.0, 0.0,(bool)(robot.getMyColor() != PMXYELLOW));
+
+    // 2. Demarrer le thread CBOR (reception des positions Nucleo en continu)
+    //    La methode inclut une attente 50ms pour laisser la Nucleo appliquer le setPos.
     robot.asserv().startMotionTimerAndOdo(false);
-    robot.asserv().setPositionAndColor(1000.0, 600.0, 0.0,(bool)(robot.getMyColor() != PMXYELLOW));
+
     robot.svgPrintPosition();
 
     ROBOTPOSITION p = robot.asserv().pos_getPosition();
@@ -78,6 +86,10 @@ void O_SensorsTest::run(int argc, char** argv) {
     robot.actions().sensors().setIgnoreFrontNearObstacle(true, false, true);
     robot.actions().sensors().setIgnoreBackNearObstacle(true, true, true);
 
+    // DEBUG : ne pas filtrer les detections hors table pour voir la projection brute dans le SVG
+    robot.actions().sensors().remove_outside_table(false);
+
+    // 4. Demarrer les actions (scheduler) + timer beacon (detection adverse)
     robot.actions().start();
     robot.actions().sensors().addTimerSensors(20);
     robot.chrono().start();

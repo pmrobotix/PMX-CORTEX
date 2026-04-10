@@ -217,6 +217,12 @@ void Asserv::setPositionReal(float x_mm, float y_mm, float thetaInRad)
 	if (useAsservType_ == ASSERV_EXT)
 		asservdriver_->odo_SetPosition(x_mm, y_mm, thetaInRad);
 	else if (useAsservType_ == ASSERV_INT_ESIALR) pAsservEsialR_->odo_SetPosition(x_mm, y_mm, thetaInRad);
+
+	// Mise a jour immediate de sharedPosition (sans attendre le retour CBOR de la Nucleo)
+	// Sinon, les premiers ticks SensorsTimer projettent depuis (0,0,0) tant que la
+	// Nucleo n'a pas envoye sa premiere position en retour (~20-50ms).
+	ROBOTPOSITION p = {x_mm, y_mm, thetaInRad, 0, 0, 0};
+	probot_->sharedPosition()->setRobotPosition(p);
 }
 
 ROBOTPOSITION Asserv::pos_getAdvPosition()
@@ -226,15 +232,13 @@ ROBOTPOSITION Asserv::pos_getAdvPosition()
 
 ROBOTPOSITION Asserv::pos_getPosition()
 {
-	ROBOTPOSITION p;
-
-	if (useAsservType_ == ASSERV_EXT)
-		p = asservdriver_->odo_GetPosition();
-	else if (useAsservType_ == ASSERV_INT_ESIALR) p = pAsservEsialR_->odo_GetPosition();
-
-//mise à jour de la position pour les sensors
-	probot_->sharedPosition()->setRobotPosition(p);
-	return p;
+	// Source de verite unique : sharedPosition. Elle est alimentee par :
+	//  - setPositionReal() qui push immediatement la valeur locale (sans attendre CBOR)
+	//  - le thread du driver (AsservCborDriver/AsservEsialR) a chaque trame recue
+	// Lire ici directement au lieu de asservdriver_->odo_GetPosition() evite un
+	// decalage au demarrage : sinon, juste apres setPositionAndColor, le driver
+	// retournerait encore (0,0,0) tant que la Nucleo n'a pas renvoye sa 1ere trame.
+	return probot_->sharedPosition()->getRobotPosition();
 }
 float Asserv::pos_getX_mm()
 {

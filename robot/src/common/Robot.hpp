@@ -339,7 +339,19 @@ public:
 	void svgPrintPosition(int color = 0);
 
 	/*!
-	 * \brief Finalise et ferme le fichier SVG.
+	 * \brief Finalise et ferme le fichier SVG (ecrit les balises </g></svg>).
+	 *
+	 * \warning Avant d'appeler cette methode, l'appelant DOIT avoir arrete les
+	 *          threads producteurs SVG (asserv CBOR, scheduler des timers),
+	 *          sinon des elements <circle> seront ecrits APRES </svg> -> SVG invalide.
+	 *
+	 *          Sequence type :
+	 *            robot.stopExtraActions();    // arrete asserv CBOR + timers
+	 *            robot.svgPrintEndOfFile();   // ferme le SVG
+	 *
+	 *          Le destructeur ~Robot() s'en occupe automatiquement (via
+	 *          stopMotionTimerAndActionManager()), donc en sortie normale du
+	 *          programme rien a faire.
 	 */
 	void svgPrintEndOfFile();
 

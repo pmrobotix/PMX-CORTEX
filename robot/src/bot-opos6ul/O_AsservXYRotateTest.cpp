@@ -111,8 +111,9 @@ void O_AsservXYRotateTest::run(int argc, char **argv)
 
 	logger().info() << "COORD avec cx=" << coordx << " cy=" << coordy << " coorda=" << coorda_deg << logs::end;
 
-	robot.asserv().startMotionTimerAndOdo(false);
+	// setPositionAndColor AVANT startMotionTimerAndOdo
 	robot.asserv().setPositionAndColor(coordx, coordy, coorda_deg, (bool) (robot.getMyColor() != PMXYELLOW));
+	robot.asserv().startMotionTimerAndOdo(false);
 	robot.asserv().assistedHandling();
 
 	robot.asserv().getEncodersCounts(&right, &left);

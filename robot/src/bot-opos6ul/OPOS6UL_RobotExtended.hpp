@@ -80,7 +80,16 @@ public:
     void displayPoints();
 
     /*!
-     * \brief Arrête toutes les actions supplémentaires (capteurs, LEDs, servos).
+     * \brief Arrete toutes les actions supplementaires et les threads producteurs SVG.
+     *
+     * Arrete dans l'ordre :
+     *  - le thread CBOR (AsservCborDriver) via asserv().endWhatTodo()
+     *  - les timers du scheduler (Sensors, LedBar, ServoObjects) via actions().stopExtra()
+     *
+     * A appeler imperativement AVANT svgPrintEndOfFile() pour eviter que des
+     * elements SVG soient ecrits apres la balise </svg> de fermeture.
+     *
+     * Idempotent : peut etre appele plusieurs fois sans danger.
      */
     void stopExtraActions();
 

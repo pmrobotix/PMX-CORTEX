@@ -421,11 +421,12 @@ void O_State_Init::setPos()
 	robot.actions().lcd2x16().clear();
 	robot.actions().lcd2x16().print("SET POSITION...");
 
-	robot.asserv().startMotionTimerAndOdo(true);
+	// setPositionAndColor AVANT startMotionTimerAndOdo (reset Nucleo + match ref)
 	if (robot.strategy() == "tabletest")
 		robot.asserv().setPositionAndColor(1150, 130, 90.0, (bool) (robot.getMyColor() != PMXYELLOW));
 	else
 		robot.asserv().setPositionAndColor(1150, 130, 90.0, (bool) (robot.getMyColor() != PMXYELLOW));
+	robot.asserv().startMotionTimerAndOdo(true);
 	logger().info() << "O_State_Init::setPos() svgPrintPosition x=" << robot.asserv().pos_getX_mm() << " y="
 			<< robot.asserv().pos_getY_mm() << " a=" << robot.asserv().pos_getThetaInDegree() << logs::end;
 	robot.svgPrintPosition();

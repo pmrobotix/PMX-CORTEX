@@ -31,9 +31,6 @@ void O_LedBarTest::run(int argc, char **argv)
 
     robot.actions().ledBar().resetAll();
 
-    //test avec asserv
-    robot.asserv().startMotionTimerAndOdo(false);
-
     logger().info() << "set cmd go" << logs::end;
     robot.actions().ledBar().setOff(0);
     robot.actions().ledBar().setOff(1);

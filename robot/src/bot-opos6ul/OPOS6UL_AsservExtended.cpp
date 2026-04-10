@@ -11,6 +11,7 @@
 #include "asserv.esial/AsservEsialR.hpp"
 #include "config/config.h"
 #include "log/Logger.hpp"
+#include "thread/Thread.hpp"
 
 #include "OPOS6UL_IAExtended.hpp"
 #include "OPOS6UL_RobotExtended.hpp"
@@ -64,6 +65,11 @@ void OPOS6UL_AsservExtended::startMotionTimerAndOdo(bool assistedHandlingEnabled
         }
 
     } else if (useAsservType_ == ASSERV_EXT) {
+
+        // Laisser 50ms a la Nucleo pour appliquer le dernier odo_SetPosition (envoye par
+        // setPositionAndColor avant cet appel) AVANT de demarrer le thread CBOR. Sinon
+        // la 1ere position recue serait un residu de la session precedente Nucleo.
+        utils::sleep_for_millis(50);
 
         asservdriver_->motion_ActivateManager(true); //on active la carte d'asserv externe et le thread de position
         if (assistedHandlingEnabled)

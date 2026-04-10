@@ -58,8 +58,7 @@ OPOS6UL_RobotExtended::OPOS6UL_RobotExtended()
 
 OPOS6UL_RobotExtended::~OPOS6UL_RobotExtended()
 {
-    this->asserv().endWhatTodo(); //on termine le thread d'asserv qui lie la position
-    this->actions().stopExtra(); //extra devices
+    this->stopExtraActions(); // arrete asserv CBOR + scheduler timers
 }
 
 void OPOS6UL_RobotExtended::displayPoints()
@@ -74,7 +73,10 @@ void OPOS6UL_RobotExtended::displayPoints()
 }
 
 void OPOS6UL_RobotExtended::stopExtraActions() {
-    this->actions().stopExtra(); //extra devices
+    // Arrete les threads producteurs SVG (asserv CBOR + scheduler timers)
+    // pour qu'aucun <circle> ne soit ecrit apres svgPrintEndOfFile().
+    this->asserv().endWhatTodo();   // emergencyStop + stopReceiveThread (asserv CBOR)
+    this->actions().stopExtra();    // timers (Sensors, LedBar, ServoObjects)
 }
 
 void OPOS6UL_RobotExtended::begin(int argc, char** argv)

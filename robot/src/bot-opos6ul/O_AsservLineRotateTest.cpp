@@ -133,9 +133,10 @@ void O_AsservLineRotateTest::run(int argc, char **argv)
 	logger().info() << "COORD cx=" << coordx << " cy=" << coordy
 	                << " ca=" << coorda_deg << logs::end;
 
-	// Init asserv
-	robot.asserv().startMotionTimerAndOdo(false);
+	// Init asserv : setPositionAndColor AVANT startMotionTimerAndOdo
+	// (le set position reset la Nucleo et definit la couleur de match)
 	robot.asserv().setPositionAndColor(coordx, coordy, coorda_deg, (bool)(robot.getMyColor() != PMXYELLOW));
+	robot.asserv().startMotionTimerAndOdo(false);
 	robot.asserv().assistedHandling();
 
 	ROBOTPOSITION pos = robot.asserv().pos_getPosition();

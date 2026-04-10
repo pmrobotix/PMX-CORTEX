@@ -54,8 +54,11 @@ Robot::Robot() :
 }
 
 Robot::~Robot() {
-    svgPrintEndOfFile();
+    // ORDRE IMPORTANT : arreter les threads producteurs AVANT de fermer le SVG.
+    // Sinon le thread CBOR (AsservCborDriver) ou le scheduler peuvent ecrire
+    // des <circle> APRES </svg> (SVG invalide).
     stopMotionTimerAndActionManager();
+    svgPrintEndOfFile();
     delete tableGeometry_;
     //Stop le log s'il existe (core dump sinon)
     logs::LoggerFactory::instance().stopLog();
@@ -75,7 +78,10 @@ void Robot::svgPrintPosition(int color) {
 }
 
 void Robot::svgPrintEndOfFile() {
-    //end SVG file
+    // IMPORTANT : avant d'appeler cette methode, les threads producteurs (asserv
+    // CBOR, scheduler des timers) doivent deja etre arretes par l'appelant.
+    // Sinon des <circle> sont ecrits APRES </svg> -> SVG invalide.
+    // Sequence type : freeMotion() + stopExtraActions() puis svgPrintEndOfFile().
     svg_->endHeader();
 }
 

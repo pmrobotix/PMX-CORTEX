@@ -11,10 +11,12 @@
 #define ASSERV_CBOR_DRIVER_HPP_
 
 #include "interface/AAsservDriver.hpp"
+#include "interface/ARobotPositionShared.hpp"
 #include "log/LoggerFactory.hpp"
 #include "thread/Thread.hpp"
 #include "serialib.hpp"
 #include "cbor/CborFrameDecoder.hpp"
+#include <atomic>
 #include <cstdint>
 #include <mutex>
 
@@ -40,6 +42,8 @@ private:
     bool connected_;
     bool asservCardStarted_;
     bool threadStarted_;
+    std::atomic<bool> stopRequested_;      ///< Flag d'arret du thread de reception CBOR.
+    std::atomic<bool> positionInitialized_; ///< true apres le 1er odo_SetPosition (filtrage SVG).
     int errorCount_;
     int nextCmdId_;
     int lastReceivedCmdId_;
@@ -49,6 +53,8 @@ private:
     Mutex m_statusCountDown;
     ROBOTPOSITION p_;
     ROBOTPOSITION pp_; // position précédente pour trace SVG
+
+    ARobotPositionShared *sharedPosition_; ///< Position partagee : push history a chaque trame CBOR recue.
 
     // Envoi d'une commande CBOR framée (sync + CRC + taille + payload)
     void sendCmd(int cmdType);
@@ -67,7 +73,7 @@ protected:
     virtual void execute();
 
 public:
-    AsservCborDriver();
+    AsservCborDriver(ARobotPositionShared *sharedPosition);
     ~AsservCborDriver();
 
     /*!
@@ -75,6 +81,13 @@ public:
      * À appeler après l'init du SVG (beginHeader).
      */
     void startReceiveThread();
+
+    /*!
+     * \brief Arrete le thread de reception CBOR proprement (flag + join).
+     *        A appeler avant la cloture du SVG sinon des positions sont
+     *        ecrites APRES la balise </svg>.
+     */
+    void stopReceiveThread();
 
     bool is_connected() override;
     void endWhatTodo();

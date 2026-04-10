@@ -477,6 +477,10 @@ void O_NavigatorMovementTest::run(int argc, char** argv)
 
     OPOS6UL_RobotExtended &robot = OPOS6UL_RobotExtended::instance();
 
+    // Position initiale avant de demarrer le thread d'asserv (reset Nucleo +
+    // filtre les positions residuelles). Chaque loopX_* fera son propre
+    // resetPosition() ensuite.
+    resetPosition(0, 0, 0);
     robot.asserv().startMotionTimerAndOdo(false);
     robot.asserv().assistedHandling();
 

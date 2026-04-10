@@ -19,7 +19,7 @@ using namespace std;
 AAsservDriver* AAsservDriver::create(string botid, ARobotPositionShared *robotpos)
 {
     if (HardwareConfig::instance().isEnabled("AsservCborDriver")) {
-        static AsservCborDriver *instance = new AsservCborDriver();
+        static AsservCborDriver *instance = new AsservCborDriver(robotpos);
         return instance;
     }
     // Fallback simulateur
@@ -52,10 +52,12 @@ static constexpr uint32_t SYNC_WORD = 0xDEADBEEF;
 // Construction / Destruction
 // ============================================================================
 
-AsservCborDriver::AsservCborDriver()
-    : connected_(true), asservCardStarted_(true), threadStarted_(false), errorCount_(0),
-      nextCmdId_(1), lastReceivedCmdId_(0), statusCountDown_(0),
-      p_({0.0, 0.0, 0.0, 0, 0, 0}), pp_({0.0, 0.0, 0.0, 0, 0, 0})
+AsservCborDriver::AsservCborDriver(ARobotPositionShared *sharedPosition)
+    : connected_(true), asservCardStarted_(true), threadStarted_(false),
+      stopRequested_(false), positionInitialized_(false),
+      errorCount_(0), nextCmdId_(1), lastReceivedCmdId_(0), statusCountDown_(0),
+      p_({0.0, 0.0, 0.0, 0, 0, 0}), pp_({0.0, 0.0, 0.0, 0, 0, 0}),
+      sharedPosition_(sharedPosition)
 {
     char errorOpening = serial_.openDevice(SERIAL_CBOR_PORT, 115200);
     if ((int)errorOpening != 1)
@@ -97,6 +99,15 @@ AsservCborDriver::~AsservCborDriver()
     serial_.closeDevice();
 }
 
+void AsservCborDriver::stopReceiveThread()
+{
+    if (!threadStarted_) return;
+    stopRequested_ = true;
+    // Le thread sortira de readBytes (timeout 50ms) puis verra le flag
+    this->waitForEnd();
+    threadStarted_ = false;
+}
+
 void AsservCborDriver::startReceiveThread()
 {
     if (asservCardStarted_ && !threadStarted_) {
@@ -113,6 +124,9 @@ bool AsservCborDriver::is_connected()
 void AsservCborDriver::endWhatTodo()
 {
     emergencyStop();
+    // Arret propre du thread de reception : evite que des positions soient
+    // ecrites dans le SVG apres la balise </svg> de fermeture.
+    stopReceiveThread();
 }
 
 // ============================================================================
@@ -214,10 +228,10 @@ void AsservCborDriver::execute()
     logger().info() << "AsservCborDriver::execute() — receive thread started" << logs::end;
     uint8_t rxBuf[64];
 
-    while (!asservCardStarted_)
+    while (!asservCardStarted_ && !stopRequested_)
         utils::sleep_for_micros(10000);
 
-    while (true)
+    while (!stopRequested_)
     {
         // Lire 1 octet avec timeout, puis vider le buffer disponible
         int bytesRead = serial_.readBytes(rxBuf, 1, 50);
@@ -263,7 +277,23 @@ void AsservCborDriver::execute()
                 }
                 m_statusCountDown.unlock();
 
+                ROBOTPOSITION p_copy = p_;
                 m_pos.unlock();
+
+                // IMPORTANT : ignorer les positions recues AVANT le premier odo_SetPosition().
+                // Tant que positionInitialized_ == false, la Nucleo envoie encore les positions
+                // residuelles de la session precedente (non resetees). Les logger dans le SVG
+                // ou dans sharedPosition creerait de fausses donnees au debut du match.
+                if (!positionInitialized_) {
+                    continue;
+                }
+
+                // Push history pour synchronisation beacon (SensorsTimer/getPositionAt)
+                // Le thread CBOR est le seul a recevoir les positions de la Nucleo,
+                // donc seul lui doit alimenter le buffer historique.
+                if (sharedPosition_ != nullptr) {
+                    sharedPosition_->setRobotPosition(p_copy);
+                }
 
                 // Trace SVG : un point bleu + direction si la position a changé
                 if (!(p_.x == pp_.x && p_.y == pp_.y))
@@ -409,6 +439,9 @@ void AsservCborDriver::motion_OrbitalTurnRad(float angle_radians, bool forward, 
 void AsservCborDriver::odo_SetPosition(float x_mm, float y_mm, float angle_rad)
 {
     sendCmd(CMD_SET_POSITION, x_mm, y_mm, angle_rad);
+    // Apres ce premier set position, les positions recues de la Nucleo seront
+    // valides (pas des residus de la session precedente) et peuvent etre loggees.
+    positionInitialized_ = true;
 }
 
 ROBOTPOSITION AsservCborDriver::odo_GetPosition()

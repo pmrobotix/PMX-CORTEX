@@ -140,9 +140,9 @@ void O_AsservWaypointTest::run(int argc, char **argv)
 		                << " y=" << waypoints[i].y << logs::end;
 	}
 
-	// Init asserv
-	robot.asserv().startMotionTimerAndOdo(false);
+	// Init asserv : setPositionAndColor AVANT startMotionTimerAndOdo
 	robot.asserv().setPositionAndColor(coordx, coordy, coorda_deg, (bool)(robot.getMyColor() != PMXYELLOW));
+	robot.asserv().startMotionTimerAndOdo(false);
 	robot.asserv().assistedHandling();
 
 	robot.svgPrintPosition();
