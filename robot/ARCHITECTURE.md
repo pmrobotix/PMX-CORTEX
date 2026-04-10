@@ -2,7 +2,13 @@
 
 ## Migrations effectuées
 
-- **Timers POSIX : SIGEV_SIGNAL → SIGEV_THREAD** (avril 2026) — Correction d'un bug historique de deadlock : les timers (SensorsTimer, ServoObjectsTimer, LedBarTimer) utilisaient SIGALRM qui interrompait le thread principal dans un signal handler, causant des deadlocks si un mutex était tenu. Migration vers SIGEV_THREAD (vrai thread séparé) avec `tryLock()` pour éviter l'accumulation de threads. Voir [section détaillée](#migration-sigev_signal--sigev_thread-avril-2026-). Même bug présent sur l'ancien robot EV3/PMX — voir [rétrospective EV3](#bug-historique-ev3--deadlock-sigalrm-rétrospective).
+- **Timers POSIX : scheduler unifié à thread persistant** (avril 2026) — Refactoring complet du système de timers suite à la découverte d'un bug historique de deadlock. 3 étapes :
+  1. **SIGEV_SIGNAL → SIGEV_THREAD** (étape intermédiaire) pour corriger le deadlock (signal handler qui tenait un mutex).
+  2. **SIGEV_THREAD → thread persistant** car glibc créait un nouveau pthread à chaque expiration → OOM kill à haute fréquence (10ms).
+  3. **Scheduler unifié `ActionTimerScheduler`** : 1 seul thread persistant pour toutes les `IAction` + tous les `ITimerScheduledListener`. Voir [section détaillée](#migration-sigev_signal--sigev_thread--actiontimerscheduler-avril-2026-). Même bug présent sur l'ancien robot EV3/PMX — voir [rétrospective EV3](#bug-historique-ev3--deadlock-sigalrm-rétrospective).
+- **Démarrage asserv : `setPositionAndColor` avant `startMotionTimerAndOdo`** (avril 2026) — Le set position reset la Nucleo et définit la couleur de match ; rien ne doit fonctionner avant. Filet de sécurité : flag `positionInitialized_` dans `AsservCborDriver`. Voir [section détaillée](#démarrage-asserv--ordre-setpositionandcolor--startmotiontimerandodo).
+- **Clôture propre threads + SVG valide** (avril 2026) — Correction du SVG invalide (éléments `<circle>` écrits après `</svg>`) causé par le thread CBOR qui continuait à tourner pendant la fermeture du SVG. Voir [section détaillée](#clôture-propre--thread-cbor--svg-valide).
+- **Source de vérité unique pour la position robot** (avril 2026) — `Asserv::pos_getPosition()` lit directement depuis `sharedPosition` (alimentée par `setPositionReal()` + thread CBOR), au lieu du `p_` local du driver qui avait ~50ms de latence au démarrage.
 
 ## Migrations en cours
 
@@ -673,10 +679,10 @@ Ce refactoring se fera **progressivement**, pas en une fois :
 4. **Phase 4** : supprimer les stubs et le code mort
 5. **Phase 5** : intégrer asserv-newversion comme nouvelle implémentation de AAsserv
 
-## Timers POSIX (ITimerPosixListener)
+## Timers et scheduler (ActionTimerScheduler + ITimerScheduledListener)
 
-Le système de timers utilise `timer_create()` POSIX avec **SIGEV_THREAD**, géré par `ActionManagerTimer`.
-Chaque timer implémente `ITimerPosixListener` avec un callback `onTimer()` périodique.
+Le système utilise un **scheduler unifié** `ActionTimerScheduler` : **1 seul thread persistant**
+qui gère à la fois toutes les `IAction` et tous les `ITimerScheduledListener` (timers périodiques).
 
 ### Liste des timers
 
@@ -687,21 +693,37 @@ Chaque timer implémente `ITimerPosixListener` avec un callback `onTimer()` pér
 | **LedBarTimer**       | variable (µs) | `common/action/LedBar.cpp/hpp`               | Anime LEDs (alternate, K2000, blink)                   | Non (affichage)              |
 | **TestTimer**         | 100-500ms      | `bot/opos6ul/tests/O_ActionManagerTimerTest` | Log messages (test seulement)                          | Non                          |
 
-### Mécanisme
+### Mécanisme du scheduler
 
 ```
-ActionManagerTimer (◆ THREAD, event-driven)
-  │  gère une liste de ITimerPosixListener
-  │  chaque timer est executé dans un thread séparé (SIGEV_THREAD)
+ActionTimerScheduler (1 seul thread persistant)
   │
-  ├── SensorsTimer ──→ onTimer() toutes les N ms
-  ├── ServoObjectsTimer ──→ onTimer() toutes les 50ms
-  └── LedBarTimer ──→ onTimer() toutes les N µs
+  │  boucle execute() :
+  │  ├─ sem_wait() si pas d'action ni timer → 0% CPU au repos
+  │  ├─ clock_nanosleep ABSTIME jusqu'au prochain tick → pas de drift
+  │  ├─ tick les timers prêts (next_tick_us <= now)
+  │  └─ execute 1 IAction par cycle (pour ne pas bloquer les timers)
+  │
+  ├── liste de IAction (one-shot ou récurrentes terminables)
+  │     └─ execute() return true = à repousser en queue
+  │     └─ execute() return false = terminée, retirée
+  │
+  └── liste de ITimerScheduledListener
+        ├── SensorsTimer ──→ onTimer() toutes les N ms
+        ├── ServoObjectsTimer ──→ onTimer() toutes les 50ms
+        └── LedBarTimer ──→ onTimer() toutes les N µs
 ```
 
-Enregistrement via : `actions().addTimer(ITimerPosixListener* timer)`
+**Contrainte importante** : les `onTimer()` et `IAction::execute()` doivent être **courts** (<1ms
+typiquement) car ils bloquent le scheduler pendant leur exécution. Les opérations longues
+doivent être découpées en state machine (ex: attendre qu'un servo arrive en position sans
+bloquer le scheduler).
 
-### Migration SIGEV_SIGNAL → SIGEV_THREAD (avril 2026) ✅
+Enregistrement :
+- `actions().addAction(IAction*)` — pour une tâche asynchrone one-shot ou récurrente
+- `actions().addTimer(ITimerScheduledListener*)` — pour un callback périodique
+
+### Migration SIGEV_SIGNAL → SIGEV_THREAD → ActionTimerScheduler (avril 2026) ✅
 
 #### Bug historique : deadlock par signal handler
 
@@ -742,6 +764,40 @@ du timer au lieu d'envoyer un signal. Les mutex fonctionnent normalement entre t
 | Pour timer ≥ 10ms | OK | OK (overhead < 1%) |
 
 Fichier modifié : `common/timer/ITimerPosixListener.hpp`
+
+#### Étape 3 : SIGEV_THREAD → thread persistant (ActionTimerScheduler)
+
+**Nouveau problème découvert** : avec `SIGEV_THREAD`, glibc crée **un nouveau pthread
+à chaque expiration** du timer. À haute fréquence (10ms → 100 threads/sec), combiné avec
+`mlockall(MCL_CURRENT|MCL_FUTURE)` qui verrouille les pages de stack, la mémoire se
+sature en quelques secondes → **OOM kill** ("Killed" sans explication au démarrage).
+
+**Solution finale** : nouveau scheduler unifié `ActionTimerScheduler` — **1 seul thread
+persistant** pour toutes les `IAction` et tous les `ITimerScheduledListener`.
+
+| | SIGEV_SIGNAL | SIGEV_THREAD | ActionTimerScheduler (final) |
+|---|---|---|---|
+| Threads créés | 0 (signal handler) | 1 par expiration | **1 seul persistant** |
+| Mutex | **Deadlock** (signal handler) | OK | OK |
+| Haute fréquence (5-10ms) | OK (signal léger) | **OOM kill** | **OK** (pas d'allocation) |
+| CPU au repos | N/A | 0% (glibc dort) | **0%** (sem_wait + clock_nanosleep) |
+| Précision timing | Excellente | Bonne | **Excellente** (clock_nanosleep ABSTIME, pas de drift) |
+| Latence ajout action | 0 | 0 | ≤ période du plus petit timer |
+| Mixer actions + timers | Séparé (ActionManagerTimer) | Séparé | **Unifié** (1 scheduler) |
+
+**Nouvelle interface `ITimerScheduledListener`** : callback pur, pas d'héritage `Thread`,
+pas de signal handler. Membres `onTimer()`, `onTimerEnd()`, `name()`, `timeSpan_us()`,
+`requestStop()`, `setPause()`. Utilisé par `SensorsTimer`, `LedBarTimer`,
+`ServoObjectsTimer`, `TestTimer`.
+
+**Code legacy conservé pour rollback** : `ActionManagerTimer`, `ITimerPosixListener`,
+`ITimerListener`. Pourront être supprimés une fois le nouveau scheduler validé en match.
+
+**Fichiers** :
+- `common/timer/ActionTimerScheduler.hpp/.cpp` (nouveau)
+- `common/timer/ITimerScheduledListener.hpp` (nouveau)
+- `test/common/ActionTimerSchedulerTest.hpp/.cpp` (15 tests dont 3 régressions critiques :
+  mutex partagé, haute fréquence sans OOM, 0% CPU au repos)
 
 #### Concurrence des callbacks
 
@@ -1444,6 +1500,125 @@ pendant l'exécution du handler).
 - ⬜ Remplacer les `exit(-1)` dans les drivers par des exceptions ou des codes retour (pas de exit() dans du code embarqué)
 - ⬜ Uniformiser les botId (OPOS6UL_Robot vs PMX) — un seul identifiant par robot
 - ⬜ Changer le SVG pour celui de 2026
+
+### Précision synchronisation beacon (position adv)
+
+Erreur résiduelle observée : ~80mm sur la position adversaire à 1.5m, robot tournant à 90°/s.
+Causes cumulées d'erreur sur t_mesure :
+
+- ✅ **Latence I2C `getData()`** (~5-10ms) — résolu : `t_sync_ms` capturé par le driver dans `SensorsDriver::sync()` juste après `readFlag()`, avant le long `getData()`. Getter `getLastSyncMs()` ajouté à l'interface `ASensorsDriver`.
+- ✅ **Buffer history non uniforme** — résolu : `AsservCborDriver` (thread CBOR) appelle `setRobotPosition()` à chaque trame reçue de la Nucleo, alimente `pushHistory()` en continu. `Asserv::pos_getPosition()` devient une lecture pure sans effet de bord.
+- ✅ **Formule `t_mesure_ms` inversée** — résolu : `t_mesure = t_sync - TEENSY_CYCLE_MS + beacon_delay_us` (au lieu de `t_sync - beacon_delay_us`).
+- ⬜ **Cycle Teensy variable** (40-60ms observés) : actuellement constante hardcodée `TEENSY_CYCLE_MS=60` dans `Sensors.cpp`. Solution : ajouter un registre I2C côté Teensy contenant la durée réelle du cycle, lecture par OPOS6UL au sync.
+- ⬜ **Jitter polling SensorsTimer** : période 20ms → la lecture du flag I2C arrive 0-20ms après la fin du cycle Teensy (aléatoire). Solution simple : réduire la période à 5ms.
+- ⬜ **Solution propre (long terme)** : GPIO interrupt Teensy → OPOS6UL à chaque fin de cycle, capture timestamp exact côté OPOS6UL → jitter quasi nul. Nécessite cablage GPIO + handler interrupt.
+
+À 1.5m de l'adversaire, 1° d'erreur de theta_robot = 26mm d'erreur de position. À 90°/s, 11ms d'erreur timing = 1° → 26mm. Réduire les 15-30ms à <5ms ramènerait l'erreur de 80mm à <15mm.
+
+## Démarrage asserv : ordre `setPositionAndColor` → `startMotionTimerAndOdo`
+
+### Règle impérative
+
+`setPositionAndColor()` n'est **pas juste** une init de coordonnées, c'est le **point de
+départ logique du match**. Il doit être appelé **AVANT** `startMotionTimerAndOdo()` car :
+
+- Il applique la **couleur de match** (symétrie miroir des coordonnées pour blue/yellow)
+- Il fait un **reset complet côté Nucleo** (position + odométrie)
+- Avant ce setPos, la Nucleo peut encore avoir des positions résiduelles de la session précédente
+- La couleur doit être définie avant que l'asserv ne commence à traiter des trajectoires
+
+### Sémantique
+
+```cpp
+// 1. Couleur de match
+robot.setMyColor(PMXYELLOW);
+
+// 2. setPositionAndColor = RESET de match (Nucleo + couleur + origine)
+robot.asserv().setPositionAndColor(300, 600, 0, couleur);
+
+// 3. Démarrage du thread CBOR (inclut un sleep 50ms pour laisser la Nucleo appliquer)
+robot.asserv().startMotionTimerAndOdo(false);
+
+// 4. Reste du programme (capteurs, IA, ...)
+```
+
+### Filet de sécurité : `positionInitialized_`
+
+Dans `AsservCborDriver`, un flag `std::atomic<bool> positionInitialized_` filtre les
+positions reçues tant que `odo_SetPosition()` n'a pas été appelé au moins une fois.
+La boucle de réception CBOR fait :
+
+```cpp
+if (!positionInitialized_) {
+    continue;  // skip history + skip SVG
+}
+```
+
+Cela protège le SVG et l'historique de positions contre les données résiduelles de la
+Nucleo, même si un test oublie de respecter l'ordre.
+
+### Source de vérité unique pour `pos_getPosition()`
+
+`Asserv::pos_getPosition()` lit maintenant directement depuis `sharedPosition` au lieu
+de `asservdriver_->p_`. Motivation :
+
+- `setPositionReal()` pousse immédiatement dans `sharedPosition` (pas d'attente)
+- Le thread CBOR pousse aussi dans `sharedPosition` à chaque trame Nucleo reçue
+- `sharedPosition` est **la** source de vérité, alimentée par les deux writers
+
+Avant ce fix, juste après `setPositionAndColor(200, 200, 0)`, `pos_getPosition()` retournait
+encore `(0, 0, 0)` pendant ~50ms (le temps que la Nucleo renvoie sa première trame et que
+le thread CBOR mette à jour son `p_` local).
+
+### Tests migrés
+
+Tous les tests qui utilisent `startMotionTimerAndOdo` ont été mis à jour pour respecter
+le nouvel ordre : `O_SensorsTest`, `O_AsservLineRotateTest`, `O_AsservTest`,
+`O_Asserv_SquareTest`, `O_AsservLineRotateOldTest`, `O_AsservXYRotateTest`,
+`O_IAbyPathTest`, `O_AsservWaypointTest`, `O_NavigatorBackTest`, `O_NavigatorMovementTest`,
+`O_State_Init`, `O_Asserv_CalageTest` (5 cas), `O_AsservCalibrationTest` (déjà correct).
+
+`O_LedBarTest` nettoyé : ne démarre plus l'asserv qu'il n'utilisait pas.
+
+## Clôture propre : thread CBOR + SVG valide
+
+### Problème initial : `<circle>` après `</svg>`
+
+Le thread CBOR (`AsservCborDriver`) continuait à écrire des positions dans `svgAPF.svg`
+**après** la balise `</svg>` de fermeture, produisant un **SVG invalide**. Scénario type :
+
+```
+1. Test appelle robot.svgPrintEndOfFile()  → écrit </g></svg>
+2. Pendant ce temps, le thread CBOR reçoit encore des positions de la Nucleo
+3. Le thread logue <circle cx="..." cy="..." /> dans svgAPF.svg → APRÈS </svg>
+4. Le SVG résultant est invalide (éléments hors racine)
+```
+
+### Solution : arrêter les producteurs avant de fermer le SVG
+
+1. **`AsservCborDriver::stopReceiveThread()`** : flag `stopRequested_` + `waitForEnd()` pour
+   arrêter proprement le thread de réception CBOR.
+2. **`AsservCborDriver::endWhatTodo()`** : appelle `emergencyStop()` puis `stopReceiveThread()`.
+3. **`OPOS6UL_RobotExtended::stopExtraActions()`** : arrête `asserv().endWhatTodo()` puis
+   `actions().stopExtra()`. C'est le point d'entrée pour tout arrêter avant la clôture SVG.
+4. **`~Robot()`** : appelle `stopMotionTimerAndActionManager()` **AVANT** `svgPrintEndOfFile()`.
+5. **`Main.cpp sigintHandler`** : appelle `stopExtraActions()` avant `svgPrintEndOfFile()`
+   pour que Ctrl+C produise un SVG valide.
+
+### Sémantique de `svgPrintEndOfFile()`
+
+Comme dans PMX, `Robot::svgPrintEndOfFile()` **ne fait que** `svg_->endHeader()`
+(écriture des balises `</g></svg>`). **C'est la responsabilité de l'appelant** d'arrêter
+les threads producteurs avant. Documenté dans le header :
+
+```cpp
+/*!
+ * \warning Avant d'appeler cette methode, l'appelant DOIT avoir arrete les
+ *          threads producteurs SVG (asserv CBOR, scheduler des timers).
+ *          Sequence type : robot.stopExtraActions(); robot.svgPrintEndOfFile();
+ */
+void svgPrintEndOfFile();
+```
 
 ### Optimisations temps-réel 2026
 
