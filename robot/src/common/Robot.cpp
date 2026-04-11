@@ -64,6 +64,17 @@ Robot::~Robot() {
     logs::LoggerFactory::instance().stopLog();
 }
 
+// Wrappers vers les transformations de couleur de l'Asserv.
+float Robot::changeMatchX(float x_mm, float width) {
+    return asserv_default_->changeMatchX(x_mm, width);
+}
+float Robot::changeMatchXMin(float x_mm, float width) {
+    return asserv_default_->changeMatchXMin(x_mm, width);
+}
+float Robot::changeMatchAngleRad(float rad) {
+    return asserv_default_->changeMatchAngleRad(rad);
+}
+
 
 
 
@@ -71,8 +82,8 @@ Robot::~Robot() {
 void Robot::svgPrintPosition(int color) {
 
     if (asserv_default_ != NULL) {
-        this->svgw().writePosition_Bot(this->passerv()->pos_getX_mm(), this->passerv()->pos_getY_mm(),
-                this->passerv()->pos_getTheta(), color);
+        ROBOTPOSITION p = sharedPosition_->getRobotPosition();
+        this->svgw().writePosition_Bot(p.x, p.y, p.theta, color);
     }
     else logger().error() << "asserv_default is NULL !" << logs::end;
 }

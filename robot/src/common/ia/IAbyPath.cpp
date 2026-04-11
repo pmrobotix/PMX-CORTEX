@@ -168,38 +168,22 @@ void IAbyPath::ia_start()
 					allDone = false;
 				}
 				z->completed = done;
-				if (!done)
+				if (robot_ == NULL)
 				{
-					if (robot_ != NULL)
-//                        printf("%s state after actions : %s : (%f,%f) %f FAILED\n", __FUNCTION__, z->name,
-//                                robot_->passerv()->pos_getX_mm(), robot_->passerv()->pos_getY_mm(),
-//                                robot_->passerv()->pos_getThetaInDegree());
-
-						logger().error() << __FUNCTION__ << " state after actions : " << z->name << " : ("
-								<< robot_->passerv()->pos_getX_mm() << "," << robot_->passerv()->pos_getY_mm() << ", "
-								<< robot_->passerv()->pos_getThetaInDegree() << ") FAILED" << logs::end;
-					else
-					{
-						logger().error() << __FUNCTION__ << " (line " << __LINE__ << ") : robot_ is NULL !"
-								<< logs::end;
-						sleep(1);
-						exit(-1);
-					}
-
-				}
-				if (robot_ != NULL)
-//                    printf("%s state after actions : %s : (%f,%f) %f\n", __FUNCTION__, z->name,
-//                            robot_->passerv()->pos_getX_mm(), robot_->passerv()->pos_getY_mm(),
-//                            robot_->passerv()->pos_getThetaInDegree());
-					logger().info() << __FUNCTION__ << " state after actions : " << z->name << " : ("
-							<< robot_->passerv()->pos_getX_mm() << ", " << robot_->passerv()->pos_getY_mm() << ", "
-							<< robot_->passerv()->pos_getThetaInDegree() << ")" << logs::end;
-				else
-				{
-					logger().error() << __FUNCTION__ << " (line " << __LINE__ << ") : robot_ is NULL !" << logs::end;
+					logger().error() << __FUNCTION__ << " (line " << __LINE__ << ") : robot_ is NULL !"
+							<< logs::end;
 					sleep(1);
 					exit(-1);
 				}
+				// Snapshot coherent de la position (un seul lock mutex).
+				ROBOTPOSITION p = robot_->sharedPosition()->getRobotPosition();
+				if (!done)
+				{
+					logger().error() << __FUNCTION__ << " state after actions : " << z->name << " : ("
+							<< p.x << "," << p.y << ", " << radToDeg(p.theta) << ") FAILED" << logs::end;
+				}
+				logger().info() << __FUNCTION__ << " state after actions : " << z->name << " : ("
+						<< p.x << ", " << p.y << ", " << radToDeg(p.theta) << ")" << logs::end;
 			}
 
 		}
@@ -236,10 +220,10 @@ void IAbyPath::ia_createZone(const char *name, float minX, float minY, float wid
 	z->startAngle = startAngleDeg;
 	if (robot_ != NULL)
 	{
-		z->startX = robot_->passerv()->changeMatchXMin(z->startX);
-		z->minX = robot_->passerv()->changeMatchXMin(z->minX, z->width);
+		z->startX = robot_->changeMatchXMin(z->startX);
+		z->minX = robot_->changeMatchXMin(z->minX, z->width);
 		//z->startAngle = robot_->passerv()->getRelativeAngle(z->startAngle);
-		z->startAngle = radToDeg(robot_->passerv()->changeMatchAngleRad(degToRad(z->startAngle)));
+		z->startAngle = radToDeg(robot_->changeMatchAngleRad(degToRad(z->startAngle)));
 	} else
 	{
 		logger().error() << __FUNCTION__ << " (line " << __LINE__ << ") : robot_ is NULL !" << logs::end;
@@ -372,10 +356,10 @@ void IAbyPath::goToZone(const char *zoneName, ROBOTPOSITION *zone_p)
 		exit(-1);
 	}
 
-	zone_p->x = robot_->passerv()->changeMatchX(z->startX);
+	zone_p->x = robot_->changeMatchX(z->startX);
 	zone_p->y = z->startY;
 	//zone_p->theta = robot_->passerv()->getRelativeAngle(z->startAngle);
-	zone_p->theta = robot_->passerv()->changeMatchAngleRad(degToRad(z->startAngle));
+	zone_p->theta = robot_->changeMatchAngleRad(degToRad(z->startAngle));
 
 }
 
@@ -384,6 +368,9 @@ void IAbyPath::playgroundFindPath(FoundPath *&path, Point &start, Point &end)
 	p_->find_path(path, start, end);
 }
 
+// [DEPRECATED] Remplace par Navigator::pathTo() / pathBackTo() / pathToAndFaceTo() / pathToAndRotateAbsDeg()
+// Conserve en commentaire pour reference (bug detection adversaire, voir ARCHITECTURE.md).
+/*
 TRAJ_STATE IAbyPath::doPathForwardTo(float xMM, float yMM, bool rotate_ignoring_opponent)
 {
 	TRAJ_STATE ts = TRAJ_IDLE;
@@ -545,7 +532,7 @@ TRAJ_STATE IAbyPath::doPathBackwardTo(float xMM, float yMM, bool rotate_ignoring
 	return ts;
 }
 
-//TODO rename doPathForwardAndFaceTo
+
 TRAJ_STATE IAbyPath::doPathForwardAndFaceTo(float xMM, float yMM, float f_x, float f_y)
 {
 	TRAJ_STATE ts = TRAJ_IDLE;
@@ -565,7 +552,7 @@ TRAJ_STATE IAbyPath::doPathForwardAndFaceTo(float xMM, float yMM, float f_x, flo
 
 }
 
-//TODO deprecated : n'est pas utilisé ?
+
 TRAJ_STATE IAbyPath::doPathForwardAndRotateTo(float xMM, float yMM, float absThetaInDegree)
 {
 	TRAJ_STATE ts = TRAJ_IDLE;
@@ -583,6 +570,7 @@ TRAJ_STATE IAbyPath::doPathForwardAndRotateTo(float xMM, float yMM, float absThe
 	}
 	return ts;
 }
+*/
 /*//=> trasféré sur Robot.cpp
 TRAJ_STATE IAbyPath::whileDoLine(float distMM, bool rotate_ignoring_opponent, int wait_tempo_us, int nb_near_obstacle,
 		int nb_collision, int reculOnObstacleMm, int reculOnCollisionMm, bool ignore_collision)

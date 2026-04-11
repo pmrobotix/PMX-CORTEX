@@ -427,8 +427,9 @@ void O_State_Init::setPos()
 	else
 		robot.asserv().setPositionAndColor(1150, 130, 90.0, (bool) (robot.getMyColor() != PMXYELLOW));
 	robot.asserv().startMotionTimerAndOdo(true);
-	logger().info() << "O_State_Init::setPos() svgPrintPosition x=" << robot.asserv().pos_getX_mm() << " y="
-			<< robot.asserv().pos_getY_mm() << " a=" << robot.asserv().pos_getThetaInDegree() << logs::end;
+	ROBOTPOSITION p = robot.sharedPosition()->getRobotPosition();
+	logger().info() << "O_State_Init::setPos() svgPrintPosition x=" << p.x << " y=" << p.y
+			<< " a=" << radToDeg(p.theta) << logs::end;
 	robot.svgPrintPosition();
 
 	robot.actions().lcd2x16().clear();

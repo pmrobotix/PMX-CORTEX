@@ -534,27 +534,29 @@ public:
     // Le code client doit utiliser Navigator::moveForwardTo() / moveBackwardTo() etc.
 
     /*!
-     * \brief [DEPRECATED] Avance vers (x,y) : rotation face au point, puis ligne droite.
+     * \brief Avance vers (x,y) : rotation face au point, puis ligne droite.
+     *        Composition "turn-line" faite par Asserv (alternative a goTo() qui delegue
+     *        au driver externe la trajectoire smooth). Utile pour un controle explicite
+     *        entre la rotation et la ligne, ou pour un asserv sans motion_GoTo natif.
      */
-    [[deprecated("Utiliser Navigator::moveForwardTo()")]]
     TRAJ_STATE moveForwardTo(float xMM, float yMM, bool rotate_ignored = false, float adjustment = 0);
 
     /*!
-     * \brief [DEPRECATED] Recule vers (x,y) : rotation dos au point, puis ligne droite arriere.
+     * \brief Recule vers (x,y) : rotation dos au point, puis ligne droite arriere.
+     *        Composition "turn-line" faite par Asserv (alternative a goBackTo()).
      */
-    [[deprecated("Utiliser Navigator::moveBackwardTo()")]]
     TRAJ_STATE moveBackwardTo(float xMM, float yMM, bool rotate_ignored = false);
 
     /*!
-     * \brief [DEPRECATED] Avance vers (x,y) puis tourne vers l'angle donne.
+     * \brief Avance vers (x,y) puis tourne vers l'angle donne.
+     *        Composition "turn-line-rotate" faite par Asserv.
      */
-    [[deprecated("Utiliser Navigator::moveForwardToAndRotateAbsDeg()")]]
     TRAJ_STATE moveForwardAndRotateTo(float xMM, float yMM, float thetaInDegree, bool rotate_ignore_opponent = true);
 
     /*!
-     * \brief [DEPRECATED] Recule vers (x,y) puis tourne vers l'angle donne.
+     * \brief Recule vers (x,y) puis tourne vers l'angle donne.
+     *        Composition faite par Asserv.
      */
-    [[deprecated("Utiliser Navigator::moveBackwardTo() + Navigator::rotateAbsDeg()")]]
     TRAJ_STATE moveBackwardAndRotateTo(float xMM, float yMM, float thetaInDegree);
 
     // ========== RECALAGE PAR TRIANGULATION (intersection de 2 cercles) ==========
@@ -694,6 +696,24 @@ public:
     inline float radToDeg(float rad)
     {
         return rad * 180.0 / M_PI;
+    }
+
+    /*!
+     * \brief Calcule la distance euclidienne sqrt(dx^2 + dy^2) de facon numeriquement
+     *        stable. Reformule en max * sqrt(1 + (min/max)^2) pour eviter l'overflow
+     *        quand dx ou dy sont grands.
+     *        Equivalent a sqrt(dx*dx + dy*dy) mais plus sur.
+     *        Reference : asservchibios Goto::computeDeltaDist.
+     */
+    static inline float computeDeltaDist(float deltaX, float deltaY)
+    {
+        float abs_dx = std::fabs(deltaX);
+        float abs_dy = std::fabs(deltaY);
+        float max = abs_dx > abs_dy ? abs_dx : abs_dy;
+        float min = abs_dx <= abs_dy ? abs_dx : abs_dy;
+        if (max != 0.0f)
+            return max * std::sqrt(1.0f + (min / max) * (min / max));
+        return 0.0f;
     }
 
 };

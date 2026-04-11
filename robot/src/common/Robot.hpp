@@ -258,6 +258,13 @@ public:
 		return r_asserv;
 	}
 
+	// Wrappers vers les transformations de couleur de l'Asserv.
+	// Permettent aux modules strategie (IA, Navigator) de convertir des
+	// coordonnees sans couplage direct a l'API Asserv.
+	float changeMatchX(float x_mm, float width = 0.0);
+	float changeMatchXMin(float x_mm, float width = 0.0);
+	float changeMatchAngleRad(float rad);
+
 	/*!
 	 * \brief Retourne une référence vers le SvgWriter (logging trajectoire).
 	 */

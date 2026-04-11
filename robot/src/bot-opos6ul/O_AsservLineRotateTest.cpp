@@ -227,7 +227,7 @@ void O_AsservLineRotateTest::run(int argc, char **argv)
 					}
 					else
 					{
-						ts = robot.asserv().rotateDeg(aa);
+						ts = nav.rotateDeg(aa, RetryPolicy::noRetry());
 						if (ts >= TRAJ_INTERRUPTED)
 						{
 							logger().info() << robot.asserv().getTraj(ts) << " rotateDeg ECHEC" << logs::end;
@@ -244,7 +244,7 @@ void O_AsservLineRotateTest::run(int argc, char **argv)
 					}
 					else
 					{
-						ts = robot.asserv().rotateAbsDeg(aa);
+						ts = nav.rotateAbsDeg(aa, RetryPolicy::noRetry());
 						if (ts >= TRAJ_INTERRUPTED)
 						{
 							logger().info() << robot.asserv().getTraj(ts) << " rotateAbsDeg ECHEC" << logs::end;

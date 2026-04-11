@@ -53,9 +53,9 @@ void IAbyZone::ia_createZone(const char* name, float minX, float minY, float wid
     z->startAngle = startAngleDeg;
 
     if (robot_ != NULL) {
-        z->startX = robot_->passerv()->changeMatchXMin(z->startX);
-        z->minX = robot_->passerv()->changeMatchXMin(z->minX, z->width);
-        z->startAngle = radToDeg(robot_->passerv()->changeMatchAngleRad(degToRad(z->startAngle)));
+        z->startX = robot_->changeMatchXMin(z->startX);
+        z->minX = robot_->changeMatchXMin(z->minX, z->width);
+        z->startAngle = radToDeg(robot_->changeMatchAngleRad(degToRad(z->startAngle)));
     } else {
         logger().error() << "robot_ is NULL !" << logs::end;
         std::this_thread::sleep_for(std::chrono::seconds(1));
@@ -123,7 +123,7 @@ void IAbyZone::ia_setPath(const char* zone1Name, const char* zone2Name, float x,
     zp->y = y;
 
     if (robot_ != NULL) {
-        zp->x = robot_->passerv()->changeMatchX(zp->x);
+        zp->x = robot_->changeMatchX(zp->x);
     } else {
         logger().error() << "robot_ is NULL !" << logs::end;
         std::this_thread::sleep_for(std::chrono::seconds(1));
@@ -176,34 +176,19 @@ void IAbyZone::ia_start()
                     allDone = false;
                 }
                 z->completed = done;
-                if (!done) {
-                    if (robot_ != NULL)
-//                        printf("%s state after actions : %s : (%f,%f) %f FAILED\n", __FUNCTION__, z->name,
-//                                robot_->passerv()->pos_getX_mm(), robot_->passerv()->pos_getY_mm(),
-//                                robot_->passerv()->pos_getThetaInDegree());
-
-                    logger().error() << __FUNCTION__ <<  " state after actions : "<< z->name << " : (" << robot_->passerv()->pos_getX_mm() << "," << robot_->passerv()->pos_getY_mm() << ", "<< robot_->passerv()->pos_getThetaInDegree() << ") FAILED"
-                                                << logs::end;
-                    else {
-                        logger().error() << "robot_ is NULL !" << logs::end;
-                        std::this_thread::sleep_for(std::chrono::seconds(1));
-                        exit(-1);
-                    }
-
-                }
-                if (robot_ != NULL)
-//                    printf("%s state after actions : %s : (%f,%f) %f\n", __FUNCTION__, z->name,
-//                            robot_->passerv()->pos_getX_mm(), robot_->passerv()->pos_getY_mm(),
-//                            robot_->passerv()->pos_getThetaInDegree());
-
-                logger().info() << __FUNCTION__ << " state after actions : " << z->name << " : (" << robot_->passerv()->pos_getX_mm() << ", " << robot_->passerv()->pos_getY_mm() << ", "<<
-                                        robot_->passerv()->pos_getThetaInDegree() << ")"
-                                        << logs::end;
-                else {
+                if (robot_ == NULL) {
                     logger().error() << "robot_ is NULL !" << logs::end;
                     std::this_thread::sleep_for(std::chrono::seconds(1));
                     exit(-1);
                 }
+                // Snapshot coherent de la position (un seul lock mutex).
+                ROBOTPOSITION p = robot_->sharedPosition()->getRobotPosition();
+                if (!done) {
+                    logger().error() << __FUNCTION__ << " state after actions : " << z->name << " : ("
+                            << p.x << "," << p.y << ", " << radToDeg(p.theta) << ") FAILED" << logs::end;
+                }
+                logger().info() << __FUNCTION__ << " state after actions : " << z->name << " : ("
+                        << p.x << ", " << p.y << ", " << radToDeg(p.theta) << ")" << logs::end;
             }
 
         }
@@ -239,8 +224,8 @@ ZONE* IAbyZone::ia_getNearestZoneFrom(float x, float y)
 {
     ZONE *result = ia_getZoneAt(x, y);
     if (result != NULL) {
-        printf("ia_getNearestZoneFrom is current zone : %s : (%f,%f) \n", result->name,
-                robot_->passerv()->pos_getX_mm(), robot_->passerv()->pos_getY_mm());
+        ROBOTPOSITION p = robot_->sharedPosition()->getRobotPosition();
+        printf("ia_getNearestZoneFrom is current zone : %s : (%f,%f) \n", result->name, p.x, p.y);
         return result;
     }
 
@@ -279,8 +264,8 @@ void IAbyZone::goToZone(const char *zoneName, ROBOTPOSITION *path_p, ROBOTPOSITI
         exit(-1);
     }
 
-    ZONE *zCurrent = ia_getNearestZoneFrom(robot_->passerv()->pos_getX_mm(),
-            robot_->passerv()->pos_getY_mm());
+    ROBOTPOSITION pCurr = robot_->sharedPosition()->getRobotPosition();
+    ZONE *zCurrent = ia_getNearestZoneFrom(pCurr.x, pCurr.y);
     if (zCurrent == NULL) {
         printf("ERROR: cc_goToZone ia_getNearestZoneFrom return NULL !!");
         std::this_thread::sleep_for(std::chrono::seconds(1));
@@ -292,12 +277,12 @@ void IAbyZone::goToZone(const char *zoneName, ROBOTPOSITION *path_p, ROBOTPOSITI
     if (path != NULL) {
         printf("%s (line %d) : goToZone FROM %s TO %s using path (%f,%f)\n", __FUNCTION__, __LINE__, zCurrent->name,
                 z->name, path->x, path->y);
-        path_p->x = robot_->passerv()->changeMatchX(path->x);
+        path_p->x = robot_->changeMatchX(path->x);
         path_p->y = path->y;
     }
-    zone_p->x = robot_->passerv()->changeMatchX(z->startX);
+    zone_p->x = robot_->changeMatchX(z->startX);
     zone_p->y = z->startY;
-    zone_p->theta = robot_->passerv()->changeMatchAngleRad(degToRad(z->startAngle));
+    zone_p->theta = robot_->changeMatchAngleRad(degToRad(z->startAngle));
 
     printf("----%s (line %d) : goToZone FROM %s TO %s using path (%f,%f)\n", __FUNCTION__, __LINE__, zCurrent->name,
             z->name, path->x, path->y);

@@ -627,8 +627,10 @@ TRAJ_STATE Asserv::rotateAbsDeg(float thetaInDegreeAbsolute, bool rotate_ignorin
 // Si déjà très proche du point (<5mm en dx ET dy), retourne directement TRAJ_FINISHED.
 TRAJ_STATE Asserv::moveForwardTo(float xMM, float yMM, bool rotate_ignoring_opponent, float adjustment_mm)
 {
-	float dx = changeMatchX(xMM) - pos_getX_mm();
-	float dy = yMM - pos_getY_mm();
+	// Snapshot coherent : un seul lock mutex pour calcul + log.
+	ROBOTPOSITION p = pos_getPosition();
+	float dx = changeMatchX(xMM) - p.x;
+	float dy = yMM - p.y;
 	if (std::abs(dx) < 5.0 && std::abs(dy) < 5.0)
 	{
 		logger().info() << "___ TRAJ_FINISHED __moveForwardTo (std::abs(dx) < 5.0 && std::abs(dy) < 5.0)"
@@ -641,8 +643,8 @@ TRAJ_STATE Asserv::moveForwardTo(float xMM, float yMM, bool rotate_ignoring_oppo
 
 	logger().debug() << "moveForwardTo doRotateTo degrees=" << (aRadian * 180.0f) / M_PI << " dx=" << dx << " dy="
 			<< dy << "  (aRadian * 180.0f) / M_PI)= " << (aRadian * 180.0f) / M_PI << " get="
-			<< radToDeg(changeMatchAngleRad(aRadian)) << " xMM=" << xMM << " yMM=" << yMM << " getX=" << pos_getX_mm()
-			<< " getY=" << pos_getY_mm() << logs::end;
+			<< radToDeg(changeMatchAngleRad(aRadian)) << " xMM=" << xMM << " yMM=" << yMM << " getX=" << p.x
+			<< " getY=" << p.y << logs::end;
 
 	TRAJ_STATE ts = TRAJ_IDLE;
 //	int count_rotation_ignored = 0;
@@ -672,8 +674,9 @@ TRAJ_STATE Asserv::moveForwardTo(float xMM, float yMM, bool rotate_ignoring_oppo
 			}
 		}
 	}
-	float dist = sqrt(dx * dx + dy * dy);
-	logger().debug() << " __moveForwardTo dist sqrt(dx * dx + dy * dy)=" << dist << logs::end;
+	// Distance euclidienne calculee de facon numeriquement stable (cf asservchibios Goto).
+	float dist = computeDeltaDist(dx, dy);
+	logger().debug() << " __moveForwardTo dist=" << dist << logs::end;
 
 	return line(dist + adjustment_mm);
 
@@ -682,8 +685,10 @@ TRAJ_STATE Asserv::moveBackwardTo(float xMM, float yMM, bool rotate_ignoring_opp
 {
 	xMM = changeMatchX(xMM);
 
-	float dx = xMM - pos_getX_mm();
-	float dy = yMM - pos_getY_mm();
+	// Snapshot coherent : un seul lock mutex.
+	ROBOTPOSITION p = pos_getPosition();
+	float dx = xMM - p.x;
+	float dy = yMM - p.y;
 	if (std::abs(dx) < 5.0 && std::abs(dy) < 5.0)
 	{ //Augmenter les valeurs??? par rapport à l'asserv fenetre d'arrivée
 		return TRAJ_FINISHED;
@@ -703,14 +708,13 @@ TRAJ_STATE Asserv::moveBackwardTo(float xMM, float yMM, bool rotate_ignoring_opp
 		}
 	}
 
-	float dist = sqrt(dx * dx + dy * dy);
+	// Distance euclidienne calculee de facon numeriquement stable (cf asservchibios Goto).
+	float dist = computeDeltaDist(dx, dy);
 	return line(-dist);
 }
 
-//deprecated ?
 TRAJ_STATE Asserv::moveForwardAndRotateTo(float xMM, float yMM, float thetaInDegree, bool rotate_ignore_opponent)
 {
-	logger().error() << "moveForwardAndRotateTo deprecated !!!" << logs::end;
 	TRAJ_STATE ts;
 	ts = moveForwardTo(xMM, yMM, rotate_ignore_opponent);
 	if (ts != TRAJ_FINISHED) return ts;
@@ -718,10 +722,8 @@ TRAJ_STATE Asserv::moveForwardAndRotateTo(float xMM, float yMM, float thetaInDeg
 	ts = rotateAbsDeg(thetaInDegree);
 	return ts;
 }
-//deprecated ?
 TRAJ_STATE Asserv::moveBackwardAndRotateTo(float xMM, float yMM, float thetaInDegree)
 {
-	logger().error() << "moveBackwardAndRotateTo deprecated !!!" << logs::end;
 	TRAJ_STATE ts;
 	ts = moveBackwardTo(xMM, yMM);
 	if (ts != TRAJ_FINISHED) return ts;

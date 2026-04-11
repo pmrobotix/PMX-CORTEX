@@ -11,6 +11,7 @@
 
 #include "utils/Arguments.hpp"
 #include "Robot.hpp"
+#include "navigator/Navigator.hpp"
 #include "utils/Chronometer.hpp"
 #include "log/Logger.hpp"
 #include "OPOS6UL_AsservExtended.hpp"
@@ -127,7 +128,8 @@ void O_AsservCalibrationTest::run(int argc, char** argv)
     if (step == 5) {
         logger().info() << "ETAPE 5 : on tourne pour regler D" << logs::end;
         robot.asserv().assistedHandling();
-        robot.asserv().rotateDeg(90);
+        Navigator nav(&robot);
+        nav.rotateDeg(90);
         sleep(1);
     }
 

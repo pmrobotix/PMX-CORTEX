@@ -87,15 +87,13 @@ public:
     void enable(PlaygroundObjectID id, bool enable);
 
 
-    // [DEPRECATED] Utiliser Navigator::pathTo() / pathToAndFaceTo() / pathToAndRotateAbsDeg()
-    [[deprecated("Utiliser Navigator::pathToAndFaceTo()")]]
-    TRAJ_STATE doPathForwardAndFaceTo(float xMM, float yMM, float f_x, float f_y);
-    [[deprecated("Utiliser Navigator::pathToAndRotateAbsDeg()")]]
-    TRAJ_STATE doPathForwardAndRotateTo(float x, float y, float AbsThetaInDegree);
-    [[deprecated("Utiliser Navigator::pathTo()")]]
-    TRAJ_STATE doPathForwardTo(float xMM, float yMM, bool rotate_ignored_detection = false);
-    [[deprecated("Utiliser Navigator::pathBackTo()")]]
-    TRAJ_STATE doPathBackwardTo(float xMM, float yMM, bool rotate_ignored_detection = false);
+    // [DEPRECATED] Remplace par Navigator::pathTo() / pathBackTo() / pathToAndFaceTo() / pathToAndRotateAbsDeg()
+    // Conserve en commentaire pour reference (bug detection adversaire, voir ARCHITECTURE.md).
+    //
+    // TRAJ_STATE doPathForwardAndFaceTo(float xMM, float yMM, float f_x, float f_y);
+    // TRAJ_STATE doPathForwardAndRotateTo(float x, float y, float AbsThetaInDegree);
+    // TRAJ_STATE doPathForwardTo(float xMM, float yMM, bool rotate_ignored_detection = false);
+    // TRAJ_STATE doPathBackwardTo(float xMM, float yMM, bool rotate_ignored_detection = false);
 
 
 

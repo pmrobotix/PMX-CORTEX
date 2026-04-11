@@ -123,10 +123,11 @@ TRAJ_STATE Navigator::executeWithRetry(std::function<TRAJ_STATE()> moveFunc,
     }
 
     robot_->displayTS(ts);
+    ROBOTPOSITION pEnd = robot_->sharedPosition()->getRobotPosition();
     logger().debug() << "time=" << robot_->chrono().getElapsedTimeInMilliSec() << "ms"
-                     << " x=" << robot_->asserv().pos_getX_mm()
-                     << " y=" << robot_->asserv().pos_getY_mm()
-                     << " a=" << robot_->asserv().pos_getThetaInDegree() << logs::end;
+                     << " x=" << pEnd.x
+                     << " y=" << pEnd.y
+                     << " a=" << radToDeg(pEnd.theta) << logs::end;
 
     return ts;
 }
@@ -151,7 +152,7 @@ TRAJ_STATE Navigator::executeWaypoints(const std::vector<Waypoint>& waypoints,
         if (currentIndex < waypoints.size())
         {
             const Waypoint& first = waypoints[currentIndex];
-            float x_match = robot_->asserv().changeMatchX(first.x);
+            float x_match = robot_->changeMatchX(first.x);
             if (policy.rotateIgnoringOpponent)
             {
                 TRAJ_STATE ts = first.reverse
@@ -170,7 +171,7 @@ TRAJ_STATE Navigator::executeWaypoints(const std::vector<Waypoint>& waypoints,
         {
             const Waypoint& wp = waypoints[i];
             bool isLast = (i == waypoints.size() - 1);
-            float x_match = robot_->asserv().changeMatchX(wp.x);
+            float x_match = robot_->changeMatchX(wp.x);
 
             if (wp.reverse)
             {
@@ -208,7 +209,7 @@ TRAJ_STATE Navigator::executeWaypoints(const std::vector<Waypoint>& waypoints,
         const Waypoint& wp = waypoints[i];
         TRAJ_STATE ts;
 
-        float x_match = robot_->asserv().changeMatchX(wp.x);
+        float x_match = robot_->changeMatchX(wp.x);
 
         // Rotation vers le point
         if (policy.rotateIgnoringOpponent)
@@ -254,7 +255,7 @@ void Navigator::svgTraceWaypoints(float x_start, float y_start,
     float y_prev = y_start;
     for (size_t i = 0; i < waypoints.size(); i++)
     {
-        float x_wp = robot_->asserv().changeMatchX(waypoints[i].x);
+        float x_wp = robot_->changeMatchX(waypoints[i].x);
         float y_wp = waypoints[i].y;
         robot_->svgw().writeLine(x_prev, y_prev, x_wp, y_wp, color, width, dashed);
         x_prev = x_wp;
@@ -268,17 +269,17 @@ void Navigator::svgTraceWaypoints(float x_start, float y_start,
 
 TRAJ_STATE Navigator::line(float distMm, RetryPolicy policy)
 {
-    float x_before = robot_->asserv().pos_getX_mm();
-    float y_before = robot_->asserv().pos_getY_mm();
+    ROBOTPOSITION pBefore = robot_->sharedPosition()->getRobotPosition();
     float d_restant = distMm;
     int reculDir = (distMm >= 0) ? -1 : 1;
 
     TRAJ_STATE ts = executeWithRetry(
-        [this, distMm, x_before, y_before, &d_restant]() {
+        [this, distMm, pBefore, &d_restant]() {
             TRAJ_STATE ts = robot_->asserv().line(d_restant);
-            // Recalcul distance restante
-            float dx = robot_->asserv().pos_getX_mm() - x_before;
-            float dy = robot_->asserv().pos_getY_mm() - y_before;
+            // Recalcul distance restante (snapshot coherent)
+            ROBOTPOSITION pNow = robot_->sharedPosition()->getRobotPosition();
+            float dx = pNow.x - pBefore.x;
+            float dy = pNow.y - pBefore.y;
             float parcourue = std::sqrt(dx * dx + dy * dy);
             d_restant = distMm - parcourue;
             logger().debug() << "d_parcourue=" << parcourue
@@ -289,9 +290,8 @@ TRAJ_STATE Navigator::line(float distMm, RetryPolicy policy)
         reculDir
     );
 
-    robot_->svgw().writeLine(x_before, y_before,
-        robot_->asserv().pos_getX_mm(), robot_->asserv().pos_getY_mm(),
-        "blue", 2);
+    ROBOTPOSITION pAfter = robot_->sharedPosition()->getRobotPosition();
+    robot_->svgw().writeLine(pBefore.x, pBefore.y, pAfter.x, pAfter.y, "blue", 2);
     robot_->svgPrintPosition(4); // BLUE
 
     return ts;
@@ -299,8 +299,7 @@ TRAJ_STATE Navigator::line(float distMm, RetryPolicy policy)
 
 TRAJ_STATE Navigator::goTo(float x, float y, RetryPolicy policy)
 {
-    float x_before = robot_->asserv().pos_getX_mm();
-    float y_before = robot_->asserv().pos_getY_mm();
+    ROBOTPOSITION pBefore = robot_->sharedPosition()->getRobotPosition();
 
     TRAJ_STATE ts = executeWithRetry(
         [this, x, y]() {
@@ -310,9 +309,8 @@ TRAJ_STATE Navigator::goTo(float x, float y, RetryPolicy policy)
         -1
     );
 
-    robot_->svgw().writeLine(x_before, y_before,
-        robot_->asserv().pos_getX_mm(), robot_->asserv().pos_getY_mm(),
-        "blue", 2);
+    ROBOTPOSITION pAfter = robot_->sharedPosition()->getRobotPosition();
+    robot_->svgw().writeLine(pBefore.x, pBefore.y, pAfter.x, pAfter.y, "blue", 2);
     robot_->svgPrintPosition(4); // BLUE
 
     return ts;
@@ -320,8 +318,7 @@ TRAJ_STATE Navigator::goTo(float x, float y, RetryPolicy policy)
 
 TRAJ_STATE Navigator::goBackTo(float x, float y, RetryPolicy policy)
 {
-    float x_before = robot_->asserv().pos_getX_mm();
-    float y_before = robot_->asserv().pos_getY_mm();
+    ROBOTPOSITION pBefore = robot_->sharedPosition()->getRobotPosition();
 
     TRAJ_STATE ts = executeWithRetry(
         [this, x, y]() {
@@ -331,9 +328,8 @@ TRAJ_STATE Navigator::goBackTo(float x, float y, RetryPolicy policy)
         1
     );
 
-    robot_->svgw().writeLine(x_before, y_before,
-        robot_->asserv().pos_getX_mm(), robot_->asserv().pos_getY_mm(),
-        "blue", 2);
+    ROBOTPOSITION pAfter = robot_->sharedPosition()->getRobotPosition();
+    robot_->svgw().writeLine(pBefore.x, pBefore.y, pAfter.x, pAfter.y, "blue", 2);
     robot_->svgPrintPosition(4); // BLUE
 
     return ts;
@@ -341,8 +337,7 @@ TRAJ_STATE Navigator::goBackTo(float x, float y, RetryPolicy policy)
 
 TRAJ_STATE Navigator::moveForwardTo(float x, float y, RetryPolicy policy)
 {
-    float x_before = robot_->asserv().pos_getX_mm();
-    float y_before = robot_->asserv().pos_getY_mm();
+    ROBOTPOSITION pBefore = robot_->sharedPosition()->getRobotPosition();
 
     TRAJ_STATE ts = executeWithRetry(
         [this, x, y, &policy]() {
@@ -352,9 +347,8 @@ TRAJ_STATE Navigator::moveForwardTo(float x, float y, RetryPolicy policy)
         -1
     );
 
-    robot_->svgw().writeLine(x_before, y_before,
-        robot_->asserv().pos_getX_mm(), robot_->asserv().pos_getY_mm(),
-        "blue", 2);
+    ROBOTPOSITION pAfter = robot_->sharedPosition()->getRobotPosition();
+    robot_->svgw().writeLine(pBefore.x, pBefore.y, pAfter.x, pAfter.y, "blue", 2);
     robot_->svgPrintPosition(4); // BLUE
 
     return ts;
@@ -362,8 +356,7 @@ TRAJ_STATE Navigator::moveForwardTo(float x, float y, RetryPolicy policy)
 
 TRAJ_STATE Navigator::moveBackwardTo(float x, float y, RetryPolicy policy)
 {
-    float x_before = robot_->asserv().pos_getX_mm();
-    float y_before = robot_->asserv().pos_getY_mm();
+    ROBOTPOSITION pBefore = robot_->sharedPosition()->getRobotPosition();
 
     TRAJ_STATE ts = executeWithRetry(
         [this, x, y, &policy]() {
@@ -373,9 +366,8 @@ TRAJ_STATE Navigator::moveBackwardTo(float x, float y, RetryPolicy policy)
         1
     );
 
-    robot_->svgw().writeLine(x_before, y_before,
-        robot_->asserv().pos_getX_mm(), robot_->asserv().pos_getY_mm(),
-        "blue", 2);
+    ROBOTPOSITION pAfter = robot_->sharedPosition()->getRobotPosition();
+    robot_->svgw().writeLine(pBefore.x, pBefore.y, pAfter.x, pAfter.y, "blue", 2);
     robot_->svgPrintPosition(4); // BLUE
 
     return ts;
@@ -431,8 +423,7 @@ TRAJ_STATE Navigator::faceBackTo(float x, float y, RetryPolicy policy)
 
 TRAJ_STATE Navigator::orbitalTurnDeg(float angleDeg, bool forward, bool turnRight, RetryPolicy policy)
 {
-    float x_before = robot_->asserv().pos_getX_mm();
-    float y_before = robot_->asserv().pos_getY_mm();
+    ROBOTPOSITION pBefore = robot_->sharedPosition()->getRobotPosition();
 
     TRAJ_STATE ts = executeWithRetry(
         [this, angleDeg, forward, turnRight]() {
@@ -442,9 +433,8 @@ TRAJ_STATE Navigator::orbitalTurnDeg(float angleDeg, bool forward, bool turnRigh
         0
     );
 
-    robot_->svgw().writeLine(x_before, y_before,
-        robot_->asserv().pos_getX_mm(), robot_->asserv().pos_getY_mm(),
-        "blue", 2);
+    ROBOTPOSITION pAfter = robot_->sharedPosition()->getRobotPosition();
+    robot_->svgw().writeLine(pBefore.x, pBefore.y, pAfter.x, pAfter.y, "blue", 2);
     robot_->svgPrintPosition(4); // BLUE
 
     return ts;
@@ -462,8 +452,8 @@ TRAJ_STATE Navigator::manualPath(const std::vector<Waypoint>& waypoints, RetryPo
     // Tracer sur le SVG : CHAIN = vert continu, CHAIN_NONSTOP = vert pointille, STOP = pas de trace
     if (mode == CHAIN || mode == CHAIN_NONSTOP)
     {
-        svgTraceWaypoints(robot_->asserv().pos_getX_mm(), robot_->asserv().pos_getY_mm(),
-                          waypoints, "green", 3, mode == CHAIN_NONSTOP);
+        ROBOTPOSITION pStart = robot_->sharedPosition()->getRobotPosition();
+        svgTraceWaypoints(pStart.x, pStart.y, waypoints, "green", 3, mode == CHAIN_NONSTOP);
     }
 
     size_t currentIndex = 0;
@@ -485,12 +475,10 @@ std::vector<Waypoint> Navigator::computePath(float x, float y, bool reverse)
 {
     std::vector<Waypoint> waypoints;
 
-    Point startPoint = {
-        robot_->asserv().pos_getX_mm(),
-        robot_->asserv().pos_getY_mm()
-    };
+    ROBOTPOSITION pStart = robot_->sharedPosition()->getRobotPosition();
+    Point startPoint = { pStart.x, pStart.y };
     Point endPoint = {
-        robot_->asserv().changeMatchX(x),
+        robot_->changeMatchX(x),
         y
     };
 
@@ -509,7 +497,7 @@ std::vector<Waypoint> Navigator::computePath(float x, float y, bool reverse)
                 if (count != 0)
                 {
                     Waypoint wp;
-                    wp.x = robot_->asserv().changeMatchX(node->x);
+                    wp.x = robot_->changeMatchX(node->x);
                     wp.y = node->y;
                     wp.reverse = reverse;
                     waypoints.push_back(wp);
@@ -532,8 +520,8 @@ TRAJ_STATE Navigator::pathTo(float x, float y, RetryPolicy policy, PathMode mode
                 return TRAJ_IMPOSSIBLE;
 
             // Tracer le chemin A* sur le SVG (rouge, pointille si CHAIN_NONSTOP)
-            svgTraceWaypoints(robot_->asserv().pos_getX_mm(), robot_->asserv().pos_getY_mm(),
-                              waypoints, "red", 4, mode == CHAIN_NONSTOP);
+            ROBOTPOSITION pStart = robot_->sharedPosition()->getRobotPosition();
+            svgTraceWaypoints(pStart.x, pStart.y, waypoints, "red", 4, mode == CHAIN_NONSTOP);
 
             size_t idx = 0;
             return executeWaypoints(waypoints, policy, mode, idx, 2); // RED
@@ -552,8 +540,8 @@ TRAJ_STATE Navigator::pathBackTo(float x, float y, RetryPolicy policy, PathMode 
                 return TRAJ_IMPOSSIBLE;
 
             // Tracer le chemin A* sur le SVG (rouge, pointille si CHAIN_NONSTOP)
-            svgTraceWaypoints(robot_->asserv().pos_getX_mm(), robot_->asserv().pos_getY_mm(),
-                              waypoints, "red", 4, mode == CHAIN_NONSTOP);
+            ROBOTPOSITION pStart = robot_->sharedPosition()->getRobotPosition();
+            svgTraceWaypoints(pStart.x, pStart.y, waypoints, "red", 4, mode == CHAIN_NONSTOP);
 
             size_t idx = 0;
             return executeWaypoints(waypoints, policy, mode, idx, 2); // RED
