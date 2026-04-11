@@ -235,7 +235,7 @@ ServoObjectsTimer::ServoObjectsTimer(ServoObjectsSystem &sOsS, int number_servos
 				goal_pos1), velocity1_(velocity1)
 {
 	std::string name = std::to_string(number_servos);
-	//init du timer POSIX associé ITimerPosixListener ou ITimerListener
+	//init du timer ITimerScheduledListener
 	this->init(name, timeSpan_us);
 
 	first_exe_ = true;
@@ -254,7 +254,7 @@ ServoObjectsTimer::ServoObjectsTimer(ServoObjectsSystem &sOsS, int number_servos
 				velocity2)
 {
 	std::string name = std::to_string(number_servos);
-	//init du timer POSIX associé ITimerPosixListener ou ITimerListener
+	//init du timer ITimerScheduledListener
 	this->init(name, timeSpan_us);
 
 	first_exe_ = true;

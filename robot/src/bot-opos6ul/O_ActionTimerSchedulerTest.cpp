@@ -1,9 +1,9 @@
 /*!
  * \file
- * \brief Implémentation de la classe O_ActionManagerTimerTest.
+ * \brief Implémentation de la classe O_ActionTimerSchedulerTest.
  */
 
-#include "O_ActionManagerTimerTest.hpp"
+#include "O_ActionTimerSchedulerTest.hpp"
 
 #include <unistd.h>
 
@@ -13,7 +13,7 @@
 
 using namespace std;
 
-void O_ActionManagerTimerTest::run(int argc, char **argv)
+void O_ActionTimerSchedulerTest::run(int argc, char **argv)
 {
     logger().info() << "N° " << this->position() << " - Executing - " << this->desc() << logs::end;
 
@@ -47,7 +47,7 @@ void O_ActionManagerTimerTest::run(int argc, char **argv)
     logger().info() << robot.getID() << " " << this->name() << " Happy End" << " N° " << this->position() << logs::end;
 }
 
-TestAction::TestAction(O_ActionManagerTimerTest &amt, std::string name) :
+TestAction::TestAction(O_ActionTimerSchedulerTest &amt, std::string name) :
         amt_(amt), name_(name), chrono_("TestAction")
 {
     chrono_.start();
@@ -65,7 +65,7 @@ bool TestAction::execute()
     return true;
 }
 
-TestTimer::TestTimer(O_ActionManagerTimerTest &amt, int timeSpan_ms, std::string name) :
+TestTimer::TestTimer(O_ActionTimerSchedulerTest &amt, int timeSpan_ms, std::string name) :
         amt_(amt), chrono_("TestTimer")
 {
     lasttime_ = 0;

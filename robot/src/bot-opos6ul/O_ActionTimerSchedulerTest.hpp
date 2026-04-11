@@ -1,10 +1,10 @@
 /*!
  * \file
- * \brief Définition de la classe O_ActionManagerTimerTest.
+ * \brief Définition de la classe O_ActionTimerSchedulerTest.
  */
 
-#ifndef OPOS6UL_ACTIONMANAGERTIMERTEST_HPP_
-#define	OPOS6UL_ACTIONMANAGERTIMERTEST_HPP_
+#ifndef OPOS6UL_ACTIONTIMERSCHEDULERTEST_HPP_
+#define	OPOS6UL_ACTIONTIMERSCHEDULERTEST_HPP_
 
 #include <string>
 
@@ -18,16 +18,16 @@
 /*!
  * \brief Effectue un test de l'action manager avec timer
  */
-class O_ActionManagerTimerTest: public FunctionalTest
+class O_ActionTimerSchedulerTest: public FunctionalTest
 {
 private:
 
     /*!
-     * \brief Retourne le \ref Logger associé à la classe \ref L_ActionManagerTimerTest.
+     * \brief Retourne le \ref Logger associé à la classe.
      */
     static inline const logs::Logger & logger()
     {
-        static const logs::Logger & instance = logs::LoggerFactory::logger("O_ActionManagerTimerTest");
+        static const logs::Logger & instance = logs::LoggerFactory::logger("O_ActionTimerSchedulerTest");
         return instance;
     }
 public:
@@ -35,15 +35,15 @@ public:
     /*!
      * \brief Constructeur de la classe.
      */
-    O_ActionManagerTimerTest() :
-            FunctionalTest("ActionManagerTimer", "actions + timers")
+    O_ActionTimerSchedulerTest() :
+            FunctionalTest("ActionTimerScheduler", "actions + timers")
     {
     }
 
     /*!
      * \brief Destructeur de la classe.
      */
-    virtual ~O_ActionManagerTimerTest()
+    virtual ~O_ActionTimerSchedulerTest()
     {
     }
 
@@ -67,14 +67,14 @@ private:
      */
     static const logs::Logger & logger()
     {
-        static const logs::Logger & instance = logs::LoggerFactory::logger("O_ActionManagerTimerTest-Action");
+        static const logs::Logger & instance = logs::LoggerFactory::logger("O_ActionTimerSchedulerTest-Action");
         return instance;
     }
 
     /*!
      * \brief Référence vers le test.
      */
-    O_ActionManagerTimerTest & amt_;
+    O_ActionTimerSchedulerTest & amt_;
 
     std::string name_;
 
@@ -89,7 +89,7 @@ public:
      * \param amt
      *        Reference vers l'objet associée.
      */
-    TestAction(O_ActionManagerTimerTest & amt, std::string name);
+    TestAction(O_ActionTimerSchedulerTest & amt, std::string name);
 
     /*!
      * \brief Destructeur de la classe.
@@ -126,14 +126,14 @@ private:
      */
     static const logs::Logger & logger()
     {
-        static const logs::Logger & instance = logs::LoggerFactory::logger("O_ActionManagerTimerTest-Timer");
+        static const logs::Logger & instance = logs::LoggerFactory::logger("O_ActionTimerSchedulerTest-Timer");
         return instance;
     }
 
     /*!
      * \brief Référence vers le test.
      */
-    O_ActionManagerTimerTest & amt_;
+    O_ActionTimerSchedulerTest & amt_;
 
     utils::Chronometer chrono_;
 
@@ -146,7 +146,7 @@ public:
      * \param amt
      *        Reference vers l'objet associée.
      */
-    TestTimer(O_ActionManagerTimerTest & amt, int timeSpan_ms, std::string name);
+    TestTimer(O_ActionTimerSchedulerTest & amt, int timeSpan_ms, std::string name);
 
     /*!
      * \brief Destructeur de la classe.

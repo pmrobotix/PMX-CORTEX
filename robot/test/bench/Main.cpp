@@ -13,7 +13,7 @@
 #include <cstring>
 #include <iostream>
 
-#include "PosixTimerBench.hpp"
+#include "ActionTimerSchedulerBench.hpp"
 #include "TimerPosixStandaloneBench.hpp"
 
 int main(int, char**)
@@ -25,7 +25,7 @@ int main(int, char**)
 
 	UnitTestSuite suite;
 
-	suite.addTest(new test::PosixTimerBench());
+	suite.addTest(new test::ActionTimerSchedulerBench());
 	suite.addTest(new test::TimerPosixStandaloneBench());
 
 	suite.run();

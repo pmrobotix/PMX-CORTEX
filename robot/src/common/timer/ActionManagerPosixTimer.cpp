@@ -1,13 +1,17 @@
 /*!
  * \file
- * \brief Implementation de la classe ActionManagerTimer.
+ * \brief Implementation de la classe ActionManagerPosixTimer (legacy, deprecated).
  */
 
-#include "ActionManagerTimer.hpp"
+#include "ActionManagerPosixTimer.hpp"
 #include <semaphore.h>
 
-ActionManagerTimer::ActionManagerTimer() :
-        stopActionsAndTimers_(false), pause_(false), chronoTimer_("ActionManagerTimer")
+// Toute l'implementation manipule des ITimerPosixListener* deprecated : bruit interne attendu.
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+
+ActionManagerPosixTimer::ActionManagerPosixTimer() :
+        stopActionsAndTimers_(false), pause_(false), chronoTimer_("ActionManagerPosixTimer")
 {
     //init du semaphore valeur 0 pour une pause par defaut.
     sem_init(&AMT, 0, 0);
@@ -17,7 +21,7 @@ ActionManagerTimer::ActionManagerTimer() :
     //0 = pause
 }
 
-void ActionManagerTimer::execute()
+void ActionManagerPosixTimer::execute()
 {
     int sizeT = 0;
     int sizePT = 0;
@@ -104,7 +108,7 @@ void ActionManagerTimer::execute()
     stopActionsAndTimers_ = false; //on reinitialise le stop.
 }
 
-void ActionManagerTimer::stopTimer(std::string timerNameToDelete)
+void ActionManagerPosixTimer::stopTimer(std::string timerNameToDelete)
 {
     bool found = false;
     utils::PointerList<ITimerListener*>::iterator save;
@@ -128,7 +132,7 @@ void ActionManagerTimer::stopTimer(std::string timerNameToDelete)
     mtimer_.unlock();
 }
 
-void ActionManagerTimer::stopPTimer(std::string ptimerNameToDelete)
+void ActionManagerPosixTimer::stopPTimer(std::string ptimerNameToDelete)
 {
 
     bool found = false;
@@ -156,7 +160,7 @@ void ActionManagerTimer::stopPTimer(std::string ptimerNameToDelete)
 
 }
 
-bool ActionManagerTimer::findPTimer(std::string timerNameToFind)
+bool ActionManagerPosixTimer::findPTimer(std::string timerNameToFind)
 {
 
     bool found = false;
@@ -178,7 +182,7 @@ bool ActionManagerTimer::findPTimer(std::string timerNameToFind)
     return found;
 
 }
-void ActionManagerTimer::stopAllPTimers()
+void ActionManagerPosixTimer::stopAllPTimers()
 {
     mtimer_.lock();
     ptimers_tobestarted_.clear();
@@ -214,7 +218,7 @@ void ActionManagerTimer::stopAllPTimers()
 
 }
 
-void ActionManagerTimer::stop()
+void ActionManagerPosixTimer::stop()
 {
     this->stopActionsAndTimers_ = true;
     stopAllPTimers();
@@ -222,7 +226,7 @@ void ActionManagerTimer::stop()
     this->waitForEnd();
 }
 
-void ActionManagerTimer::pause(bool value)
+void ActionManagerPosixTimer::pause(bool value)
 {
     this->pause_ = value;
     //on parcours et on mets en pause tous les timers courants
@@ -238,7 +242,7 @@ void ActionManagerTimer::pause(bool value)
     unblock("pause");
 }
 
-void ActionManagerTimer::debugActions()
+void ActionManagerPosixTimer::debugActions()
 {
 
     std::ostringstream temp;
@@ -255,7 +259,7 @@ void ActionManagerTimer::debugActions()
     logger().debug() << temp.str() << logs::end;
 }
 
-void ActionManagerTimer::debugPTimers()
+void ActionManagerPosixTimer::debugPTimers()
 {
     std::ostringstream temp;
     temp << "Print posixtimers to be started :";
@@ -290,7 +294,7 @@ void ActionManagerTimer::debugPTimers()
 }
 
 //deprecated
-void ActionManagerTimer::debugTimers()
+void ActionManagerPosixTimer::debugTimers()
 {
     std::ostringstream temp;
     temp << "Print Defined timers :";
@@ -306,3 +310,5 @@ void ActionManagerTimer::debugTimers()
     mtimer_.unlock();
     logger().debug() << temp.str() << logs::end;
 }
+
+#pragma GCC diagnostic pop

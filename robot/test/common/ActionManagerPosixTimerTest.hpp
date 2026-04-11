@@ -1,34 +1,34 @@
 /*!
  * \file
- * \brief Tests unitaires de la classe ActionManagerTimer.
+ * \brief Tests unitaires de la classe ActionManagerPosixTimer (legacy, deprecated).
  *
  * Tests rapides avec assertions. Les tests longs de verification
- * visuelle sont dans test/manual/ActionManagerTimerManualTest.
+ * visuelle sont dans test/manual/ActionManagerPosixTimerManualTest.
  */
 
-#ifndef TEST_ACTIONMANAGERTIMERTEST_HPP
-#define TEST_ACTIONMANAGERTIMERTEST_HPP
+#ifndef TEST_ACTIONMANAGERPOSIXTIMERTEST_HPP
+#define TEST_ACTIONMANAGERPOSIXTIMERTEST_HPP
 
 #include "../suite/UnitTest.hpp"
 
 namespace test {
 
-class ActionManagerTimerTest: public UnitTest {
+class ActionManagerPosixTimerTest: public UnitTest {
 private:
 
 	static inline const logs::Logger & logger() {
-		static const logs::Logger & instance = logs::LoggerFactory::logger("test::ActionManagerTimerTest");
+		static const logs::Logger & instance = logs::LoggerFactory::logger("test::ActionManagerPosixTimerTest");
 		return instance;
 	}
 
 public:
 
-	ActionManagerTimerTest() :
-			UnitTest("ActionManagerTimerTest")
+	ActionManagerPosixTimerTest() :
+			UnitTest("ActionManagerPosixTimerTest")
 	{
 	}
 
-	virtual ~ActionManagerTimerTest() {
+	virtual ~ActionManagerPosixTimerTest() {
 	}
 
 	virtual void suite();

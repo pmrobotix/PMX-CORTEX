@@ -1,10 +1,10 @@
 /*!
  * \file
- * \brief Tests manuels longs de l'ActionManagerTimer.
+ * \brief Tests manuels longs de l'ActionManagerPosixTimer.
  */
 
-#include "timer/ActionManagerTimer.hpp"
-#include "ActionManagerTimerManualTest.hpp"
+#include "timer/ActionManagerPosixTimer.hpp"
+#include "ActionManagerPosixTimerManualTest.hpp"
 
 #include <chrono>
 #include <sstream>
@@ -136,15 +136,15 @@ public:
 
 // --- Suite ---
 
-void test::ActionManagerTimerManualTest::suite() {
+void test::ActionManagerPosixTimerManualTest::suite() {
     testExecutePosixBig();
 }
 
 // --- Tests manuels (verification visuelle des logs) ---
 
-void test::ActionManagerTimerManualTest::testExecute() {
+void test::ActionManagerPosixTimerManualTest::testExecute() {
     logger().info() << "testExecute()..." << logs::end;
-    ActionManagerTimer manager;
+    ActionManagerPosixTimer manager;
 
     MockAction *action1 = new MockAction(1, 10);
     MockAction *action2 = new MockAction(2, 20);
@@ -179,10 +179,10 @@ void test::ActionManagerTimerManualTest::testExecute() {
     logger().info() << "testExecute() END" << logs::end;
 }
 
-void test::ActionManagerTimerManualTest::testExecutePosixBig() {
+void test::ActionManagerPosixTimerManualTest::testExecutePosixBig() {
     logger().info() << "testExecutePosixBig()..." << logs::end;
 
-    ActionManagerTimer manager;
+    ActionManagerPosixTimer manager;
 
     MockAction *action1 = new MockAction(1, 10);
     MockAction *action2 = new MockAction(2, 20);
@@ -221,9 +221,9 @@ void test::ActionManagerTimerManualTest::testExecutePosixBig() {
     logger().info() << "testExecutePosixBig() END" << logs::end;
 }
 
-void test::ActionManagerTimerManualTest::testExecutePosix() {
+void test::ActionManagerPosixTimerManualTest::testExecutePosix() {
     logger().info() << "testExecutePosix()..." << logs::end;
-    ActionManagerTimer manager;
+    ActionManagerPosixTimer manager;
 
     MockAction *action1 = new MockAction(1, 1000);
     MockAction *action2 = new MockAction(2, 20);

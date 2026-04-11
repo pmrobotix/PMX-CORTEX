@@ -11,7 +11,7 @@
 #include "utils/Chronometer.hpp"
 #include "log/LoggerFactory.hpp"
 
-class AsservDriverSimu: public AAsservDriver, utils::Thread //, ITimerPosixListener
+class AsservDriverSimu: public AAsservDriver, utils::Thread
 {
 
 public:

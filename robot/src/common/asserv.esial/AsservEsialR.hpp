@@ -7,7 +7,6 @@
 #include "utils/Chronometer.hpp"
 #include "log/LoggerFactory.hpp"
 #include "thread/Thread.hpp"
-//#include "utils/ITimerPosixListener.hpp"
 
 class CodeursInterface;
 class CommandManagerA;
@@ -25,13 +24,11 @@ class Robot;
  #define int32 int
  //#define BOOL bool*/
 
-class AsservEsialR: public AAsservDriver, public utils::Thread //, public ITimerPosixListener
+class AsservEsialR: public AAsservDriver, public utils::Thread
 {
 
 protected:
      void execute();
-//     void onTimer(utils::Chronometer chrono);
-//     void onTimerEnd(utils::Chronometer chrono);
 
 private:
      bool loop_finished_;

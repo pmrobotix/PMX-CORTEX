@@ -51,7 +51,7 @@ void logs::LoggerFactory::initialize()
     add(logs::Level::DEBUG, "Sensors", "console"); // DEBUG temporaire pour voir la projection
     add(logs::Level::DEBUG, "SensorsTimer", "console"); //TODO remettre en INFO après debug
     add(logs::Level::ERROR, "ServoObjectsSystem", "console");
-    add(logs::Level::INFO, "ActionManagerTimer", "console");
+    add(logs::Level::INFO, "ActionManagerPosixTimer", "console");
     add(logs::Level::INFO, "LedBar", "net");
 
     //State
@@ -60,9 +60,9 @@ void logs::LoggerFactory::initialize()
     add(logs::Level::INFO, "O_State_WaitEndOfMatch", "console");
 
     //TESTS
-    add(logs::Level::INFO, "O_ActionManagerTimerTest", "console");
-    add(logs::Level::INFO, "O_ActionManagerTimerTest-Action", "console");
-    add(logs::Level::INFO, "O_ActionManagerTimerTest-Timer", "console");
+    add(logs::Level::INFO, "O_ActionTimerSchedulerTest", "console");
+    add(logs::Level::INFO, "O_ActionTimerSchedulerTest-Action", "console");
+    add(logs::Level::INFO, "O_ActionTimerSchedulerTest-Timer", "console");
     add(logs::Level::INFO, "O_TiretteTest", "console");
     add(logs::Level::INFO, "O_Asserv_CalageTest", "console");
     add(logs::Level::INFO, "O_Asserv_SquareTest", "console");

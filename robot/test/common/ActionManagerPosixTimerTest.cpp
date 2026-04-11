@@ -1,10 +1,10 @@
 /*!
  * \file
- * \brief Tests unitaires de la classe ActionManagerTimer.
+ * \brief Tests unitaires de la classe ActionManagerPosixTimer.
  */
 
-#include "timer/ActionManagerTimer.hpp"
-#include "ActionManagerTimerTest.hpp"
+#include "timer/ActionManagerPosixTimer.hpp"
+#include "ActionManagerPosixTimerTest.hpp"
 
 #include <chrono>
 #include <sstream>
@@ -117,7 +117,7 @@ public:
 
 // --- Suite ---
 
-void test::ActionManagerTimerTest::suite() {
+void test::ActionManagerPosixTimerTest::suite() {
     testInitialState();
     testAddRemoveActions();
     testAddRemoveTimers();
@@ -135,10 +135,10 @@ void test::ActionManagerTimerTest::suite() {
 
 // --- Tests existants ---
 
-void test::ActionManagerTimerTest::testInitialState() {
+void test::ActionManagerPosixTimerTest::testInitialState() {
     logger().info() << "testInitialState..." << logs::end;
 
-    ActionManagerTimer manager;
+    ActionManagerPosixTimer manager;
     this->assert(manager.countActions() == 0, "countActions() doit etre 0 a l'init");
     this->assert(manager.countTimers() == 0, "countTimers() doit etre 0 a l'init");
     this->assert(manager.countPTimers() == 0, "countPTimers() doit etre 0 a l'init");
@@ -146,10 +146,10 @@ void test::ActionManagerTimerTest::testInitialState() {
     logger().info() << "testInitialState OK" << logs::end;
 }
 
-void test::ActionManagerTimerTest::testAddRemoveActions() {
+void test::ActionManagerPosixTimerTest::testAddRemoveActions() {
     logger().info() << "testAddRemoveActions..." << logs::end;
 
-    ActionManagerTimer manager;
+    ActionManagerPosixTimer manager;
 
     CountingAction *a1 = new CountingAction(1, 100);
     CountingAction *a2 = new CountingAction(2, 100);
@@ -169,10 +169,10 @@ void test::ActionManagerTimerTest::testAddRemoveActions() {
     logger().info() << "testAddRemoveActions OK" << logs::end;
 }
 
-void test::ActionManagerTimerTest::testAddRemoveTimers() {
+void test::ActionManagerPosixTimerTest::testAddRemoveTimers() {
     logger().info() << "testAddRemoveTimers..." << logs::end;
 
-    ActionManagerTimer manager;
+    ActionManagerPosixTimer manager;
 
     CountingTimer *t1 = new CountingTimer("timer1", 100);
     CountingTimer *t2 = new CountingTimer("timer2", 200);
@@ -192,10 +192,10 @@ void test::ActionManagerTimerTest::testAddRemoveTimers() {
     logger().info() << "testAddRemoveTimers OK" << logs::end;
 }
 
-void test::ActionManagerTimerTest::testAddRemovePosixTimers() {
+void test::ActionManagerPosixTimerTest::testAddRemovePosixTimers() {
     logger().info() << "testAddRemovePosixTimers..." << logs::end;
 
-    ActionManagerTimer manager;
+    ActionManagerPosixTimer manager;
 
     CountingPosixTimer *pt1 = new CountingPosixTimer("ptimer1", 100);
 
@@ -215,10 +215,10 @@ void test::ActionManagerTimerTest::testAddRemovePosixTimers() {
     logger().info() << "testAddRemovePosixTimers OK" << logs::end;
 }
 
-void test::ActionManagerTimerTest::testActionExecution() {
+void test::ActionManagerPosixTimerTest::testActionExecution() {
     logger().info() << "testActionExecution..." << logs::end;
 
-    ActionManagerTimer manager;
+    ActionManagerPosixTimer manager;
 
     CountingAction *a1 = new CountingAction(1, 5);
 
@@ -238,10 +238,10 @@ void test::ActionManagerTimerTest::testActionExecution() {
 
 // --- Nouveaux tests ---
 
-void test::ActionManagerTimerTest::testStopRestart() {
+void test::ActionManagerPosixTimerTest::testStopRestart() {
     logger().info() << "testStopRestart..." << logs::end;
 
-    ActionManagerTimer manager;
+    ActionManagerPosixTimer manager;
 
     // premier cycle
     CountingAction *a1 = new CountingAction(1, 3);
@@ -266,10 +266,10 @@ void test::ActionManagerTimerTest::testStopRestart() {
     logger().info() << "testStopRestart OK" << logs::end;
 }
 
-void test::ActionManagerTimerTest::testPauseResume() {
+void test::ActionManagerPosixTimerTest::testPauseResume() {
     logger().info() << "testPauseResume..." << logs::end;
 
-    ActionManagerTimer manager;
+    ActionManagerPosixTimer manager;
     manager.start("testPause", 2);
 
     // laisser le manager demarrer
@@ -299,10 +299,10 @@ void test::ActionManagerTimerTest::testPauseResume() {
     logger().info() << "testPauseResume OK" << logs::end;
 }
 
-void test::ActionManagerTimerTest::testActionFinishesAndRemoved() {
+void test::ActionManagerPosixTimerTest::testActionFinishesAndRemoved() {
     logger().info() << "testActionFinishesAndRemoved..." << logs::end;
 
-    ActionManagerTimer manager;
+    ActionManagerPosixTimer manager;
 
     // action qui s'execute 1 seule fois (limit=1, retourne false)
     CountingAction *a1 = new CountingAction(1, 1);
@@ -320,10 +320,10 @@ void test::ActionManagerTimerTest::testActionFinishesAndRemoved() {
     logger().info() << "testActionFinishesAndRemoved OK" << logs::end;
 }
 
-void test::ActionManagerTimerTest::testMultipleActionsOrdering() {
+void test::ActionManagerPosixTimerTest::testMultipleActionsOrdering() {
     logger().info() << "testMultipleActionsOrdering..." << logs::end;
 
-    ActionManagerTimer manager;
+    ActionManagerPosixTimer manager;
     std::vector<int> order;
 
     OrderingAction *a1 = new OrderingAction(1, order);
@@ -352,10 +352,10 @@ void test::ActionManagerTimerTest::testMultipleActionsOrdering() {
     logger().info() << "testMultipleActionsOrdering OK" << logs::end;
 }
 
-void test::ActionManagerTimerTest::testStopTimerByName() {
+void test::ActionManagerPosixTimerTest::testStopTimerByName() {
     logger().info() << "testStopTimerByName..." << logs::end;
 
-    ActionManagerTimer manager;
+    ActionManagerPosixTimer manager;
 
     CountingTimer *t1 = new CountingTimer("timerA", 100);
     CountingTimer *t2 = new CountingTimer("timerB", 200);
@@ -378,10 +378,10 @@ void test::ActionManagerTimerTest::testStopTimerByName() {
     logger().info() << "testStopTimerByName OK" << logs::end;
 }
 
-void test::ActionManagerTimerTest::testStopPTimerByName() {
+void test::ActionManagerPosixTimerTest::testStopPTimerByName() {
     logger().info() << "testStopPTimerByName..." << logs::end;
 
-    ActionManagerTimer manager;
+    ActionManagerPosixTimer manager;
 
     CountingPosixTimer *pt1 = new CountingPosixTimer("ptimerA", 100);
     CountingPosixTimer *pt2 = new CountingPosixTimer("ptimerB", 100);
@@ -409,10 +409,10 @@ void test::ActionManagerTimerTest::testStopPTimerByName() {
     logger().info() << "testStopPTimerByName OK" << logs::end;
 }
 
-void test::ActionManagerTimerTest::testStopAllPTimers() {
+void test::ActionManagerPosixTimerTest::testStopAllPTimers() {
     logger().info() << "testStopAllPTimers..." << logs::end;
 
-    ActionManagerTimer manager;
+    ActionManagerPosixTimer manager;
 
     CountingPosixTimer *pt1 = new CountingPosixTimer("pt1", 100);
     CountingPosixTimer *pt2 = new CountingPosixTimer("pt2", 100);
@@ -445,10 +445,10 @@ void test::ActionManagerTimerTest::testStopAllPTimers() {
     logger().info() << "testStopAllPTimers OK" << logs::end;
 }
 
-void test::ActionManagerTimerTest::testConcurrentAddAction() {
+void test::ActionManagerPosixTimerTest::testConcurrentAddAction() {
     logger().info() << "testConcurrentAddAction..." << logs::end;
 
-    ActionManagerTimer manager;
+    ActionManagerPosixTimer manager;
     manager.start("testConcurrent", 2);
 
     const int NB_PER_THREAD = 50;

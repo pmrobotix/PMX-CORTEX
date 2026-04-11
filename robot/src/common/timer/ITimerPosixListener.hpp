@@ -51,8 +51,9 @@ static utils::Mutex mfct_;
 /*!
  * \brief Cette interface représente une action executée par un timer lorsqu'il
  * atteint son seuil d'execution.
+ *        DEPRECATED — utiliser ITimerScheduledListener (ActionTimerScheduler).
  */
-class ITimerPosixListener
+class [[deprecated("Utiliser ITimerScheduledListener / ActionTimerScheduler a la place")]] ITimerPosixListener
 {
 public:
 

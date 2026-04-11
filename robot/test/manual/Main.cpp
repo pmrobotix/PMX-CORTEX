@@ -15,7 +15,7 @@
 
 // #include "LedManualTest.hpp"
 // #include "SwitchManualTest.hpp"
-// #include "ActionManagerTimerManualTest.hpp"
+// #include "ActionManagerPosixTimerManualTest.hpp"
 // #include "AsservDriverManualTest.hpp"
 // #include "ButtonDriverManualTest.hpp"
 #include "LcdShieldDriverManualTest.hpp"
@@ -35,7 +35,7 @@ int main(int, char**)
 
 	// suite.addTest(new test::LedManualTest());
 	// suite.addTest(new test::SwitchManualTest());
-	// suite.addTest(new test::ActionManagerTimerManualTest());
+	// suite.addTest(new test::ActionManagerPosixTimerManualTest());
 	// suite.addTest(new test::AsservDriverManualTest());
 	suite.addTest(new test::LcdShieldDriverManualTest());
 	// suite.addTest(new test::ServoDriverManualTest());

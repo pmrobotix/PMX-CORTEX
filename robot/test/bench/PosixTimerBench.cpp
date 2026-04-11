@@ -6,16 +6,24 @@
 #include "PosixTimerBench.hpp"
 
 #include <chrono>
+#include <ctime>
 #include <vector>
 #include <thread>
 
-#include "timer/ActionManagerTimer.hpp"
+#include "timer/ActionManagerPosixTimer.hpp"
 #include "timer/ITimerPosixListener.hpp"
 #include "utils/Chronometer.hpp"
 #include "log/Logger.hpp"
 #include "log/LoggerFactory.hpp"
 
 using namespace utils;
+
+// Lecture timestamp CLOCK_MONOTONIC en us (insensible aux sauts NTP).
+static inline long monotonic_us() {
+    struct timespec ts;
+    clock_gettime(CLOCK_MONOTONIC, &ts);
+    return (long) ts.tv_sec * 1000000L + (long) (ts.tv_nsec / 1000);
+}
 
 // --- Mock ---
 
@@ -32,8 +40,9 @@ public:
     virtual ~TimingPosixTimer() {}
 
     void onTimer(utils::Chronometer chrono) {
+        long now = monotonic_us();
         mtimestamps_.lock();
-        timestamps_us_.push_back(chrono.getElapsedTimeInMicroSec());
+        timestamps_us_.push_back(now);
         mtimestamps_.unlock();
     }
 
@@ -63,7 +72,7 @@ static void runBench(test::PosixTimerBench *self, const char *label, int interva
 {
     static const logs::Logger &log = logs::LoggerFactory::logger("test::PosixTimerBench");
 
-    ActionManagerTimer manager;
+    ActionManagerPosixTimer manager;
     TimingPosixTimer *pt = new TimingPosixTimer(label, intervalMs);
 
     manager.addTimer(pt);

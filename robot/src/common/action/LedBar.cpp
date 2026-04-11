@@ -19,7 +19,6 @@ LedBar::~LedBar() {
     delete leddriver_;
 }
 
-//TODO à ramener sut ITimerListener ou ITimerPosixListener ??
 void LedBar::stop(bool wait) {
     t_requestToStop_ = true;
     a_requestToStop_ = true;

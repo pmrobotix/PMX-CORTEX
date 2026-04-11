@@ -1,5 +1,5 @@
 
-#include "O_ActionManagerTimerTest.hpp"
+#include "O_ActionTimerSchedulerTest.hpp"
 #include "O_Asserv_CalageTest.hpp"
 #include "O_Asserv_SquareTest.hpp"
 #include "O_AsservCalibrationTest.hpp"
@@ -69,7 +69,7 @@ int main(int argc, char** argv)
     robot.getConsoleManager().add(new O_TiretteTest());
     robot.getConsoleManager().add(new O_ButtonBarTest());
     robot.getConsoleManager().add(new O_LcdBoardTest());
-    robot.getConsoleManager().add(new O_ActionManagerTimerTest());
+    robot.getConsoleManager().add(new O_ActionTimerSchedulerTest());
     robot.getConsoleManager().add(new O_IAByPathTest());
     
     robot.getConsoleManager().add(new O_AsservCalibrationTest());

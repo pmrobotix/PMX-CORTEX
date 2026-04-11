@@ -159,7 +159,7 @@ public:
 
 /*!
  * \brief Le timer associe aux sensors de detection.
- *        Tick par le scheduler unique ActionManagerTimerThread.
+ *        Tick par le scheduler unique ActionTimerScheduler.
  */
 class SensorsTimer: public ITimerScheduledListener
 {

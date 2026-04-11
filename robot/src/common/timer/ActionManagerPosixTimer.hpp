@@ -1,10 +1,13 @@
 /*!
  * \file
- * \brief Definition de la classe ActionManagerTimer.
+ * \brief Definition de la classe ActionManagerPosixTimer (legacy, deprecated).
+ *
+ * Conserve uniquement pour les tests historiques.
+ * Nouveau code : utiliser ActionTimerScheduler + ITimerScheduledListener.
  */
 
-#ifndef COMMON_ACTIONMANAGERTIMER_HPP_
-#define COMMON_ACTIONMANAGERTIMER_HPP_
+#ifndef COMMON_ACTIONMANAGERPOSIXTIMER_HPP_
+#define COMMON_ACTIONMANAGERPOSIXTIMER_HPP_
 
 #include <semaphore.h>
 #include <atomic>
@@ -19,16 +22,22 @@
 #include "ITimerListener.hpp"
 #include "ITimerPosixListener.hpp"
 
+// Bruit interne tautologique : la classe deprecated reference l'interface deprecated.
+// On suppresse ici uniquement, les consommateurs externes continuent de warner.
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+
 /*!
  * \brief Classe de gestion des actions du robot et des actions par timer.
+ *        DEPRECATED — utiliser ActionTimerScheduler.
  */
-class ActionManagerTimer: public utils::Thread
+class [[deprecated("Utiliser ActionTimerScheduler a la place")]] ActionManagerPosixTimer: public utils::Thread
 {
 private:
 
     static inline const logs::Logger& logger()
     {
-        static const logs::Logger &instance = logs::LoggerFactory::logger("ActionManagerTimer");
+        static const logs::Logger &instance = logs::LoggerFactory::logger("ActionManagerPosixTimer");
         return instance;
     }
 
@@ -91,7 +100,7 @@ protected:
      */
     virtual void execute();
 
-    void unblock(std::string debug = "ActionManagerTimer")
+    void unblock(std::string debug = "ActionManagerPosixTimer")
     {
         msem_.lock();
         int val = 0;
@@ -109,12 +118,12 @@ public:
     /*!
      * \brief Constructeur de la classe.
      */
-    ActionManagerTimer();
+    ActionManagerPosixTimer();
 
     /*!
      * \brief Destructeur de la classe.
      */
-    virtual ~ActionManagerTimer()
+    virtual ~ActionManagerPosixTimer()
     {
         sem_destroy(&AMT);
     }
@@ -265,5 +274,7 @@ public:
      */
     void debugTimers();
 };
+
+#pragma GCC diagnostic pop
 
 #endif

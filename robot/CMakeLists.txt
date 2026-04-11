@@ -69,7 +69,6 @@ add_library(pmx-common STATIC
     src/common/log/appender/SvgAppender.cpp
     src/common/log/appender/TelemetryAppender.cpp
     # timer
-    src/common/timer/ActionManagerTimer.cpp
     src/common/timer/ActionTimerScheduler.cpp
     # state
     src/common/state/Automate.cpp
@@ -222,7 +221,7 @@ if(DRIVER_LIB)
         src/bot-opos6ul/O_TiretteTest.cpp
         src/bot-opos6ul/O_ButtonBarTest.cpp
         src/bot-opos6ul/O_LcdBoardTest.cpp
-        src/bot-opos6ul/O_ActionManagerTimerTest.cpp
+        src/bot-opos6ul/O_ActionTimerSchedulerTest.cpp
         src/bot-opos6ul/O_IAbyPathTest.cpp
         src/bot-opos6ul/O_AsservLineRotateTest.cpp
         src/bot-opos6ul/O_AsservWaypointTest.cpp
@@ -296,7 +295,6 @@ add_executable(common-test
     test/common/PointerListTest.cpp
     test/common/FileAppenderTest.cpp
     test/common/SvgAppenderTest.cpp
-    test/common/ActionManagerTimerTest.cpp
     test/common/ActionTimerSchedulerTest.cpp
     test/common/RetryPolicyTest.cpp
     test/common/TableGeometryTest.cpp
@@ -330,7 +328,6 @@ if(DRIVER_LIB)
         test/manual/LoggerInitialize.cpp
         test/manual/LedManualTest.cpp
         test/manual/SwitchManualTest.cpp
-        test/manual/ActionManagerTimerManualTest.cpp
         test/manual/AsservDriverManualTest.cpp
         test/manual/ButtonDriverManualTest.cpp
         test/manual/LcdShieldDriverManualTest.cpp
@@ -348,7 +345,7 @@ if(DRIVER_LIB)
     add_executable(bench
         test/bench/Main.cpp
         test/bench/LoggerInitialize.cpp
-        test/bench/PosixTimerBench.cpp
+        test/bench/ActionTimerSchedulerBench.cpp
         test/bench/TimerPosix.cpp
         test/bench/TimerPosixStandaloneBench.cpp
     )
