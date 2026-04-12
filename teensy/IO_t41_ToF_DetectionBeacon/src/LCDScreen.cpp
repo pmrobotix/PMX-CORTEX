@@ -257,17 +257,19 @@ static lv_obj_t *lbl_lum_value = nullptr;
 
 static void ledLum_minus_cb(lv_event_t *e) {
 	(void)e;
-	if (settings.ledLuminosity >= 10)
-		settings.ledLuminosity -= 10;
+	if (settings.ledLuminosity <= 5)
+		settings.ledLuminosity = (settings.ledLuminosity > 0) ? settings.ledLuminosity - 1 : 0;
 	else
-		settings.ledLuminosity = 0;
+		settings.ledLuminosity -= 5;
 	if (lbl_lum_value) lv_label_set_text_fmt(lbl_lum_value, "%d", settings.ledLuminosity);
 }
 
 static void ledLum_plus_cb(lv_event_t *e) {
 	(void)e;
-	if (settings.ledLuminosity <= 90)
-		settings.ledLuminosity += 10;
+	if (settings.ledLuminosity < 5)
+		settings.ledLuminosity += 1;
+	else if (settings.ledLuminosity <= 95)
+		settings.ledLuminosity += 5;
 	else
 		settings.ledLuminosity = 100;
 	if (lbl_lum_value) lv_label_set_text_fmt(lbl_lum_value, "%d", settings.ledLuminosity);
@@ -325,35 +327,44 @@ static void strategy_event_cb(lv_event_t *e) {
 	updateStrategyButtons();
 }
 
-// --- TestMode : 5 boutons radio (1..5), 0 = aucun (re-clic deselectionne) ---
+// --- TestMode : 5 boutons d'action (1..5), flash vert 1s puis retour gris ---
+// Chaque clic ecrit la valeur dans settings.testMode (l'OPOS6UL la lit et
+// lance l'action correspondante). Apres 1 seconde, le bouton repasse en gris
+// et settings.testMode revient a 0.
 
 #define TESTMODE_COUNT 5
 static lv_obj_t *testMode_btns[TESTMODE_COUNT] = { nullptr };
 
-static void updateTestModeButtons(void) {
+static void testMode_reset_all_grey(void) {
 	for (int i = 0; i < TESTMODE_COUNT; i++) {
 		if (testMode_btns[i] == nullptr) continue;
-		bool sel = (settings.testMode == (i + 1));
-		lv_obj_set_style_bg_color(testMode_btns[i],
-				sel ? strategy_color_selected : strategy_color_unselected, 0);
-		lv_obj_t *label = lv_obj_get_child(testMode_btns[i], 0);
-		lv_obj_set_style_text_color(label, sel ? lv_color_black() : lv_color_white(), 0);
+		lv_obj_set_style_bg_color(testMode_btns[i], strategy_color_unselected, 0);
+		lv_obj_t *lbl = lv_obj_get_child(testMode_btns[i], 0);
+		lv_obj_set_style_text_color(lbl, lv_color_white(), 0);
 	}
+}
+
+static void testMode_timer_cb(lv_timer_t *timer) {
+	settings.testMode = 0;
+	testMode_reset_all_grey();
+	lv_timer_del(timer); // timer one-shot, on le supprime
 }
 
 static void testMode_event_cb(lv_event_t *e) {
 	lv_obj_t *btn = (lv_obj_t*) lv_event_get_target(e);
 	for (int i = 0; i < TESTMODE_COUNT; i++) {
 		if (testMode_btns[i] == btn) {
-			// Re-clic sur le meme -> deselectionne (testMode = 0 = aucun)
-			if (settings.testMode == (i + 1))
-				settings.testMode = 0;
-			else
-				settings.testMode = (uint8_t)(i + 1);
+			settings.testMode = (uint8_t)(i + 1);
+			// Flash vert sur le bouton clique, gris sur les autres
+			testMode_reset_all_grey();
+			lv_obj_set_style_bg_color(btn, strategy_color_selected, 0);
+			lv_obj_t *lbl = lv_obj_get_child(btn, 0);
+			lv_obj_set_style_text_color(lbl, lv_color_black(), 0);
+			// Timer one-shot 1 seconde pour reset
+			lv_timer_create(testMode_timer_cb, 1000, NULL);
 			break;
 		}
 	}
-	updateTestModeButtons();
 }
 
 /**
@@ -368,14 +379,14 @@ static void create_match_menu(void) {
 	lv_obj_t *label;
 	lv_obj_t *btn;
 
-	// --- Ligne 0 (y=2) : LED luminosite [-] val [+] en petit, en haut ---
+	// --- Ligne 0 (y=4) : LED [-] val [+]  +  Bots + Pts ---
 	lv_obj_t *lbl_lum_title = lv_label_create(scr);
 	lv_label_set_text(lbl_lum_title, "LED");
-	lv_obj_align(lbl_lum_title, LV_ALIGN_TOP_LEFT, 6, 6);
+	lv_obj_set_pos(lbl_lum_title, 6, 8);
 
 	btn = lv_btn_create(scr);
-	lv_obj_set_size(btn, 30, 20);
-	lv_obj_set_pos(btn, 36, 4);
+	lv_obj_set_size(btn, 36, 24);
+	lv_obj_set_pos(btn, 32, 4);
 	label = lv_label_create(btn);
 	lv_label_set_text(label, "-");
 	lv_obj_center(label);
@@ -383,68 +394,36 @@ static void create_match_menu(void) {
 
 	lbl_lum_value = lv_label_create(scr);
 	lv_label_set_text_fmt(lbl_lum_value, "%d", settings.ledLuminosity);
-	lv_obj_set_pos(lbl_lum_value, 74, 6);
+	lv_obj_set_pos(lbl_lum_value, 76, 8);
 
 	btn = lv_btn_create(scr);
-	lv_obj_set_size(btn, 30, 20);
+	lv_obj_set_size(btn, 36, 24);
 	lv_obj_set_pos(btn, 100, 4);
 	label = lv_label_create(btn);
 	lv_label_set_text(label, "+");
 	lv_obj_center(label);
 	lv_obj_add_event_cb(btn, ledLum_plus_cb, LV_EVENT_CLICKED, NULL);
 
-	// Bots + Pts en haut a droite
 	lv_obj_t *lbl_bots_title = lv_label_create(scr);
 	lv_label_set_text(lbl_bots_title, "Bots:");
-	lv_obj_set_pos(lbl_bots_title, 200, 6);
+	lv_obj_set_pos(lbl_bots_title, 200, 8);
 
 	lbl_numOfBots_value = lv_label_create(scr);
 	lv_label_set_text_fmt(lbl_numOfBots_value, "%d", settings.numOfBots);
-	lv_obj_set_pos(lbl_numOfBots_value, 240, 6);
+	lv_obj_set_pos(lbl_numOfBots_value, 240, 8);
 
 	lv_obj_t *lbl_pts_title = lv_label_create(scr);
 	lv_label_set_text(lbl_pts_title, "Pts:");
-	lv_obj_set_pos(lbl_pts_title, 262, 6);
+	lv_obj_set_pos(lbl_pts_title, 262, 8);
 
 	lbl_matchPoints_value = lv_label_create(scr);
 	lv_label_set_text_fmt(lbl_matchPoints_value, "%d", settings.matchPoints);
-	lv_obj_set_pos(lbl_matchPoints_value, 294, 6);
+	lv_obj_set_pos(lbl_matchPoints_value, 294, 8);
 
-	// --- Ligne 1 (y=30) : bouton toggle couleur ---
-	lv_obj_t *btn_color = lv_btn_create(scr);
-	lv_obj_set_size(btn_color, 200, 40);
-	lv_obj_align(btn_color, LV_ALIGN_TOP_MID, 0, 30);
-	label = lv_label_create(btn_color);
-	lv_obj_center(label);
-	updateColorButton(btn_color);
-	lv_obj_add_event_cb(btn_color, matchColor_event_cb,
-			LV_EVENT_CLICKED, NULL);
-
-	// --- Ligne 2 (y=76) : strategie 1/2/3 ---
-	lv_obj_t *lbl_strat = lv_label_create(scr);
-	lv_label_set_text(lbl_strat, "Strategie");
-	lv_obj_align(lbl_strat, LV_ALIGN_TOP_MID, 0, 76);
-
-	int strat_btn_w = 90;
-	int strat_btn_h = 40;
-	int strat_total = STRATEGY_COUNT * strat_btn_w + (STRATEGY_COUNT - 1) * 8;
-	int strat_x0 = (320 - strat_total) / 2;
-	for (int i = 0; i < STRATEGY_COUNT; i++) {
-		strategy_btns[i] = lv_btn_create(scr);
-		lv_obj_set_size(strategy_btns[i], strat_btn_w, strat_btn_h);
-		lv_obj_set_pos(strategy_btns[i], strat_x0 + i * (strat_btn_w + 8), 92);
-		label = lv_label_create(strategy_btns[i]);
-		lv_label_set_text_fmt(label, "%d", i + 1);
-		lv_obj_center(label);
-		lv_obj_add_event_cb(strategy_btns[i], strategy_event_cb,
-				LV_EVENT_CLICKED, NULL);
-	}
-	updateStrategyButtons();
-
-	// --- Ligne 3 (y=138) : testMode 1..5 ---
+	// --- Ligne 1 (y=32) : testMode T1..T5 ---
 	lv_obj_t *lbl_test = lv_label_create(scr);
 	lv_label_set_text(lbl_test, "Test");
-	lv_obj_align(lbl_test, LV_ALIGN_TOP_MID, 0, 138);
+	lv_obj_align(lbl_test, LV_ALIGN_TOP_MID, 0, 32);
 
 	int test_btn_w = 54;
 	int test_btn_h = 28;
@@ -453,37 +432,68 @@ static void create_match_menu(void) {
 	for (int i = 0; i < TESTMODE_COUNT; i++) {
 		testMode_btns[i] = lv_btn_create(scr);
 		lv_obj_set_size(testMode_btns[i], test_btn_w, test_btn_h);
-		lv_obj_set_pos(testMode_btns[i], test_x0 + i * (test_btn_w + 6), 154);
+		lv_obj_set_pos(testMode_btns[i], test_x0 + i * (test_btn_w + 6), 48);
 		label = lv_label_create(testMode_btns[i]);
 		lv_label_set_text_fmt(label, "T%d", i + 1);
 		lv_obj_center(label);
 		lv_obj_add_event_cb(testMode_btns[i], testMode_event_cb,
 				LV_EVENT_CLICKED, NULL);
 	}
-	updateTestModeButtons();
+	testMode_reset_all_grey();
 
-	// --- Ligne 4 (y=190) : diametre adversaire [-5] val [+5] ---
+	// --- Ligne 2 (y=82) : bouton toggle couleur (centre de l'ecran) ---
+	lv_obj_t *btn_color = lv_btn_create(scr);
+	lv_obj_set_size(btn_color, 240, 50);
+	lv_obj_align(btn_color, LV_ALIGN_TOP_MID, 0, 82);
+	label = lv_label_create(btn_color);
+	lv_obj_center(label);
+	updateColorButton(btn_color);
+	lv_obj_add_event_cb(btn_color, matchColor_event_cb,
+			LV_EVENT_CLICKED, NULL);
+
+	// --- Ligne 3 (y=138) : strategie 1/2/3 ---
+	lv_obj_t *lbl_strat = lv_label_create(scr);
+	lv_label_set_text(lbl_strat, "Strategie");
+	lv_obj_align(lbl_strat, LV_ALIGN_TOP_MID, 0, 138);
+
+	int strat_btn_w = 90;
+	int strat_btn_h = 36;
+	int strat_total = STRATEGY_COUNT * strat_btn_w + (STRATEGY_COUNT - 1) * 8;
+	int strat_x0 = (320 - strat_total) / 2;
+	for (int i = 0; i < STRATEGY_COUNT; i++) {
+		strategy_btns[i] = lv_btn_create(scr);
+		lv_obj_set_size(strategy_btns[i], strat_btn_w, strat_btn_h);
+		lv_obj_set_pos(strategy_btns[i], strat_x0 + i * (strat_btn_w + 8), 154);
+		label = lv_label_create(strategy_btns[i]);
+		lv_label_set_text_fmt(label, "%d", i + 1);
+		lv_obj_center(label);
+		lv_obj_add_event_cb(strategy_btns[i], strategy_event_cb,
+				LV_EVENT_CLICKED, NULL);
+	}
+	updateStrategyButtons();
+
+	// --- Ligne 4 (y=196) : diametre adversaire [-5] val [+5] gros boutons ---
 	lv_obj_t *lbl_adv_title = lv_label_create(scr);
-	lv_label_set_text(lbl_adv_title, "Diam. adv:");
-	lv_obj_align(lbl_adv_title, LV_ALIGN_TOP_LEFT, 10, 198);
+	lv_label_set_text(lbl_adv_title, "Adv:");
+	lv_obj_set_pos(lbl_adv_title, 10, 206);
 
 	btn = lv_btn_create(scr);
-	lv_obj_set_size(btn, 50, 34);
-	lv_obj_set_pos(btn, 100, 192);
+	lv_obj_set_size(btn, 70, 38);
+	lv_obj_set_pos(btn, 50, 198);
 	label = lv_label_create(btn);
-	lv_label_set_text(label, "-5");
+	lv_label_set_text(label, "- 5");
 	lv_obj_center(label);
 	lv_obj_add_event_cb(btn, advDiam_minus_cb, LV_EVENT_CLICKED, NULL);
 
 	lbl_adv_value = lv_label_create(scr);
 	lv_label_set_text_fmt(lbl_adv_value, "%d cm", settings.advDiameter);
-	lv_obj_set_pos(lbl_adv_value, 162, 198);
+	lv_obj_set_pos(lbl_adv_value, 134, 206);
 
 	btn = lv_btn_create(scr);
-	lv_obj_set_size(btn, 50, 34);
-	lv_obj_set_pos(btn, 225, 192);
+	lv_obj_set_size(btn, 70, 38);
+	lv_obj_set_pos(btn, 200, 198);
 	label = lv_label_create(btn);
-	lv_label_set_text(label, "+5");
+	lv_label_set_text(label, "+ 5");
 	lv_obj_center(label);
 	lv_obj_add_event_cb(btn, advDiam_plus_cb, LV_EVENT_CLICKED, NULL);
 }

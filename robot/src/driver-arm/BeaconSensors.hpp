@@ -35,7 +35,7 @@ struct Settings
 {
     // === Bloc 1 : OPOS6UL -> Teensy (5 bytes) ===
     int8_t  numOfBots     = 3;   // Reg 0. Nb max adv a detecter (W: OPOS6UL).
-    int8_t  ledLuminosity = 50;  // Reg 1. Luminosite LED matrix 0..100 (W: OPOS6UL, LCD en prepa).
+    int8_t  ledLuminosity = 5;   // Reg 1. Luminosite LED matrix 0..100, pas de 5 (1 sous 5) (W: OPOS6UL, LCD en prepa).
     uint8_t matchPoints   = 0;   // Reg 2. Score match sur LED matrix + LCD (W: OPOS6UL).
     uint8_t matchState    = 0;   // Reg 3. 0=prepa, 1=match, 2=fini (W: OPOS6UL).
     uint8_t lcdBacklight  = 1;   // Reg 4. 0=off, 1=on (W: OPOS6UL).

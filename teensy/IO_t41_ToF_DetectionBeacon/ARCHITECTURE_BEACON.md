@@ -90,21 +90,46 @@ Ecriture registres I2C (protegee par mutex)
 
 **Capteurs de collision / proximite** (optionnels, `SENSORS_VL_CLOSED_COLLISION_ACTIVATED`) :
 
-8 capteurs VL53L1X supplementaires dedies a la detection rapprochee (obstacles proches du robot) :
-- **4 Front** : bus I2C Wire (meme bus que les capteurs Back beacon)
-- **4 Back** : bus I2C Wire1 (meme bus que les capteurs Front beacon)
-- Pins XSHUT : Front = `{40, 39, 38, 37}`, Back = `{36, 35, 34, 33}`
-- Adresses I2C : readdressees a `0x30`..`0x37` au demarrage
-- Disposition physique : 2 capteurs par cote (BAS / HAUT), avant et arriere
-  - Front : c1 (AV GAUCHE BAS), c2 (AV GAUCHE HAUT), c3 (AV DROIT BAS), c4 (AV DROIT HAUT)
-  - Back : c5 (AR GAUCHE BAS), c6 (AR GAUCHE HAUT), c7 (AR DROIT BAS), c8 (AR DROIT HAUT)
-- ROI : pleine matrice 16x16 SPADs (199 = centre optique)
-- Mode : Short distance, meme timing budget que les capteurs beacon (15ms)
-- Acquisition : integree dans les threads loopvl1/loopvl2 (zone 0 de chaque cycle), si le define est actif
+8 capteurs VL53L1X supplementaires dedies a la detection rapprochee (obstacles proches du robot).
 
-Registres I2C (Registers) : distances en mm remontees dans `c1_mm`..`c8_mm` (Reg 11-27 absolus, soit offset 2-18 dans la struct Registers). Valeur 0 = pas de mesure. Lues par l'OPOS6UL via `BeaconSensors::getData()`.
+**Configuration par capteur** :
 
-Pour activer : decommenter `#define SENSORS_VL_CLOSED_COLLISION_ACTIVATED` dans `INO_ToF_DetectionBeacon.h` et brancher les 8 capteurs sur les pins XSHUT correspondants.
+| Index | Registre | Position | Pin XSHUT | Bus I2C | Adresse I2C |
+|-------|----------|----------|-----------|---------|-------------|
+| 0 | `c1_mm` | AV GAUCHE BAS | 40 | Wire (SDA 18 / SCL 19) | 0x30 |
+| 1 | `c2_mm` | AV GAUCHE HAUT | 39 | Wire | 0x31 |
+| 2 | `c3_mm` | AV DROIT BAS | 38 | Wire | 0x32 |
+| 3 | `c4_mm` | AV DROIT HAUT | 37 | Wire | 0x33 |
+| 4 | `c5_mm` | AR GAUCHE BAS | 36 | Wire1 (SDA1 17 / SCL1 16) | 0x34 |
+| 5 | `c6_mm` | AR GAUCHE HAUT | 35 | Wire1 | 0x35 |
+| 6 | `c7_mm` | AR DROIT BAS | 34 | Wire1 | 0x36 |
+| 7 | `c8_mm` | AR DROIT HAUT | 33 | Wire1 | 0x37 |
+
+```
+        AVANT du robot
+  c2(H)  c1(B)    c3(B)  c4(H)
+    39     40       38     37
+     \     |         |     /
+      +----+---------+----+
+      |    GAUCHE  DROITE  |
+      |                    |
+      |    GAUCHE  DROITE  |
+      +----+---------+----+
+     /     |         |     \
+    35     36       34     33
+  c6(H)  c5(B)    c7(B)  c8(H)
+        ARRIERE du robot
+```
+
+**Configuration capteurs** :
+- ROI : pleine matrice 16x16 SPADs (centre optique 199)
+- Mode : Short distance (meme que les capteurs beacon)
+- Timing budget : 15 ms, intermeasurement : 16 ms
+- Acquisition : integree dans les threads loopvl1 (Front, Wire) / loopvl2 (Back, Wire1), a la zone 0 de chaque cycle
+
+**Registres I2C** : distances en mm remontees dans `c1_mm`..`c8_mm` de la struct `Registers` (offsets absolus 11-27, soit offset 2-18 dans la struct). Valeur 0 = pas de mesure. Lues par l'OPOS6UL via `BeaconSensors::getData()`.
+
+**Pour activer** : decommenter `#define SENSORS_VL_CLOSED_COLLISION_ACTIVATED` dans `INO_ToF_DetectionBeacon.h` (ligne 17) et brancher les 8 capteurs sur les pins XSHUT correspondants (voir tableau ci-dessus).
 
 **Etat actuel** : define commente, capteurs non branches. A activer quand le hardware sera pret.
 
@@ -255,7 +280,7 @@ Les champs sont **regroupes par sens de communication** pour permettre au master
 struct Settings {
     // === Bloc 1 : OPOS6UL -> Teensy (5 bytes) ===
     int8_t  numOfBots     = 3;   // Reg 0. Nb max adv a detecter (W: OPOS6UL)
-    int8_t  ledLuminosity = 50;  // Reg 1. Luminosite LED matrix 0..100 (W: OPOS6UL + LCD en prepa)
+    int8_t  ledLuminosity = 5;   // Reg 1. Luminosite LED matrix 0..100, pas de 5 (1 sous 5) (W: OPOS6UL + LCD en prepa)
     uint8_t matchPoints   = 0;   // Reg 2. Score LED matrix + LCD (W: OPOS6UL)
     uint8_t matchState    = 0;   // Reg 3. 0=prepa, 1=match, 2=fini (W: OPOS6UL)
     uint8_t lcdBacklight  = 1;   // Reg 4. 0=off, 1=on (W: OPOS6UL)
@@ -330,26 +355,27 @@ Layout ecran 320x240 :
 
 ```
 +--------------------------------------------------+
-| LED [-] 50 [+]          Bots: 3  Pts: 0          |  luminosite + labels OPOS6UL
-|        +========================+                 |
-|        |        BLEU            |                 |  bouton toggle couleur
-|        +========================+                 |
+| LED [-] 5 [+]           Bots: 3  Pts: 0          |  luminosite + labels OPOS6UL
+|                   Test                            |
+|      [ T1 ] [ T2 ] [ T3 ] [ T4 ] [ T5 ]         |  boutons action testMode
+|                                                   |
+|     +==================================+          |
+|     |            BLEU                  |          |  bouton toggle couleur (centre)
+|     +==================================+          |
 |                Strategie                          |
 |     [    1    ] [    2    ] [    3    ]            |  boutons radio strategie
-|                   Test                            |
-|      [ T1 ] [ T2 ] [ T3 ] [ T4 ] [ T5 ]         |  boutons radio testMode
 |                                                   |
-| Diam. adv:  [ -5 ]  40 cm  [ +5 ]                |  diametre adversaire
+| Adv:  [   - 5   ]  40 cm  [   + 5   ]            |  diametre adversaire (gros boutons)
 +--------------------------------------------------+
 ```
 
 Widgets et comportement :
-- **Couleur** : bouton toggle 200x40, fond bleu/jaune, texte "BLEU"/"JAUNE" -> `settings.matchColor`
-- **Strategie** : 3 boutons radio 90x40 (vert si selectionne, gris sinon) -> `settings.strategy` (1..3)
-- **Test** : 5 boutons radio 54x28 (re-clic deselectionne -> testMode=0) -> `settings.testMode` (0..5)
-- **Diam. adv** : boutons [-5]/[+5], affiche valeur en cm -> `settings.advDiameter` (defaut 40, range 5..250)
-- **LED** : boutons [-]/[+], affiche valeur 0..100 par pas de 10 -> `settings.ledLuminosity` (applique en temps reel sur matrice LED)
-- **Bots / Pts** : labels read-only, rafraichis a 5 Hz depuis `screen_loop()` (valeurs ecrites par OPOS6UL)
+- **LED** : boutons [-]/[+], affiche valeur 0..100, pas de 5 (pas de 1 en dessous de 5 pour reglage fin), defaut 5 -> `settings.ledLuminosity` (applique en temps reel sur matrice LED)
+- **Test** : 5 boutons d'action 54x28. Clic = flash vert 1 seconde puis retour gris. Ecrit `settings.testMode` (1..5) pendant 1s, puis reset a 0. L'OPOS6UL lit la valeur et lance l'action correspondante (mouvement pinces, etc.). Pas de selection permanente.
+- **Couleur** : bouton toggle 240x50 au centre de l'ecran, fond bleu/jaune, texte "BLEU"/"JAUNE" -> `settings.matchColor`
+- **Strategie** : 3 boutons radio 90x36 (vert si selectionne, gris sinon) -> `settings.strategy` (1..3)
+- **Diam. adv** : gros boutons 70x38 [-5]/[+5], affiche valeur en cm -> `settings.advDiameter` (defaut 40, range 5..250)
+- **Bots / Pts** : labels read-only en haut a droite, rafraichis a 5 Hz depuis `screen_loop()` (valeurs ecrites par OPOS6UL)
 - Tous les choix sont en **mode live** : ecriture directe dans Settings a chaque clic, pas de bouton "Valider". La validation est la tirette de debut de match.
 
 ### Evolutions prevues
