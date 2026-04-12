@@ -108,16 +108,18 @@ Les capteurs VL53L1X sont lus par la Teensy en I2C master (Wire/Wire1), puis les
 
 **Registres Donnees** (lecture seule) :
 
+**IMPORTANT** : les offsets I2C absolus = `sizeof(Settings)` + offset dans la struct `Registers`. Depuis l'extension de `Settings` de 4 a 10 bytes (etape 2 migration menu LCD), **tous les offsets ont ete decales de +6**. Les anciens offsets sont notes entre parentheses.
+
 | Registre | Type | Description |
 |----------|------|-------------|
-| 4 | uint8 | Flags (bit0 = new data, bit7 = alive) |
-| 5 | uint8 | Nombre de robots detectes |
-| 6-22 | int16 | Distances collision (c1 a c8) + reserve |
-| 24-55 | int16/float | Positions (x, y, angle) pour 4 robots |
-| 56-63 | int16 | Distances centre-a-centre (d1 a d4) |
-| 64-127 | uint8/uint16 | Donnees brutes des zones (z1 a z4) |
-| 128-135 | uint16 | Delta temps moyen de mesure par robot (t1-t4_us, en microsecondes depuis debut cycle) |
-| 136-139 | uint32 | Numero de sequence (incremente chaque cycle) |
+| 10 (ex-4) | uint8 | Flags (bit0 = new data, bit7 = alive) |
+| 11 (ex-5) | uint8 | Nombre de robots detectes |
+| 12-28 (ex-6-22) | int16 | Distances collision (c1 a c8) + reserve |
+| 30-61 (ex-24-55) | int16/float | Positions (x, y, angle) pour 4 robots |
+| 62-69 (ex-56-63) | int16 | Distances centre-a-centre (d1 a d4) |
+| 70-133 (ex-64-127) | uint8/uint16 | Donnees brutes des zones (z1 a z4) |
+| 134-141 (ex-128-135) | uint16 | Delta temps moyen de mesure par robot (t1-t4_us, en microsecondes depuis debut cycle) |
+| 142-145 (ex-136-139) | uint32 | Numero de sequence (incremente chaque cycle) |
 
 Le flag `new data` est remis a zero par l'ISR `on_read_isr` apres lecture par le master.
 
@@ -328,33 +330,39 @@ Avec l'architecture actuelle (slave unique 0x2D partage), ce code devient inutil
 
 Checklist ordonnee pour suivre l'avancement. Cocher `[x]` au fur et a mesure. Chaque etape doit etre **compilable, flashable et testable** avant de passer a la suivante. Apres chaque etape : verifier que la detection ToF et la lecture OPOS6UL fonctionnent toujours.
 
-#### Etape 1 : rename cosmetique (struct Settings, 0 nouveau champ) [ ]
+#### Etape 1 : rename cosmetique (struct Settings, 0 nouveau champ) [FAIT]
 
 Objectif : aligner les noms code/doc sans changer le comportement. **ABI preservee** (offsets inchanges).
 
-- [ ] `TofSensors.h` : rename `ledDisplay` -> `ledLuminosity` (reg 1)
-- [ ] `TofSensors.h` : rename `tempNumber` -> `matchPoints` (reg 2)
-- [ ] `LedPanels.cpp` : 3 occurrences `settings.tempNumber` -> `settings.matchPoints` (lignes 181, 466, 469)
-- [ ] Compiler + flasher + verifier : la detection ToF fonctionne toujours, OPOS6UL lit toujours les positions
-- [ ] Aucun changement cote OPOS6UL (meme offsets)
+- [x] `TofSensors.h` : rename `ledDisplay` -> `ledLuminosity` (reg 1)
+- [x] `TofSensors.h` : rename `tempNumber` -> `matchPoints` (reg 2)
+- [x] `LedPanels.cpp` : 3 occurrences `settings.tempNumber` -> `settings.matchPoints` (lignes 181, 466, 469)
+- [x] Compiler + flasher + verifier : la detection ToF fonctionne toujours, OPOS6UL lit toujours les positions
+- [x] Aucun changement cote OPOS6UL (meme offsets)
 
-#### Etape 2 : extension struct Settings (nouveaux champs) [ ]
+Note : les occurrences `ledDisplay` et `tempNumber` dans `LCDScreen.h` (struct `SettingsLCD` code dormant) sont volontairement laissees intactes, elles seront supprimees a l'etape 7 avec le reste du code dormant du slave 0x2F.
+
+#### Etape 2 : extension struct Settings (nouveaux champs) [FAIT]
 
 Objectif : ajouter les 7 nouveaux champs avec leurs defauts, sans encore les utiliser.
 
-- [ ] `TofSensors.h` : supprimer `reserved`, ajouter `matchState`, `lcdBacklight`, `matchColor`, `strategy`, `testMode`, `matchNumber`, `lcdCommitFlag`
-- [ ] Initialiser les defauts dans la definition struct
-- [ ] Verifier `sizeof(Settings) == 10`
-- [ ] Compiler + flasher + verifier : aucune regression (champs presents mais non utilises)
+- [x] `TofSensors.h` : supprimer `reserved`, ajouter `matchState`, `lcdBacklight`, `matchColor`, `strategy`, `testMode`, `matchNumber`, `lcdCommitFlag`
+- [x] Initialiser les defauts dans la definition struct (defaults in-class)
+- [x] Ajouter `static_assert(sizeof(Settings) == 10)` pour verrouiller la taille I2C
+- [x] `TofSensors.cpp` : simplifier `Settings settings = { 0x03, 0x01, 0x00, 0x00 };` -> `Settings settings;` (defaults in-class)
+- [x] Fix OPOS6UL : `BeaconSensors.hpp` `DATA_BeaconSensors` passe de 0x04 a 10 (sizeof Settings)
+- [x] Fix OPOS6UL : `BeaconSensors.cpp` tous les offsets hard-codes dans `getData()` decales de +6 via `DATA_BeaconSensors + offset_dans_Registers`
+- [ ] Compiler + flasher Teensy + recompiler OPOS6UL + verifier : aucune regression
 
-#### Etape 3 : demo minimal LVGL (ecriture LCD -> Settings) [ ]
+#### Etape 3 : demo minimal LVGL (ecriture LCD -> Settings) [EN COURS]
 
 Objectif : valider le pattern touch -> callback -> ecriture directe dans `settings`.
 
-- [ ] `LCDScreen.cpp` : remplacer `lv_example_grid_1()` par un ecran menu simple (3 widgets)
-- [ ] Widget 1 : dropdown `matchColor` (bleu/jaune) avec callback `LV_EVENT_VALUE_CHANGED` -> `settings.matchColor = dd_selected`
-- [ ] Widget 2 : spinbox ou dropdown `matchNumber` (1..N) -> `settings.matchNumber = value`
-- [ ] Widget 3 : label read-only qui affiche `settings.numOfBots` et `settings.matchPoints` (rafraichi dans `screen_loop()` via `lv_label_set_text_fmt`)
+- [x] `LCDScreen.cpp` : include `TofSensors.h` + declaration `extern Settings settings;`
+- [x] `LCDScreen.cpp` : nouvelle fonction `create_match_menu()` qui remplace l'appel a `lv_example_grid_1()` dans `setup_screen()` (fonction `lv_example_grid_1` conservee pour fallback)
+- [x] Widget 1 : dropdown `matchColor` (Bleu/Jaune) avec callback `LV_EVENT_VALUE_CHANGED` -> `settings.matchColor = dd_selected`
+- [x] Widget 2 : dropdown `matchNumber` (1..10) -> `settings.matchNumber = index + 1`
+- [x] Widget 3 : labels read-only `numOfBots` et `matchPoints`, rafraichis dans `screen_loop()` a 5 Hz via `lv_label_set_text_fmt`
 - [ ] Test physique : toucher l'ecran, verifier via Serial print (`settings.matchColor`, `settings.matchNumber`) que les valeurs changent bien
 - [ ] Test I2C : lire les registres cote OPOS6UL (ou scanner I2C) et verifier qu'on recoit bien les valeurs modifiees
 

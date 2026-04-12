@@ -27,17 +27,34 @@
 #define TIMING_UDGET_IN_MS 15
 
 /**
- * @brief Registres I2C inscriptibles par le master (OPOS6UL).
+ * @brief Registres I2C du slave beacon (adresse 0x2D).
  *
- * Ces parametres permettent au cerveau de configurer le comportement
- * de la balise beacon a distance via I2C.
+ * Ces parametres sont organises en 2 blocs contigus par sens de communication :
+ * - Bloc 1 (reg 0-4) : OPOS6UL -> Teensy (config, affichage, etat match)
+ * - Bloc 2 (reg 5-9) : Teensy (LCD tactile) -> OPOS6UL (choix operateur pre-match)
+ *
+ * Regle d'atomicite : un seul ecrivain par byte. Les acces uint8_t/int8_t
+ * sur Cortex-M7 etant atomiques, aucun mutex n'est necessaire sur ces champs.
+ *
+ * Voir teensy/IO_t41_ToF_DetectionBeacon/ARCHITECTURE_BEACON.md
+ * section "Menu pre-match (LCD tactile)" pour l'architecture complete.
  */
 struct Settings {
-	int8_t numOfBots = 3;     ///< Reg 0. Nombre de robots adverses a detecter (defaut: 3).
-	int8_t ledDisplay;        ///< Reg 1. Mode affichage LED : 0=OFF, 50=moitie, 100=plein.
-	uint8_t tempNumber;       ///< Reg 2. Points (score) a afficher sur la matrice LED.
-	int8_t reserved = 0;      ///< Reg 3. Reserve pour usage futur.
+	// === Bloc 1 : OPOS6UL -> Teensy (5 bytes) ===
+	int8_t  numOfBots     = 3;   ///< Reg 0. Nb max d'adv a detecter (W: OPOS6UL).
+	int8_t  ledLuminosity = 50;  ///< Reg 1. Luminosite LED matrix 0/50/100 (W: OPOS6UL).
+	uint8_t matchPoints   = 0;   ///< Reg 2. Score match sur LED matrix + LCD (W: OPOS6UL).
+	uint8_t matchState    = 0;   ///< Reg 3. Etat match: 0=prepa, 1=en cours, 2=fini (W: OPOS6UL).
+	uint8_t lcdBacklight  = 1;   ///< Reg 4. Backlight LCD: 0=off, 1=on (W: OPOS6UL).
+
+	// === Bloc 2 : Teensy (LCD) -> OPOS6UL (5 bytes) ===
+	uint8_t matchColor    = 0;   ///< Reg 5. Couleur equipe: 0=bleu, 1=jaune (W: LCD).
+	uint8_t strategy      = 0;   ///< Reg 6. N° strategie IA 0..N (W: LCD).
+	uint8_t testMode      = 0;   ///< Reg 7. Test materiel: 0=aucun, 1..255=test dedie (W: LCD).
+	uint8_t matchNumber   = 1;   ///< Reg 8. Numero de match 1..N (W: LCD).
+	uint8_t lcdCommitFlag = 0;   ///< Reg 9. b0=settings valides par user (W: LCD).
 };
+static_assert(sizeof(Settings) == 10, "Settings must be exactly 10 bytes for I2C layout");
 
 /**
  * @brief Registres I2C en lecture seule pour le master (OPOS6UL).

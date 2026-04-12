@@ -533,6 +533,7 @@ namespace ILI9341_T4
             if (--r <= 0)
                 {
                 _print("\n*** CANNOT CONNECT TO ILI9341 SCREEN. ABORTING... ***\n\n");
+                return false; // PM-ROBOTIX 2026-04-12 : fix boucle infinie si ecran absent
                 }
             if (_spi_clock_read > 100000)_spi_clock_read /= 2;
             _printf("Retrying connexion with slower SPI read speed : %.2fMhz", _spi_clock_read / 1000000.0f);

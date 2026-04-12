@@ -6,6 +6,8 @@
 #include <i2c_register_slave.h>
 
 #include <lvgl.h> // see the comment above for infos about installing and configuring LVGL.
+
+#include "TofSensors.h" // struct Settings (slave I2C 0x2D) - menu pre-match
 /********************************************************************
  *
  * ILI9341_T4 library example. Interfacing with the LVGL library
@@ -60,6 +62,22 @@ RegistersLCD registers_lcd;
 I2CRegisterSlave registerSlaveLCD = I2CRegisterSlave(Slave2,
 		(uint8_t*) &settings_lcd, sizeof(SettingsLCD),
 		(uint8_t*) &registers_lcd, sizeof(RegistersLCD));
+
+// === Menu pre-match : acces aux registres Settings du slave 0x2D ===
+// Le menu LCD ecrit directement dans `settings` (defini dans TofSensors.cpp)
+// sans passer par un nouveau slave I2C. Voir ARCHITECTURE_BEACON.md
+// section "Menu pre-match (LCD tactile)".
+extern Settings settings;
+
+// Flag indiquant si l'ecran ILI9341 a ete detecte au boot.
+// Si false, screen_loop() et les widgets LVGL sont desactives,
+// le reste du firmware (ToF, LED, I2C slave) fonctionne normalement.
+static bool screen_available = false;
+
+// Labels LVGL read-only mis a jour periodiquement dans screen_loop()
+// avec les valeurs ecrites par l'OPOS6UL (reg 0 numOfBots, reg 2 matchPoints).
+static lv_obj_t *lbl_numOfBots_value = nullptr;
+static lv_obj_t *lbl_matchPoints_value = nullptr;
 
 // 2 diff buffers with about 8K memory each
 ILI9341_T4::DiffBuffStatic<8000> diff1;
@@ -198,6 +216,98 @@ void lv_example_grid_2(void) {
 //
 //}
 
+// ============================================================================
+// Menu pre-match (LCD tactile) - Etape 3 de la migration
+// ============================================================================
+// Voir ARCHITECTURE_BEACON.md section "Menu pre-match (LCD tactile)".
+// Les widgets ecrivent directement dans `settings` (slave I2C 0x2D), lu par
+// l'OPOS6UL a sa cadence normale. Pas de mutex : un seul ecrivain par byte.
+// ============================================================================
+
+/**
+ * Callback : changement de la couleur de match (dropdown).
+ * Ecrit directement dans settings.matchColor (Reg 5, Bloc 2 LCD->OPOS6UL).
+ */
+static void matchColor_event_cb(lv_event_t *e) {
+	lv_obj_t *dd = (lv_obj_t*) lv_event_get_target(e);
+	settings.matchColor = (uint8_t) lv_dropdown_get_selected(dd);
+}
+
+/**
+ * Callback : changement du numero de match (dropdown).
+ * Dropdown indexe 0..9, matchNumber en 1..10 (Reg 8, Bloc 2 LCD->OPOS6UL).
+ */
+static void matchNumber_event_cb(lv_event_t *e) {
+	lv_obj_t *dd = (lv_obj_t*) lv_event_get_target(e);
+	settings.matchNumber = (uint8_t) (lv_dropdown_get_selected(dd) + 1);
+}
+
+/**
+ * Cree le menu pre-match : 3 widgets LVGL simples.
+ * - Dropdown matchColor (Bleu/Jaune)   -> settings.matchColor
+ * - Dropdown matchNumber (1..10)       -> settings.matchNumber
+ * - Labels read-only numOfBots + matchPoints (ecrits par OPOS6UL)
+ *
+ * Cette fonction remplace `lv_example_grid_1()` dans setup_screen().
+ * La fonction `lv_example_grid_1()` est conservee plus haut dans le fichier
+ * comme fallback / reference.
+ */
+static void create_match_menu(void) {
+	lv_obj_t *scr = lv_scr_act();
+
+	// Titre
+	lv_obj_t *title = lv_label_create(scr);
+	lv_label_set_text(title, "PMX - Menu Pre-Match");
+	lv_obj_align(title, LV_ALIGN_TOP_MID, 0, 10);
+
+	// --- Ligne 1 : couleur de match ---
+	lv_obj_t *lbl_color = lv_label_create(scr);
+	lv_label_set_text(lbl_color, "Couleur:");
+	lv_obj_align(lbl_color, LV_ALIGN_TOP_LEFT, 10, 50);
+
+	lv_obj_t *dd_color = lv_dropdown_create(scr);
+	lv_dropdown_set_options(dd_color, "Bleu\nJaune");
+	lv_obj_set_width(dd_color, 140);
+	lv_obj_align(dd_color, LV_ALIGN_TOP_LEFT, 140, 45);
+	lv_dropdown_set_selected(dd_color, settings.matchColor);
+	lv_obj_add_event_cb(dd_color, matchColor_event_cb,
+			LV_EVENT_VALUE_CHANGED, NULL);
+
+	// --- Ligne 2 : numero de match ---
+	lv_obj_t *lbl_match = lv_label_create(scr);
+	lv_label_set_text(lbl_match, "Match N:");
+	lv_obj_align(lbl_match, LV_ALIGN_TOP_LEFT, 10, 100);
+
+	lv_obj_t *dd_match = lv_dropdown_create(scr);
+	lv_dropdown_set_options(dd_match, "1\n2\n3\n4\n5\n6\n7\n8\n9\n10");
+	lv_obj_set_width(dd_match, 140);
+	lv_obj_align(dd_match, LV_ALIGN_TOP_LEFT, 140, 95);
+	uint8_t mn = settings.matchNumber;
+	if (mn < 1) mn = 1;
+	if (mn > 10) mn = 10;
+	lv_dropdown_set_selected(dd_match, mn - 1);
+	lv_obj_add_event_cb(dd_match, matchNumber_event_cb,
+			LV_EVENT_VALUE_CHANGED, NULL);
+
+	// --- Ligne 3 : numOfBots (lecture seule, ecrit par OPOS6UL) ---
+	lv_obj_t *lbl_bots_title = lv_label_create(scr);
+	lv_label_set_text(lbl_bots_title, "numOfBots:");
+	lv_obj_align(lbl_bots_title, LV_ALIGN_TOP_LEFT, 10, 155);
+
+	lbl_numOfBots_value = lv_label_create(scr);
+	lv_label_set_text_fmt(lbl_numOfBots_value, "%d", settings.numOfBots);
+	lv_obj_align(lbl_numOfBots_value, LV_ALIGN_TOP_LEFT, 140, 155);
+
+	// --- Ligne 4 : matchPoints (lecture seule, ecrit par OPOS6UL) ---
+	lv_obj_t *lbl_points_title = lv_label_create(scr);
+	lv_label_set_text(lbl_points_title, "matchPoints:");
+	lv_obj_align(lbl_points_title, LV_ALIGN_TOP_LEFT, 10, 185);
+
+	lbl_matchPoints_value = lv_label_create(scr);
+	lv_label_set_text_fmt(lbl_matchPoints_value, "%d", settings.matchPoints);
+	lv_obj_align(lbl_matchPoints_value, LV_ALIGN_TOP_LEFT, 140, 185);
+}
+
 void setup_screen() {
 
 	// Start listening on I2C4 with address 0x2F
@@ -208,7 +318,12 @@ void setup_screen() {
 	// Init the ILI9341_T4 driver.
 	// ------------------------------
 	tft.output(&Serial);                // send debug info to serial port.
-	while (!tft.begin(SPI_SPEED));      // init
+	if (!tft.begin(SPI_SPEED)) {        // init (retente 5x dans le driver)
+		Serial.println("WARNING: ILI9341 screen not detected, LCD disabled.");
+		screen_available = false;
+		return; // pas d'ecran : on skip toute l'init LVGL/touch
+	}
+	screen_available = true;
 
 	tft.setFramebuffer(internal_fb);    // set the internal framebuffer
 	tft.setDiffBuffers(&diff1, &diff2); // set the diff buffers
@@ -257,12 +372,14 @@ void setup_screen() {
 //	lv_textarea_set_placeholder_text(ta, "Hello");
 //	lv_obj_set_size(ta, 220, 140);
 
-	/* Create simple label */
-	lv_obj_t *label = lv_label_create(lv_scr_act());
-	lv_label_set_text(label, "PMX");
-	lv_obj_align(label, LV_ALIGN_CENTER, 0, 0);
-
-	lv_example_grid_1();
+	// ------------------------------
+	// Menu pre-match (etape 3 migration)
+	// ------------------------------
+	// Cree le menu tactile avec 3 widgets : couleur, n° match, labels read-only.
+	// Pour revenir a l'exemple de demonstration, remplacer create_match_menu()
+	// par lv_example_grid_1() (ou lv_example_grid_2()) - les fonctions sont
+	// conservees plus haut dans ce fichier.
+	create_match_menu();
 }
 
 // event callback
@@ -281,6 +398,21 @@ void ta_event_cb(lv_event_t *e) {
 }
 
 void screen_loop() {
+	if (!screen_available) return; // pas d'ecran : no-op
+
+	// Rafraichissement des labels read-only (valeurs ecrites par OPOS6UL via I2C).
+	// 5 Hz suffit largement pour l'affichage, evite le cout d'un set_text a chaque frame.
+	static uint32_t last_refresh_ms = 0;
+	uint32_t now = millis();
+	if (now - last_refresh_ms > 200) {
+		last_refresh_ms = now;
+		if (lbl_numOfBots_value != nullptr) {
+			lv_label_set_text_fmt(lbl_numOfBots_value, "%d", settings.numOfBots);
+		}
+		if (lbl_matchPoints_value != nullptr) {
+			lv_label_set_text_fmt(lbl_matchPoints_value, "%d", settings.matchPoints);
+		}
+	}
 	lv_task_handler(); // lvgl gui handler
 }
 

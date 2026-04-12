@@ -178,7 +178,7 @@ void thread_display()
 			matrix->clear();
 
 			//DISPLAY
-			if (settings.tempNumber > 0)
+			if (settings.matchPoints > 0)
 			{
 				add_display_PointsNumber();
 				add_display_VL_out();
@@ -463,10 +463,10 @@ void display_leds_thread_old()
 
 void add_display_PointsNumber()
 {
-	if (settings.tempNumber > 0)
+	if (settings.matchPoints > 0)
 	{
 		//affichage des points
-		display_INVscrollTextPerStep(settings.tempNumber, 20);
+		display_INVscrollTextPerStep(settings.matchPoints, 20);
 	}
 }
 

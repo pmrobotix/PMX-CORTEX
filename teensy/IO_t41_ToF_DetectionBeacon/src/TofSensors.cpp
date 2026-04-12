@@ -60,8 +60,8 @@ extern int video_infinite;
 int latency_thread_error = 0;          ///< Flag d'erreur de latence des threads (>90ms).
 int latency = 0;                       ///< Compteur pour reset du flag latency_thread_error apres 5 cycles OK.
 
-/// Configuration I2C esclave — registres Settings (inscriptibles par le master).
-Settings settings = { 0x03, 0x01, 0x00, 0x00 };
+/// Configuration I2C esclave — registres Settings (defaults in-class, voir struct Settings).
+Settings settings;
 
 /// Registres de sortie (lecture seule par le master) — donnees de detection.
 Registers registers;
