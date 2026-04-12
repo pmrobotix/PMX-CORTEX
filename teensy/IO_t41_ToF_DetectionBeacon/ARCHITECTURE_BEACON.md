@@ -88,8 +88,25 @@ Calcul de position (calculPosition)
 Ecriture registres I2C (protegee par mutex)
 ```
 
-**Capteurs de collision** (optionnels, `SENSORS_VL_CLOSED_COLLISION_ACTIVATED`) :
-- 4 capteurs supplementaires Front + 4 Back pour detection rapprochee
+**Capteurs de collision / proximite** (optionnels, `SENSORS_VL_CLOSED_COLLISION_ACTIVATED`) :
+
+8 capteurs VL53L1X supplementaires dedies a la detection rapprochee (obstacles proches du robot) :
+- **4 Front** : bus I2C Wire (meme bus que les capteurs Back beacon)
+- **4 Back** : bus I2C Wire1 (meme bus que les capteurs Front beacon)
+- Pins XSHUT : Front = `{40, 39, 38, 37}`, Back = `{36, 35, 34, 33}`
+- Adresses I2C : readdressees a `0x30`..`0x37` au demarrage
+- Disposition physique : 2 capteurs par cote (BAS / HAUT), avant et arriere
+  - Front : c1 (AV GAUCHE BAS), c2 (AV GAUCHE HAUT), c3 (AV DROIT BAS), c4 (AV DROIT HAUT)
+  - Back : c5 (AR GAUCHE BAS), c6 (AR GAUCHE HAUT), c7 (AR DROIT BAS), c8 (AR DROIT HAUT)
+- ROI : pleine matrice 16x16 SPADs (199 = centre optique)
+- Mode : Short distance, meme timing budget que les capteurs beacon (15ms)
+- Acquisition : integree dans les threads loopvl1/loopvl2 (zone 0 de chaque cycle), si le define est actif
+
+Registres I2C (Registers) : distances en mm remontees dans `c1_mm`..`c8_mm` (Reg 11-27 absolus, soit offset 2-18 dans la struct Registers). Valeur 0 = pas de mesure. Lues par l'OPOS6UL via `BeaconSensors::getData()`.
+
+Pour activer : decommenter `#define SENSORS_VL_CLOSED_COLLISION_ACTIVATED` dans `INO_ToF_DetectionBeacon.h` et brancher les 8 capteurs sur les pins XSHUT correspondants.
+
+**Etat actuel** : define commente, capteurs non branches. A activer quand le hardware sera pret.
 
 **Detection de mode video** : si plus de 26 zones detectent simultanement, passage en mode video (main proche couvrant tout le champ).
 
@@ -97,29 +114,34 @@ Ecriture registres I2C (protegee par mutex)
 
 Les capteurs VL53L1X sont lus par la Teensy en I2C master (Wire/Wire1), puis les donnees traitees sont exposees via une interface **I2C esclave** (adresse `0x2D`, lib `i2c_register_slave`). Le cerveau OPOS6UL (master) lit ces registres pour obtenir les positions des robots adverses.
 
-**Registres Settings** (lecture/ecriture par le master) :
+**Registres Settings** (9 bytes, voir section "Menu pre-match" pour le detail complet) :
 
 | Registre | Type | Description |
 |----------|------|-------------|
-| 0 | int8 | Nombre de robots a detecter (defaut: 3) |
-| 1 | int8 | Mode affichage LED (0=OFF, 50=moitie, 100=plein) |
-| 2 | uint8 | Points a afficher |
-| 3 | int8 | Reserve |
+| 0 | int8 | `numOfBots` : nombre max d'adversaires a detecter (defaut: 3) |
+| 1 | int8 | `ledLuminosity` : luminosite LED matrix (0..100, pas de 10) |
+| 2 | uint8 | `matchPoints` : score de match a afficher |
+| 3 | uint8 | `matchState` : 0=prepa, 1=match, 2=fini |
+| 4 | uint8 | `lcdBacklight` : 0=off, 1=on |
+| 5 | uint8 | `matchColor` : 0=bleu, 1=jaune |
+| 6 | uint8 | `strategy` : 1..3 |
+| 7 | uint8 | `testMode` : 0=aucun, 1..5 |
+| 8 | uint8 | `advDiameter` : diametre adversaire en cm (defaut 40) |
 
 **Registres Donnees** (lecture seule) :
 
-**IMPORTANT** : les offsets I2C absolus = `sizeof(Settings)` + offset dans la struct `Registers`. Depuis l'extension de `Settings` de 4 a 10 bytes (etape 2 migration menu LCD), **tous les offsets ont ete decales de +6**. Les anciens offsets sont notes entre parentheses.
+**IMPORTANT** : les offsets I2C absolus = `sizeof(Settings)` + offset dans la struct `Registers`. Avec `Settings` = 9 bytes, **tous les offsets sont decales de +5** par rapport aux originaux (Settings = 4 bytes). Les anciens offsets sont notes entre parentheses.
 
 | Registre | Type | Description |
 |----------|------|-------------|
-| 10 (ex-4) | uint8 | Flags (bit0 = new data, bit7 = alive) |
-| 11 (ex-5) | uint8 | Nombre de robots detectes |
-| 12-28 (ex-6-22) | int16 | Distances collision (c1 a c8) + reserve |
-| 30-61 (ex-24-55) | int16/float | Positions (x, y, angle) pour 4 robots |
-| 62-69 (ex-56-63) | int16 | Distances centre-a-centre (d1 a d4) |
-| 70-133 (ex-64-127) | uint8/uint16 | Donnees brutes des zones (z1 a z4) |
-| 134-141 (ex-128-135) | uint16 | Delta temps moyen de mesure par robot (t1-t4_us, en microsecondes depuis debut cycle) |
-| 142-145 (ex-136-139) | uint32 | Numero de sequence (incremente chaque cycle) |
+| 9 (ex-4) | uint8 | Flags (bit0 = new data, bit7 = alive) |
+| 10 (ex-5) | uint8 | Nombre de robots detectes |
+| 11-27 (ex-6-22) | int16 | Distances collision (c1 a c8) + reserve |
+| 29-60 (ex-24-55) | int16/float | Positions (x, y, angle) pour 4 robots |
+| 61-68 (ex-56-63) | int16 | Distances centre-a-centre (d1 a d4) |
+| 69-132 (ex-64-127) | uint8/uint16 | Donnees brutes des zones (z1 a z4) |
+| 133-140 (ex-128-135) | uint16 | Delta temps moyen de mesure par robot (t1-t4_us, en microsecondes depuis debut cycle) |
+| 141-144 (ex-136-139) | uint32 | Numero de sequence (incremente chaque cycle) |
 
 Le flag `new data` est remis a zero par l'ISR `on_read_isr` apres lecture par le master.
 
@@ -205,7 +227,7 @@ Regle stricte : **un seul ecrivain par byte**. Puisque un acces `uint8_t`/`int8_
 Les champs sont **regroupes par sens de communication** pour permettre au master I2C (OPOS6UL) de faire des **lectures/ecritures multi-bytes contigues** (block read, plus efficace qu'un acces byte par byte) sur chacun des deux blocs :
 
 - **Bloc 1 (Reg 0-4)** : OPOS6UL -> Teensy. Le master ecrit ce bloc pour piloter l'affichage, la detection et signaler l'etat du match.
-- **Bloc 2 (Reg 5-9)** : Teensy (LCD) -> OPOS6UL. Le master lit ce bloc pour recuperer la configuration operateur.
+- **Bloc 2 (Reg 5-8)** : Teensy (LCD) -> OPOS6UL. Le master lit ce bloc pour recuperer la configuration operateur.
 
 **Important** : `numOfBots` est une **consigne** (nombre max d'adversaires a detecter, ecrite par OPOS6UL) a ne pas confondre avec `nbDetectedBots` (mesure temps-reel du nombre d'adversaires effectivement detectes, deja presente dans `Registers` reg 5, ecrite par TofSensors). Les deux champs coexistent et sont tous les deux possedes par des ecrivains differents.
 
@@ -213,41 +235,43 @@ Les champs sont **regroupes par sens de communication** pour permettre au master
 |----------|-------|----------|---------|------|
 | **Bloc 1 : OPOS6UL -> Teensy** |||||
 | 0 | `numOfBots` | OPOS6UL | Teensy (TofSensors) | Nombre max d'adversaires a detecter (1..4, defaut 3). **EXISTANT, INCHANGE** |
-| 1 | `ledLuminosity` | OPOS6UL | LCD / LedPanels | Intensite LED matrix (0/50/100). **EXISTANT, renomme (ex-`ledDisplay`)** |
+| 1 | `ledLuminosity` | OPOS6UL + LCD | LCD / LedPanels | Luminosite LED matrix (0..100, pas de 10). LCD ecrit en phase prepa, OPOS6UL peut reecrire en match. **EXISTANT, renomme (ex-`ledDisplay`)** |
 | 2 | `matchPoints` | OPOS6UL | LCD / LedPanels | Score de match a afficher (texte defilant LED matrix et ecran LCD). **EXISTANT, renomme (ex-`tempNumber`)** |
 | 3 | `matchState` | OPOS6UL | LCD | 0=preparation, 1=match en cours, 2=fini (ex-`reserved`) |
 | 4 | `lcdBacklight` | OPOS6UL | LCD | 0=ecran eteint (eco batterie post-tirette), 1=allume |
 | **Bloc 2 : Teensy (LCD) -> OPOS6UL** |||||
-| 5 | `matchColor` | LCD (user) | OPOS6UL | Couleur equipe : 0=bleu, 1=jaune |
-| 6 | `strategy` | LCD (user) | OPOS6UL | N° de strategie IA (0..N) |
-| 7 | `testMode` | LCD (user) | OPOS6UL | Test materiel : 0=aucun, 1..255 = routine de test dediee codee cote OPOS6UL |
-| 8 | `matchNumber` | LCD (user) | OPOS6UL | Numero du match (1..N) |
-| 9 | `lcdCommitFlag` | LCD (user) | OPOS6UL | b0=1 quand user a valide ses choix (optionnel, cf. evolutions) |
+| 5 | `matchColor` | LCD (user) | OPOS6UL | Couleur equipe : 0=bleu, 1=jaune (bouton toggle) |
+| 6 | `strategy` | LCD (user) | OPOS6UL | N° de strategie IA (1..3, boutons radio) |
+| 7 | `testMode` | LCD (user) | OPOS6UL | Test materiel : 0=aucun, 1..5 (boutons radio, re-clic deselectionne) |
+| 8 | `advDiameter` | LCD (user) | OPOS6UL | Diametre adversaire en cm (defaut 40, boutons -5/+5) |
 
-**Offsets I2C preserves** : les registres 0, 1 et 2 gardent leur **offset et leur role fonctionnel**. Seuls les noms ont ete clarifies (`ledDisplay` -> `ledLuminosity`, `tempNumber` -> `matchPoints`). Le code cote OPOS6UL qui ecrivait deja ces 3 registres continue de fonctionner sans aucun changement d'offset. Le champ historique `reserved` (reg 3) accueille le nouveau `matchState`. Tous les autres nouveaux champs sont ajoutes sequentiellement apres.
+**Offsets I2C preserves** : les registres 0, 1 et 2 gardent leur **offset et leur role fonctionnel**. Seuls les noms ont ete clarifies (`ledDisplay` -> `ledLuminosity`, `tempNumber` -> `matchPoints`). Le champ historique `reserved` (reg 3) accueille le nouveau `matchState`. `matchNumber` et `lcdCommitFlag` ont ete supprimes (non pertinents). `advDiameter` prend le reg 8.
 
-### Struct Settings etendue
+**Exception atomicite** : `ledLuminosity` (reg 1) peut etre ecrit par **deux sources** (LCD en phase prepa, OPOS6UL en phase match). Pas de conflit en pratique car les phases sont sequentielles (dernier ecrivain gagne). Tous les autres champs respectent la regle "un seul ecrivain par byte".
+
+### Struct Settings
 
 ```cpp
 struct Settings {
-    // === Bloc 1 : OPOS6UL -> Teensy (5 bytes, lecture groupee cote Teensy) ===
-    int8_t  numOfBots     = 3;   // Reg 0. Nb max adv a detecter (W: OPOS6UL)         [EXISTANT]
-    int8_t  ledLuminosity = 50;  // Reg 1. Luminosite LED matrix 0/50/100 (W: OPOS6UL) [EXISTANT ex-ledDisplay]
-    uint8_t matchPoints   = 0;   // Reg 2. Score LED matrix + LCD (W: OPOS6UL)         [EXISTANT ex-tempNumber]
-    uint8_t matchState    = 0;   // Reg 3. 0=prepa, 1=match, 2=fini (W: OPOS6UL)       [ex-reserved]
+    // === Bloc 1 : OPOS6UL -> Teensy (5 bytes) ===
+    int8_t  numOfBots     = 3;   // Reg 0. Nb max adv a detecter (W: OPOS6UL)
+    int8_t  ledLuminosity = 50;  // Reg 1. Luminosite LED matrix 0..100 (W: OPOS6UL + LCD en prepa)
+    uint8_t matchPoints   = 0;   // Reg 2. Score LED matrix + LCD (W: OPOS6UL)
+    uint8_t matchState    = 0;   // Reg 3. 0=prepa, 1=match, 2=fini (W: OPOS6UL)
     uint8_t lcdBacklight  = 1;   // Reg 4. 0=off, 1=on (W: OPOS6UL)
 
-    // === Bloc 2 : Teensy (LCD) -> OPOS6UL (5 bytes, lecture groupee cote OPOS6UL) ===
+    // === Bloc 2 : Teensy (LCD) -> OPOS6UL (4 bytes) ===
     uint8_t matchColor    = 0;   // Reg 5. 0=bleu, 1=jaune (W: LCD)
-    uint8_t strategy      = 0;   // Reg 6. n° strategie 0..N (W: LCD)
-    uint8_t testMode      = 0;   // Reg 7. 0=aucun, 1..255=test dedie (W: LCD)
-    uint8_t matchNumber   = 1;   // Reg 8. n° match (W: LCD)
-    uint8_t lcdCommitFlag = 0;   // Reg 9. b0=settings_valid (W: LCD)
+    uint8_t strategy      = 0;   // Reg 6. 1..3 (W: LCD)
+    uint8_t testMode      = 0;   // Reg 7. 0=aucun, 1..5 (W: LCD)
+    uint8_t advDiameter   = 40;  // Reg 8. Diametre adversaire en cm (W: LCD)
 };
-// Total: 10 bytes, 2 blocs contigus, offsets I2C reg 0-2 preserves
+// Total: 9 bytes, 2 blocs contigus
 ```
 
 Note : `matchPoints` (reg 2) est partage entre deux consommateurs cote Teensy : la matrice LED (`LedPanels` qui affiche deja le score en texte defilant via `add_display_PointsNumber()`) et le LCD (affichage optionnel en phase match). Un seul ecrivain (OPOS6UL), deux lecteurs -> pas de conflit.
+
+Note : `ledLuminosity` (reg 1) est **cable en temps reel** cote Teensy. `LedPanels.cpp` appelle `matrix->setBrightness(settings.ledLuminosity)` a chaque cycle d'affichage. Le changement via le tactile ou via l'OPOS6UL est donc visible immediatement sur la matrice LED.
 
 ### Concurrence et atomicite
 
@@ -265,7 +289,7 @@ Note : `matchPoints` (reg 2) est partage entre deux consommateurs cote Teensy : 
       v
 [phase preparation - LCD actif]
   Menu tactile operationnel des la mise sous tension Teensy.
-  User modifie en direct : numOfBots, matchColor, strategy, matchNumber, testMode
+  User modifie en direct : matchColor, strategy, testMode, advDiameter, ledLuminosity
   Chaque clic LVGL -> ecriture directe dans Settings (mode live)
 
   [boot OPOS6UL] peut arriver ici, avant ou apres la mise sous tension Teensy.
@@ -300,25 +324,40 @@ Note : `matchPoints` (reg 2) est partage entre deux consommateurs cote Teensy : 
 
 Le `matchState` est donc le **point de bascule unique** entre la phase configurable (live) et la phase figee (eco batterie + CPU). Tant que `matchState == 0`, tout est modifiable ; des que `matchState >= 1`, le menu est en lecture seule de fait.
 
-### Demo simple pour demarrer
+### Menu LCD implemente (etape 3)
 
-Implementation minimale a coder en premier, pour valider l'approche bout en bout :
+Layout ecran 320x240 :
 
-- **3 widgets LVGL** sur l'ecran :
-  1. Dropdown **couleur match** (bleu/jaune) -> ecrit `settings.matchColor` (Bloc 2, W: LCD)
-  2. Spinbox `matchNumber` (1..N) -> ecrit `settings.matchNumber` (Bloc 2, W: LCD)
-  3. Label read-only qui affiche `settings.numOfBots` et `settings.matchPoints` (Bloc 1, ecrits par OPOS6UL, juste consultes par le LCD pour validation visuelle)
-- **Pas de bouton "Valider"** : mode live, ecriture immediate a chaque clic
-- **Pas d'EEPROM** : valeurs volatiles, perdues au reboot
-- **Pas d'extinction backlight** : l'ecran reste allume en permanence
+```
++--------------------------------------------------+
+| LED [-] 50 [+]          Bots: 3  Pts: 0          |  luminosite + labels OPOS6UL
+|        +========================+                 |
+|        |        BLEU            |                 |  bouton toggle couleur
+|        +========================+                 |
+|                Strategie                          |
+|     [    1    ] [    2    ] [    3    ]            |  boutons radio strategie
+|                   Test                            |
+|      [ T1 ] [ T2 ] [ T3 ] [ T4 ] [ T5 ]         |  boutons radio testMode
+|                                                   |
+| Diam. adv:  [ -5 ]  40 cm  [ +5 ]                |  diametre adversaire
++--------------------------------------------------+
+```
 
-### Evolutions prevues (non bloquantes pour le demo)
+Widgets et comportement :
+- **Couleur** : bouton toggle 200x40, fond bleu/jaune, texte "BLEU"/"JAUNE" -> `settings.matchColor`
+- **Strategie** : 3 boutons radio 90x40 (vert si selectionne, gris sinon) -> `settings.strategy` (1..3)
+- **Test** : 5 boutons radio 54x28 (re-clic deselectionne -> testMode=0) -> `settings.testMode` (0..5)
+- **Diam. adv** : boutons [-5]/[+5], affiche valeur en cm -> `settings.advDiameter` (defaut 40, range 5..250)
+- **LED** : boutons [-]/[+], affiche valeur 0..100 par pas de 10 -> `settings.ledLuminosity` (applique en temps reel sur matrice LED)
+- **Bots / Pts** : labels read-only, rafraichis a 5 Hz depuis `screen_loop()` (valeurs ecrites par OPOS6UL)
+- Tous les choix sont en **mode live** : ecriture directe dans Settings a chaque clic, pas de bouton "Valider". La validation est la tirette de debut de match.
 
-1. **Bouton "VALIDER / GO"** : utiliser `lcdCommitFlag` bit0 pour indiquer a l'OPOS6UL que les settings sont figes. En attendant, l'OPOS6UL lit les valeurs au moment de la tirette.
-2. **Extinction backlight post-tirette** : `lcdBacklight = 0` apres depart du match pour economiser la batterie. L'OPOS6UL peut rallumer temporairement pour afficher un feedback.
-3. **Persistence EEPROM** : sauvegarde des derniers choix operateur (`EEPROM.put/get` Teensy) pour les rappeler au reboot en phase de preparation (utile si reset accidentel juste avant le match).
-4. **Ecran de monitoring match** : une fois `matchState = 1`, basculer l'UI LVGL sur un ecran qui affiche score, temps restant, nb robots detectes, etat ToF.
-5. **testMode** : coder cote OPOS6UL les routines numerotees (1=test moteurs, 2=test capteurs ToF, 3=test AX12, 4=test servos, ...). Chaque valeur est une routine independante.
+### Evolutions prevues
+
+1. **Extinction backlight post-tirette** : `lcdBacklight = 0` apres depart du match pour economiser la batterie. L'OPOS6UL peut rallumer temporairement pour afficher un feedback.
+2. **Persistence EEPROM** : sauvegarde des derniers choix operateur (`EEPROM.put/get` Teensy) pour les rappeler au reboot en phase de preparation (utile si reset accidentel juste avant le match).
+3. **Ecran de monitoring match** : une fois `matchState = 1`, basculer l'UI LVGL sur un ecran qui affiche score, temps restant, nb robots detectes, etat ToF.
+4. **testMode** : coder cote OPOS6UL les routines numerotees (1=test moteurs, 2=test capteurs ToF, 3=test AX12, 4=test servos, ...). Chaque valeur est une routine independante.
 
 ### Code dormant : slave 0x2F dans LCDScreen.cpp
 
@@ -344,34 +383,36 @@ Note : les occurrences `ledDisplay` et `tempNumber` dans `LCDScreen.h` (struct `
 
 #### Etape 2 : extension struct Settings (nouveaux champs) [FAIT]
 
-Objectif : ajouter les 7 nouveaux champs avec leurs defauts, sans encore les utiliser.
+Objectif : ajouter les nouveaux champs avec leurs defauts.
 
-- [x] `TofSensors.h` : supprimer `reserved`, ajouter `matchState`, `lcdBacklight`, `matchColor`, `strategy`, `testMode`, `matchNumber`, `lcdCommitFlag`
+- [x] `TofSensors.h` : supprimer `reserved`, ajouter `matchState`, `lcdBacklight`, `matchColor`, `strategy`, `testMode`, `advDiameter`
 - [x] Initialiser les defauts dans la definition struct (defaults in-class)
-- [x] Ajouter `static_assert(sizeof(Settings) == 10)` pour verrouiller la taille I2C
-- [x] `TofSensors.cpp` : simplifier `Settings settings = { 0x03, 0x01, 0x00, 0x00 };` -> `Settings settings;` (defaults in-class)
-- [x] Fix OPOS6UL : `BeaconSensors.hpp` `DATA_BeaconSensors` passe de 0x04 a 10 (sizeof Settings)
-- [x] Fix OPOS6UL : `BeaconSensors.cpp` tous les offsets hard-codes dans `getData()` decales de +6 via `DATA_BeaconSensors + offset_dans_Registers`
-- [ ] Compiler + flasher Teensy + recompiler OPOS6UL + verifier : aucune regression
+- [x] `static_assert(sizeof(Settings) == 9)` pour verrouiller la taille I2C
+- [x] `TofSensors.cpp` : simplifier init settings (defaults in-class)
+- [x] Fix OPOS6UL : `BeaconSensors.hpp` struct Settings miroir + `SETTINGS_SIZE_BeaconSensors = 9`
+- [x] Fix OPOS6UL : `BeaconSensors.cpp` offsets `getData()` via `DATA_BeaconSensors + offset`
+- [x] Compiler + flasher Teensy + recompiler OPOS6UL + verifier
 
-#### Etape 3 : demo minimal LVGL (ecriture LCD -> Settings) [EN COURS]
+#### Etape 3 : menu LCD complet (ecriture LCD -> Settings) [FAIT]
 
 Objectif : valider le pattern touch -> callback -> ecriture directe dans `settings`.
 
-- [x] `LCDScreen.cpp` : include `TofSensors.h` + declaration `extern Settings settings;`
-- [x] `LCDScreen.cpp` : nouvelle fonction `create_match_menu()` qui remplace l'appel a `lv_example_grid_1()` dans `setup_screen()` (fonction `lv_example_grid_1` conservee pour fallback)
-- [x] Widget 1 : dropdown `matchColor` (Bleu/Jaune) avec callback `LV_EVENT_VALUE_CHANGED` -> `settings.matchColor = dd_selected`
-- [x] Widget 2 : dropdown `matchNumber` (1..10) -> `settings.matchNumber = index + 1`
-- [x] Widget 3 : labels read-only `numOfBots` et `matchPoints`, rafraichis dans `screen_loop()` a 5 Hz via `lv_label_set_text_fmt`
-- [ ] Test physique : toucher l'ecran, verifier via Serial print (`settings.matchColor`, `settings.matchNumber`) que les valeurs changent bien
-- [ ] Test I2C : lire les registres cote OPOS6UL (ou scanner I2C) et verifier qu'on recoit bien les valeurs modifiees
+- [x] Bouton toggle couleur bleu/jaune -> `settings.matchColor`
+- [x] 3 boutons radio strategie (1/2/3) -> `settings.strategy`
+- [x] 5 boutons radio testMode (T1..T5, re-clic deselectionne) -> `settings.testMode`
+- [x] Boutons [-5]/[+5] diametre adversaire -> `settings.advDiameter` (defaut 40 cm)
+- [x] Boutons [-]/[+] luminosite LED -> `settings.ledLuminosity` (pas de 10, 0..100)
+- [x] Labels read-only Bots + Pts (rafraichis a 5 Hz)
+- [x] Luminosite cablee en temps reel (`matrix->setBrightness` dans LedPanels.cpp)
+- [x] Test physique : bouton couleur, strategie, testMode, advDiameter, ledLuminosity fonctionnent
+- [ ] Test I2C : lire les registres cote OPOS6UL et verifier les valeurs modifiees
 
 #### Etape 4 : cote OPOS6UL, lire les nouveaux champs [ ]
 
 Objectif : l'init OPOS6UL recupere les settings LCD au demarrage (en phase preparation).
 
-- [ ] Driver `BeaconSensors` (ou equivalent) : ajouter une methode `readBeaconSettings()` qui lit les reg 5-9 (Bloc 2)
-- [ ] `O_State_Init` : appeler `readBeaconSettings()` pour recuperer `matchColor`, `strategy`, `matchNumber`
+- [ ] Driver `BeaconSensors` : ajouter une methode `readBeaconSettings()` qui lit les reg 5-8 (Bloc 2)
+- [ ] `O_State_Init` : appeler `readBeaconSettings()` pour recuperer `matchColor`, `strategy`, `advDiameter`
 - [ ] Mapping `matchColor` -> couleur attendue par `setPositionAndColor()` (bleu=?, jaune=?) -> verifier le mapping cote asserv
 - [ ] Test : changer la couleur sur le LCD, redemarrer OPOS6UL, verifier que la couleur utilisee est bien celle du LCD
 
@@ -404,12 +445,12 @@ Objectif : supprimer le code mort `registerSlaveLCD` / `SettingsLCD` / `Register
 
 #### Etape 8 : evolutions optionnelles (non bloquantes, a prioriser selon besoin) [ ]
 
-- [ ] 8a : bouton "VALIDER / GO" sur le LCD -> `lcdCommitFlag |= 0x01`
-- [ ] 8b : extinction backlight post-tirette (`lcdBacklight = 0`)
-- [ ] 8c : ecran monitoring live pendant la phase preparation (affichage `nbDetectedBots`, distances, etc.)
-- [ ] 8d : persistence EEPROM des derniers choix operateur (`EEPROM.put/get`)
-- [ ] 8e : routines `testMode` cote OPOS6UL (1=moteurs, 2=capteurs, 3=AX12, ...)
-- [ ] 8f : ecran de monitoring match (score, temps restant, robots detectes)
+- [ ] 8a : extinction backlight post-tirette (`lcdBacklight = 0`)
+- [ ] 8b : ecran monitoring live pendant la phase preparation (affichage `nbDetectedBots`, distances, etc.)
+- [ ] 8c : persistence EEPROM des derniers choix operateur (`EEPROM.put/get`)
+- [ ] 8d : routines `testMode` cote OPOS6UL (1=moteurs, 2=capteurs, 3=AX12, ...)
+- [ ] 8e : ecran de monitoring match (score, temps restant, robots detectes)
+- [ ] 8f : activation capteurs de collision/proximite (decommenter `SENSORS_VL_CLOSED_COLLISION_ACTIVATED`, brancher les 8 VL53L1X)
 
 ## Configuration hardware
 

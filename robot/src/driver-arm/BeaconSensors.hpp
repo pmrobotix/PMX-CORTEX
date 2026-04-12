@@ -15,8 +15,8 @@
 
 //#define ADDRESS_BeaconSensors   0x2D
 // Offset I2C des Registers = sizeof(Settings) sur la Teensy.
-// Settings fait maintenant 10 bytes (voir ARCHITECTURE_BEACON.md).
-#define SETTINGS_SIZE_BeaconSensors 10
+// Settings fait maintenant 9 bytes (voir ARCHITECTURE_BEACON.md).
+#define SETTINGS_SIZE_BeaconSensors 9
 #define DATA_BeaconSensors      SETTINGS_SIZE_BeaconSensors //adresse des donnees Registers a recuperer
 #define NUMOFBOTS_BeaconSensors 0x00
 
@@ -28,13 +28,23 @@ union float2bytes_t // union consists of one variable represented in a number of
     unsigned char bytes[sizeof(float)];
 };
 
-// Registers that the caller can both read and write
+// Registres I2C du slave beacon (adresse 0x2D).
+// Miroir de la struct Settings cote Teensy (TofSensors.h).
+// Voir ARCHITECTURE_BEACON.md section "Menu pre-match (LCD tactile)".
 struct Settings
 {
-    int8_t numOfBots;         // Register 0. Number of Robot which may to be detected, default 3.
-    int8_t ledDisplay; // Register 1. Writable. Sets the mode for led display. 0 => OFF. 100 => FULL ON. 50 => Half luminosity.
-    int8_t tempNumber; // Register 2.//TODO shift_rad angle en parametre ? //TODO ajouter le decalage d'angle en settings ?
-    int8_t reserved = 0;      //NOT use yet
+    // === Bloc 1 : OPOS6UL -> Teensy (5 bytes) ===
+    int8_t  numOfBots     = 3;   // Reg 0. Nb max adv a detecter (W: OPOS6UL).
+    int8_t  ledLuminosity = 50;  // Reg 1. Luminosite LED matrix 0..100 (W: OPOS6UL, LCD en prepa).
+    uint8_t matchPoints   = 0;   // Reg 2. Score match sur LED matrix + LCD (W: OPOS6UL).
+    uint8_t matchState    = 0;   // Reg 3. 0=prepa, 1=match, 2=fini (W: OPOS6UL).
+    uint8_t lcdBacklight  = 1;   // Reg 4. 0=off, 1=on (W: OPOS6UL).
+
+    // === Bloc 2 : Teensy (LCD) -> OPOS6UL (4 bytes) ===
+    uint8_t matchColor    = 0;   // Reg 5. Couleur equipe: 0=bleu, 1=jaune (W: LCD).
+    uint8_t strategy      = 0;   // Reg 6. N° strategie IA 1..3 (W: LCD).
+    uint8_t testMode      = 0;   // Reg 7. Test materiel: 0=aucun, 1..5 (W: LCD).
+    uint8_t advDiameter   = 40;  // Reg 8. Diametre adversaire en cm (W: LCD).
 };
 
 // Registers that the caller can only read
