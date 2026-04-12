@@ -219,7 +219,7 @@ void Asserv::setPositionReal(float x_mm, float y_mm, float thetaInRad)
 	else if (useAsservType_ == ASSERV_INT_ESIALR) pAsservEsialR_->odo_SetPosition(x_mm, y_mm, thetaInRad);
 
 	// Mise a jour immediate de sharedPosition (sans attendre le retour CBOR de la Nucleo)
-	// Sinon, les premiers ticks SensorsTimer projettent depuis (0,0,0) tant que la
+	// Sinon, les premiers ticks SensorsThread projettent depuis (0,0,0) tant que la
 	// Nucleo n'a pas envoye sa premiere position en retour (~20-50ms).
 	ROBOTPOSITION p = {x_mm, y_mm, thetaInRad, 0, 0, 0};
 	probot_->sharedPosition()->setRobotPosition(p);
@@ -300,7 +300,7 @@ void Asserv::resetEmergencyOnTraj(std::string message)
 // =============================================================================
 //
 // Remplace l'ancien waitEndOfTraj() + warnFrontDetectionOnTraj().
-// Le SensorsTimer ne touche plus à l'Asserv — il ne fait que publier
+// Le SensorsThread ne touche plus à l'Asserv — il ne fait que publier
 // le DetectionEvent. C'est ICI qu'on décide de stopper/ralentir.
 //
 // Status driver : 0=IDLE, 1=RUNNING, 2=EMERGENCY, 3=BLOCKED
@@ -347,7 +347,7 @@ TRAJ_STATE Asserv::waitEndOfTrajWithDetection(MovementType type)
 			return TRAJ_INTERRUPTED;
 		}
 
-		// --- Consultation du DetectionEvent (publié par SensorsTimer) ---
+		// --- Consultation du DetectionEvent (publié par SensorsThread) ---
 		Sensors* sensors = probot_->sensors();
 		if (sensors != nullptr)
 		{

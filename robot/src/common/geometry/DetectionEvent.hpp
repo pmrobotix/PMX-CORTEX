@@ -18,7 +18,7 @@
 /*!
  * \brief Evenement de detection d'un obstacle/adversaire.
  *
- * Publie par SensorsTimer::onTimer() apres chaque cycle de detection.
+ * Publie par SensorsThread::sensorOnTimer() apres chaque cycle de detection.
  * Lu par Navigator pour decider retry vs contournement.
  */
 struct DetectionEvent {

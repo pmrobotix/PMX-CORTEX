@@ -227,7 +227,7 @@ void O_State_DecisionMakerIA::execute()
 	//On ajoute le timer de detection
 	robot.actions().sensors().setIgnoreFrontNearObstacle(true, false, true);
 	robot.actions().sensors().setIgnoreBackNearObstacle(true, true, true);
-	robot.actions().sensors().addTimerSensors(20);
+	robot.actions().sensors().startSensorsThread(20);
 
 	robot.ia().iAbyPath().ia_start();        //launch IA
 

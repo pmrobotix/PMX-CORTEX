@@ -678,6 +678,10 @@ void AsservDriverSimu::motion_Line(float dist_mm)
 
 	if (simuSpeedMultiplier_ > 0)
 		utils::sleep_for_micros(increment_time_us * 5 * simuSpeedMultiplier_);
+
+	m_pos.lock();
+	p_.asservStatus = 0;
+	m_pos.unlock();
 	return;
 }
 
@@ -722,6 +726,9 @@ void AsservDriverSimu::motion_RotateRad(float angle_radians)
 	if (simuSpeedMultiplier_ > 0)
 		utils::sleep_for_micros(increment_time_us * 7 * simuSpeedMultiplier_);
 
+	m_pos.lock();
+	p_.asservStatus = 0;
+	m_pos.unlock();
 	return;
 }
 
@@ -779,6 +786,10 @@ void AsservDriverSimu::motion_OrbitalTurnRad(float angle_radians, bool forward, 
 
 	if (simuSpeedMultiplier_ > 0)
 		utils::sleep_for_micros(increment_time_us * 5 * simuSpeedMultiplier_);
+
+	m_pos.lock();
+	p_.asservStatus = 0;
+	m_pos.unlock();
 	return;
 }
 

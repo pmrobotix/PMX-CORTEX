@@ -35,7 +35,7 @@ int set_realtime_priority(int p = 0, std::string name = "", ThreadId this_thread
 /*!
  * \brief Met en pause le thread courant pendant \a usec microsecondes.
  * \note Utilise std::this_thread::sleep_for (immunise aux signaux POSIX/EINTR).
- *       Ne pas utiliser clock_nanosleep directement car interrompu par les timers POSIX (SensorsTimer).
+ *       Ne pas utiliser clock_nanosleep directement car interrompu par les timers POSIX (SensorsThread).
  */
 void sleep_for_micros(int64_t usec);
 

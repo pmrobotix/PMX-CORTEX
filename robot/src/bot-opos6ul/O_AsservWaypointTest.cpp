@@ -84,6 +84,10 @@ void O_AsservWaypointTest::configureConsoleArgs(int argc, char **argv)
 	cOpt.addArgument("coorda", "coord teta deg", "0.0");
 	robot.getArgs().addOption(cOpt);
 
+	Arguments::Option cOptMultiplier('M', "simu speed multiplier (0=instantane, 1.0=temps reel)");
+	cOptMultiplier.addArgument("multiplier", "multiplier", "1.0");
+	robot.getArgs().addOption(cOptMultiplier);
+
 	robot.parseConsoleArgs(argc, argv);
 }
 
@@ -127,11 +131,13 @@ void O_AsservWaypointTest::run(int argc, char **argv)
 	float coordx = atof(args['+']["coordx"].c_str());
 	float coordy = atof(args['+']["coordy"].c_str());
 	float coorda_deg = atof(args['+']["coorda"].c_str());
+	float multiplier = atof(args['M']["multiplier"].c_str());
 
 	// Log config
 	const char* modeNames[] = {"STOP", "CHAIN", "CHAIN_NONSTOP"};
 	logger().info() << "PathMode=" << modeNames[modeInt]
-	                << " speed=" << s << " detection=" << B << logs::end;
+	                << " speed=" << s << " detection=" << B
+	                << " simuSpeed=" << multiplier << logs::end;
 	logger().info() << "Position initiale cx=" << coordx << " cy=" << coordy
 	                << " ca=" << coorda_deg << logs::end;
 	for (size_t i = 0; i < waypoints.size(); i++)
@@ -144,6 +150,7 @@ void O_AsservWaypointTest::run(int argc, char **argv)
 	robot.asserv().setPositionAndColor(coordx, coordy, coorda_deg, (bool)(robot.getMyColor() != PMXYELLOW));
 	robot.asserv().startMotionTimerAndOdo(false);
 	robot.asserv().assistedHandling();
+	robot.asserv().setSimuSpeedMultiplier(multiplier);
 
 	robot.svgPrintPosition();
 
@@ -151,7 +158,7 @@ void O_AsservWaypointTest::run(int argc, char **argv)
 	robot.actions().start();
 	if (B == 1)
 	{
-		robot.actions().sensors().addTimerSensors(20);
+		robot.actions().sensors().startSensorsThread(20);
 		robot.actions().sensors().setIgnoreFrontNearObstacle(true, false, true);
 		robot.actions().sensors().setIgnoreBackNearObstacle(true, true, true);
 	}

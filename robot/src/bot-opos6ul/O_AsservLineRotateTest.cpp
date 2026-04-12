@@ -91,6 +91,10 @@ void O_AsservLineRotateTest::configureConsoleArgs(int argc, char **argv)
 	cOpt.addArgument("coorda", "coord teta deg", "0.0");
 	robot.getArgs().addOption(cOpt);
 
+	Arguments::Option cOptMultiplier('M', "simu speed multiplier (0=instantane, 1.0=temps reel)");
+	cOptMultiplier.addArgument("multiplier", "multiplier", "1.0");
+	robot.getArgs().addOption(cOptMultiplier);
+
 	//reparse arguments
 	robot.parseConsoleArgs(argc, argv);
 }
@@ -127,9 +131,11 @@ void O_AsservLineRotateTest::run(int argc, char **argv)
 	float coordy = atof(args['+']["coordy"].c_str());
 	float coorda_deg = atof(args['+']["coorda"].c_str());
 
+	float multiplier = atof(args['M']["multiplier"].c_str());
+
 	logger().info() << "navMode=" << navMode << " mode=" << m
 	                << " speed=" << s << " repeat=" << repeat
-	                << " detection=" << B << logs::end;
+	                << " detection=" << B << " simuSpeed=" << multiplier << logs::end;
 	logger().info() << "COORD cx=" << coordx << " cy=" << coordy
 	                << " ca=" << coorda_deg << logs::end;
 
@@ -138,6 +144,7 @@ void O_AsservLineRotateTest::run(int argc, char **argv)
 	robot.asserv().setPositionAndColor(coordx, coordy, coorda_deg, (bool)(robot.getMyColor() != PMXYELLOW));
 	robot.asserv().startMotionTimerAndOdo(false);
 	robot.asserv().assistedHandling();
+	robot.asserv().setSimuSpeedMultiplier(multiplier);
 
 	ROBOTPOSITION pos = robot.asserv().pos_getPosition();
 	logger().info() << "time=" << robot.chrono().getElapsedTimeInMilliSec() << "ms"
@@ -150,7 +157,7 @@ void O_AsservLineRotateTest::run(int argc, char **argv)
 	robot.actions().start();
 	if (B == 1)
 	{
-		robot.actions().sensors().addTimerSensors(20);
+		robot.actions().sensors().startSensorsThread(5);
 		robot.actions().sensors().setIgnoreFrontNearObstacle(true, false, true);
 		robot.actions().sensors().setIgnoreBackNearObstacle(true, true, true);
 	}

@@ -125,7 +125,7 @@ void O_AsservXYRotateTest::run(int argc, char **argv)
 
 	//detection adverse
 	robot.actions().start();
-	robot.actions().sensors().addTimerSensors(20);
+	robot.actions().sensors().startSensorsThread(20);
 	robot.chrono().start();
 	robot.actions().sensors().setIgnoreFrontNearObstacle(true, false, true);
 	robot.actions().sensors().setIgnoreBackNearObstacle(true, true, true);

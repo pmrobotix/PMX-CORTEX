@@ -170,15 +170,15 @@
             "presentation": { "reveal": "always", "panel": "shared", "focus": true }
         },
         {
-            // Ouvre le log SVG dans le navigateur
-            "label": "SVG Log: Ouvrir",
+            // Ouvre le log SVG dans Brave
+            "label": "OpenSVG",
             "type": "shell",
-            "command": "setsid firefox ${workspaceFolder}/build-${input:buildPreset}/bin/index.html 2>/dev/null",
+            "command": "setsid brave ${workspaceFolder}/build-${input:buildPreset}/bin/index.html 2>/dev/null",
             "options": {
                 "cwd": "${workspaceFolder}",
                 "statusbar": {
                     "hide": false,
-                    "label": "$(open-preview) SVG Log",
+                    "label": "$(open-preview) OpenSVG",
                     "color": "#DCDCAA"
                 }
             },

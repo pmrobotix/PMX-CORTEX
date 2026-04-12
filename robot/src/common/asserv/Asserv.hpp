@@ -278,8 +278,8 @@ public:
      * \brief Attend la fin d'une trajectoire en consultant le DetectionEvent.
      *
      * Boucle toutes les 1ms. Consulte le status driver (fini/bloqué)
-     * ET le DetectionEvent publié par SensorsTimer (obstacle/ralentissement).
-     * Le SensorsTimer ne touche plus à l'Asserv — c'est cette méthode qui décide.
+     * ET le DetectionEvent publié par SensorsThread (obstacle/ralentissement).
+     * Le SensorsThread ne touche plus à l'Asserv — c'est cette méthode qui décide.
      *
      * \param type Type de mouvement : ROTATION (ignore détection), FORWARD ou BACKWARD.
      * \return TRAJ_FINISHED, TRAJ_COLLISION ou TRAJ_NEAR_OBSTACLE.

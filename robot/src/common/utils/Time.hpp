@@ -3,7 +3,7 @@
  * \brief Fonctions de pause basees sur clock_nanosleep (CLOCK_MONOTONIC).
  *
  * \warning Ces fonctions sont interruptibles par les signaux POSIX (EINTR),
- *          notamment les timers POSIX (SensorsTimer). Preferer utils::sleep_for_micros()
+ *          notamment les timers POSIX (SensorsThread). Preferer utils::sleep_for_micros()
  *          (dans Thread.hpp) sauf besoin explicite de clock_nanosleep
  *          (ex: boucle temps-reel avec PeriodicTimer).
  */

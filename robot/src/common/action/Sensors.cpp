@@ -89,13 +89,11 @@ Sensors::~Sensors()
  */
 //loggerSvg().info() << "INIT " << logs::end;
 //}
-SensorsTimer::SensorsTimer(Sensors &sensors, int timeSpan_ms, std::string name) :
-		sensors_(sensors)
+SensorsThread::SensorsThread(Sensors &sensors, int period_ms) :
+		sensors_(sensors),
+		period_us_(period_ms * 1000),
+		stopRequested_(false)
 {
-	name_ = name;
-
-//    lastdetect_front_nb_ = 0;
-//    lastdetect_back_nb_ = 0;
 	lastdetect_front_level_ = 0;
 	lastdetect_back_level_ = 0;
 
@@ -104,10 +102,26 @@ SensorsTimer::SensorsTimer(Sensors &sensors, int timeSpan_ms, std::string name) 
 
 	nb_sensor_front_a_zero = 0;
 	nb_sensor_back_a_zero = 0;
+}
 
+void SensorsThread::execute()
+{
+	logger().info() << "SensorsThread started, period=" << (period_us_ / 1000) << "ms" << logs::end;
+	utils::PeriodicTimer timer(period_us_);
 
-	//initialise le timer avec le nom et la periode.
-	this->init(name_, timeSpan_ms * 1000);
+	while (!stopRequested_)
+	{
+		sensorOnTimer();
+		timer.sleep_until_next();
+	}
+
+	logger().info() << "SensorsThread stopped" << logs::end;
+	setState(utils::STOPPED);
+}
+
+void SensorsThread::stopThread()
+{
+	stopRequested_ = true;
 }
 
 
@@ -744,31 +758,35 @@ int Sensors::back(bool display)
 	return level;
 }
 
-void Sensors::addTimerSensors(int timeSpan_ms)
+void Sensors::startSensorsThread(int period_ms)
 {
-//On supprime s'il existe déjà
+	if (sensorsThread_ != nullptr)
+	{
+		logger().debug() << "SensorsThread already running, stopping first" << logs::end;
+		stopSensorsThread();
+	}
 
-//    if (this->actions().findPTimer("Sensors"))
-//    {
-//        logger().debug() << "PT Sensors already exists! stop then restart it!" << logs::end;
-//        this->actions().stopPTimer("Sensors");
-//    }
-
-	logger().debug() << "startSensors" << logs::end;
-	this->actions().addTimer(new SensorsTimer(*this, timeSpan_ms, "Sensors"));
+	logger().debug() << "startSensorsThread period=" << period_ms << "ms" << logs::end;
+	sensorsThread_ = new SensorsThread(*this, period_ms);
+	sensorsThread_->start("SensorsThread", 0);
 }
 
-void Sensors::stopTimerSensors()
+void Sensors::stopSensorsThread()
 {
-	logger().debug() << "stopSensors" << logs::end;
-	this->actions().scheduler().stopTimer("Sensors");
+	if (sensorsThread_ == nullptr) return;
+
+	logger().debug() << "stopSensorsThread" << logs::end;
+	sensorsThread_->stopThread();
+	sensorsThread_->waitForEnd();
+	delete sensorsThread_;
+	sensorsThread_ = nullptr;
 }
 
-void SensorsTimer::onTimer(utils::Chronometer chrono)
+void SensorsThread::sensorOnTimer()
 {
 	// Reset detection event pour ce cycle
 	sensors_.lastDetection_.clear();
-	sensors_.lastDetection_.timestamp_us = chrono.getElapsedTimeInMicroSec();
+	sensors_.lastDetection_.timestamp_us = 0;  // TODO: chronometer si besoin
 
 	// 1. LECTURE — sync beacon I2C
 	int err = sensors_.sync("beacon_sync");
@@ -811,7 +829,7 @@ void SensorsTimer::onTimer(utils::Chronometer chrono)
 	//
 	// TODO precision restante :
 	//  1) Recevoir la duree reelle du cycle Teensy dans un registre I2C (au lieu de la constante)
-	//  2) Reduire la periode du SensorsTimer de 20ms a 5ms pour reduire le jitter de polling
+	//  2) Reduire la periode du SensorsThread pour reduire le jitter de polling
 	//     (entre la fin de cycle Teensy et la lecture du flag I2C par OPOS6UL : 0-20ms aleatoire)
 	//  3) Mieux : GPIO interrupt Teensy -> OPOS6UL a chaque fin de cycle, capture timestamp exact
 	static const uint32_t TEENSY_CYCLE_MS = 60;
@@ -886,17 +904,5 @@ void SensorsTimer::onTimer(utils::Chronometer chrono)
 	// Le DetectionEvent est maintenant prêt.
 	// waitEndOfTrajWithDetection() le consultera à 1ms.
 	// Aucun appel à l'Asserv ici.
-}
-
-void SensorsTimer::onTimerEnd(utils::Chronometer chrono)
-{
-
-}
-
-std::string SensorsTimer::info()
-{
-	std::ostringstream oss;
-	oss << "SensorsTimer [" << name() << "] for " << sensors_.robot()->getID();
-	return oss.str();
 }
 

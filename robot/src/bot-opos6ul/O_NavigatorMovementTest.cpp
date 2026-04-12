@@ -15,6 +15,7 @@
 #include <vector>
 
 #include "interface/AAsservDriver.hpp"
+#include "utils/Arguments.hpp"
 #include "Robot.hpp"
 #include "log/Logger.hpp"
 #include "navigator/Navigator.hpp"
@@ -477,6 +478,14 @@ void O_NavigatorMovementTest::run(int argc, char** argv)
 
     OPOS6UL_RobotExtended &robot = OPOS6UL_RobotExtended::instance();
 
+    Arguments::Option cOptMultiplier('M', "simu speed multiplier (0=instantane, 1.0=temps reel)");
+    cOptMultiplier.addArgument("multiplier", "multiplier", "2.0");
+    robot.getArgs().addOption(cOptMultiplier);
+    robot.parseConsoleArgs(argc, argv);
+
+    float multiplier = atof(robot.getArgs()['M']["multiplier"].c_str());
+    logger().info() << "simuSpeedMultiplier=" << multiplier << logs::end;
+
     // Position initiale avant de demarrer le thread d'asserv (reset Nucleo +
     // filtre les positions residuelles). Chaque loopX_* fera son propre
     // resetPosition() ensuite.
@@ -484,8 +493,7 @@ void O_NavigatorMovementTest::run(int argc, char** argv)
     robot.asserv().startMotionTimerAndOdo(false);
     robot.asserv().assistedHandling();
 
-    // Mode instantane pour tests rapides (0=instantane, 1.0=temps reel)
-    robot.asserv().setSimuSpeedMultiplier(2.0);
+    robot.asserv().setSimuSpeedMultiplier(multiplier);
 
     passed_ = 0;
     failed_ = 0;

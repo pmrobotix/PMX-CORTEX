@@ -3,12 +3,13 @@
  * \brief Gestion des capteurs de detection et de distance.
  *
  * Fournit la detection d'obstacles (avant/arriere), le filtrage
- * des mesures et un timer periodique de surveillance.
+ * des mesures et un thread dedie de surveillance periodique.
  */
 
 #ifndef SENSORS_HPP_
 #define SENSORS_HPP_
 
+#include <atomic>
 #include <sstream>
 #include <string>
 
@@ -17,18 +18,19 @@
 #include "../Robot.hpp"
 #include "utils/Chronometer.hpp"
 #include "AActionsElement.hpp"
-#include "timer/ITimerScheduledListener.hpp"
+#include "thread/Thread.hpp"
 #include "geometry/ObstacleZone.hpp"
 #include "geometry/DetectionEvent.hpp"
 
 class ASensorsDriver;
 class Robot;
+class SensorsThread;
 
 /*!
  * \brief Gestion des capteurs de detection et de distance.
  */
 class Sensors: public AActionsElement {
-	friend class SensorsTimer;  ///< SensorsTimer accede a lastDetection_ pour le timestamp
+	friend class SensorsThread;  ///< SensorsThread accede a lastDetection_ pour le timestamp
 private:
 
 	static inline const logs::Logger& logger()
@@ -150,28 +152,34 @@ public:
 	void setIgnoreAllFrontNearObstacle(bool ignore) { obstacleZone_.setIgnoreAllFrontNearObstacle(ignore); }
 	void setIgnoreAllBackNearObstacle(bool ignore) { obstacleZone_.setIgnoreAllBackNearObstacle(ignore); }
 
-	//Ajoute le timer des sensors de detection
-	void addTimerSensors(int timespan_ms);
+	void startSensorsThread(int period_ms);
 
-	//supprime le timer des sensors
-	void stopTimerSensors();
+	void stopSensorsThread();
+
+private:
+	SensorsThread* sensorsThread_ = nullptr;
 };
 
 /*!
- * \brief Le timer associe aux sensors de detection.
- *        Tick par le scheduler unique ActionTimerScheduler.
+ * \brief Thread dedie a la detection d'obstacles.
+ *
+ * Sorti du scheduler unifie ActionTimerScheduler car le sync I2C beacon
+ * prend 5-10ms (budget scheduler < 1ms). Thread propre avec PeriodicTimer
+ * pour ne pas bloquer les autres timers (ServoObjects, LedBar...).
  */
-class SensorsTimer: public ITimerScheduledListener
+class SensorsThread: public utils::Thread
 {
 private:
 
 	static const logs::Logger& logger()
 	{
-		static const logs::Logger &instance = logs::LoggerFactory::logger("SensorsTimer");
+		static const logs::Logger &instance = logs::LoggerFactory::logger("SensorsThread");
 		return instance;
 	}
 
 	Sensors &sensors_;
+	int period_us_;
+	std::atomic<bool> stopRequested_;
 
 	int lastdetect_front_level_;
 	int lastdetect_back_level_;
@@ -182,20 +190,21 @@ private:
 	int nb_ensurefront4;
 	int nb_ensureback4;
 
+protected:
+
+	virtual void execute() override;
+
 public:
 
-	SensorsTimer(Sensors &sensors, int timeSpan_ms, std::string name);
+	SensorsThread(Sensors &sensors, int period_ms);
 
-	virtual inline ~SensorsTimer()
+	virtual inline ~SensorsThread()
 	{
 	}
 
-	virtual void onTimer(utils::Chronometer chrono);
+	void stopThread();
 
-	virtual void onTimerEnd(utils::Chronometer chrono);
-
-	virtual std::string info();
-
+	void sensorOnTimer();
 };
 
 #endif

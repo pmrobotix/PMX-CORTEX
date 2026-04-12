@@ -288,7 +288,7 @@ void AsservCborDriver::execute()
                     continue;
                 }
 
-                // Push history pour synchronisation beacon (SensorsTimer/getPositionAt)
+                // Push history pour synchronisation beacon (SensorsThread/getPositionAt)
                 // Le thread CBOR est le seul a recevoir les positions de la Nucleo,
                 // donc seul lui doit alimenter le buffer historique.
                 if (sharedPosition_ != nullptr) {

@@ -204,7 +204,7 @@ public:
 	void stopExtra()
 	{
 
-		sensors_.stopTimerSensors(); //TODO rename stop
+		sensors_.stopSensorsThread();
 		ledbar_.stop();
 
 		ledbar_.resetAll();

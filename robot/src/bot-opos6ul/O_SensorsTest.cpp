@@ -91,7 +91,7 @@ void O_SensorsTest::run(int argc, char** argv) {
 
     // 4. Demarrer les actions (scheduler) + timer beacon (detection adverse)
     robot.actions().start();
-    robot.actions().sensors().addTimerSensors(20);
+    robot.actions().sensors().startSensorsThread(20);
     robot.chrono().start();
 
     uint32_t last_seq = 0;
@@ -179,7 +179,7 @@ void O_SensorsTest::run(int argc, char** argv) {
 //
 //    //detection adverse
 //    robot.actions().start();
-//    robot.actions().sensors().addTimerSensors(50);
+//    robot.actions().sensors().startSensorsThread(50);
 //
 //    while (chrono.getElapsedTimeInSec() < 200) {
 //        front = robot.actions().sensors().front(true);

@@ -91,7 +91,7 @@ void O_IAByPathTest::run(int argc, char** argv)
     robot.svgPrintPosition();
 
     robot.actions().start();
-    robot.actions().sensors().addTimerSensors(20);
+    robot.actions().sensors().startSensorsThread(20);
 
     robot.chrono().start();
     robot.ia().iAbyPath().ia_start(); //launch IA
