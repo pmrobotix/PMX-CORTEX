@@ -14,7 +14,10 @@
 #include "log/LoggerFactory.hpp"
 
 //#define ADDRESS_BeaconSensors   0x2D
-#define DATA_BeaconSensors      0x04 //addresse des données à recupérer
+// Offset I2C des Registers = sizeof(Settings) sur la Teensy.
+// Settings fait maintenant 10 bytes (voir ARCHITECTURE_BEACON.md).
+#define SETTINGS_SIZE_BeaconSensors 10
+#define DATA_BeaconSensors      SETTINGS_SIZE_BeaconSensors //adresse des donnees Registers a recuperer
 #define NUMOFBOTS_BeaconSensors 0x00
 
 //WEBSITE REFERENCE : convert float to byte array  source: http://mbed.org/forum/helloworld/topic/2053/

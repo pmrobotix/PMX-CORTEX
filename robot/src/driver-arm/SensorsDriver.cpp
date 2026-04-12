@@ -8,6 +8,7 @@
 #include <vector>
 
 #include "log/Logger.hpp"
+#include "utils/json.hpp"
 
 class ARobotPositionShared;
 
@@ -112,6 +113,20 @@ int SensorsDriver::sync()
 	logger().debug() << "beacon seq:" << regs.seq << " t1:" << regs.t1_us << "us" << logs::end;
 
 	msync_.unlock();
+
+	// Telemetrie UDP : positions adversaires (envoye seulement si detection)
+	// Trame: {"OPOS6UL":{"t":...,"dt":...,"Adv":{"n":2,"x1":150,"y1":200,"a1":45.0,"d1":500,"x2":300,"y2":400,"a2":120.0,"d2":700}}}
+	if (regs.nbDetectedBots > 0)
+	{
+		static const logs::Logger & logAdv = logs::LoggerFactory::logger("Adv");
+		nlohmann::json j;
+		j["n"] = (int)regs.nbDetectedBots;
+		if (regs.nbDetectedBots >= 1) { j["x1"] = regs.x1_mm; j["y1"] = regs.y1_mm; j["a1"] = regs.a1_deg; j["d1"] = regs.d1_mm; }
+		if (regs.nbDetectedBots >= 2) { j["x2"] = regs.x2_mm; j["y2"] = regs.y2_mm; j["a2"] = regs.a2_deg; j["d2"] = regs.d2_mm; }
+		if (regs.nbDetectedBots >= 3) { j["x3"] = regs.x3_mm; j["y3"] = regs.y3_mm; j["a3"] = regs.a3_deg; j["d3"] = regs.d3_mm; }
+		if (regs.nbDetectedBots >= 4) { j["x4"] = regs.x4_mm; j["y4"] = regs.y4_mm; j["a4"] = regs.a4_deg; j["d4"] = regs.d4_mm; }
+		logAdv.telemetry(j.dump());
+	}
 
 	return 1; // nouvelles donnees lues
 }

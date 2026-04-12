@@ -90,8 +90,8 @@ void logs::TelemetryAppender::writeMessageWithJsonTime(std::string id, const log
     uint64_t duration = (duration_cast<microseconds>(system_clock::now() - start_).count());
     uint64_t ms = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
     nlohmann::json j;
-    j[id]["timestamp"] = (double)(ms/1000.0); //pour avoir les millisseconds 3 chiffres apres la virgule
-    j[id]["elapsedtime_ms"] = (double)(duration/1000.0);
+    j[id]["t"] = (double)(ms/1000.0); //timestamp systeme en secondes (3 decimales)
+    j[id]["dt"] = (double)(duration/1000.0); //delta time depuis demarrage en ms
 
     if (level == logs::Level::TELEM) {
         try

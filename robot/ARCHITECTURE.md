@@ -1346,16 +1346,47 @@ OPOS6UL (robot)                              RPI (récepteur)
 
 ### Format des paquets JSON
 
-Chaque paquet UDP contient un objet JSON avec l'ID du robot, un timestamp, le temps écoulé et les données du logger :
+Chaque paquet UDP contient un objet JSON avec l'ID du robot, un timestamp (`t`), le temps écoulé (`dt`) et les données du logger.
+
+**Enveloppe commune** (toutes les trames) :
+
+| Clé | Signification | Unité |
+|-----|---------------|-------|
+| `t` | timestamp horloge système | secondes (3 décimales) |
+| `dt` | delta time depuis démarrage | millisecondes |
+
+**Position du robot** (logger `Pos`, ~10-20 Hz, depuis AsservCborDriver) :
 
 ```json
-{
-  "OPOS6UL": {
-    "timestamp": 1774733396.268,
-    "elapsedtime_ms": 10009.463,
-    "LedBar": { "pos": 0, "color": 6 }
-  }
-}
+{"OPOS6UL":{"t":1718193600.123,"dt":4567.890,"Pos":{"x":150.0,"y":300.0,"a":90.0,"s":1,"q":2}}}
+```
+
+| Clé | Signification | Unité |
+|-----|---------------|-------|
+| `x` | position X robot | mm |
+| `y` | position Y robot | mm |
+| `a` | angle robot | degrés |
+| `s` | asserv status | 0=idle, 1=running, 2=emergency, 3=blocked |
+| `q` | queue size | nombre de commandes en file |
+
+**Positions adversaires** (logger `Adv`, envoyé seulement si détection, depuis SensorsDriver) :
+
+```json
+{"OPOS6UL":{"t":1718193600.123,"dt":4567.890,"Adv":{"n":2,"x1":150,"y1":200,"a1":45.0,"d1":500,"x2":300,"y2":400,"a2":120.0,"d2":700}}}
+```
+
+| Clé | Signification | Unité |
+|-----|---------------|-------|
+| `n` | nombre de robots adverses détectés | 0..4 |
+| `x1`..`x4` | position X adversaire (repère beacon) | mm |
+| `y1`..`y4` | position Y adversaire (repère beacon) | mm |
+| `a1`..`a4` | angle adversaire | degrés |
+| `d1`..`d4` | distance centre-à-centre | mm |
+
+**LEDs** (logger `LedBar`) :
+
+```json
+{"OPOS6UL":{"t":1718193600.123,"dt":4567.890,"LedBar":{"pos":0,"color":6}}}
 ```
 
 ### Configuration réseau
@@ -1367,13 +1398,21 @@ Chaque paquet UDP contient un objet JSON avec l'ID du robot, un timestamp, le te
 
 La même IP est utilisée en SIMU et en ARM. La configuration est dans `src/bot-opos6ul/LoggerInitialize.cpp`.
 
-### Test local en simulation
+Reconfigurable au lancement : `./bot-opos6ul /i 192.168.3.50 /p 10000`
+
+### Réception des trames UDP
+
+Depuis le récepteur (RPI ou PC) :
 
 ```bash
-cd robot/build-simu-release
-socat -u UDP-RECV:9870,reuseaddr OPEN:./telemetry.json,creat,trunc &
-./bot-opos6ul t /n 1
-cat telemetry.json
+# Affichage temps réel
+nc -lu 9870
+
+# Ou avec socat
+socat -u UDP-LISTEN:9870,reuseaddr STDOUT
+
+# Sauvegarde dans un fichier
+socat -u UDP-LISTEN:9870,reuseaddr OPEN:./telemetry.json,creat,append &
 ```
 
 ### Loggers branchés sur la télémétrie

@@ -80,6 +80,7 @@ Chaque sous-dossier dans `pamis/` est un PAMI indépendant.
 - Proposer des solutions simples et testables
 - Expliquer les choix d'architecture quand c'est pertinent
 - Pas d'hallucination : si tu ne connais pas un détail hardware, dis-le
+- Avant chaque commit demandé par l'utilisateur, proposer le message de commit avec un résumé des modifications et attendre sa validation avant de commiter
 
 ## Fichiers de référence (robot/)
 

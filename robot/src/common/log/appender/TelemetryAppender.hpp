@@ -24,8 +24,16 @@ using namespace std::chrono;
 namespace logs {
 /*!
  * \brief Implémentation de Appender pour une écriture des traces
- * sur un flux de reseau.
+ * sur un flux réseau UDP (JSON).
  *
+ * Envoie les messages TELEM et ERROR en UDP vers un récepteur externe (RPI).
+ * IP et port configurables au lancement : ./bot-opos6ul /i 192.168.3.50 /p 10000
+ *
+ * Réception sur le récepteur :
+ *   nc -lu 9870
+ *   socat -u UDP-LISTEN:9870,reuseaddr STDOUT
+ *
+ * Format JSON : {"OPOS6UL":{"t":timestamp_s,"dt":elapsed_ms,"LoggerName":{...}}}
  */
 class TelemetryAppender: public MemoryAppender {
 private:

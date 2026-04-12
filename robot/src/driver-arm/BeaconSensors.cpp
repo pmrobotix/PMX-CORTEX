@@ -125,7 +125,10 @@ Registers BeaconSensors::getData()
             << regs.c1_mm << " " << regs.c2_mm << " " << regs.c3_mm << " " << regs.c4_mm << " " << regs.c5_mm << " "
             << regs.c6_mm << " " << regs.c7_mm << " C8:" << regs.c8_mm << logs::end;
 
-    err = readRegnBytes(24, buf, 8);
+    // Offsets = anciens offsets + 6 (Settings est passé de 4 à 10 bytes).
+    // Voir ARCHITECTURE_BEACON.md "Menu pre-match" pour le layout complet.
+
+    err = readRegnBytes(DATA_BeaconSensors + 20, buf, 8); // x1/y1/a1 (ancien offset 24)
     if (err < 0) {
         logger().debug() << "BeaconSensors : readRegnBytes ERROR !" << logs::end;
         regs.flags = 0xFF; //ERROR
@@ -143,7 +146,7 @@ Registers BeaconSensors::getData()
 
     logger().debug() << " x1:" << regs.x1_mm << " " << regs.y1_mm << " " << regs.a1_deg << logs::end;
 
-    err = readRegnBytes(32, buf, 8);
+    err = readRegnBytes(DATA_BeaconSensors + 28, buf, 8); // x2/y2/a2 (ancien offset 32)
     if (err < 0) {
         logger().debug() << "BeaconSensors : readRegnBytes ERROR !" << logs::end;
         regs.flags = 0xFF; //ERROR
@@ -160,7 +163,7 @@ Registers BeaconSensors::getData()
 
     logger().debug() << " x2:" << regs.x2_mm << " " << regs.y2_mm << " " << regs.a2_deg << logs::end;
 
-    err = readRegnBytes(40, buf, 8);
+    err = readRegnBytes(DATA_BeaconSensors + 36, buf, 8); // x3/y3/a3 (ancien offset 40)
     if (err < 0) {
         logger().debug() << "BeaconSensors : readRegnBytes ERROR !" << logs::end;
         regs.flags = 0xFF; //ERROR
@@ -177,7 +180,7 @@ Registers BeaconSensors::getData()
 
     logger().debug() << " x3:" << regs.x3_mm << " " << regs.y3_mm << " " << regs.a3_deg << logs::end;
 
-    err = readRegnBytes(48, buf, 8);
+    err = readRegnBytes(DATA_BeaconSensors + 44, buf, 8); // x4/y4/a4 (ancien offset 48)
     if (err < 0) {
         logger().debug() << "BeaconSensors : readRegnBytes ERROR !" << logs::end;
         regs.flags = 0xFF; //ERROR
@@ -194,7 +197,7 @@ Registers BeaconSensors::getData()
 
     logger().debug() << " x4:" << regs.x4_mm << " " << regs.y4_mm << " " << regs.a4_deg << logs::end;
 
-    err = readRegnBytes(56, buf, 8);
+    err = readRegnBytes(DATA_BeaconSensors + 52, buf, 8); // d1-d4 (ancien offset 56)
     if (err < 0) {
         logger().debug() << "BeaconSensors : readRegnBytes ERROR !" << logs::end;
         regs.flags = 0xFF; //ERROR
@@ -208,8 +211,8 @@ Registers BeaconSensors::getData()
     logger().debug() << " d1:" << regs.d1_mm << " " << regs.d2_mm << " " << regs.d3_mm << " " << regs.d4_mm
             << logs::end;
 
-    // Lecture des registres timing (t1-t4_us + seq) à l'offset 128
-    err = readRegnBytes(128, buf, 12);
+    // Lecture des registres timing (t1-t4_us + seq) à l'offset DATA + 124 (ancien offset 128)
+    err = readRegnBytes(DATA_BeaconSensors + 124, buf, 12);
     if (err >= 0) {
         regs.t1_us = buf[0] | (buf[1] << 8);
         regs.t2_us = buf[2] | (buf[3] << 8);

@@ -12,6 +12,7 @@
 #include <cstring>
 #include <qcbor/qcbor_encode.h>
 #include "cppCrc.h"
+#include "utils/json.hpp"
 
 using namespace std;
 
@@ -293,6 +294,19 @@ void AsservCborDriver::execute()
                 // donc seul lui doit alimenter le buffer historique.
                 if (sharedPosition_ != nullptr) {
                     sharedPosition_->setRobotPosition(p_copy);
+                }
+
+                // Telemetrie UDP : position du robot
+                // Trame: {"OPOS6UL":{"t":...,"dt":...,"Pos":{"x":150.0,"y":300.0,"a":90.0,"s":1,"q":2}}}
+                {
+                    static const logs::Logger & logPos = logs::LoggerFactory::logger("Pos");
+                    nlohmann::json j;
+                    j["x"] = p_copy.x;
+                    j["y"] = p_copy.y;
+                    j["a"] = p_copy.theta * (180.0f / M_PI); // rad -> deg
+                    j["s"] = p_copy.asservStatus;
+                    j["q"] = p_copy.queueSize;
+                    logPos.telemetry(j.dump());
                 }
 
                 // Trace SVG : un point bleu + direction si la position a changé

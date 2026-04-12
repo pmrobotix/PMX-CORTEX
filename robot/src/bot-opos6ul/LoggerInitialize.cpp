@@ -53,6 +53,8 @@ void logs::LoggerFactory::initialize()
     add(logs::Level::ERROR, "ServoObjectsSystem", "console");
     add(logs::Level::INFO, "ActionManagerPosixTimer", "console");
     add(logs::Level::INFO, "LedBar", "net");
+    add(logs::Level::INFO, "Pos", "net");
+    add(logs::Level::INFO, "Adv", "net");
 
     //State
     add(logs::Level::INFO, "O_State_Init", "console");
