@@ -225,28 +225,139 @@ void lv_example_grid_2(void) {
 // ============================================================================
 
 /**
- * Callback : changement de la couleur de match (dropdown).
+ * Applique le style visuel du bouton couleur selon settings.matchColor.
+ * 0 = fond bleu + texte "BLEU", 1 = fond jaune + texte "JAUNE".
+ */
+static void updateColorButton(lv_obj_t *btn) {
+	lv_obj_t *label = lv_obj_get_child(btn, 0);
+	if (settings.matchColor == 0) {
+		lv_obj_set_style_bg_color(btn, lv_color_make(0, 80, 200), 0);
+		lv_obj_set_style_text_color(label, lv_color_white(), 0);
+		lv_label_set_text(label, "BLEU");
+	} else {
+		lv_obj_set_style_bg_color(btn, lv_color_make(240, 200, 0), 0);
+		lv_obj_set_style_text_color(label, lv_color_black(), 0);
+		lv_label_set_text(label, "JAUNE");
+	}
+}
+
+/**
+ * Callback : clic sur le bouton couleur -> toggle bleu/jaune.
  * Ecrit directement dans settings.matchColor (Reg 5, Bloc 2 LCD->OPOS6UL).
  */
 static void matchColor_event_cb(lv_event_t *e) {
-	lv_obj_t *dd = (lv_obj_t*) lv_event_get_target(e);
-	settings.matchColor = (uint8_t) lv_dropdown_get_selected(dd);
+	lv_obj_t *btn = (lv_obj_t*) lv_event_get_target(e);
+	settings.matchColor = (settings.matchColor == 0) ? 1 : 0;
+	updateColorButton(btn);
+}
+
+// --- ledLuminosity : boutons [-] valeur [+] (pas de 10, 0..100) ---
+
+static lv_obj_t *lbl_lum_value = nullptr;
+
+static void ledLum_minus_cb(lv_event_t *e) {
+	(void)e;
+	if (settings.ledLuminosity >= 10)
+		settings.ledLuminosity -= 10;
+	else
+		settings.ledLuminosity = 0;
+	if (lbl_lum_value) lv_label_set_text_fmt(lbl_lum_value, "%d", settings.ledLuminosity);
+}
+
+static void ledLum_plus_cb(lv_event_t *e) {
+	(void)e;
+	if (settings.ledLuminosity <= 90)
+		settings.ledLuminosity += 10;
+	else
+		settings.ledLuminosity = 100;
+	if (lbl_lum_value) lv_label_set_text_fmt(lbl_lum_value, "%d", settings.ledLuminosity);
+}
+
+// --- advDiameter : boutons [-5] valeur [+5] (cm, 5..250, defaut 40) ---
+
+static lv_obj_t *lbl_adv_value = nullptr;
+
+static void advDiam_minus_cb(lv_event_t *e) {
+	(void)e;
+	if (settings.advDiameter >= 10)
+		settings.advDiameter -= 5;
+	else
+		settings.advDiameter = 5;
+	if (lbl_adv_value) lv_label_set_text_fmt(lbl_adv_value, "%d cm", settings.advDiameter);
+}
+
+static void advDiam_plus_cb(lv_event_t *e) {
+	(void)e;
+	if (settings.advDiameter <= 245)
+		settings.advDiameter += 5;
+	else
+		settings.advDiameter = 250;
+	if (lbl_adv_value) lv_label_set_text_fmt(lbl_adv_value, "%d cm", settings.advDiameter);
+}
+
+// --- Strategy : 3 boutons radio (1/2/3) ---
+
+#define STRATEGY_COUNT 3
+static lv_obj_t *strategy_btns[STRATEGY_COUNT] = { nullptr };
+
+static lv_color_t strategy_color_selected   = { .full = 0x07E0 }; // vert
+static lv_color_t strategy_color_unselected = { .full = 0x4208 }; // gris fonce
+
+static void updateStrategyButtons(void) {
+	for (int i = 0; i < STRATEGY_COUNT; i++) {
+		if (strategy_btns[i] == nullptr) continue;
+		bool sel = (settings.strategy == (i + 1));
+		lv_obj_set_style_bg_color(strategy_btns[i],
+				sel ? strategy_color_selected : strategy_color_unselected, 0);
+		lv_obj_t *label = lv_obj_get_child(strategy_btns[i], 0);
+		lv_obj_set_style_text_color(label, sel ? lv_color_black() : lv_color_white(), 0);
+	}
+}
+
+static void strategy_event_cb(lv_event_t *e) {
+	lv_obj_t *btn = (lv_obj_t*) lv_event_get_target(e);
+	for (int i = 0; i < STRATEGY_COUNT; i++) {
+		if (strategy_btns[i] == btn) {
+			settings.strategy = (uint8_t)(i + 1);
+			break;
+		}
+	}
+	updateStrategyButtons();
+}
+
+// --- TestMode : 5 boutons radio (1..5), 0 = aucun (re-clic deselectionne) ---
+
+#define TESTMODE_COUNT 5
+static lv_obj_t *testMode_btns[TESTMODE_COUNT] = { nullptr };
+
+static void updateTestModeButtons(void) {
+	for (int i = 0; i < TESTMODE_COUNT; i++) {
+		if (testMode_btns[i] == nullptr) continue;
+		bool sel = (settings.testMode == (i + 1));
+		lv_obj_set_style_bg_color(testMode_btns[i],
+				sel ? strategy_color_selected : strategy_color_unselected, 0);
+		lv_obj_t *label = lv_obj_get_child(testMode_btns[i], 0);
+		lv_obj_set_style_text_color(label, sel ? lv_color_black() : lv_color_white(), 0);
+	}
+}
+
+static void testMode_event_cb(lv_event_t *e) {
+	lv_obj_t *btn = (lv_obj_t*) lv_event_get_target(e);
+	for (int i = 0; i < TESTMODE_COUNT; i++) {
+		if (testMode_btns[i] == btn) {
+			// Re-clic sur le meme -> deselectionne (testMode = 0 = aucun)
+			if (settings.testMode == (i + 1))
+				settings.testMode = 0;
+			else
+				settings.testMode = (uint8_t)(i + 1);
+			break;
+		}
+	}
+	updateTestModeButtons();
 }
 
 /**
- * Callback : changement du numero de match (dropdown).
- * Dropdown indexe 0..9, matchNumber en 1..10 (Reg 8, Bloc 2 LCD->OPOS6UL).
- */
-static void matchNumber_event_cb(lv_event_t *e) {
-	lv_obj_t *dd = (lv_obj_t*) lv_event_get_target(e);
-	settings.matchNumber = (uint8_t) (lv_dropdown_get_selected(dd) + 1);
-}
-
-/**
- * Cree le menu pre-match : 3 widgets LVGL simples.
- * - Dropdown matchColor (Bleu/Jaune)   -> settings.matchColor
- * - Dropdown matchNumber (1..10)       -> settings.matchNumber
- * - Labels read-only numOfBots + matchPoints (ecrits par OPOS6UL)
+ * Cree le menu pre-match.
  *
  * Cette fonction remplace `lv_example_grid_1()` dans setup_screen().
  * La fonction `lv_example_grid_1()` est conservee plus haut dans le fichier
@@ -254,58 +365,127 @@ static void matchNumber_event_cb(lv_event_t *e) {
  */
 static void create_match_menu(void) {
 	lv_obj_t *scr = lv_scr_act();
+	lv_obj_t *label;
+	lv_obj_t *btn;
 
-	// Titre
-	lv_obj_t *title = lv_label_create(scr);
-	lv_label_set_text(title, "PMX - Menu Pre-Match");
-	lv_obj_align(title, LV_ALIGN_TOP_MID, 0, 10);
+	// --- Ligne 0 (y=2) : LED luminosite [-] val [+] en petit, en haut ---
+	lv_obj_t *lbl_lum_title = lv_label_create(scr);
+	lv_label_set_text(lbl_lum_title, "LED");
+	lv_obj_align(lbl_lum_title, LV_ALIGN_TOP_LEFT, 6, 6);
 
-	// --- Ligne 1 : couleur de match ---
-	lv_obj_t *lbl_color = lv_label_create(scr);
-	lv_label_set_text(lbl_color, "Couleur:");
-	lv_obj_align(lbl_color, LV_ALIGN_TOP_LEFT, 10, 50);
+	btn = lv_btn_create(scr);
+	lv_obj_set_size(btn, 30, 20);
+	lv_obj_set_pos(btn, 36, 4);
+	label = lv_label_create(btn);
+	lv_label_set_text(label, "-");
+	lv_obj_center(label);
+	lv_obj_add_event_cb(btn, ledLum_minus_cb, LV_EVENT_CLICKED, NULL);
 
-	lv_obj_t *dd_color = lv_dropdown_create(scr);
-	lv_dropdown_set_options(dd_color, "Bleu\nJaune");
-	lv_obj_set_width(dd_color, 140);
-	lv_obj_align(dd_color, LV_ALIGN_TOP_LEFT, 140, 45);
-	lv_dropdown_set_selected(dd_color, settings.matchColor);
-	lv_obj_add_event_cb(dd_color, matchColor_event_cb,
-			LV_EVENT_VALUE_CHANGED, NULL);
+	lbl_lum_value = lv_label_create(scr);
+	lv_label_set_text_fmt(lbl_lum_value, "%d", settings.ledLuminosity);
+	lv_obj_set_pos(lbl_lum_value, 74, 6);
 
-	// --- Ligne 2 : numero de match ---
-	lv_obj_t *lbl_match = lv_label_create(scr);
-	lv_label_set_text(lbl_match, "Match N:");
-	lv_obj_align(lbl_match, LV_ALIGN_TOP_LEFT, 10, 100);
+	btn = lv_btn_create(scr);
+	lv_obj_set_size(btn, 30, 20);
+	lv_obj_set_pos(btn, 100, 4);
+	label = lv_label_create(btn);
+	lv_label_set_text(label, "+");
+	lv_obj_center(label);
+	lv_obj_add_event_cb(btn, ledLum_plus_cb, LV_EVENT_CLICKED, NULL);
 
-	lv_obj_t *dd_match = lv_dropdown_create(scr);
-	lv_dropdown_set_options(dd_match, "1\n2\n3\n4\n5\n6\n7\n8\n9\n10");
-	lv_obj_set_width(dd_match, 140);
-	lv_obj_align(dd_match, LV_ALIGN_TOP_LEFT, 140, 95);
-	uint8_t mn = settings.matchNumber;
-	if (mn < 1) mn = 1;
-	if (mn > 10) mn = 10;
-	lv_dropdown_set_selected(dd_match, mn - 1);
-	lv_obj_add_event_cb(dd_match, matchNumber_event_cb,
-			LV_EVENT_VALUE_CHANGED, NULL);
-
-	// --- Ligne 3 : numOfBots (lecture seule, ecrit par OPOS6UL) ---
+	// Bots + Pts en haut a droite
 	lv_obj_t *lbl_bots_title = lv_label_create(scr);
-	lv_label_set_text(lbl_bots_title, "numOfBots:");
-	lv_obj_align(lbl_bots_title, LV_ALIGN_TOP_LEFT, 10, 155);
+	lv_label_set_text(lbl_bots_title, "Bots:");
+	lv_obj_set_pos(lbl_bots_title, 200, 6);
 
 	lbl_numOfBots_value = lv_label_create(scr);
 	lv_label_set_text_fmt(lbl_numOfBots_value, "%d", settings.numOfBots);
-	lv_obj_align(lbl_numOfBots_value, LV_ALIGN_TOP_LEFT, 140, 155);
+	lv_obj_set_pos(lbl_numOfBots_value, 240, 6);
 
-	// --- Ligne 4 : matchPoints (lecture seule, ecrit par OPOS6UL) ---
-	lv_obj_t *lbl_points_title = lv_label_create(scr);
-	lv_label_set_text(lbl_points_title, "matchPoints:");
-	lv_obj_align(lbl_points_title, LV_ALIGN_TOP_LEFT, 10, 185);
+	lv_obj_t *lbl_pts_title = lv_label_create(scr);
+	lv_label_set_text(lbl_pts_title, "Pts:");
+	lv_obj_set_pos(lbl_pts_title, 262, 6);
 
 	lbl_matchPoints_value = lv_label_create(scr);
 	lv_label_set_text_fmt(lbl_matchPoints_value, "%d", settings.matchPoints);
-	lv_obj_align(lbl_matchPoints_value, LV_ALIGN_TOP_LEFT, 140, 185);
+	lv_obj_set_pos(lbl_matchPoints_value, 294, 6);
+
+	// --- Ligne 1 (y=30) : bouton toggle couleur ---
+	lv_obj_t *btn_color = lv_btn_create(scr);
+	lv_obj_set_size(btn_color, 200, 40);
+	lv_obj_align(btn_color, LV_ALIGN_TOP_MID, 0, 30);
+	label = lv_label_create(btn_color);
+	lv_obj_center(label);
+	updateColorButton(btn_color);
+	lv_obj_add_event_cb(btn_color, matchColor_event_cb,
+			LV_EVENT_CLICKED, NULL);
+
+	// --- Ligne 2 (y=76) : strategie 1/2/3 ---
+	lv_obj_t *lbl_strat = lv_label_create(scr);
+	lv_label_set_text(lbl_strat, "Strategie");
+	lv_obj_align(lbl_strat, LV_ALIGN_TOP_MID, 0, 76);
+
+	int strat_btn_w = 90;
+	int strat_btn_h = 40;
+	int strat_total = STRATEGY_COUNT * strat_btn_w + (STRATEGY_COUNT - 1) * 8;
+	int strat_x0 = (320 - strat_total) / 2;
+	for (int i = 0; i < STRATEGY_COUNT; i++) {
+		strategy_btns[i] = lv_btn_create(scr);
+		lv_obj_set_size(strategy_btns[i], strat_btn_w, strat_btn_h);
+		lv_obj_set_pos(strategy_btns[i], strat_x0 + i * (strat_btn_w + 8), 92);
+		label = lv_label_create(strategy_btns[i]);
+		lv_label_set_text_fmt(label, "%d", i + 1);
+		lv_obj_center(label);
+		lv_obj_add_event_cb(strategy_btns[i], strategy_event_cb,
+				LV_EVENT_CLICKED, NULL);
+	}
+	updateStrategyButtons();
+
+	// --- Ligne 3 (y=138) : testMode 1..5 ---
+	lv_obj_t *lbl_test = lv_label_create(scr);
+	lv_label_set_text(lbl_test, "Test");
+	lv_obj_align(lbl_test, LV_ALIGN_TOP_MID, 0, 138);
+
+	int test_btn_w = 54;
+	int test_btn_h = 28;
+	int test_total = TESTMODE_COUNT * test_btn_w + (TESTMODE_COUNT - 1) * 6;
+	int test_x0 = (320 - test_total) / 2;
+	for (int i = 0; i < TESTMODE_COUNT; i++) {
+		testMode_btns[i] = lv_btn_create(scr);
+		lv_obj_set_size(testMode_btns[i], test_btn_w, test_btn_h);
+		lv_obj_set_pos(testMode_btns[i], test_x0 + i * (test_btn_w + 6), 154);
+		label = lv_label_create(testMode_btns[i]);
+		lv_label_set_text_fmt(label, "T%d", i + 1);
+		lv_obj_center(label);
+		lv_obj_add_event_cb(testMode_btns[i], testMode_event_cb,
+				LV_EVENT_CLICKED, NULL);
+	}
+	updateTestModeButtons();
+
+	// --- Ligne 4 (y=190) : diametre adversaire [-5] val [+5] ---
+	lv_obj_t *lbl_adv_title = lv_label_create(scr);
+	lv_label_set_text(lbl_adv_title, "Diam. adv:");
+	lv_obj_align(lbl_adv_title, LV_ALIGN_TOP_LEFT, 10, 198);
+
+	btn = lv_btn_create(scr);
+	lv_obj_set_size(btn, 50, 34);
+	lv_obj_set_pos(btn, 100, 192);
+	label = lv_label_create(btn);
+	lv_label_set_text(label, "-5");
+	lv_obj_center(label);
+	lv_obj_add_event_cb(btn, advDiam_minus_cb, LV_EVENT_CLICKED, NULL);
+
+	lbl_adv_value = lv_label_create(scr);
+	lv_label_set_text_fmt(lbl_adv_value, "%d cm", settings.advDiameter);
+	lv_obj_set_pos(lbl_adv_value, 162, 198);
+
+	btn = lv_btn_create(scr);
+	lv_obj_set_size(btn, 50, 34);
+	lv_obj_set_pos(btn, 225, 192);
+	label = lv_label_create(btn);
+	lv_label_set_text(label, "+5");
+	lv_obj_center(label);
+	lv_obj_add_event_cb(btn, advDiam_plus_cb, LV_EVENT_CLICKED, NULL);
 }
 
 void setup_screen() {

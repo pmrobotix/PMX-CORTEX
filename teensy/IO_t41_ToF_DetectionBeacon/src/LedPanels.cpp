@@ -72,7 +72,7 @@ void showFirstLedLine()
 	ledmatrix.DrawLine(0, 0, 3, 7, CRGB(0, 255, 0));
 	ledmatrix.DrawLine(0, 0, ledmatrix.Width() - 1, ledmatrix.Height() - 1, CRGB(0, 0, 255));
 	ledmatrix.DrawLine(0, 0, 7, 7, CRGB(255, 0, 0));
-	FastLED.show(BRIGHTNESS);
+	FastLED.show(settings.ledLuminosity);
 }
 
 //OLD
@@ -117,7 +117,7 @@ void ledPanels_setup()
 	Serial.println(mh);
 	matrix->begin();
 	matrix->setTextWrap(false);
-	matrix->setBrightness(BRIGHTNESS);
+	matrix->setBrightness(settings.ledLuminosity);
 	// Mix in an init of LEDMatrix
 	//sprite_setup();
 	//display_rgbBitmap(1);
@@ -207,6 +207,7 @@ void thread_display()
 					add_display_black_dist(); //affichage des leds vertes avec la main
 				}
 			}
+			matrix->setBrightness(settings.ledLuminosity); // applique la luminosite LCD/I2C en temps reel
 			matrix->show();
 			threads.yield();
 		}
@@ -1363,14 +1364,14 @@ void display_panOrBounceBitmap(uint8_t bitmapSize)
 	int16_t xf = max(0, (mw - bitmapSize) / 2) << 4;
 	int16_t yf = max(0, (mh - bitmapSize) / 2) << 4;
 	// scroll speed in 1/16th
-	int16_t xfc = 6;
+	int16_t xfc = 12;
 	int16_t yfc = 3;
 	// scroll down and right by moving upper left corner off screen
 	// more up and left (which means negative numbers)
 	int16_t xfdir = -1;
 	int16_t yfdir = -1;
 
-	for (uint16_t i = 1; i < 72; i++)
+	for (uint16_t i = 1; i < 200; i++)
 	{
 		bool updDir = false;
 
@@ -1421,10 +1422,11 @@ void display_panOrBounceBitmap(uint8_t bitmapSize)
 			};
 		}
 		// only bounce a pixmap if it's smaller than the display size
+		// bounce 360° : le logo depasse de chaque cote (passe derriere la balise)
 		if (mw > bitmapSize)
 		{
 			xf += xfc * xfdir;
-			// Deal with bouncing off the 'walls'
+			// Deal with bouncing off the 'walls' - extended to go behind the beacon
 			if (xf >= (mw - bitmapSize) << 4)
 			{
 				xfdir = -1;

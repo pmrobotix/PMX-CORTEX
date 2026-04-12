@@ -31,10 +31,13 @@
  *
  * Ces parametres sont organises en 2 blocs contigus par sens de communication :
  * - Bloc 1 (reg 0-4) : OPOS6UL -> Teensy (config, affichage, etat match)
- * - Bloc 2 (reg 5-9) : Teensy (LCD tactile) -> OPOS6UL (choix operateur pre-match)
+ * - Bloc 2 (reg 5-8) : Teensy (LCD tactile) -> OPOS6UL (choix operateur pre-match)
  *
  * Regle d'atomicite : un seul ecrivain par byte. Les acces uint8_t/int8_t
  * sur Cortex-M7 etant atomiques, aucun mutex n'est necessaire sur ces champs.
+ * Exception : ledLuminosity (reg 1) peut etre ecrit par le LCD en phase prepa
+ * ET par l'OPOS6UL en phase match (dernier ecrivain gagne, pas de conflit
+ * en pratique car les phases sont sequentielles).
  *
  * Voir teensy/IO_t41_ToF_DetectionBeacon/ARCHITECTURE_BEACON.md
  * section "Menu pre-match (LCD tactile)" pour l'architecture complete.
@@ -47,14 +50,13 @@ struct Settings {
 	uint8_t matchState    = 0;   ///< Reg 3. Etat match: 0=prepa, 1=en cours, 2=fini (W: OPOS6UL).
 	uint8_t lcdBacklight  = 1;   ///< Reg 4. Backlight LCD: 0=off, 1=on (W: OPOS6UL).
 
-	// === Bloc 2 : Teensy (LCD) -> OPOS6UL (5 bytes) ===
+	// === Bloc 2 : Teensy (LCD) -> OPOS6UL (4 bytes) ===
 	uint8_t matchColor    = 0;   ///< Reg 5. Couleur equipe: 0=bleu, 1=jaune (W: LCD).
-	uint8_t strategy      = 0;   ///< Reg 6. N° strategie IA 0..N (W: LCD).
-	uint8_t testMode      = 0;   ///< Reg 7. Test materiel: 0=aucun, 1..255=test dedie (W: LCD).
-	uint8_t matchNumber   = 1;   ///< Reg 8. Numero de match 1..N (W: LCD).
-	uint8_t lcdCommitFlag = 0;   ///< Reg 9. b0=settings valides par user (W: LCD).
+	uint8_t strategy      = 0;   ///< Reg 6. N° strategie IA 1..3 (W: LCD).
+	uint8_t testMode      = 0;   ///< Reg 7. Test materiel: 0=aucun, 1..5=test dedie (W: LCD).
+	uint8_t advDiameter   = 40;  ///< Reg 8. Diametre adversaire en cm, defaut 40 (W: LCD).
 };
-static_assert(sizeof(Settings) == 10, "Settings must be exactly 10 bytes for I2C layout");
+static_assert(sizeof(Settings) == 9, "Settings must be exactly 9 bytes for I2C layout");
 
 /**
  * @brief Registres I2C en lecture seule pour le master (OPOS6UL).
