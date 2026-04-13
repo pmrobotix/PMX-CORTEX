@@ -64,6 +64,7 @@ public:
     bool is_connected();
 
     void displayNumber(int number);
+    void writeLedLuminosity(uint8_t lum);
     int getAnalogPinData();
 
 

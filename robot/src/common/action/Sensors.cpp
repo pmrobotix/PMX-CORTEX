@@ -142,6 +142,11 @@ void Sensors::display(int n)
 	sensorsdriver_->displayNumber(n);
 }
 
+void Sensors::writeLedLuminosity(uint8_t lum)
+{
+	sensorsdriver_->writeLedLuminosity(lum);
+}
+
 //is connected and alive
 bool Sensors::is_connected()
 {

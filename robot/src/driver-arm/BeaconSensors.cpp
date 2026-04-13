@@ -72,7 +72,6 @@ bool BeaconSensors::begin(Settings settings)
 
 void BeaconSensors::display(int number)
 {
-
     if (!connected_BeaconSensors_) {
         return ;
     }
@@ -81,6 +80,18 @@ void BeaconSensors::display(int number)
     int err = i2c_BeaconSensors_.writeReg(0x02, &n, 1);
     if (err < 0) {
         logger().error() << "BeaconSensors::display() : error writereg err=" << err << logs::end;
+    }
+}
+
+void BeaconSensors::writeLedLuminosity(uint8_t lum)
+{
+    if (!connected_BeaconSensors_) {
+        return ;
+    }
+
+    int err = i2c_BeaconSensors_.writeReg(0x01, &lum, 1);
+    if (err < 0) {
+        logger().error() << "BeaconSensors::writeLedLuminosity() : error writereg err=" << err << logs::end;
     }
 }
 

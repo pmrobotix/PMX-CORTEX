@@ -27,6 +27,9 @@ O_State_Init::execute(Robot&)
 	robot.actions().lcd2x16().setBacklightOn();
 	robot.actions().lcd2x16().clear();
 
+	// Luminosite LED beacon a 50 pour le match (la Teensy boot a 5 en prepa)
+	robot.actions().sensors().writeLedLuminosity(50);
+
 	if (!robot.skipSetup())
 	{
 		//robot.strategy("all");//defaut si BEGIN //TODO utile ?

@@ -148,6 +148,12 @@ public:
 	 */
 	virtual void displayNumber(int number) = 0;
 
+	/*!
+	 * \brief Ecrit la luminosite de la matrice LED de la balise beacon.
+	 * \param lum Luminosite 0..100.
+	 */
+	virtual void writeLedLuminosity(uint8_t lum) = 0;
+
 	// ---- Simulation uniquement ----
 
 	/*!

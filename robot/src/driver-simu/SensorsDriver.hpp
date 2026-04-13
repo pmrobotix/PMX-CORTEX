@@ -56,6 +56,7 @@ public:
     bool is_connected();
 
     void displayNumber(int number);
+    void writeLedLuminosity(uint8_t) {} // no-op en SIMU
 
     /*!
      * \brief Synch.ronise les données des capteurs.

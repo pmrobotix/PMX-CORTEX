@@ -43,6 +43,11 @@ void SensorsDriver::displayNumber(int number)
 	beaconSensors_.display(number);
 }
 
+void SensorsDriver::writeLedLuminosity(uint8_t lum)
+{
+	beaconSensors_.writeLedLuminosity(lum);
+}
+
 bool SensorsDriver::is_connected()
 {
 	return beacon_connected_;

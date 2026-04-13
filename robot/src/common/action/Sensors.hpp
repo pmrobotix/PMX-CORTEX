@@ -70,6 +70,7 @@ public:
 	bool is_connected(); //is connected and alive
 
 	void display(int n);
+	void writeLedLuminosity(uint8_t lum);
 
 	inline bool getAvailableFrontCenter() { return obstacleZone_.getAvailableFrontCenter(); }
 	inline bool getAvailableBackCenter() { return obstacleZone_.getAvailableBackCenter(); }
