@@ -10,13 +10,13 @@
 #include "log/Logger.hpp"
 
 GpioPCA9555::GpioPCA9555() :
-		i2cGB_(1), connected_(false), port0Value_(0), port1Value_(0)
+		i2c_(1, GPIOBOARD_PCA9555), connected_(false), port0Value_(0), port1Value_(0)
 {
 }
 
 bool GpioPCA9555::begin()
 {
-	i2cGB_.setSlaveAddr(GPIOBOARD_PCA9555);
+	if (!i2c_.open()) return false;
 	return setup();
 }
 
@@ -80,10 +80,10 @@ int GpioPCA9555::getValueP1(int pin)
 
 long GpioPCA9555::write_i2c(unsigned char command, unsigned char value)
 {
-	return i2cGB_.writeRegByte(command, value);
+	return i2c_.writeReg(command, &value, 1);
 }
 
 long GpioPCA9555::read_i2c(unsigned char command)
 {
-	return i2cGB_.readRegByte(command);
+	return i2c_.readRegByte(command);
 }

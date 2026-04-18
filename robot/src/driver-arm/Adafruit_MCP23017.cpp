@@ -14,21 +14,16 @@
 #include "Adafruit_MCP23017.hpp"
 
 Adafruit_MCP23017::Adafruit_MCP23017() :
-        MCP_i2c_(1)
+        i2c_(1, MCP23017_ADDRESS)
 {
 }
 
 int Adafruit_MCP23017::begin(void)
 {
-    int ret = -1;
-
-    //open i2c and setslave
-    ret = MCP_i2c_.setSlaveAddr(MCP23017_ADDRESS);
-    if (ret == -1)
-        return ret;
+    if (!i2c_.open()) return -1;
 
     //setup
-    ret = write_i2c(MCP23017_IODIRA, 0xFF); // all inputs on port A
+    int ret = write_i2c(MCP23017_IODIRA, 0xFF); // all inputs on port A
     if (ret == -1)
         return ret;
     ret = write_i2c(MCP23017_IODIRB, 0xFF); // all inputs on port B
@@ -71,7 +66,7 @@ uint16_t Adafruit_MCP23017::readGPIOAB()
     uint16_t ba = 0;
     uint8_t a;
 
-    a = read_i2c(MCP23017_GPIOA); // TODO use readI2c_2Bytes ??
+    a = read_i2c(MCP23017_GPIOA);
     ba = read_i2c(MCP23017_GPIOA + 1);
     ba <<= 8;
     ba |= a;
@@ -171,28 +166,22 @@ uint8_t Adafruit_MCP23017::digitalRead(uint8_t p)
 
 long Adafruit_MCP23017::write_i2c(unsigned char command, unsigned char value)
 {
-    long ret = -1;
-    ret = MCP_i2c_.writeRegByte(command, value);
-    return ret;
+    return i2c_.writeReg(command, &value, 1);
 }
 
 long Adafruit_MCP23017::read_i2c(unsigned char command)
 {
-    long ret = -1;
-    ret = MCP_i2c_.readRegByte(command); //TODO  si la valeur vaut reelement -1 ?????
-    return ret;
+    return i2c_.readRegByte(command);
 }
 
 long Adafruit_MCP23017::writeI2c_3Bytes(unsigned char *buf)
 {
-    long ret = -1;
-    ret = MCP_i2c_.write(buf, 3);
-    return ret;
+    // buf[0] = reg, buf[1..2] = data
+    return i2c_.writeReg(buf[0], buf + 1, 2);
 }
 
 long Adafruit_MCP23017::readI2c_2Bytes(unsigned char *buf)
 {
-    long ret = -1;
-    ret = MCP_i2c_.read(buf, 2);
-    return ret;
+    // Non utilise, mais on garde pour compatibilite
+    return i2c_.readReg(buf[0], buf, 2);
 }

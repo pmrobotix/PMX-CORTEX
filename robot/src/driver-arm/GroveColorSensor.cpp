@@ -21,7 +21,7 @@ AColorDriver * AColorDriver::create(std::string) {
 }
 
 GroveColorSensor::GroveColorSensor() :
-        grovei2c_(1), connected_(true), integrationtime_(12), loopdelay_(12), percentageEnabled_(false), compensateEnabled_(false), colorTemperature_(
+        i2c_(1, GROVE_COLOR_DEFAULT_ADDRESS), connected_(true), integrationtime_(12), loopdelay_(12), percentageEnabled_(false), compensateEnabled_(false), colorTemperature_(
                 false)
 {
 
@@ -33,12 +33,11 @@ bool GroveColorSensor::begin() {
     connected_ = false;
 
     //open i2c and setslave
-    int ret = grovei2c_.setSlaveAddr(GROVE_COLOR_DEFAULT_ADDRESS);
-    if (ret == -1) return false;
+    if (!i2c_.isOpen() && !i2c_.open()) return false;
     //0x80 1000 0000 //write to Control register
     //0x01 0000 0001 //Turn the device on (does not enable ADC yet)
 
-    ret = write_i2c(0x80, 0x01);
+    int ret = write_i2c(0x80, 0x01);
     if (ret == -1) return false;
 
     // Request ID to test if TCS3414 is connected
@@ -329,13 +328,9 @@ void GroveColorSensor::CMD(int delayTime) {
 }
 
 long GroveColorSensor::write_i2c(unsigned char command, unsigned char value) {
-    long ret = -1;
-    ret = grovei2c_.writeRegByte(command, value);
-    return ret;
+    return i2c_.writeReg(command, &value, 1);
 }
 
 unsigned char GroveColorSensor::read_i2c(unsigned char command) {
-    unsigned char receivedVal = 0;
-    receivedVal = grovei2c_.readRegByte(command);
-    return receivedVal;
+    return i2c_.readRegByte(command);
 }

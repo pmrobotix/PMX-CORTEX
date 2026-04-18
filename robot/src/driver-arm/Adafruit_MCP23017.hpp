@@ -15,8 +15,7 @@
 #define OPOS6UL_Adafruit_MCP23017_H_
 
 #include <stdint.h>
-#include <as_devices/cpp/as_i2c.hpp>
-#include <as_devices/as_i2c.h>
+#include "AsI2cAtomic.hpp"
 #include "log/LoggerFactory.hpp"
 
 #define INPUT 0x01
@@ -65,7 +64,7 @@ private:
         return instance;
     }
 
-    AsI2c MCP_i2c_;  ///< Bus I2C Armadeus (bus 1).
+    AsI2cAtomic i2c_;  ///< Bus I2C atomique (bus 1, repeated start).
 
 public:
     Adafruit_MCP23017();

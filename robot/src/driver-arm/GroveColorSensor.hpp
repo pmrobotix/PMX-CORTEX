@@ -7,7 +7,7 @@
 #ifndef OPOS6UL_GROVECOLORSENSOR_HPP
 #define OPOS6UL_GROVECOLORSENSOR_HPP
 
-#include <as_devices/cpp/as_i2c.hpp>
+#include "AsI2cAtomic.hpp"
 
 #include "interface/AColorDriver.hpp"
 #include "log/LoggerFactory.hpp"
@@ -32,7 +32,7 @@ private:
 		return instance;
 	}
 
-	AsI2c grovei2c_;
+	AsI2cAtomic i2c_;
 
 	bool connected_;
 

@@ -9,8 +9,7 @@
 #ifndef OPOS6UL_GPIO_PCA9555_HPP
 #define OPOS6UL_GPIO_PCA9555_HPP
 
-#include <as_devices/cpp/as_i2c.hpp>
-
+#include "AsI2cAtomic.hpp"
 #include "log/LoggerFactory.hpp"
 
 /// Adresse I2C du PCA9555 (DFR0013, jumpers A0=0, A1=0, A2=1).
@@ -44,7 +43,7 @@ private:
 		return instance;
 	}
 
-	AsI2c i2cGB_;           ///< Bus I2C.
+	AsI2cAtomic i2c_;       ///< Bus I2C atomique (repeated start + bus recovery).
 	bool connected_;        ///< true si le PCA9555 est detecte.
 	int port0Value_;        ///< Valeur courante du port0 (sorties).
 	int port1Value_;        ///< Valeur courante du port1 (entrees).

@@ -20,7 +20,7 @@
 
 CCAx12Teensy::CCAx12Teensy() : //TODO Une SEULE CARTE est possible a mettre en paramettre adresse + port mais attention à l'instance unique
 //Connexion i2C 5V
-		i2c_CCAx12Teensy_(1), connected_(false)
+		i2c_(1, AX12TEENSY_ADDR), connected_(false)
 {
 	i2c_aAddr_ = 0;
 }
@@ -29,7 +29,7 @@ bool CCAx12Teensy::connect(short int i2c_aAddr)
 {
 	i2c_aAddr_ = i2c_aAddr;
 
-	i2c_CCAx12Teensy_.setSlaveAddr(i2c_aAddr);
+	if (!i2c_.isOpen()) i2c_.open();
 
 	int err = setLedOff(3);
 	if (err >= 0) {
@@ -62,7 +62,7 @@ int CCAx12Teensy::convertToVoltage(int adc_value)
 uint8_t CCAx12Teensy::readI2C(uint8_t cmd, uint8_t *data, uint16_t bytesToRead)
 {
 
-	int err = i2c_CCAx12Teensy_.readReg(cmd, data, bytesToRead);
+	int err = i2c_.readReg(cmd, data, bytesToRead);
 	//DEBUG
 //    for (int i = 0; i < bytesToRead; i++) {
 //        printf("readI2C: cmd=%d i=%d %d\n", cmd, i, data[i]);
@@ -126,12 +126,7 @@ int CCAx12Teensy::writeI2C(uint8_t *data, uint16_t bytesToWrite)
 //        printf("writeI2C: i=%d %d\n", i, data[i]);
 //    }
 	uint8_t cmd = data[0];
-
-	uint8_t *buffer = (uint8_t*) malloc(bytesToWrite - 1);
-	memcpy(buffer, &data[1], bytesToWrite - 1); //Set data after the second byte.
-	int err = i2c_CCAx12Teensy_.writeReg(cmd, buffer, bytesToWrite - 1);
-	free(buffer);
-	return err;
+	return i2c_.writeReg(cmd, &data[1], bytesToWrite - 1);
 
 	//printf("writeI2C: address=%d i2cHandle_=%d \n", i2c_aAddr_, i2cHandle_);
 	/*

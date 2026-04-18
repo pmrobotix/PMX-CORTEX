@@ -110,6 +110,7 @@ void logs::LoggerFactory::initialize()
     add(logs::Level::INFO, "CCAx12Teensy.OPO", "console");
     add(logs::Level::INFO, "GroveColorSensor.OPO", "console");
     add(logs::Level::INFO, "HardwareConfig", "console");
+    add(logs::Level::INFO, "AsI2cAtomic", "console");
 
 
 }

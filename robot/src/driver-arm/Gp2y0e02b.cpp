@@ -10,12 +10,12 @@
 #include "log/Logger.hpp"
 
 Gp2y0e02b::Gp2y0e02b(int bus, unsigned char addr) :
-        i2c_gp2y0e02b_(bus), connected_gp2y0e02b_(false), shift_(0)
+        i2c_(bus, addr), connected_gp2y0e02b_(false), shift_(0)
 {
     logger().debug() << "Gp2y0e02b(" << reinterpret_cast<void*>(addr) << ") : gp2y0e02b CREATE" << logs::end;
 
     address_ = addr;
-    i2c_gp2y0e02b_.setSlaveAddr(addr);
+    i2c_.open();
 
     //read shift
     shift_ = readRegByte(SHIFT_ADDR);
@@ -227,29 +227,31 @@ int Gp2y0e02b::ScanBus()
 }
 unsigned char Gp2y0e02b::readAddr(unsigned char address)
 {
-    return (unsigned char) i2c_gp2y0e02b_.read(&address, 0);
+    // readAddr non supporte avec AsI2cAtomic (pas de raw read sans registre)
+    (void)address;
+    return 0xFF;
 }
 unsigned char Gp2y0e02b::readRegByte(unsigned char command)
 {
-    return (unsigned char) i2c_gp2y0e02b_.readRegByte(command);
+    return i2c_.readRegByte(command);
 }
 int Gp2y0e02b::readReg2Bytes(unsigned char command, unsigned char *aData)
 {
-    return (int) i2c_gp2y0e02b_.readReg(command, aData, 2);
+    return i2c_.readReg(command, aData, 2);
 }
 int Gp2y0e02b::readReg3Bytes(unsigned char command, unsigned char *aData)
 {
-    return (int) i2c_gp2y0e02b_.readReg(command, aData, 3);
+    return i2c_.readReg(command, aData, 3);
 }
 
 int Gp2y0e02b::writeRegByte(unsigned char command, unsigned char value)
 {
-    return i2c_gp2y0e02b_.writeRegByte(command, value);
+    return i2c_.writeReg(command, &value, 1);
 }
 int Gp2y0e02b::writeReg2Bytes(unsigned char command, unsigned char value1, unsigned char value2)
 {
     unsigned char data[2];
     data[0] = value1;
     data[1] = value2;
-    return (int) i2c_gp2y0e02b_.writeReg(command, data, 2);
+    return i2c_.writeReg(command, data, 2);
 }

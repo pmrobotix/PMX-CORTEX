@@ -17,7 +17,7 @@
 #ifndef DRIVER_OPOS6UL_ARM_GP2Y0E02B_HPP_
 #define DRIVER_OPOS6UL_ARM_GP2Y0E02B_HPP_
 
-#include <as_devices/cpp/as_i2c.hpp>
+#include "AsI2cAtomic.hpp"
 
 #include "log/LoggerFactory.hpp"
 
@@ -41,7 +41,7 @@ private:
         return instance;
     }
 
-    AsI2c i2c_gp2y0e02b_;
+    AsI2cAtomic i2c_;
     unsigned char address_;
     bool connected_gp2y0e02b_;
     long shift_;

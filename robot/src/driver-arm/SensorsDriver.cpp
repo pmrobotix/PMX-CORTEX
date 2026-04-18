@@ -40,13 +40,33 @@ SensorsDriver::~SensorsDriver()
 
 void SensorsDriver::displayNumber(int number)
 {
+	msync_.lock();
 	beaconSensors_.display(number);
+	msync_.unlock();
 }
 
 void SensorsDriver::writeLedLuminosity(uint8_t lum)
 {
+	msync_.lock();
 	beaconSensors_.writeLedLuminosity(lum);
+	msync_.unlock();
 }
+
+// --- Settings balise : cached/pending (zero I2C ici, tout passe par syncFull) ---
+
+bool SensorsDriver::readMatchSettings(MatchSettingsData& out)
+{
+	out = cached_settings_;
+	return settings_valid_;
+}
+
+bool SensorsDriver::writeMatchColor(uint8_t c)   { cached_settings_.matchColor = c;   dirty_matchColor_   = true; return true; }
+bool SensorsDriver::writeStrategy(uint8_t s)     { cached_settings_.strategy = s;     dirty_strategy_     = true; return true; }
+bool SensorsDriver::writeAdvDiameter(uint8_t d)  { cached_settings_.advDiameter = d;  dirty_advDiameter_  = true; return true; }
+bool SensorsDriver::writeMatchState(uint8_t s)   { cached_settings_.matchState = s;   dirty_matchState_   = true; return true; }
+bool SensorsDriver::writeMatchPoints(uint8_t p)  { cached_settings_.matchPoints = p;  dirty_matchPoints_  = true; return true; }
+bool SensorsDriver::writeNumOfBots(int8_t n)     { cached_settings_.numOfBots = n;    dirty_numOfBots_    = true; return true; }
+bool SensorsDriver::writeActionReq(uint8_t v)    { cached_settings_.actionReq = v;    dirty_actionReq_    = true; return true; }
 
 bool SensorsDriver::is_connected()
 {
@@ -67,34 +87,37 @@ ASensorsDriver::bot_positions SensorsDriver::getvPositionsAdv()
 }
 int SensorsDriver::sync()
 {
-	// 1. Lecture I2C SANS lock (peut bloquer si beacon ne repond pas)
+	// Lock I2C beacon : protege contre les acces concurrents de MenuBeaconLCDTouch
+	// (readMatchSettings + writeXxx) depuis le thread principal.
+	msync_.lock();
+
 	uint8_t flags = beaconSensors_.readFlag();
 	if (flags == 0xFF) {
+		msync_.unlock();
 		logger().error() << "sync() readFlag error I2C" << logs::end;
 		return -1;
 	}
 	if (!(flags & 0x01)) {
-		// 0x80 = alive, pas de nouvelles donnees
-		return 0;
+		msync_.unlock();
+		return 0;   // 0x80 = alive, pas de nouvelles donnees
 	}
 
 	// Capture du timestamp JUSTE apres detection "new data" du flag I2C.
-	// C'est l'instant le plus proche de la fin du cycle Teensy : la latence du
-	// readFlag (~1ms) est faible et la latence du getData() suivant ne nous
-	// concerne plus puisqu'on enregistre le timestamp ici, pas apres getData.
 	if (robotpos_ != nullptr) {
 		last_sync_ms_ = (uint32_t)(robotpos_->chrono_.getElapsedTimeInMicroSec() / 1000);
 	}
 
 	// 0x81 = nouvelles donnees disponibles, lecture complete
-	Registers regs = beaconSensors_.getData();
+	Registers regs = beaconSensors_.getDataFull();
+
+	// Fin des operations I2C. On garde le lock pour la mise a jour des
+	// donnees partagees (regs_, vadv_), puis on relache.
 	if (regs.flags == 0xFF) {
+		msync_.unlock();
 		logger().error() << "sync() getData error I2C" << logs::end;
 		return -1;
 	}
 
-	// 2. Mise a jour des donnees partagees sous lock (bref)
-	msync_.lock();
 	regs_ = regs;
 	vadv_.clear();
 
@@ -119,8 +142,7 @@ int SensorsDriver::sync()
 
 	msync_.unlock();
 
-	// Telemetrie UDP : positions adversaires (envoye seulement si detection)
-	// Trame: {"OPOS6UL":{"t":...,"dt":...,"Adv":{"n":2,"x1":150,"y1":200,"a1":45.0,"d1":500,"x2":300,"y2":400,"a2":120.0,"d2":700}}}
+	// Telemetrie UDP hors lock (pas d'I2C, pas de donnees partagees)
 	if (regs.nbDetectedBots > 0)
 	{
 		static const logs::Logger & logAdv = logs::LoggerFactory::logger("Adv");
@@ -134,6 +156,108 @@ int SensorsDriver::sync()
 	}
 
 	return 1; // nouvelles donnees lues
+}
+
+int SensorsDriver::syncFull()
+{
+	msync_.lock();
+
+	// 1. Ecrire seulement les Settings modifies vers la Teensy
+	if (dirty_numOfBots_) {
+		bool r = beaconSensors_.writeNumOfBots(cached_settings_.numOfBots);
+		if (r) dirty_numOfBots_ = false;
+		else logger().error() << "syncFull WRITE numOfBots FAIL" << logs::end;
+	}
+	if (dirty_matchPoints_) {
+		bool r = beaconSensors_.writeMatchPoints(cached_settings_.matchPoints);
+		if (r) dirty_matchPoints_ = false;
+		else logger().error() << "syncFull WRITE matchPoints FAIL" << logs::end;
+	}
+	if (dirty_matchState_) {
+		bool r = beaconSensors_.writeMatchState(cached_settings_.matchState);
+		if (r) dirty_matchState_ = false;
+		else logger().error() << "syncFull WRITE matchState=" << (int)cached_settings_.matchState << " FAIL" << logs::end;
+	}
+	if (dirty_matchColor_) {
+		bool r = beaconSensors_.writeMatchColor(cached_settings_.matchColor);
+		if (r) dirty_matchColor_ = false;
+		else logger().error() << "syncFull WRITE matchColor=" << (int)cached_settings_.matchColor << " FAIL" << logs::end;
+	}
+	if (dirty_strategy_) {
+		bool r = beaconSensors_.writeStrategy(cached_settings_.strategy);
+		if (r) dirty_strategy_ = false;
+		else logger().error() << "syncFull WRITE strategy FAIL" << logs::end;
+	}
+	if (dirty_advDiameter_) {
+		bool r = beaconSensors_.writeAdvDiameter(cached_settings_.advDiameter);
+		if (r) dirty_advDiameter_ = false;
+		else logger().error() << "syncFull WRITE advDiameter FAIL" << logs::end;
+	}
+	if (dirty_actionReq_) {
+		bool r = beaconSensors_.writeActionReq(cached_settings_.actionReq);
+		if (r) dirty_actionReq_ = false;
+		else logger().error() << "syncFull WRITE actionReq=" << (int)cached_settings_.actionReq << " FAIL" << logs::end;
+	}
+
+	// 2. Lire les Settings depuis la Teensy
+	Settings s;
+	bool ok = beaconSensors_.readSettings(s);
+	if (ok) {
+		cached_settings_.numOfBots     = s.numOfBots;
+		cached_settings_.ledLuminosity = s.ledLuminosity;
+		cached_settings_.matchPoints   = s.matchPoints;
+		cached_settings_.matchState    = s.matchState;
+		cached_settings_.lcdBacklight  = s.lcdBacklight;
+		cached_settings_.matchColor    = s.matchColor;
+		cached_settings_.strategy      = s.strategy;
+		cached_settings_.testMode      = s.testMode;
+		cached_settings_.advDiameter   = s.advDiameter;
+		cached_settings_.actionReq     = s.actionReq;
+		cached_settings_.seq_touch     = s.seq_touch;
+		settings_valid_ = true;
+	} else {
+		logger().error() << "syncFull READ settings FAIL" << logs::end;
+	}
+
+	// 3. Lire les donnees beacon (flag + getData) — meme logique que sync()
+	uint8_t flags = beaconSensors_.readFlag();
+	if (flags == 0xFF) {
+		logger().error() << "syncFull READ flag FAIL" << logs::end;
+		msync_.unlock();
+		return -1;
+	}
+	if (!(flags & 0x01)) {
+		msync_.unlock();
+		return 0;   // pas de nouvelles donnees adv
+	}
+
+	if (robotpos_ != nullptr) {
+		last_sync_ms_ = (uint32_t)(robotpos_->chrono_.getElapsedTimeInMicroSec() / 1000);
+	}
+
+	Registers regs = beaconSensors_.getDataFull();
+	if (regs.flags == 0xFF) {
+		msync_.unlock();
+		logger().error() << "syncFull READ getDataFull FAIL" << logs::end;
+		return -1;
+	}
+
+	regs_ = regs;
+	vadv_.clear();
+
+	if (regs.nbDetectedBots >= 1)
+		vadv_.push_back(RobotPos((int) regs.nbDetectedBots, regs.x1_mm, regs.y1_mm, regs.a1_deg, regs.d1_mm, regs.t1_us));
+	if (regs.nbDetectedBots >= 2)
+		vadv_.push_back(RobotPos((int) regs.nbDetectedBots, regs.x2_mm, regs.y2_mm, regs.a2_deg, regs.d2_mm, regs.t2_us));
+	if (regs.nbDetectedBots >= 3)
+		vadv_.push_back(RobotPos((int) regs.nbDetectedBots, regs.x3_mm, regs.y3_mm, regs.a3_deg, regs.d3_mm, regs.t3_us));
+	if (regs.nbDetectedBots >= 4)
+		vadv_.push_back(RobotPos((int) regs.nbDetectedBots, regs.x4_mm, regs.y4_mm, regs.a4_deg, regs.d4_mm, regs.t4_us));
+
+	logger().debug() << "syncFull beacon seq:" << regs.seq << " t1:" << regs.t1_us << "us" << logs::end;
+
+	msync_.unlock();
+	return 1;
 }
 
 void SensorsDriver::addvPositionsAdv(float x, float y)

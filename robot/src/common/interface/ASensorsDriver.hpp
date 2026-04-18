@@ -54,6 +54,35 @@ public:
 };
 
 /*!
+ * \brief Miroir common des Settings expose par la balise Teensy (I2C 0x2D).
+ *
+ * Permet a MenuBeaconLCDTouch de lire/ecrire les champs de config
+ * sans dependance directe sur BeaconSensors (driver-arm).
+ * Les offsets I2C sont geres dans SensorsDriver (driver-arm).
+ *
+ * Voir robot/md/O_STATE_NEW_INIT.md section 6 et
+ * teensy/IO_t41_ToF_DetectionBeacon/ARCHITECTURE_BEACON.md struct Settings.
+ */
+struct MatchSettingsData
+{
+	// Bloc 1 : OPOS6UL -> Teensy (5 bytes)
+	int8_t  numOfBots     = 3;
+	int8_t  ledLuminosity = 10;
+	uint8_t matchPoints   = 0;
+	uint8_t matchState    = 0;   // Encode robot.phase() (0=CONFIG, 1=ARMED, 2=MATCH, 3=END)
+	uint8_t lcdBacklight  = 1;
+	// Bloc 2 : Teensy (LCD) -> OPOS6UL (5 bytes)
+	uint8_t matchColor    = 0;
+	uint8_t strategy      = 0;
+	uint8_t testMode      = 0;
+	uint8_t advDiameter   = 40;
+	uint8_t actionReq     = 0;   // 1 = bouton SETPOS/RESET clique (sens selon matchState).
+	                             // OPOS6UL remet a 0 apres consommation.
+	// Bloc 3 : compteur de clic touch (1 byte)
+	uint8_t seq_touch     = 0;
+};
+
+/*!
  * \brief Interface abstraite du driver de capteurs.
  *
  * Fournit l'acces aux donnees des capteurs de detection d'obstacles.
@@ -85,6 +114,12 @@ public:
 	 * \return 0 si succes, -1 si erreur.
 	 */
 	virtual int sync() = 0;
+
+	/*!
+	 * \brief Sync complet init : write pending Settings + read Settings + read flag+getData.
+	 * \return 1 si nouvelles donnees, 0 si pas de nouvelles donnees, -1 si erreur.
+	 */
+	virtual int syncFull() { return 0; }
 
 	/*!
 	 * \brief Retourne les positions des adversaires detectes.
@@ -153,6 +188,53 @@ public:
 	 * \param lum Luminosite 0..100.
 	 */
 	virtual void writeLedLuminosity(uint8_t lum) = 0;
+
+	// ---- Settings balise (MatchSettingsData) ----
+	// Default no-op pour SIMU. Override en driver-arm pour communiquer avec
+	// la Teensy via I2C. Voir robot/md/O_STATE_NEW_INIT.md section 6.
+
+	/*!
+	 * \brief Lit le bloc Settings de la balise (0x2D).
+	 * \return true si lecture OK, false si erreur I2C ou non supporte (SIMU).
+	 */
+	virtual bool readMatchSettings(MatchSettingsData& /*out*/) { return false; }
+
+	/*!
+	 * \brief Ecrit le champ matchColor (reg 5) sur la balise.
+	 * \return true si ecriture OK, false sinon.
+	 */
+	virtual bool writeMatchColor(uint8_t /*c*/) { return false; }
+
+	/*!
+	 * \brief Ecrit le champ strategy (reg 6) sur la balise.
+	 */
+	virtual bool writeStrategy(uint8_t /*s*/) { return false; }
+
+	/*!
+	 * \brief Ecrit le champ advDiameter (reg 8) sur la balise.
+	 */
+	virtual bool writeAdvDiameter(uint8_t /*d*/) { return false; }
+
+	/*!
+	 * \brief Ecrit le champ matchState (reg 3) sur la balise.
+	 */
+	virtual bool writeMatchState(uint8_t /*s*/) { return false; }
+
+	/*!
+	 * \brief Ecrit le champ matchPoints (reg 2) sur la balise.
+	 */
+	virtual bool writeMatchPoints(uint8_t /*p*/) { return false; }
+
+	/*!
+	 * \brief Ecrit le champ numOfBots (reg 0) sur la balise.
+	 */
+	virtual bool writeNumOfBots(int8_t /*n*/) { return false; }
+
+	/*!
+	 * \brief Ecrit le champ actionReq (reg 9) sur la balise.
+	 *        OPOS6UL l'utilise pour remettre actionReq a 0 apres consommation.
+	 */
+	virtual bool writeActionReq(uint8_t /*v*/) { return false; }
 
 	// ---- Simulation uniquement ----
 

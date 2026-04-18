@@ -72,6 +72,21 @@ public:
 	void display(int n);
 	void writeLedLuminosity(uint8_t lum);
 
+	// --- Wrappers Settings balise pour MenuBeaconLCDTouch ---
+	// Voir robot/md/O_STATE_NEW_INIT.md section 6.
+	// En init, ces methodes travaillent sur le cache (zero I2C).
+	// L'I2C est fait dans syncFull() appele depuis la boucle O_State_NewInit.
+	bool readMatchSettings(MatchSettingsData& out) { return sensorsdriver_->readMatchSettings(out); }
+	bool writeMatchColor(uint8_t c)   { return sensorsdriver_->writeMatchColor(c); }
+	bool writeStrategy(uint8_t s)     { return sensorsdriver_->writeStrategy(s); }
+	bool writeAdvDiameter(uint8_t d)  { return sensorsdriver_->writeAdvDiameter(d); }
+	bool writeMatchState(uint8_t s)   { return sensorsdriver_->writeMatchState(s); }
+	bool writeMatchPoints(uint8_t p)  { return sensorsdriver_->writeMatchPoints(p); }
+	bool writeNumOfBots(int8_t n)     { return sensorsdriver_->writeNumOfBots(n); }
+	bool writeActionReq(uint8_t v)    { return sensorsdriver_->writeActionReq(v); }
+
+	int syncFull() { return sensorsdriver_->syncFull(); }
+
 	inline bool getAvailableFrontCenter() { return obstacleZone_.getAvailableFrontCenter(); }
 	inline bool getAvailableBackCenter() { return obstacleZone_.getAvailableBackCenter(); }
 

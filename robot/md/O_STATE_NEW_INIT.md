@@ -9,10 +9,10 @@ Contexte et decisions architecturales discutees avant redaction : voir l'histori
 - **Plusieurs sources d'input/output simultanees** pour configurer le robot avant match : LCD shield 2x16 + boutons (existant), LCD tactile balise via I2C 0x2D (existant cote Teensy, voir [ARCHITECTURE_BEACON.md](../../teensy/IO_t41_ToF_DetectionBeacon/ARCHITECTURE_BEACON.md)), et possibilite d'ajouter un 3e systeme plus tard sans reecriture.
 - **Degradation gracieuse** : si une des deux interfaces tombe ou est debranchee (en compet ou en preparation), l'autre continue de fonctionner.
 - **Source de verite unique** : `Robot` detient l'etat de configuration. Aucune source n'a sa propre copie "faisant foi". Les sources sont de simples plugins input/output.
-- **Anti-misclick couleur** : couleur de match confirmee par hold 2s (erreur frequente sur le shield actuel).
-- **Couleur verrouillee apres setPos** : la couleur conditionne la position physique du robot sur la table, donc on ne peut pas la changer apres que `setPos` a positionne le robot.
-- **Autres parametres editables jusqu'a la tirette** : strategie, diametre adversaire, luminosite LED, tests mecaniques.
-- **Support `/k` skipSetup** inchange : court-circuite le menu, params venant du parseur CLI ou defauts.
+- **Modele flexible a 3 phases** : CONFIG -> ARMED -> MATCH. La couleur est un parametre comme les autres, editable en CONFIG. Le bouton SETPOS declenche la transition CONFIG -> ARMED (execution de setPos physique + verrou couleur). En ARMED, le bouton devient RESET : retour en CONFIG avec freeMotion pour permettre un repositionnement manuel du robot.
+- **Couleur verrouillee apres setPos** : la couleur conditionne la position physique du robot sur la table, donc on ne peut pas la changer apres que `setPos` a positionne le robot. Si erreur de couleur : RESET, repositionner manuellement, refaire SETPOS.
+- **Autres parametres editables jusqu'au match** : strategie, diametre adversaire, luminosite LED, tests mecaniques. Toujours modifiables en CONFIG et en ARMED.
+- **Support `/k` skipSetup** inchange : court-circuite le menu, params venant du parseur CLI ou defauts (BLEU par defaut).
 
 ## 2. Vue d'ensemble
 
@@ -86,55 +86,57 @@ Regle d'or : **une source ne parle jamais a une autre source**. Elles passent to
 ```cpp
 // Robot.hpp
 enum MatchPhase {
-    PHASE_CONFIG    = 0,  // Menu ouvert, tout editable
-    PHASE_COMMITTED = 1,  // Couleur commit + setPos fait, strat/diam/test editables
-    PHASE_PRIMED    = 2,  // Tirette inseree, strat/diam/test toujours editables
-    PHASE_MATCH     = 3,  // Tirette retiree, match en cours
-    PHASE_END       = 4,  // Fin match
+    PHASE_CONFIG = 0,  // Menu ouvert, tout editable (couleur incluse)
+    PHASE_ARMED  = 1,  // setPos fait. Couleur LOCKED. Strat/diam/LED/test editables.
+    PHASE_MATCH  = 2,  // Tirette retiree, match en cours
+    PHASE_END    = 3,  // Fin match
 };
 ```
 
-**Pourquoi 2 phases COMMITTED et PRIMED malgre des permissions identiques** : la tirette est detectee par edge. Sans attendre explicitement l'insertion (COMMITTED -> PRIMED), un etat "tirette jamais inseree" serait interprete comme "tirette retiree" et ferait partir le match directement. PRIMED garantit qu'on a bien vu le rising edge avant d'accepter le falling edge.
+**Transitions** :
+- `CONFIG -> ARMED` : bouton SETPOS clique (touch) ou BACK click (shield). setPos() est execute, robot place, couleur verrouillee.
+- `ARMED -> CONFIG` : bouton RESET (touch) ou BACK click (shield). freeMotion + couleur de nouveau editable, pour repositionnement manuel si erreur.
+- `ARMED -> MATCH` : edge "tirette inseree PUIS retiree" (detecte en interne dans O_State_NewInit, pas une phase separee).
+- `MATCH -> END` : fin des 90s.
+
+**Note sur la detection tirette** : on ne cree pas de phase intermediaire PRIMED (comme dans l'ancien modele). La sequence "insertion puis retrait" est trackee par un `bool tiretteWasInserted` local a la boucle ARMED, qui evite qu'un etat "tirette jamais inseree" soit interprete comme "tirette retiree = start match".
 
 ### 3.2 Champs ajoutes
 
 ```cpp
 protected:
-    MatchPhase  phase_         = PHASE_CONFIG;
-    RobotColor  proposedColor_ = PMXNOCOLOR;   // Toggle libre en CONFIG, non utilise par setPos
-    // myColor_ existe deja, sert de couleur commit (utilisee par setPos)
+    MatchPhase phase_         = PHASE_CONFIG;
+    // myColor_ existe deja (RobotColor, defaut PMXBLUE).
+    // Plus de proposedColor_ : myColor_ est directement editable en CONFIG.
 
-    uint8_t     advDiameter_   = 40;   // cm
-    uint8_t     ledLuminosity_ = 5;    // 0..100, defaut aligne avec Settings Teensy
-    uint8_t     testMode_      = 0;    // 0=aucun, 1..5
-    std::atomic<bool> validateReq_{false};
-    std::atomic<bool> resetReq_{false};
-    std::atomic<bool> testModeReq_{false};
+    uint8_t    advDiameter_   = 40;   // cm
+    uint8_t    ledLuminosity_ = 10;   // 0..100, defaut aligne avec Settings Teensy
+    uint8_t    testMode_      = 0;    // 0=aucun, 1..5
+    std::atomic<bool> testModeReq_{false};   // test meca a declencher
+    std::atomic<bool> setPosReq_{false};     // CONFIG -> ARMED demande
+    std::atomic<bool> resetReq_{false};      // ARMED -> CONFIG demande
 ```
 
 ### 3.3 Setters phase-aware
 
-Les setters centralisent les regles de verrouillage. Une source qui tente une modif interdite recoit `false` en retour, libre a elle de feedback visuellement.
+Les setters centralisent les regles de verrouillage. Une source qui tente une modif interdite recoit `false` en retour.
 
 ```cpp
-// PHASE_CONFIG uniquement
-void proposeColor(RobotColor c);
-bool commitColor();        // proposedColor_ -> myColor_, transition CONFIG -> COMMITTED
-void uncommitColor();      // COMMITTED -> CONFIG, liberation couleur
+// PHASE_CONFIG uniquement (la couleur verrouille le placement physique du robot).
+bool setMyColorChecked(RobotColor c);
 
-// PHASE_CONFIG + PHASE_COMMITTED + PHASE_PRIMED (jusqu'avant MATCH)
-bool setStrategy(const std::string& s);
-bool setConfigVRR(const std::string& s);
+// PHASE_CONFIG + PHASE_ARMED (editables tant que match pas lance).
+bool setStrategyChecked(const std::string& s);
 bool setAdvDiameter(uint8_t d);
 bool setLedLuminosity(uint8_t l);
 bool triggerTestMode(uint8_t t);   // positionne testMode_ + testModeReq_
 
-// Drapeaux d'intention
-void requestValidate();    // non utilise dans cette version (commit couleur = validation)
-bool validateRequested() const;
-void clearValidate();
+// Drapeaux d'intention poses par les sources (boutons).
+void requestSetPos();     // CONFIG -> ARMED (touch: bouton SETPOS, shield: BACK click)
+bool setPosRequested() const;
+void clearSetPos();
 
-void requestReset();       // appele par une source si l'operateur veut revenir en CONFIG
+void requestReset();      // ARMED -> CONFIG (touch: bouton RESET, shield: BACK click)
 bool resetRequested() const;
 void clearReset();
 
@@ -142,6 +144,8 @@ void clearReset();
 MatchPhase phase() const;
 void setPhase(MatchPhase p);
 ```
+
+**Plus de `proposedColor_`/`commitColor()`** : dans le nouveau modele, la couleur est un parametre comme les autres. `setMyColorChecked` ecrit directement dans `myColor_` en CONFIG, et refuse en ARMED+. Le "commit" implicite est la transition CONFIG -> ARMED via `requestSetPos()`.
 
 ## 4. Interface `IMenuSource`
 
@@ -194,92 +198,58 @@ public:
 
 ## 5. `MenuShieldLCD` — shield 2x16 + boutons
 
-### 5.1 Layout LCD 2 lignes, toutes les infos en permanence
+### 5.1 Layout LCD 2 lignes
 
-Les 2 lignes affichent en continu **tout l'etat de configuration**. Un curseur blink HD44780 indique le champ en edition (pour les phases COMMITTED/PRIMED).
-
+**Ligne 0** (toujours) : synthese de la config.
 ```
-Ligne 0:  Y*S2 VRR  D:40
-Ligne 1:  L:50 T:- B:OK
+Y* S2  D:40 T:-
 ```
+- pos 0-1 : couleur + verrou (`Y*`/`B*` en ARMED, `Y `/`B ` en CONFIG)
+- pos 3-4 : strat courte (S1/S2/S3)
+- pos 7-10 : diametre `D:40`
+- pos 12-14 : dernier test `T:-` / `T:1`..`T:5`
 
-**Contenu ligne 0** (16 chars max) :
+**Ligne 1** (contextuelle) : rubrique en cours d'edition + valeur.
+```
+>COLOR:YELLOW
+>DIAM :40 cm
+>STRAT:S2
+>TEST :T3
+```
+Pendant un hold BACK, la ligne 1 est remplacee par le countdown `EXIT IN  8.5s`.
 
-| Position | Champ | Format | Largeur |
-|---|---|---|---|
-| 0-1 | Couleur + commit | `Y*`/`B*`/`Y?`/`B?`/`__` | 2 |
-| 2-3 | Strategie courte | `S1`/`S2`/`S3` | 2 |
-| 4 | espace | ` ` | 1 |
-| 5-7 | Config VRR | `VRR`/`RVR`/`RRV` | 3 |
-| 8-9 | padding | `  ` | 2 |
-| 10-13 | Diametre adv | `D:40` | 4 |
-| 14-15 | padding | `  ` | 2 |
+**VRR et LED ne sont PAS editables sur le shield** (gardes pour le touch LVGL uniquement). Cote shield, LED luminosity est ignoree (Teensy ou CLI fixent la valeur). VRR est supprime du menu 2026 (strategies 1/2/3 suffisent).
 
-**Contenu ligne 1** (16 chars max) :
-
-| Position | Champ | Format | Largeur |
-|---|---|---|---|
-| 0-3 | Luminosite LED | `L:50` | 4 |
-| 4 | espace | ` ` | 1 |
-| 5-7 | Dernier test lance | `T:-`/`T:1`..`T:5` | 3 |
-| 8 | espace | ` ` | 1 |
-| 9-12 | Beacon alive | `B:OK`/`B:--` | 4 |
-| 13-15 | padding | `   ` | 3 |
-
-**Cursor blink** : en phase COMMITTED/PRIMED, le curseur HD44780 clignote sur le champ en cours d'edition (couleur, strat, VRR, diam, led, test). En phase CONFIG, le curseur est positionne sur `Y*`/`B*` (champ couleur).
-
-**Correspondance courte <-> longue**. Mapping a conserver dans une fonction utilitaire du source :
+**Correspondance strat longue <-> courte** :
 
 | Long (Robot) | Court (LCD) |
 |---|---|
 | `tabletest` | `S1` |
 | `strat2` | `S2` |
 | `strat3` | `S3` |
-| `VRR` | `VRR` |
-| `RVR` | `RVR` |
-| `RRV` | `RRV` |
 
 ### 5.2 Interaction boutons
 
-**Principe** : un "curseur logique" qui designe le champ en edition. UP/DOWN deplace le curseur, LEFT/RIGHT modifie la valeur du champ selectionne.
+**Principe simple** : LEFT/RIGHT = rubrique precedente/suivante ; UP/DOWN = valeur suivante/precedente ; ENTER = trigger test ; BACK = setPos (CONFIG) ou reset (ARMED) ou exit (hold 10s).
 
-Ordre des champs navigables via UP/DOWN (cycle) :
+Cycle des rubriques selon la phase :
+- **PHASE_CONFIG** : `COLOR -> DIAM -> STRAT -> TEST -> (COLOR)`
+- **PHASE_ARMED**  : `DIAM -> STRAT -> TEST -> (DIAM)` (COLOR skippee automatiquement)
 
-```
-COULEUR -> STRAT -> VRR -> DIAM -> LED -> TEST -> (retour COULEUR)
-```
-
-#### PHASE_CONFIG
-
-Le curseur est bloque sur COULEUR. Les champs non-couleur ne sont pas editables via shield en CONFIG (ils sont visibles sur la ligne 0/1 et peuvent etre modifies via la balise touch si presente).
-
-| Bouton | Clic court | Hold 2s | Hold 5s |
-|---|---|---|---|
-| LEFT | `proposeColor(YELLOW)` | `commitColor()` (si proposed == YELLOW) | - |
-| RIGHT | `proposeColor(BLUE)` | `commitColor()` (si proposed == BLUE) | - |
-| UP | (inutilise) | - | - |
-| DOWN | (inutilise) | - | - |
-| ENTER | (inutilise) | - | - |
-| BACK | (inutilise) | - | `exit(0)` |
-
-**Feedback hold 2s** : pendant le hold, la ligne 1 affiche `HOLD 2.0 -> 0.0` en countdown. Au commit reussi, flash `COMMITTED!` 500 ms puis retour affichage standard.
-
-#### PHASE_COMMITTED / PHASE_PRIMED
-
-Le curseur peut naviguer sur tous les champs sauf COULEUR (qui reste visible mais non editable).
-
-| Bouton | Clic court | Hold 5s |
+| Bouton | Clic court | Hold 10s |
 |---|---|---|
-| UP | curseur champ precedent | - |
-| DOWN | curseur champ suivant | - |
-| LEFT | valeur precedente du champ selectionne | - |
-| RIGHT | valeur suivante du champ selectionne | - |
-| ENTER | si curseur sur TEST, `triggerTestMode(selected)` | - |
-| BACK | `requestReset()` (retour CONFIG) | `exit(0)` |
+| LEFT  | rubrique precedente | - |
+| RIGHT | rubrique suivante | - |
+| UP    | valeur "haut" (pour COLOR: `setMyColorChecked(BLUE)`, pour DIAM/STRAT/TEST: valeur +1) | - |
+| DOWN  | valeur "bas" (pour COLOR: `setMyColorChecked(YELLOW)`, autre: -1) | - |
+| ENTER | si rubrique=TEST : `triggerTestMode(testSelected_)` | - |
+| BACK  | CONFIG : `requestSetPos()` ; ARMED : `requestReset()` | `exit(0)` |
 
-**Wrapping des valeurs** : LEFT sur `S1` -> `S3`, RIGHT sur `D:250` -> `D:5`, etc.
+**Plus de hold 5s pour commit couleur** : le commit implicite se fait via `requestSetPos()` qui transitionne CONFIG -> ARMED.
 
-**Tentative de bouger le curseur sur COULEUR en COMMITTED** : le curseur passe par dessus sans s'arreter, affichage d'un flash `COLOR LOCKED` 500 ms sur la ligne 1.
+**Wrapping des valeurs** : UP sur `DIAM:250` -> `DIAM:5`, DOWN sur `STRAT:S1` -> `STRAT:S3`, etc.
+
+**Convention UP/DOWN pour couleur** : UP = BLEU, DOWN = JAUNE (cohere avec la localisation physique sur la table).
 
 ### 5.3 Detection de presence shield
 
@@ -298,52 +268,88 @@ Dependances : `LcdShield`, `ButtonBar`, `Robot`.
 
 Premiere etape : lecture uniquement (OPOS6UL recupere ce que l'operateur tape sur le LCD tactile). Modifications cote Teensy listees en 6.3.
 
-### 6.1 Comportement
+### 6.1 Architecture I2C — syncFull (init) vs sync (match)
+
+Pour eviter les problemes de synchronisation I2C (crash du bus sous stress
+lors de clics rapides sur le LCD tactile), tout l'I2C beacon est regroupe
+dans **une seule methode atomique** :
+
+- **Init (O_State_NewInit)** : `sensors.syncFull()` appele dans les boucles
+  CONFIG et ARMED, **avant** `ctrl.tick()`. Fait sous un seul lock :
+  1. Ecrit les Settings pending vers la Teensy (si `pending_dirty_`)
+  2. Lit les Settings depuis la Teensy -> `cached_settings_`
+  3. Lit flag + getData (donnees beacon adv) si nouvelle donnee disponible
+- **Match (SensorsThread)** : `sync()` inchange, appele par le timer a 20ms.
+  Ne fait que flag + getData (pas de Settings).
+
+`MenuBeaconLCDTouch` ne fait **aucun I2C** directement :
+- `readMatchSettings()` retourne `cached_settings_` (zero I2C)
+- `writeXxx()` ecrit dans `cached_settings_` + `pending_dirty_ = true` (zero I2C)
+- L'I2C effectif est fait au prochain `syncFull()`.
+
+```
+Boucle O_State_NewInit (10ms) :
+  sensors.syncFull()    <-- tout l'I2C ici, 1 seul lock
+  ctrl.tick()           <-- pollInputs + refreshDisplay sur cache, zero I2C
+```
+
+### 6.2 Comportement MenuBeaconLCDTouch
 
 **`pollInputs`** :
-1. Lit le bloc Settings (reg 5-8) + `seq_touch` de la balise via `BeaconSensors::readSettings()`.
-2. Si `seq_touch != last_seq_seen_` : un clic a eu lieu depuis la derniere lecture.
-3. Pour chaque champ change par rapport a `shadow_`, appelle le setter Robot correspondant (`setMyColor`/`setStrategy`/`setAdvDiameter`/`triggerTestMode`).
-4. Met a jour `last_seq_seen_ = seq_touch` et `shadow_ = current`.
-5. Si regression de `seq_touch` (< `last_seq_seen_`) : reboot Teensy detecte -> reset `last_seq_seen_ = 0`, ne rien adopter ce tick, le prochain refreshDisplay re-pushera Robot.
+1. Lit le bloc Settings cache via `Sensors::readMatchSettings()` (retourne `cached_settings_`, pas d'I2C).
+2. Si `seq_touch` a change depuis le dernier poll : nouveau clic touch detecte.
+3. Pour chaque champ different de `shadow_`, appelle le setter Robot approprie :
+   - `matchColor` -> `setMyColorChecked(PMXBLUE/PMXYELLOW)` (accepte en CONFIG uniquement)
+   - `strategy` -> `setStrategyChecked("tabletest"/"strat2"/"strat3")`
+   - `advDiameter` -> `setAdvDiameter(...)`
+   - `ledLuminosity` -> `setLedLuminosity(...)`
+   - `testMode` -> `triggerTestMode(...)` si != 0
+4. Si `actionReq == 1` (bouton SETPOS/RESET clique sur le touch) :
+   - phase == CONFIG -> `robot.requestSetPos()`
+   - phase == ARMED -> `robot.requestReset()`
+   - Ecrit `actionReq = 0` via `writeActionReq(0)` (marque pending, ecrit au prochain syncFull).
+5. Si regression de `seq_touch` : reboot Teensy detecte, reset du compteur local, pas d'adoption ce tick.
 
 **`refreshDisplay`** :
-1. Push Robot vers Settings Teensy via `BeaconSensors::writeXxx()` :
+1. Push Robot vers Settings Teensy via les `Sensors::writeXxx()` (marque pending, zero I2C) :
    - `matchColor` (0/1 depuis `robot.getMyColor()`)
-   - `strategy` (1..3 depuis mapping)
+   - `strategy` (1..3 via mapping inverse)
    - `advDiameter`
-   - `ledLuminosity`
-   - `matchState` (= `robot.phase() >= PHASE_MATCH ? 1 : 0`, evolue plus tard)
-2. Met a jour `shadow_` avec les valeurs poussees (pour ne pas re-declencher un "delta" au prochain pollInputs).
-3. **Ne touche jamais `seq_touch`** : c'est la Teensy qui l'incremente.
+   - `ledLuminosity` (via `writeLedLuminosity`)
+   - `matchState` = `(uint8_t)robot.phase()` directement (0=CONFIG, 1=ARMED, 2=MATCH, 3=END)
+2. Met a jour `shadow_` avec les valeurs poussees pour ne pas re-declencher un faux "delta" au prochain pollInputs.
+3. **Ne touche jamais `seq_touch`** (c'est la Teensy qui l'incremente).
+4. **Pas de push de `matchColor` en ARMED+** : la couleur est lockee cote Robot, et le bouton LVGL est verrouille cote Teensy via `matchState >= 1`.
 
-**`isAlive`** : derniere operation I2C OK + `Registers.seq` (cycle ToF) doit avoir avance entre deux polls, sinon Teensy consideree morte.
+**`isAlive`** : basee sur `settings_valid_` (derniere lecture Settings OK dans syncFull). Initialise a `true` au constructeur pour permettre un premier `pollInputs` (c'est lui qui determine l'etat reel).
 
-### 6.2 Fichiers OPOS6UL a creer/modifier
+### 6.3 Fichiers OPOS6UL
 
-- `src/common/MenuBeaconLCDTouch.hpp` (nouveau)
-- `src/common/MenuBeaconLCDTouch.cpp` (nouveau)
-- `src/driver-arm/BeaconSensors.hpp/cpp` : ajouter
-  - `bool readSettings(Settings& out)` (lit les 10 bytes du bloc Settings d'un coup)
-  - `bool writeMatchColor(uint8_t)`
-  - `bool writeStrategy(uint8_t)`
-  - `bool writeAdvDiameter(uint8_t)`
-  - `bool writeMatchState(uint8_t)`
-  - `bool writeMatchPoints(uint8_t)`
-  - `bool writeNumOfBots(int8_t)`
-  - (le `writeLedLuminosity` existant est OK)
+- `src/common/menu/MenuBeaconLCDTouch.hpp/cpp` : inchange (travaille sur cache/pending de facon transparente).
+- `src/driver-arm/BeaconSensors.hpp/cpp` : `readSettings(Settings&)` lit 11 bytes + `writeMatchColor/Strategy/...` (I2C bas niveau, appele par syncFull).
+- `src/driver-arm/SensorsDriver.hpp/cpp` : `syncFull()` regroupe tout l'I2C. `readMatchSettings()` retourne cache. `writeXxx()` marque pending.
+- `src/common/action/Sensors.hpp` : wrappers `readMatchSettings` + `writeXxx` + `syncFull()`.
+- `src/common/interface/ASensorsDriver.hpp` : struct `MatchSettingsData` (11 bytes) + virtuelles `readMatchSettings` + `writeXxx` + `syncFull()` (defaults no-op pour SIMU).
 
-### 6.3 Modifications cote Teensy (2e etape)
+### 6.4 Cote Teensy — etat actuel (fait)
 
-A faire dans un 2e temps, apres avoir valide le framework OPOS6UL. Ces modifications conditionnent la capacite du touch a piloter la config :
+- `TofSensors.h` struct `Settings` : 11 bytes (5 bloc 1 + 5 bloc 2 + 1 seq_touch).
+- Champ `actionReq` (reg 9) ajoute au bloc 2 : le bouton SETPOS/RESET du LCD tactile ecrit `actionReq=1` + `seq_touch++`.
+- Champ `seq_touch` (reg 10) : incremente par CHAQUE callback LVGL qui modifie un champ du bloc 2 (matchColor, strategy, testMode, advDiameter, ledLuminosity, actionReq).
+- `static_assert(sizeof(Settings) == 11)` verrouille l'ABI I2C.
+- `LCDScreen.cpp` :
+  - Bouton SETPOS/RESET (`btn_setpos_handle`) : 152x50 pixels a droite du bouton couleur (152x50 a gauche), partageant la largeur de l'ecran. Label/couleur change selon `settings.matchState` : vert "SETPOS" en 0 (CONFIG), rouge "RESET" en 1 (ARMED), gris "MATCH" en >=2.
+  - `screen_loop()` @5 Hz compare chaque champ a sa valeur precedente mise en cache et rafraichit les widgets LVGL (bouton couleur, strategy radio, labels diam/led, bouton setpos, lock couleur en ARMED+).
+  - `updateColorButtonLock()` met le bouton couleur en `LV_STATE_DISABLED` quand `matchState >= 1` (empeche le toggle tactile apres setPos).
 
-- **[teensy/IO_t41_ToF_DetectionBeacon/src/TofSensors.h](../../teensy/IO_t41_ToF_DetectionBeacon/src/TofSensors.h)** : ajouter dans la struct `Settings` un champ `uint8_t seq_touch = 0` au Reg 9 (apres `advDiameter`). Mettre a jour le `static_assert(sizeof(Settings) == 10)`.
-- **[teensy/IO_t41_ToF_DetectionBeacon/src/LCDScreen.cpp](../../teensy/IO_t41_ToF_DetectionBeacon/src/LCDScreen.cpp)** : dans CHAQUE callback LVGL qui modifie un champ de Settings (matchColor, strategy, testMode, advDiameter, ledLuminosity), ajouter `settings.seq_touch++` apres la modif. C'est la seule facon pour l'OPOS6UL de distinguer "valeur qu'il vient d'ecrire et relit" de "valeur que l'operateur a cliquee".
-- **Affichage Robot-originated des champs** : le LCD tactile doit afficher les valeurs courantes des Settings en continu (c'est deja le cas via les labels LVGL rafraichis a 5 Hz dans `screen_loop()` selon [ARCHITECTURE_BEACON.md#L378](../../teensy/IO_t41_ToF_DetectionBeacon/ARCHITECTURE_BEACON.md)). Verifier que TOUS les champs modifies par OPOS6UL sont bien reflechis sur l'ecran LVGL : matchColor, strategy, advDiameter, ledLuminosity. Sinon ajouter les bindings manquants.
-- **Mise a jour de la doc** : modifier [ARCHITECTURE_BEACON.md](../../teensy/IO_t41_ToF_DetectionBeacon/ARCHITECTURE_BEACON.md) section "Struct Settings" pour documenter `seq_touch` + `static_assert` + role dans la reconciliation.
-- **Reset au boot Teensy** : `seq_touch` demarre a 0 apres reset -> c'est exactement le signal que l'OPOS6UL utilise pour detecter le reboot Teensy (voir 6.1 point 5). Ne pas persister `seq_touch` en EEPROM.
-- **BeaconSensors.hpp cote OPOS6UL** : mettre a jour `SETTINGS_SIZE_BeaconSensors = 10` et `DATA_BeaconSensors = 10` pour garder l'alignement avec la nouvelle taille Settings.
-- **Revoir tous les offsets** de `getData()` dans [BeaconSensors.cpp:126](../src/driver-arm/BeaconSensors.cpp#L126) : chaque `DATA_BeaconSensors + N` doit etre decale de +1 byte (Settings passe de 9 a 10).
+### 6.4 Migration I2C (flash + deploiement coordonnes)
+
+Flasher la Teensy **ET** redeployer le binaire OPOS6UL (ARM) dans la meme session. Ordre important :
+
+1. **Teensy** : flasher le firmware avec `Settings` a 11 bytes + `actionReq` + bouton SETPOS/RESET.
+2. **OPOS6UL** : deployer `bot-opos6ul` build avec `SETTINGS_SIZE_BeaconSensors = 11` + struct miroir.
+
+Entre les 2 flashs, la detection ToF sera cassee (offsets `Registers` decales). Faire les flashs en rapide sequence.
 
 ## 7. `O_State_NewInit::execute()` — pseudo-code
 
@@ -364,13 +370,11 @@ IAutomateState* O_State_NewInit::execute(Robot&)
     //========================================================
     if (robot.skipSetup()) {
         logger().info() << "SKIP SETUP (/k)" << logs::end;
-        if (robot.getMyColor() == PMXNOCOLOR) {
-            logger().error() << "No color (CLI or default), EXIT" << logs::end;
-            exit(1);
-        }
-        robot.setPhase(PHASE_COMMITTED);
+        // Plus de check NOCOLOR : myColor_ defaut = PMXBLUE, le CLI peut
+        // basculer en JAUNE via /b. Toujours une valeur valide.
+        robot.setPhase(PHASE_ARMED);
         setPos();
-        robot.setPhase(PHASE_PRIMED);
+        robot.actions().sensors().writeLedLuminosity(50);
         robot.waitForInit(true);
         robot.setPhase(PHASE_MATCH);
     }
@@ -378,80 +382,69 @@ IAutomateState* O_State_NewInit::execute(Robot&)
     // MENU NORMAL (multi-sources)
     //========================================================
     else {
-        // 1. Construction controller + sources
         MenuController ctrl(robot);
-        if (robot.actions().lcd2x16().isConnected()) {
+        if (robot.actions().lcd2x16().is_connected()) {
             ctrl.add(std::make_unique<MenuShieldLCD>(
                 robot.actions().lcd2x16(), robot.actions().buttonBar()));
         }
-        if (robot.actions().sensors().beaconConnected()) {
-            ctrl.add(std::make_unique<MenuBeaconLCDTouch>(
-                robot.actions().sensors().beacon()));
+        if (robot.actions().sensors().is_connected()) {
+            ctrl.add(std::make_unique<MenuBeaconLCDTouch>(robot.actions().sensors()));
         }
         if (!ctrl.anyAlive()) {
             logger().error() << "No menu source alive, EXIT" << logs::end;
-            exit(1);
+            std::exit(1);
         }
 
 restart_menu:
         robot.setPhase(PHASE_CONFIG);
-        robot.setMyColor(PMXNOCOLOR);
+        robot.clearSetPos();
         robot.clearReset();
-        robot.clearValidate();
+        robot.clearTestMode();
 
-        // 2. PHASE_CONFIG : attente commit couleur
-        logger().info() << "PHASE_CONFIG, waiting color commit..." << logs::end;
+        // ===== PHASE CONFIG : attente setPos =====
+        // Tous les parametres editables (couleur, strat, diam, LED, tests).
+        // L'operateur clique SETPOS (touch) ou BACK click (shield) pour passer en ARMED.
         while (robot.phase() == PHASE_CONFIG) {
             ctrl.tick();
-            if (!ctrl.anyAlive()) {
-                logger().error() << "All sources lost, EXIT" << logs::end;
-                exit(1);
+            handleTestModeRequest();
+            if (robot.setPosRequested()) {
+                robot.clearSetPos();
+                robot.setPhase(PHASE_ARMED);
+                break;
             }
-            utils::sleep_for_micros(10000);   // 100 Hz
+            if (!ctrl.anyAlive()) std::exit(1);
+            utils::sleep_for_micros(10000);
         }
-        // Sortie : commitColor() a fait passer la phase a COMMITTED
 
-        // 3. setPos : le robot rejoint sa position initiale
-        // Couleur maintenant LOCKED par phase_ >= PHASE_COMMITTED
+        // setPos : robot rejoint sa position initiale. Inclus reset asserv
+        // via startMotionTimerAndOdo(true) (reset Nucleo + match ref).
         setPos();
-        // Luminosite LED pour le match (override possible touch en CONFIG)
         robot.actions().sensors().writeLedLuminosity(50);
 
-        // 4. PHASE_COMMITTED : attend l'insertion de la tirette
-        //    Strat/diam/led/tests restent editables via sources
-        logger().info() << "PHASE_COMMITTED, insert tirette..." << logs::end;
-        while (!robot.actions().tirette().pressed()) {
+        // ===== PHASE ARMED : attente sequence tirette, reset possible =====
+        // Couleur LOCKED. Strat/diam/LED/tests restent editables.
+        // Etat interne : detecter l'edge "tirette inseree PUIS retiree".
+        bool tiretteWasInserted = false;
+        while (robot.phase() == PHASE_ARMED) {
             ctrl.tick();
-            handleTestModeRequest(robot);   // voir section 7.1
+            handleTestModeRequest();
+
             if (robot.resetRequested()) {
                 robot.clearReset();
-                robot.uncommitColor();
                 robot.asserv().freeMotion();
-                goto restart_menu;
+                goto restart_menu;   // repositionnement manuel possible
             }
-            if (!ctrl.anyAlive()) {
-                logger().error() << "All sources lost, EXIT" << logs::end;
-                exit(1);
+
+            bool tirettePressed = robot.actions().tirette().pressed();
+            if (!tiretteWasInserted && tirettePressed)  tiretteWasInserted = true;
+            if (tiretteWasInserted && !tirettePressed) {
+                robot.setPhase(PHASE_MATCH);
+                break;
             }
+
+            if (!ctrl.anyAlive()) std::exit(1);
             utils::sleep_for_micros(10000);
         }
-
-        // 5. PHASE_PRIMED : tirette inseree, attend retrait
-        robot.setPhase(PHASE_PRIMED);
-        logger().info() << "PHASE_PRIMED, waiting tirette release..." << logs::end;
-        while (robot.actions().tirette().pressed()) {
-            ctrl.tick();
-            handleTestModeRequest(robot);   // toujours autorise en PRIMED
-            if (robot.resetRequested()) {
-                robot.clearReset();
-                robot.uncommitColor();
-                robot.asserv().freeMotion();
-                goto restart_menu;
-            }
-            utils::sleep_for_micros(10000);
-        }
-
-        robot.setPhase(PHASE_MATCH);
     }
 
     //========================================================
@@ -463,7 +456,6 @@ restart_menu:
     robot.actions().lcd2x16().print("GO...");
     robot.displayPoints();
 
-    logger().info() << "O_State_NewInit executed" << logs::end;
     return this->getState("WaitEndOfMatch");
 }
 ```
@@ -497,13 +489,347 @@ Les routines elles-memes sont a coder progressivement. Le framework est pret.
 
 La methode existante de `O_State_Init::setPos()` est copiee telle quelle dans `O_State_NewInit::setPos()`. Aucune modif fonctionnelle.
 
-## 8. Interaction avec la memoire `myColor_` et strategy existantes
+## 8. Flux de donnees, sequences et scenarios de panne
+
+Cette section detaille **comment chaque LCD / touch LCD / bouton reste independant** et comment les modifications se propagent entre les deux interfaces. Elle complete la vue d'ensemble de la section 2 avec les sequences concretes.
+
+### 8.1 Architecture complete (hardware + logiciel)
+
+```
++----------------------------------------------------------------------------+
+|  OPOS6UL (Linux, process bot-opos6ul)                                      |
+|                                                                            |
+|                   +--------------------------------+                       |
+|                   |  Robot (SOURCE DE VERITE)      |                       |
+|                   |  myColor_, proposedColor_      |                       |
+|                   |  strategy_, configVRR_         |                       |
+|                   |  advDiameter_, ledLuminosity_  |                       |
+|                   |  testMode_, phase_             |                       |
+|                   +----------+------------+--------+                       |
+|                              ^            |                                |
+|                          setters()     getters()                           |
+|                              |            v                                |
+|                   +----------+---------------------+                       |
+|                   |  MenuController::tick() @100Hz |                       |
+|                   |                                |                       |
+|                   |  for s in sources:             |                       |
+|                   |    s->pollInputs(robot)   (A)  |                       |
+|                   |  for s in sources:             |                       |
+|                   |    if (alive) refreshDisplay(B)|                       |
+|                   +------+-----------------+-------+                       |
+|                          |                 |                               |
+|              +-----------+-------+   +-----+----------------+              |
+|              | MenuShieldLCD     |   | MenuBeaconLCDTouch   |              |
+|              |                   |   |                      |              |
+|              | state interne:    |   | state interne:       |              |
+|              |  - lastButton_    |   |  - shadow_           |              |
+|              |  - holdChrono_    |   |  - lastSeqTouchSeen_ |              |
+|              |  - editField_     |   |  - alive_            |              |
+|              +--+----------+-----+   +--+--------------+----+              |
+|                 |          |            |              |                   |
+|          pollInputs   refreshDisplay    |              |                   |
+|                 |          |            |              |                   |
+|                 v          v            v              v                   |
+|           +----------+  +--------+  +-----------------------+              |
+|           |ButtonBar |  |LcdShield| |Sensors::readMatchSettings/           |
+|           |.check...()| |.print() | |       writeXxx / writeLedLum         |
+|           +----+-----+  +---+----+  +-------+--------------+               |
+|                |            |               |                              |
+|                |  I2C bus 0 |               |  I2C bus 0                   |
+|                |  shield    |               |  beacon 0x2D                 |
++----------------+------------+---------------+------------------------------+
+                 |            |               |
+                 v            v               v
++-----------------------------+   +-----------------------------------------+
+|  Shield 2x16 (hardware)     |   |  Teensy 4.1 (slave I2C 0x2D)            |
+|                             |   |                                         |
+|  +--------+  +-----------+  |   |  +-------------------------------+      |
+|  |boutons |  | LCD 2x16  |  |   |  |  Settings (10 bytes RAM)      |      |
+|  |UP/DN/  |  | (HD44780) |  |   |  |   - bloc 1 (OPO->TNY)         |      |
+|  |L/R/ENT/|  |           |  |   |  |   - bloc 2 (TNY->OPO)         |      |
+|  |BACK    |  |           |  |   |  |   - seq_touch (TNY only)      |      |
+|  +--------+  +-----------+  |   |  +--------+-----------+----------+      |
+|                             |   |           ^           |                 |
++-----------------------------+   |    LVGL cb| (UI->RAM) |screen_loop @5Hz |
+                                  |           |           |(RAM->UI)        |
+                                  |  +--------+------+    v                 |
+                                  |  | ecran tactile |   widgets LVGL       |
+                                  |  | ILI9341+touch |   btn_color, strat,  |
+                                  |  |               |   diam, lum          |
+                                  |  +---------------+                      |
+                                  +-----------------------------------------+
+```
+
+### 8.2 Regle d'or : "syncFull then poll all then refresh all"
+
+Un tick complet dans O_State_NewInit :
+
+```
++---------------- TICK (toutes les 10ms) ----------------+
+|                                                        |
+|  (0) SYNC FULL I2C                                     |
+|   sensors.syncFull()                                   |
+|     1. write pending Settings -> Teensy (si dirty)     |
+|     2. read Settings <- Teensy -> cached_settings_     |
+|     3. read flag + getData (si new data adv)           |
+|   ==> tout l'I2C est fait ici, 1 seul lock             |
+|                                                        |
+|  (A) POLL INPUTS (zero I2C)                            |
+|   +---------------+      lit boutons                   |
+|   | MenuShieldLCD | -->  shield -> robot.setXxx()      |
+|   +---------------+                                    |
+|   +-------------------+  lit Settings depuis cache     |
+|   |MenuBeaconLCDTouch |-> compare seq_touch + shadow   |
+|   |                   |  si nouveau clic -> robot.set* |
+|   +-------------------+                                |
+|                                                        |
+|  vvv Robot a integre tous les inputs vvv               |
+|                                                        |
+|  (B) REFRESH DISPLAY (zero I2C beacon)                 |
+|   +---------------+      lit robot.getXxx()            |
+|   | MenuShieldLCD | -->  print sur LCD 2x16            |
+|   +---------------+                                    |
+|   +-------------------+  lit robot.getXxx()            |
+|   |MenuBeaconLCDTouch |-> writeXxx marque pending      |
+|   |                   |  (ecrit au prochain syncFull)   |
+|   +-------------------+                                |
++--------------------------------------------------------+
+```
+
+Cet ordre garantit qu'a la fin du tick, tous les displays voient **le meme etat Robot coherent**, celui qui a integre tous les inputs du tick. Voir section 2 pour les 4 fleches numerotees (controller/source/Robot/HW).
+
+### 8.3 Sequence : clic UP sur shield en CONFIG -> affichage sur touch LVGL
+
+```
+Time    Composant               Action
+------  ----------------------  --------------------------------------------
+t=0ms   User                    appuie sur UP du shield
+        ButtonBar (I2C)         lit l'etat physique des boutons
+
+t=10ms  sensors.syncFull()          <- tout l'I2C ici (write pending + read settings + read flag)
+        MenuController.tick()
+        |- MenuShieldLCD.pollInputs
+        |    btns_.check...() == BUTTON_UP_KEY
+        |    lastButton_ = UP, holdChrono_.start()
+        |    holdActive_ = true
+        |
+        |- MenuBeaconLCDTouch.pollInputs
+        |    readMatchSettings(current)  <- retourne cached_settings_ (zero I2C)
+        |    current.seq_touch == shadow_ (rien bouge cote touch)
+        |    -> pas d'adoption
+        |
+        |- MenuShieldLCD.refreshDisplay
+        |    (robot.proposedColor est encore NOCOLOR)
+        |    buildLine0 -> "__ S- VRR  D:40"
+        |    pas de changement vs lastLine0_, pas d'ecriture LCD
+        |
+        '- MenuBeaconLCDTouch.refreshDisplay
+             colorByte = 0 (NOCOLOR), shadow.matchColor = 0 (default)
+             pas de push (pending_dirty_ reste false)
+
+...        user maintient UP, polls continuent, holdChrono avance
+
+--- USER RELACHE UP a t=150ms ---------------------------------------------
+
+t=150ms MenuShieldLCD.pollInputs
+        btns_.check...() == BUTTON_NONE
+        holdActive_ etait true, donc "click court"
+        -> handleClick(b=UP)
+        -> robot.proposeColor(PMXBLUE)    <- ROBOT MODIFIE ICI
+
+t=150ms MenuBeaconLCDTouch.refreshDisplay (meme tick, phase B)
+        colorByte = (BLUE == YELLOW) ? 1 : 0 = 0
+        shadow_.matchColor = 0, donc PAS de push (pas un changement)
+        [OK ici car Teensy default matchColor=0 = BLEU, deja affiche]
+
+--- USER CLIQUE DOWN a t=500ms (propose YELLOW) ---------------------------
+
+t=510ms sensors.syncFull()           <- ecrit pending (rien ici), lit settings
+        MenuShieldLCD.pollInputs    -> proposeColor(PMXYELLOW)
+t=510ms MenuBeaconLCDTouch.refreshDisplay
+        colorByte = 1, shadow_.matchColor = 0 -> DIFFERENT
+        -> writeMatchColor(1) marque pending_dirty_ = true
+        shadow_.matchColor = 1
+t=520ms sensors.syncFull()           <- ecrit matchColor=1 vers Teensy (pending)
+        Teensy: settings.matchColor = 1
+
+t=510-710ms Teensy screen_loop()    (toutes les 200ms)
+        last_matchColor = 0 (cache) != settings.matchColor = 1
+        updateColorButton(btn_color_handle)
+        -> le bouton tactile passe visuellement a "JAUNE"
+        last_matchColor = 1
+```
+
+**Latence totale shield -> touch : < 220 ms** (10 ms OPOS6UL tick + 200 ms max Teensy screen_loop cycle).
+
+### 8.4 Sequence inverse : clic touch -> affichage shield
+
+```
+Time    Composant               Action
+------  ----------------------  --------------------------------------------
+t=0ms   User                    tape sur le bouton "BLEU/JAUNE" du touch
+        LVGL dispatch l'event   matchColor_event_cb()
+                                settings.matchColor = 1 - settings.matchColor
+                                settings.seq_touch++     <- CLE DE LA SYNCHRO
+                                updateColorButton(btn)   <- refresh local immediat
+
+t=10ms  (prochain tick OPOS6UL)
+        sensors.syncFull()          <- lit cached_settings_ avec seq_touch=N+1
+        MenuBeaconLCDTouch.pollInputs
+        readMatchSettings(current)  <- retourne cached_settings_ (zero I2C)
+        current.seq_touch = N+1,  lastSeqTouchSeen_ = N
+        -> nouveau clic detecte
+        current.matchColor = 1, shadow_.matchColor = 0 (etait a 0)
+        -> robot.proposeColor(PMXYELLOW)    <- ROBOT MODIFIE ICI
+        shadow_.matchColor = 1
+        lastSeqTouchSeen_ = N+1
+
+t=10ms  MenuShieldLCD.refreshDisplay
+        buildLine0 reflete robot.proposedColor == YELLOW
+        -> "Y? S- VRR  D:40 "
+        diff vs lastLine0_ -> ecrit sur LCD 2x16
+        -> shield affiche "Y?"
+
+t=10ms  MenuBeaconLCDTouch.refreshDisplay
+        colorByte = 1, shadow_.matchColor = 1, same, PAS de push
+        [c'est ca qui empeche une boucle infinie : on ne re-push pas ce
+         qu'on vient de lire]
+```
+
+**Latence totale touch -> shield : ~ 10 ms** (1 tick OPOS6UL).
+
+### 8.5 Scenarios de panne — independance des sources
+
+**Scenario 1 : Shield LCD debranche (ou jamais connecte)**
+
+```
+- Au boot: lcd_.is_connected() = false
+- MenuShieldLCD::alive_ = false
+- controller.anyAlive() reste true grace a MenuBeaconLCDTouch
+
+TICK :
+  sensors.syncFull()            <- OK (lit beacon I2C)
+  MenuShieldLCD.pollInputs    -> if(!alive_) return;  [no-op]
+  MenuBeaconLCDTouch.pollInputs -> OK (lit cache, met a jour Robot)
+  MenuShieldLCD.refreshDisplay  -> gate isAlive()=false, skip
+  MenuBeaconLCDTouch.refreshDisplay -> OK (marque pending, zero I2C)
+
+Resultat : seul le touch LVGL est utilisable. Match fonctionnel.
+```
+
+**Scenario 2 : Balise Teensy debranchee (ou cable I2C coupe)**
+
+```
+TICK :
+  sensors.syncFull()            <- I2C err -> settings_valid_=false, return -1
+  MenuShieldLCD.pollInputs     -> OK (boutons lus)
+  MenuBeaconLCDTouch.pollInputs
+    readMatchSettings() -> retourne settings_valid_=false -> alive_ = false, return
+  MenuShieldLCD.refreshDisplay -> OK (LCD 2x16 mis a jour depuis Robot)
+  MenuBeaconLCDTouch.refreshDisplay
+    gate isAlive()=false -> skip [on n'ecrit pas vers un bus mort]
+
+Resultat : seul le shield est utilisable. Match fonctionnel.
+
+Recuperation si la balise revient :
+  Prochain tick : syncFull() reussit -> settings_valid_=true.
+  pollInputs lit le cache OK -> alive_ = true -> source reactivee automatiquement.
+```
+
+**Scenario 3 : Teensy reboot en plein menu (glitch alim / ESD)**
+
+```
+Avant reboot :  settings.matchColor=1, seq_touch=42
+                OPOS6UL: lastSeqTouchSeen_=42, shadow.matchColor=1
+                Robot: myColor_=YELLOW  (commit deja fait)
+
+Teensy reboot -> settings = defaults (matchColor=0, seq_touch=0)
+
+TICK apres reboot :
+  MenuBeaconLCDTouch.pollInputs
+    current.seq_touch = 0
+    seqActive = true (lastSeqTouchSeen_=42 != 0)
+    0 < 42 -> REGRESSION detectee -> Teensy a reboote
+    -> logger().warn + lastSeqTouchSeen_ = 0
+    -> return (on n'adopte RIEN cote Robot)
+
+  MenuBeaconLCDTouch.refreshDisplay (meme tick)
+    colorByte = 1 (Robot.myColor=YELLOW), shadow.matchColor = 1
+    -> shadow matche Robot, pas de push immediat
+
+Limite connue : la recuperation apres reboot Teensy est imparfaite
+(le fallback delta peut re-adopter les defaults). Cas rare en competition
+(alim stable). Contournement possible : flagger l'etat "post-reboot" pour
+ignorer le delta fields pendant quelques ticks et forcer un push Robot.
+```
+
+### 8.6 Pourquoi les differents mecanismes sont-ils necessaires
+
+| Mecanisme | Probleme qu'il resout |
+|-----------|----------------------|
+| Source de verite unique (`Robot`) | Conflits si chaque source avait sa propre copie. Ici, une seule valeur de color/strat/... a l'instant t, partagee par tous les getters. |
+| "poll all then refresh all" | Empeche les inconsistances entre sources dans un meme tick. Ex: si poll+refresh etait entrelace, un clic touch adopte puis le shield re-pousse l'ancien Robot avant d'avoir vu la modif. |
+| `seq_touch` (cote Teensy) | Dedup + anti-loop. Sans lui, OPOS6UL relit sa propre ecriture via I2C et croit que le touch a clique. Permet aussi de detecter un reboot Teensy (regression du compteur). |
+| `shadow_` (cote MenuBeaconLCDTouch) | Fallback pour la detection si seq_touch inactif (ex: ancien firmware Teensy). Et mis a jour apres chaque push OPOS6UL pour eviter de re-adopter sa propre ecriture. |
+| `screen_loop()` Teensy @5Hz | Diffusion cross-MCU : sans ce refresh periodique cote Teensy, les widgets LVGL ne voient JAMAIS les modifs ecrites en I2C par l'OPOS6UL (seul un clic tactile declenchait un redraw). |
+| `alive_ = true` au ctor + pollInputs sans gate | Sans ca, une source dont le 1er poll echoue reste morte pour toujours (le controller la skipperait). Permet aussi la reconnexion a chaud. |
+
+### 8.7 Paths I2C reels (recap)
+
+```
+            CLIC SHIELD                        CLIC TOUCH
+                |                                  |
+                v                                  v
+   ButtonDriver/LCDShieldDriver           LVGL matchColor_event_cb
+   (I2C bus 0 sur OPOS6UL)                (interne Teensy, pas d'I2C)
+   lit boutons via MCP23017               modifie settings.matchColor
+                                          + seq_touch++
+                |                                  |
+                v                                  v
+      MenuShieldLCD::pollInputs      [OPOS6UL poll @100Hz via I2C:
+      -> robot.setXxx()               MenuBeaconLCDTouch::pollInputs
+                                      I2C read 10 bytes @0x2D]
+                                                  |
+                                                  v
+                                      detecte delta seq_touch
+                                      -> robot.setXxx()
+                                                  |
+                                                  v
+                                  +---------------+----------------+
+                                  |                                |
+                         MenuShieldLCD                 MenuBeaconLCDTouch
+                         .refreshDisplay               .refreshDisplay
+                         (lit robot)                   (lit robot)
+                                  |                                |
+                                  v                                v
+                         LcdShield::print()            sensors_.writeXxx()
+                         (I2C bus 0, MCP23017)         (I2C bus 0 @0x2D,
+                                                        writeReg par byte)
+                                                                  |
+                                                                  v
+                                                      [Teensy i2c_register_slave
+                                                       ecrit dans settings.X]
+                                                                  |
+                                                                  v
+                                                      Teensy screen_loop() @5Hz
+                                                      compare settings.X vs cache
+                                                      -> lv_label_set_text ou
+                                                         updateColorButton
+                                                                  |
+                                                                  v
+                                                      redraw LVGL sur ILI9341
+```
+
+**Latences cote OPOS6UL** : 10 ms (1 tick @ 100 Hz).
+**Latences cote Teensy** : jusqu'a 200 ms (1 cycle `screen_loop`). C'est pour ca que les changements shield mettent quelques dizaines a ~200 ms avant d'apparaitre sur le touch.
+
+## 9. Interaction avec la memoire `myColor_` et strategy existantes
 
 `Robot` a deja `myColor_`, `strategy_`, `configVRR_`. Ces champs restent et sont reutilises. La seule addition est `proposedColor_` + les phase-aware setters + les nouveaux champs `advDiameter_`/`ledLuminosity_`/`testMode_`.
 
 **Retrocompatibilite** : le parseur CLI (Arguments class) continue d'ecrire dans `myColor_`/`strategy_`/`configVRR_` via les setters existants. En mode `/k`, ces setters doivent accepter l'ecriture meme si `phase_ == PHASE_CONFIG` (cas normal post-construction). A verifier qu'aucun ordonnancement ne casse : l'ordre est `construct Robot (phase=CONFIG) -> parseCLI -> execute O_State_NewInit`, donc CLI ecrit en phase CONFIG, OK.
 
-## 9. Ordre d'implementation
+## 10. Ordre d'implementation
 
 Chaque etape doit etre **compilable + testable en simu et sur robot reel** avant de passer a la suivante.
 
@@ -567,7 +893,7 @@ Chaque etape doit etre **compilable + testable en simu et sur robot reel** avant
 - Mettre a jour [ARCHITECTURE.md](ARCHITECTURE.md) pour pointer sur ce document
 - Mettre a jour [HARDWARE_CONFIG.md](HARDWARE_CONFIG.md) si les flags d'activation doivent evoluer
 
-## 10. Tests manuels de resilience
+## 11. Tests manuels de resilience
 
 Scenarios a valider avant de considerer le refactor complet :
 
@@ -581,14 +907,14 @@ Scenarios a valider avant de considerer le refactor complet :
 8. **`/k` avec tous les params CLI** : court-circuit complet du menu.
 9. **Test meca en PRIMED** : lance un test, verifie que la meca revient en position de depart, tirette retiree -> match OK.
 
-## 11. Points ouverts / evolutions futures
+## 12. Points ouverts / evolutions futures
 
 - **Persistance EEPROM cote Teensy** (evoque dans ARCHITECTURE_BEACON.md section "Evolutions prevues") : rappeler les derniers choix operateur au reboot. Ne change rien cote OPOS6UL tant que `seq_touch` repart a 0 (ce qui est le comportement souhaite meme avec EEPROM, car on veut detecter le reboot comme un signal).
 - **3e source potentielle** (web UI, telecommande, ...) : creer une classe qui herite de `IMenuSource`, l'ajouter au controller au boot si detectee. Zero impact sur le reste.
 - **`matchNumber`** : non gere dans ce refactor (non pertinent pour la Coupe 2026 selon [ARCHITECTURE_BEACON.md](../../teensy/IO_t41_ToF_DetectionBeacon/ARCHITECTURE_BEACON.md)). A ajouter si besoin en reutilisant le meme pattern.
 - **Synchronisation horloge entre OPOS6UL et Teensy** : pas necessaire pour la config. Si besoin pour les timestamps ToF, utiliser le champ `seq` des Registers ToF deja present.
 
-## 12. Fichiers impactes (recapitulatif)
+## 13. Fichiers impactes (recapitulatif)
 
 | Fichier | Action |
 |---|---|
@@ -613,7 +939,7 @@ Scenarios a valider avant de considerer le refactor complet :
 | [teensy/IO_t41_ToF_DetectionBeacon/ARCHITECTURE_BEACON.md](../../teensy/IO_t41_ToF_DetectionBeacon/ARCHITECTURE_BEACON.md) | Mise a jour Settings + seq_touch |
 | [robot/ARCHITECTURE.md](ARCHITECTURE.md) | Lien vers ce document |
 
-## 13. Hors scope
+## 14. Hors scope
 
 - Routines concretes des tests meca (chaque routine sera codee au besoin).
 - Modifications UI LVGL balise (sera fait en 2e temps, liste des modifs en section 6.3).

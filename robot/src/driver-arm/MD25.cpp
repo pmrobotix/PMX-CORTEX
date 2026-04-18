@@ -7,7 +7,7 @@
 
 MD25::MD25() :
 //connexion i2c 5V
-        i2c_MD25_(1), connected_(true)
+        i2c_(1, ADDR_MD25), connected_(true)
 {
     /* Default values */
     mode = MODE_1;
@@ -17,7 +17,7 @@ MD25::MD25() :
 bool MD25::begin() {
 
     //open i2c and setslave
-    i2c_MD25_.setSlaveAddr(ADDR_MD25);
+    if (!i2c_.isOpen()) i2c_.open();
 
     int soft = software_rev_num_get();
     logger().debug() << "begin() : MD25 soft="<< soft << logs::end;
@@ -64,7 +64,7 @@ int MD25::write(unsigned char reg_addr, unsigned char *data, int bytes) {
 //    if (i2c_interface->write(i2c_address + I2C_WRITE_BIT, &data_out[0], bytes + 1, true)) {
 //        return -1;
 //    }
-    if (i2c_MD25_.writeReg(reg_addr, data, bytes) < 0) return -1;
+    if (i2c_.writeReg(reg_addr, data, bytes) < 0) return -1;
     usleep(100); //tested with min 75us
 
     /* Return success */
@@ -90,7 +90,7 @@ int MD25::read(unsigned char reg_addr, unsigned char *data, int bytes) {
 //    } else {
 //        return -1;
 //    }
-    if (i2c_MD25_.readReg(reg_addr, data, bytes) < 0) return -1;
+    if (i2c_.readReg(reg_addr, data, bytes) < 0) return -1;
     usleep(100); //tested with min 75us
 
     /* Return success */

@@ -33,6 +33,18 @@ private:
 
     bool beacon_connected_;
 
+    MatchSettingsData cached_settings_;  ///< Dernier Settings lu par syncFull().
+    bool settings_valid_ = false;        ///< true si dernier readSettings OK dans syncFull().
+
+    // Dirty flags par champ : seuls les champs modifies sont ecrits en I2C.
+    bool dirty_numOfBots_    = false;
+    bool dirty_matchPoints_  = false;
+    bool dirty_matchState_   = false;
+    bool dirty_matchColor_   = false;
+    bool dirty_strategy_     = false;
+    bool dirty_advDiameter_  = false;
+    bool dirty_actionReq_    = false;
+
 //    Gp2y0e02b gp2_1_;
 //    Gp2y0e02b gp2_2_;
 
@@ -67,9 +79,20 @@ public:
     void writeLedLuminosity(uint8_t lum);
     int getAnalogPinData();
 
+    // --- Settings balise (override ASensorsDriver pour delegation BeaconSensors) ---
+    bool readMatchSettings(MatchSettingsData& out) override;
+    bool writeMatchColor(uint8_t c) override;
+    bool writeStrategy(uint8_t s) override;
+    bool writeAdvDiameter(uint8_t d) override;
+    bool writeMatchState(uint8_t s) override;
+    bool writeMatchPoints(uint8_t p) override;
+    bool writeNumOfBots(int8_t n) override;
+    bool writeActionReq(uint8_t v) override;
 
 
-    int sync(); //synchronise les données avec la balise, return 0 if success, -1 if error.
+
+    int sync(); //synchronise les données avec la balise, return 0 if success, -1 if error. (match)
+    int syncFull() override; // init: write pending settings + read settings + read flag+getData
     ASensorsDriver::bot_positions getvPositionsAdv(); //retourne les dernieres positions connues
 
     void addvPositionsAdv(float x, float y) ;

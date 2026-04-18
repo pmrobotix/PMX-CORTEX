@@ -4,19 +4,22 @@
  *
  * Lit les registres I2C de la Teensy (0x2D) : positions adversaires,
  * distances collision (c1-c8), timing de mesure (t1-t4_us, seq).
+ *
+ * Utilise AsI2cAtomic (repeated start) pour eviter la desynchronisation
+ * du toggle got_reg_num du slave I2CRegisterSlave cote Teensy.
  */
 
 #ifndef DRIVER_OPOS6UL_ARM_BEACONSENSORS_HPP_
 #define DRIVER_OPOS6UL_ARM_BEACONSENSORS_HPP_
 
-#include <as_devices/cpp/as_i2c.hpp>
-
+#include "AsI2cAtomic.hpp"
 #include "log/LoggerFactory.hpp"
 
 //#define ADDRESS_BeaconSensors   0x2D
 // Offset I2C des Registers = sizeof(Settings) sur la Teensy.
-// Settings fait maintenant 9 bytes (voir ARCHITECTURE_BEACON.md).
-#define SETTINGS_SIZE_BeaconSensors 9
+// Settings fait maintenant 11 bytes (ajout actionReq en bloc 2, voir ARCHITECTURE_BEACON.md).
+// IMPORTANT: doit matcher TofSensors.h cote Teensy, sinon ToF detection cassee.
+#define SETTINGS_SIZE_BeaconSensors 11
 #define DATA_BeaconSensors      SETTINGS_SIZE_BeaconSensors //adresse des donnees Registers a recuperer
 #define NUMOFBOTS_BeaconSensors 0x00
 
@@ -35,27 +38,27 @@ struct Settings
 {
     // === Bloc 1 : OPOS6UL -> Teensy (5 bytes) ===
     int8_t  numOfBots     = 3;   // Reg 0. Nb max adv a detecter (W: OPOS6UL).
-    int8_t  ledLuminosity = 5;  // Reg 1. Luminosite LED matrix 0..100 (W: OPOS6UL au boot pour le match).
+    int8_t  ledLuminosity = 10; // Reg 1. Luminosite LED matrix 0..100 (W: OPOS6UL au boot pour le match).
     uint8_t matchPoints   = 0;   // Reg 2. Score match sur LED matrix + LCD (W: OPOS6UL).
     uint8_t matchState    = 0;   // Reg 3. 0=prepa, 1=match, 2=fini (W: OPOS6UL).
     uint8_t lcdBacklight  = 1;   // Reg 4. 0=off, 1=on (W: OPOS6UL).
 
-    // === Bloc 2 : Teensy (LCD) -> OPOS6UL (4 bytes) ===
+    // === Bloc 2 : Teensy (LCD) -> OPOS6UL (5 bytes) ===
     uint8_t matchColor    = 0;   // Reg 5. Couleur equipe: 0=bleu, 1=jaune (W: LCD).
     uint8_t strategy      = 0;   // Reg 6. N° strategie IA 1..3 (W: LCD).
     uint8_t testMode      = 0;   // Reg 7. Test materiel: 0=aucun, 1..5 (W: LCD).
     uint8_t advDiameter   = 40;  // Reg 8. Diametre adversaire en cm (W: LCD).
+    uint8_t actionReq     = 0;   // Reg 9. 1 = bouton SETPOS/RESET clique (sens selon matchState).
+                                 // OPOS6UL remet a 0 apres consommation.
+
+    // === Bloc 3 : compteur de clics touch (1 byte) ===
+    uint8_t seq_touch     = 0;   // Reg 10. Incremente par Teensy a chaque clic LVGL.
 };
 
 // Registers that the caller can only read
 struct Registers
 {
     uint8_t flags = 0;        // Register 4. bit 0 => new data available
-    //TODO FLAGS
-    //overflow more than 3 beacons
-    //more than 6 contigus
-    //default config settings is changed by master or not. in case of reset, the master can know and reconfigure
-
     uint8_t nbDetectedBots = 0; //Register 5.Nombre de balises détectées.
     int16_t c1_mm = 0;        // Register 6. //AV GAUCHE BAS
     int16_t c2_mm = 0;        // Register 8. //AV GAUCHE HAUT
@@ -152,21 +155,9 @@ private:
         return instance;
     }
 
-    AsI2c i2c_BeaconSensors_;
-    unsigned char i2c_address_;
+    AsI2cAtomic i2c_;  ///< Bus I2C unique (repeated start pour lectures, fd unique).
     bool connected_BeaconSensors_;
-    //long shift_;
 
-    int readRegnBytes(unsigned char command, unsigned char *aData, uint nb);
-    unsigned char readAddr(unsigned char address);
-    unsigned char readRegByte(unsigned char command);
-    /*
-     int readReg2Bytes(unsigned char command, unsigned char *aData);
-     int readReg3Bytes(unsigned char command, unsigned char *aData);
-
-     int writeRegByte(unsigned char command, unsigned char aData1);
-     int writeReg2Bytes(unsigned char command, unsigned char aData1, unsigned char aData2);
-     */
 public:
 
     /*!
@@ -195,15 +186,47 @@ public:
     /*!
      *  \brief Lit tous les registres de la balise.
      */
+    /*!
+     *  \brief DEPRECATED — utiliser getDataFull() a la place.
+     *  Lit les registres en 7 transactions I2C separees (fragile).
+     */
+    [[deprecated("Utiliser getDataFull() (1 seule transaction I2C)")]]
     Registers getData();
 
-//    int getDistanceMm();
-//    void getInfoData(unsigned int *spotSize, unsigned int *spotSym);
-//    void EFuseSlaveID(unsigned char desiredAddress, bool pin_activated);
+    /*!
+     *  \brief Lit tous les registres en une seule transaction I2C (136 bytes).
+     *  Plus robuste que getData() (1 transaction au lieu de 7).
+     */
+    Registers getDataFull();
+
+    /*!
+     * \brief Lit le bloc Settings complet (registres 0..10, 11 bytes avec seq_touch).
+     * \param out Struct a remplir.
+     * \return true si lecture OK, false si erreur I2C.
+     */
+    bool readSettings(struct Settings &out);
 
     void display(int number);
 
     void writeLedLuminosity(uint8_t lum);
+
+    /*!
+     * \brief Ecriture par champ du bloc Settings. Retourne true si OK.
+     * Voir ARCHITECTURE_BEACON.md pour le mapping reg.
+     */
+    bool writeNumOfBots(int8_t n);     // reg 0
+    bool writeMatchPoints(uint8_t p);  // reg 2
+    bool writeMatchState(uint8_t s);   // reg 3
+    bool writeLcdBacklight(uint8_t b); // reg 4
+    bool writeMatchColor(uint8_t c);   // reg 5
+    bool writeStrategy(uint8_t s);     // reg 6
+    bool writeAdvDiameter(uint8_t d);  // reg 8
+    bool writeActionReq(uint8_t v);    // reg 9 (used by OPOS6UL to clear after consuming)
+
+    /*!
+     * \brief Retourne true si begin() a reussi et que la balise repond.
+     */
+    bool is_connected() const { return connected_BeaconSensors_; }
 
     int ScanBus();
 };

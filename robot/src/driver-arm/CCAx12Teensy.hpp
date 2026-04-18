@@ -8,8 +8,7 @@
 #ifndef DRIVER_EV3_CCAX12TEENSY_HPP_
 #define DRIVER_EV3_CCAX12TEENSY_HPP_
 
-#include <as_devices/cpp/as_i2c.hpp>
-
+#include "AsI2cAtomic.hpp"
 #include "log/LoggerFactory.hpp"
 
 #define AX12TEENSY_ADDR                     0x08
@@ -90,7 +89,7 @@ private:
 		return instance;
 	}
 
-	AsI2c i2c_CCAx12Teensy_;
+	AsI2cAtomic i2c_;
 	bool connected_;
 	utils::Mutex mutex_;
 

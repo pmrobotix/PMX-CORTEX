@@ -1,7 +1,7 @@
 #ifndef OPOS6UL_DRIVER_MOTORSCONTROLLER_MD25_MD25_H_
 #define OPOS6UL_DRIVER_MOTORSCONTROLLER_MD25_MD25_H_
 
-#include <as_devices/cpp/as_i2c.hpp>
+#include "AsI2cAtomic.hpp"
 #include "log/LoggerFactory.hpp"
 
 #define ADDR_MD25 0xB0 >> 1 //0x58
@@ -74,7 +74,7 @@ private:
 
     /* Communication */
 
-    AsI2c i2c_MD25_;
+    AsI2cAtomic i2c_;
 
     /* Variables */
     int mode;
