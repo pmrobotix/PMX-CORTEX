@@ -44,6 +44,7 @@ void MenuBeaconLCDTouch::pollInputs(Robot& robot)
 	// aux defaults Robot -> pas d'effet visible.
 	if (!shadowInit_) {
 		shadow_ = current;
+		shadow_.actionReq = 0;  // actionReq d'avant le boot OPOS6UL est stale, on l'ignore
 		lastSeqTouchSeen_ = current.seq_touch;
 		shadowInit_ = true;
 		logger().info() << "[POLL] first read shadow init: seq_touch=" << (int)current.seq_touch
@@ -68,6 +69,12 @@ void MenuBeaconLCDTouch::pollInputs(Robot& robot)
 			robot.setAdvDiameter(current.advDiameter);
 		if (current.ledLuminosity >= 0 && current.ledLuminosity <= 100)
 			robot.setLedLuminosity(static_cast<uint8_t>(current.ledLuminosity));
+
+		// Si actionReq etait a 1 au boot (stale), le consommer cote Teensy
+		if (current.actionReq != 0) {
+			sensors_.writeActionReq(0);
+			logger().info() << "[POLL] cleared stale actionReq=" << (int)current.actionReq << logs::end;
+		}
 
 		logger().info() << "[POLL] adopted Teensy values into Robot: color="
 				<< (c == PMXYELLOW ? "YELLOW" : "BLUE")
