@@ -796,7 +796,7 @@ void add_display_pmx()
 		if (led_x <= 2) write_PMX(led_x + 36, 0, color_pmx);
 
 		int led_x_opp = led_x - 18;
-		if (led_x_opp <= 0) led_x_opp += 36; //saturation
+		if (led_x_opp < 0) led_x_opp += 36; //saturation
 
 		if (d_mm <= 330)
 		{
@@ -918,7 +918,7 @@ void add_display_pmx_OLD()
 		if (led_x <= 2) write_PMX(led_x + 36, 0, color_pmx);
 
 		int led_x_opp = led_x - 18;
-		if (led_x_opp <= 0) led_x_opp += 36; //saturation
+		if (led_x_opp < 0) led_x_opp += 36; //saturation
 
 		if (d_mm <= 330)
 		{

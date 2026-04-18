@@ -30,11 +30,13 @@ void setup()
 	pinMode(LED_BUILTIN + 1, OUTPUT); //Red
 	//pinMode(LED_BUILTIN + 2, OUTPUT); //optional replace by ADC
 
+	setup_screen_splash();  // logo PM-ROBOTIX immédiat
+
 	ledPanels_setup();
 
 	tof_setup();
 
-	setup_screen();
+	setup_screen_menu();   // menu pre-match remplace le logo
 
 
 }

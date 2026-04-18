@@ -74,7 +74,8 @@ struct RegistersLCD {
 
 void my_disp_flush(lv_disp_drv_t* disp, const lv_area_t* area, lv_color_t* color_p);
 void my_touchpad_read(lv_indev_drv_t* indev_driver, lv_indev_data_t* data);
-void setup_screen();
+void setup_screen_splash();
+void setup_screen_menu();
 void ta_event_cb(lv_event_t* e);
 void screen_loop();
 //void on_read_isr_lcd(uint8_t reg_num);

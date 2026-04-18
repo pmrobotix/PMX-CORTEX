@@ -7,6 +7,9 @@
 
 #include <lvgl.h> // see the comment above for infos about installing and configuring LVGL.
 
+#include "logo_pmx.h"
+#include "qr_code_pmx.h"
+#include "favicon_pmx.h"
 #include "TofSensors.h" // struct Settings (slave I2C 0x2D) - menu pre-match
 /********************************************************************
  *
@@ -402,12 +405,38 @@ static void updateSetposButton() {
 	}
 }
 
+static uint32_t setpos_press_ms = 0;   ///< Timestamp du dernier appui sur SETPOS.
+static uint32_t actionReq_set_ms = 0;  ///< Timestamp quand actionReq a ete mis a 1.
+
+static void setpos_pressed_cb(lv_event_t *e) {
+	(void)e;
+	setpos_press_ms = millis();
+	Serial.printf("[SETPOS] PRESSED at %lu ms\n", setpos_press_ms);
+}
+
 static void setpos_event_cb(lv_event_t *e) {
 	(void)e;
-	if (settings.matchState >= 2) return;
-	if (settings.actionReq != 0) return;  // deja en attente de consommation par OPOS6UL
+	uint32_t elapsed = millis() - setpos_press_ms;
+	if (settings.matchState >= 2) {
+		if (lbl_setpos_handle) lv_label_set_text(lbl_setpos_handle, "MATCH!");
+		return;
+	}
+	if (settings.actionReq != 0) {
+		if (lbl_setpos_handle) lv_label_set_text(lbl_setpos_handle, "WAIT..");
+		return;
+	}
+	if (elapsed < 250) {
+		if (lbl_setpos_handle) {
+			char dbg[16];
+			snprintf(dbg, sizeof(dbg), "%lums", elapsed);
+			lv_label_set_text(lbl_setpos_handle, dbg);
+		}
+		return;
+	}
 	settings.actionReq = 1;
 	settings.seq_touch++;
+	actionReq_set_ms = millis();
+	if (lbl_setpos_handle) lv_label_set_text(lbl_setpos_handle, "OK!");
 }
 
 // --- Visibilite du bouton couleur selon la phase (lock en ARMED+) ---
@@ -501,34 +530,20 @@ static void create_match_menu(void) {
 	lv_label_set_text_fmt(lbl_matchPoints_value, "%d", settings.matchPoints);
 	lv_obj_set_pos(lbl_matchPoints_value, 294, 8);
 
-	// --- Ligne 1 (y=32) : testMode T1..T5 ---
-	lv_obj_t *lbl_test = lv_label_create(scr);
-	lv_label_set_text(lbl_test, "Test");
-	lv_obj_align(lbl_test, LV_ALIGN_TOP_MID, 0, 32);
+	// --- Labels (y=36) : Couleur / Start/Reset ---
+	lv_obj_t *lbl_color_title = lv_label_create(scr);
+	lv_label_set_text(lbl_color_title, "Couleur");
+	lv_obj_set_pos(lbl_color_title, 40, 36);
 
-	int test_btn_w = 54;
-	int test_btn_h = 28;
-	int test_total = TESTMODE_COUNT * test_btn_w + (TESTMODE_COUNT - 1) * 6;
-	int test_x0 = (320 - test_total) / 2;
-	for (int i = 0; i < TESTMODE_COUNT; i++) {
-		testMode_btns[i] = lv_btn_create(scr);
-		lv_obj_set_size(testMode_btns[i], test_btn_w, test_btn_h);
-		lv_obj_set_pos(testMode_btns[i], test_x0 + i * (test_btn_w + 6), 48);
-		label = lv_label_create(testMode_btns[i]);
-		lv_label_set_text_fmt(label, "T%d", i + 1);
-		lv_obj_center(label);
-		lv_obj_add_event_cb(testMode_btns[i], testMode_event_cb,
-				LV_EVENT_CLICKED, NULL);
-	}
-	testMode_reset_all_grey();
+	lv_obj_t *lbl_setpos_title = lv_label_create(scr);
+	lv_label_set_text(lbl_setpos_title, "Start / Reset");
+	lv_obj_set_pos(lbl_setpos_title, 196, 36);
 
-	// --- Ligne 2 (y=82) : COULEUR (gauche) + SETPOS/RESET (droite), demi-largeur chacun ---
-	// Largeur ecran = 320. Chaque bouton = 140, gap = 32, marge = 4.
-	// Gap large pour eviter qu'un appui sur couleur ne declenche SETPOS/RESET.
+	// --- Ligne 1 (y=52) : COULEUR (gauche) + SETPOS/RESET (droite), 140x76 chacun ---
 	lv_obj_t *btn_color = lv_btn_create(scr);
 	btn_color_handle = btn_color;
-	lv_obj_set_size(btn_color, 140, 50);
-	lv_obj_set_pos(btn_color, 4, 82);
+	lv_obj_set_size(btn_color, 140, 76);
+	lv_obj_set_pos(btn_color, 4, 52);
 	label = lv_label_create(btn_color);
 	lv_obj_center(label);
 	updateColorButton(btn_color);
@@ -536,27 +551,29 @@ static void create_match_menu(void) {
 			LV_EVENT_CLICKED, NULL);
 
 	btn_setpos_handle = lv_btn_create(scr);
-	lv_obj_set_size(btn_setpos_handle, 140, 50);
-	lv_obj_set_pos(btn_setpos_handle, 176, 82);
+	lv_obj_set_size(btn_setpos_handle, 140, 76);
+	lv_obj_set_pos(btn_setpos_handle, 176, 52);
 	lbl_setpos_handle = lv_label_create(btn_setpos_handle);
 	lv_obj_center(lbl_setpos_handle);
 	updateSetposButton();
+	lv_obj_add_event_cb(btn_setpos_handle, setpos_pressed_cb,
+			LV_EVENT_PRESSED, NULL);
 	lv_obj_add_event_cb(btn_setpos_handle, setpos_event_cb,
 			LV_EVENT_CLICKED, NULL);
 
-	// --- Ligne 3 (y=138) : strategie 1/2/3 ---
+	// --- Label + Ligne 2 (y=132/148) : strategie 1/2/3 ---
 	lv_obj_t *lbl_strat = lv_label_create(scr);
 	lv_label_set_text(lbl_strat, "Strategie");
-	lv_obj_align(lbl_strat, LV_ALIGN_TOP_MID, 0, 138);
+	lv_obj_align(lbl_strat, LV_ALIGN_TOP_MID, 0, 132);
 
 	int strat_btn_w = 90;
-	int strat_btn_h = 36;
+	int strat_btn_h = 32;
 	int strat_total = STRATEGY_COUNT * strat_btn_w + (STRATEGY_COUNT - 1) * 8;
 	int strat_x0 = (320 - strat_total) / 2;
 	for (int i = 0; i < STRATEGY_COUNT; i++) {
 		strategy_btns[i] = lv_btn_create(scr);
 		lv_obj_set_size(strategy_btns[i], strat_btn_w, strat_btn_h);
-		lv_obj_set_pos(strategy_btns[i], strat_x0 + i * (strat_btn_w + 8), 154);
+		lv_obj_set_pos(strategy_btns[i], strat_x0 + i * (strat_btn_w + 8), 148);
 		label = lv_label_create(strategy_btns[i]);
 		lv_label_set_text_fmt(label, "%d", i + 1);
 		lv_obj_center(label);
@@ -565,37 +582,60 @@ static void create_match_menu(void) {
 	}
 	updateStrategyButtons();
 
-	// --- Ligne 4 (y=196) : diametre adversaire [-5] val [+5] gros boutons ---
+	// --- Ligne 3 (y=186) : T1 T2 + Diam [+ 5] ---
+	int test_btn_w = 68;
+	int test_btn_h = 24;
+	for (int i = 0; i < 2 && i < TESTMODE_COUNT; i++) {
+		testMode_btns[i] = lv_btn_create(scr);
+		lv_obj_set_size(testMode_btns[i], test_btn_w, test_btn_h);
+		lv_obj_set_pos(testMode_btns[i], 4 + i * (test_btn_w + 6), 186);
+		label = lv_label_create(testMode_btns[i]);
+		lv_label_set_text_fmt(label, "T%d", i + 1);
+		lv_obj_center(label);
+		lv_obj_add_event_cb(testMode_btns[i], testMode_event_cb,
+				LV_EVENT_CLICKED, NULL);
+	}
+
 	lv_obj_t *lbl_adv_title = lv_label_create(scr);
-	lv_label_set_text(lbl_adv_title, "Adv:");
-	lv_obj_set_pos(lbl_adv_title, 10, 206);
+	lv_label_set_text(lbl_adv_title, "Diam");
+	lv_obj_set_pos(lbl_adv_title, 160, 190);
 
 	btn = lv_btn_create(scr);
-	lv_obj_set_size(btn, 70, 38);
-	lv_obj_set_pos(btn, 50, 198);
-	label = lv_label_create(btn);
-	lv_label_set_text(label, "- 5");
-	lv_obj_center(label);
-	lv_obj_add_event_cb(btn, advDiam_minus_cb, LV_EVENT_CLICKED, NULL);
-
-	lbl_adv_value = lv_label_create(scr);
-	lv_label_set_text_fmt(lbl_adv_value, "%d cm", settings.advDiameter);
-	lv_obj_set_pos(lbl_adv_value, 134, 206);
-
-	btn = lv_btn_create(scr);
-	lv_obj_set_size(btn, 70, 38);
-	lv_obj_set_pos(btn, 200, 198);
+	lv_obj_set_size(btn, 80, 24);
+	lv_obj_set_pos(btn, 210, 186);
 	label = lv_label_create(btn);
 	lv_label_set_text(label, "+ 5");
 	lv_obj_center(label);
 	lv_obj_add_event_cb(btn, advDiam_plus_cb, LV_EVENT_CLICKED, NULL);
+
+	// --- Ligne 4 (y=214) : T3 T4 + 40cm [- 5] ---
+	for (int i = 2; i < 4 && i < TESTMODE_COUNT; i++) {
+		testMode_btns[i] = lv_btn_create(scr);
+		lv_obj_set_size(testMode_btns[i], test_btn_w, test_btn_h);
+		lv_obj_set_pos(testMode_btns[i], 4 + (i - 2) * (test_btn_w + 6), 214);
+		label = lv_label_create(testMode_btns[i]);
+		lv_label_set_text_fmt(label, "T%d", i + 1);
+		lv_obj_center(label);
+		lv_obj_add_event_cb(testMode_btns[i], testMode_event_cb,
+				LV_EVENT_CLICKED, NULL);
+	}
+	// T5 non cree (supprime du layout)
+	testMode_reset_all_grey();
+
+	lbl_adv_value = lv_label_create(scr);
+	lv_label_set_text_fmt(lbl_adv_value, "%d cm", settings.advDiameter);
+	lv_obj_set_pos(lbl_adv_value, 160, 218);
+
+	btn = lv_btn_create(scr);
+	lv_obj_set_size(btn, 80, 24);
+	lv_obj_set_pos(btn, 210, 214);
+	label = lv_label_create(btn);
+	lv_label_set_text(label, "- 5");
+	lv_obj_center(label);
+	lv_obj_add_event_cb(btn, advDiam_minus_cb, LV_EVENT_CLICKED, NULL);
 }
 
-void setup_screen() {
-
-	// Start listening on I2C4 with address 0x2F
-//	registerSlaveLCD.listen(0x2F);
-//	registerSlaveLCD.after_read(on_read_isr_lcd);
+void setup_screen_splash() {
 
 	// ------------------------------
 	// Init the ILI9341_T4 driver.
@@ -645,20 +685,28 @@ void setup_screen() {
 	lv_indev_drv_register(&indev_drv);
 
 	// ------------------------------
-	// SHORT EXAMPLE : display a keyboard
-	// c.f. https://docs.lvgl.io/master/examples.html#keyboard
+	// Splash screen : logo PM-ROBOTIX
 	// ------------------------------
-//	lv_obj_t *kb = lv_keyboard_create(lv_scr_act());
-//	lv_obj_t *ta = lv_textarea_create(lv_scr_act());
-//	lv_obj_align(ta, LV_ALIGN_TOP_LEFT, 10, 10);
-//	lv_obj_add_event_cb(ta, ta_event_cb, LV_EVENT_ALL, kb);
-//	lv_textarea_set_placeholder_text(ta, "Hello");
-//	lv_obj_set_size(ta, 220, 140);
+	// Le logo reste affiche pendant que tof_setup() configure les VL53.
+	// setup_screen_menu() le supprimera ensuite.
+	lv_obj_t *splash_img = lv_img_create(lv_scr_act());
+	lv_img_set_src(splash_img, &qr_code_pmx);
+	lv_obj_set_pos(splash_img, 0, 0);
+
+	// Pomper LVGL pour envoyer le logo a l'ecran
+	lv_task_handler();
+}
+
+void setup_screen_menu() {
+	if (!screen_available) return;
+
+	// Nettoyer le splash (supprimer tous les enfants de l'ecran)
+	lv_obj_clean(lv_scr_act());
 
 	// ------------------------------
-	// Menu pre-match (etape 3 migration)
+	// Menu pre-match
 	// ------------------------------
-	// Cree le menu tactile avec 3 widgets : couleur, n° match, labels read-only.
+	// Cree le menu tactile avec les widgets : couleur, strategie, labels read-only.
 	// Pour revenir a l'exemple de demonstration, remplacer create_match_menu()
 	// par lv_example_grid_1() (ou lv_example_grid_2()) - les fonctions sont
 	// conservees plus haut dans ce fichier.
@@ -680,8 +728,113 @@ void ta_event_cb(lv_event_t *e) {
 	}
 }
 
+// Etat de l'ecran LCD : 0=menu, 1=match (logo), 2=fin (favicon+score)
+static uint8_t lcd_screen_state = 0;
+
+// Handle du label score en match (haut droite) et en fin (gros centre)
+static lv_obj_t *lbl_match_score = nullptr;
+
+/**
+ * Invalide les handles des widgets menu (apres lv_obj_clean).
+ */
+static void invalidate_menu_handles(void) {
+	btn_color_handle = nullptr;
+	btn_setpos_handle = nullptr;
+	lbl_setpos_handle = nullptr;
+	lbl_numOfBots_value = nullptr;
+	lbl_matchPoints_value = nullptr;
+	lbl_lum_value = nullptr;
+	lbl_adv_value = nullptr;
+	for (int i = 0; i < STRATEGY_COUNT; i++) strategy_btns[i] = nullptr;
+	for (int i = 0; i < TESTMODE_COUNT; i++) testMode_btns[i] = nullptr;
+}
+
+/**
+ * Ecran match : logo PMX plein ecran + score en haut a droite (font 16).
+ */
+static void show_match_screen(void) {
+	lv_obj_clean(lv_scr_act());
+	invalidate_menu_handles();
+
+	lv_obj_set_style_bg_color(lv_scr_act(), lv_color_make(30, 27, 59), 0);
+
+	lv_obj_t *img = lv_img_create(lv_scr_act());
+	lv_img_set_src(img, &logo_pmx);
+	lv_obj_set_pos(img, 0, 0);
+
+	// Score en haut a droite, blanc, font 16
+	lbl_match_score = lv_label_create(lv_scr_act());
+	lv_obj_set_style_text_color(lbl_match_score, lv_color_white(), 0);
+	lv_obj_set_style_text_font(lbl_match_score, &lv_font_montserrat_16, 0);
+	lv_label_set_text_fmt(lbl_match_score, "%d", settings.matchPoints);
+	lv_obj_set_pos(lbl_match_score, 290, 6);
+
+	lcd_screen_state = 1;
+}
+
+/**
+ * Ecran fin de match : favicon centré en haut + score en gros en bas (font 48).
+ */
+static void show_endmatch_screen(void) {
+	lv_obj_clean(lv_scr_act());
+	invalidate_menu_handles();
+
+	lv_obj_set_style_bg_color(lv_scr_act(), lv_color_make(30, 27, 59), 0);
+
+	lv_obj_t *img = lv_img_create(lv_scr_act());
+	lv_img_set_src(img, &favicon_pmx);
+	lv_obj_set_pos(img, 0, 0);
+
+	// Score en gros, centre dans la moitie basse (y=120..240)
+	lbl_match_score = lv_label_create(lv_scr_act());
+	lv_obj_set_style_text_color(lbl_match_score, lv_color_white(), 0);
+	lv_obj_set_style_text_font(lbl_match_score, &lv_font_montserrat_36, 0);
+	lv_label_set_text_fmt(lbl_match_score, "%d", settings.matchPoints);
+	lv_obj_align(lbl_match_score, LV_ALIGN_CENTER, 0, 60);
+
+	lcd_screen_state = 2;
+}
+
 void screen_loop() {
 	if (!screen_available) return; // pas d'ecran : no-op
+
+	// --- Transitions d'ecran selon matchState ---
+	// matchState: 0=prepa, 1=en cours, 2=fini
+	if (settings.matchState == 0 && lcd_screen_state != 0) {
+		// OPOS6UL redemarré ou reset -> retour au menu
+		lv_obj_clean(lv_scr_act());
+		invalidate_menu_handles();
+		create_match_menu();
+		lcd_screen_state = 0;
+	}
+	if (settings.matchState == 1 && lcd_screen_state == 0) {
+		show_match_screen();
+	}
+	if (settings.matchState >= 2 && lcd_screen_state != 2) {
+		show_endmatch_screen();
+	}
+
+	// En mode match ou fin : rafraichir le score si besoin
+	if (lcd_screen_state >= 1) {
+		static uint8_t last_score = 0xFF;
+		if (lbl_match_score && settings.matchPoints != last_score) {
+			lv_label_set_text_fmt(lbl_match_score, "%d", settings.matchPoints);
+			if (lcd_screen_state == 2) {
+				// Recentrer apres changement de texte (nb chiffres)
+				lv_obj_align(lbl_match_score, LV_ALIGN_CENTER, 0, 60);
+			}
+			last_score = settings.matchPoints;
+		}
+		lv_task_handler();
+		return;
+	}
+
+	// Timeout actionReq : si non consomme par l'OPOS6UL en 1s, reset a 0.
+	// Couvre le cas ou l'OPOS6UL n'est pas demarree.
+	if (settings.actionReq != 0 && (millis() - actionReq_set_ms > 1000)) {
+		settings.actionReq = 0;
+		updateSetposButton();
+	}
 
 	// Rafraichissement periodique des widgets LVGL a partir de settings.
 	// Couvre a la fois les labels read-only ecrits par l'OPOS6UL (numOfBots,
