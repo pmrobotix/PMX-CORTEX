@@ -531,8 +531,16 @@ int scani2c(TwoWire w)
  *
  * @param reg_num Numero du registre lu par le master.
  */
+/// Timestamp de la derniere lecture I2C reussie par le master (millis()).
+/// Mis a jour dans l'ISR, lu par tof_loop() pour le watchdog.
+static volatile uint32_t lastMasterReadMs = 0;
+/// true quand le master a communique au moins une fois (evite faux watchdog au boot).
+static volatile bool masterHasCommunicated = false;
+
 void on_read_isr(uint8_t reg_num)
 {
+	lastMasterReadMs = millis();
+	masterHasCommunicated = true;
 	// Clear "new data" seulement apres lecture des derniers registres (timing/seq)
 	if (reg_num >= 128) {
 		registers.flags = registers.flags & 0xFE; //mise a zero du BIT0
@@ -558,6 +566,16 @@ void tof_setup()
 	// Start listening on I2C4 with address 0x2D
 	registerSlave.listen(0x2D);
 	registerSlave.after_read(on_read_isr);
+
+	// Priorite I2C slave (Slave2/LPI2C4) > master (Wire/LPI2C1, Wire1/LPI2C3)
+	// pour eviter NACK quand un ranging ToF retarde l'ISR slave.
+	// Cortex-M7 : plus le chiffre est bas, plus la priorite est haute.
+	//NVIC_SET_PRIORITY(IRQ_LPI2C4, 16);   // Slave2 : priorite haute
+	//NVIC_SET_PRIORITY(IRQ_LPI2C1, 64);   // Wire  (master ToF back) : basse
+	//NVIC_SET_PRIORITY(IRQ_LPI2C3, 64);   // Wire1 (master ToF front) : basse
+
+	Serial.print("sizeof(Settings)=");
+	Serial.println(sizeof(Settings));
 
 	//Front vl on i2c  17 SDA1 / 16 SCL1
 	for (int i = 0; i < NumOfSensors / 2; i++)
@@ -1296,8 +1314,17 @@ void tof_loop(int debug)
 	}
 
 	elapsedT_us = 0;
-	//shared_endloop1 = 0; //lancement de la mise à jour des données loop1
-	//shared_endloop2 = 0; //lancement de la mise à jour des données loop2
+
+	// --- Watchdog I2C slave ---
+	// Si le master OPOS6UL n'a pas lu depuis 5 secondes et qu'il a deja
+	// communique au moins une fois, le slave LPI2C4 est probablement bloque.
+	// On le reset et on re-listen.
+	if (masterHasCommunicated && (millis() - lastMasterReadMs > 5000)) {
+		Serial.println("[WATCHDOG] I2C slave reset (no master read for 5s)");
+		registerSlave.listen(0x2D);
+		registerSlave.after_read(on_read_isr);
+		lastMasterReadMs = millis();  // reset le timer pour ne pas boucler
+	}
 
 	threads.yield();
 }

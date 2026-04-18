@@ -45,18 +45,32 @@
 struct Settings {
 	// === Bloc 1 : OPOS6UL -> Teensy (5 bytes) ===
 	int8_t  numOfBots     = 3;   ///< Reg 0. Nb max d'adv a detecter (W: OPOS6UL).
-	int8_t  ledLuminosity = 5;   ///< Reg 1. Luminosite LED matrix 0..100, pas de 5 (1 sous 5) (W: OPOS6UL).
+	int8_t  ledLuminosity = 10;  ///< Reg 1. Luminosite LED matrix 0..100, pas de 5 (1 sous 10) (W: OPOS6UL).
 	uint8_t matchPoints   = 0;   ///< Reg 2. Score match sur LED matrix + LCD (W: OPOS6UL).
 	uint8_t matchState    = 0;   ///< Reg 3. Etat match: 0=prepa, 1=en cours, 2=fini (W: OPOS6UL).
 	uint8_t lcdBacklight  = 1;   ///< Reg 4. Backlight LCD: 0=off, 1=on (W: OPOS6UL).
 
-	// === Bloc 2 : Teensy (LCD) -> OPOS6UL (4 bytes) ===
+	// === Bloc 2 : Teensy (LCD) -> OPOS6UL (5 bytes) ===
 	uint8_t matchColor    = 0;   ///< Reg 5. Couleur equipe: 0=bleu, 1=jaune (W: LCD).
 	uint8_t strategy      = 0;   ///< Reg 6. N° strategie IA 1..3 (W: LCD).
 	uint8_t testMode      = 0;   ///< Reg 7. Test materiel: 0=aucun, 1..5=test dedie (W: LCD).
 	uint8_t advDiameter   = 40;  ///< Reg 8. Diametre adversaire en cm, defaut 40 (W: LCD).
+	/// Reg 9. Bouton SETPOS/RESET clique sur le LCD tactile. Le callback LVGL
+	/// met actionReq=1 + seq_touch++. L'OPOS6UL interprete selon matchState :
+	/// matchState==CONFIG -> setPos; matchState==ARMED -> reset. Puis OPOS6UL
+	/// remet actionReq=0 pour "consommer" le trigger (handshake).
+	/// Voir robot/md/O_STATE_NEW_INIT.md section 6.
+	uint8_t actionReq     = 0;
+
+	// === Bloc 3 : compteur de clics touch (1 byte) ===
+	/// Reg 10. Incremente par chaque callback LVGL qui modifie un champ
+	/// du Bloc 2. Permet a l'OPOS6UL de distinguer "je relis ce que j'ai
+	/// ecrit" de "l'operateur a clique sur l'ecran tactile". Reset a 0 au
+	/// boot Teensy (pas d'EEPROM) -> sert aussi de signal de reboot pour
+	/// l'OPOS6UL (regression = reboot detecte).
+	uint8_t seq_touch     = 0;
 };
-static_assert(sizeof(Settings) == 9, "Settings must be exactly 9 bytes for I2C layout");
+static_assert(sizeof(Settings) == 11, "Settings must be exactly 11 bytes for I2C layout");
 
 /**
  * @brief Registres I2C en lecture seule pour le master (OPOS6UL).

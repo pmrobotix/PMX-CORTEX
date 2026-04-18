@@ -41,6 +41,17 @@ void setup()
 
 void loop()
 {
+	// Reboot vers HalfKay sur commande série (pour upload PIO sans bouton reset)
+	if (Serial.available()) {
+		char c = Serial.read();
+		if (c == 'R') {
+			Serial.println("Rebooting to bootloader...");
+			Serial.flush();
+			delay(50);
+			_reboot_Teensyduino_();
+		}
+	}
+
 	ii++;
 	if (ii % 2)
 	{
@@ -51,7 +62,6 @@ void loop()
 		digitalWrite(LED_BUILTIN, LOW);
 		digitalWrite(LED_BUILTIN + 1, LOW);
 	}
-
 
 
 	screen_loop();

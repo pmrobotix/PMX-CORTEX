@@ -228,6 +228,11 @@ void lv_example_grid_2(void) {
  * Applique le style visuel du bouton couleur selon settings.matchColor.
  * 0 = fond bleu + texte "BLEU", 1 = fond jaune + texte "JAUNE".
  */
+// Handle file-scope vers le bouton couleur (assigne dans setup_screen()).
+// Permet a screen_loop() de rafraichir l'affichage quand settings.matchColor
+// est modifie par l'OPOS6UL via I2C (pas uniquement par un clic tactile).
+static lv_obj_t *btn_color_handle = nullptr;
+
 static void updateColorButton(lv_obj_t *btn) {
 	lv_obj_t *label = lv_obj_get_child(btn, 0);
 	if (settings.matchColor == 0) {
@@ -246,8 +251,14 @@ static void updateColorButton(lv_obj_t *btn) {
  * Ecrit directement dans settings.matchColor (Reg 5, Bloc 2 LCD->OPOS6UL).
  */
 static void matchColor_event_cb(lv_event_t *e) {
+	// Ignore le clic si matchState >= 1 (= ARMED, couleur lockee apres setPos).
+	// La protection visuelle (LV_STATE_DISABLED) est appliquee par screen_loop,
+	// mais ce guard couvre le cas ou matchState est stale d'un run precedent
+	// avant que l'OPOS6UL ait pu pousser matchState=0.
+	if (settings.matchState >= 1) return;
 	lv_obj_t *btn = (lv_obj_t*) lv_event_get_target(e);
 	settings.matchColor = (settings.matchColor == 0) ? 1 : 0;
+	settings.seq_touch++;
 	updateColorButton(btn);
 }
 
@@ -257,21 +268,30 @@ static lv_obj_t *lbl_lum_value = nullptr;
 
 static void ledLum_minus_cb(lv_event_t *e) {
 	(void)e;
-	if (settings.ledLuminosity <= 5)
+	if (settings.ledLuminosity <= 10)
 		settings.ledLuminosity = (settings.ledLuminosity > 0) ? settings.ledLuminosity - 1 : 0;
 	else
 		settings.ledLuminosity -= 5;
+	settings.seq_touch++;
 	if (lbl_lum_value) lv_label_set_text_fmt(lbl_lum_value, "%d", settings.ledLuminosity);
 }
 
 static void ledLum_plus_cb(lv_event_t *e) {
 	(void)e;
-	if (settings.ledLuminosity < 5)
+	if (settings.ledLuminosity < 10)
 		settings.ledLuminosity += 1;
 	else if (settings.ledLuminosity <= 95)
 		settings.ledLuminosity += 5;
 	else
 		settings.ledLuminosity = 100;
+	settings.seq_touch++;
+	if (lbl_lum_value) lv_label_set_text_fmt(lbl_lum_value, "%d", settings.ledLuminosity);
+}
+
+static void ledLum_set10_cb(lv_event_t *e) {
+	(void)e;
+	settings.ledLuminosity = 10;
+	settings.seq_touch++;
 	if (lbl_lum_value) lv_label_set_text_fmt(lbl_lum_value, "%d", settings.ledLuminosity);
 }
 
@@ -285,6 +305,7 @@ static void advDiam_minus_cb(lv_event_t *e) {
 		settings.advDiameter -= 5;
 	else
 		settings.advDiameter = 5;
+	settings.seq_touch++;
 	if (lbl_adv_value) lv_label_set_text_fmt(lbl_adv_value, "%d cm", settings.advDiameter);
 }
 
@@ -294,6 +315,7 @@ static void advDiam_plus_cb(lv_event_t *e) {
 		settings.advDiameter += 5;
 	else
 		settings.advDiameter = 250;
+	settings.seq_touch++;
 	if (lbl_adv_value) lv_label_set_text_fmt(lbl_adv_value, "%d cm", settings.advDiameter);
 }
 
@@ -320,8 +342,9 @@ static void strategy_event_cb(lv_event_t *e) {
 	lv_obj_t *btn = (lv_obj_t*) lv_event_get_target(e);
 	for (int i = 0; i < STRATEGY_COUNT; i++) {
 		if (strategy_btns[i] == btn) {
-			settings.strategy = (uint8_t)(i + 1);
-			break;
+					settings.strategy = (uint8_t)(i + 1);
+			settings.seq_touch++;
+					break;
 		}
 	}
 	updateStrategyButtons();
@@ -346,16 +369,65 @@ static void testMode_reset_all_grey(void) {
 
 static void testMode_timer_cb(lv_timer_t *timer) {
 	settings.testMode = 0;
+	settings.seq_touch++;
 	testMode_reset_all_grey();
-	lv_timer_del(timer); // timer one-shot, on le supprime
+	lv_timer_del(timer);
+}
+
+// --- Bouton SETPOS / RESET (partage toute la largeur de l'ecran avec btn_color) ---
+// matchState=0 (CONFIG) : libelle "SETPOS", couleur verte, clic -> actionReq=1
+// matchState=1 (ARMED)  : libelle "RESET",  couleur rouge, clic -> actionReq=1
+// matchState>=2 (MATCH+): bouton cache ou grise (match en cours)
+static lv_obj_t *btn_setpos_handle = nullptr;
+static lv_obj_t *lbl_setpos_handle = nullptr;
+
+static lv_color_t setpos_color_green = { .full = 0x07E0 };
+static lv_color_t setpos_color_red   = { .full = 0xF800 };
+static lv_color_t setpos_color_grey  = { .full = 0x4208 };
+
+static void updateSetposButton() {
+	if (!btn_setpos_handle || !lbl_setpos_handle) return;
+	if (settings.matchState == 0) {          // CONFIG
+		lv_obj_set_style_bg_color(btn_setpos_handle, setpos_color_green, 0);
+		lv_label_set_text(lbl_setpos_handle, "SETPOS");
+		lv_obj_set_style_text_color(lbl_setpos_handle, lv_color_black(), 0);
+	} else if (settings.matchState == 1) {   // ARMED
+		lv_obj_set_style_bg_color(btn_setpos_handle, setpos_color_red, 0);
+		lv_label_set_text(lbl_setpos_handle, "RESET");
+		lv_obj_set_style_text_color(lbl_setpos_handle, lv_color_white(), 0);
+	} else {                                  // MATCH / END
+		lv_obj_set_style_bg_color(btn_setpos_handle, setpos_color_grey, 0);
+		lv_label_set_text(lbl_setpos_handle, "MATCH");
+		lv_obj_set_style_text_color(lbl_setpos_handle, lv_color_white(), 0);
+	}
+}
+
+static void setpos_event_cb(lv_event_t *e) {
+	(void)e;
+	if (settings.matchState >= 2) return;
+	if (settings.actionReq != 0) return;  // deja en attente de consommation par OPOS6UL
+	settings.actionReq = 1;
+	settings.seq_touch++;
+}
+
+// --- Visibilite du bouton couleur selon la phase (lock en ARMED+) ---
+static void updateColorButtonLock() {
+	if (!btn_color_handle) return;
+	if (settings.matchState >= 1) {
+		// lock : assombrir + indication visuelle
+		lv_obj_add_state(btn_color_handle, LV_STATE_DISABLED);
+	} else {
+		lv_obj_clear_state(btn_color_handle, LV_STATE_DISABLED);
+	}
 }
 
 static void testMode_event_cb(lv_event_t *e) {
 	lv_obj_t *btn = (lv_obj_t*) lv_event_get_target(e);
 	for (int i = 0; i < TESTMODE_COUNT; i++) {
 		if (testMode_btns[i] == btn) {
-			settings.testMode = (uint8_t)(i + 1);
-			// Flash vert sur le bouton clique, gris sur les autres
+					settings.testMode = (uint8_t)(i + 1);
+			settings.seq_touch++;
+					// Flash vert sur le bouton clique, gris sur les autres
 			testMode_reset_all_grey();
 			lv_obj_set_style_bg_color(btn, strategy_color_selected, 0);
 			lv_obj_t *lbl = lv_obj_get_child(btn, 0);
@@ -404,6 +476,15 @@ static void create_match_menu(void) {
 	lv_obj_center(label);
 	lv_obj_add_event_cb(btn, ledLum_plus_cb, LV_EVENT_CLICKED, NULL);
 
+	// Bouton "10" pour set rapide luminosite a 10
+	btn = lv_btn_create(scr);
+	lv_obj_set_size(btn, 42, 24);
+	lv_obj_set_pos(btn, 142, 4);
+	label = lv_label_create(btn);
+	lv_label_set_text(label, "10");
+	lv_obj_center(label);
+	lv_obj_add_event_cb(btn, ledLum_set10_cb, LV_EVENT_CLICKED, NULL);
+
 	lv_obj_t *lbl_bots_title = lv_label_create(scr);
 	lv_label_set_text(lbl_bots_title, "Bots:");
 	lv_obj_set_pos(lbl_bots_title, 200, 8);
@@ -441,14 +522,26 @@ static void create_match_menu(void) {
 	}
 	testMode_reset_all_grey();
 
-	// --- Ligne 2 (y=82) : bouton toggle couleur (centre de l'ecran) ---
+	// --- Ligne 2 (y=82) : COULEUR (gauche) + SETPOS/RESET (droite), demi-largeur chacun ---
+	// Largeur ecran = 320. Chaque bouton = 140, gap = 32, marge = 4.
+	// Gap large pour eviter qu'un appui sur couleur ne declenche SETPOS/RESET.
 	lv_obj_t *btn_color = lv_btn_create(scr);
-	lv_obj_set_size(btn_color, 240, 50);
-	lv_obj_align(btn_color, LV_ALIGN_TOP_MID, 0, 82);
+	btn_color_handle = btn_color;
+	lv_obj_set_size(btn_color, 140, 50);
+	lv_obj_set_pos(btn_color, 4, 82);
 	label = lv_label_create(btn_color);
 	lv_obj_center(label);
 	updateColorButton(btn_color);
 	lv_obj_add_event_cb(btn_color, matchColor_event_cb,
+			LV_EVENT_CLICKED, NULL);
+
+	btn_setpos_handle = lv_btn_create(scr);
+	lv_obj_set_size(btn_setpos_handle, 140, 50);
+	lv_obj_set_pos(btn_setpos_handle, 176, 82);
+	lbl_setpos_handle = lv_label_create(btn_setpos_handle);
+	lv_obj_center(lbl_setpos_handle);
+	updateSetposButton();
+	lv_obj_add_event_cb(btn_setpos_handle, setpos_event_cb,
 			LV_EVENT_CLICKED, NULL);
 
 	// --- Ligne 3 (y=138) : strategie 1/2/3 ---
@@ -590,17 +683,63 @@ void ta_event_cb(lv_event_t *e) {
 void screen_loop() {
 	if (!screen_available) return; // pas d'ecran : no-op
 
-	// Rafraichissement des labels read-only (valeurs ecrites par OPOS6UL via I2C).
-	// 5 Hz suffit largement pour l'affichage, evite le cout d'un set_text a chaque frame.
+	// Rafraichissement periodique des widgets LVGL a partir de settings.
+	// Couvre a la fois les labels read-only ecrits par l'OPOS6UL (numOfBots,
+	// matchPoints) et les widgets du menu pre-match qui peuvent aussi etre
+	// modifies par l'OPOS6UL via I2C (matchColor, strategy, advDiameter,
+	// ledLuminosity). Sans ca, un clic sur le shield 2x16 cote OPOS6UL ne se
+	// voit pas sur l'ecran tactile : les callbacks LVGL ne sont pas rappeles.
+	//
+	// 5 Hz (200 ms) : compromis entre reactivite visuelle et cout LVGL.
+	// Memo des valeurs pour ne pas redessiner si la valeur n'a pas change.
 	static uint32_t last_refresh_ms = 0;
+	static int8_t  last_numOfBots     = -1;
+	static uint8_t last_matchPoints   = 0xFF;
+	static uint8_t last_matchColor    = 0xFF;
+	static uint8_t last_strategy      = 0xFF;
+	static uint8_t last_advDiameter   = 0xFF;
+	static int8_t  last_ledLuminosity = -1;
+	static uint8_t last_matchState    = 0xFF;
+
 	uint32_t now = millis();
 	if (now - last_refresh_ms > 200) {
 		last_refresh_ms = now;
-		if (lbl_numOfBots_value != nullptr) {
+
+		// Labels read-only (ecrits par OPOS6UL)
+		if (lbl_numOfBots_value && settings.numOfBots != last_numOfBots) {
 			lv_label_set_text_fmt(lbl_numOfBots_value, "%d", settings.numOfBots);
+			last_numOfBots = settings.numOfBots;
 		}
-		if (lbl_matchPoints_value != nullptr) {
+		if (lbl_matchPoints_value && settings.matchPoints != last_matchPoints) {
 			lv_label_set_text_fmt(lbl_matchPoints_value, "%d", settings.matchPoints);
+			last_matchPoints = settings.matchPoints;
+		}
+
+		// Widgets du menu pre-match (partages entre touch et OPOS6UL)
+		if (btn_color_handle && settings.matchColor != last_matchColor) {
+			updateColorButton(btn_color_handle);
+			last_matchColor = settings.matchColor;
+		}
+		if (settings.strategy != last_strategy) {
+			updateStrategyButtons();
+			last_strategy = settings.strategy;
+		}
+		if (lbl_adv_value && settings.advDiameter != last_advDiameter) {
+			lv_label_set_text_fmt(lbl_adv_value, "%d cm", settings.advDiameter);
+			last_advDiameter = settings.advDiameter;
+		}
+		if (lbl_lum_value && settings.ledLuminosity != last_ledLuminosity) {
+			lv_label_set_text_fmt(lbl_lum_value, "%d", settings.ledLuminosity);
+			last_ledLuminosity = settings.ledLuminosity;
+		}
+
+		// matchState change (OPOS6UL a fait setPos ou reset) :
+		// - bouton SETPOS/RESET change de libelle/couleur
+		// - bouton couleur verrouille visuellement en ARMED+
+		if (settings.matchState != last_matchState) {
+			updateSetposButton();
+			updateColorButtonLock();
+			last_matchState = settings.matchState;
 		}
 	}
 	lv_task_handler(); // lvgl gui handler
