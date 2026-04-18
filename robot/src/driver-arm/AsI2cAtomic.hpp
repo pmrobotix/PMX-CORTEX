@@ -179,6 +179,9 @@ private:
             fd_ = -1;
         }
 
+        // TODO 2027 : specifique i.MX6ULL (OPOS6UL). Sur un autre SoC (Raspberry Pi, etc.)
+        // les device names et le chemin sysfs seraient differents.
+        // Pour une lib generique, rendre configurable ou optionnel.
         const char* devName = (bus_ == 0) ? "21a0000.i2c" : "21a4000.i2c";
 
         FILE* f = fopen("/sys/bus/platform/drivers/imx-i2c/unbind", "w");
@@ -215,6 +218,7 @@ private:
         if (busReset[bus]) return;  // deja fait pour ce bus
         busReset[bus] = true;
 
+        // TODO 2027 : specifique i.MX6ULL — voir commentaire dans recover()
         const char* devName = (bus == 0) ? "21a0000.i2c" : "21a4000.i2c";
         // Log en stderr car le logger n'est pas encore init au boot
         // Niveau debug : ne pas afficher en production

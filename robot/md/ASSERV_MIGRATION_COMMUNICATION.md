@@ -297,20 +297,23 @@ Implémentation :
 - [ ] Ajouter `A` (régulateur angle on/off)
 - [ ] Ajouter `D` (régulateur distance on/off)
 
-### Phase 4 — Nettoyage deprecated (AAsservDriver)
+### Phase 4 — Nettoyage deprecated (AAsservDriver) ⚠️ en grande partie fait
 
 Supprimer de `AAsservDriver.hpp` et de **toutes** les implémentations (EsialR, AsservDriver, AsservCborDriver, AsservDriverSimu) :
 
-**Dead code (13 méthodes, jamais appelées) :**
-- [ ] `setMotorLeftPosition` / `setMotorRightPosition`
-- [ ] `getMotorLeftCurrent` / `getMotorRightCurrent`
-- [ ] `getLeftExternalEncoder` / `getRightExternalEncoder`
-- [ ] `getLeftInternalEncoder` / `getRightInternalEncoder`
-- [ ] `getCountsInternal`
+**Dead code — supprimé ✅ (avril 2026) :**
+- [x] `setMotorLeftPosition` / `setMotorRightPosition`
+- [x] `getMotorLeftCurrent` / `getMotorRightCurrent`
+- [x] `getLeftExternalEncoder` / `getRightExternalEncoder`
+- [x] `getLeftInternalEncoder` / `getRightInternalEncoder`
+- [x] `getCountsInternal`
+- [x] `resetInternalEncoders` / `resetExternalEncoders`
+- [x] `motion_DisablePID`
+- [x] `path_GetLastCommandStatus`
+
+**Dead code — encore présent :**
 - [ ] `getDeltaCountsExternal`
-- [ ] `resetEncoders` / `resetInternalEncoders` / `resetExternalEncoders`
-- [ ] `motion_DisablePID`
-- [ ] `path_GetLastCommandStatus`
+- [ ] `resetEncoders`
 
 **Garder en stub (appelé par des tests O_*) :**
 - `setMotorLeftPower` / `setMotorRightPower` → `O_AsservCalibrationTest.cpp`
@@ -320,7 +323,7 @@ Supprimer de `AAsservDriver.hpp` et de **toutes** les implémentations (EsialR, 
 **Garder (appelé par Asserv.cpp) :**
 - `motion_ActivateReguDist` / `motion_ActivateReguAngle` → utilisé dans doCalage, doLine, etc.
 
-**Supprimer `stopMotorLeft` / `stopMotorRight`** — jamais appelés.
+**Supprimé :** `stopMotorLeft` / `stopMotorRight` ✅
 
 **Autres nettoyages :**
 - [ ] Résoudre l'incompatibilité télémétrie (7 vs 8 champs)

@@ -833,65 +833,73 @@ ignorer le delta fields pendant quelques ticks et forcer un push Robot.
 
 Chaque etape doit etre **compilable + testable en simu et sur robot reel** avant de passer a la suivante.
 
-### Etape 1 : phase enum + champs Robot
+### Etape 1 : phase enum + champs Robot ✅
 
-- Ajouter `MatchPhase`, `phase_`, `proposedColor_`, `advDiameter_`, `ledLuminosity_`, `testMode_`, drapeaux dans Robot
-- Ajouter getters/setters phase-aware
+- ~~Ajouter `MatchPhase`, `phase_`, `proposedColor_`, `advDiameter_`, `ledLuminosity_`, `testMode_`, drapeaux dans Robot~~
+- ~~Ajouter getters/setters phase-aware~~
 - Aucun changement de comportement runtime (O_State_Init existant continue d'etre utilise). La phase est toujours `PHASE_CONFIG` car personne ne la change.
 - **Test** : compile, simu OK, match OK via O_State_Init existant.
 
-### Etape 2 : BeaconSensors read/write Settings
+### Etape 2 : BeaconSensors read/write Settings ✅
 
-- Ajouter `readSettings(Settings&)` + writeXxx() par champ
+- ~~Ajouter `readSettings(Settings&)` + writeXxx() par champ~~
 - **Test** : un petit programme ad-hoc (ou un bouton de debug) qui lit + reecrit les Settings, verifier via logs et via affichage LCD tactile que les valeurs sont bien vues des deux cotes.
 
-### Etape 3 : IMenuSource + MenuController
+### Etape 3 : IMenuSource + MenuController ✅
 
-- Interface + controller + squelette vide
-- Aucun source encore, juste la plomberie
+- ~~Interface + controller + squelette vide~~
+- ~~Aucun source encore, juste la plomberie~~
 - **Test** : compile.
 
-### Etape 4 : MenuShieldLCD
+### Etape 4 : MenuShieldLCD ✅
 
-- Implementation complete (status line 0+1, cursor, hold 2s commit, pages COMMITTED, reset, exit)
+- ~~Implementation complete (status line 0+1, cursor, hold 2s commit, pages COMMITTED, reset, exit)~~
 - **Test en isolation** : un petit binaire de test qui instancie `Robot + MenuController + MenuShieldLCD` et tourne la boucle, verification manuelle de tous les boutons et des affichages. Sans le reste du robot.
 
-### Etape 5 : MenuBeaconLCDTouch cote OPOS6UL (lecture seule, sans seq_touch Teensy)
+### Etape 5 : MenuBeaconLCDTouch cote OPOS6UL ✅
 
-- Implementation qui lit les Settings actuels (sans seq) et pousse a chaque refreshDisplay
-- Detection de delta via comparaison simple avec shadow
+- ~~Implementation qui lit les Settings actuels et pousse a chaque refreshDisplay~~
+- ~~Detection de delta via comparaison simple avec shadow~~
+- ~~seq_touch integre (detection reboot Teensy, anti-loop, validation actionReq)~~
 - **Test** : shield inactif, beacon presente. On modifie les settings sur le LCD tactile, on verifie que Robot les reflete (via logs ou ligne 0 du shield si on le laisse branche pour observer).
-- **Limitation connue** : sans seq_touch, les cas de concurrence shield+touch ne sont pas parfaitement gerables. Acceptable pour cette etape car single-operator.
 
-### Etape 6 : O_State_NewInit.cpp
+### Etape 6 : O_State_NewInit.cpp ✅
 
-- Nouveau fichier qui remplace l'usage de O_State_Init dans l'automate (ou cree en parallele avec un flag de selection)
-- Branchement du controller, flow CONFIG/COMMITTED/PRIMED/MATCH, /k
+- ~~Nouveau fichier qui remplace l'usage de O_State_Init dans l'automate~~
+- ~~Branchement du controller, flow CONFIG/ARMED/MATCH, /k~~
+- ~~Enregistre dans OPOS6UL_RobotExtended.cpp~~
 - **Test** : parcours complet sur robot reel. Tester toutes les transitions, reset, exit.
 
-### Etape 7 : modifs Teensy `seq_touch`
+### Etape 7 : modifs Teensy `seq_touch` ✅
 
-- Ajout `seq_touch` dans Settings + incrementation dans callbacks LVGL
-- Flash Teensy
+- ~~Ajout `seq_touch` dans Settings + incrementation dans callbacks LVGL~~
+- ~~Flash Teensy~~
+- ~~Decaler les offsets cote `BeaconSensors::getData()`~~
+- ~~`static_assert(sizeof(Settings) == 11)` cote Teensy~~
 - **Test** : repeter le test etape 5 + ajouter des cas de concurrence shield+touch dans un intervalle < 100 ms, verifier que seq_touch evite les pertes.
-- Decaler les offsets cote `BeaconSensors::getData()`.
 
-### Etape 8 : `testMode` dispatch + routines
+### Etape 8 : `testMode` dispatch + routines ⚠️ partiel
 
-- `handleTestModeRequest()` + coder les routines 1..5 progressivement
+- ~~`handleTestModeRequest()` framework + dispatch switch~~
+- ~~Case 1 : `ax12_init()` fonctionne~~
+- [ ] Case 2 : ToF/beacon (TODO)
+- [ ] Case 3 : aspiration (TODO)
+- [ ] Case 4 : LED bar (TODO)
+- [ ] Case 5 : servos (TODO)
 - Chaque routine self-cleans (remet la meca en position de depart)
 - **Test** : chaque routine lancable depuis shield (page TEST) et depuis touch (boutons T1..T5).
 
-### Etape 9 : pages shield secondaires completes
+### Etape 9 : pages shield secondaires completes ✅
 
-- Curseur multi-champs, navigation UP/DOWN, edition LEFT/RIGHT, wrapping
+- ~~Curseur multi-champs (`EditField` enum), navigation LEFT/RIGHT, edition UP/DOWN, wrapping~~
+- ~~Skip automatique de COLOR en ARMED~~
 - **Test** : parcours de tous les champs, verification des limites, cursor blink.
 
-### Etape 10 : cleanup
+### Etape 10 : cleanup ⬜
 
-- Supprimer `O_State_Init.cpp` si `O_State_NewInit` est stable
-- Mettre a jour [ARCHITECTURE.md](ARCHITECTURE.md) pour pointer sur ce document
-- Mettre a jour [HARDWARE_CONFIG.md](HARDWARE_CONFIG.md) si les flags d'activation doivent evoluer
+- [ ] Supprimer `O_State_Init.cpp` si `O_State_NewInit` est stable
+- [ ] Mettre a jour [ARCHITECTURE.md](ARCHITECTURE.md) pour pointer sur ce document
+- [ ] Mettre a jour [HARDWARE_CONFIG.md](HARDWARE_CONFIG.md) si les flags d'activation doivent evoluer
 
 ## 11. Tests manuels de resilience
 

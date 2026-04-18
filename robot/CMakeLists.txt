@@ -111,6 +111,10 @@ add_library(pmx-common STATIC
     src/common/action/Tirette.cpp
     src/common/action/Sensors.cpp
     src/common/geometry/ObstacleZone.cpp
+    # menu (refactor O_State_NewInit - voir robot/md/O_STATE_NEW_INIT.md)
+    src/common/menu/MenuController.cpp
+    src/common/menu/MenuShieldLCD.cpp
+    src/common/menu/MenuBeaconLCDTouch.cpp
     # hardware config
     src/common/HardwareConfig.cpp
 )
@@ -215,7 +219,7 @@ if(DRIVER_LIB)
         src/bot-opos6ul/OPOS6UL_IAExtended.cpp
         src/bot-opos6ul/OPOS6UL_SvgWriterExtended.cpp
         src/bot-opos6ul/O_State_DecisionMakerIA.cpp
-        src/bot-opos6ul/O_State_Init.cpp
+        src/bot-opos6ul/O_State_NewInit.cpp
         src/bot-opos6ul/O_State_WaitEndOfMatch.cpp
         src/bot-opos6ul/O_LedBarTest.cpp
         src/bot-opos6ul/O_TiretteTest.cpp

@@ -9,12 +9,21 @@
 - **Démarrage asserv : `setPositionAndColor` avant `startMotionTimerAndOdo`** (avril 2026) — Le set position reset la Nucleo et définit la couleur de match ; rien ne doit fonctionner avant. Filet de sécurité : flag `positionInitialized_` dans `AsservCborDriver`. Voir [section détaillée](#démarrage-asserv--ordre-setpositionandcolor--startmotiontimerandodo).
 - **Clôture propre threads + SVG valide** (avril 2026) — Correction du SVG invalide (éléments `<circle>` écrits après `</svg>`) causé par le thread CBOR qui continuait à tourner pendant la fermeture du SVG. Voir [section détaillée](#clôture-propre--thread-cbor--svg-valide).
 - **Source de vérité unique pour la position robot** (avril 2026) — `Asserv::pos_getPosition()` lit directement depuis `sharedPosition` (alimentée par `setPositionReal()` + thread CBOR), au lieu du `p_` local du driver qui avait ~50ms de latence au démarrage.
+- **Configuration hardware dynamique** (avril 2026) — Singleton `HardwareConfig` + fichier `hardware.conf` à côté de l'exécutable. Les 7+ factory `create()` consultent `isEnabled()` pour instancier le driver ARM réel ou le stub simu. `Main.cpp` charge la config avant la création du robot. Voir [HARDWARE_CONFIG.md](HARDWARE_CONFIG.md) (reste : lib `pmx-driver-stub` séparée pour le build SIMU pur).
+- **SensorsTimer → SensorsThread** (avril 2026) — Le timer de lecture capteurs/beacon est devenu un thread dédié (`SensorsThread : public utils::Thread`) pour éviter les contraintes de callback timer et permettre un sleep contrôlé entre les lectures I2C.
+- **Navigator : classe de navigation unifiée** (avril 2026) — Nouvelle classe `Navigator` avec retry automatique (`executeWithRetry`), waypoints, pathfinding A*. Centralise la logique de déplacement qui était dispersée entre `IAbyPath`, `IAbyZone` et `Asserv`. Migration des appelants : suppression des `while*` de IAbyPath et Robot.
+- **Refactoring nommage unifié mouvements** (avril 2026) — Nommage cohérent Driver/Asserv/Navigator : `goBackTo`, `faceBackTo` + combos `FaceBackTo`. Uniformisation des signatures sur les 3 couches.
+- **DetectionEvent + waitEndOfTrajWithDetection** (avril 2026) — Structure `DetectionEvent` (level, position, timestamp) publiée par `SensorsThread`. Boucle centrale `waitEndOfTrajWithDetection(MovementType)` dans `Asserv` qui consulte le DetectionEvent en temps réel. Suppression de `warnFrontDetectionOnTraj` et flags `temp_*`. Voir [SENSORS_DETECTION_MIGRATION.md](SENSORS_DETECTION_MIGRATION.md) phases 0-4.
+- **Synchronisation beacon** (avril 2026) — Buffer circulaire positions + timestamps Teensy (`t1-t4_us`, `seq`). `posAtSync` capture la position robot au moment du sync I2C. `getPositionAt(t_mesure_ms)` retrouve la position historique pour la projection beacon→table. Réduit l'erreur de ~100mm à ~10mm.
+- **AsI2cAtomic — wrapper I2C avec repeated start** (avril 2026) — Header-only `AsI2cAtomic.hpp` pour lectures I2C atomiques avec repeated start et bus recovery. Utilisé par `BeaconSensors`, `Adafruit_MCP23017`, et tous les drivers I2C.
+- **Télémétrie UDP** (avril 2026) — Envoi position robot + adversaires en JSON Lines sur UDP port 9870, flush toutes les 300ms. Appender configurable via `/i ip` et `/p port` en CLI. Voir [Télémétrie.md](Télémétrie.md).
+- **O_State_NewInit — menu multi-sources** (avril 2026) — Remplacement de `O_State_Init` par un système multi-sources (`MenuController` + `IMenuSource`). Supporte LCD shield 2x16 + LCD tactile balise en parallèle avec dégradation gracieuse. Source de vérité unique dans `Robot` (phase-aware setters). Architecture `syncFull()` → `pollInputs()` → `refreshDisplay()`. Voir [O_STATE_NEW_INIT.md](O_STATE_NEW_INIT.md) (étapes 1-7, 9 faites ; étape 8 partielle ; étape 10 cleanup restant).
 
 ## Migrations en cours
 
-- [Configuration hardware dynamique](HARDWARE_CONFIG.md) — Activation/désactivation des drivers via fichier `hardware.conf` pour l'intégration progressive
-- [Communication asserv](ASSERV_MIGRATION_COMMUNICATION.md) — Migration communication série ancien raspIO → SerialIO/RaspIO
-- [Détection d'obstacles](SENSORS_DETECTION_MIGRATION.md) — Refactoring Sensors/ObstacleZone, simulation adversaire UDP, synchronisation beacon, SVG, DetectionEvent
+- [Communication asserv](ASSERV_MIGRATION_COMMUNICATION.md) — Phases 2-4, 6 restantes : commandes manquantes (n/N/!/R), nettoyage dead code, gotoChain non-bloquant
+- [Détection d'obstacles](SENSORS_DETECTION_MIGRATION.md) — Phases 5-7 restantes : visualisation SVG L/R, simulation adversaire UDP, isOnPath pour reprise intelligente
+- [Migration Goto externe + isOnPath](ISONPATH_GOTO_MIGRATION.md) — Pas commencé : isOnPath géométrique, suppression `rotate_ignoring_opponent`, MoveMode, Navigator::executeChain
 
 ### Règles de migration PMX → PMX-CORTEX
 
@@ -2104,3 +2113,169 @@ Cette séparation permet de :
 - Tester Navigator indépendamment (retry pur, pas de logique métier)
 - Faire évoluer la stratégie du DecisionMaker sans toucher à Navigator
 - Gérer les interruptions (fin de match 90s, changement de priorité) au niveau DecisionMaker
+
+## Options post-compétition 2027
+
+Idées d'extraction de modules indépendants dans `libs/`, pour réutilisation sur de futurs robots ou projets. Non prioritaire pour 2026 — à considérer une fois la compétition passée.
+
+### Option 1 — Beacon autonome (`libs/beacon/`)
+
+Extraire le driver beacon comme librairie indépendante. C'est le candidat le plus naturel : sous-système fonctionnel quasi-autonome, zéro dépendance robot.
+
+**Fichiers concernés :**
+
+| Fichier | Rôle | Dépendances externes |
+|---|---|---|
+| `BeaconSensors.hpp/cpp` | Driver I2C beacon (lecture registres, écriture settings) | AsI2cAtomic, Logger (optionnel) |
+| `AsI2cAtomic.hpp` | Wrapper I2C Linux avec repeated start + bus recovery | Linux `<linux/i2c-dev.h>` uniquement |
+| Structs `Registers`, `Settings` | Structures de données partagées | Aucune (plain structs) |
+
+**Pourquoi c'est facile :**
+- ~500 lignes, pur hardware driver
+- Seule dépendance réelle : Linux I2C (ioctl)
+- Le Logger est injectable/supprimable
+- Interface claire : `begin()`, `getDataFull()`, `readSettings()`, `writeXxx()`
+- Déjà isolé derrière l'interface abstraite `ASensorsDriver`
+
+**Structure cible :**
+```
+libs/beacon/                          # Git submodule indépendant
+├── CMakeLists.txt                    # target STATIC : pmx-beacon
+├── include/
+│   ├── BeaconSensors.hpp             # Driver + structs Settings/Registers
+│   └── AsI2cAtomic.hpp              # Wrapper I2C Linux (header-only)
+├── src/
+│   └── BeaconSensors.cpp
+└── test/
+    ├── BeaconSensorsTest.cpp         # Tests unitaires driver (mock I2C ou loopback)
+    └── AsI2cAtomicTest.cpp           # Tests wrapper I2C
+```
+
+**Séparation lib / robot — ce qui est exporté vs ce qui reste :**
+
+```
+libs/beacon/ (LIB)                         robot/ (PMX-CORTEX)
+─────────────────────                      ──────────────────────────────
+BeaconSensors          ◄── utilisé par ──► SensorsDriver (orchestration)
+  begin()                                    agrège beacon + capteurs proximité
+  getDataFull()                              synchronisation positions
+  readSettings()                             buffer circulaire timestamps
+  writeXxx()
+                                           Sensors (threading + détection)
+AsI2cAtomic                                  SensorsThread, DetectionEvent
+  readReg() / writeReg()                     ObstacleZone, filtrage niveaux 0-4
+  open() / recover()                         arrêt moteurs si obstacle
+
+Settings / Registers                       MenuBeaconLCDTouch (UI)
+  plain structs partagées                    menu LCD tactile pré-match
+                                             configuration couleur/stratégie
+```
+
+**Intégration CMake dans PMX-CORTEX :**
+
+```cmake
+# Dans le CMakeLists.txt racine de PMX-CORTEX :
+add_subdirectory(libs/beacon)
+
+# Dans robot/CMakeLists.txt :
+target_link_libraries(pmx-driver-arm pmx-common pmx-beacon ...)
+target_include_directories(pmx-driver-arm PRIVATE ${CMAKE_SOURCE_DIR}/libs/beacon/include)
+```
+
+```
+PMX-CORTEX/
+├── libs/
+│   ├── beacon/          ← git submodule (réutilisable seul)
+│   ├── simple-svg/      ← git submodule (existant)
+│   ├── PathFinding/     ← git submodule (existant)
+│   └── ...
+└── robot/
+    └── src/driver-arm/
+        └── SensorsDriver.cpp   ← #include <BeaconSensors.hpp> depuis libs/beacon
+```
+
+**Contraintes identifiées (TODO avant extraction) :**
+- Logger : BeaconSensors et AsI2cAtomic utilisent `log/LoggerFactory.hpp`. Rendre optionnel (`#ifdef` ou callback) pour que la lib compile sans le système de log PMX.
+- Bus recovery : voir section ci-dessous.
+
+**Bus recovery : séparation générique / spécifique SoC**
+
+Aujourd'hui `AsI2cAtomic` mélange deux choses :
+- **Partie générique Linux** : `open()`, `readReg()`, `writeReg()` via `ioctl(I2C_RDWR)` — fonctionne sur tout SoC Linux (RPi, EV3, BeagleBone, etc.)
+- **Partie spécifique i.MX6ULL** : `recover()` et `resetBusOnce()` font un unbind/rebind sysfs avec des device names hardcodés (`21a0000.i2c`, `/sys/bus/platform/drivers/imx-i2c/`)
+
+Sur un autre SoC, seule la stratégie de recovery change. La solution : un **callback optionnel** passé au constructeur.
+
+```cpp
+// Dans la lib beacon (générique) :
+using RecoveryFunc = std::function<void(int bus)>;
+
+AsI2cAtomic(int bus, uint8_t addr, RecoveryFunc recovery = nullptr);
+//                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+//                     nullptr = pas de recovery (mode lib pure)
+//                     callback = appelé après N erreurs consécutives
+```
+
+```cpp
+// Dans PMX-CORTEX robot/ (spécifique OPOS6UL) :
+auto imxRecovery = [](int bus) {
+    const char* dev = (bus == 0) ? "21a0000.i2c" : "21a4000.i2c";
+    // unbind/rebind /sys/bus/platform/drivers/imx-i2c/
+};
+AsI2cAtomic i2c(0, 0x2D, imxRecovery);
+```
+
+```
+AsI2cAtomic (libs/beacon/ — générique Linux)
+  ├── open(), readReg(), writeReg()    ← ioctl I2C_RDWR, partout pareil
+  └── recover()                        ← appelle le callback si fourni
+
+Stratégies de recovery (dans robot/ — spécifique plateforme) :
+  ├── imxRecovery       → unbind/rebind sysfs imx-i2c (OPOS6UL i.MX6ULL)
+  ├── rpiRecovery       → dtoverlay ou gpio bitbang (Raspberry Pi)
+  ├── ev3Recovery       → /sys/class/lego-port/ (EV3)
+  └── nullptr           → pas de recovery (fallback)
+```
+
+### Option 2 — Socle technique (thread / log / utils / timer)
+
+Extraire les briques d'infrastructure comme librairies empilées. Plus gros chantier, mais permettrait de réutiliser le runtime complet sur d'autres projets embarqués Linux.
+
+**Ordre d'extraction (dépendances ascendantes) :**
+
+```
+                    ┌──────────┐
+                    │  timer   │  ActionTimerScheduler
+                    └────┬─────┘  (dépend de thread + log + utils + action/IAction)
+                         │
+              ┌──────────┴──────────┐
+              │                     │
+         ┌────┴────┐          ┌────┴────┐
+         │   log   │          │  utils  │  Time, Chronometer, Arguments
+         └────┬────┘          └─────────┘  (POSIX uniquement)
+              │  (Logger, LoggerFactory,
+              │   Level, appenders)
+         ┌────┴────┐
+         │ thread  │  Thread, Mutex
+         └─────────┘  (POSIX pthreads, zéro dépendance)
+```
+
+**Phase 1 — `libs/thread/`** (zéro dépendance, extractible immédiatement)
+- `Thread.hpp/cpp`, `Mutex.hpp/cpp`
+- Pur POSIX pthreads, utilisé par 30+ fichiers
+
+**Phase 2 — `libs/log/`** (dépend de thread)
+- Logger, LoggerFactory, Level, appenders
+- LoggerFactory hérite de Thread → nécessite libs/thread
+- SvgWriter dépend de simple-svg → optionnel, peut rester dans robot/
+
+**Phase 3 — `libs/utils/`** (composants indépendants entre eux)
+- Time, Chronometer → POSIX uniquement
+- Arguments → stdlib uniquement
+- json.hpp → déjà une lib tierce header-only
+
+**Phase 4 — `libs/timer/`** (dépend de tout le reste + IAction)
+- ActionTimerScheduler couplé à `action/IAction` → nécessite une interface abstraite
+- Le plus complexe à extraire, gain discutable
+
+**Difficulté :** les dépendances croisées rendent l'extraction progressive — chaque couche dépend des précédentes. Le timer est le plus problématique (couplage avec IAction).

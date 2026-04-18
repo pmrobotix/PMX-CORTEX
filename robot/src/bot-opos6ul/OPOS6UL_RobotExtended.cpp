@@ -14,7 +14,7 @@
 #include "log/Logger.hpp"
 #include "thread/Thread.hpp"
 #include "O_State_DecisionMakerIA.hpp"
-#include "O_State_Init.hpp"
+#include "O_State_NewInit.hpp"
 #include "O_State_WaitEndOfMatch.hpp"
 #include "OPOS6UL_ActionsExtended.hpp"
 #include "OPOS6UL_AsservExtended.hpp"
@@ -24,7 +24,7 @@
 OPOS6UL_RobotExtended::OPOS6UL_RobotExtended()
 {
     id_ = "OPOS6UL_Robot";
-    myColor_ = PMXNOCOLOR;
+    myColor_ = PMXBLUE;   // defaut BLEU, modifiable via CLI (/b) ou via menu (shield/touch)
     cArgs_.setDescription("(c) PM-ROBOTIX OPOS6UL_Robot");
 
     // Table 3000x2000 avec marge de 90mm (Coupe de France 2026)
@@ -91,7 +91,7 @@ void OPOS6UL_RobotExtended::begin(int argc, char** argv)
 
         decisionMaker_ = new O_State_DecisionMakerIA(*this);
 
-        IAutomateState* stateInit = new O_State_Init();
+        IAutomateState* stateInit = new O_State_NewInit();
         IAutomateState* stateWaitEndOfMatch = new O_State_WaitEndOfMatch();
         stateInit->addState("WaitEndOfMatch", stateWaitEndOfMatch);
 

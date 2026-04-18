@@ -1,5 +1,24 @@
 # Migration : Configuration hardware dynamique
 
+## Statut implémentation
+
+| Composant | Statut |
+|---|---|
+| Classe `HardwareConfig` singleton (`common/HardwareConfig.hpp/cpp`) | ✅ fait |
+| Fichier `hardware.conf` (à côté de l'exécutable) | ✅ fait |
+| `Main.cpp` : `HardwareConfig::instance().load(argv[0])` | ✅ fait |
+| Factory `create()` — LedDriver | ✅ fait |
+| Factory `create()` — LcdShieldDriver | ✅ fait |
+| Factory `create()` — ButtonDriver | ✅ fait |
+| Factory `create()` — SwitchDriver | ✅ fait |
+| Factory `create()` — SensorsDriver | ✅ fait |
+| Factory `create()` — ServoDriver | ✅ fait |
+| Factory `create()` — AsservCborDriver | ✅ fait |
+| Factory `create()` — ColorDriver (ajout hors spec) | ✅ fait |
+| Log au démarrage (`HardwareConfig: XxxDriver=ON/OFF`) | ✅ fait |
+| Lib `pmx-driver-stub` séparée (build SIMU pur) | ⬜ pas fait |
+| `DriverFactories.cpp` regroupant les `create()` SIMU | ⬜ pas fait |
+
 ## Problème
 
 Au démarrage, `OPOS6UL_ActionsExtended` et `OPOS6UL_AsservExtended` initialisent **tous** les drivers matériels (I2C LCD, capteurs, servos, liaison série asserv...) dans leur constructeur. Si un périphérique n'est pas branché, on obtient des erreurs bloquantes (ex: `Can't write on i2c`).

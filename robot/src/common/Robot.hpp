@@ -2,6 +2,8 @@
 #define COMMON_ROBOT_HPP_
 
 #include <stdio.h>
+#include <atomic>
+#include <cstdint>
 #include <string>
 
 #include "log/LoggerFactory.hpp"
@@ -26,6 +28,27 @@ class Sensors;
  */
 enum RobotColor {
 	PMXNOCOLOR, PMXYELLOW, PMXBLUE
+};
+
+/*!
+ * \brief Phase du match utilisée par O_State_NewInit et MenuController.
+ *
+ * Gouverne les règles d'édition sur Robot : quels champs peuvent être
+ * modifiés à quel moment. Voir robot/md/O_STATE_NEW_INIT.md.
+ *
+ * Transitions :
+ *   CONFIG -> ARMED  : setPos trigger (bouton touch "SETPOS" ou BACK shield).
+ *                      setPos() est execute, robot place, couleur verrouillee.
+ *   ARMED  -> CONFIG : reset trigger (bouton touch "RESET" ou BACK shield).
+ *                      freeMotion, couleur de nouveau editable.
+ *   ARMED  -> MATCH  : edge "tirette inseree puis retiree".
+ *   MATCH  -> END    : fin des 90s.
+ */
+enum MatchPhase {
+	PHASE_CONFIG = 0,  ///< Menu ouvert, tout editable (y compris couleur)
+	PHASE_ARMED  = 1,  ///< setPos fait. Couleur LOCKED. Strat/diam/LED/test editables.
+	PHASE_MATCH  = 2,  ///< Tirette retiree, match en cours
+	PHASE_END    = 3,  ///< Fin match
 };
 
 /*!
@@ -116,6 +139,15 @@ protected:
 	bool waitForInit_ = false;
 	std::string strategy_ = "all"; //defaut strategy
 	std::string configVRR_ = "VRR"; //defaut config VRR
+
+	// --- O_State_NewInit : phase de match + config editable ---
+	MatchPhase phase_ = PHASE_CONFIG;
+	uint8_t    advDiameter_   = 40;           ///< Diamètre adversaire en cm, defaut Teensy-aligné.
+	uint8_t    ledLuminosity_ = 10;           ///< Luminosité LED matrix 0..100, defaut Teensy-aligné.
+	uint8_t    testMode_      = 0;            ///< Test materiel 0=aucun, 1..5 (transitoire).
+	std::atomic<bool> testModeReq_{false};    ///< Flag "testMode a déclencher" (consumed par O_State_NewInit).
+	std::atomic<bool> setPosReq_{false};      ///< Flag "passer de CONFIG a ARMED" posé par une source.
+	std::atomic<bool> resetReq_{false};       ///< Flag "retour phase CONFIG" posé par une source.
 
 	//Action => RobotElement
 	Actions *actions_default_;
@@ -400,12 +432,109 @@ public:
 	}
 
 	/*!
-	 * \brief Enregistre la couleur du robot.
+	 * \brief Enregistre la couleur du robot (sans verification de phase).
+	 *        Utilise par le parseur CLI (/b). Pour le menu runtime, preferer
+	 *        setMyColorChecked() qui respecte la phase courante.
 	 */
 	void setMyColor(RobotColor color)
 	{
 		this->myColor_ = color;
 	}
+
+	// =========================================================
+	// API phase de match (utilisee par O_State_NewInit + MenuController)
+	// Voir robot/md/O_STATE_NEW_INIT.md section 3
+	// =========================================================
+
+	/*!
+	 * \brief Retourne la phase courante du match.
+	 */
+	MatchPhase phase() const { return phase_; }
+
+	/*!
+	 * \brief Force la phase (appele uniquement par O_State_NewInit).
+	 */
+	void setPhase(MatchPhase p) { phase_ = p; }
+
+	/*!
+	 * \brief Change la couleur du robot, editable en PHASE_CONFIG seulement.
+	 *        En PHASE_ARMED, le robot est deja place physiquement sur la table
+	 *        selon la couleur courante, donc interdit de la changer.
+	 * \return true si accepte, false si phase incompatible.
+	 */
+	bool setMyColorChecked(RobotColor c)
+	{
+		if (phase_ != PHASE_CONFIG) return false;
+		myColor_ = c;
+		return true;
+	}
+
+	/*!
+	 * \brief Change la strategie. Editable en CONFIG + ARMED.
+	 */
+	bool setStrategyChecked(const std::string &s)
+	{
+		if (phase_ >= PHASE_MATCH) return false;
+		strategy_ = s;
+		return true;
+	}
+
+	/*!
+	 * \brief Diametre adversaire en cm (5..250). Editable en CONFIG + ARMED.
+	 */
+	uint8_t advDiameter() const { return advDiameter_; }
+	bool setAdvDiameter(uint8_t d)
+	{
+		if (phase_ >= PHASE_MATCH) return false;
+		if (d < 5 || d > 250) return false;
+		advDiameter_ = d;
+		return true;
+	}
+
+	/*!
+	 * \brief Luminosite LED matrix beacon (0..100). Editable en CONFIG + ARMED.
+	 */
+	uint8_t ledLuminosity() const { return ledLuminosity_; }
+	bool setLedLuminosity(uint8_t l)
+	{
+		if (phase_ >= PHASE_MATCH) return false;
+		if (l > 100) return false;
+		ledLuminosity_ = l;
+		return true;
+	}
+
+	/*!
+	 * \brief Declenche un test meca (1..5). One-shot, reset apres consommation.
+	 *        Bloque en PHASE_MATCH pour raisons de securite.
+	 */
+	uint8_t testMode() const { return testMode_; }
+	bool triggerTestMode(uint8_t t)
+	{
+		if (phase_ >= PHASE_MATCH) return false;
+		if (t == 0 || t > 5) return false;
+		testMode_ = t;
+		testModeReq_ = true;
+		return true;
+	}
+	bool testModeRequested() const { return testModeReq_.load(); }
+	void clearTestMode() { testMode_ = 0; testModeReq_ = false; }
+
+	/*!
+	 * \brief Flag setPos pose par une source (bouton BACK shield en CONFIG ou
+	 *        bouton SETPOS touch). O_State_NewInit consomme pour passer en ARMED.
+	 */
+	void requestSetPos() { setPosReq_ = true; }
+	bool setPosRequested() const { return setPosReq_.load(); }
+	void clearSetPos() { setPosReq_ = false; }
+
+	/*!
+	 * \brief Flag de reset pose par une source (bouton BACK shield en ARMED ou
+	 *        bouton RESET touch). O_State_NewInit revient en PHASE_CONFIG avec
+	 *        freeMotion pour permettre repositionnement manuel.
+	 */
+	void requestReset() { resetReq_ = true; }
+	bool resetRequested() const { return resetReq_.load(); }
+	void clearReset() { resetReq_ = false; }
 
 	/*!
 	 * \brief Configure les options de la ligne de commande par défaut.

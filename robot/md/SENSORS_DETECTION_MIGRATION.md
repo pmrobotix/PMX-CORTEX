@@ -44,7 +44,7 @@ Il utilise une balise Teensy (18 capteurs ToF VL53L0X) communiquant en I2C avec 
               │   level 4 → setEmergencyStop()
               ▲
               │
-    SensorsTimer::onTimer() [~62ms]
+    SensorsThread::sensorOnTimer() [~62ms]
               │
               ├── sync("beacon_sync") → SensorsDriver → BeaconSensors I2C
               ├── front(true) → filtre + classification
@@ -70,7 +70,7 @@ SensorsDriver SIMU   stub : retourne 999 (pas d'obstacle), vadv_ vide
 ### Principe fondamental : un seul décideur par niveau
 
 ```
-SensorsTimer         LECTURE + FILTRAGE uniquement, aucun side-effect
+SensorsThread        LECTURE + FILTRAGE uniquement, aucun side-effect
                      publie DetectionEvent (level, x_adv, y_adv, timestamp)
                      N'APPELLE JAMAIS l'Asserv
                          │
@@ -108,7 +108,7 @@ TRAJ_STATE Asserv::waitEndOfTrajWithDetection(MovementType type)
         if (status == IDLE && queueEmpty)  return TRAJ_FINISHED;
         if (status == BLOCKED)             return TRAJ_COLLISION;
 
-        // 2. Détection obstacles (publié par SensorsTimer toutes les 62ms)
+        // 2. Détection obstacles (publié par SensorsThread toutes les 62ms)
         const DetectionEvent& det = sensors_->lastDetection();
 
         if (type == ROTATION) {
@@ -142,7 +142,7 @@ TRAJ_STATE Asserv::waitEndOfTrajWithDetection(MovementType type)
 ### Deux DetectionEvents : temps réel vs historique
 
 ```
-lastDetection_     écrasé toutes les 62ms par SensorsTimer
+lastDetection_     écrasé toutes les 62ms par SensorsThread
                    lu par waitEndOfTrajWithDetection() à 1ms
                    → décision temps réel : stopper / ralentir / continuer
 
@@ -199,7 +199,7 @@ TRAJ_STATE Asserv::goBackTo(float x, float y) {
 | `temp_ignoreBackDetection_` | idem |
 | `temp_forceRotation_` | idem |
 | `pathStatus_` (EsialR) | Plus besoin — c'est Asserv qui set NEAR_OBSTACLE |
-| Bloc décisionnel dans `SensorsTimer::onTimer()` | SensorsTimer ne fait que lire + publier |
+| Bloc décisionnel dans l'ancien `SensorsTimer::onTimer()` | `SensorsThread` ne fait que lire + publier |
 
 ### Scénario complet : adversaire bloquant puis contournement
 
@@ -244,7 +244,7 @@ Si un adversaire apparaît au waypoint 3 sur 5 :
 | 0 | Extraction ObstacleZone, TableGeometry, tests, fix ARM drivers | ✅ |
 | 1 | DetectionEvent — structure + publication dans Sensors | ✅ |
 | 2 | `waitEndOfTrajWithDetection()` — centraliser la décision dans Asserv | ✅ |
-| 3 | Supprimer `SensorsTimer` décisionnel + flags `temp_*` + `warnDetection` | ✅ |
+| 3 | Refactoring `SensorsTimer` → `SensorsThread` (lecture pure) + suppression flags `temp_*` + `warnDetection` | ✅ |
 | 4 | Synchronisation beacon : posAtSync + delta Teensy (t1_us) + buffer circulaire positions | ✅ |
 | 4b | Firmware Teensy : zone_timestamp_us + t1-t4_us + seq dans registres I2C | ✅ |
 | 4c | OPOS6UL : lecture t1-t4_us/seq + RobotPos.t_us + historique getPositionAt() | ✅ |
@@ -561,7 +561,7 @@ float y_predicted = y2 + vy_adv * dt;
    ├── ObstacleZone::filtre_levelInFront()    classification level 0-4
    └── SvgWriter::writePosition_AdvPos()      tracé SVG
        ↓
-4. SensorsTimer::onTimer()           Debounce (2 frames level 4 → warn)
+4. SensorsThread::sensorOnTimer()    Debounce (2 frames level 4 → warn)
    ├── Asserv::warnFrontDetectionOnTraj(4)    → setEmergencyStop()
    ├── Asserv::warnFrontDetectionOnTraj(3)    → setMaxSpeed(reduced)
    └── Asserv::warnFrontDetectionOnTraj(2)    → setMaxSpeed(normal)
