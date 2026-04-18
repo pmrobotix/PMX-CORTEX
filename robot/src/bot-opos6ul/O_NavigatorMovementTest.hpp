@@ -26,7 +26,7 @@
  * Boucle 7 : Pathfinding (rouge)                    — a (1100,700)
  * Boucle 8 : Pathfinding evitement obstacle (rouge)  — a (1100,700)
  *
- *   ./bot-opos6ul t /n 10
+ *   ./bot-opos6ul nav
  */
 class O_NavigatorMovementTest: public FunctionalTest
 {
@@ -62,7 +62,7 @@ private:
 public:
 
     O_NavigatorMovementTest() :
-            FunctionalTest("Navigator_Movement", "Test non-regression Navigator (toutes fonctions).")
+            FunctionalTest("Navigator_Movement", "Test non-regression Navigator (toutes fonctions).", "nav")
     {
         passed_ = 0;
         failed_ = 0;

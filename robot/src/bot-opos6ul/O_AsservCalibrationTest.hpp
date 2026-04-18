@@ -28,9 +28,11 @@ private:
 public:
 
     O_AsservCalibrationTest() :
-            FunctionalTest("Asserv_Calibration", "Calibration asserv par etapes")
+            FunctionalTest("Asserv_Calibration", "Calibration asserv par etapes", "cal")
     {
     }
+
+    std::string defaultArgs() const override { return "0"; }
 
     virtual ~O_AsservCalibrationTest()
     {

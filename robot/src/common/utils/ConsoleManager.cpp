@@ -10,6 +10,9 @@
 #include <iomanip>
 #include <iostream>
 #include <sstream>
+#include <vector>
+#include <string>
+#include <cstring>
 
 #include "../thread/Thread.hpp"
 #include "ConsoleKeyInput.hpp"
@@ -49,7 +52,14 @@ std::string * ConsoleManager::displayAvailableTests(std::string color, int selec
             std::cout << "\033[0m" << std::flush;
 
         ostringstream out;
-        out << std::setw(3) << tests_[i]->position() << ". " << tests_[i]->name();
+        out << std::setw(3) << tests_[i]->position() << ". ";
+        if (!tests_[i]->code().empty())
+            out << std::left << std::setw(4) << tests_[i]->code() << " ";
+        else
+            out << "     ";
+        out << std::left << std::setw(25) << tests_[i]->name();
+        if (!tests_[i]->defaultArgs().empty())
+            out << " [" << tests_[i]->defaultArgs() << "]";
 
         tab[i + 1] = out.str();
 
@@ -209,10 +219,55 @@ void ConsoleManager::run(uint nTest, int argc, char** argv)
 void ConsoleManager::executeTest(uint nTest, int argc, char** argv)
 {
     if (nTest > 0 && nTest <= tests_.size()) {
-        tests_[nTest - 1]->run(argc, argv);
+        FunctionalTest* test = tests_[nTest - 1];
+        std::string defaults = test->defaultArgs();
+
+        // Injecter les defaults si le test en a et que l'utilisateur n'a pas fourni d'args specifiques
+        if (!defaults.empty() && argc <= 2) {
+            // Tokeniser les defaults
+            std::vector<std::string> tokens;
+            std::istringstream iss(defaults);
+            std::string token;
+            while (iss >> token) tokens.push_back(token);
+
+            // Construire le nouveau argv : argv[0] + code/type + tokens defaults
+            int newArgc = 2 + static_cast<int>(tokens.size());
+            std::vector<char*> newArgv(newArgc + 1);
+            newArgv[0] = argv[0];
+
+            // argv[1] = code du test (ou "t" si pas de code)
+            std::string codeStr = test->code().empty() ? "t" : test->code();
+            std::vector<char> codeBuf(codeStr.begin(), codeStr.end());
+            codeBuf.push_back('\0');
+            newArgv[1] = codeBuf.data();
+
+            // Copier les tokens des defaults
+            std::vector<std::vector<char>> tokenBufs(tokens.size());
+            for (size_t i = 0; i < tokens.size(); i++) {
+                tokenBufs[i].assign(tokens[i].begin(), tokens[i].end());
+                tokenBufs[i].push_back('\0');
+                newArgv[i + 2] = tokenBufs[i].data();
+            }
+            newArgv[newArgc] = nullptr;
+
+            std::cout << "=> defaults: " << defaults << std::endl;
+            test->run(newArgc, newArgv.data());
+        } else {
+            test->run(argc, argv);
+        }
     } else {
         std::cout << "The N° must be between 0 and " << tests_.size() << std::endl;
         cout << "Exit !\n" << endl;
         exit(0);
     }
+}
+
+int ConsoleManager::findByCode(const std::string & code) const
+{
+    for (data_type::size_type i = 0; i < tests_.size(); i++) {
+        if (tests_[i]->code() == code) {
+            return static_cast<int>(i + 1); // 1-based
+        }
+    }
+    return 0;
 }

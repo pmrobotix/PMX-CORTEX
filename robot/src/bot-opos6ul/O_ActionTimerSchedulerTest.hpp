@@ -36,7 +36,7 @@ public:
      * \brief Constructeur de la classe.
      */
     O_ActionTimerSchedulerTest() :
-            FunctionalTest("ActionTimerScheduler", "actions + timers")
+            FunctionalTest("ActionTimerScheduler", "actions + timers", "ats")
     {
     }
 

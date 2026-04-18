@@ -35,7 +35,7 @@ public:
      * \brief Constructeur de la classe.
      */
     O_IAByPathTest() :
-            FunctionalTest("IAbyPath", "test l'ia demo IAByPath")
+            FunctionalTest("IAbyPath", "test l'ia demo IAByPath", "ia")
     {
         p_ = NULL;
     }

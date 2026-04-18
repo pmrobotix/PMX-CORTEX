@@ -25,7 +25,7 @@ private:
 public:
 
     O_GroveColorTest() :
-            FunctionalTest("Grove Color", "Tester le capteur coleur")
+            FunctionalTest("Grove Color", "Tester le capteur coleur", "col")
     {
     }
 

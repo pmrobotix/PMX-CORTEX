@@ -28,7 +28,7 @@ public:
      * \brief Constructeur de la classe.
      */
     O_SensorsTest() :
-            FunctionalTest("Sensors", "tests Sensor VL53")
+            FunctionalTest("Sensors", "tests Sensor VL53", "sns")
     {
     }
 

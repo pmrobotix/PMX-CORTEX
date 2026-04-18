@@ -32,7 +32,7 @@
 using namespace std;
 
 Robot::Robot() :
-        chrono_("Robot"), myColor_(PMXNOCOLOR), cArgs_("", "(c) PM-ROBOTIX 2025", "/") // use character "/" instead of "-" for arguments
+        chrono_("Robot"), myColor_(PMXBLUE), cArgs_("", "(c) PM-ROBOTIX 2025", "/") // use character "/" instead of "-" for arguments
 {
     points = 0;
     tabletest = false;
@@ -321,6 +321,17 @@ void Robot::begin(int argc, char** argv) {
         this->skipSetup(true);
     }
     else this->skipSetup(false);
+
+    // Chercher si type correspond a un code mnemonique de test (ex: "lr", "sq")
+    if (cArgs_["type"] != "m" && cArgs_["type"] != "M"
+        && cArgs_["type"] != "t" && cArgs_["type"] != "T"
+        && cArgs_["type"] != "p" && cArgs_["type"] != "P") {
+        int codeNum = cmanager_.findByCode(cArgs_["type"]);
+        if (codeNum > 0) {
+            cArgs_["type"] = "t";
+            num = codeNum;
+        }
+    }
 
     if (cArgs_["type"] != "m" && cArgs_["type"] != "t" && cArgs_["type"] != "T" && cArgs_["type"] != "M") {
         select = cmanager_.displayMenuFirstArgu();

@@ -28,9 +28,11 @@ private:
 public:
 
     O_Asserv_CalageTest() :
-            FunctionalTest("Asserv recalage", "calage arriere")
+            FunctionalTest("Asserv recalage", "calage arriere", "rca")
     {
     }
+
+    std::string defaultArgs() const override { return "200 B"; }
 
     virtual ~O_Asserv_CalageTest()
     {

@@ -65,28 +65,27 @@ int main(int argc, char** argv)
     //Specific Robot BigPMX
     OPOS6UL_RobotExtended &robot = OPOS6UL_RobotExtended::instance();
 
-    robot.getConsoleManager().add(new O_LedBarTest());
-    robot.getConsoleManager().add(new O_TiretteTest());
-    robot.getConsoleManager().add(new O_ButtonBarTest());
-    robot.getConsoleManager().add(new O_LcdBoardTest());
-    robot.getConsoleManager().add(new O_ActionTimerSchedulerTest());
-    robot.getConsoleManager().add(new O_IAByPathTest());
-    
-    robot.getConsoleManager().add(new O_AsservCalibrationTest());
-    robot.getConsoleManager().add(new O_AsservLineRotateTest());
-    robot.getConsoleManager().add(new O_AsservWaypointTest());
-    robot.getConsoleManager().add(new O_NavigatorMovementTest());
-    robot.getConsoleManager().add(new O_NavigatorBackTest());
-    //robot.getConsoleManager().add(new O_AsservLineRotateOldTest()); // deprecated : ancien test sans Navigator
-    robot.getConsoleManager().add(new O_AsservXYRotateTest());
-    robot.getConsoleManager().add(new O_AsservTest());
-    robot.getConsoleManager().add(new O_Asserv_SquareTest());
-    robot.getConsoleManager().add(new O_Asserv_CalageTest());
-    robot.getConsoleManager().add(new O_GroveColorTest());
+    robot.getConsoleManager().add(new O_LedBarTest());          //  1. led
+    robot.getConsoleManager().add(new O_TiretteTest());         //  2. tir
+    robot.getConsoleManager().add(new O_ButtonBarTest());       //  3. btn
+    robot.getConsoleManager().add(new O_LcdBoardTest());        //  4. lcd
+    robot.getConsoleManager().add(new O_ActionTimerSchedulerTest()); //  5. ats
+    robot.getConsoleManager().add(new O_SensorsTest());         //  6. sns
+    robot.getConsoleManager().add(new O_ServoStepTest());       //  7. ss
+    robot.getConsoleManager().add(new O_ServoObjectsTest());    //  8. so
 
-    robot.getConsoleManager().add(new O_ServoStepTest());
-    robot.getConsoleManager().add(new O_ServoObjectsTest());
-    robot.getConsoleManager().add(new O_SensorsTest());
+    robot.getConsoleManager().add(new O_IAByPathTest());        //  9. ia
+    robot.getConsoleManager().add(new O_AsservCalibrationTest()); // 10. cal
+    robot.getConsoleManager().add(new O_AsservLineRotateTest()); // 11. lr
+    robot.getConsoleManager().add(new O_AsservWaypointTest());  // 12. wp
+    robot.getConsoleManager().add(new O_NavigatorMovementTest()); // 13. nav
+    robot.getConsoleManager().add(new O_NavigatorBackTest());   // 14. nb
+    //robot.getConsoleManager().add(new O_AsservLineRotateOldTest()); // deprecated
+    robot.getConsoleManager().add(new O_AsservXYRotateTest());  // 15. xy
+    robot.getConsoleManager().add(new O_AsservTest());          // 16. go
+    robot.getConsoleManager().add(new O_Asserv_SquareTest());   // 17. sq
+    robot.getConsoleManager().add(new O_Asserv_CalageTest());   // 18. rca
+    robot.getConsoleManager().add(new O_GroveColorTest());      // 19. col
 
     robot.parseConsoleArgs(argc, argv, false);
 

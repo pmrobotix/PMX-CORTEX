@@ -22,7 +22,7 @@
  * Boucle 4 : manualPath tout arriere (CHAIN)
  * Boucle 5 : pathBackTo dans les 3 modes (STOP / CHAIN / CHAIN_NONSTOP)
  *
- *   ./bot-opos6ul t /n 11
+ *   ./bot-opos6ul nb
  */
 class O_NavigatorBackTest: public FunctionalTest
 {
@@ -54,7 +54,7 @@ private:
 public:
 
     O_NavigatorBackTest() :
-            FunctionalTest("Navigator_Back", "Test non-regression Navigator marche arriere.")
+            FunctionalTest("Navigator_Back", "Test non-regression Navigator marche arriere.", "nb")
     {
         passed_ = 0;
         failed_ = 0;

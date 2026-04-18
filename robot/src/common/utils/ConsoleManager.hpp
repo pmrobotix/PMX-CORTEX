@@ -71,6 +71,12 @@ public:
 	 */
 	void run(uint nTest, int argc, char** argv);
 
+	/*!
+	 * \brief Cherche un test par son code mnemonique (ex: "lr", "sq").
+	 * \return Numero du test (1-based) ou 0 si non trouve.
+	 */
+	int findByCode(const std::string & code) const;
+
 protected:
 
 	/*!

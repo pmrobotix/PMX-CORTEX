@@ -28,7 +28,7 @@ public:
      * \brief Constructeur de la classe.
      */
     O_TiretteTest() :
-            FunctionalTest("Tirette", "Tester la tirette.")
+            FunctionalTest("Tirette", "Tester la tirette.", "tir")
     {
     }
 
@@ -37,6 +37,10 @@ public:
      */
     virtual ~O_TiretteTest() {
     }
+
+    virtual void configureConsoleArgs(int argc, char** argv);
+
+    std::string defaultArgs() const override { return "10"; }
 
     /*!
      * \brief Execute le test.

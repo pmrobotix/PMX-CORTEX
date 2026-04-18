@@ -30,7 +30,7 @@ public:
      * \brief Constructeur de la classe.
      */
     O_LcdBoardTest() :
-            FunctionalTest("LcdBoard", "Tester le LCD board")
+            FunctionalTest("LcdBoard", "Tester le LCD board", "lcd")
     {
     }
 

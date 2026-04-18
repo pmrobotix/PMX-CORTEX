@@ -22,7 +22,7 @@ private:
 public:
 
     O_LedBarTest() :
-            FunctionalTest("LedBar", "Blink Leds")
+            FunctionalTest("LedBar", "Blink Leds", "led")
     {
     }
 

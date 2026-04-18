@@ -28,9 +28,11 @@ private:
 public:
 
     O_Asserv_SquareTest() :
-            FunctionalTest("Asserv_Square", "effectue un carre")
+            FunctionalTest("Asserv_Square", "effectue un carre", "sq")
     {
     }
+
+    std::string defaultArgs() const override { return "250 250 500 1"; }
 
     virtual ~O_Asserv_SquareTest()
     {

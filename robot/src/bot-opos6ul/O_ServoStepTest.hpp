@@ -30,9 +30,11 @@ public:
 	 * \brief Constructeur de la classe.
 	 */
 	O_ServoStepTest()
-			: FunctionalTest("ServoStep", "Servo moving step by step.")
+			: FunctionalTest("ServoStep", "Servo moving step by step.", "ss")
 	{
 	}
+
+	std::string defaultArgs() const override { return "1"; }
 
 	/*!
 	 * \brief Destructeur de la classe.

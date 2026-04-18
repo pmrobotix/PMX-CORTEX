@@ -28,9 +28,11 @@ private:
 public:
 
     O_AsservXYRotateTest() :
-            FunctionalTest("AsservXYRotate", "Effectue une liste de point par coordonnees")
+            FunctionalTest("AsservXYRotate", "Effectue une liste de point par coordonnees", "xy")
     {
     }
+
+    std::string defaultArgs() const override { return "40 500 500 500 0 0 1 /+ 250 250 0"; }
 
     virtual ~O_AsservXYRotateTest()
     {

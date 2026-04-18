@@ -28,9 +28,11 @@ private:
 public:
 
     O_AsservTest() :
-            FunctionalTest("Asserv run test", "go to different positions")
+            FunctionalTest("Asserv run test", "go to different positions", "go")
     {
     }
+
+    std::string defaultArgs() const override { return "40 500 500 /+ 200 200 0"; }
 
     virtual ~O_AsservTest()
     {

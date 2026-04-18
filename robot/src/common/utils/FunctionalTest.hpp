@@ -23,6 +23,10 @@ private:
     std::string name_;
     std::string description_;
     /*!
+     * \brief Code mnemonique court (2-3 lettres) pour lancer le test en CLI.
+     */
+    std::string code_;
+    /*!
      * \brief Numero du test dans la liste.
      */
     int num_;
@@ -34,8 +38,8 @@ protected:
      * \param name
      *        Nom du test.
      */
-    FunctionalTest(const std::string & name, const std::string & desc) :
-            name_(name), description_(desc), num_(0)
+    FunctionalTest(const std::string & name, const std::string & desc, const std::string & code = "") :
+            name_(name), description_(desc), code_(code), num_(0)
     {
     }
 
@@ -65,6 +69,14 @@ public:
     }
 
     /*!
+     * \return Code mnemonique du test.
+     */
+    inline const std::string & code() const
+    {
+        return code_;
+    }
+
+    /*!
      * \return Numero/position du test.
      */
     inline int position()
@@ -87,6 +99,15 @@ public:
 
     virtual void configureConsoleArgs(int, char**) // A surcharger par le test en question pour ajouter ses parametres specifiques
     {
+    }
+
+    /*!
+     * \brief Retourne les arguments par defaut pour ce test (ex: "500 90 0 /+ 250 250 0").
+     * Utilise par ConsoleManager quand le test est lance sans arguments explicites.
+     */
+    virtual std::string defaultArgs() const
+    {
+        return "";
     }
 };
 
