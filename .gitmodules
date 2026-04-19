@@ -4,3 +4,6 @@
 [submodule "libs/PathFinding"]
 	path = libs/PathFinding
 	url = git@github.com:pmrobotix/PathFinding.git
+[submodule "simulator"]
+	path = simulator
+	url = https://github.com/pmrobotix/Simulateur.git

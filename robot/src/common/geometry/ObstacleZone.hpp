@@ -16,6 +16,19 @@
 #include "log/LoggerFactory.hpp"
 
 /*!
+ * \brief Statut d'un adversaire vis-a-vis d'une trajectoire.
+ *
+ * Utilise par ObstacleZone::isOnPath pour classifier un adversaire
+ * par rapport au segment [robot -> cible] du mouvement courant.
+ */
+enum class PathStatus
+{
+	CLEAR,       //!< Adversaire hors du couloir ou hors segment : la trajectoire est libre.
+	APPROACHING, //!< Adversaire dans le couloir, distance entre stop et slow : ralentir.
+	BLOCKING,    //!< Adversaire dans le couloir, distance <= stop : arreter.
+};
+
+/*!
  * \brief Classification des obstacles par zones autour du robot.
  *
  * Zones de detection (repere robot, y devant, x a droite) :
@@ -294,6 +307,75 @@ public:
 			int threshold_veryclosed_back_mm,
 			float dist_adv_mm, float x_adv_mm, float y_adv_mm,
 			float theta_adv_deg);
+
+	// ========== Detection predictive par trajectoire ==========
+
+	/*!
+	 * \brief Classifie un adversaire par rapport au segment [robot -> cible].
+	 *
+	 * Geometrie pure, sans effet de bord. Toutes les positions sont des CENTRES
+	 * (repere table), pas des bords de robot.
+	 *
+	 * Deux distances sont calculees et comparees a des seuils :
+	 *
+	 * 1) Distance PERPENDICULAIRE (lateral_mm) : du centre adv au segment.
+	 *    Compare a corridor_width_mm / 2.
+	 *      lateral_mm <= corridor_width_mm / 2  : adv DANS le couloir
+	 *      lateral_mm >  corridor_width_mm / 2  : adv HORS couloir -> CLEAR
+	 *
+	 *    corridor_width_mm est centre-a-centre :
+	 *      corridor_width_mm = robot_diametre + adv_diametre (avec marge incluse
+	 *      cote appelant en augmentant adv_diametre).
+	 *
+	 * 2) Distance LONGITUDINALE (along_mm) : du centre robot a la projection
+	 *    orthogonale du centre adv sur le segment, mesuree LE LONG du segment.
+	 *      along_mm <  0                   : projection derriere le robot -> CLEAR
+	 *      along_mm >  longueur_segment    : projection au-dela de la cible -> CLEAR
+	 *      along_mm <= stop_distance_mm    : BLOCKING (stop) [inclusif]
+	 *      along_mm <= slow_distance_mm    : APPROACHING (slow) [inclusif]
+	 *      along_mm >  slow_distance_mm    : CLEAR
+	 *
+	 * Illustration :
+	 *
+	 *   corridor_width/2       cible
+	 *         ▲                  │
+	 *         │          lateral │ (distance perpendiculaire adv -> segment)
+	 *         ▼         ├────────●
+	 *   ┌─────────┬─────┬────────┴─┐      ← limite couloir (corridor_width/2)
+	 *   │         │     │          │
+	 *   │ robot   │     │  adv     │      ← adv dans le couloir si lateral <= width/2
+	 *   │  ●──────┼─────┼──────────┼──▶ cible
+	 *   │  0     stop  slow       end
+	 *   │         │     │          │      ← limite couloir
+	 *   └─────────┴─────┴──────────┘
+	 *   ├────────▶│                       along_mm (distance LE LONG du segment,
+	 *             │                        depuis centre robot jusqu'a la
+	 *                                      projection du centre adv)
+	 *
+	 *   Note : stop_distance_mm et slow_distance_mm sont mesures A PARTIR DU
+	 *   CENTRE DU ROBOT (along_mm = 0 au centre robot, = longueur_segment a la cible).
+	 *
+	 * Cas particulier : segment nul (robot == cible, rotation pure) -> CLEAR toujours.
+	 *
+	 * \param x_robot,y_robot Centre robot en mm (repere table).
+	 * \param x_target,y_target Centre cible en mm (repere table).
+	 * \param x_adv,y_adv Centre adversaire en mm (repere table).
+	 * \param corridor_width_mm Largeur totale du couloir centre-a-centre, en mm
+	 *        (robot_diametre + adv_diametre_avec_marge). La demi-largeur
+	 *        corridor_width_mm/2 est le seuil max de la distance perpendiculaire.
+	 * \param slow_distance_mm Distance le long du segment depuis le CENTRE ROBOT,
+	 *        seuil APPROACHING. Ex. 620 mm.
+	 * \param stop_distance_mm Distance le long du segment depuis le CENTRE ROBOT,
+	 *        seuil BLOCKING (inclusif). Ex. 460 mm.
+	 * \return CLEAR / APPROACHING / BLOCKING.
+	 */
+	PathStatus isOnPath(
+			float x_robot, float y_robot,
+			float x_target, float y_target,
+			float x_adv, float y_adv,
+			float corridor_width_mm,
+			float slow_distance_mm,
+			float stop_distance_mm) const;
 };
 
 #endif

@@ -93,6 +93,7 @@ add_library(pmx-common STATIC
     src/common/ia/IA.cpp
     src/common/ia/IAbyPath.cpp
     src/common/ia/IAbyZone.cpp
+    src/common/ia/ZoneJsonExporter.cpp
     # navigator
     src/common/navigator/Navigator.cpp
     # utils
@@ -304,6 +305,7 @@ add_executable(common-test
     test/common/TableGeometryTest.cpp
     test/common/ObstacleZoneTest.cpp
     test/common/DetectionEventTest.cpp
+    test/common/IsOnPathTest.cpp
 )
 
 target_link_libraries(common-test PRIVATE pmx-suite)

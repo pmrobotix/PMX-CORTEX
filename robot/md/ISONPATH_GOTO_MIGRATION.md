@@ -14,6 +14,39 @@ Ce changement casse l'hypothèse actuelle selon laquelle la détection d'obstacl
 
 D'où l'introduction d'un prédicat `isOnPath` qui décide si un adversaire bloque réellement la trajectoire prévue, plutôt que de se reposer sur un cône géométrique fixe devant le robot.
 
+## Hiérarchie complète des niveaux de décision
+
+Le système de gestion d'obstacles fonctionne sur 5 niveaux, du plus bas (hardware) au plus haut (stratégie). `isOnPath` s'insère au niveau 2 et rend les niveaux 3 et 4 plus intelligents.
+
+| Niveau | Composant | Déclencheur | Sortie | État actuel |
+|---|---|---|---|---|
+| **0** | Carte asserv (Nucleo/Teensy) | Blocage mécanique : courant moteur élevé + odo immobile | `status BLOCKED` → `TRAJ_COLLISION` | ⚠️ **Désactivé / peu fiable sur PMX-CORTEX** |
+| **1** | `SensorsThread` | Lecture I2C beacon + ToF toutes les 62 ms | `DetectionEvent` (level, x_adv, y_adv, timestamp) | ✅ Fait |
+| **2** | `Asserv::waitEndOfTrajWithDetection` | ToF très près (filet sécurité) + `isOnPath` (anticipation) | `TRAJ_NEAR_OBSTACLE` | ⚠️ Partiel — manque `isOnPath` |
+| **3** | `Navigator::executeWithRetry` | Retry sur `TRAJ_NEAR_OBSTACLE` et `TRAJ_COLLISION` | Rend la main avec l'état final | ✅ Fait (mais retry aveugle, pas de pré-check `isOnPath`) |
+| **4** | `DecisionMaker` / IA | Échec Navigator | Skip action + essayer la suivante + retry plus tard | ❌ Pas implémenté (fallback stratégique manquant) |
+
+### Différence niveau 0 vs niveau 2
+
+| | Niveau 0 (blocage) | Niveau 2 (détection) |
+|---|---|---|
+| **Timing** | Après contact physique | Avant contact (anticipation) |
+| **Source** | Courant moteur + odo bloquée | ToF + Beacon |
+| **TRAJ_STATE** | `TRAJ_COLLISION` | `TRAJ_NEAR_OBSTACLE` |
+| **Info position adv** | ❌ non (juste "bloqué") | ✅ oui (x_adv, y_adv) |
+| **Recul utile ?** | ✅ presque toujours (on est en contact) | ⚠️ pas forcément (pas de contact) |
+
+C'est pour ça que `RetryPolicy` a deux paramètres distincts : `reculCollisionMm` (par défaut 20 mm dans les policies agressives) et `reculObstacleMm` (0 par défaut, pas de recul si simple détection).
+
+### Complémentarité avec `isOnPath`
+
+- **`isOnPath`** évite les STOP inutiles au niveau 2 → moins d'arrêts préventifs pour un adversaire qui n'est pas sur le chemin.
+- **Blocage asserv (niveau 0)** reste le filet ultime : si l'adv nous rentre dedans malgré tout (mouvement imprévu rapide), ou si `isOnPath` se trompe (mauvais réglage, latence beacon), la carte détecte le contact physique et interrompt l'asserv.
+
+### Dépendance hors scope
+
+**La réactivation du niveau 0 (blocage asserv) est un chantier à part** — côté carte Nucleo/asserv_chibios (calibration seuils courant moteur, détection odo immobile, remontée via CBOR). À tracker séparément. Pas dans la checklist T1-T8 ci-dessous, mais à considérer comme dépendance pour la fiabilité globale en match.
+
 ## Sources de détection
 
 Deux capteurs complémentaires alimentent déjà le même `DetectionEvent.frontLevel` via `Sensors.cpp` :

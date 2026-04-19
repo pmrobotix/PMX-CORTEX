@@ -24,6 +24,7 @@
 #include "TableGeometryTest.hpp"
 #include "ObstacleZoneTest.hpp"
 #include "DetectionEventTest.hpp"
+#include "IsOnPathTest.hpp"
 
 int main(int argc, char** argv)
 {
@@ -48,6 +49,7 @@ int main(int argc, char** argv)
     suite.addTest(new test::TableGeometryTest());
     suite.addTest(new test::ObstacleZoneTest());
     suite.addTest(new test::DetectionEventTest());
+    suite.addTest(new test::IsOnPathTest());
 
     suite.run();
 

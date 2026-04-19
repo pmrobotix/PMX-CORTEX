@@ -5,6 +5,8 @@
 
 #include "ObstacleZone.hpp"
 
+#include <cmath>
+
 int ObstacleZone::filtre_levelInFront(int threshold_LR_mm, int threshold_Front_mm,
 		int threshold_veryclosed_front_mm,
 		float dist_adv_mm, float x_adv_mm, float y_adv_mm,
@@ -115,4 +117,52 @@ int ObstacleZone::filtre_levelInBack(int threshold_LR_mm, int threshold_Back_mm,
 		}
 	}
 	return 0;
+}
+
+// ========== Detection predictive par trajectoire ==========
+
+PathStatus ObstacleZone::isOnPath(
+		float x_robot, float y_robot,
+		float x_target, float y_target,
+		float x_adv, float y_adv,
+		float corridor_width_mm,
+		float slow_distance_mm,
+		float stop_distance_mm) const
+{
+	const float dx = x_target - x_robot;
+	const float dy = y_target - y_robot;
+	const float len_sq = dx * dx + dy * dy;
+
+	// Segment nul (rotation pure, robot == cible) : pas de trajectoire a bloquer.
+	if (len_sq < 1.0f) {
+		return PathStatus::CLEAR;
+	}
+
+	// Projection orthogonale du centre adv sur le segment.
+	// t = 0 -> centre robot, t = 1 -> centre cible, t hors [0,1] -> hors segment.
+	const float t = ((x_adv - x_robot) * dx + (y_adv - y_robot) * dy) / len_sq;
+	if (t < 0.0f || t > 1.0f) {
+		return PathStatus::CLEAR;
+	}
+
+	// Distance perpendiculaire centre_adv -> segment (comparee au carre pour eviter sqrt).
+	const float px = x_robot + t * dx;
+	const float py = y_robot + t * dy;
+	const float lat_sq = (x_adv - px) * (x_adv - px) + (y_adv - py) * (y_adv - py);
+	const float half_w = corridor_width_mm * 0.5f;
+
+	// Bord du couloir exclusif : lat >= half_w -> hors couloir.
+	if (lat_sq >= half_w * half_w) {
+		return PathStatus::CLEAR;
+	}
+
+	// Dans le couloir : classification selon distance le long du segment.
+	const float along = t * std::sqrt(len_sq);
+	if (along <= stop_distance_mm) {
+		return PathStatus::BLOCKING;
+	}
+	if (along <= slow_distance_mm) {
+		return PathStatus::APPROACHING;
+	}
+	return PathStatus::CLEAR;
 }
