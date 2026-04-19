@@ -76,6 +76,11 @@ public:
     ZONE* ia_getZoneAt(float x, float y);
     ZONE* ia_getNearestZoneFrom(float x, float y);
 
+    // Accesseurs pour export (cf. ZoneJsonExporter)
+    int zonesCount() const { return _zones_count; }
+    ZONE* const* zones() const { return _zones; }
+    Playground* playground() const { return p_; }
+
     void ia_addAction(const char* name, RobotAction action);
 
     void ia_printZone(ZONE *z);
@@ -85,32 +90,6 @@ public:
 
     void playgroundFindPath(FoundPath * & path, Point& start, Point& end);
     void enable(PlaygroundObjectID id, bool enable);
-
-
-    // [DEPRECATED] Remplace par Navigator::pathTo() / pathBackTo() / pathToAndFaceTo() / pathToAndRotateAbsDeg()
-    // Conserve en commentaire pour reference (bug detection adversaire, voir ARCHITECTURE.md).
-    //
-    // TRAJ_STATE doPathForwardAndFaceTo(float xMM, float yMM, float f_x, float f_y);
-    // TRAJ_STATE doPathForwardAndRotateTo(float x, float y, float AbsThetaInDegree);
-    // TRAJ_STATE doPathForwardTo(float xMM, float yMM, bool rotate_ignored_detection = false);
-    // TRAJ_STATE doPathBackwardTo(float xMM, float yMM, bool rotate_ignored_detection = false);
-
-
-
-
-
-//    TRAJ_STATE whileDoLine(float distMM, bool rotate_ignoring_opponent = true, int wait_tempo_us = 2000000,
-//    		int nb_near_obstacle = 2, int nb_collision = 2, int reculOnObstacleMm = 0, int reculOnCollisionMm = 0,
-//    		bool ignore_collision = 0);
-    // [DEPRECATED] Supprime — utiliser Navigator avec RetryPolicy a la place
-    // Voir Navigator::moveForwardTo(), goTo(), moveBackwardTo(), goBackTo(),
-    //      rotateAbsDeg(), moveForwardToAndRotateAbsDeg(), etc.
-    //
-    // TRAJ_STATE whileMoveForwardTo(...);
-    // TRAJ_STATE whileMoveBackwardTo(...);
-    // TRAJ_STATE whileMoveRotateTo(...);
-    // TRAJ_STATE whileMoveForwardAndRotateTo(...);
-    // TRAJ_STATE whileMoveBackwardAndRotateTo(...);
 
 
 

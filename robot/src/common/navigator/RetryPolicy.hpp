@@ -3,9 +3,6 @@
 
 /*!
  * \brief Parametres de la boucle de retry pour les deplacements.
- *
- * Regroupe tous les parametres qui etaient disperses dans les signatures
- * whileDoLine(dist, rotate_ign, wait, nb_obs, nb_coll, recul_obs, recul_coll, ign_coll).
  */
 struct RetryPolicy
 {
@@ -24,9 +21,6 @@ struct RetryPolicy
     //! Distance de recul en mm apres collision (0 = pas de recul)
     int reculCollisionMm = 0;
 
-    //! Ignorer la detection adverse pendant les rotations
-    bool rotateIgnoringOpponent = true;
-
     //! Ignorer les collisions (ne pas interrompre)
     bool ignoreCollision = false;
 
@@ -35,25 +29,25 @@ struct RetryPolicy
     //! Pas de retry : 1 seul essai
     static RetryPolicy noRetry()
     {
-        return { 0, 1, 1, 0, 0, true, false };
+        return { 0, 1, 1, 0, 0, false };
     }
 
     //! Retry par defaut (2 essais obstacle, 2 essais collision)
     static RetryPolicy standard()
     {
-        return { 2000000, 2, 2, 0, 0, true, false };
+        return { 2000000, 2, 2, 0, 0, false };
     }
 
     //! Retry agressif pour les actions critiques (5 essais, recul 50mm)
     static RetryPolicy aggressive()
     {
-        return { 2000000, 5, 5, 50, 20, true, false };
+        return { 2000000, 5, 5, 50, 20, false };
     }
 
     //! Retry patient pour fin de match (20 essais obstacle, 10 collision)
     static RetryPolicy patient()
     {
-        return { 2000000, 20, 10, 0, 0, true, false };
+        return { 2000000, 20, 10, 0, 0, false };
     }
 };
 

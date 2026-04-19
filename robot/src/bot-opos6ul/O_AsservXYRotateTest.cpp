@@ -155,7 +155,7 @@ void O_AsservXYRotateTest::run(int argc, char **argv)
 				bool frontcenter = robot.actions().sensors().getAvailableFrontCenter();
 				logger().info() << "frontcenter=" << frontcenter << " " << logs::end;
 
-				RetryPolicy policyFwd = { 1000000, 5, 10, 0, 0, false, false };
+				RetryPolicy policyFwd = { 1000000, 5, 10, 0, 0, false };
 				ts = nav.moveForwardTo(x_dest, y_dest, policyFwd);
 				if (ts == TRAJ_INTERRUPTED)
 				{
@@ -185,7 +185,7 @@ void O_AsservXYRotateTest::run(int argc, char **argv)
 				robot.actions().sensors().setIgnoreFrontNearObstacle(true, true, true);
 				robot.actions().sensors().setIgnoreBackNearObstacle(true, false, true);
 
-				RetryPolicy policyBack = { 1000000, 3, 2, 0, 0, false, false };
+				RetryPolicy policyBack = { 1000000, 3, 2, 0, 0, false };
 				ts = nav.moveBackwardTo(robot.asserv().pos_getX_mm() + d,
 						robot.asserv().pos_getY_mm(), policyBack);
 				if (ts == TRAJ_INTERRUPTED)
@@ -207,7 +207,7 @@ void O_AsservXYRotateTest::run(int argc, char **argv)
 			robot.actions().sensors().setIgnoreFrontNearObstacle(true, true, true);
 			robot.actions().sensors().setIgnoreBackNearObstacle(true, true, true);
 
-			RetryPolicy policyRot = { 1000000, 2, 2, 0, 0, true, false };
+			RetryPolicy policyRot = { 1000000, 2, 2, 0, 0, false };
 			ts = nav.rotateAbsDeg(a, policyRot);
 
 			if (ts == TRAJ_INTERRUPTED)
@@ -232,7 +232,7 @@ void O_AsservXYRotateTest::run(int argc, char **argv)
 				robot.actions().sensors().setIgnoreFrontNearObstacle(true, false, true);
 				robot.actions().sensors().setIgnoreBackNearObstacle(true, true, true);
 
-				RetryPolicy policyFwd2 = { 1000000, 20, 2, 0, 0, true, false };
+				RetryPolicy policyFwd2 = { 1000000, 20, 2, 0, 0, false };
 				ts = nav.moveForwardTo(x, y, policyFwd2);
 
 				if (ts == TRAJ_INTERRUPTED)
@@ -255,7 +255,7 @@ void O_AsservXYRotateTest::run(int argc, char **argv)
 				robot.actions().sensors().setIgnoreFrontNearObstacle(true, true, true);
 				robot.actions().sensors().setIgnoreBackNearObstacle(true, false, true);
 
-				RetryPolicy policyBack2 = { 1000000, 20, 3, 0, 0, true, false };
+				RetryPolicy policyBack2 = { 1000000, 20, 3, 0, 0, false };
 				ts = nav.moveBackwardTo(x, y, policyBack2);
 
 				if (ts == TRAJ_INTERRUPTED)
@@ -280,7 +280,7 @@ void O_AsservXYRotateTest::run(int argc, char **argv)
 			robot.actions().sensors().setIgnoreFrontNearObstacle(true, true, true);
 			robot.actions().sensors().setIgnoreBackNearObstacle(true, true, true);
 
-			RetryPolicy policyRot2 = { 1000000, 2, 2, 0, 0, true, false };
+			RetryPolicy policyRot2 = { 1000000, 2, 2, 0, 0, false };
 			ts = nav.rotateAbsDeg(a, policyRot2);
 
 			if (ts == TRAJ_INTERRUPTED)

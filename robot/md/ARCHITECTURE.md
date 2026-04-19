@@ -23,7 +23,7 @@
 
 - [Communication asserv](ASSERV_MIGRATION_COMMUNICATION.md) — Phases 2-4, 6 restantes : commandes manquantes (n/N/!/R), nettoyage dead code, gotoChain non-bloquant
 - [Détection d'obstacles](SENSORS_DETECTION_MIGRATION.md) — Phases 5-7 restantes : visualisation SVG L/R, simulation adversaire UDP, isOnPath pour reprise intelligente
-- [Migration Goto externe + isOnPath](ISONPATH_GOTO_MIGRATION.md) — Pas commencé : isOnPath géométrique, suppression `rotate_ignoring_opponent`, MoveMode, Navigator::executeChain
+- [Migration Goto externe + isOnPath](ISONPATH_GOTO_MIGRATION.md) — T1-T5 faits (prédicat `isOnPath` géométrique + 15 tests TDD + suppression `rotate_ignoring_opponent`). Restants : T6 (ToF c1-c8), T7 (CBOR Goto/GotoNoStop), T8 (intégration runtime dans `waitEndOfTrajWithDetection`), MoveMode, `Navigator::executeChain`.
 
 ### Règles de migration PMX → PMX-CORTEX
 
@@ -1808,8 +1808,11 @@ struct RetryPolicy {
     int maxCollisionRetries;    // nb max retry collision
     int reculObstacleMm;        // recul apres obstacle (0=aucun)
     int reculCollisionMm;       // recul apres collision (0=aucun)
-    bool rotateIgnoringOpponent;
-    bool ignoreCollision;
+    bool ignoreCollision;       // ne pas interrompre sur collision
+
+    // Note : la detection adversaire est automatiquement ignoree pendant
+    // toute rotation, via MovementType::ROTATION dans
+    // Asserv::waitEndOfTrajWithDetection. Aucun flag dedie n'est necessaire.
 
     // Presets
     static RetryPolicy noRetry();      // 1 essai, pas de retry

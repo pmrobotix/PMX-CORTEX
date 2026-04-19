@@ -109,7 +109,7 @@ bool O_push_prise_bas()
 	robot.ia().iAbyPath().goToZone("zone_prise_bas", &zone);
 
 	Navigator nav(&robot, &robot.ia().iAbyPath());
-	RetryPolicy policyPrise = { 1000000, 30, 30, 0, 0, true, false };
+	RetryPolicy policyPrise = { 1000000, 30, 30, 0, 0, false };
 
 	ts = nav.moveForwardToAndRotateAbsDeg(zone.x, zone.y, radToDeg(zone.theta), policyPrise);
 	if (ts != TRAJ_FINISHED)
@@ -122,7 +122,7 @@ bool O_push_prise_bas()
 	}
 	robot.svgPrintPosition();
 
-	RetryPolicy policyPush = { 1000000, 10, 10, 0, 0, true, false };
+	RetryPolicy policyPush = { 1000000, 10, 10, 0, 0, false };
 	ts = nav.moveForwardTo(775, 200, policyPush);
 	if (ts != TRAJ_FINISHED)
 	{

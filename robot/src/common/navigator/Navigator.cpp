@@ -153,17 +153,14 @@ TRAJ_STATE Navigator::executeWaypoints(const std::vector<Waypoint>& waypoints,
         {
             const Waypoint& first = waypoints[currentIndex];
             float x_match = robot_->changeMatchX(first.x);
-            if (policy.rotateIgnoringOpponent)
+            TRAJ_STATE ts = first.reverse
+                ? robot_->asserv().faceBackTo(x_match, first.y)
+                : robot_->asserv().faceTo(x_match, first.y);
+            if (ts != TRAJ_FINISHED)
             {
-                TRAJ_STATE ts = first.reverse
-                    ? robot_->asserv().faceBackTo(x_match, first.y)
-                    : robot_->asserv().faceTo(x_match, first.y);
-                if (ts != TRAJ_FINISHED)
-                {
-                    return ts;
-                }
-                robot_->svgPrintPosition();
+                return ts;
             }
+            robot_->svgPrintPosition();
         }
 
         // Envoi de tous les waypoints sans attendre
@@ -212,18 +209,15 @@ TRAJ_STATE Navigator::executeWaypoints(const std::vector<Waypoint>& waypoints,
         float x_match = robot_->changeMatchX(wp.x);
 
         // Rotation vers le point
-        if (policy.rotateIgnoringOpponent)
+        ts = wp.reverse
+            ? robot_->asserv().faceBackTo(x_match, wp.y)
+            : robot_->asserv().faceTo(x_match, wp.y);
+        if (ts != TRAJ_FINISHED)
         {
-            ts = wp.reverse
-                ? robot_->asserv().faceBackTo(x_match, wp.y)
-                : robot_->asserv().faceTo(x_match, wp.y);
-            if (ts != TRAJ_FINISHED)
-            {
-                currentIndex = i;
-                return ts;
-            }
-            robot_->svgPrintPosition();
+            currentIndex = i;
+            return ts;
         }
+        robot_->svgPrintPosition();
 
         // Deplacement
         if (wp.reverse)
@@ -340,8 +334,8 @@ TRAJ_STATE Navigator::moveForwardTo(float x, float y, RetryPolicy policy)
     ROBOTPOSITION pBefore = robot_->sharedPosition()->getRobotPosition();
 
     TRAJ_STATE ts = executeWithRetry(
-        [this, x, y, &policy]() {
-            return robot_->asserv().moveForwardTo(x, y, policy.rotateIgnoringOpponent);
+        [this, x, y]() {
+            return robot_->asserv().moveForwardTo(x, y);
         },
         policy,
         -1
@@ -359,8 +353,8 @@ TRAJ_STATE Navigator::moveBackwardTo(float x, float y, RetryPolicy policy)
     ROBOTPOSITION pBefore = robot_->sharedPosition()->getRobotPosition();
 
     TRAJ_STATE ts = executeWithRetry(
-        [this, x, y, &policy]() {
-            return robot_->asserv().moveBackwardTo(x, y, policy.rotateIgnoringOpponent);
+        [this, x, y]() {
+            return robot_->asserv().moveBackwardTo(x, y);
         },
         policy,
         1
@@ -380,8 +374,8 @@ TRAJ_STATE Navigator::moveBackwardTo(float x, float y, RetryPolicy policy)
 TRAJ_STATE Navigator::rotateDeg(float degRelative, RetryPolicy policy)
 {
     return executeWithRetry(
-        [this, degRelative, &policy]() {
-            return robot_->asserv().rotateDeg(degRelative, policy.rotateIgnoringOpponent);
+        [this, degRelative]() {
+            return robot_->asserv().rotateDeg(degRelative);
         },
         policy,
         0
@@ -391,8 +385,8 @@ TRAJ_STATE Navigator::rotateDeg(float degRelative, RetryPolicy policy)
 TRAJ_STATE Navigator::rotateAbsDeg(float thetaDeg, RetryPolicy policy)
 {
     return executeWithRetry(
-        [this, thetaDeg, &policy]() {
-            return robot_->asserv().rotateAbsDeg(thetaDeg, policy.rotateIgnoringOpponent);
+        [this, thetaDeg]() {
+            return robot_->asserv().rotateAbsDeg(thetaDeg);
         },
         policy,
         0

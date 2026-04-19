@@ -176,7 +176,6 @@ void O_AsservWaypointTest::run(int argc, char **argv)
 	Navigator nav(&robot, &robot.ia().iAbyPath());
 
 	RetryPolicy policy = RetryPolicy::aggressive();
-	policy.rotateIgnoringOpponent = (B == 0);
 
 	// Execute
 	logger().info() << "=== START manualPath ===" << logs::end;

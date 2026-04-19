@@ -434,38 +434,36 @@ public:
     /*!
      * \brief Rotation relative d'un angle en degrés par rapport à l'orientation courante.
      *        Positif = sens trigonométrique (gauche), négatif = sens horaire (droite).
+     *        La détection adverse est ignorée pendant la rotation (MovementType::ROTATION).
      * \param degreesRelative Angle relatif en degrés.
-     * \param rotate_ignoring_opponent true pour ignorer la détection adverse pendant la rotation.
      * \return État de la trajectoire.
      */
-    TRAJ_STATE rotateDeg(float degreesRelative, bool rotate_ignoring_opponent = true);
+    TRAJ_STATE rotateDeg(float degreesRelative);
 
     /*!
      * \brief Rotation relative d'un angle en radians par rapport à l'orientation courante.
+     *        La détection adverse est ignorée pendant la rotation (MovementType::ROTATION).
      * \param radRelative Angle relatif en radians.
-     * \param rotate_ignoring_opponent true pour ignorer la détection adverse pendant la rotation.
      * \return État de la trajectoire.
      */
-    TRAJ_STATE rotateRad(float radRelative, bool rotate_ignoring_opponent = true);
+    TRAJ_STATE rotateRad(float radRelative);
 
     /*!
      * \brief Rotation relative avec inversion automatique selon la couleur de match.
      *        Couleur primaire : angle tel quel. Couleur secondaire : angle inversé (-angle).
      * \param thetaInDegreeRelative Angle relatif en degrés (repère couleur primaire).
-     * \param rotate_ignoring_opponent true pour ignorer la détection adverse.
      * \return État de la trajectoire.
      */
-    TRAJ_STATE rotateByMatchColorDeg(float thetaInDegreeRelative, bool rotate_ignoring_opponent = true);
+    TRAJ_STATE rotateByMatchColorDeg(float thetaInDegreeRelative);
 
     /*!
      * \brief Rotation absolue vers un angle donné sur le terrain.
      *        Calcule la rotation relative nécessaire depuis l'angle courant,
      *        en appliquant la symétrie couleur de match.
      * \param thetaInDegreeAbsolute Angle cible en degrés (repère couleur primaire, 0° = axe X+).
-     * \param rotate_ignore_opponent true pour ignorer la détection adverse.
      * \return État de la trajectoire.
      */
-    TRAJ_STATE rotateAbsDeg(float thetaInDegreeAbsolute, bool rotate_ignore_opponent = true);
+    TRAJ_STATE rotateAbsDeg(float thetaInDegreeAbsolute);
 
     /*!
      * \brief Tourne le robot face a un point (x,y) du terrain.
@@ -539,19 +537,19 @@ public:
      *        au driver externe la trajectoire smooth). Utile pour un controle explicite
      *        entre la rotation et la ligne, ou pour un asserv sans motion_GoTo natif.
      */
-    TRAJ_STATE moveForwardTo(float xMM, float yMM, bool rotate_ignored = false, float adjustment = 0);
+    TRAJ_STATE moveForwardTo(float xMM, float yMM, float adjustment = 0);
 
     /*!
      * \brief Recule vers (x,y) : rotation dos au point, puis ligne droite arriere.
      *        Composition "turn-line" faite par Asserv (alternative a goBackTo()).
      */
-    TRAJ_STATE moveBackwardTo(float xMM, float yMM, bool rotate_ignored = false);
+    TRAJ_STATE moveBackwardTo(float xMM, float yMM);
 
     /*!
      * \brief Avance vers (x,y) puis tourne vers l'angle donne.
      *        Composition "turn-line-rotate" faite par Asserv.
      */
-    TRAJ_STATE moveForwardAndRotateTo(float xMM, float yMM, float thetaInDegree, bool rotate_ignore_opponent = true);
+    TRAJ_STATE moveForwardAndRotateTo(float xMM, float yMM, float thetaInDegree);
 
     /*!
      * \brief Recule vers (x,y) puis tourne vers l'angle donne.

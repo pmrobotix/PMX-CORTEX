@@ -379,7 +379,7 @@ void O_AsservLineRotateOldTest::run(int argc, char **argv)
 			} else if (pathfindingMode == 1)
 			{
 				Navigator nav(&robot);
-				RetryPolicy policyLine = { 2000000, 5, 5, 50, 0, false, false };
+				RetryPolicy policyLine = { 2000000, 5, 5, 50, 0, false };
 				ts = nav.line(dd, policyLine);
 				if (ts >= TRAJ_INTERRUPTED)
 				{

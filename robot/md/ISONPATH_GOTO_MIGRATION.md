@@ -68,7 +68,7 @@ La compensation de latence beacon via les timestamps `t1-t4_us` est **déjà en 
 
 1. **`isOnPath` est un prédicat géométrique pur**, sans effet de bord. Il ne déclenche pas d'action, il renvoie un statut (CLEAR / APPROACHING / BLOCKING ou équivalent).
 
-2. **La suppression de `rotate_ignoring_opponent`** est validée. Le flag ne sert plus dans le nouveau modèle (la rotation n'est plus une phase isolable pendant un Goto, et en ROTATION pure la détection est déjà ignorée par `MovementType`). Il traverse aujourd'hui toute la chaîne `IAbyPath → Asserv` et sera retiré en bloc.
+2. **La suppression de `rotate_ignoring_opponent`** est faite ✅. Le flag ne servait plus (la rotation n'est plus une phase isolable pendant un Goto, et en ROTATION pure la détection est déjà ignorée par `MovementType`). Retiré de toute la chaîne `RetryPolicy → Navigator → Asserv` + des tests (~20 sites). Le bypass en rotation se fait maintenant uniquement via `waitEndOfTrajWithDetection(MovementType::ROTATION)`.
 
 3. **Les actions (slow / stop / recul / replanif) sont décidées par les appelants** de `isOnPath`, pas par le prédicat lui-même. Trois niveaux distincts :
 
@@ -257,15 +257,16 @@ Utilisable par le DecisionMaker comme **deuxième filtre de pré-flight** sur le
 - Faire passer `IsOnPathTest` en vert
 - **Aucun câblage** avec l'asserv ou la stratégie à ce stade
 
-### Étape 2 — Suppression de `rotate_ignoring_opponent`
+### Étape 2 — Suppression de `rotate_ignoring_opponent` ✅
 
-- Retirer le paramètre de toute la chaîne `IAbyPath → Asserv`
-  - `IAbyPath.cpp:374, 471, 575, 651, 667, 671, 776, 788, 792, 931, 935` (et variations)
-  - `Asserv.cpp:628, 684, 652-676, 704-708, 719`
-  - `Asserv.hpp:542` et équivalents
-- Supprimer le bloc de rattrapage "reset emergency + continue line" (`Asserv.cpp:652-676`)
-- Vérifier que les appels DecisionMaker / stratégies compilent (chercher call-sites)
-- Tests de régression : SIMU + robot à vide
+- ~~Retirer le paramètre de toute la chaîne `RetryPolicy → Navigator → Asserv`~~
+  - IAbyPath.cpp/.hpp : déclarations + définitions deprecated supprimées (594 lignes)
+  - Asserv.cpp/.hpp : paramètre retiré de 7 signatures (rotateDeg, rotateRad, rotateByMatchColorDeg, rotateAbsDeg, moveForwardTo, moveBackwardTo, moveForwardAndRotateTo)
+  - RetryPolicy.hpp : champ `rotateIgnoringOpponent` retiré + 4 presets adaptés
+  - Navigator.cpp : 5 usages `policy.rotateIgnoringOpponent` retirés, les faceTo/faceBackTo avant un CHAIN waypoint sont désormais inconditionnels
+- ~~Supprimer le bloc de rattrapage "reset emergency + continue line"~~ (Asserv.cpp moveForwardTo/moveBackwardTo)
+- ~~Tests inits RetryPolicy corrigés dans 4 fichiers de tests O_*~~
+- Bypass runtime : uniquement via `waitEndOfTrajWithDetection(MovementType::ROTATION)` dans Asserv
 
 ### Étape 3 — Activation ToF c1-c4 / c5-c8
 
@@ -319,11 +320,11 @@ Utilisable par le DecisionMaker comme **deuxième filtre de pré-flight** sur le
 
 Ordre recommandé, chaque item est un commit séparé :
 
-- [ ] **T1** — Relire ce doc, valider les seuils (`corridor_width_mm`, `slow_distance_mm`, `stop_distance_mm`) avec une estimation concrète des vitesses 2026
-- [ ] **T2** — Écrire `test/common/IsOnPathTest.cpp` (TDD, tests en rouge)
-- [ ] **T3** — Implémenter `ObstacleZone::isOnPath(...)` — faire passer T2 en vert
-- [ ] **T4** — Lister précisément les call-sites de `rotate_ignoring_opponent` (grep) et préparer le patch de suppression en un seul commit
-- [ ] **T5** — Supprimer `rotate_ignoring_opponent` (IAbyPath + Asserv + call-sites), tests SIMU
+- [x] **T1** — Seuils validés : corridor=280+400=680mm (dyn via advDiameter), slow=620mm, stop=460mm (centre-à-centre)
+- [x] **T2** — `test/common/IsOnPathTest.cpp` écrit (15 tests, SVG visualisation + log ASCII)
+- [x] **T3** — `ObstacleZone::isOnPath(...)` implémenté, 15/15 tests verts
+- [x] **T4** — Inventaire : ~15 call-sites (RetryPolicy, Asserv.hpp/cpp, Navigator.cpp, 4 tests O_Asserv). IAbyPath déjà commenté en bloc.
+- [x] **T5** — Suppression faite : IAbyPath 594 lignes supprimées, 7 signatures Asserv, 5 usages Navigator, 10 inits RetryPolicy, bloc rattrapage. Tests SIMU OK.
 - [ ] **T6** — Ouvrir un ticket / note pour la config ObstacleZone : activer les ToF c1-c4 / c5-c8 sur robot (à faire quand hardware prêt)
 - [ ] **T7** — Ouvrir un ticket / note pour le chantier CBOR Goto/GotoNoStop (asserv_chibios) à discuter avec l'équipe
 - [ ] **T8** — Après T5 vert : intégrer `isOnPath` dans `waitEndOfTrajWithDetection` (version runtime, gatée sur seq beacon)

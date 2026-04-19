@@ -23,7 +23,6 @@ void test::RetryPolicyTest::testNoRetry()
     this->assert(p.maxCollisionRetries == 1, "noRetry maxCollisionRetries == 1");
     this->assert(p.reculObstacleMm == 0, "noRetry reculObstacleMm == 0");
     this->assert(p.reculCollisionMm == 0, "noRetry reculCollisionMm == 0");
-    this->assert(p.rotateIgnoringOpponent == true, "noRetry rotateIgnoringOpponent == true");
     this->assert(p.ignoreCollision == false, "noRetry ignoreCollision == false");
 }
 

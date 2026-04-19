@@ -133,7 +133,7 @@ void O_AsservTest::run(int argc, char **argv)
 	logger().info() << "frontcenter=" << frontcenter << " " << logs::end;
 
 	Navigator nav(&robot, &robot.ia().iAbyPath());
-	RetryPolicy policy = { 1000000, 5, 5, 0, 0, true, false };
+	RetryPolicy policy = { 1000000, 5, 5, 0, 0, false };
 
 	logger().info() << "GOTO x=" << x << " y=" << y << logs::end;
 	ts = nav.moveForwardTo(x, y, policy);
@@ -161,7 +161,7 @@ void O_AsservTest::run(int argc, char **argv)
 	{
 		logger().info() << "GOTO2 x2=" << x2 << " y2=" << y2 << logs::end;
 
-		RetryPolicy policy2 = { 3000000, 3, 3, 0, 0, true, false };
+		RetryPolicy policy2 = { 3000000, 3, 3, 0, 0, false };
 		TRAJ_STATE ts = nav.moveForwardTo(x2, y2, policy2);
 		if (ts != TRAJ_FINISHED)
 		{
@@ -188,7 +188,7 @@ void O_AsservTest::run(int argc, char **argv)
 	{
 		logger().info() << "GOTO2 x3=" << x3 << " y3=" << y3 << logs::end;
 
-		RetryPolicy policy3 = { 3000000, 3, 3, 0, 0, true, false };
+		RetryPolicy policy3 = { 3000000, 3, 3, 0, 0, false };
 		TRAJ_STATE ts = nav.moveForwardTo(x3, y3, policy3);
 		if (ts != TRAJ_FINISHED)
 		{

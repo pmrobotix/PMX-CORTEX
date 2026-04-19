@@ -542,19 +542,14 @@ TRAJ_STATE Asserv::line(float dist_mm)
 }
 
 // Rotation relative en degrés : convertit en radians et délègue à rotateRad.
-// ATTENTION : bug hérité — ts n'est pas initialisé par le retour de rotateRad.
-TRAJ_STATE Asserv::rotateDeg(float degreesRelative, bool rotate_ignoring_opponent)
+TRAJ_STATE Asserv::rotateDeg(float degreesRelative)
 {
-	TRAJ_STATE ts;
-	float rad = degToRad(degreesRelative);
-	ts = rotateRad(rad, rotate_ignoring_opponent);
-
-	return ts;
+	return rotateRad(degToRad(degreesRelative));
 }
 
 // Rotation relative en radians. Bloquant.
 // Les rotations ignorent la détection adversaire (MovementType::ROTATION).
-TRAJ_STATE Asserv::rotateRad(float radiansRelative, bool rotate_ignoring_opponent)
+TRAJ_STATE Asserv::rotateRad(float radiansRelative)
 {
 	if (useAsservType_ == ASSERV_EXT)
 		asservdriver_->motion_RotateRad(radiansRelative);
@@ -567,13 +562,13 @@ TRAJ_STATE Asserv::rotateRad(float radiansRelative, bool rotate_ignoring_opponen
 }
 
 //prend automatiquement un angle dans un sens ou dans l'autre suivant la couleur de match
-TRAJ_STATE Asserv::rotateByMatchColorDeg(float thetaInDegreeRelative, bool rotate_ignoring_opponent)
+TRAJ_STATE Asserv::rotateByMatchColorDeg(float thetaInDegreeRelative)
 {
 	if (matchColorPosition_ != 0)
 	{
-		return rotateDeg(-thetaInDegreeRelative, rotate_ignoring_opponent); //couleur de match secondaire
+		return rotateDeg(-thetaInDegreeRelative); //couleur de match secondaire
 	} else
-		return rotateDeg(thetaInDegreeRelative, rotate_ignoring_opponent); //couleur de match primaire
+		return rotateDeg(thetaInDegreeRelative); //couleur de match primaire
 }
 
 TRAJ_STATE Asserv::faceTo(float xMM, float yMM)
@@ -608,7 +603,7 @@ TRAJ_STATE Asserv::faceBackTo(float xMM, float yMM)
 // Calcul : angle_cible_converti - angle_courant = rotation relative nécessaire.
 // La symétrie couleur est appliquée via changeMatchAngleRad.
 // Le résultat est wrappé sur [-PI, PI] via WrapAngle2PI pour prendre le chemin le plus court.
-TRAJ_STATE Asserv::rotateAbsDeg(float thetaInDegreeAbsolute, bool rotate_ignoring_opponent)
+TRAJ_STATE Asserv::rotateAbsDeg(float thetaInDegreeAbsolute)
 {
 	float rad = changeMatchAngleRad(degToRad(thetaInDegreeAbsolute)) - pos_getTheta();
 
@@ -616,16 +611,15 @@ TRAJ_STATE Asserv::rotateAbsDeg(float thetaInDegreeAbsolute, bool rotate_ignorin
 
 	logger().debug() << "==== doRotateTo degrees=" << radToDeg(rad) << " thetaInDegreeAbsolute="
 			<< thetaInDegreeAbsolute << logs::end;
-	TRAJ_STATE ts = rotateRad(rad, rotate_ignoring_opponent);
 
-	return ts;
+	return rotateRad(rad);
 }
 
 // Avance vers un point (x,y) : 2 étapes.
-// 1) Rotation absolue pour faire face au point (avec gestion collision selon rotate_ignoring_opponent)
+// 1) Rotation absolue pour faire face au point (MovementType::ROTATION, detection bypass naturel)
 // 2) line de la distance euclidienne calculée (+ adjustment_mm optionnel)
 // Si déjà très proche du point (<5mm en dx ET dy), retourne directement TRAJ_FINISHED.
-TRAJ_STATE Asserv::moveForwardTo(float xMM, float yMM, bool rotate_ignoring_opponent, float adjustment_mm)
+TRAJ_STATE Asserv::moveForwardTo(float xMM, float yMM, float adjustment_mm)
 {
 	// Snapshot coherent : un seul lock mutex pour calcul + log.
 	ROBOTPOSITION p = pos_getPosition();
@@ -646,42 +640,18 @@ TRAJ_STATE Asserv::moveForwardTo(float xMM, float yMM, bool rotate_ignoring_oppo
 			<< radToDeg(changeMatchAngleRad(aRadian)) << " xMM=" << xMM << " yMM=" << yMM << " getX=" << p.x
 			<< " getY=" << p.y << logs::end;
 
-	TRAJ_STATE ts = TRAJ_IDLE;
-//	int count_rotation_ignored = 0;
-
-	ts = rotateAbsDeg(radToDeg(changeMatchAngleRad(aRadian)), rotate_ignoring_opponent);
+	TRAJ_STATE ts = rotateAbsDeg(radToDeg(changeMatchAngleRad(aRadian)));
 	if (ts != TRAJ_FINISHED)
-	{
-		if (!rotate_ignoring_opponent)
-			return ts;
-		else
-		{
-			if (ts >= TRAJ_INTERRUPTED) //||ts == TRAJ_COLLISION || ts == TRAJ_COLLISION_REAR)
-			{
-				//on resette
-				resetEmergencyOnTraj("moveForwardTo rotate_ignoring_opponent TRAJ_INTERRUPTED");
-				//logger().error() << "moveForwardTo rotate_ignoring_opponent resetEmergencyOnTraj TRAJ_COLLISION" << logs::end;
-				//on renvoi pour dire qu'on est en collision en  tournant
-				//return ts;
-				//count_rotation_ignored++;
-				//if (count_rotation_ignored > 10) break;
-			} else
-			{
-				resetEmergencyOnTraj("moveForwardTo rotate_ignoring_opponent TRAJ_OTHERS!!!! ");
+		return ts;
 
-				//logger().error() << "moveForwardTo ROTATION TRAJ ERROR CAS NON DESIRE  car on ignore l'adversaire!!!!!!!   => on passe au doline !!! ts=" << ts << logs::end;
-				//return ts;
-			}
-		}
-	}
 	// Distance euclidienne calculee de facon numeriquement stable (cf asservchibios Goto).
 	float dist = computeDeltaDist(dx, dy);
 	logger().debug() << " __moveForwardTo dist=" << dist << logs::end;
 
 	return line(dist + adjustment_mm);
-
 }
-TRAJ_STATE Asserv::moveBackwardTo(float xMM, float yMM, bool rotate_ignoring_opponent)
+
+TRAJ_STATE Asserv::moveBackwardTo(float xMM, float yMM)
 {
 	xMM = changeMatchX(xMM);
 
@@ -698,29 +668,19 @@ TRAJ_STATE Asserv::moveBackwardTo(float xMM, float yMM, bool rotate_ignoring_opp
 
 	TRAJ_STATE ts = rotateAbsDeg(radToDeg(changeMatchAngleRad(aRadian)));
 	if (ts != TRAJ_FINISHED)
-	{
-		if (!rotate_ignoring_opponent)
-			return ts;
-		else
-		{
-			resetEmergencyOnTraj("moveBackwardTo rotate_ignored");
-			//logger().error() << " __on passe au doline !!!"  << logs::end;
-		}
-	}
+		return ts;
 
 	// Distance euclidienne calculee de facon numeriquement stable (cf asservchibios Goto).
 	float dist = computeDeltaDist(dx, dy);
 	return line(-dist);
 }
 
-TRAJ_STATE Asserv::moveForwardAndRotateTo(float xMM, float yMM, float thetaInDegree, bool rotate_ignore_opponent)
+TRAJ_STATE Asserv::moveForwardAndRotateTo(float xMM, float yMM, float thetaInDegree)
 {
-	TRAJ_STATE ts;
-	ts = moveForwardTo(xMM, yMM, rotate_ignore_opponent);
+	TRAJ_STATE ts = moveForwardTo(xMM, yMM);
 	if (ts != TRAJ_FINISHED) return ts;
 
-	ts = rotateAbsDeg(thetaInDegree);
-	return ts;
+	return rotateAbsDeg(thetaInDegree);
 }
 TRAJ_STATE Asserv::moveBackwardAndRotateTo(float xMM, float yMM, float thetaInDegree)
 {

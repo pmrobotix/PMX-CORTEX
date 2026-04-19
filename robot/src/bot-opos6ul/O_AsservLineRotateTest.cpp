@@ -176,7 +176,6 @@ void O_AsservLineRotateTest::run(int argc, char **argv)
 
 	// RetryPolicy pour le mode Navigator
 	RetryPolicy policy = RetryPolicy::aggressive();
-	policy.rotateIgnoringOpponent = (B == 0); // si pas de detection, on ignore opponent
 
 	TRAJ_STATE ts = TRAJ_IDLE;
 
