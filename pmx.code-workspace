@@ -27,6 +27,10 @@
 		{
 			"name": "wiki",
 			"path": "../PMX-CORTEX.wiki"
+		},
+		{
+			"name": "simulator",
+			"path": "simulator"
 		}
 	],
 	"settings": {
@@ -60,7 +64,8 @@
 			"../asserv_chibios",
 			"../plotjuggler_asservstream_plugin",
 			"../PMX-CORTEX.wiki"
-		]
+		],
+		"liveServer.settings.multiRootWorkspaceName": "simulator"
 	},
 	"tasks": {
 		"version": "2.0.0",
@@ -154,6 +159,18 @@
 				"group": "none",
 				"problemMatcher": [],
 				"isBackground": true
+			},
+			{
+				"label": "simulator: serve (http.server)",
+				"type": "shell",
+				"command": "python3 -m http.server 8080",
+				"options": {
+					"cwd": "${workspaceFolder:simulator}"
+				},
+				"group": "none",
+				"problemMatcher": [],
+				"isBackground": true,
+				"presentation": { "reveal": "always", "panel": "dedicated" }
 			}
 		]
 	},

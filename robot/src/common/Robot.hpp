@@ -140,6 +140,10 @@ protected:
 	std::string strategy_ = "all"; //defaut strategy
 	std::string configVRR_ = "VRR"; //defaut config VRR
 
+	// --- Export zones simulateur (cf. ZoneJsonExporter) ---
+	std::string exportZonesPath_;     ///< Chemin de sortie du table.json simulateur (vide = pas d'export)
+	bool exportZonesDryRun_ = false;  ///< Si true : exit apres export, sans demarrer le match
+
 	// --- O_State_NewInit : phase de match + config editable ---
 	MatchPhase phase_ = PHASE_CONFIG;
 	uint8_t    advDiameter_   = 40;           ///< Diamètre adversaire en cm, defaut Teensy-aligné.
@@ -228,6 +232,9 @@ public:
 	{
 		this->configVRR_ = str;
 	}
+
+	const std::string& exportZonesPath() const { return exportZonesPath_; }
+	bool exportZonesDryRun() const { return exportZonesDryRun_; }
 
 	int useExternalEncoder() const
 	{

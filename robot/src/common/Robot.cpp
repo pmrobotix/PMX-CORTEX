@@ -131,6 +131,18 @@ void Robot::configureDefaultConsoleArgs() {
         cOpt.addArgument("port", "UDP port of telemetry receiver", "9870");
         cArgs_.addOption(cOpt);
     }
+
+    {
+        // Note: le path ne peut PAS commencer par / (c'est un marqueur d'option).
+        // Utilisez un path relatif ou un nom simple. Le defaut pointe vers le
+        // simulateur du repo, depuis build-*/bin/.
+        Arguments::Option cOpt('e', "Export playground + IA zones to simulator JSON");
+        cOpt.addArgument("path", "Path to table.json (no leading /, relative to cwd)",
+                         "../../../simulator/resources/2026/table.json");
+        cArgs_.addOption(cOpt);
+    }
+
+    cArgs_.addOption('d', "Dry-run: after export zones, exit without starting the match");
 }
 
 void Robot::parseConsoleArgs(int argc, char** argv, bool stopWithErrors) {
@@ -145,6 +157,14 @@ void Robot::parseConsoleArgs(int argc, char** argv, bool stopWithErrors) {
         cmanager_.displayAvailableTests("", -1);
         cArgs_.usage();
         exit(0);
+    }
+
+    // Export zones JSON (pour simulateur)
+    if (cArgs_['e']) {
+        exportZonesPath_ = cArgs_['e']["path"];
+    }
+    if (cArgs_['d']) {
+        exportZonesDryRun_ = true;
     }
 
     // Reconfigure telemetry appender with command line args

@@ -9,9 +9,12 @@
 
 #include "O_State_DecisionMakerIA.hpp"
 
+#include <cstdlib>
+
 #include "action/Sensors.hpp"
 #include "asserv/Asserv.hpp"
 #include "ia/IAbyPath.hpp"
+#include "ia/ZoneJsonExporter.hpp"
 #include "interface/AAsservDriver.hpp"
 #include "navigator/Navigator.hpp"
 #include "Robot.hpp"
@@ -200,6 +203,18 @@ void O_State_DecisionMakerIA::execute()
 	else
 	{
 		logger().error() << "NO STRATEGY " << robot.strategy() << " FOUND !!! " << logs::end;
+	}
+
+	// Export zones simulateur (cf. Robot -e <path> [-d])
+	if (!robot.exportZonesPath().empty()) {
+		ZoneJsonExporter::exportToFile(
+			robot.exportZonesPath(),
+			robot.ia().iAbyPath().playground(),
+			&robot.ia().iAbyPath());
+		if (robot.exportZonesDryRun()) {
+			logger().info() << "Dry-run: exit after export" << logs::end;
+			std::exit(0);
+		}
 	}
 
 	//wait for the start of the chrono !
