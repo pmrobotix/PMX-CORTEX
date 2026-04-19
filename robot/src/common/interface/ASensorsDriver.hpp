@@ -253,6 +253,23 @@ public:
 	virtual void clearPositionsAdv() = 0;
 
 	/*!
+	 * \brief Positionne un adversaire persistant en SIMU.
+	 *        Contrairement a addvPositionsAdv, cet adv reste present a chaque
+	 *        sync() jusqu'a l'appel de clearInjectedAdv. Destine aux tests de
+	 *        scenarios ou un adv reste plante pendant toute la duree du mouvement.
+	 * \param x_table_mm Position X adversaire sur la table (repere table).
+	 * \param y_table_mm Position Y adversaire sur la table.
+	 * \note No-op sur les drivers ARM reels (l'adv vient de la balise physique).
+	 */
+	virtual void setInjectedAdv(float /*x_table_mm*/, float /*y_table_mm*/) {}
+
+	/*!
+	 * \brief Supprime l'adversaire persistant injecte.
+	 * \note No-op sur les drivers ARM reels.
+	 */
+	virtual void clearInjectedAdv() {}
+
+	/*!
 	 * \brief Retourne le numero de sequence beacon (debug).
 	 * \return 0 en SIMU, incremente chaque cycle en ARM.
 	 */

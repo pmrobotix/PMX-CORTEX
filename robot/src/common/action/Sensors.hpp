@@ -109,6 +109,26 @@ public:
 	 */
 	void setStopDetection(const DetectionEvent& det) { stopDetection_ = det; }
 
+	/*!
+	 * \brief Positionne un adversaire persistant pour les tests SIMU.
+	 *        L'adv reste present dans les mesures jusqu'a clearInjectedAdv().
+	 *        No-op sur robot reel (l'adv vient de la balise physique).
+	 * \param x_table_mm Position X adversaire (repere table).
+	 * \param y_table_mm Position Y adversaire.
+	 */
+	void setInjectedAdv(float x_table_mm, float y_table_mm)
+	{
+		sensorsdriver_->setInjectedAdv(x_table_mm, y_table_mm);
+	}
+
+	/*!
+	 * \brief Supprime l'adversaire injecte.
+	 */
+	void clearInjectedAdv()
+	{
+		sensorsdriver_->clearInjectedAdv();
+	}
+
 	float MultipleRightSide(int nb);
 	float MultipleLeftSide(int nb);
 

@@ -34,6 +34,13 @@ private:
 
     bot_positions vadv_;  //tableau des pos des adv
 
+    // Injection persistante d'un adversaire pour les tests de scenarios.
+    // Contrairement a addvPositionsAdv (vecteur efface a chaque sync()),
+    // ces champs sont republies dans vadv_ a chaque sync() tant que enabled.
+    float injectedAdvX_ = 0.0f;
+    float injectedAdvY_ = 0.0f;
+    bool  injectedAdvEnabled_ = false;
+
     ROBOTPOSITION pos_pour_calcul_;
     ROBOTPOSITION pos_pour_calcul_prec_;
     ARobotPositionShared *robotPositionShared_;
@@ -70,6 +77,10 @@ public:
     //ONLY FOR TEST
     void addvPositionsAdv(float x, float y);
     void clearPositionsAdv();
+
+    // Injection persistante (voir ASensorsDriver)
+    void setInjectedAdv(float x_table_mm, float y_table_mm) override;
+    void clearInjectedAdv() override;
 
 
     int rightSide();

@@ -99,6 +99,11 @@ public:
 	 * \brief Verifie que getBeaconSeq() retourne 0 (pas de beacon en test).
 	 */
 	void testBeaconSeqDefault();
+
+	// Tests de l'injection persistante (setInjectedAdv / clearInjectedAdv)
+	void testInjectionPersistsAcrossSync();
+	void testInjectionOverride();
+	void testClearInjectedAdv();
 };
 
 }

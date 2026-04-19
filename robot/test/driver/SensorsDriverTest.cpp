@@ -19,6 +19,10 @@ void test::SensorsDriverTest::suite()
 	testSideSensors();
 	testDisplayNumberNoCrash();
 	testBeaconSeqDefault();
+
+	testInjectionPersistsAcrossSync();
+	testInjectionOverride();
+	testClearInjectedAdv();
 }
 
 void test::SensorsDriverTest::testCreate()
@@ -105,4 +109,56 @@ void test::SensorsDriverTest::testDisplayNumberNoCrash()
 void test::SensorsDriverTest::testBeaconSeqDefault()
 {
 	this->assert(sensorsdriver->getBeaconSeq() == 0, "getBeaconSeq() == 0 (pas de beacon)");
+}
+
+// ========== Tests injection persistante (SIMU uniquement) ==========
+
+void test::SensorsDriverTest::testInjectionPersistsAcrossSync()
+{
+	// setInjectedAdv(x, y) : la position doit etre republiee par vadv_ a chaque sync()
+	// (contrairement a addvPositionsAdv qui disparait au sync suivant).
+	sensorsdriver->clearInjectedAdv();
+	sensorsdriver->clearPositionsAdv();
+
+	sensorsdriver->setInjectedAdv(800.0f, 500.0f);
+
+	for (int i = 0; i < 5; i++) {
+		sensorsdriver->sync();
+		ASensorsDriver::bot_positions pos = sensorsdriver->getvPositionsAdv();
+		this->assert(pos.size() == 1, "injection persiste apres sync() (iteration i)");
+	}
+
+	sensorsdriver->clearInjectedAdv();
+}
+
+void test::SensorsDriverTest::testInjectionOverride()
+{
+	// Repositionner l'adv injecte : toujours 1 seule entree, la derniere.
+	sensorsdriver->clearInjectedAdv();
+
+	sensorsdriver->setInjectedAdv(500.0f, 500.0f);
+	sensorsdriver->sync();
+	this->assert(sensorsdriver->getvPositionsAdv().size() == 1,
+			"apres premier setInjectedAdv + sync, 1 adv");
+
+	sensorsdriver->setInjectedAdv(1200.0f, 800.0f);
+	sensorsdriver->sync();
+	this->assert(sensorsdriver->getvPositionsAdv().size() == 1,
+			"apres override setInjectedAdv + sync, toujours 1 adv");
+
+	sensorsdriver->clearInjectedAdv();
+}
+
+void test::SensorsDriverTest::testClearInjectedAdv()
+{
+	// clearInjectedAdv() : plus de republication au sync suivant.
+	sensorsdriver->setInjectedAdv(500.0f, 500.0f);
+	sensorsdriver->sync();
+	this->assert(sensorsdriver->getvPositionsAdv().size() == 1,
+			"injection visible apres sync");
+
+	sensorsdriver->clearInjectedAdv();
+	sensorsdriver->sync();
+	this->assert(sensorsdriver->getvPositionsAdv().empty(),
+			"apres clearInjectedAdv + sync, positions vides");
 }

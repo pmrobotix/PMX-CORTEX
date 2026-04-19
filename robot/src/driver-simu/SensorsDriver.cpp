@@ -121,55 +121,35 @@ void SensorsDriverSimu::clearPositionsAdv()
 	vadv_.clear();
 }
 
+void SensorsDriverSimu::setInjectedAdv(float x_table_mm, float y_table_mm)
+{
+	injectedAdvX_ = x_table_mm;
+	injectedAdvY_ = y_table_mm;
+	injectedAdvEnabled_ = true;
+}
+
+void SensorsDriverSimu::clearInjectedAdv()
+{
+	injectedAdvEnabled_ = false;
+}
+
 
 
 int SensorsDriverSimu::sync()
 {
-    //simulation de recuperation des données de la balise par la transaction i2c
-    //prise en compte de la position du robot à se moment pour les futures calculs, voir la version precedentes
-    //pos_pour_calcul_prec_ = pos_pour_calcul_;
+    // Capture de la position robot au moment du sync (utile pour la conversion
+    // table -> repere robot dans transformPosTableToPosRobot).
     pos_pour_calcul_ = robotPositionShared_->getRobotPosition(0);
 
-
-    //ASensorsDriver::bot_positions bot_pos;
-
-    //coord table à transformer en coordonnées robot: 200,700 => position robot robot_
-    //    int x_table = 1000.0;
-    //    int y_table = 1500.0;
-
-    //    x_adv_ -=15;
-    //    y_adv_ -=10;
-    //    x_adv_ = 1300.0;
-    //    y_adv_ = 1000.0;
-
-    int nb = 1;
-        RobotPos pos1 = transformPosTableToPosRobot(nb, 200.0, 1000.0);
-        RobotPos pos2 = transformPosTableToPosRobot(nb, 1100.0, 1000.0);
-    //    RobotPos pos3 = transformPosTableToPosRobot(nb, 1300.0, 300.0);
-    //    RobotPos pos4 = transformPosTableToPosRobot(nb, 300.0, 400.0);
-
     vadv_.clear();
-    if ((pos_pour_calcul_.x >= 0.1 || pos_pour_calcul_.y >= 0.1)) {
 
-//        RobotPos pos1 = transformPosTableToPosRobot(nb, x_adv_, y_adv_);
-        //RobotPos pos2 = transformPosTableToPosRobot(nb, 1000, 1000);
-//        RobotPos pos3 = transformPosTableToPosRobot(nb, 800, 2000);
-//        RobotPos pos4 = transformPosTableToPosRobot(nb, 100, 1400);
-//
-        //vadv_.push_back(pos1);
-        //vadv_.push_back(pos2);
-//        vadv_.push_back(pos3);
-//        vadv_.push_back(pos4);
-        //simu des positions adverses
-        //bot_pos = { };
-        //vadv_ = { pos1 };
-        //bot_pos = { pos1, pos2 };
-        //bot_pos = { pos1, pos2, pos3, pos4 };
-
+    // Republication de l'adv injecte (persistant entre sync) pour les tests
+    // de scenarios. Les drivers ARM ne font rien : l'adv vient de la balise.
+    if (injectedAdvEnabled_) {
+        RobotPos pos = transformPosTableToPosRobot(1, injectedAdvX_, injectedAdvY_);
+        vadv_.push_back(pos);
     }
 
-    //usleep(20000); //temps de mise a jour des données
-    //utils::Thread::sleep_for_micros(200000);
     return 0;
 }
 
