@@ -82,6 +82,15 @@ Chaque sous-dossier dans `pamis/` est un PAMI indépendant.
 - Pas d'hallucination : si tu ne connais pas un détail hardware, dis-le
 - Avant chaque commit demandé par l'utilisateur, proposer le message de commit avec un résumé des modifications et attendre sa validation avant de commiter
 
+## Liens cliquables dans le chat
+
+Le workspace est multi-root (`pmx.code-workspace`). Les chemins relatifs dans les liens markdown `[texte](chemin)` ne sont pas toujours résolus correctement par VSCode selon le dossier actif. **Toujours utiliser des chemins absolus** pour que les liens soient cliquables :
+
+- `/home/pmx/git/PMX-CORTEX/...` pour les fichiers du dépôt principal (robot/, brain/, simulator/, libs/, etc.)
+- `/home/pmx/git/asserv_chibios/...`, `/home/pmx/git/plotjuggler_asservstream_plugin/...`, `/home/pmx/git/PMX-CORTEX.wiki/...` pour les dépôts externes référencés dans le workspace
+
+Pour les lignes précises, utiliser `#L<n>` ou `#L<n>-L<m>` (ex: `.../fichier.cpp#L42-L51`).
+
 ## Fichiers de référence (robot/)
 
 Consulter ces fichiers avant toute modification pour vérifier la cohérence architecturale :
