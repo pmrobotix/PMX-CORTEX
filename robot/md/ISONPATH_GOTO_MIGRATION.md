@@ -282,16 +282,23 @@ Utilisable par le DecisionMaker comme **deuxième filtre de pré-flight** sur le
 - Pour l'instant uniquement pour les `MovementType::LINE` / `FORWARD` / `BACKWARD` (types existants)
 - Tests : SIMU avec `SensorsDriverSimu` qui injecte des positions adversaire
 
-### Étape 5 — Extension CBOR pour `Goto` et `GotoNoStop`
+### Étape 5 — Extension CBOR pour `Goto` et `GotoNoStop` ✅ (fait)
 
-- Étendre `Opos6ulSerialCbor` (côté asserv_chibios) pour exposer :
-  - `goto(x, y)` (preciseGotoConfiguration)
-  - `gotoNoStop(x, y)` (addGoToNoStop)
-  - `clearQueue` (pour interrompre une chaîne)
-  - éventuellement `goto_reverse`, `goto_reverse_nostop`
-- Côté CORTEX : ajouter `Asserv::gotoExt(x, y)` et `Asserv::gotoNoStop(x, y)`
-- Ajouter `MovementType::GOTO` et `MovementType::GOTO_NO_STOP`
-- **Chantier lourd** : à discuter avec la partie asserv_chibios, peut être fait en parallèle
+État au moment de la suppression de `rotate_ignoring_opponent` :
+
+- Côté `asserv_chibios` : toutes les primitives sont exposées via CBOR :
+  - `CMD_GOTO_FRONT` (23), `CMD_GOTO_BACK` (24)
+  - `CMD_GOTO_NOSTOP` (25), `CMD_GOTO_BACK_NOSTOP` (28)
+  - `CMD_FACE` (22), `CMD_FACE_BACK` (27), `CMD_TURN` (20), `CMD_STRAIGHT` (21)
+- Côté CORTEX : `AsservCborDriver::motion_GoTo`, `motion_GoToChain`, `motion_GoBackTo`, `motion_GoBackToChain` utilisent ces commandes. `Asserv::goTo()` / `goToChain()` les appellent directement.
+- Le robot en `ASSERV_EXT` (config compétition) utilise donc déjà les Goto atomiques et enchaînés.
+
+**Reste à faire côté asserv interne (simu uniquement, `ASSERV_INT_ESIALR`)** :
+- `AsservEsialR::motion_GoBackToChain` est un stub qui fait fallback sur `motion_GoBackTo` (pas de `addGoToBackEnchainement` dans `CommandManagerA`). Acceptable tant qu'on l'utilise pour de la simu (le robot s'arrête au waypoint au lieu d'enchaîner, mais la trajectoire est correcte).
+- Pour fixer : ajouter `addGoToBackEnchainement` dans `CommandManagerA.cpp`. Non prioritaire.
+
+**Reste à faire côté `MovementType`** :
+- Ajouter `MovementType::GOTO` et `MovementType::GOTO_NO_STOP` dans Asserv pour que `waitEndOfTrajWithDetection` ne traite plus un `goTo` atomique comme un `FORWARD` pur. Fusionné avec l'étape 4 / T8 (intégration `isOnPath` runtime).
 
 ### Étape 6 — API `Navigator::executeChain` avec `MoveMode` par waypoint
 
@@ -325,11 +332,11 @@ Ordre recommandé, chaque item est un commit séparé :
 - [x] **T3** — `ObstacleZone::isOnPath(...)` implémenté, 15/15 tests verts
 - [x] **T4** — Inventaire : ~15 call-sites (RetryPolicy, Asserv.hpp/cpp, Navigator.cpp, 4 tests O_Asserv). IAbyPath déjà commenté en bloc.
 - [x] **T5** — Suppression faite : IAbyPath 594 lignes supprimées, 7 signatures Asserv, 5 usages Navigator, 10 inits RetryPolicy, bloc rattrapage. Tests SIMU OK.
-- [ ] **T6** — Ouvrir un ticket / note pour la config ObstacleZone : activer les ToF c1-c4 / c5-c8 sur robot (à faire quand hardware prêt)
-- [ ] **T7** — Ouvrir un ticket / note pour le chantier CBOR Goto/GotoNoStop (asserv_chibios) à discuter avec l'équipe
-- [ ] **T8** — Après T5 vert : intégrer `isOnPath` dans `waitEndOfTrajWithDetection` (version runtime, gatée sur seq beacon)
+- [ ] **T6** — Config ObstacleZone : activer + calibrer les ToF c1-c4 / c5-c8 sur robot (à faire quand hardware prêt)
+- [x] **T7** — Chantier CBOR Goto/GotoNoStop : déjà fait côté asserv_chibios + AsservCborDriver. Robot en ASSERV_EXT utilise les primitives atomiques/enchaînées. Reste optionnel : `AsservEsialR::motion_GoBackToChain` réel pour la simu interne (TODO dans le code, non bloquant).
+- [ ] **T8** — Intégrer `isOnPath` runtime dans `waitEndOfTrajWithDetection` (gating seq beacon) + `MovementType::GOTO` / `GOTO_NO_STOP` pour traiter correctement les Goto atomiques actuels
 
-**Ne PAS faire demain** : le chantier CBOR (étape 5), l'utilisation effective de `Goto` (étape 6), l'historique adv (étape 8). Ce sont des chantiers à lancer après stabilisation de T1-T8.
+**Après T8** : API `Navigator::executeChain` avec `MoveMode` explicite par waypoint (étape 6), `isOnPath` en pré-flight DecisionMaker (étape 7), historique adv (étape 8). Chantiers à lancer après stabilisation de la boucle runtime.
 
 ## Risques et points ouverts
 
