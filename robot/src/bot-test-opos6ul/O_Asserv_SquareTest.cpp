@@ -22,10 +22,14 @@ void O_Asserv_SquareTest::configureConsoleArgs(int argc, char** argv)
 {
     OPOS6UL_RobotExtended &robot = OPOS6UL_RobotExtended::instance();
 
-    robot.getArgs().addArgument("x", "x mm");
-    robot.getArgs().addArgument("y", "y mm");
-    robot.getArgs().addArgument("d", "segment mm");
-    robot.getArgs().addArgument("nb", "nbre de tours", "1");
+    // Position de depart = 1er coin du carre (pas d'offset initial).
+    // Defaut (300, 300, 0 deg) pour etre a l'interieur de la table (robot r=140).
+    robot.getArgs().addArgument("x",  "x start (1er coin) mm", "300");
+    robot.getArgs().addArgument("y",  "y start (1er coin) mm", "300");
+    robot.getArgs().addArgument("a",  "angle start (deg)",     "0");
+    robot.getArgs().addArgument("d",  "cote du carre mm",      "500");
+    robot.getArgs().addArgument("nb", "nombre de tours",       "1");
+    robot.getArgs().addArgument("cw", "sens horaire (0=CCW defaut, 1=CW)", "0");
 
     //reparse arguments
     robot.parseConsoleArgs(argc, argv);
@@ -40,42 +44,32 @@ void O_Asserv_SquareTest::run(int argc, char** argv)
     int left;
     int right;
 
-    float x = 0.0;
-    float y = 0.0;
-    float d = 0.0;
-    int nb = 0;
-
     OPOS6UL_RobotExtended &robot = OPOS6UL_RobotExtended::instance();
-
     Arguments args = robot.getArgs();
 
-    if (args["x"] != "0") {
-        x = atof(args["x"].c_str());
-        logger().info() << "Arg x set " << args["x"] << ", x = " << x << logs::end;
-    }
-    if (args["y"] != "0") {
-        y = atof(args["y"].c_str());
-        logger().info() << "Arg y set " << args["y"] << ", y = " << y << logs::end;
-    }
-    if (args["d"] != "0") {
-        d = atof(args["d"].c_str());
-        logger().info() << "Arg d set " << args["d"] << ", d = " << d << logs::end;
-    }
+    float x  = atof(args["x"].c_str());
+    float y  = atof(args["y"].c_str());
+    float a  = atof(args["a"].c_str());
+    float d  = atof(args["d"].c_str());
+    int   nb = atoi(args["nb"].c_str());
+    bool  cw = (atoi(args["cw"].c_str()) != 0);
 
-    if (args["nb"] != "0") {
-        nb = atoi(args["nb"].c_str());
-        logger().info() << "Arg nb set " << args["nb"] << ", nb = " << nb << logs::end;
-    }
+    logger().info() << "args x=" << x << " y=" << y << " a=" << a
+                    << " d=" << d << " nb=" << nb
+                    << " sens=" << (cw ? "CW" : "CCW") << logs::end;
 
-    robot.setMyColor(PMXYELLOW);
-
-    // setPositionAndColor AVANT startMotionTimerAndOdo
-    robot.asserv().setPositionAndColor(0.0, 300.0, 0.0, (robot.getMyColor() != PMXYELLOW));
+    // setPositionAndColor AVANT startMotionTimerAndOdo.
+    // matchColor = isYellow : la strategie est ecrite en repere bleu,
+    // donc on mirror les x uniquement si on est jaune.
+    bool isYellow = (robot.getMyColor() == PMXYELLOW);
+    robot.asserv().setPositionAndColor(x, y, a, isYellow);
     robot.asserv().startMotionTimerAndOdo(true);
+    robot.asserv().assistedHandling();
 
     robot.svgPrintPosition();
 
     robot.actions().start();
+    // Moves en marche avant uniquement -> front actif, back ignore.
     robot.actions().sensors().setIgnoreFrontNearObstacle(false, false, false);
     robot.actions().sensors().setIgnoreBackNearObstacle(true, true, true);
     robot.actions().sensors().startSensorsThread(20);
@@ -84,84 +78,67 @@ void O_Asserv_SquareTest::run(int argc, char** argv)
 
     Navigator nav(&robot);
 
-    for (int n = 1; n <= nb; n++) {
-        logger().info() << "moveForwardTo(" << x << ", " << y << ")" << logs::end;
-        nav.moveForwardTo(x, y);
-
+    // Helper local : log pos + encodeurs + SVG.
+    auto logStep = [&](const char* step) {
         robot.asserv().getEncodersCounts(&right, &left);
         ROBOTPOSITION p = robot.asserv().pos_getPosition();
-        logger().info() << "time= "
-                << robot.chrono().getElapsedTimeInMilliSec()
-                << "ms ; left= " << left << " ; right= " << right
-                << " x=" << p.x << " y=" << p.y
-                << " deg=" << p.theta * 180.0 / M_PI
-                << logs::end;
-
+        logger().info() << step
+                        << " time=" << robot.chrono().getElapsedTimeInMilliSec() << "ms"
+                        << " L=" << left << " R=" << right
+                        << " pos=(" << p.x << "," << p.y << ","
+                        << (p.theta * 180.0 / M_PI) << "deg)" << logs::end;
         robot.svgPrintPosition();
+    };
 
-        logger().info() << "moveForwardTo(" << x + d << ", " << y << ")" << logs::end;
-        nav.moveForwardTo(x + d, y);
-
-        robot.asserv().getEncodersCounts(&right, &left);
-        p = robot.asserv().pos_getPosition();
-        logger().info() << "time= "
-                << robot.chrono().getElapsedTimeInMilliSec()
-                << "ms ; left= " << left << " ; right= " << right
-                << " x=" << p.x << " y=" << p.y
-                << " deg=" << p.theta * 180.0 / M_PI
-                << logs::end;
-
-        robot.svgPrintPosition();
-
-        logger().info() << "moveForwardTo(" << x + d << ", " << y + d << ")" << logs::end;
-        nav.moveForwardTo(x + d, y + d);
-
-        robot.asserv().getEncodersCounts(&right, &left);
-        p = robot.asserv().pos_getPosition();
-        logger().info() << "time= "
-                << robot.chrono().getElapsedTimeInMilliSec()
-                << "ms ; left= " << left << " ; right= " << right
-                << " x=" << p.x << " y=" << p.y
-                << " deg=" << p.theta * 180.0 / M_PI
-                << logs::end;
-
-        robot.svgPrintPosition();
-
-        logger().info() << "moveForwardTo(" << x << ", " << y + d << ")" << logs::end;
-        nav.moveForwardTo(x, y + d);
-
-        robot.asserv().getEncodersCounts(&right, &left);
-        p = robot.asserv().pos_getPosition();
-        logger().info() << "time= "
-                << robot.chrono().getElapsedTimeInMilliSec()
-                << "ms ; left= " << left << " ; right= " << right
-                << " x=" << p.x << " y=" << p.y
-                << " deg=" << p.theta * 180.0 / M_PI
-                << logs::end;
-
-        robot.svgPrintPosition();
-
-        logger().info() << "moveForwardToAndRotateAbsDeg(" << x << ", " << y << ", 0.0)" << logs::end;
-        nav.moveForwardToAndRotateAbsDeg(x, y, 0.0);
-
-        robot.asserv().getEncodersCounts(&right, &left);
-        p = robot.asserv().pos_getPosition();
-        logger().info() << "time= "
-                << robot.chrono().getElapsedTimeInMilliSec()
-                << "ms ; left= " << left << " ; right= " << right
-                << " x=" << p.x << " y=" << p.y
-                << " deg=" << p.theta * 180.0 / M_PI
-                << logs::end;
-
-        robot.svgPrintPosition();
+    // Ordre des coins. CCW (defaut) : E -> N -> O -> S.
+    //                  CW           : N -> E -> S -> O.
+    // Le dernier coin est toujours le coin 1 (retour avec rotation finale).
+    float c2x, c2y, c3x, c3y, c4x, c4y;
+    if (!cw) {
+        // Anti-horaire : coin2=(x+d, y), coin3=(x+d, y+d), coin4=(x, y+d)
+        c2x = x + d; c2y = y;
+        c3x = x + d; c3y = y + d;
+        c4x = x;     c4y = y + d;
+    } else {
+        // Horaire : coin2=(x, y+d), coin3=(x+d, y+d), coin4=(x+d, y)
+        c2x = x;     c2y = y + d;
+        c3x = x + d; c3y = y + d;
+        c4x = x + d; c4y = y;
     }
 
-    logger().info() << "End time= "
-            << chrono.getElapsedTimeInMilliSec()
-            << " ; x=" << robot.asserv().pos_getX_mm()
-            << " y=" << robot.asserv().pos_getY_mm()
-            << " degrees=" << robot.asserv().pos_getThetaInDegree()
-            << logs::end;
+    for (int n = 1; n <= nb; n++)
+    {
+        logger().info() << "=== Tour " << n << "/" << nb
+                        << " " << (cw ? "CW" : "CCW")
+                        << " - carre a partir de ("
+                        << x << "," << y << ") cote " << d << "mm ===" << logs::end;
 
-    logger().info() << robot.getID() << " " << this->name() << " Happy End" << " N° " << this->position() << logs::end;
+        logger().info() << "moveForwardTo(" << c2x << ", " << c2y << ")" << logs::end;
+        nav.moveForwardTo(c2x, c2y);
+        logStep("coin2");
+
+        logger().info() << "moveForwardTo(" << c3x << ", " << c3y << ")" << logs::end;
+        nav.moveForwardTo(c3x, c3y);
+        logStep("coin3");
+
+        logger().info() << "moveForwardTo(" << c4x << ", " << c4y << ")" << logs::end;
+        nav.moveForwardTo(c4x, c4y);
+        logStep("coin4");
+
+        // Retour coin1 + orientation finale (angle de depart).
+        logger().info() << "moveForwardToAndRotateAbsDeg(" << x << ", " << y
+                        << ", " << a << ")" << logs::end;
+        nav.moveForwardToAndRotateAbsDeg(x, y, a);
+        logStep("retour_coin1");
+    }
+
+    logger().info() << "=== End " << nb << " tour(s) - time="
+                    << chrono.getElapsedTimeInMilliSec() << "ms"
+                    << " pos_final=(" << robot.asserv().pos_getX_mm()
+                    << "," << robot.asserv().pos_getY_mm()
+                    << "," << robot.asserv().pos_getThetaInDegree()
+                    << "deg) ===" << logs::end;
+
+    logger().info() << robot.getID() << " " << this->name() << " Happy End"
+                    << " N° " << this->position() << logs::end;
 }

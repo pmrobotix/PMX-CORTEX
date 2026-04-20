@@ -1622,7 +1622,7 @@ le thread CBOR mette à jour son `p_` local).
 
 Tous les tests qui utilisent `startMotionTimerAndOdo` ont été mis à jour pour respecter
 le nouvel ordre : `O_SensorsTest`, `O_AsservLineRotateTest`, `O_AsservTest`,
-`O_Asserv_SquareTest`, `O_AsservLineRotateOldTest`, `O_AsservXYRotateTest`,
+`O_Asserv_SquareTest`, `O_AsservXYRotateTest`,
 `O_IAbyPathTest`, `O_AsservWaypointTest`, `O_NavigatorBackTest`, `O_NavigatorMovementTest`,
 `O_State_Init`, `O_Asserv_CalageTest` (5 cas), `O_AsservCalibrationTest` (déjà correct).
 

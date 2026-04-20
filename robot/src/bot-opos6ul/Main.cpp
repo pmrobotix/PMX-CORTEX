@@ -4,7 +4,6 @@
 #include "O_Asserv_SquareTest.hpp"
 #include "O_AsservCalibrationTest.hpp"
 #include "O_AsservLineRotateTest.hpp"
-#include "O_AsservLineRotateOldTest.hpp"
 #include "O_AsservWaypointTest.hpp"
 #include "O_NavigatorMovementTest.hpp"
 #include "O_NavigatorBackTest.hpp"
@@ -88,7 +87,6 @@ int main(int argc, char** argv)
     robot.getConsoleManager().add(new O_DetectionBackwardTest());      //     detb (backward)
     robot.getConsoleManager().add(new O_DetectionRetryForwardTest());  //     detrf (retry fwd)
     robot.getConsoleManager().add(new O_DetectionRetryBackwardTest()); //     detrb (retry bwd)
-    //robot.getConsoleManager().add(new O_AsservLineRotateOldTest()); // deprecated
     robot.getConsoleManager().add(new O_AsservXYRotateTest());  // 15. xy
     robot.getConsoleManager().add(new O_AsservTest());          // 16. go
     robot.getConsoleManager().add(new O_Asserv_SquareTest());   // 17. sq

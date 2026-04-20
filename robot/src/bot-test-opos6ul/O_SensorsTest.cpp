@@ -34,7 +34,7 @@ void O_SensorsTest::run(int argc, char** argv) {
     //robot.asserv().startMotionTimerAndOdo(false); //assistedHandling is enabled with "true" !
     utils::Chronometer chrono("O_SensorsTest");
     chrono.start();
-    int front = 0, back = 0, left=0, right=0;
+    //int front = 0, back = 0, left=0, right=0;
     ASensorsDriver::bot_positions vadv;
 
 /*
