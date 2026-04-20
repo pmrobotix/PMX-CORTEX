@@ -723,17 +723,24 @@ void AsservDriverSimu::doMotionLine(float dist_mm)
 
 	int increment_time_us = periodTime_us_ * 4; //us // on affiche que toutes les 4 periodes d'asserv
 
-	float tps_sec = fabs(dist_mm / simuCurrentSpeed_ * 1000.0);
-	float increment_mm = fabs((increment_time_us / 1000.0) * simuCurrentSpeed_);
-	int nb_increment = (int) fabs(dist_mm / increment_mm);
+	// Boucle distance-restante : recalcule l'increment a chaque tour a partir de
+	// simuCurrentSpeed_ courant. Sans ca, une capture initiale avec simuCurrentSpeed_
+	// deja en SLOW (ex: level 3 detecte avant que doMotionLine ne demarre) garderait
+	// le robot en SLOW pour toute la duree du mouvement, meme apres clearInjectedAdv
+	// qui reset la vitesse. Permet aussi la reaction dynamique a setMaxSpeed pendant
+	// le mouvement.
+	float total_distance = fabs(dist_mm);
+	float travelled = 0.0f;
 
-	logger().debug() << "tps(ms)=" << tps_sec * 1000.0 << " increment_mm=" << increment_mm << " nb_increment="
-			<< nb_increment << "  !!!!!" << logs::end;
-
-	for (int nb = 0; nb < nb_increment; nb++)
+	while (travelled < total_distance)
 	{
-
 		if (emergencyStop_ || abortCurrent_) return;
+
+		float current_speed = fabs(simuCurrentSpeed_);
+		if (current_speed < 1.0f) current_speed = fabs(simuMaxSpeed_);
+		float step = (increment_time_us / 1000.0f) * current_speed;
+		if (step < 0.01f) step = 1.0f;
+		if (step > total_distance - travelled) step = total_distance - travelled;
 
 		ROBOTPOSITION snapshot;
 		m_pos.lock();
@@ -741,16 +748,18 @@ void AsservDriverSimu::doMotionLine(float dist_mm)
 		if (deltaXmm == 0)
 		{
 			if (deltaYmm > 0)
-				p_.y += increment_mm;
-			else if (deltaYmm < 0) p_.y -= increment_mm;
+				p_.y += step;
+			else if (deltaYmm < 0) p_.y -= step;
 		} else
 		{
-			float x_increment_m = cos(t_init) * increment_mm;
-			p_.x += inv * x_increment_m;
+			float x_step = cos(t_init) * step;
+			p_.x += inv * x_step;
 			p_.y = ((a * p_.x) + b);
 		}
 		snapshot = p_;
 		m_pos.unlock();
+
+		travelled += step;
 
 		// Publier position partagee pendant l'execution (sinon sharedPosition
 		// reste fige pendant toute la duree du mouvement et waitEndOfTrajWith
