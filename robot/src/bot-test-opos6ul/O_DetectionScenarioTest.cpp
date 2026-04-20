@@ -307,6 +307,7 @@ void O_DetectionScenarioTest::executeScenariosFromJson(const char* jsonText,
         //     Utile pour les scenarios "retry" ou l'adv "bouge" pendant que le
         //     robot attend dans la boucle de retry.
         int advClearAtMs = sc.value("adv_clear_at_ms", -1);
+        res.advClearAtMs = advClearAtMs;
         std::atomic<bool> timerCancel{false};
         std::thread advTimer;
         if (advClearAtMs >= 0 && res.hasAdv) {
@@ -663,13 +664,24 @@ std::string O_DetectionScenarioTest::svgScene(const SceneResult& sc, float scale
             << "' stroke='#0066cc' stroke-width='4'/>\n";
     }
 
-    // Adversaire
+    // Adversaire. Si adv_clear_at_ms est set, on le dessine en pointille pour
+    // signifier "mobile / position initiale seulement, a disparu en cours".
     if (sc.hasAdv) {
+        bool cleared = (sc.advClearAtMs >= 0);
+        const char* advDash = cleared ? "12,6" : "0";
+        float fillOp = cleared ? 0.08f : 0.25f;
         svg << "<circle cx='" << sc.advX << "' cy='" << sc.advY
-            << "' r='" << (ADV_DIAMETER_MM*0.5f) << "' fill='#DC143C' fill-opacity='0.25'"
-            << " stroke='#8B0000' stroke-width='3'/>\n";
+            << "' r='" << (ADV_DIAMETER_MM*0.5f) << "' fill='#DC143C' fill-opacity='" << fillOp
+            << "' stroke='#8B0000' stroke-width='3' stroke-dasharray='" << advDash << "'/>\n";
         svg << "<circle cx='" << sc.advX << "' cy='" << sc.advY
-            << "' r='15' fill='#8B0000'/>\n";
+            << "' r='15' fill='#8B0000' fill-opacity='" << (cleared ? 0.5f : 1.0f) << "'/>\n";
+        // Label "cleared@Nms" pour expliciter le comportement retry
+        if (cleared) {
+            svg << "<text x='" << (sc.advX + ADV_DIAMETER_MM*0.5f + 10)
+                << "' y='" << sc.advY
+                << "' font-family='monospace' font-size='44' fill='#8B0000' font-weight='bold'>"
+                << "cleared@" << sc.advClearAtMs << "ms</text>\n";
+        }
     }
 
     svg << "</g>\n";

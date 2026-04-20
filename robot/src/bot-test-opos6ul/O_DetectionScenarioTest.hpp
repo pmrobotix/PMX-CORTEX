@@ -56,6 +56,7 @@ public:
         float       endX, endY, endThetaDeg;
         float       durationMs;
         bool        crossesAdv;   // trajectoire (start -> end) passe a < 340mm du centre adv
+        int         advClearAtMs; // -1 = adv persistant, >=0 = adv cleare apres N ms (retry)
         Verdict     verdict;
     };
 
