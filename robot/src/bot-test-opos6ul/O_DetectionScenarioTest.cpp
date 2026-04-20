@@ -43,109 +43,6 @@ constexpr float SLOW_DIST_MM       = 620.0f;
 constexpr float STOP_DIST_MM       = 460.0f;
 
 // =============================================================================
-// Scenarios du Niveau A en JSON (format aligne STRATEGY_JSON_FORMAT)
-//
-// Chaque instruction : { name, start, adv, expected, tasks: [ { type, subtype, ...} ] }
-// Champs test-specific : name, start, adv, expected.
-// Les tasks sont executees sequentiellement par le mini-dispatcher du test.
-// =============================================================================
-
-const char* SCENARIOS_LEVEL_A = R"JSON(
-[
-  {
-    "name": "A1_GoToClearPath",
-    "desc": "Robot va tout droit sans adv",
-    "start": {"x": 200, "y": 200, "theta_deg": 0},
-    "adv": null,
-    "expected": "FINISHED",
-    "tasks": [
-      {"type": "MOVEMENT", "subtype": "GO_TO", "position_x": 800, "position_y": 200}
-    ]
-  },
-  {
-    "name": "A2_GoToAdvOnPath",
-    "desc": "Adv plante a 400mm du robot sur le segment (pas de chevauchement initial)",
-    "start": {"x": 200, "y": 200, "theta_deg": 0},
-    "adv": {"x": 600, "y": 200},
-    "expected": "NEAR_OBSTACLE",
-    "tasks": [
-      {"type": "MOVEMENT", "subtype": "GO_TO", "position_x": 1000, "position_y": 200}
-    ]
-  },
-  {
-    "name": "A3_GoToAdvBeside",
-    "desc": "Adv lateral (hors couloir isOnPath, mais dans le cone)",
-    "start": {"x": 200, "y": 200, "theta_deg": 0},
-    "adv": {"x": 500, "y": 600},
-    "expected": "FINISHED",
-    "tasks": [
-      {"type": "MOVEMENT", "subtype": "GO_TO", "position_x": 800, "position_y": 200}
-    ]
-  },
-  {
-    "name": "A4_GoToAdvBehindTargetClose",
-    "desc": "Adv a 300mm au-dela de la cible : le cone ToF doit voir l'adv a l'arrivee (level 4) -> STOP",
-    "start": {"x": 200, "y": 200, "theta_deg": 0},
-    "adv": {"x": 1100, "y": 200},
-    "expected": "NEAR_OBSTACLE",
-    "tasks": [
-      {"type": "MOVEMENT", "subtype": "GO_TO", "position_x": 800, "position_y": 200}
-    ]
-  },
-  {
-    "name": "A4b_GoToAdvFarBehindTarget",
-    "desc": "Adv a 1000mm au-dela de la cible : pas dans la zone de detection a l'arrivee",
-    "start": {"x": 200, "y": 200, "theta_deg": 0},
-    "adv": {"x": 1800, "y": 200},
-    "expected": "FINISHED",
-    "tasks": [
-      {"type": "MOVEMENT", "subtype": "GO_TO", "position_x": 800, "position_y": 200}
-    ]
-  },
-  {
-    "name": "A5_RotateAdvInFront",
-    "desc": "Rotation pure 90 degres avec adv a 600mm devant (hors chevauchement, ROTATION bypass naturel)",
-    "start": {"x": 200, "y": 200, "theta_deg": 0},
-    "adv": {"x": 800, "y": 200},
-    "expected": "FINISHED",
-    "tasks": [
-      {"type": "MOVEMENT", "subtype": "ROTATE_DEG", "angle_deg": 90}
-    ]
-  },
-  {
-    "name": "A6_MoveForwardToAdvOnDiagPath",
-    "desc": "moveForwardTo diagonale, adv a 141mm du segment (dans couloir 340mm)",
-    "start": {"x": 200, "y": 200, "theta_deg": 0},
-    "adv": {"x": 400, "y": 600},
-    "expected": "NEAR_OBSTACLE",
-    "tasks": [
-      {"type": "MOVEMENT", "subtype": "MOVE_FORWARD_TO", "position_x": 800, "position_y": 800}
-    ]
-  },
-  {
-    "name": "A7_GoBackToAdvBehind",
-    "desc": "Marche arriere, adv a 400mm derriere (pas de chevauchement initial)",
-    "start": {"x": 800, "y": 200, "theta_deg": 180},
-    "adv": {"x": 400, "y": 200},
-    "expected": "NEAR_OBSTACLE",
-    "tasks": [
-      {"type": "MOVEMENT", "subtype": "GO_BACK_TO", "position_x": 100, "position_y": 200}
-    ]
-  },
-  {
-    "name": "A8_GoBackToAdvBeside",
-    "desc": "Marche arriere avec adv lateral (hors couloir mais dans cone)",
-    "start": {"x": 800, "y": 200, "theta_deg": 180},
-    "adv": {"x": 500, "y": 600},
-    "expected": "FINISHED",
-    "tasks": [
-      {"type": "MOVEMENT", "subtype": "GO_BACK_TO", "position_x": 200, "position_y": 200}
-    ]
-  }
-]
-)JSON";
-
-// =============================================================================
 // Mini-dispatcher : execute une task MOVEMENT. Reproduit le sous-ensemble du
 // futur StrategyJsonRunner dont le test a besoin. Migration triviale le jour ou
 // on branche le runner officiel.
@@ -202,6 +99,9 @@ TRAJ_STATE executeTask(Navigator& nav, Sensors& sensors, const json& task)
         if (subtype == "MOVE_FORWARD_TO") {
             return nav.moveForwardTo(task["position_x"], task["position_y"], policy);
         }
+        if (subtype == "MOVE_BACKWARD_TO") {
+            return nav.moveBackwardTo(task["position_x"], task["position_y"], policy);
+        }
         if (subtype == "LINE") {
             return nav.line(task["distance_mm"], policy);
         }
@@ -246,28 +146,35 @@ void extractTarget(const json& tasks, float& tx, float& ty)
 void O_DetectionScenarioTest::run(int /*argc*/, char** /*argv*/)
 {
     logger().info() << "========================================" << logs::end;
-    logger().info() << "O_DetectionScenarioTest — Niveau A" << logs::end;
+    logger().info() << "O_DetectionScenarioTest — " << name() << logs::end;
     logger().info() << "========================================" << logs::end;
 
     passed_ = 0;
     warnCrossed_ = 0;
     failed_ = 0;
-    scenesA_.clear();
+    scenes_.clear();
 
     setupSensorsForTest();
 
-    runLevelA();
+    executeScenariosFromJson(scenariosJson_, scenes_);
+    for (const auto& sc : scenes_) {
+        switch (sc.verdict) {
+            case VERDICT_PASS:             passed_++; break;
+            case VERDICT_WARN_CROSSED_ADV: warnCrossed_++; break;
+            case VERDICT_FAIL_STATE:       failed_++; break;
+        }
+    }
 
     teardownSensorsForTest();
 
     logger().info() << "========================================" << logs::end;
-    logger().info() << "Resultat Niveau A : " << passed_ << " PASS / "
+    logger().info() << "Resultat " << name() << " : " << passed_ << " PASS / "
                     << warnCrossed_ << " WARN_CROSSED / "
                     << failed_ << " FAIL"
-                    << " sur " << scenesA_.size() << " scenarios" << logs::end;
+                    << " sur " << scenes_.size() << " scenarios" << logs::end;
     logger().info() << "========================================" << logs::end;
 
-    for (const auto& sc : scenesA_) {
+    for (const auto& sc : scenes_) {
         logScene(sc);
     }
 
@@ -306,22 +213,6 @@ void O_DetectionScenarioTest::teardownSensorsForTest()
     // Note : SensorsThread reste actif (arrete par le shutdown du robot)
 }
 
-// =============================================================================
-// runLevelA
-// =============================================================================
-
-void O_DetectionScenarioTest::runLevelA()
-{
-    executeScenariosFromJson(SCENARIOS_LEVEL_A, scenesA_);
-
-    for (const auto& sc : scenesA_) {
-        switch (sc.verdict) {
-            case VERDICT_PASS:             passed_++; break;
-            case VERDICT_WARN_CROSSED_ADV: warnCrossed_++; break;
-            case VERDICT_FAIL_STATE:       failed_++; break;
-        }
-    }
-}
 
 // =============================================================================
 // executeScenariosFromJson — parse JSON, execute chaque scenario
@@ -765,7 +656,7 @@ std::string O_DetectionScenarioTest::svgScene(const SceneResult& sc, float scale
 void O_DetectionScenarioTest::writeSvgFile()
 {
     const int    cols   = 2;
-    const int    rows   = (scenesA_.size() + cols - 1) / cols;
+    const int    rows   = (scenes_.size() + cols - 1) / cols;
     const float  cellW  = 650.0f;
     const float  cellH  = 450.0f;
     const float  scale  = 0.28f;
@@ -778,7 +669,7 @@ void O_DetectionScenarioTest::writeSvgFile()
         << "' height='" << totalH << "' viewBox='0 0 " << totalW << " " << totalH << "'>\n";
 
     svg << "<text x='10' y='28' font-family='monospace' font-size='20' font-weight='bold'>"
-        << "Detection Scenarios — Niveau A (tactique)</text>\n";
+        << "Detection Scenarios — " << name() << "</text>\n";
     svg << "<text x='10' y='48' font-family='monospace' font-size='11'>"
         << "bleu=depart  vert=fin(OK)  orange=fail-state  rouge=traverse-adv"
         << "  couloir pointille=isOnPath(segment)"
@@ -791,22 +682,22 @@ void O_DetectionScenarioTest::writeSvgFile()
         << passed_ << " PASS / "
         << warnCrossed_ << " WARN_CROSSED_ADV / "
         << failed_ << " FAIL_STATE"
-        << "  sur " << scenesA_.size() << " scenarios"
+        << "  sur " << scenes_.size() << " scenarios"
         << "</text>\n";
 
-    for (size_t i = 0; i < scenesA_.size(); i++) {
+    for (size_t i = 0; i < scenes_.size(); i++) {
         int r = (int)(i / cols);
         int c = (int)(i % cols);
         float x = c * cellW;
         float y = 80 + r * cellH;
         svg << "<g transform='translate(" << x << "," << y << ")'>\n";
-        svg << svgScene(scenesA_[i], scale, cellW, cellH);
+        svg << svgScene(scenes_[i], scale, cellW, cellH);
         svg << "</g>\n";
     }
 
     svg << "</svg>\n";
 
-    std::string path = exeDirectory() + "/test_detection_scenarios.svg";
+    std::string path = exeDirectory() + "/" + svgFilename_;
     std::ofstream ofs(path);
     if (ofs) {
         ofs << svg.str();

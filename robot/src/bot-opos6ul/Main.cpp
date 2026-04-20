@@ -8,7 +8,8 @@
 #include "O_AsservWaypointTest.hpp"
 #include "O_NavigatorMovementTest.hpp"
 #include "O_NavigatorBackTest.hpp"
-#include "O_DetectionScenarioTest.hpp"
+#include "O_DetectionForwardTest.hpp"
+#include "O_DetectionBackwardTest.hpp"
 #include "O_AsservXYRotateTest.hpp"
 #include "O_AsservTest.hpp"
 #include "O_GroveColorTest.hpp"
@@ -81,7 +82,8 @@ int main(int argc, char** argv)
     robot.getConsoleManager().add(new O_AsservWaypointTest());  // 12. wp
     robot.getConsoleManager().add(new O_NavigatorMovementTest()); // 13. nav
     robot.getConsoleManager().add(new O_NavigatorBackTest());   // 14. nb
-    robot.getConsoleManager().add(new O_DetectionScenarioTest()); //     detection
+    robot.getConsoleManager().add(new O_DetectionForwardTest());  //     detf (forward)
+    robot.getConsoleManager().add(new O_DetectionBackwardTest()); //     detb (backward)
     //robot.getConsoleManager().add(new O_AsservLineRotateOldTest()); // deprecated
     robot.getConsoleManager().add(new O_AsservXYRotateTest());  // 15. xy
     robot.getConsoleManager().add(new O_AsservTest());          // 16. go

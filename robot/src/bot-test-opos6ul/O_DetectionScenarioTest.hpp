@@ -1,24 +1,20 @@
 /*!
  * \file
- * \brief Test de scenarios detection adversaire (SIMU uniquement).
+ * \brief Classe de base pour les tests scenarios detection adversaire (SIMU).
  *
- * Baseline comportementale du robot face a un adversaire injecte.
- * Voir robot/md/DETECTION_SCENARIO_TEST.md pour le plan detaille.
+ * Execute une liste de scenarios JSON (format aligne STRATEGY_JSON_FORMAT.md,
+ * enrichi des champs test start/adv/expected) contre le SensorsDriverSimu +
+ * AsservDriverSimu + Navigator. Produit un rapport ASCII + un SVG de synthese.
  *
- * Les scenarios sont definis en format JSON aligne avec STRATEGY_JSON_FORMAT.md
- * (array d'instructions avec tasks MOVEMENT), enrichi des champs specifiques
- * tests (start, adv, expected). Hardcode dans le .cpp en raw string pour
- * edition facile, parse via nlohmann/json.
+ * Les sous-classes concretes fournissent simplement :
+ *   - un code CLI (3 lettres)
+ *   - un nom/description humain
+ *   - la chaine JSON raw string des scenarios
+ *   - un nom de fichier SVG
  *
- * Niveau A — Tactique pure : 1 mouvement, 1 adv plante, mesure TRAJ_STATE.
- * Niveau B — (a venir) Retry Navigator.
- * Niveau C — (a venir) Mini-strategie IA.
- *
- * Sorties :
- *   - Log ASCII dans la console
- *   - SVG de synthese : build-{preset}/bin/test_detection_scenarios.svg
- *
- * Invocation : ./bot-opos6ul /k det
+ * Subclasses existantes :
+ *   - O_DetectionForwardTest  (detf) : GO_TO + MOVE_FORWARD_TO + FACE_TO
+ *   - O_DetectionBackwardTest (detb) : GO_BACK_TO + MOVE_BACKWARD_TO + FACE_BACK_TO
  */
 
 #ifndef O_DETECTIONSCENARIOTEST_HPP
@@ -63,19 +59,27 @@ public:
         Verdict     verdict;
     };
 
-    O_DetectionScenarioTest() :
-            FunctionalTest("Detection_Scenario",
-                    "Baseline detection adversaire : scenarios SIMU 3 niveaux.",
-                    "det")
+    virtual ~O_DetectionScenarioTest() {}
+
+    virtual void run(int argc, char** argv);
+
+protected:
+
+    // Constructeur protected : instancie via les sous-classes concretes qui
+    // fournissent les scenarios et le fichier SVG de sortie.
+    O_DetectionScenarioTest(const std::string& name,
+                             const std::string& desc,
+                             const std::string& code,
+                             const char* jsonText,
+                             const std::string& svgFilename)
+        : FunctionalTest(name, desc, code),
+          scenariosJson_(jsonText),
+          svgFilename_(svgFilename)
     {
         passed_ = 0;
         warnCrossed_ = 0;
         failed_ = 0;
     }
-
-    virtual ~O_DetectionScenarioTest() {}
-
-    virtual void run(int argc, char** argv);
 
 private:
 
@@ -85,13 +89,13 @@ private:
         return instance;
     }
 
+    const char* scenariosJson_;
+    std::string svgFilename_;
+
     int passed_;
     int warnCrossed_;
     int failed_;
-    std::vector<SceneResult> scenesA_;
-
-    // ---- Niveaux ----
-    void runLevelA();
+    std::vector<SceneResult> scenes_;
 
     // ---- Config robot pour le test ----
     void setupSensorsForTest();
