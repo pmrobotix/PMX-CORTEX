@@ -439,6 +439,20 @@ public:
 	}
 
 	/*!
+	 * \brief Retourne true si le robot est dans la couleur "match" (miroir).
+	 *        Convention PMX (cf PMX original Asserv.cpp "matchcolor [BLUE=0 YELLOW=1]") :
+	 *          - BLUE  (color0, primaire)  -> false, pas de miroir, coords litterales
+	 *          - YELLOW (color3000, miroir) -> true, applique x -> 3000 - x
+	 *        Centralise la comparaison pour que le nom de l'enum (PMXYELLOW)
+	 *        n'apparaisse qu'a un seul endroit du code.
+	 *        A passer comme parametre matchColor a setPositionAndColor.
+	 */
+	bool isMatchColor() const
+	{
+		return myColor_ == PMXYELLOW;
+	}
+
+	/*!
 	 * \brief Enregistre la couleur du robot (sans verification de phase).
 	 *        Utilise par le parseur CLI (/b). Pour le menu runtime, preferer
 	 *        setMyColorChecked() qui respecte la phase courante.

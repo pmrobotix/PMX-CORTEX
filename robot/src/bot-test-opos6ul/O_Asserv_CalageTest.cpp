@@ -54,7 +54,7 @@ void O_Asserv_CalageTest::run(int argc, char **argv)
         logger().info() << "Start Asserv " << logs::end;
         robot.setMyColor(PMXYELLOW);
         // setPositionAndColor AVANT startMotionTimerAndOdo
-        robot.asserv().setPositionAndColor(70, 450.0, 0.0, (robot.getMyColor() == PMXYELLOW));
+        robot.asserv().setPositionAndColor(70, 450.0, 0.0, robot.isMatchColor());
         robot.asserv().startMotionTimerAndOdo(false);
         robot.actions().sensors().setIgnoreFrontNearObstacle(true, true, true);
         robot.actions().sensors().setIgnoreBackNearObstacle(true, true, true);
@@ -74,7 +74,7 @@ void O_Asserv_CalageTest::run(int argc, char **argv)
 
         robot.setMyColor(PMXYELLOW);
         // setPositionAndColor AVANT startMotionTimerAndOdo
-        robot.asserv().setPositionAndColor(70, 450.0, 0.0, (robot.getMyColor() == PMXYELLOW));
+        robot.asserv().setPositionAndColor(70, 450.0, 0.0, robot.isMatchColor());
         robot.asserv().startMotionTimerAndOdo(true);
 
         { Navigator nav(&robot); nav.moveForwardToAndRotateAbsDeg(1680, 255, 0); }
@@ -102,7 +102,7 @@ void O_Asserv_CalageTest::run(int argc, char **argv)
 
         robot.setMyColor(PMXBLUE);
         // setPositionAndColor AVANT startMotionTimerAndOdo
-        robot.asserv().setPositionAndColor(70, 450.0, 0.0, (robot.getMyColor() == PMXYELLOW));
+        robot.asserv().setPositionAndColor(70, 450.0, 0.0, robot.isMatchColor());
         robot.asserv().startMotionTimerAndOdo(true);
 
         { Navigator nav(&robot); nav.moveForwardToAndRotateAbsDeg(1680, 255, 0); }
@@ -130,7 +130,7 @@ void O_Asserv_CalageTest::run(int argc, char **argv)
 
         robot.setMyColor(PMXYELLOW);
         // setPositionAndColor AVANT startMotionTimerAndOdo
-        robot.asserv().setPositionAndColor(470, 1000.0, 0.0, (robot.getMyColor() == PMXYELLOW));
+        robot.asserv().setPositionAndColor(470, 1000.0, 0.0, robot.isMatchColor());
         robot.asserv().startMotionTimerAndOdo(true);
 
         { Navigator nav(&robot); nav.moveForwardToAndRotateAbsDeg(1780, 280, 0); }
@@ -160,7 +160,7 @@ void O_Asserv_CalageTest::run(int argc, char **argv)
 
         robot.setMyColor(PMXBLUE);
         // setPositionAndColor AVANT startMotionTimerAndOdo
-        robot.asserv().setPositionAndColor(470, 1000.0, 0.0, (robot.getMyColor() == PMXYELLOW));
+        robot.asserv().setPositionAndColor(470, 1000.0, 0.0, robot.isMatchColor());
         robot.asserv().startMotionTimerAndOdo(true);
 
         { Navigator nav(&robot); nav.moveForwardToAndRotateAbsDeg(1780, 280, 0); }

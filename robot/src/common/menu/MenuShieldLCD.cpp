@@ -38,7 +38,7 @@ const char* MenuShieldLCD::strategyShort(const char* longName)
 void MenuShieldLCD::buildLine0(const Robot& robot, char out[17]) const
 {
 	// Format: "BLUE     S1 D:40" ou "YELLW* S1 D:40" (16 chars + terminator)
-	const char* colorStr = (robot.getMyColor() == PMXYELLOW) ? "YELLW" : "BLUE";
+	const char* colorStr = robot.isMatchColor() ? "YELLW" : "BLUE";
 	char lockChar = (robot.phase() >= PHASE_ARMED) ? '*' : ' ';
 
 	std::snprintf(out, 17, "%-6s%c%s   D:%d",

@@ -94,14 +94,12 @@ void O_Asserv_SquareTest::run(int argc, char** argv)
                     << " sens=" << (cw ? "CW" : "CCW") << logs::end;
 
     // setPositionAndColor AVANT startMotionTimerAndOdo.
-    // Couleur respectee depuis le menu / CLI (/b = BLUE, sinon YELLOW par defaut).
-    // Convention PMX : coords (x, y) ecrites en repere BLEU (color0). Si robot
-    // est JAUNE, matchColor=true applique le miroir x -> 3000-x automatiquement.
-    // Pour lancer cote bleu : passer /b en ligne de commande.
-    bool isYellow = (robot.getMyColor() == PMXYELLOW);
-    logger().info() << "myColor=" << (isYellow ? "YELLOW (miroir x)" : "BLUE (pas de miroir)")
+    // Couleur respectee depuis CLI (defaut BLEU, /y pour JAUNE).
+    // Convention PMX color0=bleu primaire : coords ecrites en repere BLEU,
+    // miroir x -> 3000-x applique automatiquement si robot.isMatchColor() (JAUNE).
+    logger().info() << "color=" << (robot.isMatchColor() ? "YELLOW (miroir x)" : "BLUE (litteral)")
                     << logs::end;
-    robot.asserv().setPositionAndColor(x, y, a, isYellow);
+    robot.asserv().setPositionAndColor(x, y, a, robot.isMatchColor());
     robot.asserv().startMotionTimerAndOdo(true);
     robot.asserv().assistedHandling();
 

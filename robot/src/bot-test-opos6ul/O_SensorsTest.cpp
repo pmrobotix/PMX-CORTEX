@@ -67,7 +67,7 @@ void O_SensorsTest::run(int argc, char** argv) {
     //    Rien ne doit fonctionner avant : le set position remet tout a zero
     //    cote Nucleo. Avant ce setPos, les positions recues du thread CBOR
     //    sont les residus de la session precedente -> filtre par positionInitialized_.
-    robot.asserv().setPositionAndColor(200.0, 200.0, 0.0,(bool)(robot.getMyColor() == PMXYELLOW));
+    robot.asserv().setPositionAndColor(200.0, 200.0, 0.0,robot.isMatchColor());
 
     // 2. Demarrer le thread CBOR (reception des positions Nucleo en continu)
     //    La methode inclut une attente 50ms pour laisser la Nucleo appliquer le setPos.

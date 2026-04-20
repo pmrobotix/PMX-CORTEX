@@ -302,7 +302,7 @@ O_State_Init::execute(Robot&)
 		robot.actions().lcd2x16().setCursor(0, 1);
 		robot.actions().lcd2x16().print("WAITING TIRETT...");
 		logger().info() << "PMX...WAIT TIRETTE !!!!!!!!!!!!!!!";
-		if (robot.getMyColor() == PMXYELLOW)
+		if robot.isMatchColor()
 		{
 			robot.actions().lcd2x16().setCursor(0, 0);
 			robot.actions().lcd2x16().print("YEL");
@@ -426,9 +426,9 @@ void O_State_Init::setPos()
 
 	// setPositionAndColor AVANT startMotionTimerAndOdo (reset Nucleo + match ref)
 	if (robot.strategy() == "tabletest")
-		robot.asserv().setPositionAndColor(1150, 130, 90.0, (robot.getMyColor() == PMXYELLOW));
+		robot.asserv().setPositionAndColor(1150, 130, 90.0, robot.isMatchColor());
 	else
-		robot.asserv().setPositionAndColor(1150, 130, 90.0, (robot.getMyColor() == PMXYELLOW));
+		robot.asserv().setPositionAndColor(1150, 130, 90.0, robot.isMatchColor());
 	robot.asserv().startMotionTimerAndOdo(true);
 	ROBOTPOSITION p = robot.sharedPosition()->getRobotPosition();
 	logger().info() << "O_State_Init::setPos() svgPrintPosition x=" << p.x << " y=" << p.y

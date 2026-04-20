@@ -210,7 +210,7 @@ void MenuBeaconLCDTouch::refreshDisplay(const Robot& robot)
 	if (!alive_) return;
 
 	// matchColor : Robot -> byte (0=BLUE, 1=YELLOW)
-	uint8_t colorByte = (robot.getMyColor() == PMXYELLOW) ? 1 : 0;
+	uint8_t colorByte = robot.isMatchColor() ? 1 : 0;
 	if (colorByte != shadow_.matchColor) {
 		bool ok = sensors_.writeMatchColor(colorByte);
 		logger().info() << "[PUSH] matchColor " << (int)shadow_.matchColor

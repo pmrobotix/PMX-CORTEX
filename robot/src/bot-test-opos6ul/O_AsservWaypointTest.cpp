@@ -147,7 +147,7 @@ void O_AsservWaypointTest::run(int argc, char **argv)
 	}
 
 	// Init asserv : setPositionAndColor AVANT startMotionTimerAndOdo
-	robot.asserv().setPositionAndColor(coordx, coordy, coorda_deg, (bool)(robot.getMyColor() == PMXYELLOW));
+	robot.asserv().setPositionAndColor(coordx, coordy, coorda_deg, robot.isMatchColor());
 	robot.asserv().startMotionTimerAndOdo(false);
 	robot.asserv().assistedHandling();
 	robot.asserv().setSimuSpeedMultiplier(multiplier);
