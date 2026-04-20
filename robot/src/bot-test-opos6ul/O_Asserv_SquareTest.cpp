@@ -19,18 +19,23 @@
  *   nb  : nombre de tours       (defaut 1)
  *   cw  : 0=CCW (defaut), 1=CW
  *
+ * Couleur :
+ *   - /b        : cote BLEU (color0, coords litterales, pas de miroir)
+ *   - sans /b   : cote JAUNE (defaut Robot.cpp, miroir x -> 3000-x applique)
+ *
  * === SIMU ===
  *
- *   ./bot-opos6ul sq                       # defauts : (300,300,0), 500mm, 1 tour CCW
- *   ./bot-opos6ul sq 400 300 0 500 2       # 2 tours CCW
- *   ./bot-opos6ul sq 400 300 0 500 1 1     # 1 tour CW
- *   ./bot-opos6ul sq 500 500 0 1000 1      # grand carre 1m
+ *   ./bot-opos6ul /b sq                     # defauts, BLEU
+ *   ./bot-opos6ul /b sq 400 300 0 500 2     # 2 tours CCW cote BLEU
+ *   ./bot-opos6ul /b sq 400 300 0 500 1 1   # 1 tour CW cote BLEU
+ *   ./bot-opos6ul    sq 400 300 0 500 2     # 2 tours CCW cote JAUNE (miroir)
+ *   ./bot-opos6ul /b sq 500 500 0 1000 1    # grand carre 1m BLEU
  *
  * === Vrai robot (ARM) ===
  *
- *   ./bot-opos6ul sq 300 300 0 400 1       # petit carre 400mm, prudent
- *   ./bot-opos6ul sq 500 500 0 600 3       # 3 tours de 600mm pour tester repetabilite
- *   ./bot-opos6ul sq 500 500 0 600 1 1     # meme en sens horaire
+ *   ./bot-opos6ul /b sq 300 300 0 400 1     # petit carre 400mm BLEU, prudent
+ *   ./bot-opos6ul /b sq 500 500 0 600 3     # 3 tours pour repetabilite
+ *   ./bot-opos6ul /b sq 500 500 0 600 1 1   # sens horaire
  */
 
 #include "O_Asserv_SquareTest.hpp"
@@ -89,9 +94,13 @@ void O_Asserv_SquareTest::run(int argc, char** argv)
                     << " sens=" << (cw ? "CW" : "CCW") << logs::end;
 
     // setPositionAndColor AVANT startMotionTimerAndOdo.
-    // matchColor = isYellow : la strategie est ecrite en repere bleu,
-    // donc on mirror les x uniquement si on est jaune.
+    // Couleur respectee depuis le menu / CLI (/b = BLUE, sinon YELLOW par defaut).
+    // Convention PMX : coords (x, y) ecrites en repere BLEU (color0). Si robot
+    // est JAUNE, matchColor=true applique le miroir x -> 3000-x automatiquement.
+    // Pour lancer cote bleu : passer /b en ligne de commande.
     bool isYellow = (robot.getMyColor() == PMXYELLOW);
+    logger().info() << "myColor=" << (isYellow ? "YELLOW (miroir x)" : "BLUE (pas de miroir)")
+                    << logs::end;
     robot.asserv().setPositionAndColor(x, y, a, isYellow);
     robot.asserv().startMotionTimerAndOdo(true);
     robot.asserv().assistedHandling();

@@ -68,7 +68,7 @@ int ObstacleZone::filtre_levelInBack(int threshold_LR_mm, int threshold_Back_mm,
 		float dist_adv_mm, float x_adv_mm, float y_adv_mm,
 		float theta_adv_deg)
 {
-	logger().error() << __FUNCTION__ << " threshold_LR_mm=" << threshold_LR_mm
+	logger().debug() << __FUNCTION__ << " threshold_LR_mm=" << threshold_LR_mm
 			<< " threshold_Back_mm=" << threshold_Back_mm
 			<< " threshold_veryclosed_back_mm=" << threshold_veryclosed_back_mm
 			<< " dist_mm=" << dist_adv_mm
