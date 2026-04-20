@@ -146,7 +146,7 @@ protected:
 
 	// --- O_State_NewInit : phase de match + config editable ---
 	MatchPhase phase_ = PHASE_CONFIG;
-	uint8_t    advDiameter_   = 40;           ///< Diamètre adversaire en cm, defaut Teensy-aligné.
+	uint16_t   advDiameterMm_ = 400;          ///< Diamètre adversaire en MM (source de verite). Teensy protocol reste en cm via advDiameter().
 	uint8_t    ledLuminosity_ = 10;           ///< Luminosité LED matrix 0..100, defaut Teensy-aligné.
 	uint8_t    testMode_      = 0;            ///< Test materiel 0=aucun, 1..5 (transitoire).
 	std::atomic<bool> testModeReq_{false};    ///< Flag "testMode a déclencher" (consumed par O_State_NewInit).
@@ -487,11 +487,10 @@ public:
 	}
 
 	/*!
-	 * \brief Diametre adversaire en mm. Source de verite pour les seuils
-	 *        lateraux de detection (Sensors.cpp filtre_levelInFront/Back).
-	 *        Base sur advDiameter_ (cm) pour rester aligne avec la balise.
+	 * \brief Diametre adversaire en mm. Source de verite interne.
+	 *        Utilise par Sensors (thresholdLR), isOnPath, SVG, ...
 	 */
-	int advDiameterMm() const { return advDiameter_ * 10; }
+	int advDiameterMm() const { return advDiameterMm_; }
 
 	/*!
 	 * \brief Diametre robot PMX en mm. Constante 280 (28cm).
@@ -501,14 +500,16 @@ public:
 	int robotDiameterMm() const { return 280; }
 
 	/*!
-	 * \brief Diametre adversaire en cm (5..250). Editable en CONFIG + ARMED.
+	 * \brief Diametre adversaire en cm (5..250) - wrapper pour l'interface
+	 *        beacon/menu (le protocole Teensy I2C et le menu LCD restent en cm).
+	 *        Editable en CONFIG + ARMED.
 	 */
-	uint8_t advDiameter() const { return advDiameter_; }
-	bool setAdvDiameter(uint8_t d)
+	uint8_t advDiameter() const { return static_cast<uint8_t>(advDiameterMm_ / 10); }
+	bool setAdvDiameter(uint8_t cm)
 	{
 		if (phase_ >= PHASE_MATCH) return false;
-		if (d < 5 || d > 250) return false;
-		advDiameter_ = d;
+		if (cm < 5 || cm > 250) return false;
+		advDiameterMm_ = static_cast<uint16_t>(cm) * 10;
 		return true;
 	}
 
