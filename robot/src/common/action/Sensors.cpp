@@ -406,8 +406,12 @@ int Sensors::front(bool display)
 
 
 
-				//rayon robot + espace coté + rayon adv //TODO thresholdLR = 140 + 20 + 250;???
-				int thresholdLR = 140 + 20 + 250;
+				// rayon robot + marge laterale + rayon adv, en mm.
+				// advDiameter est editable en match (menu balise), robotDiameterMm
+				// est constante PMX. Marge 20mm pour tolerance mesure beacon.
+				const int thresholdLR = robot()->robotDiameterMm() / 2
+						+ 20
+						+ robot()->advDiameterMm() / 2;
 
 
 
@@ -611,8 +615,12 @@ int Sensors::back(bool display)
 
 
 
-				//rayon robot + espace coté + rayon adv //TODO thresholdLR = 140 + 20 + 250;???
-				int thresholdLR = 140 + 20 + 250;
+				// rayon robot + marge laterale + rayon adv, en mm.
+				// advDiameter est editable en match (menu balise), robotDiameterMm
+				// est constante PMX. Marge 20mm pour tolerance mesure beacon.
+				const int thresholdLR = robot()->robotDiameterMm() / 2
+						+ 20
+						+ robot()->advDiameterMm() / 2;
 
 
 

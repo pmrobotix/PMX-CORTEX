@@ -487,6 +487,20 @@ public:
 	}
 
 	/*!
+	 * \brief Diametre adversaire en mm. Source de verite pour les seuils
+	 *        lateraux de detection (Sensors.cpp filtre_levelInFront/Back).
+	 *        Base sur advDiameter_ (cm) pour rester aligne avec la balise.
+	 */
+	int advDiameterMm() const { return advDiameter_ * 10; }
+
+	/*!
+	 * \brief Diametre robot PMX en mm. Constante 280 (28cm).
+	 *        Centralise pour les calculs geometriques (thresholdLR Sensors,
+	 *        isOnPath, svgPrintPosition, ...).
+	 */
+	int robotDiameterMm() const { return 280; }
+
+	/*!
 	 * \brief Diametre adversaire en cm (5..250). Editable en CONFIG + ARMED.
 	 */
 	uint8_t advDiameter() const { return advDiameter_; }
