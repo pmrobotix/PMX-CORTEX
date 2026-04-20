@@ -1,6 +1,36 @@
 /*!
  * \file
- * \brief Implémentation de la classe O_Asserv_SquareTest.
+ * \brief Test de navigation en carre via Navigator::moveForwardTo().
+ *
+ * Part du coin (x, y, a), trace un carre de cote d en marche avant,
+ * avec rotation absolue a chaque coin, revient au point de depart et
+ * oriente selon l'angle a. Repete nb fois. Peut tourner en sens
+ * anti-horaire (CCW, defaut) ou horaire (CW).
+ *
+ * La couleur (miroir x) suit la couleur choisie au menu : color0=bleu
+ * -> pas de miroir, color3000=jaune -> x mirrore (convention PMX
+ * single-color, cf STRATEGY_JSON_FORMAT.md).
+ *
+ * Arguments positionnels : x y a d nb cw
+ *   x   : x du coin de depart mm (defaut 300)
+ *   y   : y du coin de depart mm (defaut 300)
+ *   a   : angle de depart degre (defaut 0)
+ *   d   : cote du carre mm      (defaut 500)
+ *   nb  : nombre de tours       (defaut 1)
+ *   cw  : 0=CCW (defaut), 1=CW
+ *
+ * === SIMU ===
+ *
+ *   ./bot-opos6ul sq                       # defauts : (300,300,0), 500mm, 1 tour CCW
+ *   ./bot-opos6ul sq 400 300 0 500 2       # 2 tours CCW
+ *   ./bot-opos6ul sq 400 300 0 500 1 1     # 1 tour CW
+ *   ./bot-opos6ul sq 500 500 0 1000 1      # grand carre 1m
+ *
+ * === Vrai robot (ARM) ===
+ *
+ *   ./bot-opos6ul sq 300 300 0 400 1       # petit carre 400mm, prudent
+ *   ./bot-opos6ul sq 500 500 0 600 3       # 3 tours de 600mm pour tester repetabilite
+ *   ./bot-opos6ul sq 500 500 0 600 1 1     # meme en sens horaire
  */
 
 #include "O_Asserv_SquareTest.hpp"
