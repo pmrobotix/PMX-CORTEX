@@ -235,6 +235,8 @@ if(DRIVER_LIB)
         src/bot-test-opos6ul/O_DetectionScenarioTest.cpp
         src/bot-test-opos6ul/O_DetectionForwardTest.cpp
         src/bot-test-opos6ul/O_DetectionBackwardTest.cpp
+        src/bot-test-opos6ul/O_DetectionRetryForwardTest.cpp
+        src/bot-test-opos6ul/O_DetectionRetryBackwardTest.cpp
         src/bot-test-opos6ul/O_AsservXYRotateTest.cpp
         src/bot-test-opos6ul/O_AsservTest.cpp
         src/bot-test-opos6ul/O_AsservCalibrationTest.cpp

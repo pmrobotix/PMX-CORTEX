@@ -11,12 +11,15 @@
 #include "O_DetectionScenarioTest.hpp"
 
 #include <algorithm>
+#include <atomic>
+#include <chrono>
 #include <cmath>
 #include <cstring>
 #include <fstream>
 #include <limits.h>
 #include <sstream>
 #include <string>
+#include <thread>
 #include <unistd.h>
 
 #include "utils/json_3.11.2.hpp"
@@ -80,12 +83,23 @@ void applyIgnoreForTask(Sensors& sensors, const json& task)
     }
 }
 
-TRAJ_STATE executeTask(Navigator& nav, Sensors& sensors, const json& task)
+// Parse le champ "retry" d'un scenario et retourne le preset correspondant.
+// Defaut : noRetry si champ absent.
+RetryPolicy parseRetryPolicy(const json& scenario)
+{
+    std::string p = scenario.value("retry", "noRetry");
+    if (p == "standard")   return RetryPolicy::standard();
+    if (p == "aggressive") return RetryPolicy::aggressive();
+    if (p == "patient")    return RetryPolicy::patient();
+    if (p == "quickTest")  return RetryPolicy::quickTest();
+    return RetryPolicy::noRetry();
+}
+
+TRAJ_STATE executeTask(Navigator& nav, Sensors& sensors, const json& task,
+                        const RetryPolicy& policy)
 {
     std::string type = task.value("type", "");
     std::string subtype = task.value("subtype", "");
-
-    RetryPolicy policy = RetryPolicy::noRetry();
 
     applyIgnoreForTask(sensors, task);
 
@@ -289,18 +303,43 @@ void O_DetectionScenarioTest::executeScenariosFromJson(const char* jsonText,
         // 3. Stabilisation detection
         utils::sleep_for_micros(200000);
 
+        // 3b. Timer async optionnel : clearInjectedAdv apres N ms.
+        //     Utile pour les scenarios "retry" ou l'adv "bouge" pendant que le
+        //     robot attend dans la boucle de retry.
+        int advClearAtMs = sc.value("adv_clear_at_ms", -1);
+        std::atomic<bool> timerCancel{false};
+        std::thread advTimer;
+        if (advClearAtMs >= 0 && res.hasAdv) {
+            advTimer = std::thread([&sensors, advClearAtMs, &timerCancel]() {
+                auto until = std::chrono::steady_clock::now()
+                            + std::chrono::milliseconds(advClearAtMs);
+                while (!timerCancel && std::chrono::steady_clock::now() < until) {
+                    std::this_thread::sleep_for(std::chrono::milliseconds(10));
+                }
+                if (!timerCancel) {
+                    logger().info() << "  adv_clear_at_ms timer fire : clearInjectedAdv" << logs::end;
+                    sensors.clearInjectedAdv();
+                }
+            });
+        }
+
         // 4. Execution des tasks
         Navigator nav(&robot);
+        RetryPolicy policy = parseRetryPolicy(sc);
         utils::Chronometer chrono("scenario");
         chrono.start();
 
         TRAJ_STATE ts = TRAJ_FINISHED;
         for (const auto& task : tasks) {
-            ts = executeTask(nav, sensors, task);
+            ts = executeTask(nav, sensors, task, policy);
             if (ts != TRAJ_FINISHED) break;   // abort sur premier echec
         }
 
         chrono.stop();
+
+        // Stopper le timer (si encore en vie)
+        timerCancel = true;
+        if (advTimer.joinable()) advTimer.join();
         res.actual = ts;
         res.durationMs = chrono.getElapsedTimeInMilliSec();
 
@@ -314,8 +353,13 @@ void O_DetectionScenarioTest::executeScenariosFromJson(const char* jsonText,
         //    traverse l'adv ? (SIMU n'a pas de physique de collision donc le robot
         //    peut passer au travers si la detection ne trigger pas).
         //    On ne verifie que pour les mouvements translationnels.
+        //    Skip aussi pour les scenarios retry avec adv_clear_at_ms : l'adv
+        //    ayant disparu pendant le wait, la traversee de sa position initiale
+        //    est normale et n'est pas une collision.
+        bool advWasCleared = (sc.value("adv_clear_at_ms", -1) >= 0);
         res.crossesAdv = false;
-        if (res.hasAdv && res.command != "ROTATE_DEG" && res.command != "ROTATE_ABS_DEG"
+        if (res.hasAdv && !advWasCleared
+            && res.command != "ROTATE_DEG" && res.command != "ROTATE_ABS_DEG"
             && res.command != "FACE_TO" && res.command != "FACE_BACK_TO") {
             float dmin = distPointToSegment(res.advX, res.advY,
                                              res.startX, res.startY,

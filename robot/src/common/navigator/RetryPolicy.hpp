@@ -49,6 +49,13 @@ struct RetryPolicy
     {
         return { 2000000, 20, 10, 0, 0, false };
     }
+
+    //! Retry rapide pour tests automatises : 500ms entre essais, 2 tentatives.
+    //! Permet de tester la boucle retry sans payer 2s d'attente par essai.
+    static RetryPolicy quickTest()
+    {
+        return { 500000, 2, 2, 0, 0, false };
+    }
 };
 
 #endif
