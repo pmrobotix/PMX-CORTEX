@@ -105,7 +105,11 @@ void Robot::configureDefaultConsoleArgs() {
 
     cArgs_.addOption('k', "skip setup");
 
-    cArgs_.addOption('b', "color BLUE"); //(without PMXYELLOW!!)
+    // Convention PMX : color0=BLEU=primaire (coords strategie ecrites dans ce
+    // repere). Defaut BLEU si aucune option passee. /y pour forcer JAUNE
+    // (miroir x -> 3000-x). /b garde pour retro-compat et lisibilite (no-op).
+    cArgs_.addOption('b', "color BLUE (defaut, explicite)");
+    cArgs_.addOption('y', "color YELLOW (miroir strategie)");
 
     cArgs_.addArgument("type", "Type of match (t)est/(m)atch/(p)ause", "m");
     {
@@ -310,11 +314,13 @@ void Robot::begin(int argc, char** argv) {
 //        this->setMyColor(PMXBLUE);
 //    }
 
-    if (cArgs_['b']) {
-        logger().debug() << "b = " << (int) cArgs_['b'] << logs::end;
+    // /y = JAUNE explicite ; /b = BLEU explicite ; sinon defaut BLEU (color0 primaire)
+    if (cArgs_['y']) {
+        this->setMyColor(PMXYELLOW);
+    }
+    else {
         this->setMyColor(PMXBLUE);
     }
-    else this->setMyColor(PMXYELLOW);//defaut si aucune couleur n'est specifiee
     logger().debug() << "setMyColor done; getMyColor() = " << getMyColor() << logs::end;
 
 

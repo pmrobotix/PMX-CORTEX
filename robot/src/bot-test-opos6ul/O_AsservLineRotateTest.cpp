@@ -141,7 +141,7 @@ void O_AsservLineRotateTest::run(int argc, char **argv)
 
 	// Init asserv : setPositionAndColor AVANT startMotionTimerAndOdo
 	// (le set position reset la Nucleo et definit la couleur de match)
-	robot.asserv().setPositionAndColor(coordx, coordy, coorda_deg, (bool)(robot.getMyColor() != PMXYELLOW));
+	robot.asserv().setPositionAndColor(coordx, coordy, coorda_deg, (bool)(robot.getMyColor() == PMXYELLOW));
 	robot.asserv().startMotionTimerAndOdo(false);
 	robot.asserv().assistedHandling();
 	robot.asserv().setSimuSpeedMultiplier(multiplier);

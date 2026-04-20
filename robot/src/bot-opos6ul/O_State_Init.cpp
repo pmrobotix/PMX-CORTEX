@@ -426,9 +426,9 @@ void O_State_Init::setPos()
 
 	// setPositionAndColor AVANT startMotionTimerAndOdo (reset Nucleo + match ref)
 	if (robot.strategy() == "tabletest")
-		robot.asserv().setPositionAndColor(1150, 130, 90.0, (bool) (robot.getMyColor() != PMXYELLOW));
+		robot.asserv().setPositionAndColor(1150, 130, 90.0, (robot.getMyColor() == PMXYELLOW));
 	else
-		robot.asserv().setPositionAndColor(1150, 130, 90.0, (bool) (robot.getMyColor() != PMXYELLOW));
+		robot.asserv().setPositionAndColor(1150, 130, 90.0, (robot.getMyColor() == PMXYELLOW));
 	robot.asserv().startMotionTimerAndOdo(true);
 	ROBOTPOSITION p = robot.sharedPosition()->getRobotPosition();
 	logger().info() << "O_State_Init::setPos() svgPrintPosition x=" << p.x << " y=" << p.y

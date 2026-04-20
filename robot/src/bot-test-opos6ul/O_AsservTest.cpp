@@ -107,11 +107,11 @@ void O_AsservTest::run(int argc, char **argv)
 
 	logger().info() << "COORD avec x=" << coordx << " y=" << coordy << " a=" << coorda_deg << logs::end;
 
-	// setMyColor + setPositionAndColor AVANT startMotionTimerAndOdo
+	// setPositionAndColor AVANT startMotionTimerAndOdo
 	// (la couleur doit etre definie avant le set position car il applique le miroir,
 	//  et le set position reset la Nucleo pour le debut de match)
-	robot.setMyColor(PMXYELLOW);
-	robot.asserv().setPositionAndColor(coordx, coordy, coorda_deg, (robot.getMyColor() != PMXYELLOW));
+	// Couleur respectee depuis CLI (defaut BLEU, /y pour JAUNE).
+	robot.asserv().setPositionAndColor(coordx, coordy, coorda_deg, (robot.getMyColor() == PMXYELLOW));
 	robot.asserv().startMotionTimerAndOdo(true);
 
 	logger().info() << "setposition done:" << " x=" << robot.asserv().pos_getX_mm() << " y="

@@ -45,7 +45,7 @@ void O_AsservCalibrationTest::run(int argc, char** argv)
 
     utils::Chronometer chrono("O_AsservCalibrationTest");
 
-    robot.asserv().setPositionAndColor(100.0, 800.0, 0.0, (robot.getMyColor() != PMXYELLOW));
+    robot.asserv().setPositionAndColor(100.0, 800.0, 0.0, (robot.getMyColor() == PMXYELLOW));
     robot.asserv().startMotionTimerAndOdo(true);
 
     robot.svgPrintPosition();
@@ -55,7 +55,7 @@ void O_AsservCalibrationTest::run(int argc, char** argv)
     if (step == 0) {
         //set position
         logger().info() << "set position..." << logs::end;
-        robot.asserv().setPositionAndColor(300, 500, 0.0, (robot.getMyColor() != PMXYELLOW));
+        robot.asserv().setPositionAndColor(300, 500, 0.0, (robot.getMyColor() == PMXYELLOW));
 
         while (1) {
 

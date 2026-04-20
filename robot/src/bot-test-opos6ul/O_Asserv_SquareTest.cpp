@@ -19,23 +19,23 @@
  *   nb  : nombre de tours       (defaut 1)
  *   cw  : 0=CCW (defaut), 1=CW
  *
- * Couleur :
- *   - /b        : cote BLEU (color0, coords litterales, pas de miroir)
- *   - sans /b   : cote JAUNE (defaut Robot.cpp, miroir x -> 3000-x applique)
+ * Couleur (convention PMX color0=bleu primaire) :
+ *   - defaut    : BLEU (pas de miroir, coords litterales)
+ *   - /y        : JAUNE (miroir x -> 3000-x applique)
  *
  * === SIMU ===
  *
- *   ./bot-opos6ul /b sq                     # defauts, BLEU
- *   ./bot-opos6ul /b sq 400 300 0 500 2     # 2 tours CCW cote BLEU
- *   ./bot-opos6ul /b sq 400 300 0 500 1 1   # 1 tour CW cote BLEU
- *   ./bot-opos6ul    sq 400 300 0 500 2     # 2 tours CCW cote JAUNE (miroir)
- *   ./bot-opos6ul /b sq 500 500 0 1000 1    # grand carre 1m BLEU
+ *   ./bot-opos6ul sq                        # defauts, BLEU
+ *   ./bot-opos6ul sq 400 300 0 500 2        # 2 tours CCW cote BLEU
+ *   ./bot-opos6ul sq 400 300 0 500 1 1      # 1 tour CW cote BLEU
+ *   ./bot-opos6ul /y sq 400 300 0 500 2     # 2 tours CCW cote JAUNE (miroir)
+ *   ./bot-opos6ul sq 500 500 0 1000 1       # grand carre 1m BLEU
  *
  * === Vrai robot (ARM) ===
  *
- *   ./bot-opos6ul /b sq 300 300 0 400 1     # petit carre 400mm BLEU, prudent
- *   ./bot-opos6ul /b sq 500 500 0 600 3     # 3 tours pour repetabilite
- *   ./bot-opos6ul /b sq 500 500 0 600 1 1   # sens horaire
+ *   ./bot-opos6ul sq 300 300 0 400 1        # petit carre 400mm BLEU, prudent
+ *   ./bot-opos6ul sq 500 500 0 600 3        # 3 tours pour repetabilite
+ *   ./bot-opos6ul /y sq 500 500 0 600 1 1   # sens horaire cote JAUNE
  */
 
 #include "O_Asserv_SquareTest.hpp"

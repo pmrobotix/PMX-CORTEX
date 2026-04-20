@@ -30,7 +30,7 @@ void O_SensorsTest::run(int argc, char** argv) {
     logger().info() << "N° " << this->position() << " - Executing - " << this->desc() << logs::end;
 
     OPOS6UL_RobotExtended &robot = OPOS6UL_RobotExtended::instance();
-    robot.setMyColor(PMXYELLOW);
+    // Couleur respectee depuis CLI (defaut BLEU, /y pour JAUNE).
     //robot.asserv().startMotionTimerAndOdo(false); //assistedHandling is enabled with "true" !
     utils::Chronometer chrono("O_SensorsTest");
     chrono.start();
@@ -67,7 +67,7 @@ void O_SensorsTest::run(int argc, char** argv) {
     //    Rien ne doit fonctionner avant : le set position remet tout a zero
     //    cote Nucleo. Avant ce setPos, les positions recues du thread CBOR
     //    sont les residus de la session precedente -> filtre par positionInitialized_.
-    robot.asserv().setPositionAndColor(200.0, 200.0, 0.0,(bool)(robot.getMyColor() != PMXYELLOW));
+    robot.asserv().setPositionAndColor(200.0, 200.0, 0.0,(bool)(robot.getMyColor() == PMXYELLOW));
 
     // 2. Demarrer le thread CBOR (reception des positions Nucleo en continu)
     //    La methode inclut une attente 50ms pour laisser la Nucleo appliquer le setPos.
