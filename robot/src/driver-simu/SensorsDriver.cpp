@@ -35,67 +35,49 @@ void SensorsDriverSimu::displayNumber(int number)
 }
 
 //a deplacer dans RobotPositionShared ?transformPosREPTABLE_to_PosREPROBOT Ne sert uniquement a la simu des sensors ?
+//
+// Convention alignee sur Sensors.cpp (docstring "Convention beacon : 0° = devant du robot") :
+//   - theta_deg  : angle vers l'adv vu du robot. 0° = adv pile devant, sens trigo positif = gauche.
+//   - y_rep_robot : composante avant (y > 0 = adv devant robot).
+//   - x_rep_robot : composante laterale (x > 0 = adv a droite, x < 0 = gauche).
+//
+// Sensors::front reconstruit la position table avec :
+//   a_table = robot.theta + theta_deg_rad
+//   x_adv_table = robot.x + d * cos(a_table)
+//   y_adv_table = robot.y + d * sin(a_table)
+// Ce qui doit redonner (x_table, y_table). On verifie la coherence ci-dessous.
 RobotPos SensorsDriverSimu::transformPosTableToPosRobot(int nb, float x_table, float y_table)
 {
     loggerSvg().info() << "<circle cx=\"" << x_table << "\" cy=\"" << -y_table << "\" r=\"5\" fill=\"red\" />"
             << logs::end;
 
-    //coord table à transformer en coordonnées robot: 200,700 => position robot robot_
-    //ROBOTPOSITION p = robotPositionShared_->getRobotPosition(); //robot_->asserv().pos_getPosition();
     ROBOTPOSITION p = pos_pour_calcul_;
 
     loggerSvg().info() << "<circle cx=\"" << p.x << "\" cy=\"" << -p.y << "\" r=\"3\" fill=\"blue\" />" << "<line x1=\""
             << p.x << "\" y1=\"" << -p.y << "\" x2=\"" << p.x + cos(p.theta) * 25 << "\" y2=\""
             << -p.y - sin(p.theta) * 25 << "\" stroke-width=\"0.1\" stroke=\"grey\"  />" << logs::end;
 
-    float d = std::sqrt(square(y_table-p.y) + square(x_table - p.x));
+    // Vecteur robot -> adv en coord table
+    float dx = x_table - p.x;
+    float dy = y_table - p.y;
+    float d  = std::sqrt(dx * dx + dy * dy);
 
-    float x_rep_robot = 0;
-    float y_rep_robot = 0;
+    // Angle absolu du vecteur puis relatif au robot (0 = adv devant)
+    float alpha_rad = std::atan2(dy, dx) - p.theta;
+    alpha_rad = WrapAngle2PI(alpha_rad);
+    float alpha_deg = alpha_rad * 180.0f / (float)M_PI;
 
-    float b_rad = std::asin((y_table - p.y) / d);
+    // Projection dans le repere robot :
+    //  axe "avant" (y_rob) = direction theta  : cos(theta), sin(theta)
+    //  axe "droite" (x_rob) = perpendiculaire droite : sin(theta), -cos(theta)
+    float y_rep_robot = dx * std::cos(p.theta) + dy * std::sin(p.theta);
+    float x_rep_robot = dx * std::sin(p.theta) - dy * std::cos(p.theta);
 
-    //pb quadrant car on ne connait pas les angles
-//    if (p.x <= x_table) {
-//        if (p.y <= y_table )
-//        {
-//           //
-//        }
-//        else
-//        {
-//            //b_rad = - b_rad ;
-//        }
-//    } else {
-//        if (p.y <= y_table )
-//        {
-//            b_rad = -M_PI - b_rad;
-//        }
-//        else
-//        {
-//            b_rad = -M_PI - b_rad ;
-//        }
-//    }
-
-    //cas du cadran en x
-    if (p.x >= x_table) {
-        b_rad = -M_PI - b_rad;
-    }
-
-    float alpha_rad = b_rad - p.theta + M_PI_2;
-
-    alpha_rad= WrapAngle2PI(alpha_rad);
-
-    //angle entre l'axe devant le robot et le segment entre les milieu des 2 robots
-    float alpha_deg = (alpha_rad * 180.0 / M_PI); //a_deg_rep_robot
-
-    logger().debug() << __FUNCTION__ << "DEBUG (" << x_table << "," << y_table << ") b_deg=" << b_rad * 180.0 / M_PI
-            << " p.theta=" << p.theta * 180.0 / M_PI << " RESULT alpha_deg=" << alpha_deg << logs::end;
-
-    y_rep_robot = d * std::sin(alpha_rad);
-    x_rep_robot = d * std::cos(alpha_rad);
-
-    logger().debug() << __FUNCTION__ << "DEBUG (" << x_table << "," << y_table << ") x_rep_robot=" << x_rep_robot
-            << " y_rep_robot=" << y_rep_robot << " a_deg_rep_robot=" << alpha_deg << logs::end;
+    logger().debug() << __FUNCTION__ << " (" << x_table << "," << y_table
+            << ") dx=" << dx << " dy=" << dy << " d=" << d
+            << " p.theta=" << (p.theta * 180.0f / M_PI) << "deg"
+            << " -> x_rob=" << x_rep_robot << " y_rob=" << y_rep_robot
+            << " theta_rob=" << alpha_deg << "deg" << logs::end;
 
     RobotPos pos = { nb, x_rep_robot, y_rep_robot, alpha_deg, d };
 
@@ -141,6 +123,11 @@ int SensorsDriverSimu::sync()
     // table -> repere robot dans transformPosTableToPosRobot).
     pos_pour_calcul_ = robotPositionShared_->getRobotPosition(0);
 
+    // Timestamp du sync, meme reference (chrono_) que pushHistory() cote asserv.
+    // Sans ca, Sensors::sensorOnTimer calcule t_mesure_ms en underflow et
+    // getPositionAt renvoie une position invalide -> frontLevel reste a 0.
+    last_sync_ms_ = (uint32_t)(robotPositionShared_->chrono_.getElapsedTimeInMicroSec() / 1000);
+
     vadv_.clear();
 
     // Republication de l'adv injecte (persistant entre sync) pour les tests
@@ -150,7 +137,11 @@ int SensorsDriverSimu::sync()
         vadv_.push_back(pos);
     }
 
-    return 0;
+    // Retourne > 0 pour signaler "nouvelle frame beacon disponible" au SensorsThread.
+    // Sans ca, sensorOnTimer skipperait tout le traitement (filtrage + publication
+    // du DetectionEvent). En ARM ce code simule ce que fait la vraie balise quand
+    // son seq beacon change.
+    return 1;
 }
 
 int SensorsDriverSimu::rightSide()

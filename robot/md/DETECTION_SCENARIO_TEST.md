@@ -12,7 +12,7 @@ Objectif : **etablir un baseline comportemental avant T8** (integration `isOnPat
 
 - Fichiers : `src/bot-opos6ul/O_DetectionScenarioTest.cpp` + `.hpp`
 - Compile dans le binaire `bot-opos6ul`
-- Active par CLI : `./bot-opos6ul /detection` (ou `/detection-a`, `/detection-b`, `/detection-c`)
+- Active par CLI : `./bot-opos6ul /k det` (niveau A seul pour l'instant)
 - Utilise tout le stack SIMU :
   - `AsservDriverSimu` (mouvements)
   - `SensorsDriverSimu` (capteurs + injection persistante)
@@ -43,16 +43,13 @@ Tests unitaires : `test/driver/SensorsDriverTest.cpp` (3 tests : persistance, ov
 ### 2.2 Invocation CLI
 
 ```
-./bot-opos6ul /detection          # tout (A + B + C)
-./bot-opos6ul /detection-a        # niveau A seul (rapide, iteration)
-./bot-opos6ul /detection-b        # niveau B (retry)
-./bot-opos6ul /detection-c        # niveau C (strategie)
+./bot-opos6ul /k det        # niveau A (actuel) — A+B+C a venir
 ```
 
 ### 2.3 Sorties
 
 - **Log ASCII** dans la console (pattern O_NavigatorMovementTest)
-- **SVG de synthese** a cote du binaire : `build-simu-debug/bin/detection_scenarios.svg`
+- **SVG de synthese** a cote du binaire : `build-simu-debug/bin/test_detection_scenarios.svg`
   - Grille verticale : niveau A en haut, B au milieu, C en bas
   - Chaque cellule : robot + cible + adv + trajectoire reelle + couloir isOnPath + label `[PASS]/[FAIL]`
 
@@ -212,7 +209,7 @@ for (auto& a : actions) {
 
 ## 5. SVG de synthese
 
-Fichier : `build-simu-debug/bin/detection_scenarios.svg`
+Fichier : `build-simu-debug/bin/test_detection_scenarios.svg`
 
 Grille verticale, 1 colonne, 1 cellule par scenario :
 
@@ -260,10 +257,10 @@ Chaque cellule contient :
 ```
 1. Ecrire O_DetectionScenarioTest avec A + B + C
 2. Lancer -> baseline (probablement A3, A6, A8 echouent)
-3. Sauvegarder detection_scenarios.svg comme "baseline_before_T8.svg"
+3. Sauvegarder test_detection_scenarios.svg comme "baseline_before_T8.svg"
 4. Implementer T8 (isOnPath runtime + MovementType::GOTO / GOTO_NO_STOP)
 5. Relancer -> les scenarios critiques passent au vert
-6. Sauvegarder detection_scenarios.svg comme "after_T8.svg"
+6. Sauvegarder test_detection_scenarios.svg comme "after_T8.svg"
 7. Comparer visuellement -> preuve du gain
 ```
 

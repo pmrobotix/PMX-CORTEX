@@ -46,7 +46,7 @@ void logs::LoggerFactory::initialize()
     add(logs::Level::INFO, "AsservDriver.SIMU.SVG", "svg");
 
     //COMMON
-    add(logs::Level::INFO, "Asserv", "console");
+    add(logs::Level::DEBUG, "Asserv", "console");
     add(logs::Level::DEBUG, "IAbyPath", "console");
     add(logs::Level::DEBUG, "Sensors", "console"); // DEBUG temporaire pour voir la projection
     add(logs::Level::DEBUG, "SensorsThread", "console"); //TODO remettre en INFO après debug
@@ -75,6 +75,7 @@ void logs::LoggerFactory::initialize()
     add(logs::Level::DEBUG, "Navigator", "console");
     add(logs::Level::DEBUG, "O_NavigatorMovementTest", "console");
     add(logs::Level::DEBUG, "O_NavigatorBackTest", "console");
+    add(logs::Level::DEBUG, "O_DetectionScenarioTest", "console");
     add(logs::Level::INFO, "O_AsservTest", "console");
     add(logs::Level::INFO, "O_ButtonBarTest", "console");
     add(logs::Level::INFO, "O_GroveColorTest", "console");

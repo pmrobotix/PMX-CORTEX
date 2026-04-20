@@ -41,6 +41,11 @@ private:
     float injectedAdvY_ = 0.0f;
     bool  injectedAdvEnabled_ = false;
 
+    // Timestamp du dernier sync (aligne sur chrono_ de robotPositionShared_).
+    // Meme principe qu'en ARM : permet a Sensors::sensorOnTimer de calculer
+    // t_mesure_ms et chercher la position robot historique correspondante.
+    uint32_t last_sync_ms_ = 0;
+
     ROBOTPOSITION pos_pour_calcul_;
     ROBOTPOSITION pos_pour_calcul_prec_;
     ARobotPositionShared *robotPositionShared_;
@@ -81,6 +86,9 @@ public:
     // Injection persistante (voir ASensorsDriver)
     void setInjectedAdv(float x_table_mm, float y_table_mm) override;
     void clearInjectedAdv() override;
+
+    // Timestamp du dernier sync (ms, meme horloge que chrono_ du robot).
+    uint32_t getLastSyncMs() override { return last_sync_ms_; }
 
 
     int rightSide();

@@ -1,9 +1,12 @@
 #ifndef SIMU_ASSERVDRIVER_HPP_
 #define SIMU_ASSERVDRIVER_HPP_
 
+#include <atomic>
 #include <cmath>
 #include <cstdio>
 #include <string>
+#include <condition_variable>
+#include <queue>
 #include <thread>
 
 #include "interface/AAsservDriver.hpp"
@@ -85,6 +88,49 @@ private:
 
     ARobotPositionShared *robotPositionShared_;
 
+    // ========== Queue de commandes (imitation Nucleo CBOR asynchrone) ==========
+    // Les motion_* publiques enqueue une commande et retournent immediatement.
+    // Le thread execute() pop les commandes une par une et les execute via les
+    // doMotion_* privees (logique bloquante). emergencyStop_ vide la queue.
+    enum class CmdType {
+        LINE, ROTATE_RAD, ORBITAL_TURN,
+        FACE_TO, FACE_BACK_TO,
+        GOTO, GOBACK_TO, GOTO_CHAIN, GOBACK_TO_CHAIN
+    };
+    struct SimuCommand {
+        CmdType type;
+        float   x, y;         // cibles / angle / distance selon type
+        float   p3;           // angle supplementaire (ORBITAL)
+        bool    forward;      // ORBITAL
+        bool    turnRight;    // ORBITAL
+    };
+    std::queue<SimuCommand> cmdQueue_;
+    std::mutex              queueMutex_;
+    std::condition_variable queueCv_;
+
+    void enqueueCommand(const SimuCommand& cmd);
+    bool popCommand(SimuCommand& out);
+    void flushQueue();
+
+    // Logique bloquante (anciennes motion_*). Executees par le thread execute()
+    // apres pop d'une commande. Ne doivent pas etre appelees en direct par
+    // l'exterieur (sinon blocage du thread appelant).
+    void doMotionLine(float dist_mm);
+    void doMotionRotateRad(float angle_radians);
+    void doMotionOrbitalTurnRad(float angle_radians, bool forward, bool turnRight);
+    void doMotionFaceTo(float x_mm, float y_mm);
+    void doMotionFaceBackTo(float x_mm, float y_mm);
+    void doMotionGoTo(float x_mm, float y_mm);
+    void doMotionGoBackTo(float x_mm, float y_mm);
+
+    // Sleep decoupe en chunks de ~10ms, poll emergencyStop_ a chaque chunk.
+    // Sans ca, un sleep_for_micros monolithique pendant un increment peut
+    // rater un setEmergencyStop+resetEmergencyStop rapide (race avec le
+    // cleanup de test entre deux scenarios) et le motion repartirait sur
+    // un p_ reinitialise par le scenario suivant (faux positions).
+    // Retourne true si emergency detecte (l'appelant doit return).
+    bool sleepWithCancelCheck(int total_us);
+
 protected:
 
     virtual void execute();
@@ -100,6 +146,12 @@ public:
     void computeCounterR();
 
     bool emergencyStop_;
+    // Latch : set par emergencyStop(), NON remis a zero par resetEmergencyStop().
+    // Ne redevient false que quand execute() pop une nouvelle commande.
+    // Sans ce latch, un setEmergencyStop+resetEmergencyStop rapide (cleanup entre
+    // scenarios de test) peut passer sous le radar du doMotion qui vient de
+    // sortir d'un sleep et lire emergencyStop_=false apres le reset.
+    std::atomic<bool> abortCurrent_{false};
 
     float leftSpeed_; //real speed in m/s
     float rightSpeed_;

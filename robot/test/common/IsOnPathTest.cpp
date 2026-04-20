@@ -7,7 +7,7 @@
  *
  * Sorties de validation :
  *   - Log ASCII dans la console pour chaque cas (robot/cible/adv, attendu/obtenu).
- *   - Fichier SVG "isonpath_tests.svg" ecrit A COTE DU BINAIRE de test
+ *   - Fichier SVG "test_isonpath_tests.svg" ecrit A COTE DU BINAIRE de test
  *     avec les 10 scenes en grille 2x5 (ouvrir dans un navigateur).
  *
  * Parametres de reference (PMX 2026) :
@@ -270,7 +270,7 @@ void writeSvgFile()
 
 	svg << "</svg>\n";
 
-	std::string path = exeDirectory() + "/isonpath_tests.svg";
+	std::string path = exeDirectory() + "/test_isonpath_tests.svg";
 	std::ofstream ofs(path);
 	if (ofs) {
 		ofs << svg.str();

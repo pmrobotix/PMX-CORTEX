@@ -39,7 +39,10 @@ void test::SensorsDriverTest::testIsConnected()
 void test::SensorsDriverTest::testSyncReturnsZero()
 {
 	int ret = sensorsdriver->sync();
-	this->assert(ret == 0, "sync() retourne 0 (pas d'erreur) en simu");
+	// En SIMU, sync() retourne >=0 (pas d'erreur). La valeur > 0 signifie
+	// "nouvelle frame beacon disponible" et declenche le filtrage dans
+	// SensorsThread::sensorOnTimer().
+	this->assert(ret >= 0, "sync() retourne >=0 (pas d'erreur) en simu");
 }
 
 void test::SensorsDriverTest::testClearPositions()

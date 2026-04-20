@@ -222,29 +222,31 @@ if(DRIVER_LIB)
         src/bot-opos6ul/O_State_DecisionMakerIA.cpp
         src/bot-opos6ul/O_State_NewInit.cpp
         src/bot-opos6ul/O_State_WaitEndOfMatch.cpp
-        src/bot-opos6ul/O_LedBarTest.cpp
-        src/bot-opos6ul/O_TiretteTest.cpp
-        src/bot-opos6ul/O_ButtonBarTest.cpp
-        src/bot-opos6ul/O_LcdBoardTest.cpp
-        src/bot-opos6ul/O_ActionTimerSchedulerTest.cpp
-        src/bot-opos6ul/O_IAbyPathTest.cpp
-        src/bot-opos6ul/O_AsservLineRotateTest.cpp
-        src/bot-opos6ul/O_AsservWaypointTest.cpp
-        src/bot-opos6ul/O_NavigatorMovementTest.cpp
-        src/bot-opos6ul/O_NavigatorBackTest.cpp
-        src/bot-opos6ul/O_AsservXYRotateTest.cpp
-        src/bot-opos6ul/O_AsservTest.cpp
-        src/bot-opos6ul/O_AsservCalibrationTest.cpp
-        src/bot-opos6ul/O_Asserv_SquareTest.cpp
-        src/bot-opos6ul/O_Asserv_CalageTest.cpp
-        src/bot-opos6ul/O_GroveColorTest.cpp
-        src/bot-opos6ul/O_ServoStepTest.cpp
-        src/bot-opos6ul/O_ServoObjectsTest.cpp
-        src/bot-opos6ul/O_SensorsTest.cpp
+        src/bot-test-opos6ul/O_LedBarTest.cpp
+        src/bot-test-opos6ul/O_TiretteTest.cpp
+        src/bot-test-opos6ul/O_ButtonBarTest.cpp
+        src/bot-test-opos6ul/O_LcdBoardTest.cpp
+        src/bot-test-opos6ul/O_ActionTimerSchedulerTest.cpp
+        src/bot-test-opos6ul/O_IAbyPathTest.cpp
+        src/bot-test-opos6ul/O_AsservLineRotateTest.cpp
+        src/bot-test-opos6ul/O_AsservWaypointTest.cpp
+        src/bot-test-opos6ul/O_NavigatorMovementTest.cpp
+        src/bot-test-opos6ul/O_NavigatorBackTest.cpp
+        src/bot-test-opos6ul/O_DetectionScenarioTest.cpp
+        src/bot-test-opos6ul/O_AsservXYRotateTest.cpp
+        src/bot-test-opos6ul/O_AsservTest.cpp
+        src/bot-test-opos6ul/O_AsservCalibrationTest.cpp
+        src/bot-test-opos6ul/O_Asserv_SquareTest.cpp
+        src/bot-test-opos6ul/O_Asserv_CalageTest.cpp
+        src/bot-test-opos6ul/O_GroveColorTest.cpp
+        src/bot-test-opos6ul/O_ServoStepTest.cpp
+        src/bot-test-opos6ul/O_ServoObjectsTest.cpp
+        src/bot-test-opos6ul/O_SensorsTest.cpp
     )
 
     target_include_directories(bot-opos6ul PRIVATE
         src/bot-opos6ul
+        src/bot-test-opos6ul
     )
 
     target_link_libraries(bot-opos6ul PRIVATE pmx-common ${DRIVER_LIB} pmr-pathfinding)

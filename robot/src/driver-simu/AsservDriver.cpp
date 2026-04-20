@@ -113,7 +113,6 @@ AsservDriverSimu::~AsservDriverSimu()
 
 void AsservDriverSimu::execute()
 {
-
 	//int periodTime_us = 15000; //15MS FOR THE LEGO ROBOT, 2ms for opos6ul
 	utils::Chronometer chrono("AsservDriverSimu::execute().SIMU");
 	chrono.setTimer(periodTime_us_);
@@ -128,17 +127,44 @@ void AsservDriverSimu::execute()
 
 	while (1)
 	{
-//        if (asservSimuStarted_) {
+		// Dispatch d'une commande en queue (imitation Nucleo CBOR asynchrone).
+		// Les motion_* publiques enqueue ; on pop ici et on execute la logique
+		// bloquante dans ce thread. Pendant l'execution, emergencyStop_ est
+		// verifie a chaque sleep interne et interrompt la commande si besoin.
+		SimuCommand cmd;
+		if (popCommand(cmd)) {
+			// Nouvelle commande consommee : on peut relacher le latch abort de la precedente.
+			abortCurrent_ = false;
+			switch (cmd.type) {
+				case CmdType::LINE:             doMotionLine(cmd.x); break;
+				case CmdType::ROTATE_RAD:       doMotionRotateRad(cmd.x); break;
+				case CmdType::ORBITAL_TURN:     doMotionOrbitalTurnRad(cmd.x, cmd.forward, cmd.turnRight); break;
+				case CmdType::FACE_TO:          doMotionFaceTo(cmd.x, cmd.y); break;
+				case CmdType::FACE_BACK_TO:     doMotionFaceBackTo(cmd.x, cmd.y); break;
+				case CmdType::GOTO:             doMotionGoTo(cmd.x, cmd.y); break;
+				case CmdType::GOBACK_TO:        doMotionGoBackTo(cmd.x, cmd.y); break;
+				case CmdType::GOTO_CHAIN:       doMotionGoTo(cmd.x, cmd.y); break;
+				case CmdType::GOBACK_TO_CHAIN:  doMotionGoBackTo(cmd.x, cmd.y); break;
+			}
+			// Commande executee. Si queue vide, on repasse en IDLE (status=0).
+			// Sinon, on laisse asservStatus=1 pour la suite (chain).
+			// emergencyStop a la main sur asservStatus=2 via emergencyStop().
+			{
+				std::lock_guard<std::mutex> lk(queueMutex_);
+				if (cmdQueue_.empty() && !emergencyStop_) {
+					m_pos.lock();
+					p_.asservStatus = 0;
+					m_pos.unlock();
+				}
+			}
+		}
+
 		m_pos.lock();
 		p = odo_GetPosition();
 		robotPositionShared_->setRobotPosition(p); //retourne 0 en position ????
 		m_pos.unlock();
-//logger().error() << "execute() p.x=" << p.x << " p.y=" << p.y << " chrono=" << chrono.getElapsedTimeInMicroSec() << logs::end;
 
-		//TODO avoir accès au robot pour afficher du SVG
-		//robot_->svgw().writePosition_BotPos(p.x, p.y, p.theta);
-
-		//si different du precedentx
+		//si different du precedent
 		if (!(p.x == pp.x && p.y == pp.y && p.theta == pp.theta))
 		{
 
@@ -147,9 +173,62 @@ void AsservDriverSimu::execute()
 					<< -p.y - sin(p.theta) * 25 << "\" stroke-width=\"0.1\" stroke=\"grey\"  />" << logs::end;
 		}
 		pp = p;
-//        }
 		chrono.waitTimer();
 	}
+}
+
+// ========== Queue de commandes (imitation Nucleo CBOR) ==========
+
+void AsservDriverSimu::enqueueCommand(const SimuCommand& cmd)
+{
+	{
+		std::lock_guard<std::mutex> lk(queueMutex_);
+		cmdQueue_.push(cmd);
+	}
+	// Pre-marquer asservStatus=1 (running) des l'enqueue, avant meme que le thread
+	// ait pop la commande. Sinon, waitEndOfTrajWithDetection phase 1 (timeout 100ms)
+	// peut sortir par timeout si le thread prend >2ms a reagir, et phase 2 voit
+	// asservStatus=0 -> return TRAJ_FINISHED immediat (le robot ne bouge pas).
+	m_pos.lock();
+	p_.asservStatus = 1;
+	m_pos.unlock();
+
+	queueCv_.notify_one();
+}
+
+bool AsservDriverSimu::popCommand(SimuCommand& out)
+{
+	std::lock_guard<std::mutex> lk(queueMutex_);
+	if (cmdQueue_.empty()) return false;
+	out = cmdQueue_.front();
+	cmdQueue_.pop();
+	return true;
+}
+
+void AsservDriverSimu::flushQueue()
+{
+	std::lock_guard<std::mutex> lk(queueMutex_);
+	std::queue<SimuCommand> empty;
+	std::swap(cmdQueue_, empty);
+}
+
+// Sleep decoupe en chunks de 100ms, poll emergencyStop_ a chaque chunk
+// (memes granularite que l'asserv externe CBOR qui polle a 100ms).
+// Critique : sans ca, un sleep_for_micros monolithique pendant un increment
+// peut rater un setEmergencyStop+resetEmergencyStop rapide (race avec le
+// cleanup entre scenarios de test) et le motion repartirait sur un p_
+// reinitialise par le scenario suivant -> positions aberrantes.
+bool AsservDriverSimu::sleepWithCancelCheck(int total_us)
+{
+	const int chunk_us = 100000; // 100ms comme l'asserv ext
+	int slept = 0;
+	while (slept < total_us) {
+		if (emergencyStop_ || abortCurrent_) return true;
+		int to_sleep = (total_us - slept > chunk_us) ? chunk_us : (total_us - slept);
+		utils::sleep_for_micros(to_sleep);
+		slept += to_sleep;
+	}
+	return (emergencyStop_ || abortCurrent_);
 }
 
 //void AsservDriverSimu::execute() {
@@ -528,6 +607,11 @@ void AsservDriverSimu::emergencyStop()
 	p_.asservStatus = 2;
 	m_pos.unlock();
 	emergencyStop_ = true;
+	abortCurrent_ = true;   // latch pour survivre au reset
+	// Flush les commandes en attente : apres un emergency stop, on ne veut
+	// pas que les commandes enfilees s'executent. L'appelant doit
+	// resetEmergencyStop puis re-enqueue les bonnes commandes.
+	flushQueue();
 	stopMotorLeft();
 	stopMotorRight();
 }
@@ -538,6 +622,14 @@ void AsservDriverSimu::resetEmergencyStop()
 	p_.asservStatus = 0;
 	m_pos.unlock();
 	emergencyStop_ = false;
+	// NB: abortCurrent_ n'est PAS reset ici. Il sera remis a false quand
+	// execute() pop une nouvelle commande. Cela garantit qu'un doMotion
+	// en cours au moment du setEmergencyStop ne peut pas rater l'ordre
+	// d'arret si resetEmergencyStop est appele avant son prochain check.
+	// Flush aussi ici : apres un reset, on repart avec une queue propre.
+	// Sinon les commandes en attente de l'ancien contexte s'executent et
+	// decalent les scenarios suivants.
+	flushQueue();
 }
 
 TRAJ_STATE AsservDriverSimu::waitEndOfTraj()
@@ -547,7 +639,7 @@ TRAJ_STATE AsservDriverSimu::waitEndOfTraj()
 	return TRAJ_FINISHED;
 }
 
-void AsservDriverSimu::motion_FaceTo(float x_mm, float y_mm)
+void AsservDriverSimu::doMotionFaceTo(float x_mm, float y_mm)
 {
 	if (emergencyStop_) return;
 	m_pos.lock();
@@ -568,10 +660,10 @@ void AsservDriverSimu::motion_FaceTo(float x_mm, float y_mm)
 	logger().debug() << "t_init=" << (t_init * 180.0f) / M_PI << " deltaTheta deg=" << (deltaTheta * 180.0f) / M_PI
 			<< " thetaCible=" << (thetaCible * 180.0f) / M_PI << logs::end;
 
-	motion_RotateRad(deltaTheta);
+	doMotionRotateRad(deltaTheta);
 }
 
-void AsservDriverSimu::motion_FaceBackTo(float x_mm, float y_mm)
+void AsservDriverSimu::doMotionFaceBackTo(float x_mm, float y_mm)
 {
 	if (emergencyStop_) return;
 	m_pos.lock();
@@ -592,10 +684,10 @@ void AsservDriverSimu::motion_FaceBackTo(float x_mm, float y_mm)
 	logger().debug() << "t_init=" << (t_init * 180.0f) / M_PI << " deltaTheta deg=" << (deltaTheta * 180.0f) / M_PI
 			<< " thetaCible=" << (thetaCible * 180.0f) / M_PI << logs::end;
 
-	motion_RotateRad(deltaTheta);
+	doMotionRotateRad(deltaTheta);
 }
 
-void AsservDriverSimu::motion_Line(float dist_mm)
+void AsservDriverSimu::doMotionLine(float dist_mm)
 {
 	if (emergencyStop_) return;
 //calcul du point d'arrivé
@@ -641,8 +733,9 @@ void AsservDriverSimu::motion_Line(float dist_mm)
 	for (int nb = 0; nb < nb_increment; nb++)
 	{
 
-		if (emergencyStop_) return;
+		if (emergencyStop_ || abortCurrent_) return;
 
+		ROBOTPOSITION snapshot;
 		m_pos.lock();
 		//cas droite verticale
 		if (deltaXmm == 0)
@@ -656,10 +749,17 @@ void AsservDriverSimu::motion_Line(float dist_mm)
 			p_.x += inv * x_increment_m;
 			p_.y = ((a * p_.x) + b);
 		}
+		snapshot = p_;
 		m_pos.unlock();
 
-		if (simuSpeedMultiplier_ > 0)
-			utils::sleep_for_micros(increment_time_us * simuSpeedMultiplier_);
+		// Publier position partagee pendant l'execution (sinon sharedPosition
+		// reste fige pendant toute la duree du mouvement et waitEndOfTrajWith
+		// Detection ne voit pas asservStatus=1).
+		robotPositionShared_->setRobotPosition(snapshot);
+
+		if (simuSpeedMultiplier_ > 0) {
+			if (sleepWithCancelCheck(increment_time_us * simuSpeedMultiplier_)) return;
+		}
 	}
 
 	m_pos.lock();
@@ -676,17 +776,18 @@ void AsservDriverSimu::motion_Line(float dist_mm)
 
 	if (emergencyStop_) return;
 
-	if (simuSpeedMultiplier_ > 0)
-		utils::sleep_for_micros(increment_time_us * 5 * simuSpeedMultiplier_);
+	if (simuSpeedMultiplier_ > 0) {
+		if (sleepWithCancelCheck(increment_time_us * 5 * simuSpeedMultiplier_)) return;
+	}
 
 	m_pos.lock();
-	p_.asservStatus = 0;
+	// p_.asservStatus = 0; // gere par thread execute() quand queue vide
 	m_pos.unlock();
 	return;
 }
 
 //Rotation relative
-void AsservDriverSimu::motion_RotateRad(float angle_radians)
+void AsservDriverSimu::doMotionRotateRad(float angle_radians)
 {
 	if (emergencyStop_) return;
 
@@ -702,14 +803,21 @@ void AsservDriverSimu::motion_RotateRad(float angle_radians)
 	float temp_angle = angle_radians / nb_increment;
 	for (int nb = 0; nb < nb_increment; nb++)
 	{
-		if (emergencyStop_) return;
+		if (emergencyStop_ || abortCurrent_) return;
 
+		ROBOTPOSITION snapshot;
 		m_pos.lock();
 		float temp = p_.theta + temp_angle;
 		p_.theta = WrapAngle2PI(temp);
+		snapshot = p_;
 		m_pos.unlock();
-		if (simuSpeedMultiplier_ > 0)
-			utils::sleep_for_micros(increment_time_us * simuSpeedMultiplier_);
+
+		// Publier sharedPosition (voir doMotionLine pour raison)
+		robotPositionShared_->setRobotPosition(snapshot);
+
+		if (simuSpeedMultiplier_ > 0) {
+			if (sleepWithCancelCheck(increment_time_us * simuSpeedMultiplier_)) return;
+		}
 	}
 
 	m_pos.lock();
@@ -723,18 +831,19 @@ void AsservDriverSimu::motion_RotateRad(float angle_radians)
 		return;
 	}
 
-	if (simuSpeedMultiplier_ > 0)
-		utils::sleep_for_micros(increment_time_us * 7 * simuSpeedMultiplier_);
+	if (simuSpeedMultiplier_ > 0) {
+		if (sleepWithCancelCheck(increment_time_us * 7 * simuSpeedMultiplier_)) return;
+	}
 
 	m_pos.lock();
-	p_.asservStatus = 0;
+	// p_.asservStatus = 0; // gere par thread execute() quand queue vide
 	m_pos.unlock();
 	return;
 }
 
 // Orbital turn : rotation autour d'une roue (pivot sur une roue immobile).
 // turnRight = true → pivot roue droite, forward = direction de marche.
-void AsservDriverSimu::motion_OrbitalTurnRad(float angle_radians, bool forward, bool turnRight)
+void AsservDriverSimu::doMotionOrbitalTurnRad(float angle_radians, bool forward, bool turnRight)
 {
 	if (emergencyStop_) return;
 
@@ -771,66 +880,120 @@ void AsservDriverSimu::motion_OrbitalTurnRad(float angle_radians, bool forward, 
 
 	for (int nb = 0; nb < nb_increment; nb++)
 	{
-		if (emergencyStop_) return;
+		if (emergencyStop_ || abortCurrent_) return;
 
+		ROBOTPOSITION snapshot;
 		m_pos.lock();
 		p_.theta = WrapAngle2PI(p_.theta + delta_angle);
 		p_.x = cx + r * cos(p_.theta + offset);
 		p_.y = cy + r * sin(p_.theta + offset);
+		snapshot = p_;
 		m_pos.unlock();
-		if (simuSpeedMultiplier_ > 0)
-			utils::sleep_for_micros(increment_time_us * simuSpeedMultiplier_);
+
+		// Publier sharedPosition (voir doMotionLine pour raison)
+		robotPositionShared_->setRobotPosition(snapshot);
+
+		if (simuSpeedMultiplier_ > 0) {
+			if (sleepWithCancelCheck(increment_time_us * simuSpeedMultiplier_)) return;
+		}
 	}
 
 	if (emergencyStop_) return;
 
-	if (simuSpeedMultiplier_ > 0)
-		utils::sleep_for_micros(increment_time_us * 5 * simuSpeedMultiplier_);
+	if (simuSpeedMultiplier_ > 0) {
+		if (sleepWithCancelCheck(increment_time_us * 5 * simuSpeedMultiplier_)) return;
+	}
 
 	m_pos.lock();
-	p_.asservStatus = 0;
+	// p_.asservStatus = 0; // gere par thread execute() quand queue vide
 	m_pos.unlock();
 	return;
+}
+
+void AsservDriverSimu::doMotionGoTo(float x_mm, float y_mm)
+{
+	if (emergencyStop_) return;
+	doMotionFaceTo(x_mm, y_mm);
+
+	m_pos.lock();
+	float dx = x_mm - p_.x;
+	float dy = y_mm - p_.y;
+	m_pos.unlock();
+
+	float dist = sqrt(dx * dx + dy * dy);
+	doMotionLine(dist);
+}
+
+void AsservDriverSimu::doMotionGoBackTo(float x_mm, float y_mm)
+{
+	if (emergencyStop_) return;
+	doMotionFaceBackTo(x_mm, y_mm);
+
+	m_pos.lock();
+	float dx = x_mm - p_.x;
+	float dy = y_mm - p_.y;
+	m_pos.unlock();
+	float dist = sqrt(dx * dx + dy * dy);
+	doMotionLine(-dist);
+
+}
+
+// ========== motion_* publiques : enqueue + return immediat ==========
+// Reproduit le pattern CBOR (non-bloquant). La logique bloquante est dans
+// les doMotion_* executees par le thread execute().
+
+void AsservDriverSimu::motion_FaceTo(float x_mm, float y_mm)
+{
+	if (emergencyStop_) return;
+	enqueueCommand({CmdType::FACE_TO, x_mm, y_mm, 0, false, false});
+}
+
+void AsservDriverSimu::motion_FaceBackTo(float x_mm, float y_mm)
+{
+	if (emergencyStop_) return;
+	enqueueCommand({CmdType::FACE_BACK_TO, x_mm, y_mm, 0, false, false});
+}
+
+void AsservDriverSimu::motion_Line(float dist_mm)
+{
+	if (emergencyStop_) return;
+	enqueueCommand({CmdType::LINE, dist_mm, 0, 0, false, false});
+}
+
+void AsservDriverSimu::motion_RotateRad(float angle_radians)
+{
+	if (emergencyStop_) return;
+	enqueueCommand({CmdType::ROTATE_RAD, angle_radians, 0, 0, false, false});
+}
+
+void AsservDriverSimu::motion_OrbitalTurnRad(float angle_radians, bool forward, bool turnRight)
+{
+	if (emergencyStop_) return;
+	enqueueCommand({CmdType::ORBITAL_TURN, angle_radians, 0, 0, forward, turnRight});
 }
 
 void AsservDriverSimu::motion_GoTo(float x_mm, float y_mm)
 {
 	if (emergencyStop_) return;
-	motion_FaceTo(x_mm, y_mm);
-
-	m_pos.lock();
-	float dx = x_mm - p_.x;
-	float dy = y_mm - p_.y;
-	m_pos.unlock();
-
-	float dist = sqrt(dx * dx + dy * dy);
-	motion_Line(dist);
+	enqueueCommand({CmdType::GOTO, x_mm, y_mm, 0, false, false});
 }
 
 void AsservDriverSimu::motion_GoBackTo(float x_mm, float y_mm)
 {
 	if (emergencyStop_) return;
-	motion_FaceBackTo(x_mm, y_mm);
-
-	m_pos.lock();
-	float dx = x_mm - p_.x;
-	float dy = y_mm - p_.y;
-	m_pos.unlock();
-	float dist = sqrt(dx * dx + dy * dy);
-	motion_Line(-dist);
-
+	enqueueCommand({CmdType::GOBACK_TO, x_mm, y_mm, 0, false, false});
 }
 
 void AsservDriverSimu::motion_GoToChain(float x_mm, float y_mm)
 {
 	if (emergencyStop_) return;
-	motion_GoTo(x_mm, y_mm);
+	enqueueCommand({CmdType::GOTO_CHAIN, x_mm, y_mm, 0, false, false});
 }
 
 void AsservDriverSimu::motion_GoBackToChain(float x_mm, float y_mm)
 {
 	if (emergencyStop_) return;
-	motion_GoBackTo(x_mm, y_mm);
+	enqueueCommand({CmdType::GOBACK_TO_CHAIN, x_mm, y_mm, 0, false, false});
 }
 
 void AsservDriverSimu::motion_FreeMotion()
