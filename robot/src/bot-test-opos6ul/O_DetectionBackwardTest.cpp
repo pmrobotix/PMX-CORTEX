@@ -31,13 +31,43 @@ const char* O_DetectionBackwardTest::SCENARIOS_JSON = R"JSON(
     ]
   },
   {
-    "name": "B03_GoBackTo_AdvBeside",
-    "desc": "GO_BACK_TO avec adv lateral (hors couloir isOnPath)",
+    "name": "B03_GoBackTo_AdvBesideLeft",
+    "desc": "GO_BACK_TO avec adv lateral cote GAUCHE robot (x_rep<0, hors couloir)",
     "start": {"x": 2800, "y": 200, "theta_deg": 0},
     "adv": {"x": 2500, "y": 600},
     "expected": "FINISHED",
     "tasks": [
       {"type": "MOVEMENT", "subtype": "GO_BACK_TO", "position_x": 2200, "position_y": 200}
+    ]
+  },
+  {
+    "name": "B03b_GoBackTo_AdvBesideRight",
+    "desc": "GO_BACK_TO avec adv lateral cote DROIT robot (x_rep>0, hors couloir)",
+    "start": {"x": 2800, "y": 1800, "theta_deg": 0},
+    "adv": {"x": 2500, "y": 1400},
+    "expected": "FINISHED",
+    "tasks": [
+      {"type": "MOVEMENT", "subtype": "GO_BACK_TO", "position_x": 2200, "position_y": 1800}
+    ]
+  },
+  {
+    "name": "B03c_GoBackTo_AdvSlowLeft",
+    "desc": "GO_BACK_TO adv lateral 420mm GAUCHE (zone JAUNE SLOW arriere, pas STOP)",
+    "start": {"x": 2800, "y": 200, "theta_deg": 0},
+    "adv": {"x": 2200, "y": 620},
+    "expected": "FINISHED",
+    "tasks": [
+      {"type": "MOVEMENT", "subtype": "GO_BACK_TO", "position_x": 1400, "position_y": 200}
+    ]
+  },
+  {
+    "name": "B03d_GoBackTo_AdvSlowRight",
+    "desc": "GO_BACK_TO adv lateral 420mm DROITE (zone JAUNE SLOW arriere)",
+    "start": {"x": 2800, "y": 1800, "theta_deg": 0},
+    "adv": {"x": 2200, "y": 1380},
+    "expected": "FINISHED",
+    "tasks": [
+      {"type": "MOVEMENT", "subtype": "GO_BACK_TO", "position_x": 1400, "position_y": 1800}
     ]
   },
   {
@@ -81,10 +111,20 @@ const char* O_DetectionBackwardTest::SCENARIOS_JSON = R"JSON(
     ]
   },
   {
-    "name": "B08_MoveBwd_AdvBeside",
-    "desc": "MOVE_BACKWARD_TO diagonale, adv hors couloir",
+    "name": "B08_MoveBwd_AdvBesideLeft",
+    "desc": "MOVE_BACKWARD_TO diagonale, adv cote GAUCHE du chemin (hors couloir)",
     "start": {"x": 2800, "y": 1800, "theta_deg": 0},
     "adv": {"x": 2800, "y": 1200},
+    "expected": "FINISHED",
+    "tasks": [
+      {"type": "MOVEMENT", "subtype": "MOVE_BACKWARD_TO", "position_x": 2200, "position_y": 1200}
+    ]
+  },
+  {
+    "name": "B08b_MoveBwd_AdvBesideRight",
+    "desc": "MOVE_BACKWARD_TO diagonale, adv cote DROIT du chemin (miroir de B08)",
+    "start": {"x": 2800, "y": 1800, "theta_deg": 0},
+    "adv": {"x": 2200, "y": 1800},
     "expected": "FINISHED",
     "tasks": [
       {"type": "MOVEMENT", "subtype": "MOVE_BACKWARD_TO", "position_x": 2200, "position_y": 1200}

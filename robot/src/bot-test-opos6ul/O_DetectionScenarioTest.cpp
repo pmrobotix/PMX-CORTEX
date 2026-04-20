@@ -516,16 +516,19 @@ std::string O_DetectionScenarioTest::svgScene(const SceneResult& sc, float scale
         float ey = sc.endY - sc.startY;
         float elen = std::sqrt(ex*ex + ey*ey);
         float angleEndDeg;
+        bool isBackward = (sc.command == "GO_BACK_TO" || sc.command == "MOVE_BACKWARD_TO"
+                           || sc.command == "LINE_BACK" || sc.command == "FACE_BACK_TO");
         if (elen > 1.0f) {
+            // Direction start -> end = direction de DEPLACEMENT, i.e. direction dans
+            // laquelle le capteur actif (front en AVANT, back en ARRIERE) regarde.
+            // Pas de +180 : pour backward, start->end pointe deja vers l'arriere du robot.
             angleEndDeg = std::atan2(ey, ex) * 180.0f / (float)M_PI;
         } else {
-            // Robot pas bouge : utiliser theta depart
-            angleEndDeg = sc.startThetaDeg;
+            // Robot pas bouge (ex: STOP immediat avant de bouger) : on utilise theta
+            // depart. En backward, la direction observee par le back sensor est
+            // opposee au theta (back = front + 180).
+            angleEndDeg = sc.startThetaDeg + (isBackward ? 180.0f : 0.0f);
         }
-        // Pour les mouvements en marche arriere, la zone "avant" est derriere (180°).
-        bool isBackward = (sc.command == "GO_BACK_TO" || sc.command == "LINE_BACK"
-                           || sc.command == "FACE_BACK_TO");
-        if (isBackward) angleEndDeg += 180.0f;
 
         float halfW = CORRIDOR_WIDTH_MM * 0.5f;
 

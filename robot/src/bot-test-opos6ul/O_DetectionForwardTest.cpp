@@ -28,13 +28,43 @@ const char* O_DetectionForwardTest::SCENARIOS_JSON = R"JSON(
     ]
   },
   {
-    "name": "F03_GoTo_AdvBeside",
-    "desc": "GO_TO avec adv lateral (hors couloir isOnPath)",
+    "name": "F03_GoTo_AdvBesideLeft",
+    "desc": "GO_TO avec adv lateral cote GAUCHE robot (x_rep<0, hors couloir)",
     "start": {"x": 200, "y": 200, "theta_deg": 0},
     "adv": {"x": 500, "y": 600},
     "expected": "FINISHED",
     "tasks": [
       {"type": "MOVEMENT", "subtype": "GO_TO", "position_x": 800, "position_y": 200}
+    ]
+  },
+  {
+    "name": "F03b_GoTo_AdvBesideRight",
+    "desc": "GO_TO avec adv lateral cote DROIT robot (x_rep>0, hors couloir)",
+    "start": {"x": 200, "y": 1800, "theta_deg": 0},
+    "adv": {"x": 500, "y": 1400},
+    "expected": "FINISHED",
+    "tasks": [
+      {"type": "MOVEMENT", "subtype": "GO_TO", "position_x": 800, "position_y": 1800}
+    ]
+  },
+  {
+    "name": "F03c_GoTo_AdvSlowLeft",
+    "desc": "GO_TO adv lateral 420mm GAUCHE (zone JAUNE SLOW, pas STOP) - robot ralentit mais termine",
+    "start": {"x": 200, "y": 200, "theta_deg": 0},
+    "adv": {"x": 800, "y": 620},
+    "expected": "FINISHED",
+    "tasks": [
+      {"type": "MOVEMENT", "subtype": "GO_TO", "position_x": 1600, "position_y": 200}
+    ]
+  },
+  {
+    "name": "F03d_GoTo_AdvSlowRight",
+    "desc": "GO_TO adv lateral 420mm DROITE (zone JAUNE SLOW, pas STOP)",
+    "start": {"x": 200, "y": 1800, "theta_deg": 0},
+    "adv": {"x": 800, "y": 1380},
+    "expected": "FINISHED",
+    "tasks": [
+      {"type": "MOVEMENT", "subtype": "GO_TO", "position_x": 1600, "position_y": 1800}
     ]
   },
   {
@@ -78,10 +108,20 @@ const char* O_DetectionForwardTest::SCENARIOS_JSON = R"JSON(
     ]
   },
   {
-    "name": "F08_MoveFwd_AdvBeside",
-    "desc": "MOVE_FORWARD_TO diagonale, adv hors couloir",
+    "name": "F08_MoveFwd_AdvBesideLeft",
+    "desc": "MOVE_FORWARD_TO diagonale, adv cote GAUCHE du chemin (hors couloir)",
     "start": {"x": 200, "y": 200, "theta_deg": 0},
     "adv": {"x": 200, "y": 800},
+    "expected": "FINISHED",
+    "tasks": [
+      {"type": "MOVEMENT", "subtype": "MOVE_FORWARD_TO", "position_x": 800, "position_y": 800}
+    ]
+  },
+  {
+    "name": "F08b_MoveFwd_AdvBesideRight",
+    "desc": "MOVE_FORWARD_TO diagonale, adv cote DROIT du chemin (miroir de F08)",
+    "start": {"x": 200, "y": 200, "theta_deg": 0},
+    "adv": {"x": 800, "y": 200},
     "expected": "FINISHED",
     "tasks": [
       {"type": "MOVEMENT", "subtype": "MOVE_FORWARD_TO", "position_x": 800, "position_y": 800}
