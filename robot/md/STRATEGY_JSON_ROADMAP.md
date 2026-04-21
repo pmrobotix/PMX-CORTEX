@@ -62,7 +62,8 @@ sinon fallback hardcodé (pour ne rien casser).
 cmake --build build-simu-debug --target bot-opos6ul
 # Run
 cd build-simu-debug/bin
-echo "m" | ./bot-opos6ul /j test_strategy.json /b /k
+echo "m" | ./bot-opos6ul /j test_strategy.json /k
+# (BLEU par défaut ; /y pour JAUNE)
 # Vérifier les logs + svgAPF.svg
 ```
 

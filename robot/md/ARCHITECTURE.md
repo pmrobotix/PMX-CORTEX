@@ -1578,11 +1578,13 @@ départ logique du match**. Il doit être appelé **AVANT** `startMotionTimerAnd
 ### Sémantique
 
 ```cpp
-// 1. Couleur de match
-robot.setMyColor(PMXYELLOW);
+// 1. Couleur de match (normalement definie par parseConsoleArgs /y ou menu)
+//    Defaut CLI = BLEU (color0 primaire). /y = JAUNE (miroir applique).
 
 // 2. setPositionAndColor = RESET de match (Nucleo + couleur + origine)
-robot.asserv().setPositionAndColor(300, 600, 0, couleur);
+//    Convention PMX : coords ecrites en repere BLEU ; isMatchColor() = true
+//    si JAUNE -> applique le miroir x -> x_ground_table_ - x.
+robot.asserv().setPositionAndColor(300, 600, 0, robot.isMatchColor());
 
 // 3. Démarrage du thread CBOR (inclut un sleep 50ms pour laisser la Nucleo appliquer)
 robot.asserv().startMotionTimerAndOdo(false);

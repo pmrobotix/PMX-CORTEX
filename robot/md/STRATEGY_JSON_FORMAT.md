@@ -351,7 +351,8 @@ Certains flags sont levés par le runner :
 `table.json` est généré par le code C++ via `ZoneJsonExporter` :
 
 ```bash
-cd build-simu-debug/bin && echo "m" | ./bot-opos6ul /e /d /b /k
+cd build-simu-debug/bin && echo "m" | ./bot-opos6ul /e /d /k
+# (BLEU par défaut ; /y pour exporter cote JAUNE)
 ```
 
 Cf. [robot/src/common/ia/ZoneJsonExporter.cpp](../src/common/ia/ZoneJsonExporter.cpp).

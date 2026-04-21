@@ -334,8 +334,8 @@ actions_.register("banderole",     [this]() { this->actions().ax12_GO_banderole(
 # 1. Éditer la stratégie JSON à la main (nouveau format)
 vim /home/pmx/git/PMX-CORTEX/simulator/resources/2026/strategyPMX0.json
 
-# 2. Régénérer les zones depuis C++ si besoin
-cd build-simu-debug/bin && echo "m" | ./bot-opos6ul /e /d /b /k
+# 2. Régénérer les zones depuis C++ si besoin (BLEU par défaut, /y pour JAUNE)
+cd build-simu-debug/bin && echo "m" | ./bot-opos6ul /e /d /k
 
 # 3. Lancer le simulateur
 cd /home/pmx/git/PMX-CORTEX/simulator && python3 -m http.server 8080
@@ -351,7 +351,7 @@ vim simulator/resources/2026/strategyPMX0.json
 ./bot-opos6ul /s strategyPMX0.json    # charge et exécute ce JSON en match
 
 # Workflow 2 : strat définie en C++, exportée vers JSON pour le simu
-./bot-opos6ul /e /d /b /k             # exporte table.json + strategyPMX0.json
+./bot-opos6ul /e /d /k                # exporte table.json + strategyPMX0.json (BLEU défaut)
 
 # Workflow 3 : itération rapide en compétition
 # 1. Un ops modifie strategyPMX0.json sur le robot
