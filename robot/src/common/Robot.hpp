@@ -144,6 +144,9 @@ protected:
 	std::string exportZonesPath_;     ///< Chemin de sortie du table.json simulateur (vide = pas d'export)
 	bool exportZonesDryRun_ = false;  ///< Si true : exit apres export, sans demarrer le match
 
+	// --- Strategy JSON runner (cf. StrategyJsonRunner) ---
+	std::string strategyJsonName_;    ///< Nom de la strat (ex: "PMX0" -> strategyPMX0.json). Vide = fallback hardcode.
+
 	// --- O_State_NewInit : phase de match + config editable ---
 	MatchPhase phase_ = PHASE_CONFIG;
 	uint16_t   advDiameterMm_ = 400;          ///< Diamètre adversaire en MM (source de verite). Teensy protocol reste en cm via advDiameter().
@@ -235,6 +238,10 @@ public:
 
 	const std::string& exportZonesPath() const { return exportZonesPath_; }
 	bool exportZonesDryRun() const { return exportZonesDryRun_; }
+
+	const std::string& strategyJsonName() const { return strategyJsonName_; }
+	/// Chemin complet : strategy<name>.json (resolu relatif au cwd = a cote de l'exe).
+	std::string strategyJsonPath() const { return strategyJsonName_.empty() ? std::string() : ("strategy" + strategyJsonName_ + ".json"); }
 
 	int useExternalEncoder() const
 	{

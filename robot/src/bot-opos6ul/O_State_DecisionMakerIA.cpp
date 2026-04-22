@@ -13,7 +13,9 @@
 
 #include "action/Sensors.hpp"
 #include "asserv/Asserv.hpp"
+#include "ia/ActionRegistry.hpp"
 #include "ia/IAbyPath.hpp"
+#include "ia/StrategyJsonRunner.hpp"
 #include "ia/ZoneJsonExporter.hpp"
 #include "interface/AAsservDriver.hpp"
 #include "navigator/Navigator.hpp"
@@ -224,6 +226,34 @@ void O_State_DecisionMakerIA::execute()
 	}
 
 	logger().info() << __FUNCTION__ << " executing..." << logs::end;
+
+	// Si /s <name> passe en CLI -> runner JSON. Sinon fallback hardcode ci-dessous.
+	if (!robot.strategyJsonName().empty()) {
+		logger().info() << "Using JSON strategy runner: " << robot.strategyJsonPath() << logs::end;
+
+		// Enregistrement des actions disponibles (appelees par les tasks MANIPULATION).
+		ActionRegistry actions;
+		actions.registerAction("banderole",        [&robot]() { robot.actions().ax12_GO_banderole(); return true; });
+		actions.registerAction("banderole_init",   [&robot]() { robot.actions().ax12_init_banderole(); return true; });
+		actions.registerAction("bras_droit",       [&robot]() { robot.actions().ax12_bras_droit(); return true; });
+		actions.registerAction("bras_droit_init",  [&robot]() { robot.actions().ax12_bras_droit_init(); return true; });
+		actions.registerAction("bras_gauche",      [&robot]() { robot.actions().ax12_bras_gauche(); return true; });
+		actions.registerAction("bras_gauche_init", [&robot]() { robot.actions().ax12_bras_gauche_init(); return true; });
+		actions.registerAction("init_all",         [&robot]() { robot.actions().ax12_init(); return true; });
+		logger().info() << "ActionRegistry: " << actions.size() << " actions registered" << logs::end;
+
+		StrategyJsonRunner runner(&robot, &robot.ia().iAbyPath(), &actions);
+		if (runner.loadFromFile(robot.strategyJsonPath())) {
+			runner.run();
+		} else {
+			logger().error() << "JSON load failed (" << robot.strategyJsonPath()
+			                 << "), fallback freeMotion" << logs::end;
+		}
+		robot.freeMotion();
+		robot.svgPrintEndOfFile();
+		logger().info() << __FUNCTION__ << " >>>>>>   svgPrintEndOfFile DONE (JSON).........." << logs::end;
+		return;
+	}
 
 	Navigator nav(&robot, &robot.ia().iAbyPath());
 

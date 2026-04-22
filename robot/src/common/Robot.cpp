@@ -147,6 +147,14 @@ void Robot::configureDefaultConsoleArgs() {
     }
 
     cArgs_.addOption('d', "Dry-run: after export zones, exit without starting the match");
+
+    {
+        // /s <name>  -> charge strategy<name>.json (a cote de l'exe).
+        // Ex: /s PMX0  -> strategyPMX0.json
+        Arguments::Option cOpt('s', "Run JSON strategy runner (fallback hardcode si absent)");
+        cOpt.addArgument("name", "Strategy name (ex: 'PMX0' -> strategyPMX0.json)", "");
+        cArgs_.addOption(cOpt);
+    }
 }
 
 void Robot::parseConsoleArgs(int argc, char** argv, bool stopWithErrors) {
@@ -169,6 +177,11 @@ void Robot::parseConsoleArgs(int argc, char** argv, bool stopWithErrors) {
     }
     if (cArgs_['d']) {
         exportZonesDryRun_ = true;
+    }
+
+    // Strategy JSON runner
+    if (cArgs_['s']) {
+        strategyJsonName_ = cArgs_['s']["name"];
     }
 
     // Reconfigure telemetry appender with command line args
