@@ -87,26 +87,83 @@ TRAJ_STATE StrategyJsonRunner::executeTask(const StrategyTask& t)
     Navigator nav(robot_, iap_);
 
     if (t.type == "MOVEMENT") {
+        // --- Primitives ---
         if (t.subtype == "LINE" && t.dist) {
             return nav.line(*t.dist);
         }
         if (t.subtype == "GO_TO" && t.position_x && t.position_y) {
             return nav.goTo(*t.position_x, *t.position_y);
         }
+        if (t.subtype == "GO_BACK_TO" && t.position_x && t.position_y) {
+            return nav.goBackTo(*t.position_x, *t.position_y);
+        }
+        if (t.subtype == "MOVE_FORWARD_TO" && t.position_x && t.position_y) {
+            return nav.moveForwardTo(*t.position_x, *t.position_y);
+        }
+        if (t.subtype == "MOVE_BACKWARD_TO" && t.position_x && t.position_y) {
+            return nav.moveBackwardTo(*t.position_x, *t.position_y);
+        }
         if (t.subtype == "PATH_TO" && t.position_x && t.position_y) {
             return nav.pathTo(*t.position_x, *t.position_y);
+        }
+        if (t.subtype == "PATH_BACK_TO" && t.position_x && t.position_y) {
+            return nav.pathBackTo(*t.position_x, *t.position_y);
         }
         if (t.subtype == "FACE_TO" && t.position_x && t.position_y) {
             return nav.faceTo(*t.position_x, *t.position_y);
         }
+        if (t.subtype == "FACE_BACK_TO" && t.position_x && t.position_y) {
+            return nav.faceBackTo(*t.position_x, *t.position_y);
+        }
         if (t.subtype == "ROTATE_DEG" && t.angle_deg) {
             return nav.rotateDeg(*t.angle_deg);
+        }
+        if (t.subtype == "ROTATE_ABS_DEG" && t.angle_deg) {
+            return nav.rotateAbsDeg(*t.angle_deg);
+        }
+        if (t.subtype == "ORBITAL_TURN_DEG" && t.angle_deg && t.forward && t.turn_right) {
+            return nav.orbitalTurnDeg(*t.angle_deg, *t.forward, *t.turn_right);
+        }
+
+        // --- Composites (deplacement puis rotation, abort si deplacement echoue) ---
+        if (t.subtype == "GO_TO_AND_ROTATE_ABS_DEG"
+            && t.position_x && t.position_y && t.final_angle_deg) {
+            return nav.goToAndRotateAbsDeg(*t.position_x, *t.position_y, *t.final_angle_deg);
+        }
+        if (t.subtype == "GO_TO_AND_FACE_TO"
+            && t.position_x && t.position_y && t.face_x && t.face_y) {
+            return nav.goToAndFaceTo(*t.position_x, *t.position_y, *t.face_x, *t.face_y);
+        }
+        if (t.subtype == "GO_TO_AND_FACE_BACK_TO"
+            && t.position_x && t.position_y && t.face_x && t.face_y) {
+            return nav.goToAndFaceBackTo(*t.position_x, *t.position_y, *t.face_x, *t.face_y);
         }
         if (t.subtype == "MOVE_FORWARD_TO_AND_ROTATE_ABS_DEG"
             && t.position_x && t.position_y && t.final_angle_deg) {
             return nav.moveForwardToAndRotateAbsDeg(*t.position_x, *t.position_y, *t.final_angle_deg);
         }
-        logger().error() << "MOVEMENT subtype unsupported (Phase 1): " << t.subtype << logs::end;
+        if (t.subtype == "MOVE_FORWARD_TO_AND_ROTATE_REL_DEG"
+            && t.position_x && t.position_y && t.rotate_rel_deg) {
+            return nav.moveForwardToAndRotateRelDeg(*t.position_x, *t.position_y, *t.rotate_rel_deg);
+        }
+        if (t.subtype == "MOVE_FORWARD_TO_AND_FACE_TO"
+            && t.position_x && t.position_y && t.face_x && t.face_y) {
+            return nav.moveForwardToAndFaceTo(*t.position_x, *t.position_y, *t.face_x, *t.face_y);
+        }
+        if (t.subtype == "MOVE_FORWARD_TO_AND_FACE_BACK_TO"
+            && t.position_x && t.position_y && t.face_x && t.face_y) {
+            return nav.moveForwardToAndFaceBackTo(*t.position_x, *t.position_y, *t.face_x, *t.face_y);
+        }
+        if (t.subtype == "PATH_TO_AND_ROTATE_ABS_DEG"
+            && t.position_x && t.position_y && t.final_angle_deg) {
+            return nav.pathToAndRotateAbsDeg(*t.position_x, *t.position_y, *t.final_angle_deg);
+        }
+        if (t.subtype == "PATH_TO_AND_FACE_TO"
+            && t.position_x && t.position_y && t.face_x && t.face_y) {
+            return nav.pathToAndFaceTo(*t.position_x, *t.position_y, *t.face_x, *t.face_y);
+        }
+
+        logger().error() << "MOVEMENT subtype unsupported : " << t.subtype << logs::end;
         return TRAJ_ERROR;
     }
     if (t.type == "WAIT" && t.duration_ms) {
