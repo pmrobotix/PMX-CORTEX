@@ -241,6 +241,7 @@ if(DRIVER_LIB)
         src/bot-test-opos6ul/O_DetectionBackwardTest.cpp
         src/bot-test-opos6ul/O_DetectionRetryForwardTest.cpp
         src/bot-test-opos6ul/O_DetectionRetryBackwardTest.cpp
+        src/bot-test-opos6ul/O_StrategyJsonRunnerTest.cpp
         src/bot-test-opos6ul/O_AsservXYRotateTest.cpp
         src/bot-test-opos6ul/O_AsservTest.cpp
         src/bot-test-opos6ul/O_AsservCalibrationTest.cpp
@@ -276,7 +277,11 @@ if(DRIVER_LIB)
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
             ${CMAKE_SOURCE_DIR}/src/common/log/resources-svg/table.png
             $<TARGET_FILE_DIR:bot-opos6ul>/table.png
-        COMMENT "Copie hardware.conf + config asserv + index.html + table.png dans bin/"
+        # Scenarios JSON pour O_StrategyJsonRunnerTest (code CLI : jrun)
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+            ${CMAKE_SOURCE_DIR}/src/bot-test-opos6ul/scenarios
+            $<TARGET_FILE_DIR:bot-opos6ul>
+        COMMENT "Copie hardware.conf + config asserv + index.html + table.png + scenarios JSON dans bin/"
     )
 endif()
 

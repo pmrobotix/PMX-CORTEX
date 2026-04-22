@@ -11,6 +11,7 @@
 #include "O_DetectionBackwardTest.hpp"
 #include "O_DetectionRetryForwardTest.hpp"
 #include "O_DetectionRetryBackwardTest.hpp"
+#include "O_StrategyJsonRunnerTest.hpp"
 #include "O_AsservXYRotateTest.hpp"
 #include "O_AsservTest.hpp"
 #include "O_GroveColorTest.hpp"
@@ -87,6 +88,7 @@ int main(int argc, char** argv)
     robot.getConsoleManager().add(new O_DetectionBackwardTest());      //     detb (backward)
     robot.getConsoleManager().add(new O_DetectionRetryForwardTest());  //     detrf (retry fwd)
     robot.getConsoleManager().add(new O_DetectionRetryBackwardTest()); //     detrb (retry bwd)
+    robot.getConsoleManager().add(new O_StrategyJsonRunnerTest());     //     jrun (strategy JSON runner)
     robot.getConsoleManager().add(new O_AsservXYRotateTest());  // 15. xy
     robot.getConsoleManager().add(new O_AsservTest());          // 16. go
     robot.getConsoleManager().add(new O_Asserv_SquareTest());   // 17. sq
