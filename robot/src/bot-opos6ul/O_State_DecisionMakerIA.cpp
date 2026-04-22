@@ -14,6 +14,7 @@
 #include "action/Sensors.hpp"
 #include "asserv/Asserv.hpp"
 #include "ia/ActionRegistry.hpp"
+#include "ia/FlagManager.hpp"
 #include "ia/IAbyPath.hpp"
 #include "ia/StrategyJsonRunner.hpp"
 #include "ia/ZoneJsonExporter.hpp"
@@ -242,7 +243,8 @@ void O_State_DecisionMakerIA::execute()
 		actions.registerAction("init_all",         [&robot]() { robot.actions().ax12_init(); return true; });
 		logger().info() << "ActionRegistry: " << actions.size() << " actions registered" << logs::end;
 
-		StrategyJsonRunner runner(&robot, &robot.ia().iAbyPath(), &actions);
+		FlagManager flags;
+		StrategyJsonRunner runner(&robot, &robot.ia().iAbyPath(), &actions, &flags);
 		if (runner.loadFromFile(robot.strategyJsonPath())) {
 			runner.run();
 		} else {

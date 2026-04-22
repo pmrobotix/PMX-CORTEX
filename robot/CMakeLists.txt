@@ -94,8 +94,10 @@ add_library(pmx-common STATIC
     src/common/ia/IAbyPath.cpp
     src/common/ia/IAbyZone.cpp
     src/common/ia/ZoneJsonExporter.cpp
+    src/common/ia/StrategyJsonParser.cpp
     src/common/ia/StrategyJsonRunner.cpp
     src/common/ia/ActionRegistry.cpp
+    src/common/ia/FlagManager.cpp
     # navigator
     src/common/navigator/Navigator.cpp
     # utils
