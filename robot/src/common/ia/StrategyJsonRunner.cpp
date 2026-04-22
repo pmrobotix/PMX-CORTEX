@@ -186,8 +186,8 @@ TRAJ_STATE StrategyJsonRunner::executeTask(const StrategyTask& t)
             return TRAJ_FINISHED;
         }
         if (!actions_->has(aid)) {
-            logger().error() << "  MANIPULATION unknown action_id='" << aid
-                             << "' - skipping (not fatal)" << logs::end;
+            logger().error() << "  TODO MANIPULATION \"" << aid
+                             << "\" dans StrategyActions2026.cpp." << logs::end;
             return TRAJ_FINISHED;
         }
         bool ok = actions_->call(aid);
