@@ -316,6 +316,8 @@ add_executable(common-test
     test/common/ObstacleZoneTest.cpp
     test/common/DetectionEventTest.cpp
     test/common/IsOnPathTest.cpp
+    test/common/FlagManagerTest.cpp
+    test/common/StrategyJsonParserTest.cpp
 )
 
 target_link_libraries(common-test PRIVATE pmx-suite)

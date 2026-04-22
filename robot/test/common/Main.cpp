@@ -25,6 +25,8 @@
 #include "ObstacleZoneTest.hpp"
 #include "DetectionEventTest.hpp"
 #include "IsOnPathTest.hpp"
+#include "FlagManagerTest.hpp"
+#include "StrategyJsonParserTest.hpp"
 
 int main(int argc, char** argv)
 {
@@ -50,6 +52,8 @@ int main(int argc, char** argv)
     suite.addTest(new test::ObstacleZoneTest());
     suite.addTest(new test::DetectionEventTest());
     suite.addTest(new test::IsOnPathTest());
+    suite.addTest(new test::FlagManagerTest());
+    suite.addTest(new test::StrategyJsonParserTest());
 
     suite.run();
 
