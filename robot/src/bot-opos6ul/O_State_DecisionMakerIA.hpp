@@ -64,17 +64,6 @@ public:
     {
         return "O_State_DecisionMakerIA";
     }
-
-    /*!
-     * \brief Configure les activités pour les zones de jeu du match.
-     */
-    void IASetupActivitiesZone();
-
-    /*!
-     * \brief Configure les activités pour le mode test de la table.
-     */
-    void IASetupActivitiesZoneTableTest();
-
 };
 
 #endif

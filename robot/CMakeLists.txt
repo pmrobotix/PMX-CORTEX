@@ -224,6 +224,7 @@ if(DRIVER_LIB)
         src/bot-opos6ul/OPOS6UL_IAExtended.cpp
         src/bot-opos6ul/OPOS6UL_SvgWriterExtended.cpp
         src/bot-opos6ul/O_State_DecisionMakerIA.cpp
+        src/bot-opos6ul/StrategyActions2026.cpp
         src/bot-opos6ul/O_State_NewInit.cpp
         src/bot-opos6ul/O_State_WaitEndOfMatch.cpp
         src/bot-test-opos6ul/O_LedBarTest.cpp

@@ -2,9 +2,9 @@
  * \file
  * \brief Implémentation de la classe O_State_DecisionMakerIA.
  *
- * Migré depuis PMX 2025, base pour la stratégie 2026.
- * Les actions de zone (O_end_of_match_top, O_push_prise_bas) seront
- * adaptées au règlement 2026.
+ * Orchestration generique (attente init/chrono, lancement runner JSON,
+ * fallback hardcode). La configuration specifique 2026 (zones de jeu,
+ * callbacks d'action, actions MANIPULATION) est dans StrategyActions2026.
  */
 
 #include "O_State_DecisionMakerIA.hpp"
@@ -26,154 +26,11 @@
 #include "OPOS6UL_ActionsExtended.hpp"
 #include "OPOS6UL_IAExtended.hpp"
 #include "OPOS6UL_RobotExtended.hpp"
+#include "StrategyActions2026.hpp"
 
 O_State_DecisionMakerIA::O_State_DecisionMakerIA(Robot &robot) :
 		robot_(robot)
 {
-}
-
-// ============================================================================
-// Actions de zone (callbacks pour IAbyPath)
-// ============================================================================
-
-/*!
- * \brief Action de fin de match : rejoint la zone de fin en haut de table.
- *
- * Attend la fin du chrono (96s), puis avance pour marquer les points de présence.
- * \return true si l'action s'est terminée correctement, false si collision non résolue.
- */
-bool O_end_of_match_top()
-{
-	OPOS6UL_RobotExtended &robot = OPOS6UL_RobotExtended::instance();
-	robot.logger().info() << __FUNCTION__ << logs::end;
-	TRAJ_STATE ts = TRAJ_IDLE;
-	ROBOTPOSITION zone;
-
-	robot.lastAction(true);
-
-	robot.asserv().setMaxSpeed(true, 40);
-
-	robot.actions().sensors().setIgnoreFrontNearObstacle(true, false, true);
-	robot.actions().sensors().setIgnoreBackNearObstacle(true, true, true);
-
-	robot.logger().info() << __FUNCTION__ << " start zone_end_top x=" << zone.x << " y=" << zone.y << logs::end;
-
-	robot.ia().iAbyPath().goToZone("zone_end_top", &zone);
-
-	robot.displayPoints();
-
-	Navigator nav(&robot, &robot.ia().iAbyPath());
-
-	robot.logger().info() << __FUNCTION__ << " start zone_end_top x=" << zone.x << " y=" << zone.y << logs::end;
-	ts = nav.moveForwardToAndRotateAbsDeg(zone.x, zone.y, radToDeg(zone.theta), RetryPolicy::patient());
-	if (ts != TRAJ_FINISHED)
-	{
-		robot.logger().error() << __FUNCTION__ << " zone_end_top  ===== PB COLLISION FINALE - Que fait-on? ts=" << ts
-				<< logs::end;
-		robot.asserv().resetEmergencyOnTraj();
-		robot.svgPrintPosition();
-
-		return false;
-
-	}
-	robot.svgPrintPosition();
-
-	//attente de 95sec
-	while (robot.chrono().getElapsedTimeInSec() <= 96)
-	{
-		utils::sleep_for_secs(1);
-	}
-
-	ts = nav.line(451);
-	robot.svgPrintPosition();
-
-	robot.points += 20;
-	robot.displayPoints();
-
-	robot.svgPrintPosition();
-
-	return true;
-}
-
-/*!
- * \brief Action de poussée de la prise en zone basse.
- *
- * Déplace le robot vers zone_prise_bas puis pousse jusqu'à la position (775, 200).
- * \return true si l'action s'est terminée, false si collision non résolue.
- */
-bool O_push_prise_bas()
-{
-	OPOS6UL_RobotExtended &robot = OPOS6UL_RobotExtended::instance();
-	robot.logger().info() << __FUNCTION__ << logs::end;
-	TRAJ_STATE ts = TRAJ_IDLE;
-	ROBOTPOSITION zone;
-
-	robot.asserv().setMaxSpeed(true, 40);
-	robot.actions().sensors().setIgnoreFrontNearObstacle(true, true, true);
-	robot.actions().sensors().setIgnoreBackNearObstacle(true, true, true);
-	robot.logger().info() << __FUNCTION__ << " start push_prise_bas x=" << zone.x << " y=" << zone.y << logs::end;
-	robot.ia().iAbyPath().goToZone("zone_prise_bas", &zone);
-
-	Navigator nav(&robot, &robot.ia().iAbyPath());
-	RetryPolicy policyPrise = { 1000000, 30, 30, 0, 0, false };
-
-	ts = nav.moveForwardToAndRotateAbsDeg(zone.x, zone.y, radToDeg(zone.theta), policyPrise);
-	if (ts != TRAJ_FINISHED)
-	{
-		robot.logger().error() << __FUNCTION__ << " zone_prise_bas  ===== PB COLLISION FINALE - Que fait-on? ts=" << ts
-				<< logs::end;
-		robot.asserv().resetEmergencyOnTraj();
-		robot.svgPrintPosition();
-		return false;
-	}
-	robot.svgPrintPosition();
-
-	RetryPolicy policyPush = { 1000000, 10, 10, 0, 0, false };
-	ts = nav.moveForwardTo(775, 200, policyPush);
-	if (ts != TRAJ_FINISHED)
-	{
-		robot.logger().error() << __FUNCTION__ << " 775, 200  ===== PB COLLISION FINALE - Que fait-on? ts=" << ts
-				<< logs::end;
-		robot.asserv().resetEmergencyOnTraj();
-		robot.svgPrintPosition();
-		return true;
-	}
-	robot.svgPrintPosition();
-
-	return true;
-}
-
-// ============================================================================
-// Configuration des zones et actions
-// ============================================================================
-
-void O_State_DecisionMakerIA::IASetupActivitiesZone()
-{
-	logger().info() << "IASetupActivitiesZone homologation" << logs::end;
-	OPOS6UL_RobotExtended &robot = OPOS6UL_RobotExtended::instance();
-	logger().debug() << "color = " << robot.getMyColor() << logs::end;
-
-	robot.ia().iAbyPath().ia_createZone("zone_end_top", 150, 1550, 450, 450, 350, 1100, 90);
-	robot.ia().iAbyPath().ia_createZone("zone_start", 1000, 0, 450, 450, 1300, 400, 90);
-	robot.ia().iAbyPath().ia_createZone("zone_prise_bas", 550, 0, 450, 100, 775, 550, -90);
-
-	robot.ia().iAbyPath().ia_addAction("end_of_match_top", &O_end_of_match_top);
-
-	logger().debug() << " END IASetupActivitiesZone" << logs::end;
-}
-
-void O_State_DecisionMakerIA::IASetupActivitiesZoneTableTest()
-{
-	logger().error() << "IASetupActivitiesZoneTableTest !!!!!!!!!!!!!!!!!!!!!!" << logs::end;
-	OPOS6UL_RobotExtended &robot = OPOS6UL_RobotExtended::instance();
-	logger().debug() << "color = " << robot.getMyColor() << logs::end;
-
-	robot.ia().iAbyPath().ia_createZone("zone_end_top", 150, 1550 - 420, 450, 450, 350, 1100 - 420, 90);
-	robot.ia().iAbyPath().ia_createZone("zone_start", 1000, 0, 450, 450, 1300, 400, 90);
-	robot.ia().iAbyPath().ia_createZone("zone_prise_bas", 550, 0, 450, 100, 775, 550, -90);
-
-	robot.ia().iAbyPath().ia_addAction("end_of_match_top", &O_end_of_match_top);
-	logger().debug() << " END IASetupActivitiesZoneTableTest !!!!!!!!!!!!!!!!!!!!!" << logs::end;
 }
 
 // ============================================================================
@@ -195,18 +52,8 @@ void O_State_DecisionMakerIA::execute()
 	// Init du playground (obstacles du terrain) pour le pathfinding
 	robot.ia().initPlayground();
 
-	if (robot.strategy() == "tabletest")
-	{
-		IASetupActivitiesZoneTableTest();
-	}
-	else if (robot.strategy() == "all")
-	{
-		IASetupActivitiesZone();
-	}
-	else
-	{
-		logger().error() << "NO STRATEGY " << robot.strategy() << " FOUND !!! " << logs::end;
-	}
+	// Configuration des zones + callbacks d'action (specifique au reglement 2026).
+	setupActivitiesZone2026(robot, robot.strategy());
 
 	// Export zones simulateur (cf. Robot -e <path> [-d])
 	if (!robot.exportZonesPath().empty()) {
@@ -232,15 +79,9 @@ void O_State_DecisionMakerIA::execute()
 	if (!robot.strategyJsonName().empty()) {
 		logger().info() << "Using JSON strategy runner: " << robot.strategyJsonPath() << logs::end;
 
-		// Enregistrement des actions disponibles (appelees par les tasks MANIPULATION).
+		// Enregistrement des actions MANIPULATION specifiques au reglement 2026.
 		ActionRegistry actions;
-		actions.registerAction("banderole",        [&robot]() { robot.actions().ax12_GO_banderole(); return true; });
-		actions.registerAction("banderole_init",   [&robot]() { robot.actions().ax12_init_banderole(); return true; });
-		actions.registerAction("bras_droit",       [&robot]() { robot.actions().ax12_bras_droit(); return true; });
-		actions.registerAction("bras_droit_init",  [&robot]() { robot.actions().ax12_bras_droit_init(); return true; });
-		actions.registerAction("bras_gauche",      [&robot]() { robot.actions().ax12_bras_gauche(); return true; });
-		actions.registerAction("bras_gauche_init", [&robot]() { robot.actions().ax12_bras_gauche_init(); return true; });
-		actions.registerAction("init_all",         [&robot]() { robot.actions().ax12_init(); return true; });
+		registerStrategyActions2026(actions, robot);
 		logger().info() << "ActionRegistry: " << actions.size() << " actions registered" << logs::end;
 
 		FlagManager flags;
