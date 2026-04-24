@@ -50,7 +50,7 @@ struct Settings {
 	uint8_t matchState    = 0;   ///< Reg 3. Etat match: 0=prepa, 1=en cours, 2=fini (W: OPOS6UL).
 	uint8_t lcdBacklight  = 1;   ///< Reg 4. Backlight LCD: 0=off, 1=on (W: OPOS6UL).
 
-	// === Bloc 2 : Teensy (LCD) -> OPOS6UL (5 bytes) ===
+	// === Bloc 2 : Teensy (LCD) -> OPOS6UL (5 + 8 = 13 bytes) ===
 	uint8_t matchColor    = 0;   ///< Reg 5. Couleur equipe: 0=bleu, 1=jaune (W: LCD).
 	uint8_t strategy      = 0;   ///< Reg 6. N° strategie IA 1..3 (W: LCD).
 	uint8_t testMode      = 0;   ///< Reg 7. Test materiel: 0=aucun, 1..5=test dedie (W: LCD).
@@ -62,15 +62,27 @@ struct Settings {
 	/// Voir robot/md/O_STATE_NEW_INIT.md section 6.
 	uint8_t actionReq     = 0;
 
+	// Zones de prise (config pre-match). Index 0..5 dans le cycle canonique :
+	// 0=BBYY, 1=YYBB, 2=BYYB, 3=YBBY, 4=BYBY, 5=YBYB. Defaut 0=BBYY.
+	// Voir teensy/IO_t41_ToF_DetectionBeacon/MATCH_CONFIG_UI.md.
+	uint8_t pickup_P1     = 0;   ///< Reg 10. P1  (verticale, cote bleu)    (W: LCD).
+	uint8_t pickup_P2     = 0;   ///< Reg 11. P2  (verticale, cote bleu)    (W: LCD).
+	uint8_t pickup_P3     = 0;   ///< Reg 12. P3  (horizontale, cote bleu)  (W: LCD).
+	uint8_t pickup_P4     = 0;   ///< Reg 13. P4  (horizontale, cote bleu)  (W: LCD).
+	uint8_t pickup_P11    = 0;   ///< Reg 14. P11 (verticale, cote jaune)   (W: LCD).
+	uint8_t pickup_P12    = 0;   ///< Reg 15. P12 (verticale, cote jaune)   (W: LCD).
+	uint8_t pickup_P13    = 0;   ///< Reg 16. P13 (horizontale, cote jaune) (W: LCD).
+	uint8_t pickup_P14    = 0;   ///< Reg 17. P14 (horizontale, cote jaune) (W: LCD).
+
 	// === Bloc 3 : compteur de clics touch (1 byte) ===
-	/// Reg 10. Incremente par chaque callback LVGL qui modifie un champ
+	/// Reg 18. Incremente par chaque callback LVGL qui modifie un champ
 	/// du Bloc 2. Permet a l'OPOS6UL de distinguer "je relis ce que j'ai
 	/// ecrit" de "l'operateur a clique sur l'ecran tactile". Reset a 0 au
 	/// boot Teensy (pas d'EEPROM) -> sert aussi de signal de reboot pour
 	/// l'OPOS6UL (regression = reboot detecte).
 	uint8_t seq_touch     = 0;
 };
-static_assert(sizeof(Settings) == 11, "Settings must be exactly 11 bytes for I2C layout");
+static_assert(sizeof(Settings) == 19, "Settings must be exactly 19 bytes for I2C layout");
 
 /**
  * @brief Registres I2C en lecture seule pour le master (OPOS6UL).

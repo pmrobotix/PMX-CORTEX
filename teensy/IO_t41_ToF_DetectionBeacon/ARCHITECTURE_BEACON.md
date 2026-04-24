@@ -139,7 +139,7 @@ Ecriture registres I2C (protegee par mutex)
 
 Les capteurs VL53L1X sont lus par la Teensy en I2C master (Wire/Wire1), puis les donnees traitees sont exposees via une interface **I2C esclave** (adresse `0x2D`, lib `i2c_register_slave`). Le cerveau OPOS6UL (master) lit ces registres pour obtenir les positions des robots adverses.
 
-**Registres Settings** (11 bytes, voir section "Menu pre-match" pour le detail complet) :
+**Registres Settings** (19 bytes, voir section "Menu pre-match" pour le detail complet) :
 
 | Registre | Type | Description |
 |----------|------|-------------|
@@ -153,22 +153,30 @@ Les capteurs VL53L1X sont lus par la Teensy en I2C master (Wire/Wire1), puis les
 | 7 | uint8 | `testMode` : 0=aucun, 1..5 |
 | 8 | uint8 | `advDiameter` : diametre adversaire en cm (defaut 40) |
 | 9 | uint8 | `actionReq` : bouton SETPOS/RESET clique sur LCD tactile (1=clic). OPOS6UL interprete selon `matchState` (CONFIG->setPos, ARMED->reset) puis remet a 0 pour consommer. |
-| 10 | uint8 | `seq_touch` : compteur incremente par chaque callback LVGL qui modifie un champ du Bloc 2. Reset a 0 au boot Teensy. Sert a l'OPOS6UL pour distinguer relecture vs clic operateur, et pour detecter un reboot Teensy (regression de seq). Voir `robot/md/O_STATE_NEW_INIT.md` section 6. |
+| 10 | uint8 | `pickup_P1` : zone P1 (verticale, cote bleu), index 0..5 dans cycle canonique (0=BBYY..5=YBYB). Defaut 0. |
+| 11 | uint8 | `pickup_P2` : zone P2 (verticale, cote bleu). |
+| 12 | uint8 | `pickup_P3` : zone P3 (horizontale, cote bleu). |
+| 13 | uint8 | `pickup_P4` : zone P4 (horizontale, cote bleu). |
+| 14 | uint8 | `pickup_P11` : zone P11 (verticale, cote jaune). |
+| 15 | uint8 | `pickup_P12` : zone P12 (verticale, cote jaune). |
+| 16 | uint8 | `pickup_P13` : zone P13 (horizontale, cote jaune). |
+| 17 | uint8 | `pickup_P14` : zone P14 (horizontale, cote jaune). Voir `MATCH_CONFIG_UI.md` pour le detail du cycle canonique et de l'UI. |
+| 18 | uint8 | `seq_touch` : compteur incremente par chaque callback LVGL qui modifie un champ du Bloc 2. Reset a 0 au boot Teensy. Sert a l'OPOS6UL pour distinguer relecture vs clic operateur, et pour detecter un reboot Teensy (regression de seq). Voir `robot/md/O_STATE_NEW_INIT.md` section 6. |
 
 **Registres Donnees** (lecture seule) :
 
-**IMPORTANT** : les offsets I2C absolus = `sizeof(Settings)` + offset dans la struct `Registers`. Avec `Settings` = 11 bytes (apres ajout de `actionReq` + `seq_touch`), **tous les offsets sont decales de +7** par rapport aux originaux (Settings = 4 bytes). Les anciens offsets sont notes entre parentheses.
+**IMPORTANT** : les offsets I2C absolus = `sizeof(Settings)` + offset dans la struct `Registers`. Avec `Settings` = 19 bytes (apres ajout des 8 zones de prise `pickup_Pn`), **tous les offsets sont decales de +15** par rapport aux originaux (Settings = 4 bytes). Les anciens offsets sont notes entre parentheses.
 
 | Registre | Type | Description |
 |----------|------|-------------|
-| 11 (ex-4) | uint8 | Flags (bit0 = new data, bit7 = alive) |
-| 12 (ex-5) | uint8 | Nombre de robots detectes |
-| 13-29 (ex-6-22) | int16 | Distances collision (c1 a c8) + reserve |
-| 31-62 (ex-24-55) | int16/float | Positions (x, y, angle) pour 4 robots |
-| 63-70 (ex-56-63) | int16 | Distances centre-a-centre (d1 a d4) |
-| 71-134 (ex-64-127) | uint8/uint16 | Donnees brutes des zones (z1 a z4) |
-| 135-142 (ex-128-135) | uint16 | Delta temps moyen de mesure par robot (t1-t4_us, en microsecondes depuis debut cycle) |
-| 143-146 (ex-136-139) | uint32 | Numero de sequence (incremente chaque cycle) |
+| 19 (ex-4) | uint8 | Flags (bit0 = new data, bit7 = alive) |
+| 20 (ex-5) | uint8 | Nombre de robots detectes |
+| 21-37 (ex-6-22) | int16 | Distances collision (c1 a c8) + reserve |
+| 39-70 (ex-24-55) | int16/float | Positions (x, y, angle) pour 4 robots |
+| 71-78 (ex-56-63) | int16 | Distances centre-a-centre (d1 a d4) |
+| 79-142 (ex-64-127) | uint8/uint16 | Donnees brutes des zones (z1 a z4) |
+| 143-150 (ex-128-135) | uint16 | Delta temps moyen de mesure par robot (t1-t4_us, en microsecondes depuis debut cycle) |
+| 151-154 (ex-136-139) | uint32 | Numero de sequence (incremente chaque cycle) |
 
 Le flag `new data` est remis a zero par l'ISR `on_read_isr` apres lecture par le master.
 
@@ -287,7 +295,7 @@ struct Settings {
     uint8_t matchState    = 0;   // Reg 3. Phase robot (0=CONFIG, 1=ARMED, 2=MATCH, 3=END) (W: OPOS6UL)
     uint8_t lcdBacklight  = 1;   // Reg 4. 0=off, 1=on (W: OPOS6UL)
 
-    // === Bloc 2 : Teensy (LCD) -> OPOS6UL (5 bytes) ===
+    // === Bloc 2 : Teensy (LCD) -> OPOS6UL (5 + 8 = 13 bytes) ===
     uint8_t matchColor    = 0;   // Reg 5. 0=bleu, 1=jaune (W: LCD)
     uint8_t strategy      = 0;   // Reg 6. 1..3 (W: LCD)
     uint8_t testMode      = 0;   // Reg 7. 0=aucun, 1..5 (W: LCD)
@@ -295,8 +303,20 @@ struct Settings {
     uint8_t actionReq     = 0;   // Reg 9. Bouton SETPOS/RESET clique (1=clic, W: LCD ;
                                  // OPOS6UL remet a 0 pour consommer, handshake)
 
+    // Zones de prise (config pre-match). Index 0..5 dans cycle canonique :
+    // 0=BBYY, 1=YYBB, 2=BYYB, 3=YBBY, 4=BYBY, 5=YBYB. Defaut 0=BBYY.
+    // Voir MATCH_CONFIG_UI.md.
+    uint8_t pickup_P1     = 0;   // Reg 10. P1  (V, bleu)   (W: LCD)
+    uint8_t pickup_P2     = 0;   // Reg 11. P2  (V, bleu)   (W: LCD)
+    uint8_t pickup_P3     = 0;   // Reg 12. P3  (H, bleu)   (W: LCD)
+    uint8_t pickup_P4     = 0;   // Reg 13. P4  (H, bleu)   (W: LCD)
+    uint8_t pickup_P11    = 0;   // Reg 14. P11 (V, jaune)  (W: LCD)
+    uint8_t pickup_P12    = 0;   // Reg 15. P12 (V, jaune)  (W: LCD)
+    uint8_t pickup_P13    = 0;   // Reg 16. P13 (H, jaune)  (W: LCD)
+    uint8_t pickup_P14    = 0;   // Reg 17. P14 (H, jaune)  (W: LCD)
+
     // === Bloc 3 : compteur de clics touch (1 byte) ===
-    uint8_t seq_touch     = 0;   // Reg 10. Incremente par chaque callback LVGL qui
+    uint8_t seq_touch     = 0;   // Reg 18. Incremente par chaque callback LVGL qui
                                  // ecrit un champ du Bloc 2. Reset a 0 au boot Teensy
                                  // (pas d'EEPROM). Sert a l'OPOS6UL pour :
                                  //  - distinguer "je relis ce que j'ai ecrit" de
@@ -304,8 +324,8 @@ struct Settings {
                                  //  - detecter un reboot Teensy (regression de seq)
                                  // Voir robot/md/O_STATE_NEW_INIT.md section 6.
 };
-// Total: 11 bytes, 3 blocs contigus
-static_assert(sizeof(Settings) == 11, "Settings must be exactly 11 bytes for I2C layout");
+// Total: 19 bytes, 3 blocs contigus
+static_assert(sizeof(Settings) == 19, "Settings must be exactly 19 bytes for I2C layout");
 ```
 
 Note : `matchPoints` (reg 2) est partage entre deux consommateurs cote Teensy : la matrice LED (`LedPanels` qui affiche deja le score en texte defilant via `add_display_PointsNumber()`) et le LCD (affichage optionnel en phase match). Un seul ecrivain (OPOS6UL), deux lecteurs -> pas de conflit.
