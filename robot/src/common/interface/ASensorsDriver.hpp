@@ -71,13 +71,24 @@ struct MatchSettingsData
 	uint8_t matchPoints   = 0;
 	uint8_t matchState    = 0;   // Encode robot.phase() (0=CONFIG, 1=ARMED, 2=MATCH, 3=END)
 	uint8_t lcdBacklight  = 1;
-	// Bloc 2 : Teensy (LCD) -> OPOS6UL (5 bytes)
+	// Bloc 2 : Teensy (LCD) -> OPOS6UL (5 + 8 = 13 bytes)
 	uint8_t matchColor    = 0;
 	uint8_t strategy      = 0;
 	uint8_t testMode      = 0;
 	uint8_t advDiameter   = 40;
 	uint8_t actionReq     = 0;   // 1 = bouton SETPOS/RESET clique (sens selon matchState).
 	                             // OPOS6UL remet a 0 apres consommation.
+	// Zones de prise : index 0..5 dans cycle canonique
+	// (0=BBYY, 1=YYBB, 2=BYYB, 3=YBBY, 4=BYBY, 5=YBYB).
+	// Voir teensy/IO_t41_ToF_DetectionBeacon/MATCH_CONFIG_UI.md.
+	uint8_t pickup_P1     = 0;
+	uint8_t pickup_P2     = 0;
+	uint8_t pickup_P3     = 0;
+	uint8_t pickup_P4     = 0;
+	uint8_t pickup_P11    = 0;
+	uint8_t pickup_P12    = 0;
+	uint8_t pickup_P13    = 0;
+	uint8_t pickup_P14    = 0;
 	// Bloc 3 : compteur de clic touch (1 byte)
 	uint8_t seq_touch     = 0;
 };

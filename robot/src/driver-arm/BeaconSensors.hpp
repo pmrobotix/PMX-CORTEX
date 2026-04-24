@@ -17,9 +17,10 @@
 
 //#define ADDRESS_BeaconSensors   0x2D
 // Offset I2C des Registers = sizeof(Settings) sur la Teensy.
-// Settings fait maintenant 11 bytes (ajout actionReq en bloc 2, voir ARCHITECTURE_BEACON.md).
+// Settings fait maintenant 19 bytes (ajout 8 pickup_Pn en bloc 2 pour la config
+// des zones de prise pre-match, voir ARCHITECTURE_BEACON.md et MATCH_CONFIG_UI.md).
 // IMPORTANT: doit matcher TofSensors.h cote Teensy, sinon ToF detection cassee.
-#define SETTINGS_SIZE_BeaconSensors 11
+#define SETTINGS_SIZE_BeaconSensors 19
 #define DATA_BeaconSensors      SETTINGS_SIZE_BeaconSensors //adresse des donnees Registers a recuperer
 #define NUMOFBOTS_BeaconSensors 0x00
 
@@ -51,8 +52,20 @@ struct Settings
     uint8_t actionReq     = 0;   // Reg 9. 1 = bouton SETPOS/RESET clique (sens selon matchState).
                                  // OPOS6UL remet a 0 apres consommation.
 
+    // Zones de prise (config pre-match). Index 0..5 dans cycle canonique :
+    // 0=BBYY, 1=YYBB, 2=BYYB, 3=YBBY, 4=BYBY, 5=YBYB. Defaut 0=BBYY.
+    // Voir teensy/IO_t41_ToF_DetectionBeacon/MATCH_CONFIG_UI.md.
+    uint8_t pickup_P1     = 0;   // Reg 10. P1  (V, bleu)   (W: LCD)
+    uint8_t pickup_P2     = 0;   // Reg 11. P2  (V, bleu)   (W: LCD)
+    uint8_t pickup_P3     = 0;   // Reg 12. P3  (H, bleu)   (W: LCD)
+    uint8_t pickup_P4     = 0;   // Reg 13. P4  (H, bleu)   (W: LCD)
+    uint8_t pickup_P11    = 0;   // Reg 14. P11 (V, jaune)  (W: LCD)
+    uint8_t pickup_P12    = 0;   // Reg 15. P12 (V, jaune)  (W: LCD)
+    uint8_t pickup_P13    = 0;   // Reg 16. P13 (H, jaune)  (W: LCD)
+    uint8_t pickup_P14    = 0;   // Reg 17. P14 (H, jaune)  (W: LCD)
+
     // === Bloc 3 : compteur de clics touch (1 byte) ===
-    uint8_t seq_touch     = 0;   // Reg 10. Incremente par Teensy a chaque clic LVGL.
+    uint8_t seq_touch     = 0;   // Reg 18. Incremente par Teensy a chaque clic LVGL.
 };
 
 // Registers that the caller can only read
@@ -200,7 +213,8 @@ public:
     Registers getDataFull();
 
     /*!
-     * \brief Lit le bloc Settings complet (registres 0..10, 11 bytes avec seq_touch).
+     * \brief Lit le bloc Settings complet (registres 0..18, 19 bytes avec
+     *        actionReq + 8 pickup_Pn + seq_touch).
      * \param out Struct a remplir.
      * \return true si lecture OK, false si erreur I2C.
      */

@@ -145,7 +145,7 @@ bool BeaconSensors::writeActionReq(uint8_t v)
 
 bool BeaconSensors::readSettings(Settings &out)
 {
-    unsigned char buf[11] = { 0 };
+    unsigned char buf[SETTINGS_SIZE_BeaconSensors] = { 0 };
     int err = i2c_.readReg(0x00, buf, SETTINGS_SIZE_BeaconSensors);
     if (err < 0) {
         logger().error() << "readSettings FAIL err=" << err << logs::end;
@@ -161,7 +161,15 @@ bool BeaconSensors::readSettings(Settings &out)
     out.testMode      = buf[7];
     out.advDiameter   = buf[8];
     out.actionReq     = buf[9];
-    out.seq_touch     = buf[10];
+    out.pickup_P1     = buf[10];
+    out.pickup_P2     = buf[11];
+    out.pickup_P3     = buf[12];
+    out.pickup_P4     = buf[13];
+    out.pickup_P11    = buf[14];
+    out.pickup_P12    = buf[15];
+    out.pickup_P13    = buf[16];
+    out.pickup_P14    = buf[17];
+    out.seq_touch     = buf[18];
     return true;
 }
 

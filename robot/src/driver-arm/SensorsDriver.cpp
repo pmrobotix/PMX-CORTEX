@@ -213,6 +213,14 @@ int SensorsDriver::syncFull()
 		cached_settings_.testMode      = s.testMode;
 		cached_settings_.advDiameter   = s.advDiameter;
 		cached_settings_.actionReq     = s.actionReq;
+		cached_settings_.pickup_P1     = s.pickup_P1;
+		cached_settings_.pickup_P2     = s.pickup_P2;
+		cached_settings_.pickup_P3     = s.pickup_P3;
+		cached_settings_.pickup_P4     = s.pickup_P4;
+		cached_settings_.pickup_P11    = s.pickup_P11;
+		cached_settings_.pickup_P12    = s.pickup_P12;
+		cached_settings_.pickup_P13    = s.pickup_P13;
+		cached_settings_.pickup_P14    = s.pickup_P14;
 		cached_settings_.seq_touch     = s.seq_touch;
 		settings_valid_ = true;
 	} else {
