@@ -98,6 +98,9 @@ void O_State_DecisionMakerIA::execute()
 		return;
 	}
 
+	logger().warn() << "===== LEGACY hardcoded strategy path '" << robot.strategy()
+			<< "' DEPRECATED. Use /s <PMX1|PMX2|PMX3> or pick via LCD menu. =====" << logs::end;
+
 	Navigator nav(&robot, &robot.ia().iAbyPath());
 
 	TRAJ_STATE ts = TRAJ_IDLE;

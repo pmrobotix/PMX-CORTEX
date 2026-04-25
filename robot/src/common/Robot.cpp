@@ -157,6 +157,36 @@ void Robot::configureDefaultConsoleArgs() {
     }
 }
 
+void Robot::loadInitJsonForCurrentStrategy()
+{
+    // Reset aux defauts si pas de strat JSON courante (mode legacy "all").
+    if (strategyJsonName_.empty()) {
+        initPoseX_         = 300.0f;
+        initPoseY_         = 130.0f;
+        initPoseThetaDeg_  = 90.0f;
+        setposTasks_.clear();
+        return;
+    }
+    std::string iPath = initJsonPath();
+    FILE* fi = std::fopen(iPath.c_str(), "r");
+    if (!fi) {
+        logger().warn() << "loadInitJsonForCurrentStrategy: init JSON not found: " << iPath
+                        << " (cwd-relative) - garde valeurs courantes" << logs::end;
+        return;
+    }
+    std::fclose(fi);
+    InitData initData;
+    if (!parseInitFromFile(iPath, initData)) {
+        logger().warn() << "loadInitJsonForCurrentStrategy: parse failed for " << iPath
+                        << " - garde valeurs courantes" << logs::end;
+        return;
+    }
+    initPoseX_         = initData.x;
+    initPoseY_         = initData.y;
+    initPoseThetaDeg_  = initData.thetaDeg;
+    setposTasks_       = std::move(initData.setposTasks);
+}
+
 void Robot::parseConsoleArgs(int argc, char** argv, bool stopWithErrors) {
     if (!cArgs_.parse(argc, argv, stopWithErrors)) {
         logger().debug() << "Error parsing DEFAULT" << logs::end;
@@ -179,41 +209,44 @@ void Robot::parseConsoleArgs(int argc, char** argv, bool stopWithErrors) {
         exportZonesDryRun_ = true;
     }
 
-    // Strategy JSON runner + Init JSON
+    // Strategy JSON runner + Init JSON. /s <name> est l'override CLI : il fixe
+    // strategyJsonName_ ET strategy_ (le menu peut encore les changer ensuite).
+    // Sans /s : defaut "PMX1" (cf. constructeur Robot).
     if (cArgs_['s']) {
         strategyJsonName_ = cArgs_['s']["name"];
-        // Echec precoce : valider l'existence des fichiers avant toute init hardware
-        // (sinon on perd 90s+ de match sur un fichier introuvable).
-        std::string sPath = strategyJsonPath();
-        if (!sPath.empty()) {
-            FILE* f = std::fopen(sPath.c_str(), "r");
-            if (!f) {
-                std::cerr << "ERROR: strategy JSON file not found: " << sPath
-                          << " (cwd-relative). Aborting." << std::endl;
-                std::exit(1);
-            }
-            std::fclose(f);
-
-            // Validation + parsing du init JSON associe (init<name>.json)
-            std::string iPath = initJsonPath();
-            FILE* fi = std::fopen(iPath.c_str(), "r");
-            if (!fi) {
-                std::cerr << "ERROR: init JSON file not found: " << iPath
-                          << " (cwd-relative). Aborting." << std::endl;
-                std::exit(1);
-            }
-            std::fclose(fi);
-
-            InitData initData;
-            if (!parseInitFromFile(iPath, initData)) {
-                std::cerr << "ERROR: parse failed for " << iPath << ". Aborting." << std::endl;
-                std::exit(1);
-            }
-            initPoseX_ = initData.x;
-            initPoseY_ = initData.y;
-            initPoseThetaDeg_ = initData.thetaDeg;
-            setposTasks_ = std::move(initData.setposTasks);
+        strategy_ = strategyJsonName_;  // sync avec strategy_ pour cohérence menu/JSON
+    }
+    // Fail-fast (avant toute init hardware) : valider que strategy<name>.json et
+    // init<name>.json existent et sont parsables. Le defaut PMX1 doit donc avoir
+    // ses fichiers presents dans cwd.
+    std::string sPath = strategyJsonPath();
+    if (!sPath.empty()) {
+        FILE* f = std::fopen(sPath.c_str(), "r");
+        if (!f) {
+            std::cerr << "ERROR: strategy JSON file not found: " << sPath
+                      << " (cwd-relative). Aborting." << std::endl;
+            std::exit(1);
         }
+        std::fclose(f);
+
+        std::string iPath = initJsonPath();
+        FILE* fi = std::fopen(iPath.c_str(), "r");
+        if (!fi) {
+            std::cerr << "ERROR: init JSON file not found: " << iPath
+                      << " (cwd-relative). Aborting." << std::endl;
+            std::exit(1);
+        }
+        std::fclose(fi);
+
+        InitData initData;
+        if (!parseInitFromFile(iPath, initData)) {
+            std::cerr << "ERROR: parse failed for " << iPath << ". Aborting." << std::endl;
+            std::exit(1);
+        }
+        initPoseX_ = initData.x;
+        initPoseY_ = initData.y;
+        initPoseThetaDeg_ = initData.thetaDeg;
+        setposTasks_ = std::move(initData.setposTasks);
     }
 
     // Reconfigure telemetry appender with command line args
@@ -371,13 +404,13 @@ void Robot::begin(int argc, char** argv) {
 
 
 
+    // /s <name> a deja ete traite dans parseConsoleArgs() (fixe strategyJsonName_
+    // ET strategy_). Sinon, on conserve les defauts (PMX1) du constructeur Robot.
+    strat = strategy_;
     if (cArgs_['s']) {
-        strat = cArgs_['s']["strategy"];
-        logger().info() << "strategy selected = " << strat << logs::end;
-        this->strategy(strat);
-    }
-    else {
-        this->strategy("all");
+        logger().info() << "strategy selected (via /s) = " << strat << logs::end;
+    } else {
+        logger().info() << "strategy default = " << strat << logs::end;
     }
 
     //test number

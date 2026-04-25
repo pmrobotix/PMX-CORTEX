@@ -139,7 +139,7 @@ protected:
 	bool end90s_ = false;
 	bool lastAction_ = false;
 	bool waitForInit_ = false;
-	std::string strategy_ = "all"; //defaut strategy
+	std::string strategy_ = "PMX1"; //defaut strategy (JSON, PMX1/2/3 + PMX0 debug)
 	std::string configVRR_ = "VRR"; //defaut config VRR
 
 	// --- Export zones simulateur (cf. ZoneJsonExporter) ---
@@ -147,7 +147,7 @@ protected:
 	bool exportZonesDryRun_ = false;  ///< Si true : exit apres export, sans demarrer le match
 
 	// --- Strategy JSON runner (cf. StrategyJsonRunner) ---
-	std::string strategyJsonName_;    ///< Nom de la strat (ex: "PMX0" -> strategyPMX0.json). Vide = fallback hardcode.
+	std::string strategyJsonName_ = "PMX1";   ///< Nom de la strat (ex: "PMX0" -> strategyPMX0.json). Vide = fallback hardcode (legacy DEPRECATED).
 
 	// --- Init JSON (init<Name>.json, charge si /s passe) ---
 	// Defauts = hardcode historique de O_State_NewInit::setPos().
@@ -528,13 +528,32 @@ public:
 
 	/*!
 	 * \brief Change la strategie. Editable en CONFIG + ARMED.
+	 *
+	 * Les noms commencant par "PMX" sont mappes au runner JSON :
+	 * setStrategyChecked("PMX1") -> strategyJsonName_ = "PMX1" + reload init JSON.
+	 * Les autres noms (ex: "all") clear strategyJsonName_ (legacy hardcode).
 	 */
 	bool setStrategyChecked(const std::string &s)
 	{
 		if (phase_ >= PHASE_MATCH) return false;
 		strategy_ = s;
+		if (s.rfind("PMX", 0) == 0) {
+			strategyJsonName_ = s;
+			loadInitJsonForCurrentStrategy();
+		} else {
+			strategyJsonName_.clear();
+		}
 		return true;
 	}
+
+	/*!
+	 * \brief Charge init<strategyJsonName_>.json et met a jour pose +
+	 *        setpos_tasks. Si fichier absent ou parse echoue : log warn et
+	 *        garde les valeurs courantes (pas d'exit, contrairement au
+	 *        fail-fast CLI). Appelable a chaque fois que strategyJsonName_
+	 *        change (CLI ou menu).
+	 */
+	void loadInitJsonForCurrentStrategy();
 
 	/*!
 	 * \brief Diametre adversaire en mm. Source de verite interne.

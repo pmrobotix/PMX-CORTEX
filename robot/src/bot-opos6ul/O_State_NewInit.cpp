@@ -253,7 +253,9 @@ void O_State_NewInit::setPos()
 			logger().info() << "setPos : setpos_tasks vide (pas de mouvement pre-tirette)" << logs::end;
 		}
 	} else {
-		// Mode menu (sans /s) : compat retro hardcode "avance 80mm".
+		// Mode legacy (sans /s, ni PMX* via menu) : compat retro hardcode "avance 80mm".
+		logger().warn() << "===== LEGACY hardcoded setPos (no JSON strategy) DEPRECATED. "
+				<< "Use /s <PMX1|PMX2|PMX3> or pick via LCD menu. =====" << logs::end;
 		Navigator nav(&robot);
 		TRAJ_STATE ts = nav.line(80);
 		if (ts != TRAJ_FINISHED) {
