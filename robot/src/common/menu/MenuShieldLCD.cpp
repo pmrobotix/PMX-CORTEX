@@ -28,10 +28,10 @@ MenuShieldLCD::MenuShieldLCD(LcdShield& lcd, ButtonBar& btns) :
 const char* MenuShieldLCD::strategyShort(const char* longName)
 {
 	if (!longName) return "S?";
-	if (std::strcmp(longName, "tabletest") == 0) return "S1";
-	if (std::strcmp(longName, "strat2") == 0)    return "S2";
-	if (std::strcmp(longName, "strat3") == 0)    return "S3";
-	if (std::strcmp(longName, "all") == 0)       return "S-";
+	if (std::strcmp(longName, "PMX1") == 0) return "S1";
+	if (std::strcmp(longName, "PMX2") == 0) return "S2";
+	if (std::strcmp(longName, "PMX3") == 0) return "S3";
+	if (std::strcmp(longName, "all") == 0)  return "S-";
 	return "S?";
 }
 
@@ -114,9 +114,9 @@ void MenuShieldLCD::incrementCurrentField(Robot& robot)
 		case FIELD_STRAT: {
 			const std::string s = robot.strategy();
 			std::string next;
-			if (s == "tabletest")  next = "strat2";
-			else if (s == "strat2") next = "strat3";
-			else                    next = "tabletest";
+			if (s == "PMX1")      next = "PMX2";
+			else if (s == "PMX2") next = "PMX3";
+			else                  next = "PMX1";
 			bool ok = robot.setStrategyChecked(next);
 			logger().info() << "[CLICK] UP on STRAT -> " << next << " ok=" << ok << logs::end;
 			break;
@@ -149,9 +149,9 @@ void MenuShieldLCD::decrementCurrentField(Robot& robot)
 		case FIELD_STRAT: {
 			const std::string s = robot.strategy();
 			std::string next;
-			if (s == "tabletest")  next = "strat3";
-			else if (s == "strat2") next = "tabletest";
-			else                    next = "strat2";
+			if (s == "PMX1")      next = "PMX3";
+			else if (s == "PMX2") next = "PMX1";
+			else                  next = "PMX2";
 			bool ok = robot.setStrategyChecked(next);
 			logger().info() << "[CLICK] DOWN on STRAT -> " << next << " ok=" << ok << logs::end;
 			break;

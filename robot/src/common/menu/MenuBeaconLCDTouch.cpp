@@ -60,9 +60,9 @@ void MenuBeaconLCDTouch::pollInputs(Robot& robot)
 		RobotColor c = (current.matchColor == 1) ? PMXYELLOW : PMXBLUE;
 		robot.setMyColorChecked(c);
 		switch (current.strategy) {
-			case 1: robot.setStrategyChecked("tabletest"); break;
-			case 2: robot.setStrategyChecked("strat2");    break;
-			case 3: robot.setStrategyChecked("strat3");    break;
+			case 1: robot.setStrategyChecked("PMX1"); break;
+			case 2: robot.setStrategyChecked("PMX2"); break;
+			case 3: robot.setStrategyChecked("PMX3"); break;
 			default: break;
 		}
 		if (current.advDiameter >= 5 && current.advDiameter <= 250)
