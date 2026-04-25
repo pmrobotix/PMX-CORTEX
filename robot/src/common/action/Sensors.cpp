@@ -30,28 +30,6 @@ Sensors::Sensors(Actions &actions, Robot *robot) :
 
 	opponents_last_positions.clear();
 
-	/*
-	 int xdim = 3400;
-	 int ydim = 2500;
-
-	 svg::Dimensions dimensions(xdim, ydim);
-	 svg::Layout lay(dimensions, svg::Layout::TopLeft);
-
-	 doc_ = new svg::Document("sensors", lay);
-	 //svg::Document doc("sensors", lay);
-
-	 *doc_ << svg::elemStart("g") << svg::attribute("transform", "translate(200,2200) scale(1,-1)")
-	 << svg::emptyElemEnd(false);
-
-	 // Red image border.
-	 svg::Polygon border(svg::Fill(svg::Color::White), svg::Stroke(5, svg::Color::Red));
-	 border << svg::Point(xdim, ydim) << svg::Point(dimensions.width, ydim)
-	 << svg::Point(dimensions.width, dimensions.height) << svg::Point(xdim, dimensions.height);
-	 *doc_ << border;
-
-	 //*doc_ << svg::elemStart("g");
-	 */
-
 }
 Sensors::~Sensors()
 {
@@ -60,35 +38,6 @@ Sensors::~Sensors()
 	delete sensorsdriver_;
 }
 
-//void Sensors::toSVG()
-//{
-
-//     int xdim = 3400;
-//     int ydim = 2500;
-//
-//     svg::Dimensions dimensions(xdim, ydim);
-//     svg::Layout lay(dimensions, svg::Layout::TopLeft);
-//
-//     svg::Document doc("sensors", lay);
-
-//     doc << svg::elemStart("g") << svg::attribute("transform", "translate(200,2200) scale(1,-1)")
-//     << svg::emptyElemEnd(false);
-//
-//     // Red image border.
-//     svg::Polygon border(svg::Fill(svg::Color::White), svg::Stroke(5, svg::Color::Red));
-//     border << svg::Point(xdim, ydim) << svg::Point(dimensions.width, ydim)
-//     << svg::Point(dimensions.width, dimensions.height) << svg::Point(xdim, dimensions.height);
-//     doc << border;
-
-//*doc_ << svg::elemEnd("g");
-//loggerSvg().info() << doc_->appendToString() << logs::end;
-/*
- doc << svg::elemEnd("g");
-
- loggerSvg().info() << doc.toString() << logs::end;
- */
-//loggerSvg().info() << "INIT " << logs::end;
-//}
 SensorsThread::SensorsThread(Sensors &sensors, int period_ms) :
 		sensors_(sensors),
 		period_us_(period_ms * 1000),
@@ -152,12 +101,6 @@ bool Sensors::is_connected()
 {
 	return sensorsdriver_->is_connected();
 }
-//
-////used in is_connected
-//bool Sensors::is_alive()
-//{
-//    return sensorsdriver_->is_alive();
-//}
 
 int Sensors::sync(std::string sensorname)
 {
