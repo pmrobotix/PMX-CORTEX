@@ -16,7 +16,7 @@
  * avec choix du mode (relatif/absolu), du Navigator, de la vitesse
  * et de la RetryPolicy.
  *
- * Options : /m 0=relatif(defaut) 1=absolu  /s vitesse%  /r repetitions
+ * Options : /m 0=relatif(defaut) 1=absolu  /v vitesse%  /r repetitions
  *           /p 0=asserv direct 1=Navigator line  /B detection  /+ x y a
  *
  * === SIMU — carre 500mm ===
@@ -52,10 +52,10 @@
  * === Vrai robot (ARM) — carre 200mm, vitesse 20% ===
  *
  *   # Asserv direct
- *   ./bot-opos6ul lr 200 90 0  200 90 0  200 90 0  200 90 0 /s 20 /+ 100 100 0
+ *   ./bot-opos6ul lr 200 90 0  200 90 0  200 90 0  200 90 0 /v 20 /+ 100 100 0
  *
  *   # Navigator avec retry
- *   ./bot-opos6ul lr 200 90 0  200 90 0  200 90 0  200 90 0 /p 1 /s 20 /+ 100 100 0
+ *   ./bot-opos6ul lr 200 90 0  200 90 0  200 90 0  200 90 0 /p 1 /v 20 /+ 100 100 0
  */
 class O_AsservLineRotateTest: public FunctionalTest
 {
@@ -75,6 +75,17 @@ public:
     }
 
     std::string defaultArgs() const override { return "500 90 0 500 90 0 500 90 0 500 90 0 /+ 250 250 0"; }
+
+    std::string usageHelp() const override
+    {
+        return
+            "        args: <d> [a] [back] (jusqu'a 5 segments d2/a2/back2 ...)\n"
+            "        opts: /m 0=relatif|1=absolu  /p 0=asserv|1=Navigator  /v vit%  /B 0|1 detect\n"
+            "              /r repetitions  /+ x y a (pos initiale)\n"
+            "        ex:   lr 30                       # avance 30mm (40% defaut)\n"
+            "              lr 30 0 0 /B 0              # 30mm sans rot ni detection\n"
+            "              lr 500 90 0 /+ 250 250 0    # 500mm + rot 90, depart (250,250)";
+    }
 
     virtual ~O_AsservLineRotateTest()
     {

@@ -34,6 +34,15 @@ public:
 
     std::string defaultArgs() const override { return "40 500 500 /+ 200 200 0"; }
 
+    std::string usageHelp() const override
+    {
+        return
+            "        args: <speed%> <x> <y> [x2 y2] [x3 y3]   (jusqu'a 3 destinations)\n"
+            "        opts: /+ x y a (pos initiale)\n"
+            "        ex:   go 40 500 500 /+ 200 200 0           # vise (500,500) a 40%\n"
+            "              go 40 500 500 800 500 /+ 200 200 0   # 2 destinations";
+    }
+
     virtual ~O_AsservTest()
     {
     }

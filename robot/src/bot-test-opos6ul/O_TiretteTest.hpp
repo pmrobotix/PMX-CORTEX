@@ -42,6 +42,13 @@ public:
 
     std::string defaultArgs() const override { return "10"; }
 
+    std::string usageHelp() const override
+    {
+        return
+            "        args: <timeout>  (duree du test en secondes, defaut 10)\n"
+            "        ex:   tir 30   # log etat tirette toutes les 200ms pendant 30s";
+    }
+
     /*!
      * \brief Execute le test.
      */

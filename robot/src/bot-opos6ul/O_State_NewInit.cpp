@@ -115,6 +115,14 @@ restart_menu:
 		setPos();
 		robot.actions().sensors().writeLedLuminosity(50);
 
+		// Debloque le DecisionMakerIA pour qu'il prepare playground/zones
+		// pendant que l'operateur insere/retire la tirette.
+		robot.waitForInit(true);
+
+		robot.actions().lcd2x16().clear();
+		robot.actions().lcd2x16().home();
+		robot.actions().lcd2x16().print("WAIT TIRETTE...");
+
 		// ===== PHASE ARMED : attente sequence tirette, reset possible =====
 		// Couleur LOCKED. Strat/diam/LED/tests restent editables.
 		// Etat interne : detecter l'edge "tirette inseree PUIS retiree".
@@ -133,15 +141,19 @@ restart_menu:
 			}
 
 			// Sequence tirette : on attend d'abord une insertion, puis le retrait.
-			bool tirettePressed = robot.actions().tirette().pressed();
-			if (!tiretteWasInserted && tirettePressed) {
-				tiretteWasInserted = true;
-				logger().info() << "tirette inseree, waiting for release" << logs::end;
-			}
-			if (tiretteWasInserted && !tirettePressed) {
-				logger().info() << "tirette retiree -> PHASE_MATCH" << logs::end;
-				robot.setPhase(PHASE_MATCH);
-				break;
+			// pressed() == 1 : inseree, == 0 : retiree, < 0 : I2C KO -> on skip.
+			int t = robot.actions().tirette().pressed();
+			if (t >= 0) {
+				bool isIn = (t == 1);
+				if (!tiretteWasInserted && isIn) {
+					tiretteWasInserted = true;
+					logger().info() << "tirette inseree, waiting for release" << logs::end;
+				}
+				if (tiretteWasInserted && !isIn) {
+					logger().info() << "tirette retiree -> PHASE_MATCH" << logs::end;
+					robot.setPhase(PHASE_MATCH);
+					break;
+				}
 			}
 
 			if (!ctrl.anyAlive()) {

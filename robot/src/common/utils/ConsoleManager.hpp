@@ -62,6 +62,12 @@ public:
 
 	std::string * displayAvailableTests(std::string color = "\033[0m", int selected = -1);
 
+	/*!
+	 * \brief Affiche le detail (defaultArgs + usageHelp) d'un seul test.
+	 * \param nTest Numero (1-based) du test a afficher.
+	 */
+	void displayOneTest(uint nTest);
+
 	std::string displayMenuFirstArgu();
 
 

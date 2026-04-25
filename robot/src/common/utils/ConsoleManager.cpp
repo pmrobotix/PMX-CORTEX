@@ -65,8 +65,32 @@ std::string * ConsoleManager::displayAvailableTests(std::string color, int selec
 
         //Affichage console
         std::cout << out.str() << std::endl;
+        // L'aide detaillee (usageHelp) n'est affichee que via "<code> /h"
+        // (cf. ConsoleManager::displayOneTest), pour garder la liste compacte.
     }
     return tab;
+}
+
+void ConsoleManager::displayOneTest(uint nTest)
+{
+    if (nTest == 0 || nTest > tests_.size()) return;
+    FunctionalTest *t = tests_[nTest - 1];
+
+    ostringstream out;
+    out << std::setw(3) << t->position() << ". ";
+    if (!t->code().empty())
+        out << std::left << std::setw(4) << t->code() << " ";
+    else
+        out << "     ";
+    out << std::left << std::setw(25) << t->name();
+    out << "  " << t->desc();
+    if (!t->defaultArgs().empty())
+        out << "\n        defaults: " << t->defaultArgs();
+    std::cout << out.str() << std::endl;
+
+    const std::string &help = t->usageHelp();
+    if (!help.empty())
+        std::cout << help << std::endl;
 }
 
 void ConsoleManager::displayMenuFunctionalTestsAndRun(int argc, char** argv)

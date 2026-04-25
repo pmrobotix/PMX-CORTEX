@@ -81,7 +81,7 @@
         {
             "id": "simuArgs",
             "type": "promptString",
-            "description": "Arguments (ex: m, t /n 1, t /n 5 /s 40)",
+            "description": "Arguments (ex: m, t /n 1, t /n 5 /v 40)",
             "default": "t /n 1"
         }
     ],

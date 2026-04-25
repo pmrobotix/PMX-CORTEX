@@ -34,6 +34,15 @@ public:
 
     std::string defaultArgs() const override { return "200 B"; }
 
+    std::string usageHelp() const override
+    {
+        return
+            "        args: <d> <ty>\n"
+            "              d  = distance recul mm\n"
+            "              ty = B(ordure) | R(droit) | L(gauche) | DR(demo droit) | DL(demo gauche)\n"
+            "        ex:   rca 200 B    # recule 200mm + cale sur bordure";
+    }
+
     virtual ~O_Asserv_CalageTest()
     {
     }

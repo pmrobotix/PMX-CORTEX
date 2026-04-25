@@ -113,16 +113,11 @@ void Robot::configureDefaultConsoleArgs() {
 
     cArgs_.addArgument("type", "Type of match (t)est/(m)atch/(p)ause", "m");
     {
-        Arguments::Option cOpt('n', ""); //TODO delete the /n, the t is enough
+        Arguments::Option cOpt('n', "Functional test number (utilise avec type=t)");
         cOpt.addArgument("num", "number of the functional test");
         cArgs_.addOption(cOpt);
     }
-
-    {
-        Arguments::Option cOpt('t', "");
-        cOpt.addArgument("strategy", "name of the strategy of match", "all");
-        cArgs_.addOption(cOpt);
-    }
+    // /t (strategy name) supprime : dead code, jamais lu (cArgs_['t'] inutilise).
 
     {
         Arguments::Option cOpt('i', "Telemetry target IP");
@@ -131,7 +126,8 @@ void Robot::configureDefaultConsoleArgs() {
     }
 
     {
-        Arguments::Option cOpt('p', "Telemetry target UDP port");
+        // /P (majuscule) pour telemetry port — /p minuscule reserve aux tests (ex: lr pmode).
+        Arguments::Option cOpt('P', "Telemetry target UDP port");
         cOpt.addArgument("port", "UDP port of telemetry receiver", "9870");
         cArgs_.addOption(cOpt);
     }
@@ -195,9 +191,29 @@ void Robot::parseConsoleArgs(int argc, char** argv, bool stopWithErrors) {
     }
 
     if (cArgs_['h']) {
+        // Si /h est passe avec un code de test connu (ex: "lr /h"), on affiche
+        // uniquement l'aide de ce test. Sinon, aide globale + exemples match.
+        const std::string& typeArg = cArgs_["type"];
+        int testNum = cmanager_.findByCode(typeArg);
+        if (testNum > 0) {
+            // Aide ciblee : juste ce test
+            std::cout << "Help for test '" << typeArg << "':" << std::endl;
+            cmanager_.displayOneTest(testNum);
+            exit(0);
+        }
+
+        // Aide globale
         std::cout << "Available functional tests: " << std::endl;
         cmanager_.displayAvailableTests("", -1);
         cArgs_.usage();
+        std::cout << "\nEXAMPLES:" << std::endl;
+        std::cout << "  ./bot-opos6ul m                         # match (menu LCD/balise)" << std::endl;
+        std::cout << "  ./bot-opos6ul m /k                      # match, skip menu+tirette (defaut PMX1 BLEU)" << std::endl;
+        std::cout << "  ./bot-opos6ul m /k /y /s PMX2           # match, skip, JAUNE, strat PMX2" << std::endl;
+        std::cout << "  ./bot-opos6ul lr /h                     # aide detaillee du test lr" << std::endl;
+        std::cout << "  ./bot-opos6ul cal 1                     # test calibration step 1 (codeurs)" << std::endl;
+        std::cout << "  ./bot-opos6ul lr 30                     # test ligne 30mm (40% defaut)" << std::endl;
+        std::cout << "\n(Astuce : <code> /h pour l'aide d'un test ; code mnemonique sans /n)" << std::endl;
         exit(0);
     }
 
@@ -212,47 +228,49 @@ void Robot::parseConsoleArgs(int argc, char** argv, bool stopWithErrors) {
     // Strategy JSON runner + Init JSON. /s <name> est l'override CLI : il fixe
     // strategyJsonName_ ET strategy_ (le menu peut encore les changer ensuite).
     // Sans /s : defaut "PMX1" (cf. constructeur Robot).
+    //
+    // Fail-fast JSON UNIQUEMENT si /s explicite : les tests fonctionnels (lr, cal,
+    // etc.) qui n'utilisent pas la stratégie ne doivent pas aborter si le JSON
+    // par défaut PMX1 n'est pas dans le cwd. Validation déléguée à l'usage runtime.
     if (cArgs_['s']) {
         strategyJsonName_ = cArgs_['s']["name"];
         strategy_ = strategyJsonName_;  // sync avec strategy_ pour cohérence menu/JSON
-    }
-    // Fail-fast (avant toute init hardware) : valider que strategy<name>.json et
-    // init<name>.json existent et sont parsables. Le defaut PMX1 doit donc avoir
-    // ses fichiers presents dans cwd.
-    std::string sPath = strategyJsonPath();
-    if (!sPath.empty()) {
-        FILE* f = std::fopen(sPath.c_str(), "r");
-        if (!f) {
-            std::cerr << "ERROR: strategy JSON file not found: " << sPath
-                      << " (cwd-relative). Aborting." << std::endl;
-            std::exit(1);
-        }
-        std::fclose(f);
 
-        std::string iPath = initJsonPath();
-        FILE* fi = std::fopen(iPath.c_str(), "r");
-        if (!fi) {
-            std::cerr << "ERROR: init JSON file not found: " << iPath
-                      << " (cwd-relative). Aborting." << std::endl;
-            std::exit(1);
-        }
-        std::fclose(fi);
+        std::string sPath = strategyJsonPath();
+        if (!sPath.empty()) {
+            FILE* f = std::fopen(sPath.c_str(), "r");
+            if (!f) {
+                std::cerr << "ERROR: strategy JSON file not found: " << sPath
+                          << " (cwd-relative). Aborting." << std::endl;
+                std::exit(1);
+            }
+            std::fclose(f);
 
-        InitData initData;
-        if (!parseInitFromFile(iPath, initData)) {
-            std::cerr << "ERROR: parse failed for " << iPath << ". Aborting." << std::endl;
-            std::exit(1);
+            std::string iPath = initJsonPath();
+            FILE* fi = std::fopen(iPath.c_str(), "r");
+            if (!fi) {
+                std::cerr << "ERROR: init JSON file not found: " << iPath
+                          << " (cwd-relative). Aborting." << std::endl;
+                std::exit(1);
+            }
+            std::fclose(fi);
+
+            InitData initData;
+            if (!parseInitFromFile(iPath, initData)) {
+                std::cerr << "ERROR: parse failed for " << iPath << ". Aborting." << std::endl;
+                std::exit(1);
+            }
+            initPoseX_ = initData.x;
+            initPoseY_ = initData.y;
+            initPoseThetaDeg_ = initData.thetaDeg;
+            setposTasks_ = std::move(initData.setposTasks);
         }
-        initPoseX_ = initData.x;
-        initPoseY_ = initData.y;
-        initPoseThetaDeg_ = initData.thetaDeg;
-        setposTasks_ = std::move(initData.setposTasks);
     }
 
-    // Reconfigure telemetry appender with command line args
-    if (cArgs_['i'] || cArgs_['p']) {
+    // Reconfigure telemetry appender with command line args (/i ip /P port)
+    if (cArgs_['i'] || cArgs_['P']) {
         std::string ip = cArgs_['i'] ? cArgs_['i']["ip"] : "192.168.3.101";
-        int port = cArgs_['p'] ? std::atoi(cArgs_['p']["port"].c_str()) : 9870;
+        int port = cArgs_['P'] ? std::atoi(cArgs_['P']["port"].c_str()) : 9870;
         logs::Appender *app = logs::LoggerFactory::instance().appender("net");
         if (app != nullptr) {
             auto *telemetry = dynamic_cast<logs::TelemetryAppender *>(app);

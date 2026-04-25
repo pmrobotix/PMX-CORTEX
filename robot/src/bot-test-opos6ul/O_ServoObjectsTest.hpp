@@ -41,6 +41,15 @@ public:
 	{
 	}
 
+	std::string usageHelp() const override
+	{
+		return
+			"        args: <action> [vitesse]\n"
+			"              action  = nom de l'action (cf. main.cpp ServoObjects)\n"
+			"              vitesse = 0..127 (defaut 0)\n"
+			"        ex:   so init   # remet les servos en position initiale";
+	}
+
 	/*!
 	 * \brief Execute le test.
 	 */

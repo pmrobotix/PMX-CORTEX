@@ -36,6 +36,18 @@ public:
 
 	std::string defaultArgs() const override { return "1"; }
 
+	std::string usageHelp() const override
+	{
+		return
+			"        args: <num> [step] [pos] [speed]\n"
+			"              num   = numero du servo\n"
+			"              step  = increment/decrement (defaut 2)\n"
+			"              pos   = position initiale 0..4095 (defaut 512, AX12)\n"
+			"              speed = vitesse (defaut 0)\n"
+			"        ex:   ss 1            # servo 1, step 2, pos 512\n"
+			"              ss 5 10 1024 50  # servo 5 pos 1024 step 10 vit 50";
+	}
+
 	/*!
 	 * \brief Destructeur de la classe.
 	 */

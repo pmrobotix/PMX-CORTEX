@@ -72,6 +72,14 @@ public:
     {
     }
 
+    std::string usageHelp() const override
+    {
+        return
+            "        args: aucun (8 boucles autonomes lancees en sequence)\n"
+            "        opts: /M multiplier (simu : 0=instantane, 1.0=temps reel, defaut 2.0)\n"
+            "        ex:   nav        # lance les 8 boucles (carre, manualPath, pathfinding, ...)";
+    }
+
     virtual void run(int argc, char** argv);
 };
 

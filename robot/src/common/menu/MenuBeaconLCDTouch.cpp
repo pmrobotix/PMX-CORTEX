@@ -134,13 +134,13 @@ void MenuBeaconLCDTouch::pollInputs(Robot& robot)
 		shadow_.matchColor = current.matchColor;
 	}
 
-	// strategy : 1/2/3 -> "tabletest"/"strat2"/"strat3"
+	// strategy : 1/2/3 -> "PMX1"/"PMX2"/"PMX3"
 	if (current.strategy != shadow_.strategy) {
 		const char* name = nullptr;
 		switch (current.strategy) {
-			case 1: name = "tabletest"; break;
-			case 2: name = "strat2";    break;
-			case 3: name = "strat3";    break;
+			case 1: name = "PMX1"; break;
+			case 2: name = "PMX2"; break;
+			case 3: name = "PMX3"; break;
 			default: break;
 		}
 		if (name) {
@@ -256,12 +256,12 @@ void MenuBeaconLCDTouch::refreshDisplay(const Robot& robot)
 		}
 	}
 
-	// strategy : "tabletest"/"strat2"/"strat3" -> 1/2/3
+	// strategy : "PMX1"/"PMX2"/"PMX3" -> 1/2/3
 	uint8_t stratByte = 0;
 	const std::string s = robot.strategy();
-	if (s == "tabletest") stratByte = 1;
-	else if (s == "strat2") stratByte = 2;
-	else if (s == "strat3") stratByte = 3;
+	if (s == "PMX1") stratByte = 1;
+	else if (s == "PMX2") stratByte = 2;
+	else if (s == "PMX3") stratByte = 3;
 	if (stratByte != shadow_.strategy) {
 		bool ok = sensors_.writeStrategy(stratByte);
 		logger().info() << "[PUSH] strategy " << (int)shadow_.strategy

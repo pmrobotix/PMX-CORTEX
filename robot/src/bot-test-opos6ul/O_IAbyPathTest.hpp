@@ -47,6 +47,13 @@ public:
     {
     }
 
+    std::string usageHelp() const override
+    {
+        return
+            "        args: aucun (scenario IA hardcode dans IASetup)\n"
+            "        ex:   ia    # demo pathfinding A* sur playground avec activites";
+    }
+
     /*!
      * \brief Execute le test.
      */

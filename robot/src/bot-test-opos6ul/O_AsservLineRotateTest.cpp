@@ -4,8 +4,10 @@
  *
  * Voir O_AsservLineRotateTest.hpp pour les exemples complets.
  *
- * Options : /m 0=relatif(defaut) 1=absolu  /s vitesse%  /r repetitions
+ * Options : /m 0=relatif(defaut) 1=absolu  /v vitesse%  /r repetitions
  *           /p 0=asserv direct 1=Navigator line  /B detection  /+ x y a
+ *
+ * Note : /v (vitesse) et NON /s (collision avec /s strategy de Robot.cpp).
  *
  * === SIMU — carre 500mm ===
  *
@@ -14,8 +16,8 @@
  *
  * === Vrai robot (ARM) — carre 200mm, vitesse 20% ===
  *
- *   ./bot-opos6ul lr 200 90 0  200 90 0  200 90 0  200 90 0 /s 20 /+ 100 100 0
- *   ./bot-opos6ul lr 200 90 0  200 90 0  200 90 0  200 90 0 /p 1 /s 20 /+ 100 100 0
+ *   ./bot-opos6ul lr 200 90 0  200 90 0  200 90 0  200 90 0 /v 20 /+ 100 100 0
+ *   ./bot-opos6ul lr 200 90 0  200 90 0  200 90 0  200 90 0 /p 1 /v 20 /+ 100 100 0
  */
 
 #include "O_AsservLineRotateTest.hpp"
@@ -65,14 +67,14 @@ void O_AsservLineRotateTest::configureConsoleArgs(int argc, char **argv)
 	cOptMode.addArgument("mode", "0:relative 1:absolute", "0");
 	robot.getArgs().addOption(cOptMode);
 
-	//mode de pathfinding
+	//mode de pathfinding (telemetry utilise /P majuscule, /p libre pour les tests)
 	Arguments::Option cOptPMode('p', "mode Navigator");
 	cOptPMode.addArgument("pmode", "0:asserv direct 1:nav.line", "0");
 	robot.getArgs().addOption(cOptPMode);
 
-	//speed
-	Arguments::Option cOptSpeed('s', "speed en %");
-	cOptSpeed.addArgument("speed", "speed en %", "40");
+	//speed (option /v pour vitesse — /s deja pris par strategy dans Robot.cpp)
+	Arguments::Option cOptSpeed('v', "vitesse en %");
+	cOptSpeed.addArgument("speed", "vitesse en %", "40");
 	robot.getArgs().addOption(cOptSpeed);
 
 	//detection adv
@@ -122,7 +124,7 @@ void O_AsservLineRotateTest::run(int argc, char **argv)
 	}
 
 	int B = atoi(args['B']["detection"].c_str());
-	int s = atoi(args['s']["speed"].c_str());
+	int s = atoi(args['v']["speed"].c_str());
 	int m = atoi(args['m']["mode"].c_str());
 	int navMode = atoi(args['p']["pmode"].c_str());
 	int repeat = atoi(args['r']["repeat"].c_str());

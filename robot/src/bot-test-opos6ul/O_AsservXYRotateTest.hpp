@@ -34,6 +34,14 @@ public:
 
     std::string defaultArgs() const override { return "40 500 500 500 0 0 1 /+ 250 250 0"; }
 
+    std::string usageHelp() const override
+    {
+        return
+            "        args: <speed%> <dist> <x> <y> <a> [back] [nb]\n"
+            "        opts: /+ x y a (pos initiale)\n"
+            "        ex:   xy 40 500 500 500 0 0 1 /+ 250 250 0   # speed 40%, vise (500,500)";
+    }
+
     virtual ~O_AsservXYRotateTest()
     {
     }

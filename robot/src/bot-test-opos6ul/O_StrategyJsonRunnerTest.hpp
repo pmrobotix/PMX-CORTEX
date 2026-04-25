@@ -28,6 +28,13 @@ public:
     O_StrategyJsonRunnerTest();
     virtual ~O_StrategyJsonRunnerTest() {}
 
+    std::string usageHelp() const override
+    {
+        return
+            "        args: aucun (charge strategySR01..SR06.json en interne)\n"
+            "        ex:   /k jrun   # 6 scenarios SR01-06, verifie tri/flags/abort + SVG synthese";
+    }
+
     virtual void run(int argc, char** argv) override;
 
 private:

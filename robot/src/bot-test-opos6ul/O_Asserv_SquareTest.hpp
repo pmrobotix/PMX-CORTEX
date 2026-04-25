@@ -32,7 +32,17 @@ public:
     {
     }
 
-    std::string defaultArgs() const override { return "250 250 500 1"; }
+    std::string defaultArgs() const override { return "250 250 0 500 1 0"; }
+
+    std::string usageHelp() const override
+    {
+        return
+            "        args: <x> <y> <a> <d> [nb] [cw]\n"
+            "              x,y = depart (mm), a = angle initial (deg), d = cote du carre (mm)\n"
+            "              nb  = nombre de tours, cw = sens (0=CCW defaut, 1=CW)\n"
+            "        ex:   sq 250 250 0 500             # carre 500mm depuis (250,250)\n"
+            "              sq 100 100 0 200 2 1         # 2 tours sens horaire";
+    }
 
     virtual ~O_Asserv_SquareTest()
     {

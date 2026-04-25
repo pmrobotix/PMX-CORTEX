@@ -62,6 +62,14 @@ public:
 
     virtual ~O_DetectionScenarioTest() {}
 
+    std::string usageHelp() const override
+    {
+        return
+            "        args: aucun (scenarios JSON internes, SIMU uniquement)\n"
+            "        ex:   /k <code>   # 5 cas par primitive : Clear/AdvOnPath/AdvBeside/...\n"
+            "                          # produit un rapport + SVG de synthese";
+    }
+
     virtual void run(int argc, char** argv);
 
 protected:

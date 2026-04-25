@@ -6,7 +6,9 @@
  * Jusqu'a 5 waypoints (x,y) avec choix du PathMode.
  *
  * Options : /m 0=STOP 1=CHAIN 2=CHAIN_NONSTOP
- *           /s vitesse%  /B detection  /+ x y a (position initiale)
+ *           /v vitesse%  /B detection  /+ x y a (position initiale)
+ *
+ * Note : /v (vitesse) et NON /s (collision avec /s strategy de Robot.cpp).
  *
  * Voir O_AsservWaypointTest.hpp pour les exemples complets.
  *
@@ -18,9 +20,9 @@
  *
  * === Vrai robot (ARM) — carre 200mm, vitesse 20% ===
  *
- *   ./bot-opos6ul wp 300 100  300 300  100 300  100 100 /m 0 /s 20 /+ 100 100 0
- *   ./bot-opos6ul wp 300 100  300 300  100 300  100 100 /m 1 /s 20 /+ 100 100 0
- *   ./bot-opos6ul wp 300 100  300 300  100 300  100 100 /m 2 /s 20 /+ 100 100 0
+ *   ./bot-opos6ul wp 300 100  300 300  100 300  100 100 /m 0 /v 20 /+ 100 100 0
+ *   ./bot-opos6ul wp 300 100  300 300  100 300  100 100 /m 1 /v 20 /+ 100 100 0
+ *   ./bot-opos6ul wp 300 100  300 300  100 300  100 100 /m 2 /v 20 /+ 100 100 0
  */
 
 #include "O_AsservWaypointTest.hpp"
@@ -67,9 +69,9 @@ void O_AsservWaypointTest::configureConsoleArgs(int argc, char **argv)
 	cOptMode.addArgument("mode", "0:STOP 1:CHAIN 2:CHAIN_NONSTOP", "0");
 	robot.getArgs().addOption(cOptMode);
 
-	// Speed
-	Arguments::Option cOptSpeed('s', "speed en %");
-	cOptSpeed.addArgument("speed", "speed en %", "40");
+	// Speed (option /v pour vitesse — /s deja pris par strategy dans Robot.cpp)
+	Arguments::Option cOptSpeed('v', "vitesse en %");
+	cOptSpeed.addArgument("speed", "vitesse en %", "40");
 	robot.getArgs().addOption(cOptSpeed);
 
 	// Detection
@@ -125,7 +127,7 @@ void O_AsservWaypointTest::run(int argc, char **argv)
 	if (modeInt == 1) mode = CHAIN;
 	else if (modeInt == 2) mode = CHAIN_NONSTOP;
 
-	int s = atoi(args['s']["speed"].c_str());
+	int s = atoi(args['v']["speed"].c_str());
 	int B = atoi(args['B']["detection"].c_str());
 
 	float coordx = atof(args['+']["coordx"].c_str());

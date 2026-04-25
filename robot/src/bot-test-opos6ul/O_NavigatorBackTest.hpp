@@ -64,6 +64,13 @@ public:
     {
     }
 
+    std::string usageHelp() const override
+    {
+        return
+            "        args: aucun (5 boucles autonomes en marche arriere)\n"
+            "        ex:   nb         # tests goBackTo, faceBackTo, pathBackTo (3 modes)";
+    }
+
     virtual void run(int argc, char** argv);
 };
 

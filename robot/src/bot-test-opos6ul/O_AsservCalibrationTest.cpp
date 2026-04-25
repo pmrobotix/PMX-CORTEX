@@ -1,6 +1,24 @@
 /*!
  * \file
  * \brief Implémentation de la classe O_AsservCalibrationTest.
+ *
+ * Argument positionnel `step` (0..5) : pas de slash, juste le numéro.
+ *
+ * === Exemples ===
+ *
+ *   ./bot-opos6ul cal 0   // set position fixe puis lit pos + codeurs en boucle
+ *   ./bot-opos6ul cal 1   // codeurs seuls : pousser le robot a la main, voir
+ *                         // si left/right bougent (test liaison Nucleo->OPO)
+ *   ./bot-opos6ul cal 2   // moteurs L+R a 25% pendant ~5s, log pos + codeurs
+ *                         // (test commande directe OPO->Nucleo, bypass asserv)
+ *   ./bot-opos6ul cal 3   // assistedHandling en boucle (regler P : pousser,
+ *                         // le robot doit resister/revenir)
+ *   ./bot-opos6ul cal 4   // line(100) en assisted (regler D en translation)
+ *   ./bot-opos6ul cal 5   // rotateDeg(90) en assisted (regler D en rotation)
+ *
+ * Note : `cal /step 4` NE marche pas — le parseur lit `/s` (strategy) et prend
+ * "4" comme nom de strategie -> cherche strategy4.json -> abort. Ne pas mettre
+ * de slash devant `step`.
  */
 
 #include "O_AsservCalibrationTest.hpp"

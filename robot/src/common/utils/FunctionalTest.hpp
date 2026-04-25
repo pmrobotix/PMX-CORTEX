@@ -109,6 +109,18 @@ public:
     {
         return "";
     }
+
+    /*!
+     * \brief Aide multi-lignes affichee par /h sous chaque test.
+     *
+     * Convention : 1ere ligne = synopsis des args positionnels et options,
+     * lignes suivantes = exemples concrets indentes de 8 espaces.
+     * Retourne "" si pas d'aide -> ConsoleManager n'imprime rien.
+     */
+    virtual std::string usageHelp() const
+    {
+        return "";
+    }
 };
 
 #endif
