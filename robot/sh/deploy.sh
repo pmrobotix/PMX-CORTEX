@@ -102,6 +102,32 @@ info "Deploy $TARGET vers $ROBOT_USER@$ROBOT_IP:$ROBOT_DIR/"
 $SSH_CMD "mkdir -p $ROBOT_DIR" 2>/dev/null || true
 $SCP_CMD "$BINARY" "$ROBOT_USER@$ROBOT_IP:$ROBOT_DIR/"
 
+# Pour bot-opos6ul : copier aussi les fichiers de configuration runtime
+# (strats JSON, init JSON, hardware.conf, asserv config) qui sont resolus
+# par le binaire en cwd-relative.
+if [ "$TARGET" = "bot-opos6ul" ]; then
+    info "Copie config runtime (JSON strats/inits + hardware.conf + asserv)..."
+    CONFIG_FILES=(
+        "$BUILD_DIR/hardware.conf"
+        "$BUILD_DIR/config_OPOS6UL_Robot.txt"
+        "$BUILD_DIR/strategyPMX0.json"
+        "$BUILD_DIR/initPMX0.json"
+        "$BUILD_DIR/strategyPMX1.json"
+        "$BUILD_DIR/initPMX1.json"
+        "$BUILD_DIR/strategyPMX2.json"
+        "$BUILD_DIR/initPMX2.json"
+        "$BUILD_DIR/strategyPMX3.json"
+        "$BUILD_DIR/initPMX3.json"
+    )
+    for f in "${CONFIG_FILES[@]}"; do
+        if [ -f "$f" ]; then
+            $SCP_CMD "$f" "$ROBOT_USER@$ROBOT_IP:$ROBOT_DIR/" > /dev/null
+        else
+            warn "Manquant (skip) : $f"
+        fi
+    done
+fi
+
 # --- Run (optionnel) ---
 if [ "$RUN" = "run" ]; then
     info "Execution $TARGET sur la carte..."

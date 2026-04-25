@@ -282,7 +282,32 @@ if(DRIVER_LIB)
         COMMAND ${CMAKE_COMMAND} -E copy_directory
             ${CMAKE_SOURCE_DIR}/src/bot-test-opos6ul/scenarios
             $<TARGET_FILE_DIR:bot-opos6ul>
-        COMMENT "Copie hardware.conf + config asserv + index.html + table.png + scenarios JSON dans bin/"
+        # Strategies/Init JSON match (PMX0 debug, PMX1/PMX2/PMX3 menu)
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            ${CMAKE_SOURCE_DIR}/src/bot-opos6ul/strategyPMX0.json
+            $<TARGET_FILE_DIR:bot-opos6ul>/strategyPMX0.json
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            ${CMAKE_SOURCE_DIR}/src/bot-opos6ul/initPMX0.json
+            $<TARGET_FILE_DIR:bot-opos6ul>/initPMX0.json
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            ${CMAKE_SOURCE_DIR}/src/bot-opos6ul/strategyPMX1.json
+            $<TARGET_FILE_DIR:bot-opos6ul>/strategyPMX1.json
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            ${CMAKE_SOURCE_DIR}/src/bot-opos6ul/initPMX1.json
+            $<TARGET_FILE_DIR:bot-opos6ul>/initPMX1.json
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            ${CMAKE_SOURCE_DIR}/src/bot-opos6ul/strategyPMX2.json
+            $<TARGET_FILE_DIR:bot-opos6ul>/strategyPMX2.json
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            ${CMAKE_SOURCE_DIR}/src/bot-opos6ul/initPMX2.json
+            $<TARGET_FILE_DIR:bot-opos6ul>/initPMX2.json
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            ${CMAKE_SOURCE_DIR}/src/bot-opos6ul/strategyPMX3.json
+            $<TARGET_FILE_DIR:bot-opos6ul>/strategyPMX3.json
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            ${CMAKE_SOURCE_DIR}/src/bot-opos6ul/initPMX3.json
+            $<TARGET_FILE_DIR:bot-opos6ul>/initPMX3.json
+        COMMENT "Copie hardware.conf + config asserv + index.html + table.png + scenarios JSON + strats PMX1-3 dans bin/"
     )
 endif()
 
