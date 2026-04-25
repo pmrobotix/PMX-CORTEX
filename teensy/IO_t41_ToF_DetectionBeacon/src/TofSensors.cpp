@@ -55,8 +55,10 @@ uint16_t Ambient_coll[NumOfZonesPerSensor * NumOfSensors];
 
 int nb_active_filtered_sensors;        ///< Compteur de zones actives (detection main proche < 160mm).
 int nb_active_filtered_sensors_mode2;  ///< Compteur de zones actives mode 2 (detection tres proche < 60mm).
-volatile int videoMode;                ///< Mode d'affichage LED : 0=normal, 1=video (main couvre tout), 2=tres proche.
-extern int video_infinite;
+volatile int proximity_level;                ///< Niveau de proximite ToF : 0=loin/normal, 1=main couvre tout (drapeau UA), 2=tres proche (Hey!!). Calcule par tof_loop().
+volatile int last_ua_gesture = UA_GESTURE_NONE;  ///< Dernier gesture UA detecte (mode prod/convergence/long). Consomme par LedPanels.
+volatile int last_swipe_gesture = SWIPE_NONE;    ///< Dernier gesture swipe detecte (CW/CCW). Consomme par LedPanels.
+extern int match_mode_actif;
 int latency_thread_error = 0;          ///< Flag d'erreur de latence des threads (>90ms).
 int latency = 0;                       ///< Compteur pour reset du flag latency_thread_error apres 5 cycles OK.
 
@@ -561,7 +563,7 @@ void on_read_isr(uint8_t reg_num)
 void tof_setup()
 {
 	//threads.delay(4000);
-	videoMode = 0;
+	proximity_level = 0;
 
 	// Start listening on I2C4 with address 0x2D
 	registerSlave.listen(0x2D);
@@ -1150,14 +1152,245 @@ void tof_loop(int debug)
 	//change mode
 	if (nb_active_filtered_sensors > NumOfSensorsForVideoMode)
 	{
-		videoMode = 1;
+		proximity_level = 1;
 	} else if (nb_active_filtered_sensors_mode2 > 10)
 	{
-		videoMode = 2;
+		proximity_level = 2;
 
 	} else
-		videoMode = 0;
-	if (debug) Serial.println(videoMode);
+		proximity_level = 0;
+	if (debug) Serial.println(proximity_level);
+
+	// === Detection gesture UA (drapeau) : distingue 3 sorties possibles ===
+	// - UA_GESTURE_BILATERAL  : sortie des 2 cotes (mode prod existant)
+	// - UA_GESTURE_CONVERGENT : mains convergent devant avant de partir
+	// - UA_GESTURE_LONG_HOLD  : UA maintenu >= 2s puis sortie
+	// Voir ARCHITECTURE_BEACON.md "Gestes UA" pour details.
+	{
+		static int ua_prev_proximity_level = 0;
+		static uint32_t ua_start_ms = 0;
+		static bool ua_seen_long = false;
+		static bool ua_last_concentrated = false;
+
+		if (proximity_level == 1 && ua_prev_proximity_level != 1) {
+			// Debut UA : reset timer + flags
+			ua_start_ms = millis();
+			ua_seen_long = false;
+			ua_last_concentrated = false;
+		}
+		if (proximity_level == 1) {
+			// Pendant UA : check duree (>= 2s) et distribution front/back
+			if ((millis() - ua_start_ms) >= 2000) ua_seen_long = true;
+
+			int front_active = 0, back_active = 0;
+			for (int i = 0; i < 36; i++) {
+				int d = filteredResultWorkingCopy[i];
+				if (d > 10 && d < 60) front_active++;
+			}
+			for (int i = 36; i < 72; i++) {
+				int d = filteredResultWorkingCopy[i];
+				if (d > 10 && d < 60) back_active++;
+			}
+			// Concentre = zones massees d'un seul cote (une moitie quasi vide)
+			ua_last_concentrated = (front_active > 5 && back_active <= 2)
+			                    || (back_active > 5 && front_active <= 2);
+		}
+		if (proximity_level != 1 && ua_prev_proximity_level == 1) {
+			// Sortie UA : decide le gesture
+			if (ua_seen_long)          last_ua_gesture = UA_GESTURE_LONG_HOLD;
+			else if (ua_last_concentrated) last_ua_gesture = UA_GESTURE_CONVERGENT;
+			else                       last_ua_gesture = UA_GESTURE_BILATERAL;
+		}
+		ua_prev_proximity_level = proximity_level;
+	}
+
+	// === Detection swipe par tracking de clusters ===
+	// On identifie les clusters (groupes contigus de zones actives) dans le
+	// tableau greenHandDistance. A chaque cycle, on cherche pour chaque
+	// cluster courant son correspondant au cycle precedent (matching par
+	// proximite de centre + similarite de distance). Le deplacement du
+	// centre du cluster matche est cumule dans la direction. Si le cumul
+	// atteint SWIPE_THRESHOLD zones consecutives dans le meme sens -> swipe.
+	//
+	// Filtrage natif :
+	// - Cluster statique (corps, mobilier) : centre ne bouge pas -> deplacement 0
+	// - Scintillement : cluster disparait/reapparait au meme endroit -> deplacement 0
+	// - Seul un VRAI mouvement (cluster qui glisse) est detecte
+	//
+	// Pour activer les logs Serial de debug, mettre DEBUG_SWIPE_LOG a 1.
+#define DEBUG_SWIPE_LOG 0
+	{
+		static const int NB_ZONES = NumOfZonesPerSensor * NumOfSensors;
+		static const int SWIPE_THRESHOLD = 12;  // 12 zones = 60°
+		static const int MAX_CLUSTERS = 8;
+		static const int CENTER_TOL = 3;     // matching : ecart centre max (zones)
+		static const int DIST_TOL_MM = 50;          // matching : ecart distance max (5 cm)
+		static const int MAX_DETECTION_DIST_MM = 300; // ignore clusters au-dela de 30 cm
+		static const uint32_t SWIPE_TIMEOUT_MS = 3000;
+		static const uint32_t SWIPE_GAP_TOLERANCE_MS = 1000;
+
+		struct Cluster {
+			int8_t  start;
+			int8_t  end;
+			int8_t  center;
+			int16_t mean_dist;
+			int16_t prev_delta_dist; // variation de distance entre les 2 cycles precedents
+		};
+
+		static Cluster prev_clusters[MAX_CLUSTERS];
+		static int prev_n_clusters = 0;
+		static int swipe_progress = 0;
+		static uint32_t swipe_start_ms = 0;
+		static uint32_t last_change_ms = 0;
+
+		uint32_t now = millis();
+
+		if (proximity_level != 0) {
+			prev_n_clusters = 0;
+			swipe_progress = 0;
+		} else {
+			// 1. Identifier les clusters du cycle courant
+			Cluster curr_clusters[MAX_CLUSTERS];
+			int curr_n = 0;
+			int idx = 0;
+			while (idx < NB_ZONES && curr_n < MAX_CLUSTERS) {
+				if (greenHandDistance[idx] > 50) {
+					Cluster c;
+					c.start = (int8_t)idx;
+					int sum = greenHandDistance[idx];
+					int count = 1;
+					while (idx + 1 < NB_ZONES && greenHandDistance[idx + 1] > 50) {
+						idx++;
+						sum += greenHandDistance[idx];
+						count++;
+					}
+					c.end = (int8_t)idx;
+					c.center = (int8_t)((c.start + c.end) / 2);
+					c.mean_dist = (int16_t)(sum / count);
+					c.prev_delta_dist = 0; // sera mis a jour apres matching
+					// Filtre distance : seuls les clusters proches (<=30cm)
+					// participent a la detection swipe (= main de l'utilisateur)
+					if (c.mean_dist <= MAX_DETECTION_DIST_MM) {
+						curr_clusters[curr_n++] = c;
+					}
+				}
+				idx++;
+			}
+			// Wrap-around : si zone 0 et zone 71 actives, fusionner les clusters
+			// (le cluster de zone 0 est forcement le 1er, zone 71 est dans le dernier)
+			if (curr_n >= 2 && curr_clusters[0].start == 0
+			    && curr_clusters[curr_n - 1].end == NB_ZONES - 1) {
+				// Fusion : on rallonge le 1er cluster avec le dernier (logique circulaire)
+				Cluster &first = curr_clusters[0];
+				Cluster &last  = curr_clusters[curr_n - 1];
+				int span_first = first.end - first.start + 1;
+				int span_last  = last.end - last.start + 1;
+				// Centre circulaire : on calcule en virtuel sur [last.start, first.end + NB_ZONES]
+				int virt_start = last.start;
+				int virt_end   = first.end + NB_ZONES;
+				int virt_center = (virt_start + virt_end) / 2;
+				first.start = (int8_t)last.start;
+				first.end   = (int8_t)first.end; // inchange (mais represente un wrap)
+				first.center = (int8_t)(virt_center % NB_ZONES);
+				first.mean_dist = (int16_t)((first.mean_dist * span_first
+				                          +  last.mean_dist  * span_last)
+				                         / (span_first + span_last));
+				curr_n--; // on retire le dernier
+			}
+
+			// 2. Matching avec le cycle precedent + calcul des deplacements
+			//    Tolerance distance ADAPTATIVE : on autorise une variation de
+			//    2x le delta observe au cycle precedent (la main qui s'approche
+			//    pendant le swipe a un delta_dist coherent d'un cycle a l'autre).
+			int delta_this_cycle = 0;
+			bool any_match = false;
+			for (int c = 0; c < curr_n; c++) {
+				int best_match = -1;
+				int best_abs_diff = CENTER_TOL + 1;
+				int best_signed_diff = 0;
+				int best_dist_delta = 0;
+				for (int p = 0; p < prev_n_clusters; p++) {
+					int diff = curr_clusters[c].center - prev_clusters[p].center;
+					if (diff >  NB_ZONES/2) diff -= NB_ZONES;
+					if (diff < -NB_ZONES/2) diff += NB_ZONES;
+					int dist_delta_signed = (int)curr_clusters[c].mean_dist
+					                      - (int)prev_clusters[p].mean_dist;
+					int dist_diff = abs(dist_delta_signed);
+					int adaptive_tol = DIST_TOL_MM;
+					int prev_speed = abs((int)prev_clusters[p].prev_delta_dist);
+					if (2 * prev_speed > adaptive_tol) adaptive_tol = 2 * prev_speed;
+					if (abs(diff) <= CENTER_TOL && dist_diff <= adaptive_tol) {
+						if (abs(diff) < best_abs_diff) {
+							best_abs_diff = abs(diff);
+							best_signed_diff = diff;
+							best_dist_delta = dist_delta_signed;
+							best_match = p;
+						}
+					}
+				}
+				if (best_match >= 0) {
+					any_match = true;
+					curr_clusters[c].prev_delta_dist = (int16_t)best_dist_delta;
+					if (best_signed_diff != 0) {
+						delta_this_cycle += best_signed_diff;
+					}
+				} else {
+					curr_clusters[c].prev_delta_dist = 0; // nouveau cluster
+				}
+			}
+
+			// 3. Cumul + detection
+			if (delta_this_cycle != 0) {
+				// Pas de reset sur changement de sens : on accumule simplement.
+				// Un vrai swipe domine le bruit parasite. Si le user fait un
+				// vrai changement de direction (ex: gauche -8 puis droite +9),
+				// le compteur passe naturellement par 0 et inverse de signe.
+				if (swipe_progress == 0) swipe_start_ms = now;
+				swipe_progress += delta_this_cycle;
+				last_change_ms = now;
+
+#if DEBUG_SWIPE_LOG
+				static uint32_t last_log_ms = 0;
+				if ((now - last_log_ms) > 100) {
+					last_log_ms = now;
+					Serial.print("SWIPE: dt=");
+					Serial.print(delta_this_cycle);
+					Serial.print(" prog=");
+					Serial.print(swipe_progress);
+					Serial.print(" curr_n=");
+					Serial.println(curr_n);
+				}
+#endif
+			}
+
+			if (abs(swipe_progress) >= SWIPE_THRESHOLD
+			    && (now - swipe_start_ms) <= SWIPE_TIMEOUT_MS) {
+				last_swipe_gesture = (swipe_progress > 0) ? SWIPE_CW : SWIPE_CCW;
+#if DEBUG_SWIPE_LOG
+				Serial.print(">>> SWIPE DETECTED prog=");
+				Serial.print(swipe_progress);
+				Serial.println(swipe_progress > 0 ? " CW <<<" : " CCW <<<");
+#endif
+				swipe_progress = 0;
+			}
+			else if (swipe_progress != 0 && (now - swipe_start_ms) > SWIPE_TIMEOUT_MS) {
+#if DEBUG_SWIPE_LOG
+				Serial.println("SWIPE TIMEOUT");
+#endif
+				swipe_progress = 0;
+			}
+			else if (swipe_progress != 0 && (now - last_change_ms) > SWIPE_GAP_TOLERANCE_MS) {
+#if DEBUG_SWIPE_LOG
+				Serial.println("SWIPE GAP reset");
+#endif
+				swipe_progress = 0;
+			}
+
+			// 4. Sauvegarde des clusters pour le prochain cycle
+			for (int c = 0; c < curr_n; c++) prev_clusters[c] = curr_clusters[c];
+			prev_n_clusters = curr_n;
+		}
+	}
 
 
 	threads.delay(1);//important!!
@@ -1301,7 +1534,7 @@ void tof_loop(int debug)
 		latency_thread_error = 1;
 		Serial.println(">>>>100000!!!!!!!!!");
 		Serial.println();
-		video_infinite = 1;
+		match_mode_actif = 1;
 
 	} else
 	{

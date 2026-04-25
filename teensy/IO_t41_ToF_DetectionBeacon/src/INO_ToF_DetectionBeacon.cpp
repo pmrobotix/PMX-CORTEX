@@ -11,7 +11,7 @@
 //Variables globales
 
 int ii = 0;
-extern int video_infinite;
+extern int match_mode_actif;
 
 void setup()
 {
@@ -70,6 +70,6 @@ void loop()
 
 	ledPanels_loop(false);
 	//Serial.println("loop");
-	tof_loop(!video_infinite);
+	tof_loop(!match_mode_actif);
 
 }

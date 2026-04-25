@@ -18,9 +18,9 @@ extern uint16_t filteredResultWorkingCopy[NumOfZonesPerSensor * NumOfSensors];
 
 extern volatile bool tofVLReadyForCalculation;
 
-extern volatile int videoMode;
+extern volatile int proximity_level;
 
-int video_infinite;
+int match_mode_actif;
 int video_2;
 
 bool display_loop_started = false;
@@ -158,10 +158,26 @@ void ledPanels_setup2()
 //    }
 	//TESTS END
 
-	video_infinite = 0;
+	match_mode_actif = 0;
 
 	threads.addThread(thread_display);
 }
+
+/**
+ * Flash sur les 2 lignes du haut (y=0 et y=1) pour signaler un gesture UA.
+ * Utilise pour differencier les modes CONVERGENT (vert) et LONG_HOLD (rouge).
+ * Bloque le thread display pendant duration_ms (retour au rendu normal ensuite).
+ */
+void flash_ua_gesture(uint16_t color, int duration_ms)
+{
+	matrix->clear();
+	matrix->drawLine(0, 0, mw, 0, color);
+	matrix->drawLine(0, 1, mw, 1, color);
+	matrix->setBrightness(settings.ledLuminosity);
+	matrix->show();
+	threads.delay(duration_ms);
+}
+
 void thread_display()
 {
 	display_intro();
@@ -173,7 +189,14 @@ void thread_display()
 			threads.yield();
 		}
 
-		if (videoMode == 0)
+		// Activation auto du mode match si l'OPOS6UL declare le match.
+		// match_mode_actif reste idempotent : on l'active si pas deja fait.
+		// La sortie du mode match reste manuelle (geste UA bilateral).
+		if (settings.matchState >= 1 && match_mode_actif == 0) {
+			match_mode_actif = 1;
+		}
+
+		if (proximity_level == 0)
 		{
 			matrix->clear();
 
@@ -187,18 +210,20 @@ void thread_display()
 			} else
 			{
 				//add_display_collision(); //affichage des VL liés à la collisions
-				if (video_2 == 2)
+				// Hey!! desactive en mode match (perturbe l'affichage du score / K2000)
+				if (video_2 == 2 && match_mode_actif == 0)
 				{
 					display_INVscrollText("Hey!!", 300);
 					video_2 = 0;
 				} else
 				{
+					if (video_2 == 2) video_2 = 0; // reset silencieux en mode match
 					add_display_pmx(); //affichage du pmx
 					add_display_VL_out(); // affichage des VL qui ne marchent plus
 					//add_display_black_dist(); //affichage des leds vertes avec la main
 					add_display_data(); //affichage en blanc en bas des zonesactives
 				}
-				if (video_infinite == 1)
+				if (match_mode_actif == 1)
 				{
 					add_display_turnhalf_infinite();
 					//add_display_turn_infinite();
@@ -212,7 +237,7 @@ void thread_display()
 			threads.yield();
 		}
 
-		if (videoMode == 1)
+		if (proximity_level == 1)
 		{
 			//matrix->clear();
 			//display_scrollRgbBitmap();
@@ -220,7 +245,7 @@ void thread_display()
 			//display_INVscrollText("Hello I'm PMX!");
 			//display_INVscrollTextWithBitmap("Peace and peace !", 0, 30);
 			//display_INVscrollTextWithBitmapAndUA("Don't Touch !", 0, 30);
-			if (videoMode == 1)
+			if (proximity_level == 1)
 			{
 				display_UA();
 				//threads.delay(3000);
@@ -228,25 +253,58 @@ void thread_display()
 			//matrix->show();
 			threads.yield();
 
-			//videoMode = 0;
-			while (videoMode >= 1)
+			//proximity_level = 0;
+			while (proximity_level >= 1)
 			{
 				threads.delay(500);
 			}
 
-			if (video_infinite == 0)
-				video_infinite = 1;
-			else
-			{
-				video_infinite = 0;
+			// Sortie du UA : on lit le gesture detecte par TofSensors
+			// et on declenche l'effet visuel associe.
+			// En mode match, SEUL le geste BILATERAL est actif (pour pouvoir
+			// sortir du mode match). Les autres gestes sont ignores.
+			int gesture = last_ua_gesture;
+			last_ua_gesture = UA_GESTURE_NONE; // consomme
+
+			if (gesture == UA_GESTURE_BILATERAL) {
+				// Toggle mode match (active/desactive le K2000)
+				if (match_mode_actif == 0)
+					match_mode_actif = 1;
+				else
+					match_mode_actif = 0;
+			} else if (match_mode_actif == 0) {
+				// Autres gestes uniquement hors mode match
+				if (gesture == UA_GESTURE_CONVERGENT) {
+					flash_ua_gesture(matrix->Color(0, 255, 0), 1000);   // vert 1s
+				} else if (gesture == UA_GESTURE_LONG_HOLD) {
+					flash_ua_gesture(matrix->Color(255, 0, 0), 1500);   // rouge 1.5s
+				}
 			}
 		}
 
-		if (videoMode == 2)
+		if (proximity_level == 2)
 				{
 					video_2 = 2;
 					threads.delay(500);
 				}
+
+		// Detection swipe (main qui passe en arc autour de la balise)
+		// Independant du UA, detectee par TofSensors pendant proximity_level==0.
+		// Desactive en mode match (perturbe l'affichage du score / K2000).
+		if (last_swipe_gesture != SWIPE_NONE && match_mode_actif != 0) {
+			last_swipe_gesture = SWIPE_NONE; // consomme silencieusement en mode match
+		}
+		else if (last_swipe_gesture != SWIPE_NONE) {
+			int swipe = last_swipe_gesture;
+			last_swipe_gesture = SWIPE_NONE; // consomme
+			if (swipe == SWIPE_CW) {
+				// Flash cyan 2 lignes du haut pendant 800ms (horaire)
+				flash_ua_gesture(matrix->Color(0, 255, 255), 800);
+			} else if (swipe == SWIPE_CCW) {
+				// Flash magenta 2 lignes du haut pendant 800ms (anti-horaire)
+				flash_ua_gesture(matrix->Color(255, 0, 255), 800);
+			}
+		}
 
 		threads.yield();
 	}
@@ -360,7 +418,7 @@ void display_leds_thread_old()
 			threads.yield();
 		}
 
-		if (videoMode == 0)
+		if (proximity_level == 0)
 		{
 			matrix->clear();
 #ifdef DEBUG_VL_SUR_LEDMATRIX
@@ -379,7 +437,7 @@ void display_leds_thread_old()
 			matrix->show();
 			threads.yield();
 		}
-		if (videoMode == 1)
+		if (proximity_level == 1)
 		{
 			matrix->clear();
 			//display_scrollRgbBitmap();
@@ -391,7 +449,7 @@ void display_leds_thread_old()
 
 			matrix->show();
 			//threads.delay(2000);
-			videoMode = 0;
+			proximity_level = 0;
 
 		}
 

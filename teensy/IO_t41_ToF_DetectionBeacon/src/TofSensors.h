@@ -266,4 +266,43 @@ int8_t calculPosition(float decalage_deg, Registers &new_values, uint16_t *filte
  */
 void on_read_isr(uint8_t reg_num);
 
+/**
+ * @brief Gesture UA (drapeau ukrainien) detecte a la sortie de proximity_level 1.
+ *
+ * Le drapeau UA s'affiche quand les mains s'approchent de la balise
+ * (`proximity_level == 1`, > 26 zones actives < 160 mm). Quand on sort de
+ * cet etat, on distingue 3 gestures differents selon la facon de sortir :
+ *
+ * - BILATERAL  : mains s'eloignent des 2 cotes (mode prod existant, toggle match_mode_actif).
+ * - CONVERGENT : mains convergent devant avant de s'eloigner (concentration d'un cote).
+ * - LONG_HOLD  : UA maintenu >= 2 secondes puis sortie.
+ *
+ * Cette variable est ecrite par `tof_loop()` (TofSensors) et lue par
+ * `thread_display` (LedPanels) qui declenche un effet visuel different.
+ * Le consommateur doit remettre a `UA_GESTURE_NONE` apres traitement.
+ */
+enum LastUaGesture {
+    UA_GESTURE_NONE = 0,
+    UA_GESTURE_BILATERAL,
+    UA_GESTURE_CONVERGENT,
+    UA_GESTURE_LONG_HOLD
+};
+extern volatile int last_ua_gesture;
+
+/**
+ * @brief Gesture swipe horizontal (main qui passe en arc autour de la balise).
+ *
+ * Detecte quand une main passe devant la balise en balayant >= 140° dans le
+ * meme sens en moins de 3 secondes, a une distance entre 60 et 400 mm.
+ * Ignore si proximity_level != 0 (couverture totale = UA ou tres proche = Hey!!).
+ *
+ * Ecrit par `tof_loop()` (TofSensors), lu/consomme par `thread_display` (LedPanels).
+ */
+enum LastSwipeGesture {
+    SWIPE_NONE = 0,
+    SWIPE_CW,    // horaire (zones croissantes)
+    SWIPE_CCW    // anti-horaire (zones decroissantes)
+};
+extern volatile int last_swipe_gesture;
+
 #endif /* TOFSENSORS_H_ */
