@@ -5,9 +5,11 @@
 #include <atomic>
 #include <cstdint>
 #include <string>
+#include <vector>
 
 #include "log/LoggerFactory.hpp"
 #include "utils/Arguments.hpp"
+#include "ia/StrategyJsonParser.hpp"
 #include "interface/AAsservDriver.hpp"
 #include "utils/ConsoleManager.hpp"
 #include "state/Automate.hpp"
@@ -147,6 +149,13 @@ protected:
 	// --- Strategy JSON runner (cf. StrategyJsonRunner) ---
 	std::string strategyJsonName_;    ///< Nom de la strat (ex: "PMX0" -> strategyPMX0.json). Vide = fallback hardcode.
 
+	// --- Init JSON (init<Name>.json, charge si /s passe) ---
+	// Defauts = hardcode historique de O_State_NewInit::setPos().
+	float initPoseX_         = 300.0f;
+	float initPoseY_         = 130.0f;
+	float initPoseThetaDeg_  = 90.0f;
+	std::vector<StrategyTask> setposTasks_;   ///< Tasks jouees AVANT la tirette (depuis init JSON, vide en mode menu).
+
 	// --- O_State_NewInit : phase de match + config editable ---
 	MatchPhase phase_ = PHASE_CONFIG;
 	uint16_t   advDiameterMm_ = 400;          ///< Diamètre adversaire en MM (source de verite). Teensy protocol reste en cm via advDiameter().
@@ -254,6 +263,14 @@ public:
 	const std::string& strategyJsonName() const { return strategyJsonName_; }
 	/// Chemin complet : strategy<name>.json (resolu relatif au cwd = a cote de l'exe).
 	std::string strategyJsonPath() const { return strategyJsonName_.empty() ? std::string() : ("strategy" + strategyJsonName_ + ".json"); }
+	/// Chemin complet : init<name>.json (idem strategyJsonPath, base sur strategyJsonName_).
+	std::string initJsonPath() const { return strategyJsonName_.empty() ? std::string() : ("init" + strategyJsonName_ + ".json"); }
+
+	// Pose initiale lue dans init<Name>.json (ou defaut hardcode 300/130/90 si pas de /s).
+	float initPoseX() const { return initPoseX_; }
+	float initPoseY() const { return initPoseY_; }
+	float initPoseThetaDeg() const { return initPoseThetaDeg_; }
+	const std::vector<StrategyTask>& setposTasks() const { return setposTasks_; }
 
 	int useExternalEncoder() const
 	{

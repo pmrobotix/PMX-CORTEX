@@ -179,20 +179,40 @@ void Robot::parseConsoleArgs(int argc, char** argv, bool stopWithErrors) {
         exportZonesDryRun_ = true;
     }
 
-    // Strategy JSON runner
+    // Strategy JSON runner + Init JSON
     if (cArgs_['s']) {
         strategyJsonName_ = cArgs_['s']["name"];
-        // Echec precoce : valider l'existence du fichier avant toute init hardware
+        // Echec precoce : valider l'existence des fichiers avant toute init hardware
         // (sinon on perd 90s+ de match sur un fichier introuvable).
-        std::string path = strategyJsonPath();
-        if (!path.empty()) {
-            FILE* f = std::fopen(path.c_str(), "r");
+        std::string sPath = strategyJsonPath();
+        if (!sPath.empty()) {
+            FILE* f = std::fopen(sPath.c_str(), "r");
             if (!f) {
-                std::cerr << "ERROR: strategy JSON file not found: " << path
+                std::cerr << "ERROR: strategy JSON file not found: " << sPath
                           << " (cwd-relative). Aborting." << std::endl;
                 std::exit(1);
             }
             std::fclose(f);
+
+            // Validation + parsing du init JSON associe (init<name>.json)
+            std::string iPath = initJsonPath();
+            FILE* fi = std::fopen(iPath.c_str(), "r");
+            if (!fi) {
+                std::cerr << "ERROR: init JSON file not found: " << iPath
+                          << " (cwd-relative). Aborting." << std::endl;
+                std::exit(1);
+            }
+            std::fclose(fi);
+
+            InitData initData;
+            if (!parseInitFromFile(iPath, initData)) {
+                std::cerr << "ERROR: parse failed for " << iPath << ". Aborting." << std::endl;
+                std::exit(1);
+            }
+            initPoseX_ = initData.x;
+            initPoseY_ = initData.y;
+            initPoseThetaDeg_ = initData.thetaDeg;
+            setposTasks_ = std::move(initData.setposTasks);
         }
     }
 

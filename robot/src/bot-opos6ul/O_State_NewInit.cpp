@@ -18,6 +18,7 @@
 #include "action/ButtonBar.hpp"
 #include "action/Sensors.hpp"
 #include "action/Tirette.hpp"
+#include "ia/StrategyJsonRunner.hpp"
 #include "log/Logger.hpp"
 #include "menu/MenuBeaconLCDTouch.hpp"
 #include "menu/MenuController.hpp"
@@ -27,6 +28,7 @@
 
 #include "OPOS6UL_ActionsExtended.hpp"
 #include "OPOS6UL_AsservExtended.hpp"
+#include "OPOS6UL_IAExtended.hpp"
 #include "OPOS6UL_RobotExtended.hpp"
 
 IAutomateState* O_State_NewInit::execute(Robot&)
@@ -208,17 +210,22 @@ void O_State_NewInit::setPos()
 {
 	logger().info() << "O_State_NewInit::setPos() executing" << logs::end;
 	OPOS6UL_RobotExtended &robot = OPOS6UL_RobotExtended::instance();
+	const bool useJsonInit = !robot.strategyJsonName().empty();
+
 	robot.actions().lcd2x16().clear();
 	robot.actions().lcd2x16().print("SET POSITION...");
 
 	robot.actions().sensors().setIgnoreFrontNearObstacle(true, true, true);
 	robot.actions().sensors().setIgnoreBackNearObstacle(true, true, true);
 
-	// setPositionAndColor AVANT startMotionTimerAndOdo (reset Nucleo + match ref)
-	if (robot.strategy() == "tabletest")
-		robot.asserv().setPositionAndColor(300, 130, 90.0, robot.isMatchColor());
-	else
-		robot.asserv().setPositionAndColor(300, 130, 90.0, robot.isMatchColor());
+	// Pose initiale : depuis init<name>.json si /s passe, sinon hardcode historique.
+	// setPositionAndColor AVANT startMotionTimerAndOdo (reset Nucleo + match ref).
+	const float ix  = useJsonInit ? robot.initPoseX()        : 300.0f;
+	const float iy  = useJsonInit ? robot.initPoseY()        : 130.0f;
+	const float ith = useJsonInit ? robot.initPoseThetaDeg() : 90.0f;
+	logger().info() << "setPos pose source=" << (useJsonInit ? "JSON" : "hardcode")
+			<< " x=" << ix << " y=" << iy << " theta=" << ith << "deg" << logs::end;
+	robot.asserv().setPositionAndColor(ix, iy, ith, robot.isMatchColor());
 	robot.asserv().startMotionTimerAndOdo(true);  // reset Nucleo + match ref
 	ROBOTPOSITION p = robot.sharedPosition()->getRobotPosition();
 	logger().info() << "setPos() svgPrintPosition x=" << p.x << " y=" << p.y
@@ -233,11 +240,26 @@ void O_State_NewInit::setPos()
 
 	robot.asserv().setMaxSpeed(true, 50);
 
-	Navigator nav(&robot);
-	TRAJ_STATE ts = nav.line(80);
-	if (ts != TRAJ_FINISHED) {
-		robot.logger().error() << "setPos : ===== PB COLLISION FINALE ts=" << ts << logs::end;
-		robot.asserv().resetEmergencyOnTraj();
+	if (useJsonInit) {
+		// Mode /s : pre-tirette pilote par setpos_tasks du JSON init.
+		// Tableau vide = aucun mouvement (intentionnel).
+		if (!robot.setposTasks().empty()) {
+			StrategyJsonRunner runner(&robot, &robot.ia().iAbyPath());
+			if (!runner.runTasks(robot.setposTasks(), "SETPOS")) {
+				robot.logger().error() << "setPos : SETPOS tasks abort" << logs::end;
+				robot.asserv().resetEmergencyOnTraj();
+			}
+		} else {
+			logger().info() << "setPos : setpos_tasks vide (pas de mouvement pre-tirette)" << logs::end;
+		}
+	} else {
+		// Mode menu (sans /s) : compat retro hardcode "avance 80mm".
+		Navigator nav(&robot);
+		TRAJ_STATE ts = nav.line(80);
+		if (ts != TRAJ_FINISHED) {
+			robot.logger().error() << "setPos : ===== PB COLLISION FINALE ts=" << ts << logs::end;
+			robot.asserv().resetEmergencyOnTraj();
+		}
 	}
 
 	robot.svgPrintPosition();

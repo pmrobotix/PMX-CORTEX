@@ -67,4 +67,23 @@ struct StrategyInstruction
  */
 bool parseStrategyFromFile(const std::string& path, std::vector<StrategyInstruction>& out);
 
+/*!
+ * \brief Donnees lues depuis init<Name>.json.
+ *
+ * Champs obligatoires : x, y, theta (rad). Le parser convertit theta en degres.
+ * Champ optionnel : setpos_tasks[] (tasks jouees AVANT la tirette par
+ * O_State_NewInit::setPos()).
+ *
+ * Defaults : (300, 130, 90 deg, []) si fichier minimal.
+ */
+struct InitData
+{
+    float x = 300.0f;
+    float y = 130.0f;
+    float thetaDeg = 90.0f;
+    std::vector<StrategyTask> setposTasks;
+};
+
+bool parseInitFromFile(const std::string& path, InitData& out);
+
 #endif

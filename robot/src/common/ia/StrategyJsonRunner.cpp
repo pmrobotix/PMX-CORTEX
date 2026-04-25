@@ -29,6 +29,15 @@ bool StrategyJsonRunner::loadFromFile(const std::string& path)
     return true;
 }
 
+bool StrategyJsonRunner::runTasks(const std::vector<StrategyTask>& tasks, const std::string& label)
+{
+    StrategyInstruction instr;
+    instr.id = 0;
+    instr.desc = label;
+    instr.tasks = tasks;
+    return executeInstruction(instr);
+}
+
 bool StrategyJsonRunner::run()
 {
     logger().info() << "run: start (" << instructions_.size() << " instructions)" << logs::end;

@@ -41,6 +41,13 @@ public:
      */
     bool run();
 
+    /*!
+     * \brief Execute un tableau de tasks isole (sans wrapper instruction).
+     * Utile pour les setpos_tasks d'init<Name>.json : on construit en interne
+     * une pseudo-instruction (id=0, desc=label) et on la passe au moteur.
+     */
+    bool runTasks(const std::vector<StrategyTask>& tasks, const std::string& label = "tasks");
+
     const std::vector<StrategyInstruction>& instructions() const { return instructions_; }
 
 private:

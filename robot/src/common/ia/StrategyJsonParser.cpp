@@ -122,3 +122,43 @@ bool parseStrategyFromFile(const std::string& path, std::vector<StrategyInstruct
                     << path << " (tri priority desc applique)" << logs::end;
     return true;
 }
+
+bool parseInitFromFile(const std::string& path, InitData& out)
+{
+    out = InitData{};
+
+    std::ifstream f(path);
+    if (!f.is_open()) {
+        logger().error() << "parseInitFromFile: cannot open " << path << logs::end;
+        return false;
+    }
+
+    json root;
+    try {
+        f >> root;
+    } catch (const std::exception& e) {
+        logger().error() << "parseInitFromFile: parse error in " << path << " : "
+                         << e.what() << logs::end;
+        return false;
+    }
+
+    if (!root.is_object()) {
+        logger().error() << "parseInitFromFile: root must be an object in " << path << logs::end;
+        return false;
+    }
+
+    out.x = root.value("x", out.x);
+    out.y = root.value("y", out.y);
+    // theta en RADIANS dans le JSON (format Esial historique), conversion en degres ici.
+    float thetaRad = root.value("theta", 1.5707963f);
+    out.thetaDeg = thetaRad * 180.0f / 3.14159265358979323846f;
+
+    auto sp = root.find("setpos_tasks");
+    if (sp != root.end() && sp->is_array()) {
+        for (const auto& t : *sp) out.setposTasks.push_back(parseTask(t));
+    }
+    logger().info() << "parseInitFromFile: pose=(" << out.x << "," << out.y << ","
+                    << out.thetaDeg << " deg), " << out.setposTasks.size()
+                    << " setpos_tasks loaded from " << path << logs::end;
+    return true;
+}
