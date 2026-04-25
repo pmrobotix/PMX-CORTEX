@@ -512,6 +512,18 @@ Objectif : supprimer le code mort `registerSlaveLCD` / `SettingsLCD` / `Register
 - [ ] 8e : ecran de monitoring match (score, temps restant, robots detectes)
 - [ ] 8f : activation capteurs de collision/proximite (decommenter `SENSORS_VL_CLOSED_COLLISION_ACTIVATED`, brancher les 8 VL53L1X)
 
+#### Etape 9 : config zones de prise pre-match (8 pickup_Pn) [FAIT cote balise + sync OPOS6UL]
+
+Objectif : permettre a l'operateur de saisir la disposition des 8 zones de prise (P1-P4 + P11-P14) annoncee par les arbitres pendant les 3 min de prepa, et la transmettre au cerveau via I2C.
+
+- [x] `TofSensors.h` : struct `Settings` 11 -> 19 bytes (+8 pickup_Pn reg 10-17, seq_touch decale reg 10 -> 18)
+- [x] `LCDScreen.cpp` : nouvel ecran via bouton ZONES, 8 widgets uniformes 72x74, tap=+1 / appui long=-1, MENU noir centre
+- [x] OPOS6UL : `BeaconSensors` (struct miroir + readSettings 19 bytes), `MatchSettingsData` + 8 pickup_Pn, `SensorsDriver::syncFull` recopie
+- [x] OPOS6UL : `Robot` 8 membres `pickup_Pn_` + getters/setters, `MenuBeaconLCDTouch` adoption boot + delta runtime
+- [ ] Phase 3 : consommation cote IA (dispatch index 0..5 -> ordre de prise specifique par zone)
+- [ ] Test physique : LCD -> log OPOS6UL `[POLL] delta pickup_Px` au moindre tap
+- Voir `MATCH_CONFIG_UI.md` pour le detail UI/protocole.
+
 ## Configuration hardware
 
 ### Pins I2C capteurs ToF

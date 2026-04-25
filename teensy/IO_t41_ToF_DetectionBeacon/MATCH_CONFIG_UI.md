@@ -219,44 +219,56 @@ static_assert(sizeof(Settings) == 19, "Settings must be exactly 19 bytes for I2C
 ### Flux
 
 1. **Boot Teensy** : tous les `pickup_Pn` = 0 (`BBYY`). `seq_touch` = 0.
-2. **Tap sur flèche** (callback LVGL) : met à jour `pickup_Pn`, cycle `(val + 1) % 6` (▶) ou `(val + 5) % 6` (◀), puis `seq_touch++`.
-3. **OPOS6UL** polle le registre I2C, détecte `seq_touch` incrémenté, relit les 8 `pickup_Pn` et met à jour sa `MatchConfig` en mémoire.
-4. **StrategyJsonRunner** consulte `MatchConfig` au démarrage du match (`matchState` == EN_COURS).
+2. **Tap sur la combi** (callback LVGL) : met à jour `pickup_Pn`, cycle `(val + 1) % 6` (tap court) ou `(val + 5) % 6` (appui long), puis `seq_touch++`.
+3. **OPOS6UL** (`SensorsDriver::syncFull`) lit les 19 bytes de `Settings` à chaque tick. `MenuBeaconLCDTouch::pollInputs()` détecte `seq_touch` incrémenté et propage les 8 `pickup_Pn` dans `Robot` via les setters dédiés.
+4. **IA** consulte `Robot::pickupPn()` au démarrage du match pour adapter trajectoires/ordres de prise (Phase 3, à venir).
 
-## Intégration code (esquisse)
+## Intégration code (réalisée)
 
 ### Côté balise (Teensy) — écran tactile LVGL
 
-- Nouvel écran LVGL `setup_screen_pickup_config()` créé au boot.
-- 8 widgets composites (label + ◀ + carré couleur + ▶), placés selon le mockup.
-- Callback flèche : cycle sur l'index + `settings.pickup_Pn = new_val` + `settings.seq_touch++`.
-- Accès depuis le menu principal : 1 bouton tactile dédié.
+- Écran LVGL créé via `create_pickup_config()` dans [src/LCDScreen.cpp](/home/pmx/git/PMX-CORTEX/teensy/IO_t41_ToF_DetectionBeacon/src/LCDScreen.cpp).
+- 8 widgets uniformes 72×74 (grille 4×2 vue opérateur rotation 180°).
+- Tap court = cycle +1, appui long (~500 ms) = cycle -1. Pas de flèches → écran moins chargé.
+- Bouton **ZONES** noir dans le menu pré-match (à côté de COULEUR et SETPOS) — accès en 1 clic.
+- Bouton **MENU** noir centré en bas pour revenir.
+- Carrés pointillés bleu (bas-gauche) / jaune (bas-droite) pour rappeler le sens de la table.
 
 ### Côté OPOS6UL (brain)
 
-- Classe `MatchConfig` (nouveau, `robot/src/common/MatchConfig.{hpp,cpp}`), qui expose :
-  - `setZoneIndex(ZoneId, uint8_t idx)` appelée par le reader I2C beacon.
-  - `getZone(ZoneId) -> ZoneLayout { combination: enum, orientation: H|V }`.
-- Reader I2C beacon existant (polling `seq_touch`) lit les 8 nouveaux octets et appelle `MatchConfig::setZoneIndex`.
-- `StrategyJsonRunner` consulte `MatchConfig::getZone` pour adapter trajectoires/ordres de prise.
+Pas de classe `MatchConfig` séparée (over-engineering écarté). Pattern aligné sur les autres champs LCD (`matchColor`, `strategy`, `advDiameter`) :
 
-### Fichiers concernés (prévisionnel)
+- **`Robot`** : 8 membres `pickup_Pn_` privés + getters `pickupPn()` + setters `setPickupPn(idx)` bornés à 0..5 et bloqués en `PHASE_MATCH`.
+- **`MatchSettingsData`** ([common/interface/ASensorsDriver.hpp](/home/pmx/git/PMX-CORTEX/robot/src/common/interface/ASensorsDriver.hpp)) : 8 nouveaux champs `pickup_Pn` (contrat commun driver/menu).
+- **`SensorsDriver::syncFull`** ([driver-arm/SensorsDriver.cpp](/home/pmx/git/PMX-CORTEX/robot/src/driver-arm/SensorsDriver.cpp)) : recopie les 8 nouveaux champs dans `cached_settings_` après chaque lecture I2C.
+- **`MenuBeaconLCDTouch::pollInputs`** ([common/menu/MenuBeaconLCDTouch.cpp](/home/pmx/git/PMX-CORTEX/robot/src/common/menu/MenuBeaconLCDTouch.cpp)) :
+  - Adoption au boot (`shadowInit`) → 8 appels `robot.setPickupPn(current.pickup_Pn)`.
+  - Delta runtime déclenché par `seq_touch` incrémenté → macro locale `POLL_DELTA_PICKUP` × 8.
 
-- [teensy/IO_t41_ToF_DetectionBeacon/src/TofSensors.h](/home/pmx/git/PMX-CORTEX/teensy/IO_t41_ToF_DetectionBeacon/src/TofSensors.h) : extension struct `Settings`.
-- [teensy/IO_t41_ToF_DetectionBeacon/src/LCDScreen.cpp](/home/pmx/git/PMX-CORTEX/teensy/IO_t41_ToF_DetectionBeacon/src/LCDScreen.cpp) : nouvel écran LVGL + callbacks.
-- `robot/src/common/MatchConfig.{hpp,cpp}` (nouveau).
-- Reader I2C beacon côté OPOS6UL (à localiser — probablement dans driver balise existant).
-- `robot/src/ia/StrategyJsonRunner.{hpp,cpp}` (hook lecture config match).
+### Fichiers concernés
+
+- [teensy/IO_t41_ToF_DetectionBeacon/src/TofSensors.h](/home/pmx/git/PMX-CORTEX/teensy/IO_t41_ToF_DetectionBeacon/src/TofSensors.h) — struct `Settings` 19 bytes.
+- [teensy/IO_t41_ToF_DetectionBeacon/src/LCDScreen.cpp](/home/pmx/git/PMX-CORTEX/teensy/IO_t41_ToF_DetectionBeacon/src/LCDScreen.cpp) — écran LVGL + callbacks tap/long-press.
+- [robot/src/driver-arm/BeaconSensors.hpp](/home/pmx/git/PMX-CORTEX/robot/src/driver-arm/BeaconSensors.hpp) / [.cpp](/home/pmx/git/PMX-CORTEX/robot/src/driver-arm/BeaconSensors.cpp) — `SETTINGS_SIZE_BeaconSensors=19`, struct miroir, `readSettings` parse 19 bytes.
+- [robot/src/common/interface/ASensorsDriver.hpp](/home/pmx/git/PMX-CORTEX/robot/src/common/interface/ASensorsDriver.hpp) — `MatchSettingsData` + 8 `pickup_Pn`.
+- [robot/src/driver-arm/SensorsDriver.cpp](/home/pmx/git/PMX-CORTEX/robot/src/driver-arm/SensorsDriver.cpp) — `syncFull` recopie les 8 champs.
+- [robot/src/common/Robot.hpp](/home/pmx/git/PMX-CORTEX/robot/src/common/Robot.hpp) — 8 membres + getters/setters.
+- [robot/src/common/menu/MenuBeaconLCDTouch.cpp](/home/pmx/git/PMX-CORTEX/robot/src/common/menu/MenuBeaconLCDTouch.cpp) — adoption + delta.
+
+### Phase 3 (à venir) — consommation côté IA
+
+- Brancher `Robot::pickupPn()` dans `StrategyJsonRunner` ou code dédié 2026.
+- Pour chaque zone, dispatch sur l'index 0..5 → ordre de prise spécifique (trajectoire, séquence d'actuateurs, etc.).
 
 ## Questions ouvertes / TODO
 
-- [ ] Confirmer la résolution exacte du LCD tactile balise (impacte dimensions miniatures).
-- [ ] Confirmer coordonnées (x,y) mm des 8 zones sur la table officielle 2026.
-- [ ] Spécifier le protocole série balise ↔ OPOS6UL pour la config match.
+- [x] Côté OPOS6UL : identifier le reader I2C beacon — `BeaconSensors`/`SensorsDriver`, sync via `MenuBeaconLCDTouch`.
+- [x] Définir l'interaction de sortie de l'écran — bouton MENU noir centré en bas.
+- [x] Spécifier le protocole balise ↔ OPOS6UL pour la config — réutilise le pattern `seq_touch` existant.
+- [ ] Confirmer coordonnées (x,y) mm des 8 zones sur la table officielle 2026 (impact stratégie).
 - [ ] Vérifier que la numérotation **P1–P4 / P11–P14** (et non P1–P8 séquentiel) correspond bien au règlement 2026 officiel.
 - [ ] Préciser correspondance P ↔ GM (ex : P3 = zone de prise associée à GM5/GM6 ?).
-- [ ] Définir l'interaction de sortie de l'écran (bouton "retour menu" ? tap sur zone vide ?).
-- [ ] Côté OPOS6UL : identifier le reader I2C beacon existant pour y brancher la lecture des 8 nouveaux octets.
+- [ ] **Phase 3** : brancher `Robot::pickupPn()` côté IA — dispatch sur index 0..5 → ordre de prise spécifique par zone.
 
 ## Références
 

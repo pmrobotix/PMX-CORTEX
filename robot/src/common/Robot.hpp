@@ -152,6 +152,18 @@ protected:
 	uint16_t   advDiameterMm_ = 400;          ///< Diamètre adversaire en MM (source de verite). Teensy protocol reste en cm via advDiameter().
 	uint8_t    ledLuminosity_ = 10;           ///< Luminosité LED matrix 0..100, defaut Teensy-aligné.
 	uint8_t    testMode_      = 0;            ///< Test materiel 0=aucun, 1..5 (transitoire).
+
+	// --- Zones de prise (config pre-match saisie via LCD tactile balise) ---
+	// Index 0..5 dans le cycle canonique : 0=BBYY, 1=YYBB, 2=BYYB, 3=YBBY, 4=BYBY, 5=YBYB.
+	// Defaut 0 = BBYY. Voir teensy/IO_t41_ToF_DetectionBeacon/MATCH_CONFIG_UI.md.
+	uint8_t pickup_P1_  = 0;
+	uint8_t pickup_P2_  = 0;
+	uint8_t pickup_P3_  = 0;
+	uint8_t pickup_P4_  = 0;
+	uint8_t pickup_P11_ = 0;
+	uint8_t pickup_P12_ = 0;
+	uint8_t pickup_P13_ = 0;
+	uint8_t pickup_P14_ = 0;
 	std::atomic<bool> testModeReq_{false};    ///< Flag "testMode a déclencher" (consumed par O_State_NewInit).
 	std::atomic<bool> setPosReq_{false};      ///< Flag "passer de CONFIG a ARMED" posé par une source.
 	std::atomic<bool> resetReq_{false};       ///< Flag "retour phase CONFIG" posé par une source.
@@ -545,6 +557,31 @@ public:
 		ledLuminosity_ = l;
 		return true;
 	}
+
+	/*!
+	 * \brief Zones de prise (config pre-match LCD tactile balise).
+	 *        Chaque zone retourne un index 0..5 dans le cycle canonique :
+	 *        0=BBYY, 1=YYBB, 2=BYYB, 3=YBBY, 4=BYBY, 5=YBYB.
+	 *        Setters editables en CONFIG + ARMED uniquement.
+	 *        Voir teensy/IO_t41_ToF_DetectionBeacon/MATCH_CONFIG_UI.md.
+	 */
+	uint8_t pickupP1()  const { return pickup_P1_; }
+	uint8_t pickupP2()  const { return pickup_P2_; }
+	uint8_t pickupP3()  const { return pickup_P3_; }
+	uint8_t pickupP4()  const { return pickup_P4_; }
+	uint8_t pickupP11() const { return pickup_P11_; }
+	uint8_t pickupP12() const { return pickup_P12_; }
+	uint8_t pickupP13() const { return pickup_P13_; }
+	uint8_t pickupP14() const { return pickup_P14_; }
+
+	bool setPickupP1(uint8_t i)  { if (phase_ >= PHASE_MATCH || i > 5) return false; pickup_P1_  = i; return true; }
+	bool setPickupP2(uint8_t i)  { if (phase_ >= PHASE_MATCH || i > 5) return false; pickup_P2_  = i; return true; }
+	bool setPickupP3(uint8_t i)  { if (phase_ >= PHASE_MATCH || i > 5) return false; pickup_P3_  = i; return true; }
+	bool setPickupP4(uint8_t i)  { if (phase_ >= PHASE_MATCH || i > 5) return false; pickup_P4_  = i; return true; }
+	bool setPickupP11(uint8_t i) { if (phase_ >= PHASE_MATCH || i > 5) return false; pickup_P11_ = i; return true; }
+	bool setPickupP12(uint8_t i) { if (phase_ >= PHASE_MATCH || i > 5) return false; pickup_P12_ = i; return true; }
+	bool setPickupP13(uint8_t i) { if (phase_ >= PHASE_MATCH || i > 5) return false; pickup_P13_ = i; return true; }
+	bool setPickupP14(uint8_t i) { if (phase_ >= PHASE_MATCH || i > 5) return false; pickup_P14_ = i; return true; }
 
 	/*!
 	 * \brief Declenche un test meca (1..5). One-shot, reset apres consommation.

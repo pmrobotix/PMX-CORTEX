@@ -70,6 +70,16 @@ void MenuBeaconLCDTouch::pollInputs(Robot& robot)
 		if (current.ledLuminosity >= 0 && current.ledLuminosity <= 100)
 			robot.setLedLuminosity(static_cast<uint8_t>(current.ledLuminosity));
 
+		// Adoption des 8 zones de prise (index 0..5 par zone, defaut 0=BBYY).
+		robot.setPickupP1(current.pickup_P1);
+		robot.setPickupP2(current.pickup_P2);
+		robot.setPickupP3(current.pickup_P3);
+		robot.setPickupP4(current.pickup_P4);
+		robot.setPickupP11(current.pickup_P11);
+		robot.setPickupP12(current.pickup_P12);
+		robot.setPickupP13(current.pickup_P13);
+		robot.setPickupP14(current.pickup_P14);
+
 		// Si actionReq etait a 1 au boot (stale), le consommer cote Teensy
 		if (current.actionReq != 0) {
 			sensors_.writeActionReq(0);
@@ -81,6 +91,10 @@ void MenuBeaconLCDTouch::pollInputs(Robot& robot)
 				<< " strat=" << (int)current.strategy
 				<< " diam=" << (int)current.advDiameter
 				<< " led=" << (int)current.ledLuminosity
+				<< " pickup=[" << (int)current.pickup_P1 << "," << (int)current.pickup_P2
+				<< "," << (int)current.pickup_P3  << "," << (int)current.pickup_P4
+				<< "," << (int)current.pickup_P11 << "," << (int)current.pickup_P12
+				<< "," << (int)current.pickup_P13 << "," << (int)current.pickup_P14 << "]"
 				<< logs::end;
 		return;
 	}
@@ -159,6 +173,25 @@ void MenuBeaconLCDTouch::pollInputs(Robot& robot)
 				<< " : setLedLuminosity ok=" << ok << logs::end;
 		shadow_.ledLuminosity = current.ledLuminosity;
 	}
+
+	// Zones de prise : 8 bytes pickup_Pn (index 0..5), simple delta vs shadow.
+	// Pas d'invalidation a > 5 cote Robot (les setters bornent deja).
+	#define POLL_DELTA_PICKUP(field, setter) \
+		if (current.field != shadow_.field) { \
+			bool ok = robot.setter(current.field); \
+			logger().info() << "[POLL] delta " #field " " << (int)shadow_.field \
+					<< " -> " << (int)current.field << " ok=" << ok << logs::end; \
+			shadow_.field = current.field; \
+		}
+	POLL_DELTA_PICKUP(pickup_P1,  setPickupP1)
+	POLL_DELTA_PICKUP(pickup_P2,  setPickupP2)
+	POLL_DELTA_PICKUP(pickup_P3,  setPickupP3)
+	POLL_DELTA_PICKUP(pickup_P4,  setPickupP4)
+	POLL_DELTA_PICKUP(pickup_P11, setPickupP11)
+	POLL_DELTA_PICKUP(pickup_P12, setPickupP12)
+	POLL_DELTA_PICKUP(pickup_P13, setPickupP13)
+	POLL_DELTA_PICKUP(pickup_P14, setPickupP14)
+	#undef POLL_DELTA_PICKUP
 
 	// testMode : one-shot, declenche si != 0
 	if (current.testMode != shadow_.testMode) {
