@@ -93,7 +93,7 @@ robot/
 │   │   │   ├── ITimerPosixListener.hpp
 │   │   │   ├── LcdShield.cpp/hpp
 │   │   │   ├── LedBar.cpp/hpp            # ◆ TIMER onTimer (variable µs) — animation LEDs
-│   │   │   ├── Sensors.cpp/hpp           # ◆ TIMER onTimer (variable ms) — lecture beacon + détection obstacle
+│   │   │   ├── Sensors.cpp/hpp           # ◆ THREAD SensorsThread (sleep variable ms) — lecture beacon + détection obstacle
 │   │   │   ├── ServoObjectsSystem.cpp/hpp # ◆ TIMER onTimer (50ms) — interpolation servos
 │   │   │   ├── ServoUsingMotor.cpp/hpp
 │   │   │   ├── SoundBar.cpp/hpp
@@ -504,9 +504,10 @@ Main thread
   │
   ├─→ ActionManagerTimer         THREAD prio 2    event-driven (sem_wait/sem_post)
   │     │
-  │     ├── SensorsTimer         TIMER  variable ms       onTimer → lecture beacon + détection obstacle
   │     ├── ServoObjectsTimer    TIMER  50ms              onTimer → interpolation position servos
   │     └── LedBarTimer          TIMER  variable µs       onTimer → animation LEDs
+  │
+  ├─→ SensorsThread              THREAD prio 2    LOOP variable ms (sleep) — lecture beacon I2C + détection obstacle
   │
   └─→ O_State_DecisionMakerIA   THREAD prio 3    exécution unique (stratégie match)
 ```
@@ -521,6 +522,7 @@ Main thread
 | `driver-arm/AsservDriver_mbed_i2c`           | AsservDriver            | 2    | `while(1)` + chronoTimer  | variable                     | Variante I2C (ancien mbed)                   |
 | `driver-simu/AsservDriver`                   | AsservDriver            | 2    | `while(1)` + timer        | variable                     | Simulation moteurs (math pure)               |
 | `common/action/ActionManagerTimer`           | ActionManagerTimer      | 2    | `while(!stop)` + sem_wait | event-driven                 | Queue d'actions async, gère les TIMER       |
+| `common/action/Sensors`                      | SensorsThread           | 2    | `while(!stop)` + sleep    | **variable ms**              | Lit beacon I2C, filtre niveaux 0-4, stoppe le robot |
 | `common/log/LoggerFactory`                   | LoggerFactory           | 0    | `while(!stop)`            | non borné                   | Flush buffers log vers appenders             |
 | `bot/opos6ul/states/O_State_DecisionMakerIA` | O_State_DecisionMakerIA | 3    | exécution unique         | **une fois**                 | Stratégie match, appels mouvement bloquants |
 
@@ -531,7 +533,6 @@ Tous gérés par `ActionManagerTimer`, enregistrés via `actions().addTimer()`.
 
 | Fichier                                      | Classe            | Période         | onTimer() fait quoi                                 | Décide ?                               |
 | ---------------------------------------------- | ------------------- | ------------------ | ----------------------------------------------------- | ----------------------------------------- |
-| `common/action/Sensors`                      | SensorsTimer      | **variable ms**  | Lit beacon I2C, filtre niveaux 0-4, stoppe le robot | **OUI — problème (voir refactoring)** |
 | `common/action/ServoObjectsSystem`           | ServoObjectsTimer | **50ms**         | Calcule position interpolée, envoie commande servo | Oui (contrôle moteur servo)            |
 | `common/action/LedBar`                       | LedBarTimer       | **variable µs** | Anime LEDs (alternate, K2000, blink)                | Non (affichage)                         |
 | `bot/opos6ul/tests/O_ActionManagerTimerTest` | TestTimer         | **100-500ms**    | Log messages                                        | Non (test seulement)                    |
@@ -541,7 +542,7 @@ Tous gérés par `ActionManagerTimer`, enregistrés via `actions().addTimer()`.
 - **AsservEsialR vs AsservDriver** : mutuellement exclusifs. AsservEsialR = asserv interne (PID sur OPOS6UL). AsservDriver = asserv externe (carte ST via série).
 - **Priorités SCHED_FIFO** : prio 2 pour le temps réel (asserv, actions), prio 3 pour la stratégie (moins critique que le mouvement).
 - **ActionManagerTimer** : ne boucle pas à fréquence fixe, il dort sur un sémaphore et se réveille quand une action est ajoutée (`sem_post`). Il gère aussi tous les TIMER (SIGALRM).
-- **SensorsTimer** : le seul timer qui prend des décisions de mouvement — voir section refactoring plus bas.
+- **SensorsThread** (anciennement SensorsTimer, refactor avril 2026) : thread dédié à la lecture beacon/capteurs et à la décision d'arrêt sur détection. Migré du modèle TIMER vers THREAD pour permettre un sleep contrôlé entre lectures I2C — voir section refactoring plus bas.
 
 ## Refactoring prévu : AAsservDriver → AAsserv + AMotorDriver
 
@@ -697,7 +698,6 @@ qui gère à la fois toutes les `IAction` et tous les `ITimerScheduledListener` 
 
 | Timer                 | Période       | Fichier                                      | onTimer() fait quoi                                    | Décide ?                    |
 | ----------------------- | ---------------- | ---------------------------------------------- | -------------------------------------------------------- | ------------------------------ |
-| **SensorsTimer**      | variable (ms)  | `common/action/Sensors.cpp/hpp`              | Lit beacon I2C, filtre niveaux 0-4,**stoppe le robot** | **OUI — problème**         |
 | **ServoObjectsTimer** | 50ms           | `common/action/ServoObjectsSystem.cpp/hpp`   | Interpole position servo, envoie commande PWM          | Oui (contrôle moteur servo) |
 | **LedBarTimer**       | variable (µs) | `common/action/LedBar.cpp/hpp`               | Anime LEDs (alternate, K2000, blink)                   | Non (affichage)              |
 | **TestTimer**         | 100-500ms      | `bot/opos6ul/tests/O_ActionManagerTimerTest` | Log messages (test seulement)                          | Non                          |
@@ -718,7 +718,6 @@ ActionTimerScheduler (1 seul thread persistant)
   │     └─ execute() return false = terminée, retirée
   │
   └── liste de ITimerScheduledListener
-        ├── SensorsTimer ──→ onTimer() toutes les N ms
         ├── ServoObjectsTimer ──→ onTimer() toutes les 50ms
         └── LedBarTimer ──→ onTimer() toutes les N µs
 ```
@@ -796,8 +795,9 @@ persistant** pour toutes les `IAction` et tous les `ITimerScheduledListener`.
 
 **Nouvelle interface `ITimerScheduledListener`** : callback pur, pas d'héritage `Thread`,
 pas de signal handler. Membres `onTimer()`, `onTimerEnd()`, `name()`, `timeSpan_us()`,
-`requestStop()`, `setPause()`. Utilisé par `SensorsTimer`, `LedBarTimer`,
-`ServoObjectsTimer`, `TestTimer`.
+`requestStop()`, `setPause()`. Utilisé par `LedBarTimer`,
+`ServoObjectsTimer`, `TestTimer`. (Note : `Sensors` a été migré vers un thread dédié
+`SensorsThread` et n'utilise plus l'interface timer.)
 
 **Code legacy conservé pour rollback** : `ActionManagerTimer`, `ITimerPosixListener`,
 `ITimerListener`. Pourront être supprimés une fois le nouveau scheduler validé en match.
@@ -830,14 +830,18 @@ ont été corrigés :
 - `setPositionsAdvByBeacon()` : réservé au timer (seul écrivain de `opponents_last_positions`)
 - `getPositionsAdv()` ajouté : lecture thread-safe pour les consommateurs (tests, IA, Navigator)
 
-## Refactoring prévu : détection d'obstacles (SensorsTimer)
+## Refactoring prévu : détection d'obstacles (SensorsThread)
+
+> **Note** : la migration TIMER → THREAD est faite (avril 2026). La section ci-dessous
+> décrit les responsabilités historiquement mélangées dans la boucle `Sensors`
+> (lecture / filtrage / décision) qui restent à séparer en composants distincts.
 
 ### Problème actuel (ancien PMX)
 
-Le `SensorsTimer::onTimer()` mélange **3 responsabilités** dans un seul callback :
+La boucle `SensorsThread` (ex `SensorsTimer::onTimer()`) mélange **3 responsabilités** :
 
 ```
-SensorsTimer::onTimer()          ← callback timer périodique
+SensorsThread::execute()         ← boucle thread (sleep variable ms)
   │
   ├─ 1. LECTURE         sync("beacon_sync")
   │                       └─ I2C vers BeaconSensors (ToF)
@@ -860,7 +864,7 @@ SensorsTimer::onTimer()          ← callback timer périodique
 DecisionMakerIA (thread prio 3) : "va à (500, 300)"
      │  motion_Goto() — bloquant
      │
-SensorsTimer (timer async)      : "obstacle level 4 → STOP !"
+SensorsThread (thread async)    : "obstacle level 4 → STOP !"
      │  path_InterruptTrajectory()
      │
 DecisionMakerIA                 : motion_Goto() retourne TRAJ_INTERRUPTED
@@ -872,7 +876,7 @@ DecisionMakerIA                 : motion_Goto() retourne TRAJ_INTERRUPTED
 ```
 SensorsDriver.vadv_                    ← positions brutes adversaire (mutex)
 Sensors.adv_is_detected_front_right_   ← flags détection
-SensorsTimer.nb_ensurefront4           ← compteurs debounce
+SensorsThread.nb_ensurefront4          ← compteurs debounce
 Asserv.temp_ignoreFrontDetection_      ← flag pour contourner le système
 ```
 
@@ -1021,7 +1025,7 @@ Cette approche reste à affiner. Questions ouvertes :
 
 | Avant                                             | Après                                                        |
 | --------------------------------------------------- | --------------------------------------------------------------- |
-| SensorsTimer lit ET filtre ET stoppe le robot     | SensorsTimer lit, publie les coordonnées adversaire          |
+| SensorsThread lit ET filtre ET stoppe le robot    | SensorsThread lit, publie les coordonnées adversaire         |
 | L'IA ne sait pas pourquoi le robot s'est arrêté | L'IA reçoit l'événement + coordonnées, décide elle-même |
 | Reprise impossible si adversaire "devant"         | Reprise autorisée si nouvelle trajectoire est libre          |
 | Debounce dans le timer (état mélangé)          | Debounce dans ObstacleDetector (logique pure, testable)       |
@@ -1030,7 +1034,7 @@ Cette approche reste à affiner. Questions ouvertes :
 
 ### Plan de migration
 
-1. **Phase 1** : migrer tel quel (SensorsTimer avec zones devant/derrière)
+1. **Phase 1** : migrer tel quel (SensorsThread avec zones devant/derrière)
 2. **Phase 2** : extraire ObstacleDetector (logique pure) depuis Sensors::filtre_levelInFront/Back
 3. **Phase 3** : remplacer les appels directs à l'asserv par des ObstacleEvent
 4. **Phase 4** : intégrer la réception d'ObstacleEvent dans DecisionMakerIA
@@ -1558,7 +1562,7 @@ Causes cumulées d'erreur sur t_mesure :
 - ✅ **Buffer history non uniforme** — résolu : `AsservCborDriver` (thread CBOR) appelle `setRobotPosition()` à chaque trame reçue de la Nucleo, alimente `pushHistory()` en continu. `Asserv::pos_getPosition()` devient une lecture pure sans effet de bord.
 - ✅ **Formule `t_mesure_ms` inversée** — résolu : `t_mesure = t_sync - TEENSY_CYCLE_MS + beacon_delay_us` (au lieu de `t_sync - beacon_delay_us`).
 - ⬜ **Cycle Teensy variable** (40-60ms observés) : actuellement constante hardcodée `TEENSY_CYCLE_MS=60` dans `Sensors.cpp`. Solution : ajouter un registre I2C côté Teensy contenant la durée réelle du cycle, lecture par OPOS6UL au sync.
-- ⬜ **Jitter polling SensorsTimer** : période 20ms → la lecture du flag I2C arrive 0-20ms après la fin du cycle Teensy (aléatoire). Solution simple : réduire la période à 5ms.
+- ⬜ **Jitter polling SensorsThread** : période 20ms → la lecture du flag I2C arrive 0-20ms après la fin du cycle Teensy (aléatoire). Solution simple : réduire la période à 5ms.
 - ⬜ **Solution propre (long terme)** : GPIO interrupt Teensy → OPOS6UL à chaque fin de cycle, capture timestamp exact côté OPOS6UL → jitter quasi nul. Nécessite cablage GPIO + handler interrupt.
 
 À 1.5m de l'adversaire, 1° d'erreur de theta_robot = 26mm d'erreur de position. À 90°/s, 11ms d'erreur timing = 1° → 26mm. Réduire les 15-30ms à <5ms ramènerait l'erreur de 80mm à <15mm.
