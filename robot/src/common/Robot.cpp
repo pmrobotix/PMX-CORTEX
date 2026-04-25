@@ -182,6 +182,18 @@ void Robot::parseConsoleArgs(int argc, char** argv, bool stopWithErrors) {
     // Strategy JSON runner
     if (cArgs_['s']) {
         strategyJsonName_ = cArgs_['s']["name"];
+        // Echec precoce : valider l'existence du fichier avant toute init hardware
+        // (sinon on perd 90s+ de match sur un fichier introuvable).
+        std::string path = strategyJsonPath();
+        if (!path.empty()) {
+            FILE* f = std::fopen(path.c_str(), "r");
+            if (!f) {
+                std::cerr << "ERROR: strategy JSON file not found: " << path
+                          << " (cwd-relative). Aborting." << std::endl;
+                std::exit(1);
+            }
+            std::fclose(f);
+        }
     }
 
     // Reconfigure telemetry appender with command line args
