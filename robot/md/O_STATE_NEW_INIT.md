@@ -224,9 +224,9 @@ Pendant un hold BACK, la ligne 1 est remplacee par le countdown `EXIT IN  8.5s`.
 
 | Long (Robot) | Court (LCD) |
 |---|---|
-| `tabletest` | `S1` |
-| `strat2` | `S2` |
-| `strat3` | `S3` |
+| `PMX1` | `S1` |
+| `PMX2` | `S2` |
+| `PMX3` | `S3` |
 
 ### 5.2 Interaction boutons
 
@@ -300,7 +300,7 @@ Boucle O_State_NewInit (10ms) :
 2. Si `seq_touch` a change depuis le dernier poll : nouveau clic touch detecte.
 3. Pour chaque champ different de `shadow_`, appelle le setter Robot approprie :
    - `matchColor` -> `setMyColorChecked(PMXBLUE/PMXYELLOW)` (accepte en CONFIG uniquement)
-   - `strategy` -> `setStrategyChecked("tabletest"/"strat2"/"strat3")`
+   - `strategy` -> `setStrategyChecked("PMX1"/"PMX2"/"PMX3")`
    - `advDiameter` -> `setAdvDiameter(...)`
    - `ledLuminosity` -> `setLedLuminosity(...)`
    - `testMode` -> `triggerTestMode(...)` si != 0

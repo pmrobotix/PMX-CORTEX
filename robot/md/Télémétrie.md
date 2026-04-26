@@ -68,14 +68,14 @@ L'IP et le port de la cible télémétrie peuvent être modifiés via la ligne d
 ```bash
 ./robot                                    # défaut: 192.168.3.101:9870
 ./robot /i 192.168.1.50                    # IP custom, port défaut
-./robot /p 9871                            # IP défaut, port custom
-./robot /i 192.168.1.50 /p 9871           # IP et port custom
+./robot /P 9871                            # IP défaut, port custom
+./robot /i 192.168.1.50 /P 9871           # IP et port custom
 ```
 
 | Option | Description | Défaut |
 |---|---|---|
 | `/i ip` | Adresse IP du récepteur télémétrie | `192.168.3.101` |
-| `/p port` | Port UDP du récepteur télémétrie | `9870` |
+| `/P port` | Port UDP du récepteur télémétrie | `9870` |
 
 ### Code source
 

@@ -1411,7 +1411,7 @@ Chaque paquet UDP contient un objet JSON avec l'ID du robot, un timestamp (`t`),
 
 La même IP est utilisée en SIMU et en ARM. La configuration est dans `src/bot-opos6ul/LoggerInitialize.cpp`.
 
-Reconfigurable au lancement : `./bot-opos6ul /i 192.168.3.50 /p 10000`
+Reconfigurable au lancement : `./bot-opos6ul /i 192.168.3.50 /P 10000`
 
 ### Réception des trames UDP
 
