@@ -404,3 +404,80 @@ Les caractères `N`, `n`, `!` ont des significations **différentes** entre :
 | `PMX-CORTEX/robot/src/common/asserv.esial/AsservEsialR.cpp` | Ancienne asserv interne (référence) |
 | `asserv_chibios/src/Robots/PMX/raspIO.cpp` | **À supprimer** (plus utilisé) |
 | `asserv_chibios/src/Robots/PMX/raspIO.h` | **À supprimer** (plus utilisé) |
+
+---
+
+## Protocole CBOR + handshake cmd_id
+
+Cette section documente le protocole **actuel** (CBOR avec ack `cmd_id`) qui remplace le protocole ASCII decrit ci-dessus. Le driver concerne est `AsservCborDriver` (et son pendant simu `AsservDriverSimu`).
+
+### Pourquoi le cmd_id ack
+
+Avant ce refactor, `Asserv::waitEndOfTrajWithDetection` polait uniquement `asservStatus` :
+- Phase 1 : attendre `status == RUNNING` (timeout 100ms).
+- Phase 2 : attendre `status == IDLE` -> `TRAJ_FINISHED`.
+
+**Bug** : entre 2 commandes consecutives, la Nucleo peut etre brievement IDLE (commande precedente finie, nouvelle pas encore demarree). Phase 1 sortait par timeout, Phase 2 voyait IDLE immediatement -> `TRAJ_FINISHED` retourne **sans aucun mouvement** (`d_parcourue=0`). Le runner JSON enchainait des tasks fantomes en pensant que tout reussissait.
+
+Symptome typique dans les logs :
+```
+StrategyJsonRunner INFO   task MOVEMENT/LINE (LINE dist=200)
+Asserv DEBUG waitEndOfTrajWithDetection: start timeout
+Navigator DEBUG d_parcourue=0 d_restant=200
+Navigator DEBUG time=0ms x=309 y=130 a=-0.21
+StrategyJsonRunner INFO   task MOVEMENT/LINE (LINE dist=...)   <-- enchainement non bloque
+```
+
+### Mecanisme
+
+Chaque commande motion (`motion_Line`, `motion_RotateRad`, `motion_GoTo`, ...) est numerotee par un **cmd_id monotone** stocke dans la frame CBOR. La Nucleo le copie dans la frame de retour quand elle a **fini de consommer** la commande. L'OPOS6UL lit ce `cmd_id` cote receive et le compare a `lastSentCmdId()`.
+
+Le wait devient :
+```cpp
+const int targetCmdId = asservdriver_->lastSentCmdId();   // capture au debut
+while (true) {
+    if (lastReceivedCmdId() >= targetCmdId && status == IDLE) {
+        return TRAJ_FINISHED;   // notre commande a ete ACK + asserv idle
+    }
+    if (status == BLOCKED)   return TRAJ_COLLISION;
+    if (status == EMERGENCY) return TRAJ_INTERRUPTED;
+    // ... + detection ToF (frontLevel/backLevel) inchangee
+    sleep 10ms;
+}
+```
+
+Un IDLE stale d'avant la commande ne peut plus etre confondu avec "termine" parce que `lastReceivedCmdId() < targetCmdId` -> condition refusee.
+
+### Plomberie
+
+| Composant | Avant | Apres |
+|---|---|---|
+| `nextCmdId_` (`AsservCborDriver`) | `int` non protege | `std::atomic<int>` |
+| `lastReceivedCmdId_` (`AsservCborDriver`) | `int` sous mutex | `std::atomic<int>` |
+| HACK `statusCountDown_` | force `status=1` sur les 1ers IDLE post-send | **supprime** (le cmd_id check rend ce contournement inutile et nuisible) |
+| Phase 1 wait RUNNING | 100ms de polling | **supprimee** |
+| API `AAsservDriver` | - | `virtual int lastSentCmdId() const`, `virtual int lastReceivedCmdId() const` (defaults `0/0`) |
+
+### Comportement simu
+
+`AsservDriverSimu` reproduit le meme mecanisme :
+- `nextCmdId_` / `lastReceivedCmdId_` atomiques.
+- `enqueueCommand()` : assigne `cmd.cmd_id = nextCmdId_.fetch_add(1)`. Pousse aussi `sharedPosition` synchroniquement (avec `status=1`) pour eviter une race entre `motion_Line()` et la prochaine iteration du thread `execute()` (sinon le wait verrait `status=0` stale).
+- Thread `execute()`, apres consommation d'une commande : `lastReceivedCmdId_.store(cmd.cmd_id)` puis `status=0` si queue vide.
+
+Avec ces overrides, le simu et le robot reel passent par exactement la **meme logique de wait** (cf `Asserv::waitEndOfTrajWithDetection`).
+
+### Tracé SVG simu pendant les mouvements
+
+Effet de bord : sans intervention, le SVG simu n'affichait des points bleus qu'**entre** les commandes (le thread `execute()` etant bloque dans `doMotion*` pendant toute la duree du mouvement). En reel, la Nucleo pousse une frame CBOR toutes les 100ms et `AsservCborDriver::execute()` ecrit un `<circle>` a chaque frame -> trace continu.
+
+Reproduit en simu : helper `traceSvgPosition()` appele a chaque step des `doMotion*` (`doMotionLine`, `doMotionRotateRad`, `doMotionOrbitalTurnRad`). Les autres `doMotion*` (`doMotionFaceTo`, `doMotionGoTo`, ...) deleguent a ces 3 -> couvert par transitivite. Cadence effective : ~`periodTime_us_ × 4` = **8 a 80ms** selon le bot, comparable aux 100ms reel.
+
+### Fichiers impactes
+
+| Fichier | Action |
+|---|---|
+| [src/common/interface/AAsservDriver.hpp](../src/common/interface/AAsservDriver.hpp) | Virtuals `lastSentCmdId()`, `lastReceivedCmdId()`, `tryReconnect()` |
+| [src/driver-arm/AsservCborDriver.hpp/cpp](../src/driver-arm/AsservCborDriver.cpp) | Atomiques + override + suppression HACK + `tryReconnect()` |
+| [src/driver-simu/AsservDriver.hpp/cpp](../src/driver-simu/AsservDriver.cpp) | cmd_id en simu + push sharedPosition synchrone + `traceSvgPosition()` |
+| [src/common/asserv/Asserv.cpp](../src/common/asserv/Asserv.cpp) | `waitEndOfTrajWithDetection` reecrite (cmd_id ack, plus de Phase 1) |

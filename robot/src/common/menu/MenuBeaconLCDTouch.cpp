@@ -218,8 +218,9 @@ void MenuBeaconLCDTouch::pollInputs(Robot& robot)
 		if (robot.phase() == PHASE_CONFIG) {
 			logger().info() << "[POLL] actionReq=1 in CONFIG -> requestSetPos" << logs::end;
 			robot.requestSetPos();
-		} else if (robot.phase() == PHASE_ARMED) {
-			logger().info() << "[POLL] actionReq=1 in ARMED -> requestReset" << logs::end;
+		} else if (robot.phase() == PHASE_ARMED || robot.phase() == PHASE_PRIMED) {
+			logger().info() << "[POLL] actionReq=1 in phase=" << (int)robot.phase()
+					<< " -> requestReset" << logs::end;
 			robot.requestReset();
 		} else {
 			logger().warn() << "[POLL] actionReq=1 but phase=" << (int)robot.phase()
@@ -295,7 +296,7 @@ void MenuBeaconLCDTouch::refreshDisplay(const Robot& robot)
 		shadow_.ledLuminosity = static_cast<int8_t>(robot.ledLuminosity());
 	}
 
-	// matchState = phase directement (0=CONFIG, 1=ARMED, 2=MATCH, 3=END)
+	// matchState = phase directement (0=CONFIG, 1=ARMED, 2=PRIMED, 3=MATCH, 4=END)
 	uint8_t stateByte = static_cast<uint8_t>(robot.phase());
 	if (stateByte != shadow_.matchState) {
 		bool ok = sensors_.writeMatchState(stateByte);

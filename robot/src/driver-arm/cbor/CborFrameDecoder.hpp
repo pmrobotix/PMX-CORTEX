@@ -31,6 +31,12 @@ public:
     // Récupérer la dernière position décodée (retourne false si rien de nouveau)
     bool getPosition(PositionData &pos);
 
+    // Reset complet de l'etat interne : retour en mode SYNC_LOOKUP, oublie
+    // toute trame partiellement decodee + posReady_=false. A appeler apres
+    // tryReconnect pour effacer les bytes residuels (boot Nucleo, framing
+    // potentiellement corrompu) avant que la communication "stable" demarre.
+    void reset();
+
 private:
     static constexpr uint32_t SYNC_WORD = 0xDEADBEEF;
     static constexpr size_t MAX_PAYLOAD = 128;

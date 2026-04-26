@@ -49,23 +49,9 @@ void O_State_DecisionMakerIA::execute()
 
 	logger().info() << __FUNCTION__ << " Strategy to be applied = " << robot.strategy() << logs::end;
 
-	// Init du playground (obstacles du terrain) pour le pathfinding
+	// Init du playground (obstacles du terrain) — INDISPENSABLE meme en mode JSON
+	// (Navigator::pathTo / MOVEMENT/PATH_TO appelle playgroundFindPath).
 	robot.ia().initPlayground();
-
-	// Configuration des zones + callbacks d'action (specifique au reglement 2026).
-	setupActivitiesZone2026(robot, robot.strategy());
-
-	// Export zones simulateur (cf. Robot -e <path> [-d])
-	if (!robot.exportZonesPath().empty()) {
-		ZoneJsonExporter::exportToFile(
-			robot.exportZonesPath(),
-			robot.ia().iAbyPath().playground(),
-			&robot.ia().iAbyPath());
-		if (robot.exportZonesDryRun()) {
-			logger().info() << "Dry-run: exit after export" << logs::end;
-			std::exit(0);
-		}
-	}
 
 	//wait for the start of the chrono !
 	while (!robot.chrono().started())
@@ -78,6 +64,14 @@ void O_State_DecisionMakerIA::execute()
 	// Si /s <name> passe en CLI -> runner JSON. Sinon fallback hardcode ci-dessous.
 	if (!robot.strategyJsonName().empty()) {
 		logger().info() << "Using JSON strategy runner: " << robot.strategyJsonPath() << logs::end;
+
+		// Activation de la detection adverse pour le match. setPos / pre-tirette
+		// se sont deroules sans detection (SensorsThread pas demarre, lastDetection
+		// reste a 0). On l'active maintenant : Asserv::waitEnd consultera
+		// frontLevel / backLevel pour declencher emergency stop sur adversaire.
+		robot.actions().sensors().setIgnoreFrontNearObstacle(true, false, true);
+		robot.actions().sensors().setIgnoreBackNearObstacle(true, true, true);
+		robot.actions().sensors().startSensorsThread(20);
 
 		// Enregistrement des actions MANIPULATION specifiques au reglement 2026.
 		ActionRegistry actions;
@@ -98,8 +92,34 @@ void O_State_DecisionMakerIA::execute()
 		return;
 	}
 
-	logger().warn() << "===== LEGACY hardcoded strategy path '" << robot.strategy()
+	logger().error() << "===== LEGACY hardcoded strategy path '" << robot.strategy()
 			<< "' DEPRECATED. Use /s <PMX1|PMX2|PMX3> or pick via LCD menu. =====" << logs::end;
+	robot.freeMotion();
+
+#if 0
+	// ============================================================================
+	// BRANCHE LEGACY commentée : zones C++ (ia_createZone) + ia_start + hardcode
+	// trajectoire d'ouverture. Remplace par le JSON runner (PMX1/2/3) au-dessus.
+	// Conservé en commentaire pour reference / re-activation eventuelle si besoin
+	// d'un fallback sans JSON. Voir git log pour l'historique.
+	// ============================================================================
+
+	// Mode legacy : zones C++ (ia_createZone) + ia_start. setup uniquement ici.
+	// PMX1/2/3 (mode JSON) n'utilisent pas de zones C++ : les positions/actions
+	// sont decrites dans strategy<name>.json (priorities + tasks).
+	setupActivitiesZone2026(robot, robot.strategy());
+
+	// Export zones simulateur (legacy uniquement : pas de zone C++ a exporter en JSON).
+	if (!robot.exportZonesPath().empty()) {
+		ZoneJsonExporter::exportToFile(
+			robot.exportZonesPath(),
+			robot.ia().iAbyPath().playground(),
+			&robot.ia().iAbyPath());
+		if (robot.exportZonesDryRun()) {
+			logger().info() << "Dry-run: exit after export" << logs::end;
+			std::exit(0);
+		}
+	}
 
 	Navigator nav(&robot, &robot.ia().iAbyPath());
 
@@ -126,4 +146,5 @@ void O_State_DecisionMakerIA::execute()
 
 	robot.svgPrintEndOfFile();
 	logger().info() << __FUNCTION__ << " >>>>>>   svgPrintEndOfFile DONE.........." << logs::end;
+#endif
 }

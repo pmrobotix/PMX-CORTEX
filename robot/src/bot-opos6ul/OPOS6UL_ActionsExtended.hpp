@@ -89,7 +89,20 @@ private:
 	 */
 	AColorDriver *colordriver_;
 
+	/*!
+	 * \brief Statut connexion AX12 Teensy. Set par start() au boot via les
+	 *        ping de setup. Lu par ax12_init() / ax12_GO_banderole() pour
+	 *        skipper les move bloquants quand les servos sont absents
+	 *        (sinon timeout ~2s par mouvement, cumule a chaque setPos).
+	 */
+	bool servosAx12Connected_ = false;
+
 public:
+	/*!
+	 * \brief Indique si les servos AX12 ont repondu au ping initial (start()).
+	 */
+	bool isServosAx12Connected() const { return servosAx12Connected_; }
+
 
 	/*!
 	 * \brief Enumération des libellés des servos associés au numéro de servo
@@ -327,6 +340,14 @@ public:
 		 62088864| O_ServoObjectsTest INFO Rwrist  (1063)= 848
 		 62100200| O_ServoObjectsTest INFO Rfinger (1051)= 545
 		 */
+
+		// Si les AX12 n'ont pas pinge au boot, skip les move bloquants
+		// (chaque ax12_*_banderole/R/L est un move 2s qui timeout sans servo).
+		// Permet de gagner ~2s par appel a setPos() en config sans servos.
+		if (!servosAx12Connected_) {
+			logger().warn() << "ax12_init() skip : servos AX12 non connectes" << logs::end;
+			return;
+		}
 
 //		ax12_init_R();
 //		ax12_init_L();

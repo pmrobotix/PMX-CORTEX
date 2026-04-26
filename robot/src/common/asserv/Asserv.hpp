@@ -94,6 +94,12 @@ public:
     bool is_connected() { return asservdriver_->is_connected(); }
 
     /*!
+     * \brief Tente de (re)connecter le driver. Idempotent.
+     *        Permet a la carte asserv d'arriver apres le boot OPOS6UL.
+     */
+    bool tryReconnect() { return asservdriver_->tryReconnect(); }
+
+    /*!
      * \brief Constructeur.
      * \param botId Identifiant du robot (ex: "OPOS6UL"), utilisé pour instancier le bon driver.
      * \param robot Pointeur vers l'objet Robot parent (accès aux positions partagées).

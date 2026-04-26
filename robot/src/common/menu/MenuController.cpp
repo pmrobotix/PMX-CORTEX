@@ -33,6 +33,13 @@ void MenuController::tick()
 	}
 }
 
+void MenuController::pollInputsOnly()
+{
+	for (auto& s : sources_) {
+		s->pollInputs(robot_);
+	}
+}
+
 bool MenuController::anyAlive() const
 {
 	for (const auto& s : sources_) {

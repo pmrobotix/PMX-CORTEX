@@ -10,6 +10,18 @@ CborFrameDecoder::CborFrameDecoder()
     lastPos_ = {};
 }
 
+void CborFrameDecoder::reset()
+{
+    state_         = SYNC_LOOKUP;
+    syncAccum_     = 0;
+    headerIdx_     = 0;
+    expectedCrc_   = 0;
+    payloadSize_   = 0;
+    payloadIdx_    = 0;
+    posReady_      = false;
+    lastPos_       = {};
+}
+
 void CborFrameDecoder::pushByte(uint8_t byte)
 {
     switch (state_)

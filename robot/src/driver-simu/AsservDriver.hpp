@@ -103,10 +103,19 @@ private:
         float   p3;           // angle supplementaire (ORBITAL)
         bool    forward;      // ORBITAL
         bool    turnRight;    // ORBITAL
+        int     cmd_id;       // handshake (cf EsialRobotik) : copie de nextCmdId_ a l'enqueue
     };
     std::queue<SimuCommand> cmdQueue_;
     std::mutex              queueMutex_;
     std::condition_variable queueCv_;
+
+    /// Handshake cmd_id (cf AAsservDriver.hpp) : incremente a chaque enqueueCommand,
+    /// copie dans SimuCommand.cmd_id. Le thread execute() copie cmd_id dans
+    /// lastReceivedCmdId_ apres avoir termine la doMotion*. Ainsi Asserv::waitEnd
+    /// ne sort que quand notre commande a vraiment ete consommee, pas sur un
+    /// status==IDLE stale.
+    std::atomic<int> nextCmdId_{1};
+    std::atomic<int> lastReceivedCmdId_{0};
 
     void enqueueCommand(const SimuCommand& cmd);
     bool popCommand(SimuCommand& out);
@@ -122,6 +131,13 @@ private:
     void doMotionFaceBackTo(float x_mm, float y_mm);
     void doMotionGoTo(float x_mm, float y_mm);
     void doMotionGoBackTo(float x_mm, float y_mm);
+
+    /// Trace un point bleu + ligne d'orientation dans le SVG. Appele a chaque
+    /// step des doMotion* pour reproduire le tracé continu de la Nucleo CBOR
+    /// (qui pousse une frame toutes les ~100ms). Sans ca, le SVG ne montre que
+    /// les positions de fin de commande, le thread execute() etant bloque dans
+    /// doMotion* pendant toute la duree du mouvement.
+    void traceSvgPosition(const ROBOTPOSITION& p);
 
     // Sleep decoupe en chunks de ~10ms, poll emergencyStop_ a chaque chunk.
     // Sans ca, un sleep_for_micros monolithique pendant un increment peut
@@ -164,6 +180,8 @@ public:
 
     // Interface AAsservDriver
     bool is_connected() override;
+    int  lastSentCmdId()     const override { return nextCmdId_.load() - 1; }
+    int  lastReceivedCmdId() const override { return lastReceivedCmdId_.load(); }
     void endWhatTodo();
 
     // Stubs bas niveau (utilisés par tests O_* et Asserv.cpp)

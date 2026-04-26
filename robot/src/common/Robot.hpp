@@ -41,16 +41,23 @@ enum RobotColor {
  * Transitions :
  *   CONFIG -> ARMED  : setPos trigger (bouton touch "SETPOS" ou BACK shield).
  *                      setPos() est execute, robot place, couleur verrouillee.
+ *   ARMED  -> PRIMED : tirette inseree (on attend ensuite son retrait).
  *   ARMED  -> CONFIG : reset trigger (bouton touch "RESET" ou BACK shield).
  *                      freeMotion, couleur de nouveau editable.
- *   ARMED  -> MATCH  : edge "tirette inseree puis retiree".
+ *   PRIMED -> MATCH  : tirette retiree -> debut match.
+ *   PRIMED -> CONFIG : reset trigger (operateur change d'avis avant le top depart).
  *   MATCH  -> END    : fin des 90s.
+ *
+ * En ARMED + PRIMED : couleur LOCKED, autres params editables.
+ * Le shield et le LCD tactile balise affichent "METTRE TIRETTE" en ARMED et
+ * "ENLEVE TIRETTE" en PRIMED.
  */
 enum MatchPhase {
 	PHASE_CONFIG = 0,  ///< Menu ouvert, tout editable (y compris couleur)
-	PHASE_ARMED  = 1,  ///< setPos fait. Couleur LOCKED. Strat/diam/LED/test editables.
-	PHASE_MATCH  = 2,  ///< Tirette retiree, match en cours
-	PHASE_END    = 3,  ///< Fin match
+	PHASE_ARMED  = 1,  ///< setPos fait, attente insertion tirette. Couleur LOCKED.
+	PHASE_PRIMED = 2,  ///< Tirette inseree, attente retrait pour debut match. Couleur LOCKED.
+	PHASE_MATCH  = 3,  ///< Tirette retiree, match en cours
+	PHASE_END    = 4,  ///< Fin match
 };
 
 /*!

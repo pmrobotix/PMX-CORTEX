@@ -66,10 +66,15 @@ void OPOS6UL_AsservExtended::startMotionTimerAndOdo(bool assistedHandlingEnabled
 
     } else if (useAsservType_ == ASSERV_EXT) {
 
-        // Laisser 50ms a la Nucleo pour appliquer le dernier odo_SetPosition (envoye par
-        // setPositionAndColor avant cet appel) AVANT de demarrer le thread CBOR. Sinon
-        // la 1ere position recue serait un residu de la session precedente Nucleo.
-        utils::sleep_for_millis(50);
+        // Stabilisation Nucleo : la frame CBOR position est emise a 10 Hz (100ms).
+        // Apres setPositionAndColor (envoye juste avant cet appel), sharedPosition
+        // reflete encore l'ancienne pose (souvent (0,0,0) au boot OPOS6UL). Sans
+        // cette pause, le 1er Navigator::line() qui suit capture pBefore=(0,0)
+        // -> calcul d_parcourue/d_restant errone (le robot bouge bien la bonne
+        // distance physique demandee a la Nucleo, mais le code sait pas qu'il a
+        // commence a (230, 130) et croit avoir parcouru 309mm pour une LINE 80).
+        // 200ms = 2 frames CBOR + marge.
+        utils::sleep_for_millis(200);
 
         asservdriver_->motion_ActivateManager(true); //on active la carte d'asserv externe et le thread de position
         if (assistedHandlingEnabled)

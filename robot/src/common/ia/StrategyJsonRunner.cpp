@@ -65,6 +65,7 @@ bool StrategyJsonRunner::executeInstruction(const StrategyInstruction& instr)
     }
 
     logger().info() << "[instr " << instr.id << "] " << instr.desc << logs::end;
+    bool firstTask = true;
     for (const auto& task : instr.tasks) {
         if (flags_ && task.needed_flag && !flags_->has(*task.needed_flag)) {
             logger().info() << "  task " << task.type << "/" << task.subtype
@@ -72,6 +73,17 @@ bool StrategyJsonRunner::executeInstruction(const StrategyInstruction& instr)
                             << logs::end;
             continue;
         }
+        // Petit sleep entre 2 tasks consecutives : la Nucleo CBOR peut perdre
+        // une commande envoyee trop vite apres la fin de la precedente
+        // (transitions internes CommandManager / serial Rx buffer overflow
+        // pendant que onTimer asserv finit de stabiliser le mouvement).
+        // Symptome : target_cmd=N+1 received_cmd=N status=IDLE 10s -> timeout.
+        // 200ms = 2 frames CBOR (la Nucleo emet a 10 Hz). A revoir si trop lent
+        // (impact tempo match sur enchainement de tasks courtes).
+        if (!firstTask) {
+            utils::sleep_for_micros(200000);
+        }
+        firstTask = false;
         TRAJ_STATE ts = executeTask(task);
         if (ts != TRAJ_FINISHED) {
             logger().error() << "[instr " << instr.id << "] task "

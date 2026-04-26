@@ -58,7 +58,13 @@ void logs::LoggerFactory::initialize()
 
     //State
     add(logs::Level::INFO, "O_State_Init", "console");
+    add(logs::Level::INFO, "O_State_NewInit", "console");
     add(logs::Level::INFO, "O_State_DecisionMakerIA", "console");
+
+    //Menu (multi-sources : shield 2x16 + LCD tactile balise)
+    add(logs::Level::INFO, "MenuController", "console");
+    add(logs::Level::INFO, "MenuShieldLCD", "console");
+    add(logs::Level::INFO, "MenuBeaconLCDTouch", "console");
     add(logs::Level::INFO, "StrategyJsonParser", "console");
     add(logs::Level::INFO, "StrategyJsonRunner", "console");
     add(logs::Level::INFO, "ActionRegistry", "console");

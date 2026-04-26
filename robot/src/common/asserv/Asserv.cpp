@@ -102,13 +102,13 @@ void Asserv::startMotionTimerAndOdo(bool assistedHandlingEnabled)
 //        else pAsservEsialR_->motion_FreeMotion();
 	} else if (useAsservType_ == ASSERV_EXT)
 	{
-
+		// Note : pour les robots qui surchargent (ex: OPOS6UL_AsservExtended),
+		// cette branche n'est PAS executee — seule la version overridee tourne.
 		asservdriver_->motion_ActivateManager(true); //on active la carte d'asserv externe et le thread de position
 		if (assistedHandlingEnabled)
 			asservdriver_->motion_AssistedHandling();
 		else
 			asservdriver_->motion_FreeMotion();
-
 	}
 }
 
@@ -299,37 +299,41 @@ void Asserv::resetEmergencyOnTraj(std::string message)
 // waitEndOfTrajWithDetection — boucle centrale de décision
 // =============================================================================
 //
-// Remplace l'ancien waitEndOfTraj() + warnFrontDetectionOnTraj().
-// Le SensorsThread ne touche plus à l'Asserv — il ne fait que publier
-// le DetectionEvent. C'est ICI qu'on décide de stopper/ralentir.
+// Modele cmd_id ack (cf EsialRobotik/Ia-Python::wait_for_asserv) :
+//   La commande motion_* qui a precede cet appel a incremente nextCmdId_ cote
+//   driver. On capture ce target_id et on attend que la Nucleo nous renvoie
+//   un cmd_id >= target_id ET reporte status==IDLE. C'est l'ACK explicite.
+//   Plus de Phase 1 "wait RUNNING" : un IDLE stale d'avant la commande ne
+//   peut plus etre confondu avec "termine" parce que lastReceivedCmdId() est
+//   alors strictement < target_id.
 //
-// Status driver : 0=IDLE, 1=RUNNING, 2=EMERGENCY, 3=BLOCKED
+//   Le wrapper SIMU n'a pas de cmd_id : ses defaults retournent 0/0, la
+//   condition "received(0) >= target(0)" est triviale et c'est le status==IDLE
+//   qui decide (cf force-status=1 a l'enqueue dans AsservDriverSimu).
+//
+// La detection ToF/beacon (frontLevel/backLevel) reste integree dans la meme
+// boucle pour declencher emergency stop sur obstacle proche.
+//
+// Status driver : 0=IDLE, 1=RUNNING, 2=EMERGENCY, 3=BLOCKED.
 
 TRAJ_STATE Asserv::waitEndOfTrajWithDetection(MovementType type)
 {
-	// Phase 1 : attente que le mouvement démarre (status passe à 1)
-	int timeout = 0;
-	while (pos_getPosition().asservStatus != 1)
-	{
-		utils::sleep_for_micros(10000); // 10ms
-		std::this_thread::yield();
-		timeout++;
-		if (timeout > 10) // 100ms max pour démarrer (10 * 10ms)
-		{
-			logger().debug() << "waitEndOfTrajWithDetection: start timeout" << logs::end;
-			break;
-		}
-	}
+	// Capture du cmd_id cible AU DEBUT (juste apres l'envoi de la commande
+	// par l'appelant motion_*). Tout ACK >= cette valeur signifie que la
+	// commande a ete consommee par la Nucleo.
+	const int targetCmdId = asservdriver_->lastSentCmdId();
 
-	// Phase 2 : boucle d'attente avec consultation détection
-	timeout = 0;
+	int timeout = 0;
 	while (true)
 	{
 		ROBOTPOSITION p = pos_getPosition();
-		int status = p.asservStatus;
+		const int status = p.asservStatus;
+		const int receivedCmdId = asservdriver_->lastReceivedCmdId();
 
-		// --- Fini normalement ---
-		if (status == 0) // IDLE
+		// --- Fini normalement : ACK cmd_id + status IDLE ---
+		// Pour SIMU (defaults 0/0), receivedCmdId(0) >= targetCmdId(0) est
+		// trivialement vrai -> seul le status==0 decide, comme avant.
+		if (receivedCmdId >= targetCmdId && status == 0)
 		{
 			setMaxSpeed(false); // restaurer vitesse normale
 			return TRAJ_FINISHED;
@@ -391,7 +395,9 @@ TRAJ_STATE Asserv::waitEndOfTrajWithDetection(MovementType type)
 		timeout++;
 		if (timeout > 1000) // 10s timeout sécurité (1000 * 10ms)
 		{
-			logger().error() << "waitEndOfTrajWithDetection: TIMEOUT 10s" << logs::end;
+			logger().error() << "waitEndOfTrajWithDetection: TIMEOUT 10s "
+					<< "(target_cmd=" << targetCmdId << " received_cmd=" << receivedCmdId
+					<< " status=" << status << ")" << logs::end;
 			return TRAJ_ERROR;
 		}
 	}

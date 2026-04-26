@@ -146,6 +146,11 @@ void AsservDriverSimu::execute()
 				case CmdType::GOTO_CHAIN:       doMotionGoTo(cmd.x, cmd.y); break;
 				case CmdType::GOBACK_TO_CHAIN:  doMotionGoBackTo(cmd.x, cmd.y); break;
 			}
+			// Handshake cmd_id : on ack la commande consommee. Asserv::waitEnd
+			// utilise cette valeur pour valider que la commande a vraiment ete
+			// executee (au lieu de se fier uniquement a status==IDLE qui peut
+			// etre stale entre 2 commandes).
+			lastReceivedCmdId_.store(cmd.cmd_id);
 			// Commande executee. Si queue vide, on repasse en IDLE (status=0).
 			// Sinon, on laisse asservStatus=1 pour la suite (chain).
 			// emergencyStop a la main sur asservStatus=2 via emergencyStop().
@@ -179,19 +184,30 @@ void AsservDriverSimu::execute()
 
 // ========== Queue de commandes (imitation Nucleo CBOR) ==========
 
-void AsservDriverSimu::enqueueCommand(const SimuCommand& cmd)
+void AsservDriverSimu::enqueueCommand(const SimuCommand& cmdIn)
 {
+	// Handshake cmd_id : on assigne un ID croissant a la commande (idem CBOR).
+	// L'execute() thread le copiera dans lastReceivedCmdId_ apres consommation.
+	SimuCommand cmd = cmdIn;
+	cmd.cmd_id = nextCmdId_.fetch_add(1);
 	{
 		std::lock_guard<std::mutex> lk(queueMutex_);
 		cmdQueue_.push(cmd);
 	}
 	// Pre-marquer asservStatus=1 (running) des l'enqueue, avant meme que le thread
-	// ait pop la commande. Sinon, waitEndOfTrajWithDetection phase 1 (timeout 100ms)
-	// peut sortir par timeout si le thread prend >2ms a reagir, et phase 2 voit
-	// asservStatus=0 -> return TRAJ_FINISHED immediat (le robot ne bouge pas).
+	// ait pop la commande. Sinon, Asserv::waitEnd lit sharedPosition.status=0
+	// (stale, pas encore mis a jour par execute()) -> condition d'ack triviale
+	// (target=0, received=0) + status==0 -> retourne TRAJ_FINISHED immediat.
+	//
+	// Le push synchrone dans sharedPosition est CRITIQUE : sans lui, l'execute()
+	// thread (2-20ms par tick) ne pousse status=1 qu'au prochain cycle, pendant
+	// lequel waitEnd a deja vu status=0 et sorti.
+	ROBOTPOSITION pCopy;
 	m_pos.lock();
 	p_.asservStatus = 1;
+	pCopy = p_;
 	m_pos.unlock();
+	robotPositionShared_->setRobotPosition(pCopy);
 
 	queueCv_.notify_one();
 }
@@ -269,6 +285,16 @@ bool AsservDriverSimu::sleepWithCancelCheck(int total_us)
 bool AsservDriverSimu::is_connected()
 {
 	return true;
+}
+
+void AsservDriverSimu::traceSvgPosition(const ROBOTPOSITION& p)
+{
+	loggerSvg().info() << "<circle cx=\"" << p.x << "\" cy=\"" << -p.y
+			<< "\" r=\"1\" fill=\"blue\" />"
+			<< "<line x1=\"" << p.x << "\" y1=\"" << -p.y
+			<< "\" x2=\"" << p.x + cos(p.theta) * 25
+			<< "\" y2=\"" << -p.y - sin(p.theta) * 25
+			<< "\" stroke-width=\"0.1\" stroke=\"grey\"  />" << logs::end;
 }
 
 void AsservDriverSimu::endWhatTodo()
@@ -765,6 +791,7 @@ void AsservDriverSimu::doMotionLine(float dist_mm)
 		// reste fige pendant toute la duree du mouvement et waitEndOfTrajWith
 		// Detection ne voit pas asservStatus=1).
 		robotPositionShared_->setRobotPosition(snapshot);
+		traceSvgPosition(snapshot);
 
 		if (simuSpeedMultiplier_ > 0) {
 			if (sleepWithCancelCheck(increment_time_us * simuSpeedMultiplier_)) return;
@@ -823,6 +850,7 @@ void AsservDriverSimu::doMotionRotateRad(float angle_radians)
 
 		// Publier sharedPosition (voir doMotionLine pour raison)
 		robotPositionShared_->setRobotPosition(snapshot);
+		traceSvgPosition(snapshot);
 
 		if (simuSpeedMultiplier_ > 0) {
 			if (sleepWithCancelCheck(increment_time_us * simuSpeedMultiplier_)) return;
@@ -901,6 +929,7 @@ void AsservDriverSimu::doMotionOrbitalTurnRad(float angle_radians, bool forward,
 
 		// Publier sharedPosition (voir doMotionLine pour raison)
 		robotPositionShared_->setRobotPosition(snapshot);
+		traceSvgPosition(snapshot);
 
 		if (simuSpeedMultiplier_ > 0) {
 			if (sleepWithCancelCheck(increment_time_us * simuSpeedMultiplier_)) return;

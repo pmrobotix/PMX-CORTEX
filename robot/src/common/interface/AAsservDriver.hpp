@@ -82,6 +82,30 @@ public:
 	virtual bool is_connected() = 0;
 
 	/*!
+	 * \brief Tente de (re)connecter le driver. Idempotent : si deja connecte,
+	 *        retourne immediatement true. Permet a la carte asserv (Nucleo)
+	 *        d'arriver apres le boot OPOS6UL, sans avoir a redemarrer le programme.
+	 *        Utilise par O_State_NewInit avant setPos().
+	 *        Defaut : retourne is_connected() (drivers SIMU/stub n'ont rien a faire).
+	 * \return true si la connexion est OK apres l'appel.
+	 */
+	virtual bool tryReconnect() { return is_connected(); }
+
+	/*!
+	 * \brief ID de la derniere commande envoyee par le driver vers la carte asserv.
+	 *        Pattern handshake (cf EsialRobotik/Ia-Python) : Asserv::waitEnd
+	 *        attend que lastReceivedCmdId() >= cette valeur ET status==IDLE.
+	 *        Defaut 0 : drivers SIMU sans cmd_id (le wait se rabat sur status==0).
+	 */
+	virtual int lastSentCmdId() const { return 0; }
+
+	/*!
+	 * \brief ID de la derniere commande acquittee par la carte asserv (echo dans
+	 *        la frame de position). Defaut 0 : drivers SIMU sans cmd_id.
+	 */
+	virtual int lastReceivedCmdId() const { return 0; }
+
+	/*!
 	 * \brief Actions de nettoyage avant l'arret du programme.
 	 */
 	virtual void endWhatTodo() = 0;

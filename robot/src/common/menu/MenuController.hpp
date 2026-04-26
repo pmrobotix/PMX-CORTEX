@@ -51,6 +51,16 @@ public:
 	void tick();
 
 	/*!
+	 * \brief Variante de tick() qui n'effectue QUE la phase pollInputs.
+	 *
+	 * Utilise par O_State_NewInit::waitForAsserv() : on veut detecter un reset
+	 * (BACK / RESET touch) pendant l'attente Nucleo, mais pas que les sources
+	 * de menu rafraichissent leur affichage (sinon le shield ecrase le message
+	 * "WAIT NUCLEO..." par le layout standard de la phase ARMED).
+	 */
+	void pollInputsOnly();
+
+	/*!
 	 * \brief Au moins une source est vivante.
 	 */
 	bool anyAlive() const;

@@ -265,6 +265,13 @@ void Robot::parseConsoleArgs(int argc, char** argv, bool stopWithErrors) {
             initPoseThetaDeg_ = initData.thetaDeg;
             setposTasks_ = std::move(initData.setposTasks);
         }
+    } else if (!strategyJsonName_.empty()) {
+        // /s pas explicite mais strategyJsonName_ a une valeur par defaut
+        // (PMX1 du constructeur). Charger quand meme le init JSON pour avoir
+        // la pose initiale + setpos_tasks (avance pre-tirette). Best-effort :
+        // warn si absent au lieu d'aborter (tests fonctionnels n'ont pas
+        // forcement le init JSON dans le cwd).
+        loadInitJsonForCurrentStrategy();
     }
 
     // Reconfigure telemetry appender with command line args (/i ip /P port)

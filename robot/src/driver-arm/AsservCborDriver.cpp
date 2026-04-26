@@ -41,10 +41,12 @@ enum CborCmdType {
     CMD_GOTO_FRONT           = 23,
     CMD_GOTO_BACK            = 24,
     CMD_GOTO_NOSTOP          = 25,
-    CMD_SET_POSITION         = 26,
     CMD_FACE_BACK            = 27,
     CMD_GOTO_BACK_NOSTOP     = 28,
     CMD_ORBITAL_TURN         = 30,
+    CMD_SET_POSITION         = 31,   // Deplace de 26 a 31 (master 3a2c3de) :
+                                     // four-param (3 floats X/Y/theta + ID)
+                                     // au lieu de three-param (2 floats).
 };
 
 static constexpr uint32_t SYNC_WORD = 0xDEADBEEF;
@@ -56,7 +58,7 @@ static constexpr uint32_t SYNC_WORD = 0xDEADBEEF;
 AsservCborDriver::AsservCborDriver(ARobotPositionShared *sharedPosition)
     : connected_(true), asservCardStarted_(true), threadStarted_(false),
       stopRequested_(false), positionInitialized_(false),
-      errorCount_(0), nextCmdId_(1), lastReceivedCmdId_(0), statusCountDown_(0),
+      errorCount_(0), nextCmdId_(1), lastReceivedCmdId_(0),
       p_({0.0, 0.0, 0.0, 0, 0, 0}), pp_({0.0, 0.0, 0.0, 0, 0, 0}),
       sharedPosition_(sharedPosition)
 {
@@ -120,6 +122,52 @@ void AsservCborDriver::startReceiveThread()
 bool AsservCborDriver::is_connected()
 {
     return connected_ && asservCardStarted_;
+}
+
+bool AsservCborDriver::tryReconnect()
+{
+    if (asservCardStarted_) return true;
+
+    // Reouvre le port serie. Si openDevice retourne autre chose que 1, on log
+    // et on revient avec false : l'appelant retentera plus tard.
+    char errorOpening = serial_.openDevice(SERIAL_CBOR_PORT, 115200);
+    if ((int)errorOpening != 1) {
+        logger().warn() << "tryReconnect: openDevice=" << (int)errorOpening
+                << " (Nucleo non branchee ou non alimentee ?)" << logs::end;
+        return false;
+    }
+
+    serial_.DTR(true);
+    serial_.RTS(false);
+    serial_.flushReceiver();
+
+    // On attend une trame CBOR de la Nucleo dans les 500ms.
+    uint8_t buf[64];
+    int bytesRead = serial_.readBytes(buf, sizeof(buf), 500);
+    if (bytesRead <= 0) {
+        logger().warn() << "tryReconnect: pas de reponse sur " << SERIAL_CBOR_PORT
+                << " (Nucleo en attente de reset ?)" << logs::end;
+        serial_.closeDevice();
+        return false;
+    }
+
+    // On a vu au moins 1 frame -> serial OK et Nucleo emet. MAIS les bytes lus
+    // peuvent etre en plein milieu d'une trame (sync word pas encore aligne)
+    // ou des residus boot Nucleo. On JETTE ces bytes au lieu de les pousser
+    // dans frameDecoder_ pour eviter qu'il reste sur un etat partiel pollue
+    // au moment ou les vraies commandes vont commencer (set_position, LINE).
+    // Pareil pour le buffer Rx serie.
+    serial_.flushReceiver();
+    frameDecoder_.reset();
+
+    asservCardStarted_ = true;
+    logger().info() << "tryReconnect: OK sur " << SERIAL_CBOR_PORT
+            << " (jete " << bytesRead << " bytes initiaux + reset decoder)"
+            << logs::end;
+
+    // Demarre le thread de reception (idempotent grace au flag threadStarted_).
+    startReceiveThread();
+    return true;
 }
 
 void AsservCborDriver::endWhatTodo()
@@ -267,19 +315,16 @@ void AsservCborDriver::execute()
                 p_.theta = pos.theta;
                 p_.asservStatus = pos.status;
                 p_.queueSize = pos.pending_count;
-                lastReceivedCmdId_ = pos.cmd_id;
-
-                // Anti-race : ignorer les premiers IDLE après envoi d'une commande
-                m_statusCountDown.lock();
-                if (pos.status == 0 && statusCountDown_ > 0)
-                {
-                    statusCountDown_--;
-                    p_.asservStatus = 1; // Forcer RUNNING
-                }
-                m_statusCountDown.unlock();
-
                 ROBOTPOSITION p_copy = p_;
                 m_pos.unlock();
+
+                // Mise a jour du dernier cmd_id ACQ par la Nucleo. Atomique :
+                // lu sans lock par Asserv::waitEnd (handshake cmd_id, voir la
+                // doc dans AAsservDriver.hpp). Le HACK statusCountDown_ qui
+                // forcait status=1 sur les 1ers IDLE post-send a ete retire :
+                // avec le cmd_id check, un IDLE stale (lastReceived < lastSent)
+                // ne sera plus interprete a tort comme "commande terminee".
+                lastReceivedCmdId_.store(pos.cmd_id);
 
                 // IMPORTANT : ignorer les positions recues AVANT le premier odo_SetPosition().
                 // Tant que positionInitialized_ == false, la Nucleo envoie encore les positions
@@ -376,72 +421,76 @@ TRAJ_STATE AsservCborDriver::waitEndOfTraj()
 // Appeler waitEndOfTraj() séparément pour attendre la fin.
 // ============================================================================
 
-void AsservCborDriver::prepareCommand(int countdown)
+void AsservCborDriver::prepareCommand()
 {
+    // Defensif : on force localement asservStatus=RUNNING avant l'envoi,
+    // pour que la 1ere frame CBOR (qui peut encore reporter IDLE de la
+    // commande precedente) ne fasse pas voir un faux "termine" entre l'envoi
+    // et le reset par la Nucleo. Le critere d'autorite reste le cmd_id ack
+    // (Asserv::waitEnd attend lastReceivedCmdId() >= lastSentCmdId()).
     m_pos.lock(); p_.asservStatus = 1; m_pos.unlock();
-    m_statusCountDown.lock(); statusCountDown_ = countdown; m_statusCountDown.unlock();
 }
 
 void AsservCborDriver::motion_Line(float dist_mm)
 {
     if (!asservCardStarted_) return;
-    prepareCommand(2);
+    prepareCommand();
     sendCmd(CMD_STRAIGHT, dist_mm);
 }
 
 void AsservCborDriver::motion_RotateRad(float angle_radians)
 {
     if (!asservCardStarted_) return;
-    prepareCommand(2);
+    prepareCommand();
     sendCmd(CMD_TURN, (float)(angle_radians * 180.0 / M_PI));
 }
 
 void AsservCborDriver::motion_FaceTo(float x_mm, float y_mm)
 {
     if (!asservCardStarted_) return;
-    prepareCommand(2);
+    prepareCommand();
     sendCmd(CMD_FACE, x_mm, y_mm);
 }
 
 void AsservCborDriver::motion_FaceBackTo(float x_mm, float y_mm)
 {
     if (!asservCardStarted_) return;
-    prepareCommand(2);
+    prepareCommand();
     sendCmd(CMD_FACE_BACK, x_mm, y_mm);
 }
 
 void AsservCborDriver::motion_GoTo(float x_mm, float y_mm)
 {
     if (!asservCardStarted_) return;
-    prepareCommand(2);
+    prepareCommand();
     sendCmd(CMD_GOTO_FRONT, x_mm, y_mm);
 }
 
 void AsservCborDriver::motion_GoBackTo(float x_mm, float y_mm)
 {
     if (!asservCardStarted_) return;
-    prepareCommand(2);
+    prepareCommand();
     sendCmd(CMD_GOTO_BACK, x_mm, y_mm);
 }
 
 void AsservCborDriver::motion_GoToChain(float x_mm, float y_mm)
 {
     if (!asservCardStarted_) return;
-    prepareCommand(5);
+    prepareCommand();
     sendCmd(CMD_GOTO_NOSTOP, x_mm, y_mm);
 }
 
 void AsservCborDriver::motion_GoBackToChain(float x_mm, float y_mm)
 {
     if (!asservCardStarted_) return;
-    prepareCommand(5);
+    prepareCommand();
     sendCmd(CMD_GOTO_BACK_NOSTOP, x_mm, y_mm);
 }
 
 void AsservCborDriver::motion_OrbitalTurnRad(float angle_radians, bool forward, bool turnRight)
 {
     if (!asservCardStarted_) return;
-    prepareCommand(2);
+    prepareCommand();
     float angleDeg = (float)(angle_radians * 180.0 / M_PI);
     sendCmd(CMD_ORBITAL_TURN, angleDeg, forward ? 1.0f : 0.0f, turnRight ? 1.0f : 0.0f);
 }

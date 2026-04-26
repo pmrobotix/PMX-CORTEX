@@ -21,6 +21,8 @@
 #include "log/LoggerFactory.hpp"
 #include "state/AAutomateState.hpp"
 
+class MenuController;
+
 class O_State_NewInit : public AAutomateState
 {
 private:
@@ -32,6 +34,16 @@ private:
 
 	void setPos();
 	void handleTestModeRequest();
+
+	/*!
+	 * \brief Attend que la Nucleo (asserv) soit connectee avant setPos().
+	 *        - ctrl != nullptr (mode menu) : tick les sources, accepte un reset
+	 *          (BACK/RESET) pour annuler, retourne false.
+	 *        - ctrl == nullptr (mode /k)   : attend indefiniment (l'utilisateur
+	 *          peut ^C).
+	 * \return true si la Nucleo est connectee, false si l'operateur a annule.
+	 */
+	bool waitForAsserv(MenuController* ctrl);
 
 public:
 	O_State_NewInit() = default;

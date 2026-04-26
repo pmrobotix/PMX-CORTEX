@@ -323,7 +323,7 @@ static void updateColorButton(lv_obj_t *btn) {
  * Ecrit directement dans settings.matchColor (Reg 5, Bloc 2 LCD->OPOS6UL).
  */
 static void matchColor_event_cb(lv_event_t *e) {
-	// Ignore le clic si matchState >= 1 (= ARMED, couleur lockee apres setPos).
+	// Ignore le clic si matchState >= 1 (couleur lockee en ARMED/PRIMED/MATCH).
 	// La protection visuelle (LV_STATE_DISABLED) est appliquee par screen_loop,
 	// mais ce guard couvre le cas ou matchState est stale d'un run precedent
 	// avant que l'OPOS6UL ait pu pousser matchState=0.
@@ -447,9 +447,10 @@ static void testMode_timer_cb(lv_timer_t *timer) {
 }
 
 // --- Bouton SETPOS / RESET (partage toute la largeur de l'ecran avec btn_color) ---
-// matchState=0 (CONFIG) : libelle "SETPOS", couleur verte, clic -> actionReq=1
-// matchState=1 (ARMED)  : libelle "RESET",  couleur rouge, clic -> actionReq=1
-// matchState>=2 (MATCH+): bouton cache ou grise (match en cours)
+// matchState=0 (CONFIG) : libelle "SETPOS", vert, clic -> actionReq=1 (setPos)
+// matchState=1 (ARMED)  : libelle "METTRE TIR", rouge, clic -> actionReq=1 (reset)
+// matchState=2 (PRIMED) : libelle "ENLEVE TIR", rouge, clic -> actionReq=1 (reset)
+// matchState>=3 (MATCH+): libelle "MATCH", gris (clic ignore)
 static lv_obj_t *btn_setpos_handle = nullptr;
 static lv_obj_t *lbl_setpos_handle = nullptr;
 
@@ -463,9 +464,13 @@ static void updateSetposButton() {
 		lv_obj_set_style_bg_color(btn_setpos_handle, setpos_color_green, 0);
 		lv_label_set_text(lbl_setpos_handle, "SETPOS");
 		lv_obj_set_style_text_color(lbl_setpos_handle, lv_color_black(), 0);
-	} else if (settings.matchState == 1) {   // ARMED
+	} else if (settings.matchState == 1) {   // ARMED -> attente insertion tirette
 		lv_obj_set_style_bg_color(btn_setpos_handle, setpos_color_red, 0);
-		lv_label_set_text(lbl_setpos_handle, "RESET");
+		lv_label_set_text(lbl_setpos_handle, "METTRE TIR");
+		lv_obj_set_style_text_color(lbl_setpos_handle, lv_color_white(), 0);
+	} else if (settings.matchState == 2) {   // PRIMED -> attente retrait tirette
+		lv_obj_set_style_bg_color(btn_setpos_handle, setpos_color_red, 0);
+		lv_label_set_text(lbl_setpos_handle, "ENLEVE TIR");
 		lv_obj_set_style_text_color(lbl_setpos_handle, lv_color_white(), 0);
 	} else {                                  // MATCH / END
 		lv_obj_set_style_bg_color(btn_setpos_handle, setpos_color_grey, 0);
@@ -486,7 +491,7 @@ static void setpos_pressed_cb(lv_event_t *e) {
 static void setpos_event_cb(lv_event_t *e) {
 	(void)e;
 	uint32_t elapsed = millis() - setpos_press_ms;
-	if (settings.matchState >= 2) {
+	if (settings.matchState >= 3) {
 		if (lbl_setpos_handle) lv_label_set_text(lbl_setpos_handle, "MATCH!");
 		return;
 	}
@@ -576,6 +581,10 @@ static void testMode_event_cb(lv_event_t *e) {
  */
 static void create_match_menu(void) {
 	lv_obj_t *scr = lv_scr_act();
+	// Reset fond ecran a blanc : show_match_screen/show_endmatch_screen ont pu
+	// le passer en violet (30,27,59) lors d'un run precedent. lv_obj_clean()
+	// supprime les widgets mais conserve les styles de l'ecran lui-meme.
+	lv_obj_set_style_bg_color(scr, lv_color_white(), 0);
 	lv_obj_t *label;
 	lv_obj_t *btn;
 
@@ -1129,10 +1138,11 @@ void screen_loop() {
 	if (!screen_available) return; // pas d'ecran : no-op
 
 	// --- Transitions d'ecran selon matchState ---
-	// matchState: 0=prepa, 1=en cours, 2=fini
+	// matchState: 0=CONFIG, 1=ARMED, 2=PRIMED, 3=MATCH, 4=END
 	// lcd_screen_state: 0=menu, 1=match, 2=endmatch, 3=pickup config
-	// Etat 3 est exclu du retour force au menu : l'operateur quitte la config
-	// zones uniquement via le bouton MENU (ou via transition matchState>=1).
+	// En ARMED+PRIMED on reste sur le menu (config editable, hors couleur).
+	// Etat 3 (pickup config) est exclu du retour force au menu : l'operateur
+	// quitte la config zones uniquement via le bouton MENU (ou matchState>=3).
 	if (settings.matchState == 0 && lcd_screen_state != 0 && lcd_screen_state != 3) {
 		// OPOS6UL redemarré ou reset -> retour au menu
 		lv_obj_clean(lv_scr_act());
@@ -1141,10 +1151,10 @@ void screen_loop() {
 		create_match_menu();
 		lcd_screen_state = 0;
 	}
-	if (settings.matchState == 1 && (lcd_screen_state == 0 || lcd_screen_state == 3)) {
+	if (settings.matchState == 3 && (lcd_screen_state == 0 || lcd_screen_state == 3)) {
 		show_match_screen();
 	}
-	if (settings.matchState >= 2 && lcd_screen_state != 2) {
+	if (settings.matchState >= 4 && lcd_screen_state != 2) {
 		show_endmatch_screen();
 	}
 

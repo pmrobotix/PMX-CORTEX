@@ -71,7 +71,8 @@ OPOS6UL_ActionsExtended::OPOS6UL_ActionsExtended(std::string botId, Robot *robot
 	int svrconnected = 0;
 	svrconnected = servos().setup(AX12_SERVO_BRAS_D, AServoDriver::ServoType::SERVO_DYNAMIXEL, 0, 512, 1023, false);
 	svrconnected &= servos().setup(AX12_SERVO_BRAS_G, AServoDriver::ServoType::SERVO_DYNAMIXEL, 0, 512, 1023, false);
-	if (svrconnected == false)
+	servosAx12Connected_ = (svrconnected != 0);
+	if (!servosAx12Connected_)
 	{
 		logger().error() << "Hardware status: Servos AX12 is NOT connected !" << logs::end;
 	}

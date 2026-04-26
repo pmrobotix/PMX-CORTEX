@@ -9,7 +9,7 @@ Contexte et decisions architecturales discutees avant redaction : voir l'histori
 - **Plusieurs sources d'input/output simultanees** pour configurer le robot avant match : LCD shield 2x16 + boutons (existant), LCD tactile balise via I2C 0x2D (existant cote Teensy, voir [ARCHITECTURE_BEACON.md](../../teensy/IO_t41_ToF_DetectionBeacon/ARCHITECTURE_BEACON.md)), et possibilite d'ajouter un 3e systeme plus tard sans reecriture.
 - **Degradation gracieuse** : si une des deux interfaces tombe ou est debranchee (en compet ou en preparation), l'autre continue de fonctionner.
 - **Source de verite unique** : `Robot` detient l'etat de configuration. Aucune source n'a sa propre copie "faisant foi". Les sources sont de simples plugins input/output.
-- **Modele flexible a 3 phases** : CONFIG -> ARMED -> MATCH. La couleur est un parametre comme les autres, editable en CONFIG. Le bouton SETPOS declenche la transition CONFIG -> ARMED (execution de setPos physique + verrou couleur). En ARMED, le bouton devient RESET : retour en CONFIG avec freeMotion pour permettre un repositionnement manuel du robot.
+- **Modele flexible a 4 phases** : CONFIG -> ARMED -> PRIMED -> MATCH. La couleur est un parametre comme les autres, editable en CONFIG. Le bouton SETPOS declenche la transition CONFIG -> ARMED (execution de setPos physique + verrou couleur). En ARMED on attend l'insertion de la tirette ("METTRE TIRETTE"), en PRIMED on attend son retrait ("ENLEVE TIRETTE"). Dans ces deux phases, le bouton devient RESET : retour en CONFIG avec freeMotion pour permettre un repositionnement manuel du robot.
 - **Couleur verrouillee apres setPos** : la couleur conditionne la position physique du robot sur la table, donc on ne peut pas la changer apres que `setPos` a positionne le robot. Si erreur de couleur : RESET, repositionner manuellement, refaire SETPOS.
 - **Autres parametres editables jusqu'au match** : strategie, diametre adversaire, luminosite LED, tests mecaniques. Toujours modifiables en CONFIG et en ARMED.
 - **Support `/k` skipSetup** inchange : court-circuite le menu, params venant du parseur CLI ou defauts (BLEU par defaut).
@@ -87,19 +87,22 @@ Regle d'or : **une source ne parle jamais a une autre source**. Elles passent to
 // Robot.hpp
 enum MatchPhase {
     PHASE_CONFIG = 0,  // Menu ouvert, tout editable (couleur incluse)
-    PHASE_ARMED  = 1,  // setPos fait. Couleur LOCKED. Strat/diam/LED/test editables.
-    PHASE_MATCH  = 2,  // Tirette retiree, match en cours
-    PHASE_END    = 3,  // Fin match
+    PHASE_ARMED  = 1,  // setPos fait, attente insertion tirette. Couleur LOCKED.
+    PHASE_PRIMED = 2,  // Tirette inseree, attente retrait. Couleur LOCKED.
+    PHASE_MATCH  = 3,  // Tirette retiree, match en cours
+    PHASE_END    = 4,  // Fin match
 };
 ```
 
 **Transitions** :
 - `CONFIG -> ARMED` : bouton SETPOS clique (touch) ou BACK click (shield). setPos() est execute, robot place, couleur verrouillee.
-- `ARMED -> CONFIG` : bouton RESET (touch) ou BACK click (shield). freeMotion + couleur de nouveau editable, pour repositionnement manuel si erreur.
-- `ARMED -> MATCH` : edge "tirette inseree PUIS retiree" (detecte en interne dans O_State_NewInit, pas une phase separee).
+- `ARMED -> PRIMED` : tirette inseree (front montant detecte par O_State_NewInit dans la boucle ARMED).
+- `ARMED -> CONFIG` : bouton RESET (touch) ou BACK click (shield) avant insertion. freeMotion + couleur de nouveau editable.
+- `PRIMED -> MATCH` : tirette retiree (front descendant detecte par O_State_NewInit dans la boucle PRIMED).
+- `PRIMED -> CONFIG` : bouton RESET, idem ARMED. Permet a l'operateur de changer d'avis avant le top depart.
 - `MATCH -> END` : fin des 90s.
 
-**Note sur la detection tirette** : on ne cree pas de phase intermediaire PRIMED (comme dans l'ancien modele). La sequence "insertion puis retrait" est trackee par un `bool tiretteWasInserted` local a la boucle ARMED, qui evite qu'un etat "tirette jamais inseree" soit interprete comme "tirette retiree = start match".
+**Affichage tirette** : c'est la *phase* qui porte l'instruction tirette. Les sources de menu (`MenuShieldLCD`, `MenuBeaconLCDTouch`) lisent `robot.phase()` et affichent "METTRE TIRETTE" en ARMED ou "ENLEVE TIRETTE" en PRIMED. Pas de bool local ni de champ parallele : la phase est la source de verite unique.
 
 ### 3.2 Champs ajoutes
 
@@ -200,23 +203,32 @@ public:
 
 ### 5.1 Layout LCD 2 lignes
 
-**Ligne 0** (toujours) : synthese de la config.
-```
-Y* S2  D:40 T:-
-```
-- pos 0-1 : couleur + verrou (`Y*`/`B*` en ARMED, `Y `/`B ` en CONFIG)
-- pos 3-4 : strat courte (S1/S2/S3)
-- pos 7-10 : diametre `D:40`
-- pos 12-14 : dernier test `T:-` / `T:1`..`T:5`
+**Ligne 0** depend de la phase :
+- **PHASE_CONFIG** : synthese de la config (couleur, strat, diametre).
+  ```
+  YELLW S1   D:40
+  ```
+  - pos 0-5 : couleur (`YELLW` ou `BLUE  `)
+  - pos 7-8 : strat courte (`S1`/`S2`/`S3`)
+  - pos 12-14 : diametre `D:40`
+- **PHASE_ARMED** : message tirette dedie (la couleur etant lockee, son
+  affichage est moins critique ; on prefere ne pas rater l'etape tirette).
+  ```
+  METTRE TIRETTE !
+  ```
+- **PHASE_PRIMED** :
+  ```
+  ENLEVE TIRETTE !
+  ```
 
-**Ligne 1** (contextuelle) : rubrique en cours d'edition + valeur.
+**Ligne 1** (contextuelle, toutes phases) : rubrique en cours d'edition + valeur.
 ```
 >COLOR:YELLOW
 >DIAM :40 cm
 >STRAT:S2
 >TEST :T3
 ```
-Pendant un hold BACK, la ligne 1 est remplacee par le countdown `EXIT IN  8.5s`.
+Pendant un hold BACK, la ligne 1 est remplacee par le countdown `EXIT:  1.7s`.
 
 **VRR et LED ne sont PAS editables sur le shield** (gardes pour le touch LVGL uniquement). Cote shield, LED luminosity est ignoree (Teensy ou CLI fixent la valeur). VRR est supprime du menu 2026 (strategies 1/2/3 suffisent).
 
@@ -234,16 +246,16 @@ Pendant un hold BACK, la ligne 1 est remplacee par le countdown `EXIT IN  8.5s`.
 
 Cycle des rubriques selon la phase :
 - **PHASE_CONFIG** : `COLOR -> DIAM -> STRAT -> TEST -> (COLOR)`
-- **PHASE_ARMED**  : `DIAM -> STRAT -> TEST -> (DIAM)` (COLOR skippee automatiquement)
+- **PHASE_ARMED / PHASE_PRIMED** : `DIAM -> STRAT -> TEST -> (DIAM)` (COLOR skippee automatiquement, lockee)
 
-| Bouton | Clic court | Hold 10s |
+| Bouton | Clic court | Hold 2s |
 |---|---|---|
 | LEFT  | rubrique precedente | - |
 | RIGHT | rubrique suivante | - |
 | UP    | valeur "haut" (pour COLOR: `setMyColorChecked(BLUE)`, pour DIAM/STRAT/TEST: valeur +1) | - |
 | DOWN  | valeur "bas" (pour COLOR: `setMyColorChecked(YELLOW)`, autre: -1) | - |
 | ENTER | si rubrique=TEST : `triggerTestMode(testSelected_)` | - |
-| BACK  | CONFIG : `requestSetPos()` ; ARMED : `requestReset()` | `exit(0)` |
+| BACK  | CONFIG : `requestSetPos()` ; ARMED \| PRIMED : `requestReset()` | `exit(0)` |
 
 **Plus de hold 5s pour commit couleur** : le commit implicite se fait via `requestSetPos()` qui transitionne CONFIG -> ARMED.
 
@@ -316,7 +328,7 @@ Boucle O_State_NewInit (10ms) :
    - `strategy` (1..3 via mapping inverse)
    - `advDiameter`
    - `ledLuminosity` (via `writeLedLuminosity`)
-   - `matchState` = `(uint8_t)robot.phase()` directement (0=CONFIG, 1=ARMED, 2=MATCH, 3=END)
+   - `matchState` = `(uint8_t)robot.phase()` directement (0=CONFIG, 1=ARMED, 2=PRIMED, 3=MATCH, 4=END)
 2. Met a jour `shadow_` avec les valeurs poussees pour ne pas re-declencher un faux "delta" au prochain pollInputs.
 3. **Ne touche jamais `seq_touch`** (c'est la Teensy qui l'incremente).
 4. **Pas de push de `matchColor` en ARMED+** : la couleur est lockee cote Robot, et le bouton LVGL est verrouille cote Teensy via `matchState >= 1`.
@@ -338,7 +350,7 @@ Boucle O_State_NewInit (10ms) :
 - Champ `seq_touch` (reg 10) : incremente par CHAQUE callback LVGL qui modifie un champ du bloc 2 (matchColor, strategy, testMode, advDiameter, ledLuminosity, actionReq).
 - `static_assert(sizeof(Settings) == 11)` verrouille l'ABI I2C.
 - `LCDScreen.cpp` :
-  - Bouton SETPOS/RESET (`btn_setpos_handle`) : 152x50 pixels a droite du bouton couleur (152x50 a gauche), partageant la largeur de l'ecran. Label/couleur change selon `settings.matchState` : vert "SETPOS" en 0 (CONFIG), rouge "RESET" en 1 (ARMED), gris "MATCH" en >=2.
+  - Bouton SETPOS/RESET (`btn_setpos_handle`) : 152x50 pixels a droite du bouton couleur (152x50 a gauche), partageant la largeur de l'ecran. Label/couleur change selon `settings.matchState` : vert "SETPOS" en 0 (CONFIG), rouge "METTRE TIR" en 1 (ARMED), rouge "ENLEVE TIR" en 2 (PRIMED), gris "MATCH" en >=3.
   - `screen_loop()` @5 Hz compare chaque champ a sa valeur precedente mise en cache et rafraichit les widgets LVGL (bouton couleur, strategy radio, labels diam/led, bouton setpos, lock couleur en ARMED+).
   - `updateColorButtonLock()` met le bouton couleur en `LV_STATE_DISABLED` quand `matchState >= 1` (empeche le toggle tactile apres setPos).
 
@@ -368,11 +380,23 @@ IAutomateState* O_State_NewInit::execute(Robot&)
     //========================================================
     // /k SKIP SETUP : params deja dans Robot via CLI
     //========================================================
+    // Push matchState=CONFIG vers la Teensy AVANT toute autre logique : sort le
+    // LCD tactile balise du show_match/show_endmatch screen du run precedent
+    // (la Teensy ne reboote pas avec l'OPOS6UL). Sans ce flush, l'utilisateur
+    // verrait le fond violet de l'image PMX du match precedent pendant ~1s.
+    if (robot.actions().sensors().is_connected()) {
+        robot.actions().sensors().writeMatchState(PHASE_CONFIG);
+        robot.actions().sensors().syncFull();
+    }
+
     if (robot.skipSetup()) {
         logger().info() << "SKIP SETUP (/k)" << logs::end;
         // Plus de check NOCOLOR : myColor_ defaut = PMXBLUE, le CLI peut
         // basculer en JAUNE via /b. Toujours une valeur valide.
         robot.setPhase(PHASE_ARMED);
+        // Mode /k : pas de menu, l'asserv DOIT arriver avant setPos.
+        // waitForAsserv(nullptr) bloque indefiniment (l'utilisateur peut ^C).
+        waitForAsserv(nullptr);
         setPos();
         robot.actions().sensors().writeLedLuminosity(50);
         robot.waitForInit(true);
@@ -402,8 +426,6 @@ restart_menu:
         robot.clearTestMode();
 
         // ===== PHASE CONFIG : attente setPos =====
-        // Tous les parametres editables (couleur, strat, diam, LED, tests).
-        // L'operateur clique SETPOS (touch) ou BACK click (shield) pour passer en ARMED.
         while (robot.phase() == PHASE_CONFIG) {
             ctrl.tick();
             handleTestModeRequest();
@@ -416,35 +438,57 @@ restart_menu:
             utils::sleep_for_micros(10000);
         }
 
-        // setPos : robot rejoint sa position initiale. Inclus reset asserv
-        // via startMotionTimerAndOdo(true) (reset Nucleo + match ref).
+        // Avant setPos : la Nucleo (asserv) doit etre connectee, sinon les
+        // trajectoires sont des no-op (faux TRAJ_FINISHED, robot ne bouge pas).
+        // Si pas connectee au boot, on attend qu'elle arrive (boucle de retry
+        // tryReconnect). L'operateur peut annuler via RESET pour repasser en
+        // CONFIG (ex: changer de strategie ou debrancher / rebrancher).
+        if (!waitForAsserv(&ctrl)) {
+            goto restart_menu;   // RESET pendant l'attente
+        }
         setPos();
         robot.actions().sensors().writeLedLuminosity(50);
 
-        // ===== PHASE ARMED : attente sequence tirette, reset possible =====
+        // ===== PHASE ARMED : attente insertion tirette =====
         // Couleur LOCKED. Strat/diam/LED/tests restent editables.
-        // Etat interne : detecter l'edge "tirette inseree PUIS retiree".
-        bool tiretteWasInserted = false;
+        // Sources de menu affichent "METTRE TIRETTE" en lisant robot.phase().
         while (robot.phase() == PHASE_ARMED) {
             ctrl.tick();
             handleTestModeRequest();
-
             if (robot.resetRequested()) {
                 robot.clearReset();
                 robot.asserv().freeMotion();
-                goto restart_menu;   // repositionnement manuel possible
+                goto restart_menu;
             }
-
-            bool tirettePressed = robot.actions().tirette().pressed();
-            if (!tiretteWasInserted && tirettePressed)  tiretteWasInserted = true;
-            if (tiretteWasInserted && !tirettePressed) {
-                robot.setPhase(PHASE_MATCH);
-                break;
-            }
-
+            int t = robot.actions().tirette().pressed();
+            if (t == 1) { robot.setPhase(PHASE_PRIMED); break; }
             if (!ctrl.anyAlive()) std::exit(1);
             utils::sleep_for_micros(10000);
         }
+
+        // ===== PHASE PRIMED : attente retrait tirette =====
+        // Memes regles d'edition que ARMED. Reset toujours possible.
+        // Sources de menu affichent "ENLEVE TIRETTE" en lisant robot.phase().
+        while (robot.phase() == PHASE_PRIMED) {
+            ctrl.tick();
+            handleTestModeRequest();
+            if (robot.resetRequested()) {
+                robot.clearReset();
+                robot.asserv().freeMotion();
+                goto restart_menu;
+            }
+            int t = robot.actions().tirette().pressed();
+            if (t == 0) { robot.setPhase(PHASE_MATCH); break; }
+            if (!ctrl.anyAlive()) std::exit(1);
+            utils::sleep_for_micros(10000);
+        }
+
+        // Flush final : pousse PHASE_MATCH vers toutes les sources avant de
+        // quitter le menu. Sans ca, le LCD tactile balise reste sur "ENLEVE TIR"
+        // car ctrl.tick() n'est plus appele apres ce bloc et la Teensy ne voit
+        // jamais matchState=3 (->screen match avec logo PMX).
+        ctrl.tick();
+        robot.actions().sensors().syncFull();
     }
 
     //========================================================
@@ -460,7 +504,61 @@ restart_menu:
 }
 ```
 
-### 7.1 Consommation du `testMode`
+### 7.1 `waitForAsserv()` — attente Nucleo flexible
+
+Au boot OPOS6UL, la Nucleo (carte asserv) peut ne pas etre alimentee / branchee /
+flashee. Le driver `AsservCborDriver` echoue alors a la connexion serie initiale
+(`/dev/ttymxc1`) et reste dans l'etat `asservCardStarted_=false`. Sans
+intervention, toutes les commandes motion deviendraient des no-op (faux
+`TRAJ_FINISHED`, robot ne bouge pas).
+
+`AsservCborDriver::tryReconnect()` permet de retenter la connexion a la demande.
+`O_State_NewInit::waitForAsserv()` boucle dessus juste avant `setPos()` :
+
+```cpp
+bool O_State_NewInit::waitForAsserv(MenuController* ctrl)
+{
+    if (robot.asserv().tryReconnect()) return true;  // deja connectee
+    lcd2x16.print("WAIT NUCLEO...");
+    while (!robot.asserv().tryReconnect()) {
+        if (ctrl) {
+            // Mode menu : on detecte un RESET pour annuler l'attente.
+            // pollInputsOnly (PAS tick complet) -> evite que le shield ecrase
+            // "WAIT NUCLEO..." avec le layout standard de la phase ARMED.
+            sensors.syncFull();
+            ctrl->pollInputsOnly();
+            if (robot.resetRequested()) {
+                robot.clearReset();
+                return false;   // operateur annule -> retour CONFIG
+            }
+        }
+        sleep_for(500ms);
+    }
+    return true;
+}
+```
+
+- **Mode menu** : RESET (BACK shield ou bouton RESET touch) annule l'attente,
+  retour en CONFIG. Permet de corriger une erreur de couleur / strategie /
+  branchement Nucleo et retenter setPos.
+- **Mode `/k`** : `ctrl == nullptr`, attente bloquante. L'utilisateur peut ^C.
+
+### 7.2 Flush matchState vers la Teensy
+
+Deux flush explicites cadrent les transitions de `matchState` (le champ Settings
+I2C qui pilote l'affichage du LCD tactile balise) :
+
+1. **Au tout debut de `execute()`** : push `matchState=PHASE_CONFIG` (=0).
+   Sort la Teensy du `show_match_screen` / `show_endmatch_screen` du run
+   precedent (la Teensy ne reboote pas avec l'OPOS6UL). Sans ce flush, le LCD
+   tactile resterait sur le fond violet de l'image PMX du match precedent
+   pendant ~1s (le temps que la boucle menu pousse via shadow comparison).
+2. **Apres la sortie de la boucle PRIMED** (= tirette retiree) : `ctrl.tick()
+   + sensors.syncFull()`. Sans ca, le LCD tactile reste fige sur "ENLEVE TIR"
+   car `ctrl.tick()` n'est plus appele apres ce bloc et la Teensy ne voit
+   jamais `matchState=3` (=> bascule sur l'ecran match avec logo PMX).
+
+### 7.3 Consommation du `testMode`
 
 Quand une source (shield ENTER sur TEST, ou touch LVGL bouton T1..T5) pousse `triggerTestMode(n)`, Robot met `testModeReq_ = true`. O_State_NewInit detecte le flag dans `handleTestModeRequest()` et dispatch sur les routines numerotees :
 
@@ -485,7 +583,7 @@ void handleTestModeRequest(Robot& robot) {
 
 Les routines elles-memes sont a coder progressivement. Le framework est pret.
 
-### 7.2 `setPos()`
+### 7.4 `setPos()`
 
 La methode existante de `O_State_Init::setPos()` est copiee telle quelle dans `O_State_NewInit::setPos()`. Aucune modif fonctionnelle.
 

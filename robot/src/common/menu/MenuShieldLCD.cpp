@@ -37,12 +37,24 @@ const char* MenuShieldLCD::strategyShort(const char* longName)
 
 void MenuShieldLCD::buildLine0(const Robot& robot, char out[17]) const
 {
-	// Format: "BLUE     S1 D:40" ou "YELLW* S1 D:40" (16 chars + terminator)
-	const char* colorStr = robot.isMatchColor() ? "YELLW" : "BLUE";
-	char lockChar = (robot.phase() >= PHASE_ARMED) ? '*' : ' ';
+	// En ARMED/PRIMED, la ligne 0 est dediee aux instructions tirette pour ne pas
+	// rater l'etape (la couleur etant lockee, son affichage est moins critique).
+	if (robot.phase() == PHASE_ARMED) {
+		std::snprintf(out, 17, "METTRE TIRETTE !");
+		out[16] = '\0';
+		return;
+	}
+	if (robot.phase() == PHASE_PRIMED) {
+		std::snprintf(out, 17, "ENLEVE TIRETTE !");
+		out[16] = '\0';
+		return;
+	}
 
-	std::snprintf(out, 17, "%-6s%c%s   D:%d",
-			colorStr, lockChar,
+	// PHASE_CONFIG : status normal "BLUE     S1 D:40" (16 chars + terminator)
+	const char* colorStr = robot.isMatchColor() ? "YELLW" : "BLUE";
+
+	std::snprintf(out, 17, "%-6s %s   D:%d",
+			colorStr,
 			strategyShort(robot.strategy().c_str()),
 			static_cast<int>(robot.advDiameter()));
 	out[16] = '\0';
@@ -190,8 +202,9 @@ void MenuShieldLCD::handleClick(Robot& robot, ButtonTouch b)
 			} else if (robot.phase() == PHASE_CONFIG) {
 				logger().info() << "[CLICK] SELECT -> requestSetPos" << logs::end;
 				robot.requestSetPos();
-			} else if (robot.phase() == PHASE_ARMED) {
-				logger().info() << "[CLICK] SELECT -> requestReset" << logs::end;
+			} else if (robot.phase() == PHASE_ARMED || robot.phase() == PHASE_PRIMED) {
+				logger().info() << "[CLICK] SELECT -> requestReset (phase="
+						<< (int)robot.phase() << ")" << logs::end;
 				robot.requestReset();
 			}
 			break;

@@ -47,7 +47,7 @@ struct Settings {
 	int8_t  numOfBots     = 3;   ///< Reg 0. Nb max d'adv a detecter (W: OPOS6UL).
 	int8_t  ledLuminosity = 10;  ///< Reg 1. Luminosite LED matrix 0..100, pas de 5 (1 sous 10) (W: OPOS6UL).
 	uint8_t matchPoints   = 0;   ///< Reg 2. Score match sur LED matrix + LCD (W: OPOS6UL).
-	uint8_t matchState    = 0;   ///< Reg 3. Etat match: 0=prepa, 1=en cours, 2=fini (W: OPOS6UL).
+	uint8_t matchState    = 0;   ///< Reg 3. Phase: 0=CONFIG, 1=ARMED, 2=PRIMED, 3=MATCH, 4=END (W: OPOS6UL).
 	uint8_t lcdBacklight  = 1;   ///< Reg 4. Backlight LCD: 0=off, 1=on (W: OPOS6UL).
 
 	// === Bloc 2 : Teensy (LCD) -> OPOS6UL (5 + 8 = 13 bytes) ===
@@ -57,8 +57,8 @@ struct Settings {
 	uint8_t advDiameter   = 40;  ///< Reg 8. Diametre adversaire en cm, defaut 40 (W: LCD).
 	/// Reg 9. Bouton SETPOS/RESET clique sur le LCD tactile. Le callback LVGL
 	/// met actionReq=1 + seq_touch++. L'OPOS6UL interprete selon matchState :
-	/// matchState==CONFIG -> setPos; matchState==ARMED -> reset. Puis OPOS6UL
-	/// remet actionReq=0 pour "consommer" le trigger (handshake).
+	/// CONFIG -> setPos ; ARMED|PRIMED -> reset. Puis OPOS6UL remet actionReq=0
+	/// pour "consommer" le trigger (handshake).
 	/// Voir robot/md/O_STATE_NEW_INIT.md section 6.
 	uint8_t actionReq     = 0;
 

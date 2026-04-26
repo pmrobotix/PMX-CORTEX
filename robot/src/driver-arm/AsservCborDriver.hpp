@@ -45,12 +45,14 @@ private:
     std::atomic<bool> stopRequested_;      ///< Flag d'arret du thread de reception CBOR.
     std::atomic<bool> positionInitialized_; ///< true apres le 1er odo_SetPosition (filtrage SVG).
     int errorCount_;
-    int nextCmdId_;
-    int lastReceivedCmdId_;
-    int statusCountDown_;
+    /// Compteur incremente par chaque sendCmd*. lastSent = nextCmdId_-1 apres send.
+    /// Atomique : sendCmd(thread Asserv) vs lastSentCmdId()(thread waitEndOfTraj).
+    std::atomic<int> nextCmdId_;
+    /// Mis a jour par le receive thread (execute()) a la lecture de pos.cmd_id.
+    /// Atomique : ecrit par execute(), lu par waitEndOfTraj sans lock.
+    std::atomic<int> lastReceivedCmdId_;
 
     Mutex m_pos;
-    Mutex m_statusCountDown;
     ROBOTPOSITION p_;
     ROBOTPOSITION pp_; // position précédente pour trace SVG
 
@@ -65,7 +67,10 @@ private:
     // Envoi bas niveau de la trame complète
     void sendFrame(const uint8_t *cborPayload, size_t cborLen);
 
-    void prepareCommand(int countdown);
+    /// Pre-marque asservStatus=1 (RUNNING) localement avant l'envoi d'une commande
+    /// motion_*. Defensive : evite que waitEndOfTraj voie un IDLE stale d'avant
+    /// la commande pendant la 1ere frame CBOR. Le cmd_id ack reste l'autorite.
+    void prepareCommand();
 
     uint8_t txBuffer_[128];
 
@@ -90,6 +95,24 @@ public:
     void stopReceiveThread();
 
     bool is_connected() override;
+
+    /*!
+     * \brief Handshake cmd_id (cf EsialRobotik) : ID de la derniere commande
+     *        envoyee. Asserv::waitEnd attend que lastReceivedCmdId() >= ce
+     *        nombre ET asservStatus==IDLE pour declarer la commande terminee.
+     */
+    int lastSentCmdId()     const override { return nextCmdId_.load() - 1; }
+    int lastReceivedCmdId() const override { return lastReceivedCmdId_.load(); }
+
+    /*!
+     * \brief Tente de (re)connecter la Nucleo si elle n'a pas repondu au boot.
+     *        Idempotent : retourne immediatement true si deja connectee.
+     *        Permet a la Nucleo d'arriver/etre power-cyclee apres le boot OPOS6UL,
+     *        utilise par O_State_NewInit avant setPos().
+     * \return true si la connexion est OK apres l'appel.
+     */
+    bool tryReconnect() override;
+
     void endWhatTodo();
     TRAJ_STATE waitEndOfTraj() override;
 
