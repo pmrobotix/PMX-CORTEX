@@ -50,7 +50,7 @@ enum RobotColor {
  *
  * En ARMED + PRIMED : couleur LOCKED, autres params editables.
  * Le shield et le LCD tactile balise affichent "METTRE TIRETTE" en ARMED et
- * "ENLEVE TIRETTE" en PRIMED.
+ * "WAIT TIRETTE..." en PRIMED.
  */
 enum MatchPhase {
 	PHASE_CONFIG = 0,  ///< Menu ouvert, tout editable (y compris couleur)

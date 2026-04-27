@@ -171,7 +171,7 @@ void O_AsservLineRotateTest::run(int argc, char **argv)
 	robot.chrono().start();
 
 	// Vitesse reduite
-	robot.asserv().setMaxSpeed(true, s, s);
+	robot.asserv().setSpeed(s);
 
 	// Navigator
 	Navigator nav(&robot, &robot.ia().iAbyPath());

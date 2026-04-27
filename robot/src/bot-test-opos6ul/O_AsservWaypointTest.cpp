@@ -172,7 +172,7 @@ void O_AsservWaypointTest::run(int argc, char **argv)
 	robot.chrono().start();
 
 	// Vitesse
-	robot.asserv().setMaxSpeed(true, s, s);
+	robot.asserv().setSpeed(s);
 
 	// Navigator
 	Navigator nav(&robot, &robot.ia().iAbyPath());

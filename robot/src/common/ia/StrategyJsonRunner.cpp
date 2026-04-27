@@ -75,11 +75,11 @@ bool StrategyJsonRunner::executeInstruction(const StrategyInstruction& instr)
         }
         // Petit sleep entre 2 tasks consecutives : la Nucleo CBOR peut perdre
         // une commande envoyee trop vite apres la fin de la precedente
-        // (transitions internes CommandManager / serial Rx buffer overflow
-        // pendant que onTimer asserv finit de stabiliser le mouvement).
-        // Symptome : target_cmd=N+1 received_cmd=N status=IDLE 10s -> timeout.
-        // 200ms = 2 frames CBOR (la Nucleo emet a 10 Hz). A revoir si trop lent
-        // (impact tempo match sur enchainement de tasks courtes).
+        // (overflow buffer Rx pendant que onTimer asserv finalise la regulation).
+        // Symptome sans ce sleep : target_cmd=N+1 received_cmd=N -> warn ACK
+        // dans Asserv::sendCborMotionWithRetry, puis cmd appliquee tardivement
+        // par la Nucleo causant des comportements erratiques.
+        // 200ms = 2 frames CBOR (la Nucleo emet a 10 Hz).
         if (!firstTask) {
             utils::sleep_for_micros(200000);
         }
@@ -192,7 +192,10 @@ TRAJ_STATE StrategyJsonRunner::executeTask(const StrategyTask& t)
         return TRAJ_FINISHED;
     }
     if (t.type == "SPEED" && t.subtype == "SET_SPEED" && t.speed_percent) {
-        robot_->asserv().setMaxSpeed(true, *t.speed_percent, *t.speed_percent);
+        // API unifiee : delegue a Asserv::setSpeed. La semantique est
+        // ajustable centralement dans Asserv::setSpeed (cap PWM seul,
+        // scale acc/dec seul, ou les 2) sans modifier les appelants.
+        robot_->asserv().setSpeed(*t.speed_percent);
         return TRAJ_FINISHED;
     }
     if (t.type == "ELEMENT") {

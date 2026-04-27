@@ -131,7 +131,7 @@ void O_AsservXYRotateTest::run(int argc, char **argv)
 	robot.actions().sensors().setIgnoreBackNearObstacle(true, true, true);
 
 	//vitesse reduite
-	robot.asserv().setMaxSpeed(true, s, s);
+	robot.asserv().setSpeed(s);
 
 	Navigator nav(&robot, &robot.ia().iAbyPath());
 	TRAJ_STATE ts = TRAJ_IDLE;
@@ -301,7 +301,7 @@ void O_AsservXYRotateTest::run(int argc, char **argv)
 	robot.svgPrintPosition();
 
 	robot.asserv().freeMotion();
-	robot.asserv().setMaxSpeed(false);
+	robot.asserv().setSpeed(100);   // restore vitesse nominale en fin de test
 	p = robot.asserv().pos_getPosition();
 	logger().info() << "time= " << robot.chrono().getElapsedTimeInMilliSec() << "ms ; " << " x=" << p.x << " y=" << p.y
 			<< " deg=" << p.theta * 180.0 / M_PI << logs::end;

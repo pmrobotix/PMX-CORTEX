@@ -106,6 +106,27 @@ public:
 	virtual int lastReceivedCmdId() const { return 0; }
 
 	/*!
+	 * \brief Attend que la carte asserv acquitte une commande envoyee.
+	 *        Phase A du handshake (avant phase B = wait fin mouvement).
+	 *        Poll lastReceivedCmdId() jusqu'a ce que >= targetCmdId ou timeout.
+	 *        Permet de detecter rapidement une commande perdue (overflow Rx
+	 *        Nucleo) et la retenter, plutot que d'attendre 10s dans waitEndOfTraj.
+	 *        Defaut true : drivers SIMU sans cmd_id (pas de risque de perte).
+	 * \return true si l'ACK est arrive avant le timeout, false sinon.
+	 */
+	virtual bool waitForCmdAck(int /*targetCmdId*/, int /*timeout_ms*/) { return true; }
+
+	/*!
+	 * \brief Compteur monotone des frames de position recues depuis le boot.
+	 *        Permet de detecter qu'une frame fraiche est arrivee depuis un
+	 *        instant T (ex: apres odo_SetPosition pour valider l'application
+	 *        de la pose, sans se fier a la valeur de pose elle-meme qui peut
+	 *        etre confondue avec un push local pre-send).
+	 *        Defaut 0 : drivers SIMU.
+	 */
+	virtual int positionFrameCounter() const { return 0; }
+
+	/*!
 	 * \brief Actions de nettoyage avant l'arret du programme.
 	 */
 	virtual void endWhatTodo() = 0;
@@ -153,6 +174,17 @@ public:
 	 * \brief Reinitialise l'arret d'urgence pour permettre un nouveau mouvement.
 	 */
 	virtual void resetEmergencyStop() = 0;
+
+	/*!
+	 * \brief Reset complet de l'etat residuel de la carte d'asserv au boot brain :
+	 *  1. emergency_stop      -> flush queue motion + stop motion en cours
+	 *  2. emergency_stop_reset -> clear emergency flag
+	 *  3. Attente 1ere frame positionOutput (timeout 1s)
+	 *  4. Sync nextCmdId_ = m_current_index_recu + 1 (evite ACK fantome
+	 *     sur des cmd_id residuels du run precedent)
+	 * \return true si sync OK, false si timeout (carte absente).
+	 */
+	virtual bool resetNucleoState() { return true; }  // default no-op (simu/esial)
 
 	/*!
 	 * \brief Attend la fin de la trajectoire en cours.
@@ -209,6 +241,15 @@ public:
 	 * \param speed_angle_rad_sec Vitesse angulaire max en rad/s.
 	 */
 	virtual void motion_setMaxSpeed(bool enable, int speed_dist_m_sec = 0, int speed_angle_rad_sec = 0) = 0;
+
+	/*!
+	 * \brief Scale acc/dec 0-100% en amont du PID (pas de cap PWM).
+	 *        Cmd CBOR 18 (set_speed_percent) cote ChibiOS. Pour PMX, agit
+	 *        sur AdvancedAccelerationLimiter via setSpeedPercent.
+	 *        Default no-op pour les drivers qui ne supportent pas.
+	 * \param percent valeur entre 1 et 100
+	 */
+	virtual void motion_setAccDecPercent(int /* percent */) {}
 
 	// ---- Regulation (deprecated) ----
 

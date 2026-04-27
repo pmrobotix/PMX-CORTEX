@@ -10,7 +10,7 @@
  *          -> MATCH  (tirette retiree).
  *   Reset : ARMED|PRIMED -> CONFIG (freeMotion, couleur de nouveau editable).
  *
- * L'affichage "METTRE TIRETTE" / "ENLEVE TIRETTE" est gere par les sources
+ * L'affichage "METTRE TIRETTE" / "WAIT TIRETTE..." est gere par les sources
  * de menu (MenuShieldLCD, MenuBeaconLCDTouch) en lisant robot.phase().
  */
 
@@ -179,7 +179,7 @@ restart_menu:
 
 		// ===== PHASE PRIMED : attente retrait tirette, reset possible =====
 		// Meme regles d'edition que ARMED (couleur LOCKED).
-		// Affichage "ENLEVE TIRETTE" gere par les sources de menu.
+		// Affichage "WAIT TIRETTE..." gere par les sources de menu.
 		logger().info() << "PHASE_PRIMED - waiting tirette release" << logs::end;
 		while (robot.phase() == PHASE_PRIMED) {
 			robot.actions().sensors().syncFull();
@@ -208,7 +208,7 @@ restart_menu:
 		}
 
 		// Flush final : pousse PHASE_MATCH vers toutes les sources avant de
-		// quitter le menu (sinon le LCD tactile balise reste sur "ENLEVE TIR"
+		// quitter le menu (sinon le LCD tactile balise reste sur "WAIT TIR"
 		// car ctrl.tick() n'est plus appele apres ce bloc).
 		ctrl.tick();
 		robot.actions().sensors().syncFull();
@@ -374,13 +374,16 @@ void O_State_NewInit::setPos()
 			<< " a=" << radToDeg(p.theta) << logs::end;
 	robot.svgPrintPosition();
 
-	robot.actions().lcd2x16().clear();
+	// Pas de clear() ici : on laisse "SET POSITION..." (line 357) affiche
+	// pendant les setpos_tasks (LINE 80 + LINE 200, ~3s) jusqu'au
+	// "SET POSITION : OK" final (line 410). Sans ca, le LCD reste vide
+	// pendant toute la duree des mouvements pre-tirette.
 
 	robot.asserv().assistedHandling();
 
 	robot.actions().ax12_init();
 
-	robot.asserv().setMaxSpeed(true, 50);
+	robot.asserv().setSpeed(50);
 
 	if (useJsonInit) {
 		// Mode /s : pre-tirette pilote par setpos_tasks du JSON init.

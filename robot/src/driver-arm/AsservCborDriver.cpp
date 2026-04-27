@@ -35,6 +35,7 @@ enum CborCmdType {
     CMD_NORMAL_SPEED_ACC     = 15,
     CMD_SLOW_SPEED_ACC       = 16,
     CMD_MAX_MOTOR_SPEED      = 17,
+    CMD_SET_SPEED_PERCENT    = 18,
     CMD_TURN                 = 20,
     CMD_STRAIGHT             = 21,
     CMD_FACE                 = 22,
@@ -58,7 +59,13 @@ static constexpr uint32_t SYNC_WORD = 0xDEADBEEF;
 AsservCborDriver::AsservCborDriver(ARobotPositionShared *sharedPosition)
     : connected_(true), asservCardStarted_(true), threadStarted_(false),
       stopRequested_(false), positionInitialized_(false),
-      errorCount_(0), nextCmdId_(1), lastReceivedCmdId_(0),
+      // nextCmdId_ demarre haut (10000) pour garantir que nos motions ont un
+      // cmd_id strictement superieur a tout residuel m_current_index Nucleo
+      // (typiquement < 100 sur un run normal). Evite le faux ACK
+      // "received_cmd=6 >= target=1 AND status=IDLE" -> traj jamais demarree
+      // mais consideree comme terminee. Pas de sync dynamique necessaire.
+      errorCount_(0), nextCmdId_(10000), lastReceivedCmdId_(0),
+      positionFrameCounter_(0),
       p_({0.0, 0.0, 0.0, 0, 0, 0}), pp_({0.0, 0.0, 0.0, 0, 0, 0}),
       sharedPosition_(sharedPosition)
 {
@@ -200,6 +207,30 @@ void AsservCborDriver::sendFrame(const uint8_t *cborPayload, size_t cborLen)
 // Le Nucleo lit les valeurs CBOR dans l'ordre : cmd_type, [arg1, [arg2, [arg3]]], cmd_id
 // Les clés de la map sont ignorées par le décodeur Nucleo (lecture positionnelle).
 
+// Helper pour afficher le nom de la cmd CBOR dans les logs (cf CborStreamStateMachine.h)
+static const char* cborCmdName(int cmdType)
+{
+    switch (cmdType) {
+        case 10: return "emergency_stop";
+        case 11: return "emergency_stop_reset";
+        case 15: return "normal_speed_acc";
+        case 16: return "slow_speed_acc";
+        case 17: return "max_motor_speed";
+        case 18: return "set_speed_percent";
+        case 20: return "turn";
+        case 21: return "straight";
+        case 22: return "face";
+        case 23: return "goto_front";
+        case 24: return "goto_back";
+        case 25: return "goto_nostop";
+        case 27: return "face_back";
+        case 28: return "goto_back_nostop";
+        case 30: return "orbital_turn";
+        case 31: return "set_position";
+        default: return "?";
+    }
+}
+
 void AsservCborDriver::sendCmd(int cmdType)
 {
     uint8_t buf[64];
@@ -212,6 +243,7 @@ void AsservCborDriver::sendCmd(int cmdType)
     UsefulBufC encoded;
     if (QCBOREncode_Finish(&ctx, &encoded) == QCBOR_SUCCESS)
         sendFrame((const uint8_t *)encoded.ptr, encoded.len);
+    logger().info() << "CBOR send cmd=" << cmdType << " (" << cborCmdName(cmdType) << ")" << logs::end;
 }
 
 void AsservCborDriver::sendCmd(int cmdType, float arg1)
@@ -229,6 +261,8 @@ void AsservCborDriver::sendCmd(int cmdType, float arg1)
     UsefulBufC encoded;
     if (QCBOREncode_Finish(&ctx, &encoded) == QCBOR_SUCCESS)
         sendFrame((const uint8_t *)encoded.ptr, encoded.len);
+    logger().info() << "CBOR send cmd=" << cmdType << " (" << cborCmdName(cmdType)
+            << ") arg1=" << arg1 << " id=" << cmdId << logs::end;
 }
 
 void AsservCborDriver::sendCmd(int cmdType, float arg1, float arg2)
@@ -247,6 +281,8 @@ void AsservCborDriver::sendCmd(int cmdType, float arg1, float arg2)
     UsefulBufC encoded;
     if (QCBOREncode_Finish(&ctx, &encoded) == QCBOR_SUCCESS)
         sendFrame((const uint8_t *)encoded.ptr, encoded.len);
+    logger().info() << "CBOR send cmd=" << cmdType << " (" << cborCmdName(cmdType)
+            << ") X=" << arg1 << " Y=" << arg2 << " id=" << cmdId << logs::end;
 }
 
 void AsservCborDriver::sendCmd(int cmdType, float arg1, float arg2, float arg3)
@@ -266,6 +302,8 @@ void AsservCborDriver::sendCmd(int cmdType, float arg1, float arg2, float arg3)
     UsefulBufC encoded;
     if (QCBOREncode_Finish(&ctx, &encoded) == QCBOR_SUCCESS)
         sendFrame((const uint8_t *)encoded.ptr, encoded.len);
+    logger().info() << "CBOR send cmd=" << cmdType << " (" << cborCmdName(cmdType)
+            << ") X=" << arg1 << " Y=" << arg2 << " T=" << arg3 << " id=" << cmdId << logs::end;
 }
 
 // ============================================================================
@@ -326,6 +364,12 @@ void AsservCborDriver::execute()
                 // ne sera plus interprete a tort comme "commande terminee".
                 lastReceivedCmdId_.store(pos.cmd_id);
 
+                // Compteur monotone de frames recues. Utilise par
+                // Asserv::setPositionReal (handshake set_position) pour
+                // detecter "une frame fraiche est arrivee depuis le send"
+                // sans se fier a la valeur de pose elle-meme.
+                positionFrameCounter_.fetch_add(1);
+
                 // IMPORTANT : ignorer les positions recues AVANT le premier odo_SetPosition().
                 // Tant que positionInitialized_ == false, la Nucleo envoie encore les positions
                 // residuelles de la session precedente (non resetees). Les logger dans le SVG
@@ -372,6 +416,32 @@ void AsservCborDriver::execute()
             break;
         }
     }
+}
+
+// ============================================================================
+// waitForCmdAck — Phase A du handshake (poll lastReceivedCmdId_)
+// ============================================================================
+//
+// Apres l'envoi d'une commande motion, on attend ici que la Nucleo l'ait
+// effectivement consommee (m_current_index = notre cmd_id, echo dans la
+// frame positionOutput).
+//
+// Si timeout : la commande a probablement ete perdue par overflow Rx Nucleo
+// (le buffer hardware deborde quand AsservMain::onTimer ou commandInput
+// tient le CPU). L'appelant (Asserv::sendCborMotionWithRetry) peut retry.
+//
+// Timeout typique 200ms = 2x periode positionOutput (100ms) + marge.
+// Polling 5ms : reactivite + faible charge CPU.
+//
+bool AsservCborDriver::waitForCmdAck(int targetCmdId, int timeout_ms)
+{
+    int elapsed_ms = 0;
+    while (elapsed_ms < timeout_ms) {
+        if (lastReceivedCmdId_.load() >= targetCmdId) return true;
+        utils::sleep_for_micros(5000); // 5ms
+        elapsed_ms += 5;
+    }
+    return false;
 }
 
 // ============================================================================
@@ -526,6 +596,67 @@ void AsservCborDriver::resetEmergencyStop()
 }
 
 // ============================================================================
+// resetNucleoState — flush queue motion residuelle Nucleo au boot brain
+// ============================================================================
+//
+// Entre 2 boots du brain, la Nucleo conserve sa queue motion. Sans ce flush,
+// les motions du run precedent s'executent au prochain start -> robot bouge
+// tout seul de 100mm en 100mm.
+//
+// Solution : 2 SENDS CBOR existants. Pas de lecture (pas besoin du receive
+// thread, qui n'est pas encore demarre a ce stade). Le faux ACK lie au
+// m_current_index residuel est neutralise par nextCmdId_(10000) au ctor.
+//
+bool AsservCborDriver::resetNucleoState()
+{
+    if (!asservCardStarted_) {
+        logger().warn() << "resetNucleoState: Nucleo non connectee, skip" << logs::end;
+        return false;
+    }
+
+    // 1. Demarre le receive thread tot, AVANT toute lecture de positionOutput
+    //    (sans lui, les frames CBOR arrivent sur la serie mais personne ne les
+    //    lit -> impossible de connaitre m_current_index Nucleo et d'eviter
+    //    les faux ACK sur les motions a venir).
+    startReceiveThread();
+
+    // 2. Flush la queue motion residuelle Nucleo (cmds non executees du run
+    //    precedent du brain). m_current_index Nucleo reste a sa valeur
+    //    courante (incremental, on n'y touche pas).
+    sendCmd(CMD_EMERGENCY_STOP);
+    utils::sleep_for_micros(50000); // 50ms : flush
+    sendCmd(CMD_EMERGENCY_STOP_RESET);
+
+    // 3. Attendre la 1ere frame positionOutput pour lire m_current_index
+    //    Nucleo. Permet de caler nextCmdId_ au-dessus -> aucune motion brain
+    //    ne sera faussement consideree comme deja terminee par
+    //    waitEndOfTrajWithDetection (received_cmd_id >= target_cmd_id).
+    constexpr int TIMEOUT_MS = 1500;
+    constexpr int POLL_PERIOD_MS = 20;
+    constexpr int SAFETY_OFFSET = 100;   // marge si cmds en vol au moment du sync
+    const int counterBefore = positionFrameCounter_.load();
+    int elapsed_ms = 0;
+    while (elapsed_ms < TIMEOUT_MS) {
+        utils::sleep_for_micros(POLL_PERIOD_MS * 1000);
+        elapsed_ms += POLL_PERIOD_MS;
+        if (positionFrameCounter_.load() > counterBefore) {
+            const int nucleoCurrentIndex = lastReceivedCmdId_.load();
+            const int newNextCmdId = nucleoCurrentIndex + SAFETY_OFFSET;
+            nextCmdId_.store(newNextCmdId);
+            logger().info() << "resetNucleoState: OK Nucleo m_current_index="
+                    << nucleoCurrentIndex << " -> nextCmdId_=" << newNextCmdId
+                    << " (apres " << elapsed_ms << "ms)" << logs::end;
+            return true;
+        }
+    }
+
+    logger().error() << "resetNucleoState: TIMEOUT " << TIMEOUT_MS
+            << "ms sans frame positionOutput - Nucleo absente ou serielle KO ?"
+            << logs::end;
+    return false;
+}
+
+// ============================================================================
 // Modes de mouvement
 // ============================================================================
 
@@ -568,6 +699,11 @@ void AsservCborDriver::motion_setMaxSpeed(bool enable, int speed_dist_percent, i
         sendCmd(CMD_MAX_MOTOR_SPEED, (float)speed_dist_percent);
     else
         sendCmd(CMD_NORMAL_SPEED_ACC);
+}
+
+void AsservCborDriver::motion_setAccDecPercent(int percent)
+{
+    sendCmd(CMD_SET_SPEED_PERCENT, (float)percent);
 }
 
 void AsservCborDriver::motion_ActivateReguDist(bool enable)

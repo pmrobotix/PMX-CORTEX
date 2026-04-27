@@ -119,7 +119,7 @@ void O_AsservTest::run(int argc, char **argv)
 			<< robot.getMyColor() << logs::end;
 	robot.svgPrintPosition();
 
-	robot.asserv().setMaxSpeed(true, s);
+	robot.asserv().setSpeed(s);
 
 	//detection adverse
 	robot.actions().start();

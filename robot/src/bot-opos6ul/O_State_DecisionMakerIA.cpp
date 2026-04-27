@@ -132,7 +132,7 @@ void O_State_DecisionMakerIA::execute()
 
 	robot.points += 20;
 	robot.displayPoints();
-	robot.asserv().setMaxSpeed(true, 40, 40);
+	robot.asserv().setSpeed(40);
 	ts = nav.line(150);
 
 	//On ajoute le timer de detection

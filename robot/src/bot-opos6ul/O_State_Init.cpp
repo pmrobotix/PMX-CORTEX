@@ -452,7 +452,7 @@ void O_State_Init::setPos()
 
 	robot.actions().ax12_init();
 
-	robot.asserv().setMaxSpeed(true, 50);
+	robot.asserv().setSpeed(50);
 	//robot.asserv().setLowSpeedForward(true, 40);
 
 //	if (robot.strategy() == "tabletest")

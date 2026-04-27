@@ -7,21 +7,24 @@
         "type": "MOVEMENT",
         "subtype": "PATH_TO",
         "position_x": 230,
-        "position_y": 680,
-        "desc": "PATH_TO (230,680)"
+        "position_y": 600,
+        "desc": "PATH_TO (230,600)"
       },
+      { "type": "SPEED", "subtype": "SET_SPEED", "speed_percent": 20, "desc": "cap PWM" },
       {
         "type": "MOVEMENT",
-        "subtype": "LINE",
-        "dist": 392,
-        "desc": "LINE dist=392"
+        "subtype": "PATH_TO",
+        "position_x": 230,
+        "position_y": 1050,
+        "desc": "PATH_TO (250,1050)"
       },
       {
         "type": "MOVEMENT",
         "subtype": "LINE",
         "dist": -160,
         "desc": "LINE dist=-160"
-      }
+      },
+      { "type": "SPEED", "subtype": "SET_SPEED", "speed_percent": 100, "desc": "cap PWM" }
     ]
   },
   {
@@ -32,15 +35,35 @@
         "type": "MOVEMENT",
         "subtype": "PATH_TO",
         "position_x": 800,
-        "position_y": 600,
-        "desc": "PATH_TO (800,600)"
+        "position_y": 650,
+        "desc": "PATH_TO (800,650)"
       },
       {
         "type": "MOVEMENT",
-        "subtype": "FACE_TO",
-        "position_x": 100,
+        "subtype": "FACE_BACK_TO",
+        "position_x": 300,
         "position_y": 600,
-        "desc": "FACE_TO (100,600)"
+        "desc": "FACE_BACK_TO (300,600)"
+      },
+      {
+        "type": "MANIPULATION",
+        "action_id": "wait_90sec",
+        "timeout": 2000,
+        "desc": "wait_90sec"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "GO_BACK_TO",
+        "position_x": 300,
+        "position_y": 600,
+        "desc": "GO_BACK_TO (300,600)"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "GO_BACK_TO",
+        "position_x": 300,
+        "position_y": 300,
+        "desc": "GO_BACK_TO (300,400)"
       }
     ]
   }

@@ -95,7 +95,10 @@ bool parseStrategyFromFile(const std::string& path, std::vector<StrategyInstruct
 
     json root;
     try {
-        f >> root;
+        // ignore_comments=true : autorise // ligne et /* bloc */ dans les JSON
+        // strategie. Pratique pour commenter/decommenter des tasks (SET_SPEED
+        // vs SET_ACC_DEC_PERCENT lors des tests A/B).
+        root = json::parse(f, nullptr, /*allow_exceptions=*/true, /*ignore_comments=*/true);
     } catch (const std::exception& e) {
         logger().error() << "parseStrategyFromFile: parse error in " << path << " : "
                          << e.what() << logs::end;
@@ -135,7 +138,8 @@ bool parseInitFromFile(const std::string& path, InitData& out)
 
     json root;
     try {
-        f >> root;
+        // ignore_comments=true : autorise // et /* */ dans les JSON init.
+        root = json::parse(f, nullptr, /*allow_exceptions=*/true, /*ignore_comments=*/true);
     } catch (const std::exception& e) {
         logger().error() << "parseInitFromFile: parse error in " << path << " : "
                          << e.what() << logs::end;

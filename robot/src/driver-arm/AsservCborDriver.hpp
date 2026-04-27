@@ -51,6 +51,11 @@ private:
     /// Mis a jour par le receive thread (execute()) a la lecture de pos.cmd_id.
     /// Atomique : ecrit par execute(), lu par waitEndOfTraj sans lock.
     std::atomic<int> lastReceivedCmdId_;
+    /// Compteur monotone incremente a chaque frame CBOR position recue.
+    /// Permet a Asserv::setPositionReal de detecter "une frame fraiche est
+    /// arrivee depuis le send" sans depender de la valeur de pose (qui peut
+    /// etre confondue avec un push local pre-send).
+    std::atomic<int> positionFrameCounter_;
 
     Mutex m_pos;
     ROBOTPOSITION p_;
@@ -103,6 +108,17 @@ public:
      */
     int lastSentCmdId()     const override { return nextCmdId_.load() - 1; }
     int lastReceivedCmdId() const override { return lastReceivedCmdId_.load(); }
+    int positionFrameCounter() const override { return positionFrameCounter_.load(); }
+
+    /*!
+     * \brief Phase A du handshake : poll lastReceivedCmdId_ jusqu'a ce que
+     *        >= targetCmdId, ou expiration du timeout.
+     *        Permet de detecter une commande perdue (overflow Rx Nucleo) en
+     *        ~200ms au lieu d'attendre 10s dans waitEndOfTrajWithDetection.
+     */
+    bool waitForCmdAck(int targetCmdId, int timeout_ms) override;
+
+    bool resetNucleoState() override;
 
     /*!
      * \brief Tente de (re)connecter la Nucleo si elle n'a pas repondu au boot.
@@ -148,6 +164,7 @@ public:
     void motion_setLowSpeedForward(bool enable, int percent);
     void motion_setLowSpeedBackward(bool enable, int percent);
     void motion_setMaxSpeed(bool enable, int speed_dist_percent, int speed_angle_percent);
+    void motion_setAccDecPercent(int percent) override;
     void motion_ActivateReguDist(bool enable);
     void motion_ActivateReguAngle(bool enable);
 };

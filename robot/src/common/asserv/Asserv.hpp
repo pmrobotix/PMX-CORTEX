@@ -2,6 +2,7 @@
 #define COMMON_ASSERV_HPP_
 
 #include <cmath>
+#include <functional>
 #include <string>
 #include <tuple>
 #include <vector>
@@ -69,6 +70,13 @@ protected:
      */
     AsservEsialR *pAsservEsialR_;
 
+    /*!
+     * \brief Latch : true des le 1er resetNucleoState() reussi (au 1er
+     * setPositionAndColor du process). Empeche de reset l'etat Nucleo a
+     * chaque appel ulterieur (changement de match, retry init, etc.).
+     */
+    bool nucleoResetDone_ = false;
+
 
     //0=>LEFT with coordinate x, y, angle
     //1=>RIGHT with coordinate 3000-x, y , -angle
@@ -82,8 +90,49 @@ protected:
     int x_ground_table_;
 
     int lowSpeedvalue_;
-    int maxSpeedDistValue_;
+    int maxSpeedDistValue_;     // deprecated : ancien % PWM cap pour reduction obstacle (setMaxSpeed)
 
+    /*!
+     * \brief % acc/dec applique automatiquement par waitEndOfTrajWithDetection
+     *        quand un obstacle est detecte (level 3 / -3). Configurable via
+     *        setObstacleSpeedPercent(). Default 40%.
+     */
+    int obstacleSpeedPercent_;
+
+    /*!
+     * \brief Derniere valeur appliquee par l'utilisateur via setAccDecPercent.
+     *        Utilise par waitEndOfTrajWithDetection pour restaurer la consigne
+     *        user apres une reduction obstacle (au lieu de revenir a 100%).
+     */
+    int userAccDecPercent_;
+
+    /*!
+     * \brief Etat du dernier setMaxSpeed user (cap PWM moteur).
+     *        userMaxSpeedActive_ = false  -> NORMAL_SPEED_ACC (pas de cap)
+     *        userMaxSpeedActive_ = true   -> cap PWM a userMaxSpeedPercent_
+     *        Restaure tel quel apres reduction obstacle.
+     */
+    bool userMaxSpeedActive_;
+    int  userMaxSpeedPercent_;
+
+    /*!
+     * \brief Restaure 2 cmds CBOR vitesse user (setMaxSpeed + setAccDecPercent)
+     *        via appels directs driver, SANS mettre a jour les members user*.
+     *        Utilise par waitEndOfTrajWithDetection pour restaurer apres
+     *        une reduction obstacle (le snapshot reste la verite user).
+     */
+    void applySpeedSnapshotDirect(bool maxSpeedActive, int maxSpeedPct, int accDecPct);
+
+    /*!
+     * \brief Helper Phase A + Phase B du handshake cmd_id (driver CBOR uniquement).
+     *        sendFn est appelee pour envoyer la commande motion (incremente
+     *        nextCmdId_). On poll ensuite waitForCmdAck (timeout 200ms) ; si
+     *        pas d'ACK, retry sendFn (1 retry max). Si toujours pas d'ACK,
+     *        return TRAJ_ERROR. Sinon, delegue a waitEndOfTrajWithDetection
+     *        (Phase B = wait fin mouvement).
+     *        Couvre Bug B (commande perdue par overflow Rx Nucleo).
+     */
+    TRAJ_STATE sendCborMotionWithRetry(MovementType type, std::function<void()> sendFn);
 
 public:
 
@@ -242,6 +291,33 @@ public:
      * \param speed_angle_percent Vitesse max en angle (0-100%).
      */
     void setMaxSpeed(bool enable, int speed_dist_percent=0, int speed_angle_percent=0);
+
+    /*!
+     * \brief Scale acc/dec 0-100% en amont du PID Nucleo (sans toucher
+     *        au cap PWM moteur). Cmd CBOR 18 (set_speed_percent).
+     *        A utiliser pour rouler en douceur sans risque de saturation
+     *        moteur (contrairement a setMaxSpeed qui plafonne le PWM brut).
+     * \param percent valeur entre 1 et 100 (clamp Nucleo)
+     */
+    void setAccDecPercent(int percent);
+
+    /*!
+     * \brief Configure le % acc/dec applique automatiquement par
+     *        waitEndOfTrajWithDetection quand un obstacle est detecte
+     *        (level 3 / -3). Default 40%. La valeur est restauree au
+     *        clear obstacle ou en fin de trajectoire.
+     */
+    void setObstacleSpeedPercent(int percent);
+    int getObstacleSpeedPercent() const;
+
+    /*!
+     * \brief Helper unifie de reglage vitesse. Implementation interne :
+     *        a ajuster selon les resultats de test (cap PWM seul, scale
+     *        acc/dec seul, ou les 2). Permet de centraliser le choix
+     *        sans modifier les appelants.
+     * \param percent valeur 1-100
+     */
+    void setSpeed(int percent);
 
     /*!
      * \brief Définit la position initiale du robot et la couleur de match.

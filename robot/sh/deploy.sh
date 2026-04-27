@@ -106,26 +106,30 @@ $SCP_CMD "$BINARY" "$ROBOT_USER@$ROBOT_IP:$ROBOT_DIR/"
 # (strats JSON, init JSON, hardware.conf, asserv config) qui sont resolus
 # par le binaire en cwd-relative.
 if [ "$TARGET" = "bot-opos6ul" ]; then
-    info "Copie config runtime (JSON strats/inits + hardware.conf + asserv)..."
+    info "Copie config runtime (source: src/bot-opos6ul/)..."
+    CONFIG_SRC_DIR="$ROBOT_DIR_SRC/src/bot-opos6ul"
     CONFIG_FILES=(
-        "$BUILD_DIR/hardware.conf"
-        "$BUILD_DIR/config_OPOS6UL_Robot.txt"
-        "$BUILD_DIR/strategyPMX0.json"
-        "$BUILD_DIR/initPMX0.json"
-        "$BUILD_DIR/strategyPMX1.json"
-        "$BUILD_DIR/initPMX1.json"
-        "$BUILD_DIR/strategyPMX2.json"
-        "$BUILD_DIR/initPMX2.json"
-        "$BUILD_DIR/strategyPMX3.json"
-        "$BUILD_DIR/initPMX3.json"
+        "$CONFIG_SRC_DIR/hardware.conf"
+        "$CONFIG_SRC_DIR/config_OPOS6UL_Robot.txt"
+        "$CONFIG_SRC_DIR/initPMX1.json"
+        "$CONFIG_SRC_DIR/strategyPMX1.json"
+        "$CONFIG_SRC_DIR/initPMX2.json"
+        "$CONFIG_SRC_DIR/strategyPMX2.json"
+        "$CONFIG_SRC_DIR/initPMX3.json"
+        "$CONFIG_SRC_DIR/strategyPMX3.json"
     )
+    OK_COUNT=0
+    TOTAL_COUNT=${#CONFIG_FILES[@]}
     for f in "${CONFIG_FILES[@]}"; do
         if [ -f "$f" ]; then
             $SCP_CMD "$f" "$ROBOT_USER@$ROBOT_IP:$ROBOT_DIR/" > /dev/null
+            info "  + $(basename "$f")"
+            OK_COUNT=$((OK_COUNT + 1))
         else
-            warn "Manquant (skip) : $f"
+            warn "  - $(basename "$f") (manquant)"
         fi
     done
+    info "$OK_COUNT/$TOTAL_COUNT fichiers copies"
 fi
 
 # --- Run (optionnel) ---

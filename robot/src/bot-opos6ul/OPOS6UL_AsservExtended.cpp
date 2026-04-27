@@ -66,15 +66,12 @@ void OPOS6UL_AsservExtended::startMotionTimerAndOdo(bool assistedHandlingEnabled
 
     } else if (useAsservType_ == ASSERV_EXT) {
 
-        // Stabilisation Nucleo : la frame CBOR position est emise a 10 Hz (100ms).
-        // Apres setPositionAndColor (envoye juste avant cet appel), sharedPosition
-        // reflete encore l'ancienne pose (souvent (0,0,0) au boot OPOS6UL). Sans
-        // cette pause, le 1er Navigator::line() qui suit capture pBefore=(0,0)
-        // -> calcul d_parcourue/d_restant errone (le robot bouge bien la bonne
-        // distance physique demandee a la Nucleo, mais le code sait pas qu'il a
-        // commence a (230, 130) et croit avoir parcouru 309mm pour une LINE 80).
-        // 200ms = 2 frames CBOR + marge.
-        utils::sleep_for_millis(200);
+        // Plus de sleep 200ms : Asserv::setPositionReal() (appele juste avant
+        // via setPositionAndColor) bloque maintenant jusqu'a ce qu'une frame
+        // CBOR fraiche confirme que la Nucleo a applique la pose, avec retry
+        // si la cmd a ete perdue. La sharedPosition reflete donc deja la
+        // bonne pose ici, le 1er Navigator::line() peut capturer pBefore
+        // valide directement.
 
         asservdriver_->motion_ActivateManager(true); //on active la carte d'asserv externe et le thread de position
         if (assistedHandlingEnabled)

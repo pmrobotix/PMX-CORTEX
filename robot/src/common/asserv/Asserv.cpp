@@ -35,8 +35,12 @@ Asserv::Asserv(std::string botId, Robot *robot)
 	// Dimensions de la table : 3000mm en horizontal (Coupe de France standard)
 	x_ground_table_ = 3000;
 
-	lowSpeedvalue_ = 30;     // % vitesse lente (surchargé par chaque robot)
-	maxSpeedDistValue_ = 200; // vitesse max distance par défaut
+	lowSpeedvalue_ = 30;          // % vitesse lente (surchargé par chaque robot)
+	maxSpeedDistValue_ = 50;      // deprecated : ancien % PWM cap pour reduction obstacle
+	obstacleSpeedPercent_ = 40;   // % acc/dec quand obstacle detecte (configurable)
+	userAccDecPercent_ = 100;     // % acc/dec courant cote utilisateur (default 100)
+	userMaxSpeedActive_ = false;  // par defaut pas de cap PWM (NORMAL_SPEED_ACC)
+	userMaxSpeedPercent_ = 100;
 
 }
 Asserv::~Asserv()
@@ -156,13 +160,64 @@ void Asserv::setMaxSpeed(bool enable, int speed_dist_percent, int speed_angle_pe
 			if (speed_dist_percent > 100) speed_dist_percent = 100;
 			if (speed_angle_percent > 100) speed_angle_percent = 100;
 
+			logger().info() << "setMaxSpeed [PWM cap] dist=" << speed_dist_percent
+					<< "% angle=" << speed_angle_percent
+					<< "% (cmd CBOR 17, note: angle ignore cote driver)" << logs::end;
 			asservdriver_->motion_setMaxSpeed(true, speed_dist_percent, speed_angle_percent);
+			userMaxSpeedActive_ = true;                 // memorise pour restore
+			userMaxSpeedPercent_ = speed_dist_percent;
 
 		} else
 		{
+			logger().info() << "setMaxSpeed [PWM cap] DISABLED -> NORMAL_SPEED_ACC (cmd CBOR 15)" << logs::end;
 			asservdriver_->motion_setMaxSpeed(false);
+			userMaxSpeedActive_ = false;                 // memorise pour restore
 		}
 	}
+}
+
+void Asserv::setAccDecPercent(int percent)
+{
+	if (useAsservType_ == ASSERV_EXT)
+	{
+		if (percent < 1)   percent = 1;
+		if (percent > 100) percent = 100;
+		logger().info() << "setAccDecPercent [scale acc/dec amont PID] " << percent
+				<< "% (cmd CBOR 18, dist + angle)" << logs::end;
+		asservdriver_->motion_setAccDecPercent(percent);
+		userAccDecPercent_ = percent;     // memorise pour restore apres obstacle
+	}
+	// ASSERV_INT_ESIALR : pas de support actuel, no-op
+}
+
+void Asserv::setObstacleSpeedPercent(int percent)
+{
+	if (percent < 1)   percent = 1;
+	if (percent > 100) percent = 100;
+	obstacleSpeedPercent_ = percent;
+	logger().info() << "setObstacleSpeedPercent: " << percent
+			<< "% (acc/dec applique sur detection obstacle)" << logs::end;
+}
+
+int Asserv::getObstacleSpeedPercent() const
+{
+	return obstacleSpeedPercent_;
+}
+
+void Asserv::setSpeed(int percent)
+{
+	// Implementation : choix a ajuster selon les tests.
+	// Default : applique les 2 mecanismes (cap PWM + scale acc/dec).
+	// Pour tester un seul, commenter l'autre.
+	setMaxSpeed(true, percent, percent);
+	//setAccDecPercent(percent);
+}
+
+void Asserv::applySpeedSnapshotDirect(bool maxSpeedActive, int maxSpeedPct, int accDecPct)
+{
+	if (useAsservType_ != ASSERV_EXT) return;
+	asservdriver_->motion_setAccDecPercent(accDecPct);
+	asservdriver_->motion_setMaxSpeed(maxSpeedActive, maxSpeedPct, maxSpeedPct);
 }
 
 void Asserv::disablePID() //deprecated and ActivateQuanramp to be defined
@@ -196,6 +251,15 @@ void Asserv::assistedHandling()
 // matchColor=1 (secondaire) : X est miroir (3000-X), angle est miroir (PI-angle).
 void Asserv::setPositionAndColor(float x_mm, float y_mm, float thetaInDegrees_, bool matchColor = 0)
 {
+	// Reset etat residuel Nucleo (queue motion + sync nextCmdId_) une seule fois
+	// au tout 1er setPositionAndColor du process. Doit etre AVANT setPositionReal :
+	// sans ca, le set_position serait noye dans la rafale de motions residuelles
+	// que la Nucleo execute encore depuis sa queue precedente.
+	if (useAsservType_ == ASSERV_EXT && !nucleoResetDone_) {
+		asservdriver_->resetNucleoState();
+		nucleoResetDone_ = true;
+	}
+
 	setMatchColorPosition(matchColor);
 
 	x_mm = changeMatchX(x_mm);
@@ -211,18 +275,94 @@ void Asserv::setPositionAndColor(float x_mm, float y_mm, float thetaInDegrees_, 
 	setPositionReal(x_mm, y_mm, thetaInRad);
 }
 
+// =============================================================================
+// setPositionReal — handshake set_position (poll position dans tolerance)
+// =============================================================================
+//
+// La commande CBOR set_position ne passe PAS par CommandManager cote Nucleo
+// -> elle n'incremente pas m_current_index, donc PAS d'ACK cmd_id possible.
+//
+// On detecte qu'elle a bien ete appliquee en pollant sharedPosition :
+//   1. Send odo_SetPosition (CBOR sur serie).
+//   2. Push local immediat (pour que SensorsThread ait une pose valide tout
+//      de suite, sans attendre la 1re frame retour Nucleo).
+//   3. Capture frameCounterBefore = positionFrameCounter() AVANT le send.
+//      Attendre qu'une frame fraiche arrive (counter > before) ET que la
+//      pose recue (qui ecrase notre push local) corresponde a la cible
+//      dans la fenetre tolerance (50mm / 0.1rad ~ 6deg).
+//   4. Si timeout : retry (max 3 tentatives), la cmd a probablement ete
+//      perdue par overflow Rx Nucleo.
+//
+// Couvre le Bug A documente dans ASSERV_NUCLEO_INIT_TODO.md (set_position
+// parfois pas appliquee apres allumage tardif Nucleo : robot croit etre a
+// (0, 0, 0) au lieu de (230, 130, 90deg) -> 1ere LINE part en X au lieu de Y).
+//
 void Asserv::setPositionReal(float x_mm, float y_mm, float thetaInRad)
 {
+	if (useAsservType_ == ASSERV_INT_ESIALR) {
+		pAsservEsialR_->odo_SetPosition(x_mm, y_mm, thetaInRad);
+		ROBOTPOSITION p = {x_mm, y_mm, thetaInRad, 0, 0, 0};
+		probot_->sharedPosition()->setRobotPosition(p);
+		return;
+	}
+	if (useAsservType_ != ASSERV_EXT) return;
 
-	if (useAsservType_ == ASSERV_EXT)
+	constexpr int MAX_ATTEMPTS = 3;
+	constexpr int POLL_TIMEOUT_MS = 500;   // 5x periode positionOutput (100ms)
+	constexpr int POLL_PERIOD_MS = 20;
+	constexpr float TOL_XY_MM = 50.0f;
+	constexpr float TOL_THETA_RAD = 0.1f;  // ~6deg
+
+	const ROBOTPOSITION pTarget = {x_mm, y_mm, thetaInRad, 0, 0, 0};
+
+	for (int attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+		const int frameCounterBefore = asservdriver_->positionFrameCounter();
+
 		asservdriver_->odo_SetPosition(x_mm, y_mm, thetaInRad);
-	else if (useAsservType_ == ASSERV_INT_ESIALR) pAsservEsialR_->odo_SetPosition(x_mm, y_mm, thetaInRad);
+		// Push local immediat : SensorsThread peut avoir besoin d'une pose
+		// valide pendant qu'on attend l'echo Nucleo. Ce push est ecrase par
+		// la prochaine frame retour CBOR (execute() thread).
+		probot_->sharedPosition()->setRobotPosition(pTarget);
 
-	// Mise a jour immediate de sharedPosition (sans attendre le retour CBOR de la Nucleo)
-	// Sinon, les premiers ticks SensorsThread projettent depuis (0,0,0) tant que la
-	// Nucleo n'a pas envoye sa premiere position en retour (~20-50ms).
-	ROBOTPOSITION p = {x_mm, y_mm, thetaInRad, 0, 0, 0};
-	probot_->sharedPosition()->setRobotPosition(p);
+		int elapsed_ms = 0;
+		while (elapsed_ms < POLL_TIMEOUT_MS) {
+			utils::sleep_for_micros(POLL_PERIOD_MS * 1000);
+			elapsed_ms += POLL_PERIOD_MS;
+
+			// On attend qu'une frame FRAICHE soit arrivee (counter > before),
+			// sinon on pourrait valider sur notre propre push local.
+			if (asservdriver_->positionFrameCounter() <= frameCounterBefore) continue;
+
+			ROBOTPOSITION cur = probot_->sharedPosition()->getRobotPosition();
+			if (std::abs(cur.x - x_mm) < TOL_XY_MM
+					&& std::abs(cur.y - y_mm) < TOL_XY_MM
+					&& std::abs(cur.theta - thetaInRad) < TOL_THETA_RAD) {
+				logger().debug() << "setPositionReal: OK ("
+						<< x_mm << ", " << y_mm << ", " << thetaInRad
+						<< ") attempt " << attempt
+						<< " in " << elapsed_ms << "ms" << logs::end;
+				return;
+			}
+		}
+
+		if (attempt < MAX_ATTEMPTS) {
+			// Lecture directe driver (pas sharedPosition) : sharedPosition contient
+			// notre push local pre-send, donc cur==target par construction et le
+			// log serait trompeur. odo_GetPosition() renvoie la derniere pose
+			// effectivement recue de la Nucleo.
+			ROBOTPOSITION cur = asservdriver_->odo_GetPosition();
+			logger().warn() << "setPositionReal: pose pas appliquee, target=("
+					<< x_mm << ", " << y_mm << ", " << thetaInRad
+					<< ") cur_nucleo=(" << cur.x << ", " << cur.y << ", " << cur.theta
+					<< "), retry " << attempt << logs::end;
+		}
+	}
+
+	ROBOTPOSITION cur = asservdriver_->odo_GetPosition();
+	logger().error() << "setPositionReal: ECHEC apres " << MAX_ATTEMPTS
+			<< " tentatives, target=(" << x_mm << ", " << y_mm
+			<< ", " << thetaInRad << ") cur_nucleo=(" << cur.x << ", "
+			<< cur.y << ", " << cur.theta << ")" << logs::end;
 }
 
 ROBOTPOSITION Asserv::pos_getAdvPosition()
@@ -296,6 +436,45 @@ void Asserv::resetEmergencyOnTraj(std::string message)
 }
 
 // =============================================================================
+// sendCborMotionWithRetry — Phase A handshake + warn (driver CBOR)
+// =============================================================================
+//
+// Wrapper autour des motion_* du driver pour fiabiliser la communication :
+//
+//   1. Envoi de la commande (sendFn → motion_Line/Rotate/GoTo/...).
+//   2. Phase A : attendre l'ACK queue (lastReceivedCmdId >= targetCmdId)
+//      avec timeout long (1500ms ~ couvre la latence reelle Nucleo observee).
+//   3. Phase B = waitEndOfTrajWithDetection (existant), peu importe le
+//      resultat de Phase A. Le but de Phase A est purement diagnostique :
+//      logger un WARN si la cmd met trop de temps a etre acquittee.
+//
+// Pas de retry automatique : un retry creerait une 2eme cmd avec un nouveau
+// cmd_id, que la Nucleo empilerait dans sa queue -> double execution
+// catastrophique (cf bug observe : cascading retries qui font reculer +
+// avancer le robot). Si la cmd est vraiment perdue, c'est waitEndOfTraj
+// qui timeout en 10s ; l'appelant peut decider de retry au niveau strategie.
+//
+// La protection contre la perte de cmd reste le sleep 200ms inter-task
+// dans StrategyJsonRunner (qui evite la fenetre overflow Rx Nucleo).
+//
+TRAJ_STATE Asserv::sendCborMotionWithRetry(MovementType type, std::function<void()> sendFn)
+{
+	constexpr int ACK_TIMEOUT_MS = 1500;   // couvre latence reelle Nucleo (~400-800ms)
+
+	sendFn();
+	const int targetCmdId = asservdriver_->lastSentCmdId();
+
+	if (!asservdriver_->waitForCmdAck(targetCmdId, ACK_TIMEOUT_MS)) {
+		logger().warn() << "sendCborMotionWithRetry: cmd " << targetCmdId
+				<< " no ACK in " << ACK_TIMEOUT_MS << "ms (received="
+				<< asservdriver_->lastReceivedCmdId()
+				<< ") - waitEndOfTraj continuera mais risque timeout 10s" << logs::end;
+	}
+
+	return waitEndOfTrajWithDetection(type);
+}
+
+// =============================================================================
 // waitEndOfTrajWithDetection — boucle centrale de décision
 // =============================================================================
 //
@@ -323,6 +502,17 @@ TRAJ_STATE Asserv::waitEndOfTrajWithDetection(MovementType type)
 	// commande a ete consommee par la Nucleo.
 	const int targetCmdId = asservdriver_->lastSentCmdId();
 
+	// Etat local pour la regulation de vitesse selon detection : on ne
+	// renvoie une cmd CBOR que si l'etat CHANGE, pas a chaque tick 10ms.
+	// Sinon -> spam serie qui sature la Nucleo et ralentit la trajectoire.
+	bool speedReducedActive = false;   // false = user value, true = obstacle reduce
+
+	// Snapshot des 2 reglages vitesse user a l'entree -> restaures EXACTEMENT
+	// quand obstacle clear ou fin de traj (option B : save/restore complete).
+	const int  savedUserAccDecPercent  = userAccDecPercent_;
+	const bool savedUserMaxSpeedActive = userMaxSpeedActive_;
+	const int  savedUserMaxSpeedPct    = userMaxSpeedPercent_;
+
 	int timeout = 0;
 	while (true)
 	{
@@ -335,7 +525,13 @@ TRAJ_STATE Asserv::waitEndOfTrajWithDetection(MovementType type)
 		// trivialement vrai -> seul le status==0 decide, comme avant.
 		if (receivedCmdId >= targetCmdId && status == 0)
 		{
-			setMaxSpeed(false); // restaurer vitesse normale
+			// Restaurer les 2 reglages user UNIQUEMENT si on l'avait reduit a
+			// cause d'un obstacle (le snapshot reste la verite).
+			if (speedReducedActive) {
+				applySpeedSnapshotDirect(savedUserMaxSpeedActive,
+						savedUserMaxSpeedPct, savedUserAccDecPercent);
+				speedReducedActive = false;
+			}
 			return TRAJ_FINISHED;
 		}
 
@@ -367,10 +563,26 @@ TRAJ_STATE Asserv::waitEndOfTrajWithDetection(MovementType type)
 							<< " adv=(" << det.x_adv_mm << "," << det.y_adv_mm << ")" << logs::end;
 					return TRAJ_NEAR_OBSTACLE;
 				}
-				if (det.frontLevel >= 3)
-					setMaxSpeed(true, getMaxSpeedDistValue());
-				else
-					setMaxSpeed(false);
+				const bool wantReduced = (det.frontLevel >= 3);
+				if (wantReduced != speedReducedActive)
+				{
+					if (wantReduced) {
+						// Reduction : scale acc/dec a obstacleSpeedPercent_ (cap PWM
+						// user inchange). Appel direct driver -> ne touche pas user*.
+						asservdriver_->motion_setAccDecPercent(obstacleSpeedPercent_);
+						logger().info() << "waitEndOfTraj FORWARD: obstacle DETECTED -> setAccDecPercent "
+								<< obstacleSpeedPercent_ << "%" << logs::end;
+					} else {
+						// Clear : restore EXACTEMENT les 2 reglages user.
+						applySpeedSnapshotDirect(savedUserMaxSpeedActive,
+								savedUserMaxSpeedPct, savedUserAccDecPercent);
+						logger().info() << "waitEndOfTraj FORWARD: obstacle CLEAR -> restore user (acc="
+								<< savedUserAccDecPercent << "% pwmCap="
+								<< (savedUserMaxSpeedActive ? savedUserMaxSpeedPct : 0)
+								<< "%)" << logs::end;
+					}
+					speedReducedActive = wantReduced;
+				}
 			}
 			else if (type == BACKWARD)
 			{
@@ -382,10 +594,23 @@ TRAJ_STATE Asserv::waitEndOfTrajWithDetection(MovementType type)
 							<< " adv=(" << det.x_adv_mm << "," << det.y_adv_mm << ")" << logs::end;
 					return TRAJ_NEAR_OBSTACLE;
 				}
-				if (det.backLevel <= -3)
-					setMaxSpeed(true, getMaxSpeedDistValue());
-				else
-					setMaxSpeed(false);
+				const bool wantReduced = (det.backLevel <= -3);
+				if (wantReduced != speedReducedActive)
+				{
+					if (wantReduced) {
+						asservdriver_->motion_setAccDecPercent(obstacleSpeedPercent_);
+						logger().info() << "waitEndOfTraj BACKWARD: obstacle DETECTED -> setAccDecPercent "
+								<< obstacleSpeedPercent_ << "%" << logs::end;
+					} else {
+						applySpeedSnapshotDirect(savedUserMaxSpeedActive,
+								savedUserMaxSpeedPct, savedUserAccDecPercent);
+						logger().info() << "waitEndOfTraj BACKWARD: obstacle CLEAR -> restore user (acc="
+								<< savedUserAccDecPercent << "% pwmCap="
+								<< (savedUserMaxSpeedActive ? savedUserMaxSpeedPct : 0)
+								<< "%)" << logs::end;
+					}
+					speedReducedActive = wantReduced;
+				}
 			}
 			// type == ROTATION : on ignore la détection
 		}
@@ -435,13 +660,13 @@ TRAJ_STATE Asserv::goToChain(float xMM, float yMM)
 	float x_match = changeMatchX(xMM);
 
 	if (useAsservType_ == ASSERV_EXT)
-		asservdriver_->motion_GoToChain(x_match, yMM);
-	else if (useAsservType_ == ASSERV_INT_ESIALR)
+		return sendCborMotionWithRetry(FORWARD,
+				[this, x_match, yMM]() { asservdriver_->motion_GoToChain(x_match, yMM); });
+	else if (useAsservType_ == ASSERV_INT_ESIALR) {
 		pAsservEsialR_->motion_GoToChain(x_match, yMM);
-	else
-		return TRAJ_ERROR;
-
-	return waitEndOfTrajWithDetection(FORWARD);
+		return waitEndOfTrajWithDetection(FORWARD);
+	}
+	return TRAJ_ERROR;
 }
 
 TRAJ_STATE Asserv::goTo(float xMM, float yMM)
@@ -449,13 +674,13 @@ TRAJ_STATE Asserv::goTo(float xMM, float yMM)
 	float x_match = changeMatchX(xMM);
 
 	if (useAsservType_ == ASSERV_EXT)
-		asservdriver_->motion_GoTo(x_match, yMM);
-	else if (useAsservType_ == ASSERV_INT_ESIALR)
+		return sendCborMotionWithRetry(FORWARD,
+				[this, x_match, yMM]() { asservdriver_->motion_GoTo(x_match, yMM); });
+	else if (useAsservType_ == ASSERV_INT_ESIALR) {
 		pAsservEsialR_->motion_GoTo(x_match, yMM);
-	else
-		return TRAJ_ERROR;
-
-	return waitEndOfTrajWithDetection(FORWARD);
+		return waitEndOfTrajWithDetection(FORWARD);
+	}
+	return TRAJ_ERROR;
 }
 
 TRAJ_STATE Asserv::goBackTo(float xMM, float yMM)
@@ -463,13 +688,13 @@ TRAJ_STATE Asserv::goBackTo(float xMM, float yMM)
 	float x_match = changeMatchX(xMM);
 
 	if (useAsservType_ == ASSERV_EXT)
-		asservdriver_->motion_GoBackTo(x_match, yMM);
-	else if (useAsservType_ == ASSERV_INT_ESIALR)
+		return sendCborMotionWithRetry(BACKWARD,
+				[this, x_match, yMM]() { asservdriver_->motion_GoBackTo(x_match, yMM); });
+	else if (useAsservType_ == ASSERV_INT_ESIALR) {
 		pAsservEsialR_->motion_GoBackTo(x_match, yMM);
-	else
-		return TRAJ_ERROR;
-
-	return waitEndOfTrajWithDetection(BACKWARD);
+		return waitEndOfTrajWithDetection(BACKWARD);
+	}
+	return TRAJ_ERROR;
 }
 
 TRAJ_STATE Asserv::goBackToChain(float xMM, float yMM)
@@ -477,13 +702,13 @@ TRAJ_STATE Asserv::goBackToChain(float xMM, float yMM)
 	float x_match = changeMatchX(xMM);
 
 	if (useAsservType_ == ASSERV_EXT)
-		asservdriver_->motion_GoBackToChain(x_match, yMM);
-	else if (useAsservType_ == ASSERV_INT_ESIALR)
+		return sendCborMotionWithRetry(BACKWARD,
+				[this, x_match, yMM]() { asservdriver_->motion_GoBackToChain(x_match, yMM); });
+	else if (useAsservType_ == ASSERV_INT_ESIALR) {
 		pAsservEsialR_->motion_GoBackToChain(x_match, yMM);
-	else
-		return TRAJ_ERROR;
-
-	return waitEndOfTrajWithDetection(BACKWARD);
+		return waitEndOfTrajWithDetection(BACKWARD);
+	}
+	return TRAJ_ERROR;
 }
 
 void Asserv::setSimuSpeedMultiplier(float multiplier)
@@ -537,14 +762,16 @@ void Asserv::goBackToChainSend(float xMM, float yMM)
 // Le MovementType (FORWARD/BACKWARD) détermine quelle détection est active.
 TRAJ_STATE Asserv::line(float dist_mm)
 {
-	if (useAsservType_ == ASSERV_EXT)
-		asservdriver_->motion_Line(dist_mm);
-	else if (useAsservType_ == ASSERV_INT_ESIALR)
-		pAsservEsialR_->motion_Line(dist_mm);
-	else
-		return TRAJ_ERROR;
+	const MovementType type = dist_mm > 0 ? FORWARD : BACKWARD;
 
-	return waitEndOfTrajWithDetection(dist_mm > 0 ? FORWARD : BACKWARD);
+	if (useAsservType_ == ASSERV_EXT)
+		return sendCborMotionWithRetry(type,
+				[this, dist_mm]() { asservdriver_->motion_Line(dist_mm); });
+	else if (useAsservType_ == ASSERV_INT_ESIALR) {
+		pAsservEsialR_->motion_Line(dist_mm);
+		return waitEndOfTrajWithDetection(type);
+	}
+	return TRAJ_ERROR;
 }
 
 // Rotation relative en degrés : convertit en radians et délègue à rotateRad.
@@ -558,13 +785,13 @@ TRAJ_STATE Asserv::rotateDeg(float degreesRelative)
 TRAJ_STATE Asserv::rotateRad(float radiansRelative)
 {
 	if (useAsservType_ == ASSERV_EXT)
-		asservdriver_->motion_RotateRad(radiansRelative);
-	else if (useAsservType_ == ASSERV_INT_ESIALR)
+		return sendCborMotionWithRetry(ROTATION,
+				[this, radiansRelative]() { asservdriver_->motion_RotateRad(radiansRelative); });
+	else if (useAsservType_ == ASSERV_INT_ESIALR) {
 		pAsservEsialR_->motion_RotateRad(radiansRelative);
-	else
-		return TRAJ_ERROR;
-
-	return waitEndOfTrajWithDetection(ROTATION);
+		return waitEndOfTrajWithDetection(ROTATION);
+	}
+	return TRAJ_ERROR;
 }
 
 //prend automatiquement un angle dans un sens ou dans l'autre suivant la couleur de match
@@ -582,13 +809,13 @@ TRAJ_STATE Asserv::faceTo(float xMM, float yMM)
 	float x_match = changeMatchX(xMM);
 
 	if (useAsservType_ == ASSERV_EXT)
-		asservdriver_->motion_FaceTo(x_match, yMM);
-	else if (useAsservType_ == ASSERV_INT_ESIALR)
+		return sendCborMotionWithRetry(ROTATION,
+				[this, x_match, yMM]() { asservdriver_->motion_FaceTo(x_match, yMM); });
+	else if (useAsservType_ == ASSERV_INT_ESIALR) {
 		pAsservEsialR_->motion_FaceTo(x_match, yMM);
-	else
-		return TRAJ_ERROR;
-
-	return waitEndOfTrajWithDetection(ROTATION);
+		return waitEndOfTrajWithDetection(ROTATION);
+	}
+	return TRAJ_ERROR;
 }
 
 TRAJ_STATE Asserv::faceBackTo(float xMM, float yMM)
@@ -596,13 +823,13 @@ TRAJ_STATE Asserv::faceBackTo(float xMM, float yMM)
 	float x_match = changeMatchX(xMM);
 
 	if (useAsservType_ == ASSERV_EXT)
-		asservdriver_->motion_FaceBackTo(x_match, yMM);
-	else if (useAsservType_ == ASSERV_INT_ESIALR)
+		return sendCborMotionWithRetry(ROTATION,
+				[this, x_match, yMM]() { asservdriver_->motion_FaceBackTo(x_match, yMM); });
+	else if (useAsservType_ == ASSERV_INT_ESIALR) {
 		pAsservEsialR_->motion_FaceBackTo(x_match, yMM);
-	else
-		return TRAJ_ERROR;
-
-	return waitEndOfTrajWithDetection(ROTATION);
+		return waitEndOfTrajWithDetection(ROTATION);
+	}
+	return TRAJ_ERROR;
 }
 
 // Rotation absolue vers un angle donné sur le terrain.
@@ -958,17 +1185,22 @@ bool Asserv::calculateDriftLeftSideAndSetPos(float d2_theo_bordure_mm, float d2b
 }
 
 // Rotation orbitale asservie autour d'une roue.
+// MovementType ROTATION : la trajectoire courbe peut intersecter la zone
+// adversaire mais on suppose ici qu'elle est preparee a l'avance (rare en
+// match). On reste sur le meme choix que rotateRad/faceTo.
 TRAJ_STATE Asserv::orbitalTurnDeg(float angleDeg, bool forward, bool turnRight)
 {
 	float rad = degToRad(angleDeg);
-	TRAJ_STATE ts;
 	if (useAsservType_ == ASSERV_EXT)
-		{ asservdriver_->motion_OrbitalTurnRad(rad, forward, turnRight); ts = asservdriver_->waitEndOfTraj(); }
-	else if (useAsservType_ == ASSERV_INT_ESIALR)
-		{ pAsservEsialR_->motion_OrbitalTurnRad(rad, forward, turnRight); ts = pAsservEsialR_->waitEndOfTraj(); }
-	else
-		ts = TRAJ_ERROR;
-	return ts;
+		return sendCborMotionWithRetry(ROTATION,
+				[this, rad, forward, turnRight]() {
+					asservdriver_->motion_OrbitalTurnRad(rad, forward, turnRight);
+				});
+	else if (useAsservType_ == ASSERV_INT_ESIALR) {
+		pAsservEsialR_->motion_OrbitalTurnRad(rad, forward, turnRight);
+		return pAsservEsialR_->waitEndOfTraj();
+	}
+	return TRAJ_ERROR;
 }
 
 // Pivot autour de la roue gauche : désactive la régulation, actionne les moteurs,

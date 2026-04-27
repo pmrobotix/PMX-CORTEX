@@ -58,6 +58,18 @@ TRAJ_STATE Navigator::executeWithRetry(std::function<TRAJ_STATE()> moveFunc,
             break;
         }
 
+        if (ts == TRAJ_ERROR)
+        {
+            // Cmd perdue ou timeout 10s waitEndOfTraj. On ne retry PAS au
+            // niveau Navigator (un retry creerait un doublon dans la queue
+            // Nucleo si la cmd avait juste de la latence). On sort en erreur ;
+            // l'appelant strategie peut decider quoi faire.
+            logger().error() << "TRAJ_ERROR (cmd lost or waitEndOfTraj timeout)"
+                             << " - abort movement" << logs::end;
+            robot_->asserv().resetEmergencyOnTraj("Navigator TRAJ_ERROR");
+            break;
+        }
+
         if (ts == TRAJ_NEAR_OBSTACLE)
         {
             obstacleCount++;

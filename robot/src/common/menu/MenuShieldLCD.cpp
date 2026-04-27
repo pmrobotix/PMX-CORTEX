@@ -45,7 +45,7 @@ void MenuShieldLCD::buildLine0(const Robot& robot, char out[17]) const
 		return;
 	}
 	if (robot.phase() == PHASE_PRIMED) {
-		std::snprintf(out, 17, "ENLEVE TIRETTE !");
+		std::snprintf(out, 17, "WAIT TIRETTE...");
 		out[16] = '\0';
 		return;
 	}
