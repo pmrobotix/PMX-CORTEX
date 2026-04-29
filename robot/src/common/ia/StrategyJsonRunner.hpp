@@ -60,6 +60,17 @@ private:
     bool executeInstruction(const StrategyInstruction& instr);
     TRAJ_STATE executeTask(const StrategyTask& task);
 
+    /*!
+     * \brief Variante de executeTask qui envoie la cmd au driver SANS attendre
+     *        sa fin (mode chain : la Nucleo empile dans sa queue motion).
+     *        Retourne false si le subtype n'est pas chainable. La detection
+     *        ToF/balise est suspendue jusqu'au prochain wait. Subtypes pris en
+     *        charge : LINE, GO_TO, GO_BACK_TO, FACE_TO, FACE_BACK_TO,
+     *        ROTATE_DEG, ROTATE_ABS_DEG, ORBITAL_TURN_DEG. Refuse les
+     *        composites et PATH_TO* (necessitent du calcul/wait cote OPOS6UL).
+     */
+    bool executeTaskSendOnly(const StrategyTask& task);
+
     Robot*          robot_;
     IAbyPath*       iap_;
     ActionRegistry* actions_;   ///< Optional : nullptr -> MANIPULATION loggue comme stub.

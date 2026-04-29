@@ -1,0 +1,9 @@
+[
+  {
+    "id": 1, "desc": "TEST3 / D : FACE_TO chain + LINE",
+    "tasks": [
+      { "type": "MOVEMENT", "subtype": "FACE_TO", "position_x": 500, "position_y": 300, "chain": true, "desc": "face X+ chain" },
+      { "type": "MOVEMENT", "subtype": "LINE", "dist": 500, "desc": "LINE 1m (queue Nucleo)" }
+    ]
+  }
+]

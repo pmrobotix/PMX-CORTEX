@@ -4,6 +4,12 @@
  *
  * Voir O_AsservLineRotateTest.hpp pour les exemples complets.
  *
+ * Format segment (4 params x 5 segments) : aPre d aPost back
+ *   aPre  : rotation AVANT LINE (deg, 0 = aucune)
+ *   d     : distance LINE en mm (-1 = skip segment, 0 = pas de LINE)
+ *   aPost : rotation APRES LINE (deg, 0 = aucune)
+ *   back  : 0 = forward, 1 = backward
+ *
  * Options : /m 0=relatif(defaut) 1=absolu  /v vitesse%  /r repetitions
  *           /p 0=asserv direct 1=Navigator line  /B detection  /+ x y a
  *
@@ -11,13 +17,13 @@
  *
  * === SIMU — carre 500mm ===
  *
- *   ./bot-opos6ul lr 500 90 0  500 90 0  500 90 0  500 90 0 /+ 250 250 0
- *   ./bot-opos6ul lr 500 90 0  500 90 0  500 90 0  500 90 0 /p 1 /+ 250 250 0
+ *   ./bot-opos6ul lr 0 500 90 0  0 500 90 0  0 500 90 0  0 500 90 0 /+ 250 250 0
+ *   ./bot-opos6ul lr 0 500 90 0  0 500 90 0  0 500 90 0  0 500 90 0 /p 1 /+ 250 250 0
  *
  * === Vrai robot (ARM) — carre 200mm, vitesse 20% ===
  *
- *   ./bot-opos6ul lr 200 90 0  200 90 0  200 90 0  200 90 0 /v 20 /+ 100 100 0
- *   ./bot-opos6ul lr 200 90 0  200 90 0  200 90 0  200 90 0 /p 1 /v 20 /+ 100 100 0
+ *   ./bot-opos6ul lr 0 200 90 0  0 200 90 0  0 200 90 0  0 200 90 0 /v 20 /+ 100 100 0
+ *   ./bot-opos6ul lr 0 200 90 0  0 200 90 0  0 200 90 0  0 200 90 0 /p 1 /v 20 /+ 100 100 0
  */
 
 #include "O_AsservLineRotateTest.hpp"
@@ -42,25 +48,35 @@ void O_AsservLineRotateTest::configureConsoleArgs(int argc, char **argv)
 {
 	OPOS6UL_RobotExtended &robot = OPOS6UL_RobotExtended::instance();
 
-	robot.getArgs().addArgument("d", "distance mm");
-	robot.getArgs().addArgument("a", "angle degres", "-1");
-	robot.getArgs().addArgument("back", "backwards[0,1]", "0");
+	// 5 segments x 4 params : (aPre, d, aPost, back)
+	//   aPre  : rotation AVANT la LINE (deg, 0 = pas de pre-rotation)
+	//   d     : distance LINE en mm (-1 = segment skipe, 0 = pas de LINE, signe = sens)
+	//   aPost : rotation APRES la LINE (deg, 0 = pas de post-rotation)
+	//   back  : 0 = forward, 1 = backward (inverse le signe de d)
+	robot.getArgs().addArgument("aPre",  "rotation avant LINE (deg)", "0");
+	robot.getArgs().addArgument("d",     "distance mm");
+	robot.getArgs().addArgument("aPost", "rotation apres LINE (deg)", "0");
+	robot.getArgs().addArgument("back",  "backwards[0,1]", "0");
 
-	robot.getArgs().addArgument("d2", "distance mm", "-1");
-	robot.getArgs().addArgument("a2", "angle degres", "-1");
-	robot.getArgs().addArgument("back2", "backwards[0,1]", "0");
+	robot.getArgs().addArgument("aPre2",  "rotation avant LINE (deg)", "0");
+	robot.getArgs().addArgument("d2",     "distance mm", "-1");
+	robot.getArgs().addArgument("aPost2", "rotation apres LINE (deg)", "0");
+	robot.getArgs().addArgument("back2",  "backwards[0,1]", "0");
 
-	robot.getArgs().addArgument("d3", "distance mm", "-1");
-	robot.getArgs().addArgument("a3", "angle degres", "-1");
-	robot.getArgs().addArgument("back3", "backwards[0,1]", "0");
+	robot.getArgs().addArgument("aPre3",  "rotation avant LINE (deg)", "0");
+	robot.getArgs().addArgument("d3",     "distance mm", "-1");
+	robot.getArgs().addArgument("aPost3", "rotation apres LINE (deg)", "0");
+	robot.getArgs().addArgument("back3",  "backwards[0,1]", "0");
 
-	robot.getArgs().addArgument("d4", "distance mm", "-1");
-	robot.getArgs().addArgument("a4", "angle degres", "-1");
-	robot.getArgs().addArgument("back4", "backwards[0,1]", "0");
+	robot.getArgs().addArgument("aPre4",  "rotation avant LINE (deg)", "0");
+	robot.getArgs().addArgument("d4",     "distance mm", "-1");
+	robot.getArgs().addArgument("aPost4", "rotation apres LINE (deg)", "0");
+	robot.getArgs().addArgument("back4",  "backwards[0,1]", "0");
 
-	robot.getArgs().addArgument("d5", "distance mm", "-1");
-	robot.getArgs().addArgument("a5", "angle degres", "-1");
-	robot.getArgs().addArgument("back5", "backwards[0,1]", "0");
+	robot.getArgs().addArgument("aPre5",  "rotation avant LINE (deg)", "0");
+	robot.getArgs().addArgument("d5",     "distance mm", "-1");
+	robot.getArgs().addArgument("aPost5", "rotation apres LINE (deg)", "0");
+	robot.getArgs().addArgument("back5",  "backwards[0,1]", "0");
 
 	//mode de drive
 	Arguments::Option cOptMode('m', "mode used for test");
@@ -109,18 +125,20 @@ void O_AsservLineRotateTest::run(int argc, char **argv)
 	OPOS6UL_RobotExtended &robot = OPOS6UL_RobotExtended::instance();
 	Arguments args = robot.getArgs();
 
-	// Parse les 5 segments (d, a, back)
-	struct Segment { float d; float a; bool back; };
+	// Parse les 5 segments (aPre, d, aPost, back)
+	struct Segment { float aPre; float d; float aPost; bool back; };
 	Segment segments[5];
-	const char* dNames[] = {"d", "d2", "d3", "d4", "d5"};
-	const char* aNames[] = {"a", "a2", "a3", "a4", "a5"};
-	const char* bNames[] = {"back", "back2", "back3", "back4", "back5"};
+	const char* aPreNames[]  = {"aPre",  "aPre2",  "aPre3",  "aPre4",  "aPre5"};
+	const char* dNames[]     = {"d",     "d2",     "d3",     "d4",     "d5"};
+	const char* aPostNames[] = {"aPost", "aPost2", "aPost3", "aPost4", "aPost5"};
+	const char* bNames[]     = {"back",  "back2",  "back3",  "back4",  "back5"};
 
 	for (int i = 0; i < 5; i++)
 	{
-		segments[i].d = atof(args[dNames[i]].c_str());
-		segments[i].a = atof(args[aNames[i]].c_str());
-		segments[i].back = atoi(args[bNames[i]].c_str());
+		segments[i].aPre  = atof(args[aPreNames[i]].c_str());
+		segments[i].d     = atof(args[dNames[i]].c_str());
+		segments[i].aPost = atof(args[aPostNames[i]].c_str());
+		segments[i].back  = atoi(args[bNames[i]].c_str());
 	}
 
 	int B = atoi(args['B']["detection"].c_str());
@@ -187,81 +205,86 @@ void O_AsservLineRotateTest::run(int argc, char **argv)
 
 		for (int nb = 0; nb < 5; nb++)
 		{
-			float dd = segments[nb].d;
-			float aa = segments[nb].a;
+			float aPre  = segments[nb].aPre;
+			float dd    = segments[nb].d;
+			float aPost = segments[nb].aPost;
 			bool bback = segments[nb].back;
 
 			if (dd == -1)
-				continue; // segment non defini
+				continue; // segment non defini (skip total)
 
 			logger().info() << "=> TRAJET n " << (nb + 1)
-			                << " d=" << dd << " a=" << aa << " back=" << bback << logs::end;
+			                << " aPre=" << aPre << " d=" << dd
+			                << " aPost=" << aPost << " back=" << bback << logs::end;
 
 			if (bback)
 				dd = -dd;
 
-			// ========== Deplacement ==========
-			if (navMode == 0)
-			{
-				// Mode 0 : asserv direct (pas de retry)
-				ts = robot.asserv().line(dd);
-				if (ts >= TRAJ_INTERRUPTED)
-				{
-					logger().info() << robot.asserv().getTraj(ts) << " WHAT TO DO ?" << logs::end;
-					robot.asserv().resetEmergencyOnTraj("line: " + robot.asserv().getTraj(ts));
-				}
-			}
-			else if (navMode == 1)
-			{
-				// Mode 1 : Navigator line (retry)
-				ts = nav.line(dd, policy);
-				if (ts >= TRAJ_INTERRUPTED)
-				{
-					logger().info() << robot.asserv().getTraj(ts) << " nav.line ECHEC FINAL" << logs::end;
-				}
-			}
-
-			robot.svgPrintPosition();
-
-			// ========== Rotation ==========
-			if (aa != -1)
-			{
+			// Helper local : execute une rotation aa selon mode m + navMode
+			auto doRotate = [&](float aa, const char* phase) {
+				if (aa == 0) return; // pas de rotation demandee
 				if (m == 0)
 				{
-					// Rotation relative
-					if (navMode >= 1)
-					{
-						ts = nav.rotateDeg(aa, policy);
-					}
+					if (navMode >= 1) ts = nav.rotateDeg(aa, policy);
 					else
 					{
 						ts = nav.rotateDeg(aa, RetryPolicy::noRetry());
 						if (ts >= TRAJ_INTERRUPTED)
 						{
-							logger().info() << robot.asserv().getTraj(ts) << " rotateDeg ECHEC" << logs::end;
-							robot.asserv().resetEmergencyOnTraj("rotateDeg: " + robot.asserv().getTraj(ts));
+							logger().info() << robot.asserv().getTraj(ts) << " rotateDeg "
+							                << phase << " ECHEC" << logs::end;
+							robot.asserv().resetEmergencyOnTraj(std::string("rotateDeg ") + phase + ": "
+							                                    + robot.asserv().getTraj(ts));
 						}
 					}
 				}
-				else if (m == 1)
+				else
 				{
-					// Rotation absolue
-					if (navMode >= 1)
-					{
-						ts = nav.rotateAbsDeg(aa, policy);
-					}
+					if (navMode >= 1) ts = nav.rotateAbsDeg(aa, policy);
 					else
 					{
 						ts = nav.rotateAbsDeg(aa, RetryPolicy::noRetry());
 						if (ts >= TRAJ_INTERRUPTED)
 						{
-							logger().info() << robot.asserv().getTraj(ts) << " rotateAbsDeg ECHEC" << logs::end;
-							robot.asserv().resetEmergencyOnTraj("rotateAbsDeg: " + robot.asserv().getTraj(ts));
+							logger().info() << robot.asserv().getTraj(ts) << " rotateAbsDeg "
+							                << phase << " ECHEC" << logs::end;
+							robot.asserv().resetEmergencyOnTraj(std::string("rotateAbsDeg ") + phase + ": "
+							                                    + robot.asserv().getTraj(ts));
 						}
 					}
 				}
 				robot.svgPrintPosition();
+			};
+
+			// ========== Rotation PRE ==========
+			doRotate(aPre, "aPre");
+
+			// ========== Deplacement ==========
+			// d == 0 : skip LINE (rotation pure dans ce segment).
+			if (dd != 0)
+			{
+				if (navMode == 0)
+				{
+					ts = robot.asserv().line(dd);
+					if (ts >= TRAJ_INTERRUPTED)
+					{
+						logger().info() << robot.asserv().getTraj(ts) << " WHAT TO DO ?" << logs::end;
+						robot.asserv().resetEmergencyOnTraj("line: " + robot.asserv().getTraj(ts));
+					}
+				}
+				else if (navMode == 1)
+				{
+					ts = nav.line(dd, policy);
+					if (ts >= TRAJ_INTERRUPTED)
+					{
+						logger().info() << robot.asserv().getTraj(ts) << " nav.line ECHEC FINAL" << logs::end;
+					}
+				}
+				robot.svgPrintPosition();
 			}
+
+			// ========== Rotation POST ==========
+			doRotate(aPost, "aPost");
 		}
 	} // fin repetition
 

@@ -261,54 +261,84 @@ if(DRIVER_LIB)
 
     target_link_libraries(bot-opos6ul PRIVATE pmx-common ${DRIVER_LIB} pmr-pathfinding)
 
-    # Copie des fichiers nécessaires à côté de l'exécutable après le build
-    add_custom_command(TARGET bot-opos6ul POST_BUILD
-        # Config hardware (active/desactive les drivers)
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            ${CMAKE_SOURCE_DIR}/src/bot-opos6ul/hardware.conf
-            $<TARGET_FILE_DIR:bot-opos6ul>/hardware.conf
-        # Config asservissement (chargé en relatif par OPOS6UL_AsservExtended)
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            ${CMAKE_SOURCE_DIR}/src/bot-opos6ul/config_OPOS6UL_Robot.txt
-            $<TARGET_FILE_DIR:bot-opos6ul>/config_OPOS6UL_Robot.txt
-        # Ressources SVG pour le log (index.html + table directement dans bin/)
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            ${CMAKE_SOURCE_DIR}/src/common/log/resources-svg/index.html
-            $<TARGET_FILE_DIR:bot-opos6ul>/index.html
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            ${CMAKE_SOURCE_DIR}/src/common/log/resources-svg/table.png
-            $<TARGET_FILE_DIR:bot-opos6ul>/table.png
-        # Scenarios JSON pour O_StrategyJsonRunnerTest (code CLI : jrun)
+    # =============================================
+    # Copie automatique des fichiers runtime dans bin/
+    #
+    # Utilise add_custom_command(OUTPUT ... DEPENDS ...) au lieu de POST_BUILD :
+    # CMake suit les changements des fichiers SOURCES (.json/.conf/...) et
+    # re-declenche la copie quand un source est modifie, meme si bot-opos6ul
+    # lui-meme n'a pas ete recompile.
+    # =============================================
+
+    # Liste des paires (source, destination) a copier
+    # bot-opos6ul/<file> -> $<TARGET_FILE_DIR:bot-opos6ul>/<file>
+    set(BOT_OPOS6UL_RUNTIME_FILES
+        hardware.conf
+        config_OPOS6UL_Robot.txt
+        initPMX0.json   strategyPMX0.json
+        initPMX1.json   strategyPMX1.json
+        initPMX2.json   strategyPMX2.json
+        initPMX3.json   strategyPMX3.json
+        initTEST0.json  strategyTEST0.json
+        initTEST1.json  strategyTEST1.json
+        initTEST2.json  strategyTEST2.json
+        initTEST3.json  strategyTEST3.json
+        initTEST4.json  strategyTEST4.json
+        initTEST5.json  strategyTEST5.json
+        initTEST6.json  strategyTEST6.json
+    )
+
+    set(BOT_OPOS6UL_RUNTIME_OUTPUTS "")
+    foreach(f ${BOT_OPOS6UL_RUNTIME_FILES})
+        set(SRC ${CMAKE_SOURCE_DIR}/src/bot-opos6ul/${f})
+        set(DST ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${f})
+        add_custom_command(
+            OUTPUT ${DST}
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different ${SRC} ${DST}
+            DEPENDS ${SRC}
+            COMMENT "Copy runtime ${f}"
+        )
+        list(APPEND BOT_OPOS6UL_RUNTIME_OUTPUTS ${DST})
+    endforeach()
+
+    # Ressources SVG (index.html + table.png depuis common/log/resources-svg/)
+    foreach(pair
+        "common/log/resources-svg/index.html|index.html"
+        "common/log/resources-svg/table.png|table.png"
+    )
+        string(REPLACE "|" ";" pair_list ${pair})
+        list(GET pair_list 0 src_rel)
+        list(GET pair_list 1 dst_name)
+        set(SRC ${CMAKE_SOURCE_DIR}/src/${src_rel})
+        set(DST ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${dst_name})
+        add_custom_command(
+            OUTPUT ${DST}
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different ${SRC} ${DST}
+            DEPENDS ${SRC}
+            COMMENT "Copy runtime ${dst_name}"
+        )
+        list(APPEND BOT_OPOS6UL_RUNTIME_OUTPUTS ${DST})
+    endforeach()
+
+    # Scenarios JSON pour O_StrategyJsonRunnerTest (jrun) — copie de tout le dossier.
+    # Pas de DEPENDS individuel possible (glob), on utilise un timestamp file.
+    set(SCENARIOS_STAMP ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/.scenarios_copied)
+    file(GLOB SCENARIOS_SRC ${CMAKE_SOURCE_DIR}/src/bot-test-opos6ul/scenarios/*)
+    add_custom_command(
+        OUTPUT ${SCENARIOS_STAMP}
         COMMAND ${CMAKE_COMMAND} -E copy_directory
             ${CMAKE_SOURCE_DIR}/src/bot-test-opos6ul/scenarios
-            $<TARGET_FILE_DIR:bot-opos6ul>
-        # Strategies/Init JSON match (PMX0 debug, PMX1/PMX2/PMX3 menu)
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            ${CMAKE_SOURCE_DIR}/src/bot-opos6ul/strategyPMX0.json
-            $<TARGET_FILE_DIR:bot-opos6ul>/strategyPMX0.json
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            ${CMAKE_SOURCE_DIR}/src/bot-opos6ul/initPMX0.json
-            $<TARGET_FILE_DIR:bot-opos6ul>/initPMX0.json
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            ${CMAKE_SOURCE_DIR}/src/bot-opos6ul/strategyPMX1.json
-            $<TARGET_FILE_DIR:bot-opos6ul>/strategyPMX1.json
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            ${CMAKE_SOURCE_DIR}/src/bot-opos6ul/initPMX1.json
-            $<TARGET_FILE_DIR:bot-opos6ul>/initPMX1.json
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            ${CMAKE_SOURCE_DIR}/src/bot-opos6ul/strategyPMX2.json
-            $<TARGET_FILE_DIR:bot-opos6ul>/strategyPMX2.json
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            ${CMAKE_SOURCE_DIR}/src/bot-opos6ul/initPMX2.json
-            $<TARGET_FILE_DIR:bot-opos6ul>/initPMX2.json
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            ${CMAKE_SOURCE_DIR}/src/bot-opos6ul/strategyPMX3.json
-            $<TARGET_FILE_DIR:bot-opos6ul>/strategyPMX3.json
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            ${CMAKE_SOURCE_DIR}/src/bot-opos6ul/initPMX3.json
-            $<TARGET_FILE_DIR:bot-opos6ul>/initPMX3.json
-        COMMENT "Copie hardware.conf + config asserv + index.html + table.png + scenarios JSON + strats PMX1-3 dans bin/"
+            ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
+        COMMAND ${CMAKE_COMMAND} -E touch ${SCENARIOS_STAMP}
+        DEPENDS ${SCENARIOS_SRC}
+        COMMENT "Copy scenarios JSON (jrun)"
     )
+    list(APPEND BOT_OPOS6UL_RUNTIME_OUTPUTS ${SCENARIOS_STAMP})
+
+    # Target qui rebundle toutes les copies. ALL = inclus dans le build par defaut.
+    # add_dependencies pour que make bot-opos6ul declenche aussi les copies.
+    add_custom_target(bot-opos6ul-runtime ALL DEPENDS ${BOT_OPOS6UL_RUNTIME_OUTPUTS})
+    add_dependencies(bot-opos6ul bot-opos6ul-runtime)
 endif()
 
 # =============================================

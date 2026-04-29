@@ -499,6 +499,45 @@ public:
     void goBackToChainSend(float xMM, float yMM);
 
     /*!
+     * \brief Envoie une ligne droite au driver sans attendre.
+     */
+    void lineSend(float dist_mm);
+
+    /*!
+     * \brief Envoie un faceTo au driver sans attendre. Symetrie couleur appliquee sur X.
+     */
+    void faceToSend(float xMM, float yMM);
+
+    /*!
+     * \brief Envoie un faceBackTo au driver sans attendre. Symetrie couleur appliquee sur X.
+     */
+    void faceBackToSend(float xMM, float yMM);
+
+    /*!
+     * \brief Envoie une rotation relative en radians sans attendre.
+     */
+    void rotateRadSend(float radRelative);
+
+    /*!
+     * \brief Envoie une rotation relative en degres sans attendre.
+     */
+    void rotateDegSend(float degreesRelative);
+
+    /*!
+     * \brief Envoie une rotation absolue en degres sans attendre. Le delta est
+     *        calcule au moment de l'envoi (pos_getTheta courante) ; en mode chain
+     *        apres une cmd qui change l'angle, le resultat peut etre legerement
+     *        decale si l'angle reel a l'execution differe. Privilegier faceToSend
+     *        pour les chainages precis.
+     */
+    void rotateAbsDegSend(float thetaInDegreeAbsolute);
+
+    /*!
+     * \brief Envoie une rotation orbitale en degres sans attendre.
+     */
+    void orbitalTurnDegSend(float angleDeg, bool forward, bool turnRight);
+
+    /*!
      * \brief Attend la fin de la trajectoire en cours (ou de la queue de commandes).
      * \return Etat final de la trajectoire.
      */

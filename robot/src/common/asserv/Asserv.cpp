@@ -276,26 +276,28 @@ void Asserv::setPositionAndColor(float x_mm, float y_mm, float thetaInDegrees_, 
 }
 
 // =============================================================================
-// setPositionReal — handshake set_position (poll position dans tolerance)
+// setPositionReal — push local fort + 100ms d'attente (option A)
 // =============================================================================
 //
-// La commande CBOR set_position ne passe PAS par CommandManager cote Nucleo
-// -> elle n'incremente pas m_current_index, donc PAS d'ACK cmd_id possible.
+// La cmd CBOR set_position est appliquee SYNCHRONEMENT cote Nucleo
+// (Odometry::setPosition simple assignment a m_X/m_Y/m_theta_rad). Pas de
+// handshake cmd_id necessaire.
 //
-// On detecte qu'elle a bien ete appliquee en pollant sharedPosition :
-//   1. Send odo_SetPosition (CBOR sur serie).
-//   2. Push local immediat (pour que SensorsThread ait une pose valide tout
-//      de suite, sans attendre la 1re frame retour Nucleo).
-//   3. Capture frameCounterBefore = positionFrameCounter() AVANT le send.
-//      Attendre qu'une frame fraiche arrive (counter > before) ET que la
-//      pose recue (qui ecrase notre push local) corresponde a la cible
-//      dans la fenetre tolerance (50mm / 0.1rad ~ 6deg).
-//   4. Si timeout : retry (max 3 tentatives), la cmd a probablement ete
-//      perdue par overflow Rx Nucleo.
+// Probleme reel : la frame CBOR position en transit AVANT que la Nucleo ne
+// recoive le set_position contient encore l'ancienne pose. Si on validait
+// sur cette frame "fraiche" (counter ++), on accepterait un etat stale.
 //
-// Couvre le Bug A documente dans ASSERV_NUCLEO_INIT_TODO.md (set_position
-// parfois pas appliquee apres allumage tardif Nucleo : robot croit etre a
-// (0, 0, 0) au lieu de (230, 130, 90deg) -> 1ere LINE part en X au lieu de Y).
+// Approche option A :
+//   1. Envoie odo_SetPosition (la Nucleo applique son odometrie immediatement).
+//   2. Push local pTarget dans sharedPosition (la pose lue par les caller
+//      pos_getPosition() pointe pile sur la cible des le retour).
+//   3. Sleep 100 ms : laisse passer la frame Nucleo en transit (10 Hz =
+//      1 frame max dans 100 ms). Les frames suivantes contiennent la pose
+//      post-set.
+//   4. Re-push pTarget : pendant le sleep, la frame stale a peut-etre ecrase
+//      sharedPosition. On reaffirme la cible exacte avant le retour. Les
+//      frames Nucleo suivantes sont post-set (proches de pTarget a +/-1mm
+//      de bruit odo).
 //
 void Asserv::setPositionReal(float x_mm, float y_mm, float thetaInRad)
 {
@@ -307,62 +309,18 @@ void Asserv::setPositionReal(float x_mm, float y_mm, float thetaInRad)
 	}
 	if (useAsservType_ != ASSERV_EXT) return;
 
-	constexpr int MAX_ATTEMPTS = 3;
-	constexpr int POLL_TIMEOUT_MS = 500;   // 5x periode positionOutput (100ms)
-	constexpr int POLL_PERIOD_MS = 20;
-	constexpr float TOL_XY_MM = 50.0f;
-	constexpr float TOL_THETA_RAD = 0.1f;  // ~6deg
-
 	const ROBOTPOSITION pTarget = {x_mm, y_mm, thetaInRad, 0, 0, 0};
 
-	for (int attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
-		const int frameCounterBefore = asservdriver_->positionFrameCounter();
+	asservdriver_->odo_SetPosition(x_mm, y_mm, thetaInRad);
+	probot_->sharedPosition()->setRobotPosition(pTarget);
 
-		asservdriver_->odo_SetPosition(x_mm, y_mm, thetaInRad);
-		// Push local immediat : SensorsThread peut avoir besoin d'une pose
-		// valide pendant qu'on attend l'echo Nucleo. Ce push est ecrase par
-		// la prochaine frame retour CBOR (execute() thread).
-		probot_->sharedPosition()->setRobotPosition(pTarget);
+	utils::sleep_for_micros(100000); // 100 ms : purge frame Nucleo en transit
 
-		int elapsed_ms = 0;
-		while (elapsed_ms < POLL_TIMEOUT_MS) {
-			utils::sleep_for_micros(POLL_PERIOD_MS * 1000);
-			elapsed_ms += POLL_PERIOD_MS;
+	probot_->sharedPosition()->setRobotPosition(pTarget); // re-affirme la cible exacte
 
-			// On attend qu'une frame FRAICHE soit arrivee (counter > before),
-			// sinon on pourrait valider sur notre propre push local.
-			if (asservdriver_->positionFrameCounter() <= frameCounterBefore) continue;
-
-			ROBOTPOSITION cur = probot_->sharedPosition()->getRobotPosition();
-			if (std::abs(cur.x - x_mm) < TOL_XY_MM
-					&& std::abs(cur.y - y_mm) < TOL_XY_MM
-					&& std::abs(cur.theta - thetaInRad) < TOL_THETA_RAD) {
-				logger().debug() << "setPositionReal: OK ("
-						<< x_mm << ", " << y_mm << ", " << thetaInRad
-						<< ") attempt " << attempt
-						<< " in " << elapsed_ms << "ms" << logs::end;
-				return;
-			}
-		}
-
-		if (attempt < MAX_ATTEMPTS) {
-			// Lecture directe driver (pas sharedPosition) : sharedPosition contient
-			// notre push local pre-send, donc cur==target par construction et le
-			// log serait trompeur. odo_GetPosition() renvoie la derniere pose
-			// effectivement recue de la Nucleo.
-			ROBOTPOSITION cur = asservdriver_->odo_GetPosition();
-			logger().warn() << "setPositionReal: pose pas appliquee, target=("
-					<< x_mm << ", " << y_mm << ", " << thetaInRad
-					<< ") cur_nucleo=(" << cur.x << ", " << cur.y << ", " << cur.theta
-					<< "), retry " << attempt << logs::end;
-		}
-	}
-
-	ROBOTPOSITION cur = asservdriver_->odo_GetPosition();
-	logger().error() << "setPositionReal: ECHEC apres " << MAX_ATTEMPTS
-			<< " tentatives, target=(" << x_mm << ", " << y_mm
-			<< ", " << thetaInRad << ") cur_nucleo=(" << cur.x << ", "
-			<< cur.y << ", " << cur.theta << ")" << logs::end;
+	logger().debug() << "setPositionReal: target ("
+			<< x_mm << ", " << y_mm << ", " << thetaInRad
+			<< ") pushed + 100ms wait" << logs::end;
 }
 
 ROBOTPOSITION Asserv::pos_getAdvPosition()
@@ -755,6 +713,61 @@ void Asserv::goBackToChainSend(float xMM, float yMM)
 		asservdriver_->motion_GoBackToChain(x_match, yMM);
 	else if (useAsservType_ == ASSERV_INT_ESIALR)
 		pAsservEsialR_->motion_GoBackToChain(x_match, yMM);
+}
+
+void Asserv::lineSend(float dist_mm)
+{
+	if (useAsservType_ == ASSERV_EXT)
+		asservdriver_->motion_Line(dist_mm);
+	else if (useAsservType_ == ASSERV_INT_ESIALR)
+		pAsservEsialR_->motion_Line(dist_mm);
+}
+
+void Asserv::faceToSend(float xMM, float yMM)
+{
+	float x_match = changeMatchX(xMM);
+	if (useAsservType_ == ASSERV_EXT)
+		asservdriver_->motion_FaceTo(x_match, yMM);
+	else if (useAsservType_ == ASSERV_INT_ESIALR)
+		pAsservEsialR_->motion_FaceTo(x_match, yMM);
+}
+
+void Asserv::faceBackToSend(float xMM, float yMM)
+{
+	float x_match = changeMatchX(xMM);
+	if (useAsservType_ == ASSERV_EXT)
+		asservdriver_->motion_FaceBackTo(x_match, yMM);
+	else if (useAsservType_ == ASSERV_INT_ESIALR)
+		pAsservEsialR_->motion_FaceBackTo(x_match, yMM);
+}
+
+void Asserv::rotateRadSend(float radRelative)
+{
+	if (useAsservType_ == ASSERV_EXT)
+		asservdriver_->motion_RotateRad(radRelative);
+	else if (useAsservType_ == ASSERV_INT_ESIALR)
+		pAsservEsialR_->motion_RotateRad(radRelative);
+}
+
+void Asserv::rotateDegSend(float degreesRelative)
+{
+	rotateRadSend(degToRad(degreesRelative));
+}
+
+void Asserv::rotateAbsDegSend(float thetaInDegreeAbsolute)
+{
+	float rad = changeMatchAngleRad(degToRad(thetaInDegreeAbsolute)) - pos_getTheta();
+	rad = WrapAngle2PI(rad);
+	rotateRadSend(rad);
+}
+
+void Asserv::orbitalTurnDegSend(float angleDeg, bool forward, bool turnRight)
+{
+	float rad = degToRad(angleDeg);
+	if (useAsservType_ == ASSERV_EXT)
+		asservdriver_->motion_OrbitalTurnRad(rad, forward, turnRight);
+	else if (useAsservType_ == ASSERV_INT_ESIALR)
+		pAsservEsialR_->motion_OrbitalTurnRad(rad, forward, turnRight);
 }
 
 

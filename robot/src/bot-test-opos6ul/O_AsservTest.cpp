@@ -144,7 +144,7 @@ void O_AsservTest::run(int argc, char **argv)
 		robot.asserv().resetEmergencyOnTraj();
 	}
 	logger().info() << "END GOTO1 ts=" << ts << logs::end;
-
+/*
 	robot.actions().ax12_bras_droit(-1);
 	robot.actions().ax12_bras_droit(-1);
 	robot.actions().ax12_bras_droit_init(-1);
@@ -156,7 +156,7 @@ void O_AsservTest::run(int argc, char **argv)
 	robot.actions().ax12_bras_gauche_init(-1);
 	robot.actions().ax12_bras_gauche_init(-1);
 	robot.actions().ax12_bras_droit_init(-1);
-
+*/
 	if (x2 != 0 && y2 != 0)
 	{
 		logger().info() << "GOTO2 x2=" << x2 << " y2=" << y2 << logs::end;
@@ -171,7 +171,7 @@ void O_AsservTest::run(int argc, char **argv)
 		}
 		logger().info() << "END GOTO2 ts=" << ts << logs::end;
 	}
-
+/*
 	robot.actions().ax12_bras_droit(-1);
 	robot.actions().ax12_bras_droit(-1);
 	robot.actions().ax12_bras_droit_init(-1);
@@ -183,7 +183,7 @@ void O_AsservTest::run(int argc, char **argv)
 	robot.actions().ax12_bras_gauche_init(-1);
 	robot.actions().ax12_bras_gauche_init(-1);
 	robot.actions().ax12_bras_droit_init(-1);
-
+*/
 	if (x3 != 0 && y3 != 0)
 	{
 		logger().info() << "GOTO2 x3=" << x3 << " y3=" << y3 << logs::end;
@@ -198,7 +198,7 @@ void O_AsservTest::run(int argc, char **argv)
 		}
 		logger().info() << "END GOTO3 ts=" << ts << logs::end;
 	}
-
+/*
 	robot.actions().ax12_bras_droit(-1);
 	robot.actions().ax12_bras_droit(-1);
 	robot.actions().ax12_bras_droit_init(-1);
@@ -210,7 +210,7 @@ void O_AsservTest::run(int argc, char **argv)
 	robot.actions().ax12_bras_gauche_init(-1);
 	robot.actions().ax12_bras_gauche_init(-1);
 	robot.actions().ax12_bras_droit_init(-1);
-
+*/
 	logger().info() << "time= " << robot.chrono().getElapsedTimeInMilliSec() << "ms " << " x="
 			<< robot.asserv().pos_getX_mm() << " y=" << robot.asserv().pos_getY_mm() << " a="
 			<< robot.asserv().pos_getThetaInDegree() << logs::end;

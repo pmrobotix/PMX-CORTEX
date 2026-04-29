@@ -1,0 +1,15 @@
+[
+  {
+    "id": 1, "desc": "TEST5 / F : carre 20cm chain ROTATE",
+    "tasks": [
+      { "type": "MOVEMENT", "subtype": "LINE", "dist": 200 },
+      { "type": "MOVEMENT", "subtype": "ROTATE_DEG", "angle_deg": 90, "chain": true },
+      { "type": "MOVEMENT", "subtype": "LINE", "dist": 200 },
+      { "type": "MOVEMENT", "subtype": "ROTATE_DEG", "angle_deg": 90, "chain": true },
+      { "type": "MOVEMENT", "subtype": "LINE", "dist": 200 },
+      { "type": "MOVEMENT", "subtype": "ROTATE_DEG", "angle_deg": 90, "chain": true },
+      { "type": "MOVEMENT", "subtype": "LINE", "dist": 200 },
+      { "type": "MOVEMENT", "subtype": "ROTATE_DEG", "angle_deg": 90 }
+    ]
+  }
+]

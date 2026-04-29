@@ -1,0 +1,11 @@
+[
+  {
+    "id": 1, "desc": "TEST1 / B : SET_SPEED 30 + 2 LINE",
+    "tasks": [
+      { "type": "SPEED", "subtype": "SET_SPEED", "speed_percent": 30, "desc": "cap 30%" },
+      { "type": "MOVEMENT", "subtype": "LINE", "dist": 1000, "desc": "LINE 1m AV @30%" },
+      { "type": "MOVEMENT", "subtype": "LINE", "dist": -1000, "desc": "LINE 1m AR @30%" },
+      { "type": "SPEED", "subtype": "SET_SPEED", "speed_percent": 100, "desc": "restore" }
+    ]
+  }
+]

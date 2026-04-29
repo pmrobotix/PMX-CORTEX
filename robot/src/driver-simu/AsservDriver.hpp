@@ -116,6 +116,10 @@ private:
     /// status==IDLE stale.
     std::atomic<int> nextCmdId_{1};
     std::atomic<int> lastReceivedCmdId_{0};
+    /// Compteur "frame Nucleo" pour mimer le receive thread CBOR : incremente
+    /// dans odo_SetPosition (et a chaque tick execute() si besoin) pour que
+    /// Asserv::setPositionReal voie une "frame fraiche" sans timeout 500ms.
+    std::atomic<int> positionFrameCounter_{0};
 
     void enqueueCommand(const SimuCommand& cmd);
     bool popCommand(SimuCommand& out);
@@ -182,6 +186,7 @@ public:
     bool is_connected() override;
     int  lastSentCmdId()     const override { return nextCmdId_.load() - 1; }
     int  lastReceivedCmdId() const override { return lastReceivedCmdId_.load(); }
+    int  positionFrameCounter() const override { return positionFrameCounter_.load(); }
     void endWhatTodo();
 
     // Stubs bas niveau (utilisés par tests O_* et Asserv.cpp)

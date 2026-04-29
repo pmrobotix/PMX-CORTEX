@@ -111,12 +111,28 @@ if [ "$TARGET" = "bot-opos6ul" ]; then
     CONFIG_FILES=(
         "$CONFIG_SRC_DIR/hardware.conf"
         "$CONFIG_SRC_DIR/config_OPOS6UL_Robot.txt"
+        "$CONFIG_SRC_DIR/initPMX0.json"
+        "$CONFIG_SRC_DIR/strategyPMX0.json"
         "$CONFIG_SRC_DIR/initPMX1.json"
         "$CONFIG_SRC_DIR/strategyPMX1.json"
         "$CONFIG_SRC_DIR/initPMX2.json"
         "$CONFIG_SRC_DIR/strategyPMX2.json"
         "$CONFIG_SRC_DIR/initPMX3.json"
         "$CONFIG_SRC_DIR/strategyPMX3.json"
+        "$CONFIG_SRC_DIR/initTEST0.json"
+        "$CONFIG_SRC_DIR/strategyTEST0.json"
+        "$CONFIG_SRC_DIR/initTEST1.json"
+        "$CONFIG_SRC_DIR/strategyTEST1.json"
+        "$CONFIG_SRC_DIR/initTEST2.json"
+        "$CONFIG_SRC_DIR/strategyTEST2.json"
+        "$CONFIG_SRC_DIR/initTEST3.json"
+        "$CONFIG_SRC_DIR/strategyTEST3.json"
+        "$CONFIG_SRC_DIR/initTEST4.json"
+        "$CONFIG_SRC_DIR/strategyTEST4.json"
+        "$CONFIG_SRC_DIR/initTEST5.json"
+        "$CONFIG_SRC_DIR/strategyTEST5.json"
+        "$CONFIG_SRC_DIR/initTEST6.json"
+        "$CONFIG_SRC_DIR/strategyTEST6.json"
     )
     OK_COUNT=0
     TOTAL_COUNT=${#CONFIG_FILES[@]}

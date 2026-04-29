@@ -66,6 +66,7 @@ bool StrategyJsonRunner::executeInstruction(const StrategyInstruction& instr)
 
     logger().info() << "[instr " << instr.id << "] " << instr.desc << logs::end;
     bool firstTask = true;
+    bool prevChain = false;
     for (const auto& task : instr.tasks) {
         if (flags_ && task.needed_flag && !flags_->has(*task.needed_flag)) {
             logger().info() << "  task " << task.type << "/" << task.subtype
@@ -79,16 +80,56 @@ bool StrategyJsonRunner::executeInstruction(const StrategyInstruction& instr)
         // Symptome sans ce sleep : target_cmd=N+1 received_cmd=N -> warn ACK
         // dans Asserv::sendCborMotionWithRetry, puis cmd appliquee tardivement
         // par la Nucleo causant des comportements erratiques.
-        // 200ms = 2 frames CBOR (la Nucleo emet a 10 Hz).
+        // 50 ms = ~1/2 frame CBOR a 10 Hz : assez court pour limiter la
+        // derive d'asserv residuelle entre 2 cmds (qui se reporte sur LINE
+        // / GO_TO suivants), assez long pour eviter l'overflow Rx. A monter
+        // si "no ACK" reapparait dans les logs sendCborMotionWithRetry.
+        // chain -> chain : sleep raccourci a 20 ms (la Nucleo empile dans sa
+        // queue, pas de fenetre IDLE intermediaire a respecter).
         if (!firstTask) {
-            utils::sleep_for_micros(200000);
+            const int sleep_us = (prevChain && task.chain) ? 20000 : 50000;
+            utils::sleep_for_micros(sleep_us);
         }
         firstTask = false;
+
+        if (task.chain) {
+            if (!executeTaskSendOnly(task)) {
+                logger().error() << "[instr " << instr.id << "] task chain "
+                                 << task.type << "/" << task.subtype
+                                 << " send FAILED" << logs::end;
+                return false;
+            }
+            prevChain = true;
+            continue;
+        }
+
         TRAJ_STATE ts = executeTask(task);
         if (ts != TRAJ_FINISHED) {
             logger().error() << "[instr " << instr.id << "] task "
                              << task.type << "/" << task.subtype
                              << " -> ts=" << ts << logs::end;
+            return false;
+        }
+        prevChain = false;
+    }
+
+    // Si la derniere task etait chainee, attendre la fin de la queue Nucleo
+    // (status IDLE + cmd_id ACK). Type derive de la derniere task pour
+    // activer la detection FORWARD/BACKWARD durant ce wait final.
+    if (prevChain) {
+        const StrategyTask& last = instr.tasks.back();
+        Asserv::MovementType type = Asserv::ROTATION;
+        if (last.subtype == "LINE" && last.dist) {
+            type = (*last.dist >= 0.0f) ? Asserv::FORWARD : Asserv::BACKWARD;
+        } else if (last.subtype == "GO_TO" || last.subtype == "MOVE_FORWARD_TO") {
+            type = Asserv::FORWARD;
+        } else if (last.subtype == "GO_BACK_TO" || last.subtype == "MOVE_BACKWARD_TO") {
+            type = Asserv::BACKWARD;
+        }
+        TRAJ_STATE ts = robot_->asserv().waitEndOfTrajWithDetection(type);
+        if (ts != TRAJ_FINISHED) {
+            logger().error() << "[instr " << instr.id << "] chain final wait -> ts="
+                             << ts << logs::end;
             return false;
         }
     }
@@ -220,4 +261,57 @@ TRAJ_STATE StrategyJsonRunner::executeTask(const StrategyTask& t)
 
     logger().error() << "Unknown task type: " << t.type << logs::end;
     return TRAJ_ERROR;
+}
+
+bool StrategyJsonRunner::executeTaskSendOnly(const StrategyTask& t)
+{
+    logger().info() << "  task " << t.type << "/" << t.subtype << " [chain]"
+                    << (t.desc ? (" (" + *t.desc + ")") : std::string()) << logs::end;
+
+    if (t.type != "MOVEMENT") {
+        logger().error() << "  chain: type " << t.type
+                         << " non chainable (seul MOVEMENT primitif l'est)" << logs::end;
+        return false;
+    }
+
+    Asserv& a = robot_->asserv();
+
+    if (t.subtype == "LINE" && t.dist) {
+        a.lineSend(*t.dist);
+        return true;
+    }
+    if (t.subtype == "GO_TO" && t.position_x && t.position_y) {
+        a.goToSend(*t.position_x, *t.position_y);
+        return true;
+    }
+    if (t.subtype == "GO_BACK_TO" && t.position_x && t.position_y) {
+        a.goBackToSend(*t.position_x, *t.position_y);
+        return true;
+    }
+    if (t.subtype == "FACE_TO" && t.position_x && t.position_y) {
+        a.faceToSend(*t.position_x, *t.position_y);
+        return true;
+    }
+    if (t.subtype == "FACE_BACK_TO" && t.position_x && t.position_y) {
+        a.faceBackToSend(*t.position_x, *t.position_y);
+        return true;
+    }
+    if (t.subtype == "ROTATE_DEG" && t.angle_deg) {
+        a.rotateDegSend(*t.angle_deg);
+        return true;
+    }
+    if (t.subtype == "ROTATE_ABS_DEG" && t.angle_deg) {
+        a.rotateAbsDegSend(*t.angle_deg);
+        return true;
+    }
+    if (t.subtype == "ORBITAL_TURN_DEG" && t.angle_deg && t.forward && t.turn_right) {
+        a.orbitalTurnDegSend(*t.angle_deg, *t.forward, *t.turn_right);
+        return true;
+    }
+
+    // Composites (GO_TO_AND_*, MOVE_FORWARD_TO_AND_*) et PATH_TO* font du
+    // calcul OPOS6UL ou des waits internes -> pas chainables tels quels.
+    logger().error() << "  chain: subtype " << t.subtype
+                     << " non chainable en V1 (composite ou path)" << logs::end;
+    return false;
 }

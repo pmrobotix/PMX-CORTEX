@@ -31,6 +31,15 @@ struct StrategyTask
     std::optional<int>   speed_percent;
     std::optional<int>   duration_ms;
     std::vector<std::array<float, 2>> waypoints;
+
+    // Mode chain : si true, la cmd est envoyee a la Nucleo sans attendre
+    // sa fin (pas de waitEndOfTrajWithDetection). La Nucleo empile dans sa
+    // queue motion et enchaine sans IDLE intermediaire -> evite la derive
+    // d'asserv residuelle entre 2 tasks (ex: FACE_TO chained + LINE).
+    // Detection ToF/balise suspendue pendant les tasks chainees ; reprise
+    // au prochain wait (task non chainee ou fin d'instr). Risque collision
+    // si adversaire surgit -> mitige par BlockingDetector mecanique Nucleo.
+    bool chain = false;
 };
 
 /*!

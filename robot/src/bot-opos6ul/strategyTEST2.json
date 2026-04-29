@@ -1,0 +1,9 @@
+[
+  {
+    "id": 1, "desc": "TEST2 / C : FACE_TO + LINE no-chain",
+    "tasks": [
+      { "type": "MOVEMENT", "subtype": "FACE_TO", "position_x": 1300, "position_y": 300, "desc": "face X+ vers (1300,300)" },
+      { "type": "MOVEMENT", "subtype": "LINE", "dist": 1000, "desc": "LINE 1m" }
+    ]
+  }
+]

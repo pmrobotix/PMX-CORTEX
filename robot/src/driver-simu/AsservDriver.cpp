@@ -622,6 +622,9 @@ void AsservDriverSimu::odo_SetPosition(float x_mm, float y_mm, float angle_rad)
 	p_.y = y_mm;
 	p_.theta = angle_rad;
 	m_pos.unlock();
+	// Mimer la frame CBOR Nucleo : Asserv::setPositionReal poll ce counter
+	// pour detecter qu'une nouvelle pose est appliquee (sinon timeout 500ms).
+	positionFrameCounter_++;
 }
 ROBOTPOSITION AsservDriverSimu::odo_GetPosition()
 {

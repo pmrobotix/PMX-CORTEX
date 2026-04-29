@@ -1,0 +1,15 @@
+[
+  {
+    "id": 1, "desc": "TEST4 / E : carre 20cm no-chain",
+    "tasks": [
+      { "type": "MOVEMENT", "subtype": "LINE", "dist": 200 },
+      { "type": "MOVEMENT", "subtype": "ROTATE_DEG", "angle_deg": 90 },
+      { "type": "MOVEMENT", "subtype": "LINE", "dist": 200 },
+      { "type": "MOVEMENT", "subtype": "ROTATE_DEG", "angle_deg": 90 },
+      { "type": "MOVEMENT", "subtype": "LINE", "dist": 200 },
+      { "type": "MOVEMENT", "subtype": "ROTATE_DEG", "angle_deg": 90 },
+      { "type": "MOVEMENT", "subtype": "LINE", "dist": 200 },
+      { "type": "MOVEMENT", "subtype": "ROTATE_DEG", "angle_deg": 90 }
+    ]
+  }
+]

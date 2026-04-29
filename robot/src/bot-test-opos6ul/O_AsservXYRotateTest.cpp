@@ -300,7 +300,7 @@ void O_AsservXYRotateTest::run(int argc, char **argv)
 
 	robot.svgPrintPosition();
 
-	robot.asserv().freeMotion();
+	//robot.asserv().freeMotion();
 	robot.asserv().setSpeed(100);   // restore vitesse nominale en fin de test
 	p = robot.asserv().pos_getPosition();
 	logger().info() << "time= " << robot.chrono().getElapsedTimeInMilliSec() << "ms ; " << " x=" << p.x << " y=" << p.y

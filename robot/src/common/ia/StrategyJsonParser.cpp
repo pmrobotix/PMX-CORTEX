@@ -48,6 +48,7 @@ static StrategyTask parseTask(const json& j)
     t.item_id       = optField<std::string>(j, "item_id");
     t.speed_percent = optField<int>(j, "speed_percent");
     t.duration_ms   = optField<int>(j, "duration_ms");
+    t.chain         = j.value("chain", false);
 
     auto wpIt = j.find("waypoints");
     if (wpIt != j.end() && wpIt->is_array()) {
@@ -153,9 +154,8 @@ bool parseInitFromFile(const std::string& path, InitData& out)
 
     out.x = root.value("x", out.x);
     out.y = root.value("y", out.y);
-    // theta en RADIANS dans le JSON (format Esial historique), conversion en degres ici.
-    float thetaRad = root.value("theta", 1.5707963f);
-    out.thetaDeg = thetaRad * 180.0f / 3.14159265358979323846f;
+    // theta en DEGRES dans le JSON. Default 90 deg = robot face Y+ (Nord).
+    out.thetaDeg = root.value("theta", 90.0f);
 
     auto sp = root.find("setpos_tasks");
     if (sp != root.end() && sp->is_array()) {
