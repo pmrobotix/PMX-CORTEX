@@ -72,6 +72,11 @@ I2CRegisterSlave registerSlaveLCD = I2CRegisterSlave(Slave2,
 // section "Menu pre-match (LCD tactile)".
 extern Settings settings;
 
+// Acces aux distances collision (c1_mm..c8_mm) pour l'overlay debug 4 coins.
+// La struct Registers contient toujours ces champs ; ils restent a 0 si
+// SENSORS_VL_CLOSED_COLLISION_ACTIVATED n'est pas active (overlay -> "---").
+extern Registers registers;
+
 // Flag indiquant si l'ecran ILI9341 a ete detecte au boot.
 // Si false, screen_loop() et les widgets LVGL sont desactives,
 // le reste du firmware (ToF, LED, I2C slave) fonctionne normalement.
@@ -81,6 +86,18 @@ static bool screen_available = false;
 // avec les valeurs ecrites par l'OPOS6UL (reg 0 numOfBots, reg 2 matchPoints).
 static lv_obj_t *lbl_numOfBots_value = nullptr;
 static lv_obj_t *lbl_matchPoints_value = nullptr;
+
+// Overlay debug : 4 distances capteurs collision HAUT aux 4 coins de l'ecran.
+// Place sur lv_layer_top() => visible dans tous les modes (menu / match /
+// endmatch / pickup config), non efface par lv_obj_clean(lv_scr_act()).
+//   FL = c2_mm (AV GAUCHE HAUT)  -> coin haut-gauche
+//   FR = c4_mm (AV DROIT  HAUT)  -> coin haut-droit
+//   BL = c6_mm (AR GAUCHE HAUT)  -> coin bas-gauche
+//   BR = c8_mm (AR DROIT  HAUT)  -> coin bas-droit
+static lv_obj_t *lbl_prox_FL = nullptr;
+static lv_obj_t *lbl_prox_FR = nullptr;
+static lv_obj_t *lbl_prox_BL = nullptr;
+static lv_obj_t *lbl_prox_BR = nullptr;
 
 // 2 diff buffers with about 8K memory each
 ILI9341_T4::DiffBuffStatic<8000> diff1;
@@ -449,7 +466,7 @@ static void testMode_timer_cb(lv_timer_t *timer) {
 // --- Bouton SETPOS / RESET (partage toute la largeur de l'ecran avec btn_color) ---
 // matchState=0 (CONFIG) : libelle "SETPOS", vert, clic -> actionReq=1 (setPos)
 // matchState=1 (ARMED)  : libelle "METTRE TIR", rouge, clic -> actionReq=1 (reset)
-// matchState=2 (PRIMED) : libelle "ENLEVE TIR", rouge, clic -> actionReq=1 (reset)
+// matchState=2 (PRIMED) : libelle "WAIT TIR", rouge, clic -> actionReq=1 (reset)
 // matchState>=3 (MATCH+): libelle "MATCH", gris (clic ignore)
 static lv_obj_t *btn_setpos_handle = nullptr;
 static lv_obj_t *lbl_setpos_handle = nullptr;
@@ -470,7 +487,7 @@ static void updateSetposButton() {
 		lv_obj_set_style_text_color(lbl_setpos_handle, lv_color_white(), 0);
 	} else if (settings.matchState == 2) {   // PRIMED -> attente retrait tirette
 		lv_obj_set_style_bg_color(btn_setpos_handle, setpos_color_red, 0);
-		lv_label_set_text(lbl_setpos_handle, "ENLEVE TIR");
+		lv_label_set_text(lbl_setpos_handle, "WAIT TIR");
 		lv_obj_set_style_text_color(lbl_setpos_handle, lv_color_white(), 0);
 	} else {                                  // MATCH / END
 		lv_obj_set_style_bg_color(btn_setpos_handle, setpos_color_grey, 0);
@@ -761,6 +778,28 @@ static void create_match_menu(void) {
 	lv_obj_add_event_cb(btn, advDiam_minus_cb, LV_EVENT_CLICKED, NULL);
 }
 
+// Cree un label sur lv_layer_top(), aligne sur un coin de l'ecran.
+static lv_obj_t *create_prox_label(lv_align_t align, lv_coord_t x_ofs, lv_coord_t y_ofs) {
+	lv_obj_t *lbl = lv_label_create(lv_layer_top());
+	lv_obj_set_style_text_font(lbl, &lv_font_montserrat_14, 0);
+	lv_obj_set_style_text_color(lbl, lv_color_white(), 0);
+	lv_obj_set_style_bg_color(lbl, lv_color_black(), 0);
+	lv_obj_set_style_bg_opa(lbl, LV_OPA_50, 0);
+	lv_obj_set_style_pad_all(lbl, 2, 0);
+	lv_obj_set_style_radius(lbl, 2, 0);
+	lv_label_set_text(lbl, "---");
+	lv_obj_align(lbl, align, x_ofs, y_ofs);
+	return lbl;
+}
+
+// Cree les 4 labels overlay debug aux coins. A appeler une fois apres lv_init().
+static void setup_proximity_overlay() {
+	lbl_prox_FL = create_prox_label(LV_ALIGN_TOP_LEFT,      2,  2);
+	lbl_prox_FR = create_prox_label(LV_ALIGN_TOP_RIGHT,    -2,  2);
+	lbl_prox_BL = create_prox_label(LV_ALIGN_BOTTOM_LEFT,   2, -2);
+	lbl_prox_BR = create_prox_label(LV_ALIGN_BOTTOM_RIGHT, -2, -2);
+}
+
 void setup_screen_splash() {
 
 	// ------------------------------
@@ -818,6 +857,10 @@ void setup_screen_splash() {
 	lv_obj_t *splash_img = lv_img_create(lv_scr_act());
 	lv_img_set_src(splash_img, &qr_code_pmx);
 	lv_obj_set_pos(splash_img, 0, 0);
+
+	// Overlay debug 4 coins : place sur lv_layer_top() pour rester visible
+	// dans tous les modes (splash, menu, match, endmatch, pickup config).
+	setup_proximity_overlay();
 
 	// Pomper LVGL pour envoyer le logo a l'ecran
 	lv_task_handler();
@@ -1136,6 +1179,43 @@ static void show_endmatch_screen(void) {
 
 void screen_loop() {
 	if (!screen_available) return; // pas d'ecran : no-op
+
+	// Overlay debug 4 coins : rafraichi a 5 Hz dans tous les modes.
+	// Place avant les return du mode match pour rester actif partout.
+	// Affiche la distance brute en mm (registres c2/c4/c6/c8 du beacon).
+	// 0 mm = pas de mesure / capteur offline -> "---".
+	{
+		static uint32_t prox_last_ms = 0;
+		static int16_t  last_FL = -1, last_FR = -1, last_BL = -1, last_BR = -1;
+		uint32_t now = millis();
+		if (now - prox_last_ms > 200) {
+			prox_last_ms = now;
+			int16_t v_FL = registers.c2_mm; // AV GAUCHE HAUT
+			int16_t v_FR = registers.c4_mm; // AV DROIT  HAUT
+			int16_t v_BL = registers.c6_mm; // AR GAUCHE HAUT
+			int16_t v_BR = registers.c8_mm; // AR DROIT  HAUT
+			if (lbl_prox_FL && v_FL != last_FL) {
+				if (v_FL == 0) lv_label_set_text(lbl_prox_FL, "---");
+				else           lv_label_set_text_fmt(lbl_prox_FL, "%d", v_FL);
+				last_FL = v_FL;
+			}
+			if (lbl_prox_FR && v_FR != last_FR) {
+				if (v_FR == 0) lv_label_set_text(lbl_prox_FR, "---");
+				else           lv_label_set_text_fmt(lbl_prox_FR, "%d", v_FR);
+				last_FR = v_FR;
+			}
+			if (lbl_prox_BL && v_BL != last_BL) {
+				if (v_BL == 0) lv_label_set_text(lbl_prox_BL, "---");
+				else           lv_label_set_text_fmt(lbl_prox_BL, "%d", v_BL);
+				last_BL = v_BL;
+			}
+			if (lbl_prox_BR && v_BR != last_BR) {
+				if (v_BR == 0) lv_label_set_text(lbl_prox_BR, "---");
+				else           lv_label_set_text_fmt(lbl_prox_BR, "%d", v_BR);
+				last_BR = v_BR;
+			}
+		}
+	}
 
 	// --- Transitions d'ecran selon matchState ---
 	// matchState: 0=CONFIG, 1=ARMED, 2=PRIMED, 3=MATCH, 4=END

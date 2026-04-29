@@ -96,19 +96,21 @@ Ecriture registres I2C (protegee par mutex)
 
 | Index | Registre | Position | Pin XSHUT | Bus I2C | Adresse I2C |
 |-------|----------|----------|-----------|---------|-------------|
-| 0 | `c1_mm` | AV GAUCHE BAS | 40 | Wire (SDA 18 / SCL 19) | 0x30 |
+| 0 | `c1_mm` | AV GAUCHE BAS | 37 | Wire (SDA 18 / SCL 19) | 0x30 |
 | 1 | `c2_mm` | AV GAUCHE HAUT | 39 | Wire | 0x31 |
 | 2 | `c3_mm` | AV DROIT BAS | 38 | Wire | 0x32 |
-| 3 | `c4_mm` | AV DROIT HAUT | 37 | Wire | 0x33 |
-| 4 | `c5_mm` | AR GAUCHE BAS | 36 | Wire1 (SDA1 17 / SCL1 16) | 0x34 |
-| 5 | `c6_mm` | AR GAUCHE HAUT | 35 | Wire1 | 0x35 |
-| 6 | `c7_mm` | AR DROIT BAS | 34 | Wire1 | 0x36 |
+| 3 | `c4_mm` | AV DROIT HAUT | **34** | **Wire1** (SDA1 17 / SCL1 16) | 0x33 |
+| 4 | `c5_mm` | AR GAUCHE BAS | 36 | Wire1 | 0x34 |
+| 5 | `c6_mm` | AR GAUCHE HAUT | **40** | **Wire** | 0x35 |
+| 6 | `c7_mm` | AR DROIT BAS | 35 | Wire1 | 0x36 |
 | 7 | `c8_mm` | AR DROIT HAUT | 33 | Wire1 | 0x37 |
+
+> **Note** : c4 et c6 (HAUT) sont sur des bus inverses des autres capteurs de leur cote (c4 AV sur Wire1, c6 AR sur Wire). Les pins des BAS (c1, c7) ont ete decalees sur 37 et 35 pour eviter les conflits XSHUT avec les nouvelles pins des HAUT (40 et 34).
 
 ```
         AVANT du robot
   c2(H)  c1(B)    c3(B)  c4(H)
-    39     40       38     37
+    39     37       38     34
      \     |         |     /
       +----+---------+----+
       |    GAUCHE  DROITE  |
@@ -116,7 +118,7 @@ Ecriture registres I2C (protegee par mutex)
       |    GAUCHE  DROITE  |
       +----+---------+----+
      /     |         |     \
-    35     36       34     33
+    40     36       35     33
   c6(H)  c5(B)    c7(B)  c8(H)
         ARRIERE du robot
 ```
@@ -125,7 +127,7 @@ Ecriture registres I2C (protegee par mutex)
 - ROI : pleine matrice 16x16 SPADs (centre optique 199)
 - Mode : Short distance (meme que les capteurs beacon)
 - Timing budget : 15 ms, intermeasurement : 16 ms
-- Acquisition : integree dans les threads loopvl1 (Front, Wire) / loopvl2 (Back, Wire1), a la zone 0 de chaque cycle
+- Acquisition : integree dans les threads loopvl1 (idx 0-3) / loopvl2 (idx 4-7), a la zone 0 de chaque cycle. Le bus I2C de chaque capteur est defini par `bus_collision[]` dans `TofSensors.cpp` — un thread peut piloter Wire et Wire1 dans la meme iteration.
 
 **Registres I2C** : distances en mm remontees dans `c1_mm`..`c8_mm` de la struct `Registers` (offsets absolus 11-27, soit offset 2-18 dans la struct). Valeur 0 = pas de mesure. Lues par l'OPOS6UL via `BeaconSensors::getData()`.
 

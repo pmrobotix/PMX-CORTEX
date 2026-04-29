@@ -14,7 +14,7 @@
 #include "TofSensors.h"
 #include "LCDScreen.h"
 
-//#define SENSORS_VL_CLOSED_COLLISION_ACTIVATED 1
+#define SENSORS_VL_CLOSED_COLLISION_ACTIVATED 1
 
 //Debug pour savoir a tout moment si un VL53 est out or not
 #define DEBUG_VL_SUR_LEDMATRIX           1

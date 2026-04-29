@@ -23,8 +23,17 @@
 int shutd_pin[NumOfSensors] = { 23, 22, 21, 20, 0, 1, 2, 3, 4, 32, 31, 30, 29, 28, 27, 26, 6, 5 };
 
 #ifdef SENSORS_VL_CLOSED_COLLISION_ACTIVATED
-//front[4]= BAS HAUT BAS HAUT  back[4]
-int shutd_pin_collision[NumOfCollisionSensors + NumOfCollisionSensors] = { 40, 39, 38, 37, 36, 35, 34, 33 };
+// Pin XSHUT et bus I2C par capteur de collision (idx 0..7 = c1..c8).
+// idx:                                              0   1   2   3   4   5   6   7
+//                                       capteur:    c1  c2  c3  c4  c5  c6  c7  c8
+//                                       role:       BG  HG  BD  HD  BG  HG  BD  HD
+//                                       (B=bas, H=haut, G=gauche, D=droit ; AV idx 0-3, AR 4-7)
+int shutd_pin_collision[NumOfCollisionSensors + NumOfCollisionSensors] =
+                                                  { 37, 39, 38, 34, 36, 40, 35, 33 };
+// Bus I2C par idx : c4 (HD AV) sur Wire1, c6 (HG AR) sur Wire (cablage robot 2026).
+// Les BAS non utilises sont assignes aux pins liberees pour eviter les conflits XSHUT.
+TwoWire *bus_collision[NumOfCollisionSensors + NumOfCollisionSensors] =
+                                                  { &Wire, &Wire, &Wire, &Wire1, &Wire1, &Wire, &Wire1, &Wire1 };
 #endif
 
 /// Centre optique de chaque zone SPAD (inverse gauche→droite a cause du sens de montage des VL).
@@ -590,13 +599,10 @@ void tof_setup()
 		vl[i] = SFEVL53L1X(Wire, shutd_pin[i], -1);
 	}
 #ifdef SENSORS_VL_CLOSED_COLLISION_ACTIVATED
-    //config collision Front vl on i2c 18 SDA / 19 SCL
-    for (int i = 0; i < (NumOfCollisionSensors); i++) {
-        vl_collision[i] = SFEVL53L1X(Wire, shutd_pin_collision[i], -1);
-    }
-    //config collision Back vl on i2c  17 SDA1 / 16 SCL1
-    for (int i = NumOfCollisionSensors; i < (NumOfCollisionSensors + NumOfCollisionSensors); i++) {
-        vl_collision[i] = SFEVL53L1X(Wire1, shutd_pin_collision[i], -1);
+    // Bus I2C par idx (cf. bus_collision[]). Permet de placer chaque capteur
+    // sur Wire ou Wire1 independamment, sans la regle "0-3 = Wire / 4-7 = Wire1".
+    for (int i = 0; i < (NumOfCollisionSensors + NumOfCollisionSensors); i++) {
+        vl_collision[i] = SFEVL53L1X(*bus_collision[i], shutd_pin_collision[i], -1);
     }
 #endif
 	//Config all shutpin

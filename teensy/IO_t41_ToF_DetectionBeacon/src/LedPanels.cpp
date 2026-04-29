@@ -16,6 +16,13 @@ extern uint8_t status_t[NumOfZonesPerSensor * NumOfSensors];
 extern uint16_t greenHandDistance[NumOfZonesPerSensor * NumOfSensors];
 extern uint16_t filteredResultWorkingCopy[NumOfZonesPerSensor * NumOfSensors];
 
+#ifdef SENSORS_VL_CLOSED_COLLISION_ACTIVATED
+extern bool connected_coll[NumOfCollisionSensors + NumOfCollisionSensors];
+extern uint8_t status_coll[NumOfCollisionSensors + NumOfCollisionSensors];
+extern uint16_t distance_coll[NumOfCollisionSensors + NumOfCollisionSensors];
+extern uint16_t SigPerSPAD_coll[NumOfZonesPerSensor * NumOfSensors];
+#endif
+
 extern volatile bool tofVLReadyForCalculation;
 
 extern volatile int proximity_level;
