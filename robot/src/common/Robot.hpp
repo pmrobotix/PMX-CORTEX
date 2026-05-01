@@ -156,6 +156,11 @@ protected:
 	// --- Strategy JSON runner (cf. StrategyJsonRunner) ---
 	std::string strategyJsonName_ = "PMX1";   ///< Nom de la strat (ex: "PMX0" -> strategyPMX0.json). Vide = fallback hardcode (legacy DEPRECATED).
 
+	// --- DEBUG /a <x> <y> : injection adv simulee (cf. SensorsDriverSimu / SensorsDriver ARM) ---
+	float injectAdvX_       = 0.0f;
+	float injectAdvY_       = 0.0f;
+	bool  injectAdvEnabled_ = false;
+
 	// --- Init JSON (init<Name>.json, charge si /s passe) ---
 	// Defauts = hardcode historique de O_State_NewInit::setPos().
 	float initPoseX_         = 300.0f;
@@ -272,6 +277,11 @@ public:
 	std::string strategyJsonPath() const { return strategyJsonName_.empty() ? std::string() : ("strategy" + strategyJsonName_ + ".json"); }
 	/// Chemin complet : init<name>.json (idem strategyJsonPath, base sur strategyJsonName_).
 	std::string initJsonPath() const { return strategyJsonName_.empty() ? std::string() : ("init" + strategyJsonName_ + ".json"); }
+
+	// DEBUG /a <x> <y> : injection adv fixe en mm table (active en simu et ARM).
+	bool  injectAdvEnabled() const { return injectAdvEnabled_; }
+	float injectAdvX() const { return injectAdvX_; }
+	float injectAdvY() const { return injectAdvY_; }
 
 	// Pose initiale lue dans init<Name>.json (ou defaut hardcode 300/130/90 si pas de /s).
 	float initPoseX() const { return initPoseX_; }

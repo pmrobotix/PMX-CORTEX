@@ -161,60 +161,60 @@ void test::SensorsTest::testSyncInvalidName()
 }
 
 // ---------- filtre_levelInFront : tests par niveau ----------
+// Convention canonique repere robot : x=avant (>0), y=lateral gauche>0 / droite<0.
 // Contexte : les thresholds sont ajoutes par l'appelant. On fixe :
 //   threshold_LR = 200, threshold_Front = 600, threshold_veryclosed_front = 300
 // Note : le filtre applique un "patch balise" de +/-50mm sur x et y.
 
 void test::SensorsTest::testFiltreFront_Level1_RightClose()
 {
-	// Adversaire devant, tres pres, a droite : ydist=100, xdist=200
-	// Apres patch : y=150, x=250
-	// Level 1 : y<=300 && x>=200 && x<=600 => xdist apres patch = 250 >= 200 OK
+	// Adversaire devant, tres pres, a droite : x=100 (avant), y=-200 (droite)
+	// Apres patch : x=150, y=-250
+	// Level 1 : x<=300 && y<=-200 && y>=-600 OK
 	int level = testSensors_->filtre_levelInFront(
 			200, 600, 300,  // thresh LR, Front, veryClosed
-			0.0f, 200.0f, 100.0f, 0.0f);
+			0.0f, 100.0f, -200.0f, 0.0f);
 	this->assert(level == 1, "adv devant-droit proche => level 1");
 }
 
 void test::SensorsTest::testFiltreFront_Level2_LeftClose()
 {
-	// Adversaire devant, tres pres, a gauche : xdist=-200
-	// Apres patch : x=-250, y=150
-	// Level 2 : y<=300 && x<=-200 && x>=-600 OK
+	// Adversaire devant, tres pres, a gauche : x=100 (avant), y=200 (gauche)
+	// Apres patch : x=150, y=250
+	// Level 2 : x<=300 && y>=200 && y<=600 OK
 	int level = testSensors_->filtre_levelInFront(
 			200, 600, 300,
-			0.0f, -200.0f, 100.0f, 0.0f);
+			0.0f, 100.0f, 200.0f, 0.0f);
 	this->assert(level == 2, "adv devant-gauche proche => level 2");
 }
 
 void test::SensorsTest::testFiltreFront_Level3_MidZone()
 {
 	// Adversaire devant, zone moyenne (entre very closed et front), centre
-	// ydist=400 => apres patch y=450 (entre 300 et 600)
-	// xdist=0 => apres patch x=0
+	// x=400 => apres patch x=450 (entre 300 et 600), y=0 (centre)
 	int level = testSensors_->filtre_levelInFront(
 			200, 600, 300,
-			0.0f, 0.0f, 400.0f, 0.0f);
+			0.0f, 400.0f, 0.0f, 0.0f);
 	this->assert(level == 3, "adv zone moyenne centree => level 3");
 }
 
 void test::SensorsTest::testFiltreFront_Level4_DeadFront()
 {
-	// Adversaire pile devant, tres proche : ydist=100, xdist=0
-	// Apres patch : y=150, x=0
-	// Level 4 : y<=300 && x dans [-200, 200]
+	// Adversaire pile devant, tres proche : x=100 (avant), y=0 (centre)
+	// Apres patch : x=150, y=0
+	// Level 4 : x<=300 && y dans [-200, 200]
 	int level = testSensors_->filtre_levelInFront(
 			200, 600, 300,
-			0.0f, 0.0f, 100.0f, 0.0f);
+			0.0f, 100.0f, 0.0f, 0.0f);
 	this->assert(level == 4, "adv pile devant tres proche => level 4");
 }
 
 void test::SensorsTest::testFiltreFront_Outside_Behind()
 {
-	// Adversaire derriere : ydist<0 => filtre front retourne 0
+	// Adversaire derriere : x<0 => filtre front retourne 0
 	int level = testSensors_->filtre_levelInFront(
 			200, 600, 300,
-			0.0f, 0.0f, -200.0f, 0.0f);
+			0.0f, -200.0f, 0.0f, 0.0f);
 	this->assert(level == 0, "adv derriere => filtre front retourne 0");
 }
 
@@ -222,21 +222,21 @@ void test::SensorsTest::testFiltreFront_Outside_Behind()
 
 void test::SensorsTest::testFiltreBack_Level4_DeadBehind()
 {
-	// Adversaire pile derriere, tres proche : ydist=-100, xdist=0
-	// Apres patch : y=-150, x=0
-	// Level -4 : y>=-300 && x dans [-200, 200]
+	// Adversaire pile derriere, tres proche : x=-100 (derriere), y=0
+	// Apres patch : x=-150, y=0
+	// Level -4 : x>=-300 && y dans [-200, 200]
 	int level = testSensors_->filtre_levelInBack(
 			200, 600, 300,
-			0.0f, 0.0f, -100.0f, 0.0f);
+			0.0f, -100.0f, 0.0f, 0.0f);
 	this->assert(level == -4, "adv pile derriere tres proche => level -4");
 }
 
 void test::SensorsTest::testFiltreBack_Outside_InFront()
 {
-	// Adversaire devant : ydist>0 => filtre back retourne 0
+	// Adversaire devant : x>0 => filtre back retourne 0
 	int level = testSensors_->filtre_levelInBack(
 			200, 600, 300,
-			0.0f, 0.0f, 200.0f, 0.0f);
+			0.0f, 200.0f, 0.0f, 0.0f);
 	this->assert(level == 0, "adv devant => filtre back retourne 0");
 }
 
@@ -246,27 +246,24 @@ void test::SensorsTest::testFiltreFront_OverlapLevel1and4()
 {
 	// A la frontiere threshold_LR, level 1 et level 4 sont tous les deux vrais.
 	// L'ordre dans le code : level 1 teste en premier, level 1 gagne.
-	// ydist=100 => apres patch y=150
-	// xdist=150 => apres patch x=200 == threshold_LR_mm
-	// Level 1 : x>=200 && x<=600 OK
-	// Level 4 : x>=-200 && x<=200 OK aussi
+	// x=100 => apres patch x=150
+	// y=-150 => apres patch y=-200 == -threshold_LR_mm (limite droite)
 	int level = testSensors_->filtre_levelInFront(
 			200, 600, 300,
-			0.0f, 150.0f, 100.0f, 0.0f);
+			0.0f, 100.0f, -150.0f, 0.0f);
 	this->assert(level == 1,
-			"frontiere x=threshold_LR : level 1 (prioritaire) gagne");
+			"frontiere y=-threshold_LR : level 1 (prioritaire) gagne");
 }
 
 void test::SensorsTest::testFiltreFront_ZeroPosition()
 {
-	// xdist=0, ydist=0 : patch balise ne s'applique pas (test strict sur > et <)
-	// Donc ydist=0 => la condition ydist>0 est fausse => retourne 0
-	// Ceci documente le comportement actuel.
+	// x=0, y=0 : patch balise ne s'applique pas (test strict sur > et <)
+	// Donc x=0 => la condition x>0 est fausse => retourne 0
 	int level = testSensors_->filtre_levelInFront(
 			200, 600, 300,
 			0.0f, 0.0f, 0.0f, 0.0f);
 	this->assert(level == 0,
-			"adv en (0,0) : y>0 faux => retourne 0");
+			"adv en (0,0) : x>0 faux => retourne 0");
 }
 
 #endif // SIMU

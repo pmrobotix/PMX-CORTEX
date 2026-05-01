@@ -23,23 +23,39 @@ class Robot;
  * Inclut le delta temps de mesure beacon (t_us) pour la synchronisation
  * avec le buffer circulaire de positions dans ARobotPositionShared.
  */
+/*!
+ * \brief Position d'un adversaire detecte, en repere ROBOT.
+ *
+ * Convention canonique partagee balise Teensy / driver ARM / driver SIMU /
+ * filtre ObstacleZone / tests :
+ *   - x         : composante AVANT en mm. x > 0 = adv devant le robot,
+ *                                          x < 0 = adv derriere.
+ *   - y         : composante LATERALE en mm. y > 0 = adv a gauche,
+ *                                            y < 0 = adv a droite.
+ *   - theta_deg : angle adv vu du robot. 0 deg = pile devant,
+ *                 sens trigo positif (CCW) = gauche.
+ *   - d         : distance centre robot -> centre adversaire en mm.
+ *
+ * Coherence : x = d*cos(theta_deg), y = d*sin(theta_deg)
+ *             (pure trigo classique, ce que publie la balise Teensy).
+ */
 class RobotPos
 {
 public:
 	int nbDetectedBots;  ///< Nombre total de robots detectes (duplique dans chaque element).
-	float x;             ///< Position X de l'adversaire en mm (coordonnees table).
-	float y;             ///< Position Y de l'adversaire en mm (coordonnees table).
-	float theta_deg;     ///< Angle de l'adversaire par rapport a l'avant du robot en degres.
-	float d;             ///< Distance du centre robot au centre adversaire en mm.
+	float x;             ///< Composante AVANT en mm (repere robot, x>0 = devant).
+	float y;             ///< Composante LATERALE en mm (repere robot, y>0 = gauche).
+	float theta_deg;     ///< Angle adv vu du robot, deg. 0=devant, sens trigo+ = gauche.
+	float d;             ///< Distance centre robot - centre adversaire en mm.
 	uint16_t t_us;       ///< Delta temps de mesure beacon (us depuis debut cycle Teensy). 0 en SIMU.
 
 	/*!
 	 * \brief Constructeur.
 	 * \param nb Nombre de robots detectes.
-	 * \param x_ Position X en mm.
-	 * \param y_ Position Y en mm.
-	 * \param a_ Angle en degres.
-	 * \param d_ Distance en mm.
+	 * \param x_ Composante avant (repere robot, mm).
+	 * \param y_ Composante laterale (repere robot, mm, gauche>0).
+	 * \param a_ Angle en degres (0=devant).
+	 * \param d_ Distance robot-adv en mm.
 	 * \param t_us_ Delta temps mesure beacon en us (0 si inconnu/SIMU).
 	 */
 	RobotPos(int nb, float x_, float y_, float a_, float d_, uint16_t t_us_ = 0)

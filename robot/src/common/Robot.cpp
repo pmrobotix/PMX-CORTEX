@@ -151,6 +151,17 @@ void Robot::configureDefaultConsoleArgs() {
         cOpt.addArgument("name", "Strategy name (ex: 'PMX0' -> strategyPMX0.json)", "");
         cArgs_.addOption(cOpt);
     }
+
+    {
+        // /a <x> <y>  -> DEBUG : injecte un adv fixe en (x,y) mm table.
+        // Active en SIMU (SensorsDriverSimu) et sur robot reel (driver-arm).
+        // Sur robot reel, le fake adv s'AJOUTE aux vrais adv balise -> a NE PAS
+        // oublier de retirer en match.
+        Arguments::Option cOpt('a', "DEBUG: injecte un adv fixe a (x,y) mm table");
+        cOpt.addArgument("x", "x table mm", "0");
+        cOpt.addArgument("y", "y table mm", "0");
+        cArgs_.addOption(cOpt);
+    }
 }
 
 void Robot::loadInitJsonForCurrentStrategy()
@@ -210,6 +221,7 @@ void Robot::parseConsoleArgs(int argc, char** argv, bool stopWithErrors) {
         std::cout << "  ./bot-opos6ul m                         # match (menu LCD/balise)" << std::endl;
         std::cout << "  ./bot-opos6ul m /k                      # match, skip menu+tirette (defaut PMX1 BLEU)" << std::endl;
         std::cout << "  ./bot-opos6ul m /k /y /s PMX2           # match, skip, JAUNE, strat PMX2" << std::endl;
+        std::cout << "  ./bot-opos6ul m /k /s PMX1 /a 2000 900  # match PMX1 avec adv fixe DEBUG (x=2000,y=900)" << std::endl;
         std::cout << "  ./bot-opos6ul lr /h                     # aide detaillee du test lr" << std::endl;
         std::cout << "  ./bot-opos6ul cal 1                     # test calibration step 1 (codeurs)" << std::endl;
         std::cout << "  ./bot-opos6ul lr 30                     # test ligne 30mm (40% defaut)" << std::endl;
@@ -272,6 +284,13 @@ void Robot::parseConsoleArgs(int argc, char** argv, bool stopWithErrors) {
         // warn si absent au lieu d'aborter (tests fonctionnels n'ont pas
         // forcement le init JSON dans le cwd).
         loadInitJsonForCurrentStrategy();
+    }
+
+    // /a <x> <y> : DEBUG injection adv fixe (cable dans O_State_DecisionMakerIA).
+    if (cArgs_['a']) {
+        injectAdvX_ = std::atof(cArgs_['a']["x"].c_str());
+        injectAdvY_ = std::atof(cArgs_['a']["y"].c_str());
+        injectAdvEnabled_ = true;
     }
 
     // Reconfigure telemetry appender with command line args (/i ip /P port)

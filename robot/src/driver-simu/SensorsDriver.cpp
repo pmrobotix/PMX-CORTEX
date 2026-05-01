@@ -36,16 +36,19 @@ void SensorsDriverSimu::displayNumber(int number)
 
 //a deplacer dans RobotPositionShared ?transformPosREPTABLE_to_PosREPROBOT Ne sert uniquement a la simu des sensors ?
 //
-// Convention alignee sur Sensors.cpp (docstring "Convention beacon : 0° = devant du robot") :
-//   - theta_deg  : angle vers l'adv vu du robot. 0° = adv pile devant, sens trigo positif = gauche.
-//   - y_rep_robot : composante avant (y > 0 = adv devant robot).
-//   - x_rep_robot : composante laterale (x > 0 = adv a droite, x < 0 = gauche).
+// Convention canonique repere robot (alignee balise Teensy + filtre + tests) :
+//   - theta_deg : angle vers l'adv vu du robot. 0 deg = adv pile devant,
+//                 sens trigo positif (CCW) = gauche.
+//   - x_rep_robot : composante AVANT (x > 0 = adv devant robot, x < 0 = derriere).
+//   - y_rep_robot : composante LATERALE (y > 0 = adv a gauche, y < 0 = droite).
+//
+// Coherence trigo : x = d*cos(theta_deg), y = d*sin(theta_deg)
+//                 = ce que publie la balise Teensy (TofSensors.cpp).
 //
 // Sensors::front reconstruit la position table avec :
 //   a_table = robot.theta + theta_deg_rad
 //   x_adv_table = robot.x + d * cos(a_table)
 //   y_adv_table = robot.y + d * sin(a_table)
-// Ce qui doit redonner (x_table, y_table). On verifie la coherence ci-dessous.
 RobotPos SensorsDriverSimu::transformPosTableToPosRobot(int nb, float x_table, float y_table)
 {
     loggerSvg().info() << "<circle cx=\"" << x_table << "\" cy=\"" << -y_table << "\" r=\"5\" fill=\"red\" />"
@@ -67,16 +70,16 @@ RobotPos SensorsDriverSimu::transformPosTableToPosRobot(int nb, float x_table, f
     alpha_rad = WrapAngle2PI(alpha_rad);
     float alpha_deg = alpha_rad * 180.0f / (float)M_PI;
 
-    // Projection dans le repere robot :
-    //  axe "avant" (y_rob) = direction theta  : cos(theta), sin(theta)
-    //  axe "droite" (x_rob) = perpendiculaire droite : sin(theta), -cos(theta)
-    float y_rep_robot = dx * std::cos(p.theta) + dy * std::sin(p.theta);
-    float x_rep_robot = dx * std::sin(p.theta) - dy * std::cos(p.theta);
+    // Projection dans le repere robot (convention canonique) :
+    //  axe "avant"   (x_rep_robot) = direction theta : cos(theta), sin(theta)
+    //  axe "gauche"  (y_rep_robot) = perpendiculaire CCW : -sin(theta), cos(theta)
+    float x_rep_robot = dx * std::cos(p.theta) + dy * std::sin(p.theta);
+    float y_rep_robot = -dx * std::sin(p.theta) + dy * std::cos(p.theta);
 
     logger().debug() << __FUNCTION__ << " (" << x_table << "," << y_table
             << ") dx=" << dx << " dy=" << dy << " d=" << d
             << " p.theta=" << (p.theta * 180.0f / M_PI) << "deg"
-            << " -> x_rob=" << x_rep_robot << " y_rob=" << y_rep_robot
+            << " -> x_rob(avant)=" << x_rep_robot << " y_rob(gauche)=" << y_rep_robot
             << " theta_rob=" << alpha_deg << "deg" << logs::end;
 
     RobotPos pos = { nb, x_rep_robot, y_rep_robot, alpha_deg, d };

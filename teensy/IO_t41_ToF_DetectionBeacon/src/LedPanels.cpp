@@ -289,29 +289,22 @@ void thread_display()
 			}
 		}
 
-		if (proximity_level == 2)
-				{
-					video_2 = 2;
-					threads.delay(500);
-				}
+		// Hey!! (proximity_level == 2) desactive pour la competition.
+		// Reactivable apres : restaurer le bloc ci-dessous.
+		// if (proximity_level == 2)
+		//         {
+		//                 video_2 = 2;
+		//                 threads.delay(500);
+		//         }
 
 		// Detection swipe (main qui passe en arc autour de la balise)
 		// Independant du UA, detectee par TofSensors pendant proximity_level==0.
 		// Desactive en mode match (perturbe l'affichage du score / K2000).
-		if (last_swipe_gesture != SWIPE_NONE && match_mode_actif != 0) {
-			last_swipe_gesture = SWIPE_NONE; // consomme silencieusement en mode match
-		}
-		else if (last_swipe_gesture != SWIPE_NONE) {
-			int swipe = last_swipe_gesture;
-			last_swipe_gesture = SWIPE_NONE; // consomme
-			if (swipe == SWIPE_CW) {
-				// Flash cyan 2 lignes du haut pendant 800ms (horaire)
-				flash_ua_gesture(matrix->Color(0, 255, 255), 800);
-			} else if (swipe == SWIPE_CCW) {
-				// Flash magenta 2 lignes du haut pendant 800ms (anti-horaire)
-				flash_ua_gesture(matrix->Color(255, 0, 255), 800);
-			}
-		}
+		// Flashs cyan/magenta desactives pour la competition (a reactiver apres).
+		// On conserve la consommation du flag pour eviter qu'il ne s'accumule.
+		//if (last_swipe_gesture != SWIPE_NONE) {
+		//	last_swipe_gesture = SWIPE_NONE; // consomme silencieusement (CW/CCW desactives)
+		//}
 
 		threads.yield();
 	}

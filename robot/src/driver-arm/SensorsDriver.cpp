@@ -4,13 +4,13 @@
 #include "HardwareConfig.hpp"
 #include "../driver-simu/SensorsDriver.hpp"
 
+#include <cmath>
 #include <string>
 #include <vector>
 
+#include "interface/ARobotPositionShared.hpp"
 #include "log/Logger.hpp"
 #include "utils/json.hpp"
-
-class ARobotPositionShared;
 
 using namespace std;
 
@@ -139,6 +139,22 @@ int SensorsDriver::sync()
 	}
 
 	logger().debug() << "beacon seq:" << regs.seq << " t1:" << regs.t1_us << "us" << logs::end;
+
+	// DEBUG /a : adv injecte en plus des vrais adv balise. Conversion (x_table,
+	// y_table) -> RobotPos en convention canonique repere robot
+	// (x=avant, y=lateral gauche>0). Ajoute en queue pour ne pas masquer vpos[0].
+	if (injectedAdvEnabled_ && robotpos_ != nullptr) {
+		ROBOTPOSITION p = robotpos_->getRobotPosition(0);
+		float dx = injectedAdvX_ - p.x;
+		float dy = injectedAdvY_ - p.y;
+		float d  = std::sqrt(dx * dx + dy * dy);
+		// Convention canonique : x=avant (cos), y=gauche (perpendiculaire CCW)
+		float x_rep_robot = dx * std::cos(p.theta) + dy * std::sin(p.theta);
+		float y_rep_robot = -dx * std::sin(p.theta) + dy * std::cos(p.theta);
+		float alpha_rad = std::atan2(dy, dx) - p.theta;
+		float alpha_deg = alpha_rad * 180.0f / (float)M_PI;
+		vadv_.push_back(RobotPos((int)vadv_.size() + 1, x_rep_robot, y_rep_robot, alpha_deg, d, 0));
+	}
 
 	msync_.unlock();
 
@@ -275,6 +291,17 @@ void SensorsDriver::addvPositionsAdv(float x, float y)
 void SensorsDriver::clearPositionsAdv()
 {
 	vadv_.clear();
+}
+
+void SensorsDriver::setInjectedAdv(float x_table_mm, float y_table_mm)
+{
+	injectedAdvX_ = x_table_mm;
+	injectedAdvY_ = y_table_mm;
+	injectedAdvEnabled_ = true;
+}
+void SensorsDriver::clearInjectedAdv()
+{
+	injectedAdvEnabled_ = false;
 }
 
 int SensorsDriver::leftSide()

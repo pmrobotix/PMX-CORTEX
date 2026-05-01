@@ -7,6 +7,10 @@
 
 #include <cmath>
 
+// Convention canonique repere robot (alignee balise Teensy + simu) :
+//   x_adv_mm > 0  : adv DEVANT le robot
+//   y_adv_mm > 0  : adv a GAUCHE  (sens trigo positif, 0 deg = devant)
+//   y_adv_mm < 0  : adv a DROITE
 int ObstacleZone::filtre_levelInFront(int threshold_LR_mm, int threshold_Front_mm,
 		int threshold_veryclosed_front_mm,
 		float dist_adv_mm, float x_adv_mm, float y_adv_mm,
@@ -28,34 +32,34 @@ int ObstacleZone::filtre_levelInFront(int threshold_LR_mm, int threshold_Front_m
 	if (ydist_adv > 0) ydist_adv += 50;
 	if (ydist_adv < 0) ydist_adv -= 50;
 
-	if (ydist_adv > 0)
+	if (xdist_adv > 0)  // adv devant
 	{
-		// return 1 si c'est à droite
-		if ((ydist_adv <= threshold_veryclosed_front_mm)
-				&& (xdist_adv >= threshold_LR_mm)
-				&& (xdist_adv <= threshold_Front_mm))
+		// return 1 si c'est à droite (y < 0)
+		if ((xdist_adv <= threshold_veryclosed_front_mm)
+				&& (ydist_adv <= -threshold_LR_mm)
+				&& (ydist_adv >= -threshold_Front_mm))
 		{
 			return 1;
 		}
-		// return 2 si c'est à gauche
-		if ((ydist_adv <= threshold_veryclosed_front_mm)
-				&& (xdist_adv <= (-threshold_LR_mm))
-				&& (xdist_adv >= -threshold_Front_mm))
+		// return 2 si c'est à gauche (y > 0)
+		if ((xdist_adv <= threshold_veryclosed_front_mm)
+				&& (ydist_adv >= threshold_LR_mm)
+				&& (ydist_adv <= threshold_Front_mm))
 		{
 			return 2;
 		}
-		// return 3 zone moyenne
-		if ((ydist_adv <= threshold_Front_mm)
-				&& (ydist_adv > threshold_veryclosed_front_mm)
-				&& (xdist_adv >= -threshold_Front_mm)
-				&& (xdist_adv <= threshold_Front_mm))
+		// return 3 zone moyenne (entre veryclosed et front, lateral dans [-front, +front])
+		if ((xdist_adv <= threshold_Front_mm)
+				&& (xdist_adv > threshold_veryclosed_front_mm)
+				&& (ydist_adv >= -threshold_Front_mm)
+				&& (ydist_adv <= threshold_Front_mm))
 		{
 			return 3;
 		}
 		// return 4 dead center tres proche
-		if ((ydist_adv <= threshold_veryclosed_front_mm)
-				&& (xdist_adv >= -threshold_LR_mm)
-				&& (xdist_adv <= threshold_LR_mm))
+		if ((xdist_adv <= threshold_veryclosed_front_mm)
+				&& (ydist_adv >= -threshold_LR_mm)
+				&& (ydist_adv <= threshold_LR_mm))
 		{
 			return 4;
 		}
@@ -63,6 +67,7 @@ int ObstacleZone::filtre_levelInFront(int threshold_LR_mm, int threshold_Front_m
 	return 0;
 }
 
+// Convention canonique : x < 0 = adv DERRIERE le robot, y = lateral (gauche>0).
 int ObstacleZone::filtre_levelInBack(int threshold_LR_mm, int threshold_Back_mm,
 		int threshold_veryclosed_back_mm,
 		float dist_adv_mm, float x_adv_mm, float y_adv_mm,
@@ -84,34 +89,34 @@ int ObstacleZone::filtre_levelInBack(int threshold_LR_mm, int threshold_Back_mm,
 	if (ydist_adv > 0) ydist_adv += 50;
 	if (ydist_adv < 0) ydist_adv -= 50;
 
-	if (ydist_adv < 0)
+	if (xdist_adv < 0)  // adv derriere
 	{
-		// return -1 si c'est à droite
-		if ((ydist_adv >= -threshold_veryclosed_back_mm)
-				&& (xdist_adv >= threshold_LR_mm)
-				&& (xdist_adv <= threshold_Back_mm))
+		// return -1 si c'est à droite (y < 0)
+		if ((xdist_adv >= -threshold_veryclosed_back_mm)
+				&& (ydist_adv <= -threshold_LR_mm)
+				&& (ydist_adv >= -threshold_Back_mm))
 		{
 			return -1;
 		}
-		// return -2 si c'est à gauche
-		if ((ydist_adv >= -threshold_veryclosed_back_mm)
-				&& (xdist_adv <= (-threshold_LR_mm))
-				&& (xdist_adv >= -threshold_Back_mm))
+		// return -2 si c'est à gauche (y > 0)
+		if ((xdist_adv >= -threshold_veryclosed_back_mm)
+				&& (ydist_adv >= threshold_LR_mm)
+				&& (ydist_adv <= threshold_Back_mm))
 		{
 			return -2;
 		}
 		// return -3 zone moyenne
-		if ((ydist_adv >= -threshold_Back_mm)
-				&& (ydist_adv < -threshold_veryclosed_back_mm)
-				&& (xdist_adv >= -threshold_Back_mm)
-				&& (xdist_adv <= threshold_Back_mm))
+		if ((xdist_adv >= -threshold_Back_mm)
+				&& (xdist_adv < -threshold_veryclosed_back_mm)
+				&& (ydist_adv >= -threshold_Back_mm)
+				&& (ydist_adv <= threshold_Back_mm))
 		{
 			return -3;
 		}
 		// return -4 dead center tres proche
-		if ((ydist_adv >= -threshold_veryclosed_back_mm)
-				&& (xdist_adv >= -threshold_LR_mm)
-				&& (xdist_adv <= threshold_LR_mm))
+		if ((xdist_adv >= -threshold_veryclosed_back_mm)
+				&& (ydist_adv >= -threshold_LR_mm)
+				&& (ydist_adv <= threshold_LR_mm))
 		{
 			return -4;
 		}

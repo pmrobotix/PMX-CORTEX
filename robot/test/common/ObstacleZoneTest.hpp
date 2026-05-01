@@ -54,6 +54,25 @@ public:
 	// Cas limites
 	void testFiltreFront_OverlapLevel1and4();
 	void testFiltreFront_ZeroPosition();
+
+	// Chaine complete balise -> filtre : valide la convention canonique
+	// (x=avant, y=lateral gauche>0) en partant des grandeurs balise (dist, angle).
+	void testChaineBalise_AdvDevant();
+	void testChaineBalise_AdvDroite();
+	void testChaineBalise_AdvGauche();
+	void testChaineBalise_AdvArriere();
+	void testChaineBalise_AdvDroitePur();        // 90 deg vers droite (lateral pur)
+	void testChaineBalise_AdvGauchePur();        // -90 deg vers gauche (lateral pur)
+	void testChaineBalise_AdvArriereDroit();     // 180+45 deg arriere-droit
+	void testChaineBalise_AdvArriereGauche();    // 180-45 deg arriere-gauche
+
+	// Frontieres / zones exclues (no-mix front <-> back, pas de trou logique)
+	void testFiltreFront_TooLateralRight();
+	void testFiltreFront_TooLateralLeft();
+	void testFiltreFront_TooDeep();
+	void testFiltreBack_TooDeep();
+	void testFiltreBack_DeadBehind_LimitLR();
+	void testFiltreBoth_AdvAtX0_Lateral();       // x=0 -> ni front ni back
 };
 
 }

@@ -56,6 +56,12 @@ private:
     ARobotPositionShared *robotpos_;  ///< Pour acceder au chrono partage (synchro beacon).
     uint32_t last_sync_ms_;           ///< Timestamp capture juste apres readFlag (= proche de la fin de cycle Teensy).
 
+    // --- DEBUG /a <x> <y> : adv injecte (cf. setInjectedAdv). Republie a chaque
+    // sync() en plus des vrais adv balise. A NE PAS activer en match reel.
+    float injectedAdvX_       = 0.0f;
+    float injectedAdvY_       = 0.0f;
+    bool  injectedAdvEnabled_ = false;
+
 
 //    int getFrontDistMmFromObject(int diagonal_dist_mm);
 //    int getBackDistMmFromObject(int diagonal_dist_mm);
@@ -97,6 +103,11 @@ public:
 
     void addvPositionsAdv(float x, float y) ;
     void clearPositionsAdv() ;
+
+    // DEBUG /a <x> <y> : adv injecte fixe sur la table. Republie a chaque sync()
+    // en plus des vrais adv balise (ne masque pas les detections reelles).
+    void setInjectedAdv(float x_table_mm, float y_table_mm) override;
+    void clearInjectedAdv() override;
 
     int frontLeft(); //retourne la dernière distance minimum gauche (en mm) apres le sync
     int frontCenter();
