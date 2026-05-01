@@ -33,6 +33,15 @@ public:
     PlaygroundObjectID opponent_3;
     PlaygroundObjectID opponent_4;
 
+    /*!
+     * \brief Zone dynamique de test (NON permanente), declaree avant
+     * compute_edges puis desactivee. Restera inactive en production —
+     * O_StrategyJsonRunnerTest l'active uniquement pour le scenario SR09
+     * (PathImpossible / SK_IMPS). Permet de tester proprement le code
+     * SK_IMPS du runner sans toucher aux bordures permanentes.
+     */
+    PlaygroundObjectID area_test_blocker;
+
     PlaygroundObjectID area_B4;
     PlaygroundObjectID area_C4;
     PlaygroundObjectID area_B3;

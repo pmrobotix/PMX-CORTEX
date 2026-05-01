@@ -1,0 +1,25 @@
+[
+  {
+    "id": 1, "desc": "i1 OK, prend ~2s (laisse le chrono avancer)", "priority": 100,
+    "tasks": [
+      { "type": "MOVEMENT", "subtype": "GO_TO", "position_x": 1000, "position_y": 1000 },
+      { "type": "MANIPULATION", "action_id": "trace_i1" }
+    ]
+  },
+  {
+    "id": 2, "desc": "i2 max_match_sec=1 -> skip car chrono > 1s apres i1", "priority": 50,
+    "max_match_sec": 1.0,
+    "tasks": [
+      { "type": "MOVEMENT", "subtype": "GO_TO", "position_x": 1500, "position_y": 500 },
+      { "type": "MANIPULATION", "action_id": "trace_i2" }
+    ]
+  },
+  {
+    "id": 3, "desc": "i3 max_match_sec=999 -> OK (largement dans le temps)", "priority": 10,
+    "max_match_sec": 999.0,
+    "tasks": [
+      { "type": "MOVEMENT", "subtype": "GO_TO", "position_x": 500, "position_y": 500 },
+      { "type": "MANIPULATION", "action_id": "trace_i3" }
+    ]
+  }
+]

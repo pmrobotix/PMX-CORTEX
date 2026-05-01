@@ -101,8 +101,10 @@ Consulter ces fichiers avant toute modification pour vérifier la cohérence arc
 | `robot/md/HARDWARE_CONFIG.md` | Configuration hardware dynamique (activation/désactivation drivers) |
 | `robot/md/ASSERV_MIGRATION_COMMUNICATION.md` | Migration communication série ancien raspIO → SerialIO/RaspIO |
 | `robot/md/SENSORS_DETECTION_MIGRATION.md` | Refactoring Sensors/ObstacleZone, beacon, détection, SVG |
+| `robot/md/DETECTION_ADV_CONVENTION.md` | Convention canonique x=avant/y=gauche partagée balise/simu/filtre/tests |
 | `robot/md/ASSERV_BUG_GLITCH_I2C.md` | Bug glitch I2C asserv |
 | `robot/md/O_STATE_NEW_INIT.md` | Refactor O_State_Init multi-sources (shield LCD2x16 + LCD tactile balise) avec phase machine |
+| `robot/md/STRATEGY_DECISION_RUNNER.md` | Évolution runner : skip+continue au lieu d'abort, sémantique TRAJ_STATE, variables JSON pour homologation |
 | `robot/md/BUILD.md` | Instructions de build |
 | `robot/config/opos6ul/FLASH-OPOS6UL.md` | Procédure flash OPOS6UL |
 | `robot/config/opos6ul/CONFIG-STATUS.md` | Status configuration hardware |

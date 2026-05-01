@@ -16,6 +16,7 @@ OPOS6UL_IAExtended::OPOS6UL_IAExtended(std::string botId, Robot *robot) :
 //    opponent_2 = Playground::INVALID;
 //    opponent_3 = Playground::INVALID;
 //    opponent_4 = Playground::INVALID;
+    area_test_blocker = Playground::INVALID;
 
     area_B4 = Playground::INVALID;
     area_C4 = Playground::INVALID;
@@ -32,11 +33,20 @@ void OPOS6UL_IAExtended::initPlayground() {
     //terrain horizontal
     p_ = new SymmetricalPlayground(0.0, 0.0, 3400.0, 2500.0, 0.5, 1.0, 1500.0);
 
-    //bordure terrain horizontal
-    p_->add_rectangle_lower_left(0, 0, 129, 2000, 0); //cote gauche
-    p_->add_rectangle_lower_left(3000, 0, -129, 2000, 0); //cote droit
-    p_->add_rectangle_lower_left(0, 0, 3000, 129, 0); //bas
-    p_->add_rectangle_lower_left(0, 2000 - 129, 3000, 2000, 0); //haut
+    //bordure terrain horizontal — capture les ids pour marquer permanent
+    PlaygroundObjectID borderLeftId, borderRightId, borderBottomId, borderTopId;
+    p_->add_rectangle_lower_left(borderLeftId,   0,        0,        129, 2000, 0); //cote gauche
+    p_->add_rectangle_lower_left(borderRightId,  3000,     0,       -129, 2000, 0); //cote droit
+    p_->add_rectangle_lower_left(borderBottomId, 0,        0,       3000,  129, 0); //bas
+    p_->add_rectangle_lower_left(borderTopId,    0, 2000-129, 3000, 2000, 0); //haut
+    // Bordures = zones FIXES du jeu, jamais desactivables au match.
+    // Le flag is_permanent permet a StrategyJsonRunner::validateAgainstPlayground
+    // de detecter au chargement qu'une cible de strategie tombe dans une bordure
+    // (= cible jamais atteignable) et d'aborter avant le match.
+    p_->set_permanent(borderLeftId,   true);
+    p_->set_permanent(borderRightId,  true);
+    p_->set_permanent(borderBottomId, true);
+    p_->set_permanent(borderTopId,    true);
     //bordure terrain vertical
 //    p_->add_rectangle_lower_left(0, 0, 129, 3000, 0); //cote gauche
 //    p_->add_rectangle_lower_left(2000, 0, -129, 3000, 0); //cote droit
@@ -141,6 +151,15 @@ void OPOS6UL_IAExtended::initPlayground() {
 //    p_->add_circle(this->opponent_2, -100.0, -100.0, 350.0, 8);
 //    p_->add_circle(this->opponent_3, -100.0, -100.0, 350.0, 8);
 //    p_->add_circle(this->opponent_4, -100.0, -100.0, 350.0, 8);
+
+    // Zone dynamique de test : declaree pour que les edges intersectants
+    // soient calcules par compute_edges. DESACTIVEE par defaut, n'a
+    // aucun impact en production. O_StrategyJsonRunnerTest l'active
+    // ponctuellement pour le scenario SR09 (cible PATH_TO bloquee
+    // -> A* renvoie cost=0 -> outcome SK_IMPS).
+    p_->add_rectangle_lower_left(this->area_test_blocker, 1750, 950, 100, 100, 0);
+    p_->enable(this->area_test_blocker, false);
+
     p_->compute_edges();
     iap_.addPlayground(p_);
     iap_.toSVG();

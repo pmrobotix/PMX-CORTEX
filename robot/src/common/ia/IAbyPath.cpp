@@ -43,6 +43,12 @@ void IAbyPath::addPlayground(Playground *p)
 	p_ = p;
 }
 
+bool IAbyPath::pointInPermanentZone(float x, float y)
+{
+	if (p_ == NULL) return false;
+	return p_->point_in_permanent_zone(x, y);
+}
+
 void IAbyPath::enable(PlaygroundObjectID id, bool enable)
 {
 	p_->enable(id, enable);
@@ -365,6 +371,18 @@ void IAbyPath::goToZone(const char *zoneName, ROBOTPOSITION *zone_p)
 
 void IAbyPath::playgroundFindPath(FoundPath *&path, Point &start, Point &end)
 {
+	// Garde defensive : si initPlayground() n'a pas ete appele (oubli dans
+	// un nouveau point d'entree, mode debug ad-hoc, etc.), p_ vaut NULL et
+	// p_->find_path crashe en derefencant la vtable. On loggue une erreur et
+	// on rend un path NULL : Navigator::computePath voit waypoints.empty()
+	// et le runner remonte SK_IMPS comme outcome propre.
+	if (p_ == NULL) {
+		logger().error() << __FUNCTION__
+		                 << " : Playground non initialise (initPlayground non appele)"
+		                 << " - retour path=NULL" << logs::end;
+		path = NULL;
+		return;
+	}
 	p_->find_path(path, start, end);
 }
 

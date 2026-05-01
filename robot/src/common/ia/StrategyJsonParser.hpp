@@ -30,6 +30,9 @@ struct StrategyTask
     std::optional<std::string> item_id;
     std::optional<int>   speed_percent;
     std::optional<int>   duration_ms;
+    // WAIT absolu : bloque jusqu'a ce que le chrono match >= until_match_sec.
+    // Mutuellement exclusif avec duration_ms. Si t deja depasse : log warn + skip.
+    std::optional<float> until_match_sec;
     std::vector<std::array<float, 2>> waypoints;
 
     // Mode chain : si true, la cmd est envoyee a la Nucleo sans attendre
@@ -59,6 +62,12 @@ struct StrategyInstruction
     float priority = 0.0f;
     std::optional<int>   points;
     std::optional<float> estimatedDurationSec;
+    // Gates sur le chrono match :
+    // - min_match_sec : avant de demarrer, attend que t >= min_match_sec.
+    //                   Si t deja >= min_match_sec : continue immediatement.
+    // - max_match_sec : si t >= max_match_sec, l'instruction est SKIP avec log.
+    std::optional<float> min_match_sec;
+    std::optional<float> max_match_sec;
 };
 
 /*!

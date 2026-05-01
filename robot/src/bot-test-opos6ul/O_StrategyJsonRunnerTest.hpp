@@ -3,6 +3,7 @@
 
 #include "utils/FunctionalTest.hpp"
 #include "log/LoggerFactory.hpp"
+#include "ia/StrategyJsonRunner.hpp"
 
 #include <set>
 #include <string>
@@ -16,7 +17,11 @@
  *  - needed_flag / action_flag / clear_flags (SR02, SR05)
  *  - priority<0 desactive (SR03)
  *  - needed_flag au niveau task (SR04)
- *  - abort propre sur adversaire bloquant (SR06)
+ *  - skip+continue sur adversaire bloquant, run() ne fait pas abort (SR06)
+ *
+ * En plus de la trace MANIPULATION et des flags, verifie la sequence
+ * d'outcomes() retournee par runner.outcomes() : c'est ce qui distingue
+ * v1 (abort apres premier echec) de v2 (skip + continue, outcomes complete).
  *
  * Produit un SVG de synthese test_strategy_runner.svg (grille 2x3).
  *
@@ -52,12 +57,15 @@ private:
         std::vector<std::string> trace;
         // Flags actifs en fin d'execution
         std::set<std::string>    finalFlags;
+        // Status d'outcomes() apres run, dans l'ordre d'evaluation
+        std::vector<InstructionOutcome::Status> outcomeStatuses;
         // Position robot en fin de run
         float       endX = 0, endY = 0, endThetaDeg = 0;
 
         // Attendus (hardcodes par scenario dans le .cpp)
         std::vector<std::string> expectedTrace;
         std::set<std::string>    expectedFlags;
+        std::vector<InstructionOutcome::Status> expectedOutcomeStatuses;
 
         bool        pass = false;
         std::string failReason;

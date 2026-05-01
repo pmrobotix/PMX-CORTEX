@@ -69,9 +69,21 @@ void O_State_DecisionMakerIA::execute()
 		// se sont deroules sans detection (SensorsThread pas demarre, lastDetection
 		// reste a 0). On l'active maintenant : Asserv::waitEnd consultera
 		// frontLevel / backLevel pour declencher emergency stop sur adversaire.
+		// L et R toujours ignored (capteurs ToF lateraux pas qualifies cote table) ;
+		// front center et back center (balise) actifs des le start match.
 		robot.actions().sensors().setIgnoreFrontNearObstacle(true, false, true);
-		robot.actions().sensors().setIgnoreBackNearObstacle(true, true, true);
+		robot.actions().sensors().setIgnoreBackNearObstacle(true, false, true);
 		robot.actions().sensors().startSensorsThread(20);
+
+		// DEBUG /a <x> <y> : injection d'un adv fixe en mm table. Le fake adv est
+		// republie a chaque sync() (simu) et s'ajoute aux vrais adv balise (ARM).
+		// A ne pas oublier de retirer en match reel.
+		if (robot.injectAdvEnabled()) {
+			robot.actions().sensors().setInjectedAdv(robot.injectAdvX(), robot.injectAdvY());
+			logger().warn() << "DEBUG /a active : adv fixe injecte ("
+			                << robot.injectAdvX() << "," << robot.injectAdvY()
+			                << ") mm table" << logs::end;
+		}
 
 		// Enregistrement des actions MANIPULATION specifiques au reglement 2026.
 		ActionRegistry actions;
@@ -80,11 +92,18 @@ void O_State_DecisionMakerIA::execute()
 
 		FlagManager flags;
 		StrategyJsonRunner runner(&robot, &robot.ia().iAbyPath(), &actions, &flags);
-		if (runner.loadFromFile(robot.strategyJsonPath())) {
-			runner.run();
-		} else {
+		if (!runner.loadFromFile(robot.strategyJsonPath())) {
 			logger().error() << "JSON load failed (" << robot.strategyJsonPath()
 			                 << "), fallback freeMotion" << logs::end;
+		} else if (!runner.validateAgainstPlayground(&robot.ia().iAbyPath())) {
+			// Cible(s) de strategie tombent dans une zone permanente
+			// (bordure, grenier, depart adverse) -> definitivement
+			// inatteignable. On ne lance PAS le run : safer-fail avec
+			// freeMotion. Les details sont dans le log error.
+			logger().error() << "Strategy validation failed (" << robot.strategyJsonPath()
+			                 << "), fallback freeMotion" << logs::end;
+		} else {
+			runner.run();
 		}
 		robot.freeMotion();
 		robot.svgPrintEndOfFile();

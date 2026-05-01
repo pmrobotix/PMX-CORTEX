@@ -49,7 +49,9 @@ struct ScenarioSpec
     float       advX, advY;
     std::vector<std::string> expectedTrace;
     std::set<std::string>    expectedFlags;
-    bool        expectedRunCompleted;  // false = doit aborter (SR06)
+    // Outcomes attendus dans l'ordre chronologique d'evaluation par run().
+    // Distingue v2 (skip+continue, vector complet) de v1 (abort, vector tronque).
+    std::vector<InstructionOutcome::Status> expectedOutcomeStatuses;
 };
 
 const std::vector<ScenarioSpec> SCENARIOS = {
@@ -60,7 +62,11 @@ const std::vector<ScenarioSpec> SCENARIOS = {
         false, 0, 0,
         {"trace_i1", "trace_i3", "trace_i2"},
         {},
-        true
+        {
+            InstructionOutcome::Status::FINISHED,
+            InstructionOutcome::Status::FINISHED,
+            InstructionOutcome::Status::FINISHED,
+        }
     },
     {
         "SR02", "FlagChain : action_flag A leve par i1, i2 needed=A OK, i3 needed=NEVER skip",
@@ -69,7 +75,11 @@ const std::vector<ScenarioSpec> SCENARIOS = {
         false, 0, 0,
         {"trace_i1", "trace_i2"},
         {"A"},
-        true
+        {
+            InstructionOutcome::Status::FINISHED,
+            InstructionOutcome::Status::FINISHED,
+            InstructionOutcome::Status::SKIPPED_NEEDED_FLAG,
+        }
     },
     {
         "SR03", "PriorityNegDisable : i1 priority=-1 desactivee, seul i2 s'execute",
@@ -78,7 +88,10 @@ const std::vector<ScenarioSpec> SCENARIOS = {
         false, 0, 0,
         {"trace_i2"},
         {},
-        true
+        {
+            InstructionOutcome::Status::FINISHED,
+            InstructionOutcome::Status::SKIPPED_PRIORITY,
+        }
     },
     {
         "SR04", "TaskLevelFlag : task 2 skip par needed_flag (NEVER), tasks 1 et 3 OK",
@@ -87,7 +100,9 @@ const std::vector<ScenarioSpec> SCENARIOS = {
         false, 0, 0,
         {"trace_t1", "trace_t3"},
         {},
-        true
+        {
+            InstructionOutcome::Status::FINISHED,
+        }
     },
     {
         "SR05", "ClearFlagsChain : i2 clear A, donc i3 needed=A skippee",
@@ -96,16 +111,70 @@ const std::vector<ScenarioSpec> SCENARIOS = {
         false, 0, 0,
         {"trace_i1", "trace_i2"},
         {},
-        true
+        {
+            InstructionOutcome::Status::FINISHED,
+            InstructionOutcome::Status::FINISHED,
+            InstructionOutcome::Status::SKIPPED_NEEDED_FLAG,
+        }
     },
     {
-        "SR06", "AdvBlocksInstruction : adv bloque i2.GO_TO, run() abort, i3 non atteinte",
+        "SR06", "AdvBlocksI2_I3 : adv bloque i2 et i3 ; v2 -> outcomes=[OK,SKIP,SKIP], pas d'abort",
         "strategySR06.json",
         300, 300, 0,
-        true, 2000, 900,
+        // Adv (2300,1100) sur la diagonale i2 (1500,400)->(2500,1400) : bloque i2.
+        // L'adv reste injecte tout le scenario donc i3 est aussi bloque (cone
+        // front detecte l'adv au demarrage du faceTo). C'est OK : ce qui
+        // distingue v2 de v1, c'est que outcomes() renvoie 3 entrees (1 OK +
+        // 2 SKIPPED_OBSTACLE) au lieu de 1 (et abort) en v1.
+        true, 2300, 1100,
         {"trace_i1"},
         {"a_done"},
-        false
+        {
+            InstructionOutcome::Status::FINISHED,
+            InstructionOutcome::Status::SKIPPED_OBSTACLE,
+            InstructionOutcome::Status::SKIPPED_OBSTACLE,
+        }
+    },
+    {
+        "SR07", "AdvBlocksBackward : adv pile derriere bloque LINE -300, i2 fait GO_TO ailleurs",
+        "strategySR07.json",
+        // start (1500, 1500, theta=0) : robot oriente +X (Est). Devant=+X, derriere=-X.
+        1500, 1500, 0,
+        // Adv (1300, 1500) = 200mm pile derriere robot -> backLevel=-4 -> stop -> retry -> SKIP.
+        // i2 GO_TO (1500, 800) : la trajectoire ne passe PAS par l'adv (sud), donc OK.
+        true, 1300, 1500,
+        {"trace_i2"},   // i1.LINE bloquee donc trace_i1 pas appele ; i2 OK donc trace_i2 ok.
+        {},
+        {
+            InstructionOutcome::Status::SKIPPED_OBSTACLE,  // i1 LINE -300 bloquee (back)
+            InstructionOutcome::Status::FINISHED,          // i2 GO_TO libre
+        }
+    },
+    {
+        "SR08", "MaxMatchSecGate : i2 max_match_sec=1 -> skip apres i1, i3 max_match_sec=999 -> OK",
+        "strategySR08.json",
+        300, 300, 0,
+        false, 0, 0,
+        {"trace_i1", "trace_i3"},
+        {},
+        {
+            InstructionOutcome::Status::FINISHED,         // i1 OK (chrono ~0->2s)
+            InstructionOutcome::Status::SKIPPED_MAX_TIME, // i2 max=1, t>1 -> skip
+            InstructionOutcome::Status::FINISHED,         // i3 max=999 -> OK
+        }
+    },
+    {
+        "SR09", "PathImpossible : i2 PATH_TO (1800,1000) zone dyn active -> A* chemin vide -> SK_IMPS",
+        "strategySR09.json",
+        300, 300, 0,
+        false, 0, 0,
+        {"trace_i1", "trace_i3"},
+        {},
+        {
+            InstructionOutcome::Status::FINISHED,           // i1 OK
+            InstructionOutcome::Status::SKIPPED_IMPOSSIBLE, // i2 PATH_TO bordure
+            InstructionOutcome::Status::FINISHED,           // i3 OK
+        }
     }
 };
 
@@ -145,13 +214,37 @@ std::string joinFlags(const std::set<std::string>& s) {
     return out;
 }
 
+const char* statusName(InstructionOutcome::Status s) {
+    using St = InstructionOutcome::Status;
+    switch (s) {
+        case St::FINISHED:            return "OK";
+        case St::SKIPPED_PRIORITY:    return "SK_PRIO";
+        case St::SKIPPED_NEEDED_FLAG: return "SK_FLAG";
+        case St::SKIPPED_MAX_TIME:    return "SK_TIME";
+        case St::SKIPPED_OBSTACLE:    return "SK_OBST";
+        case St::SKIPPED_COLLISION:   return "SK_COLL";
+        case St::SKIPPED_IMPOSSIBLE:  return "SK_IMPS";
+        case St::SKIPPED_ERROR:       return "SK_ERR";
+    }
+    return "?";
+}
+
+std::string joinStatuses(const std::vector<InstructionOutcome::Status>& v) {
+    std::string out;
+    for (size_t i = 0; i < v.size(); i++) {
+        if (i > 0) out += ",";
+        out += statusName(v[i]);
+    }
+    return out;
+}
+
 } // namespace
 
 // =============================================================================
 
 O_StrategyJsonRunnerTest::O_StrategyJsonRunnerTest()
     : FunctionalTest("StrategyJsonRunner",
-                     "Test integration StrategyJsonRunner (6 scenarios SR01..SR06).",
+                     "Test integration StrategyJsonRunner (9 scenarios SR01..SR09).",
                      "jrun")
 {
 }
@@ -172,26 +265,32 @@ void O_StrategyJsonRunnerTest::run(int /*argc*/, char** /*argv*/)
     sensors.addConfigFront(false, true, false);
     sensors.addConfigBack(false, true, false);
     sensors.setIgnoreFrontNearObstacle(true, false, true);   // front centre actif
-    sensors.setIgnoreBackNearObstacle(true, true, true);     // back tout ignore
+    sensors.setIgnoreBackNearObstacle(true, false, true);    // back centre actif (aligne sur match)
     sensors.startSensorsThread(20);
     utils::sleep_for_micros(200000);
+
+    // Init pathfinding : equivalent du flux production O_State_DecisionMakerIA::execute()
+    // qui appelle robot.ia().initPlayground() avant de creer le StrategyJsonRunner.
+    // Sans ca, IAbyPath::p_ reste NULL et tout PATH_TO crashe (cf. SR09).
+    robot.ia().initPlayground();
 
     std::vector<SrResult> results;
     results.reserve(SCENARIOS.size());
 
     for (const auto& spec : SCENARIOS) {
         SrResult r;
-        r.name             = spec.name;
-        r.desc             = spec.desc;
-        r.jsonFile         = spec.jsonFile;
-        r.startX           = spec.startX;
-        r.startY           = spec.startY;
-        r.startThetaDeg    = spec.startThetaDeg;
-        r.hasAdv           = spec.hasAdv;
-        r.advX             = spec.advX;
-        r.advY             = spec.advY;
-        r.expectedTrace    = spec.expectedTrace;
-        r.expectedFlags    = spec.expectedFlags;
+        r.name                     = spec.name;
+        r.desc                     = spec.desc;
+        r.jsonFile                 = spec.jsonFile;
+        r.startX                   = spec.startX;
+        r.startY                   = spec.startY;
+        r.startThetaDeg            = spec.startThetaDeg;
+        r.hasAdv                   = spec.hasAdv;
+        r.advX                     = spec.advX;
+        r.advY                     = spec.advY;
+        r.expectedTrace            = spec.expectedTrace;
+        r.expectedFlags            = spec.expectedFlags;
+        r.expectedOutcomeStatuses  = spec.expectedOutcomeStatuses;
 
         runScenario(r);
         // Abort attendu : on verifie que run() a bien abort quand attendu
@@ -227,8 +326,9 @@ void O_StrategyJsonRunnerTest::runScenario(SrResult& res)
 
     logger().info() << "------ " << res.name << " : " << res.desc << " ------" << logs::end;
 
-    // 1. Reset position
+    // 1. Reset position + chrono match (necessaire pour max_match_sec dans SR08)
     robot.asserv().setPositionAndColor(res.startX, res.startY, res.startThetaDeg, false);
+    robot.chrono().start();   // (re)demarre le chrono match a t=0 pour ce scenario
     utils::sleep_for_micros(150000);
 
     // 2. Adv (inject ou clear)
@@ -237,6 +337,15 @@ void O_StrategyJsonRunnerTest::runScenario(SrResult& res)
         sensors.setInjectedAdv(res.advX, res.advY);
         logger().info() << "  adv injecte (" << res.advX << "," << res.advY << ")" << logs::end;
     }
+
+    // 2b. SR09 specifique : on active la zone "area_test_blocker" du
+    //     playground (zone dynamique non permanente declaree dans
+    //     initPlayground, desactivee par defaut). Cible (1800,1000) du
+    //     scenario tombe dedans -> A* renvoie cost=0 -> SK_IMPS.
+    //     Desactivee pour tous les autres scenarios (aucun impact).
+    bool enableTestBlocker = (std::string(res.name) == "SR09");
+    robot.ia().iAbyPath().playground()->enable(
+        robot.ia().area_test_blocker, enableTestBlocker);
     utils::sleep_for_micros(150000);
 
     // 3. ActionRegistry : actions mock qui loggent dans res.trace
@@ -269,8 +378,18 @@ void O_StrategyJsonRunnerTest::runScenario(SrResult& res)
         res.durationMs = chrono.getElapsedTimeInMilliSec();
         return;
     }
+    // Validation anticipee identique au flux production (cf O_State_DecisionMakerIA).
+    // Detecte au chargement les cibles tombant dans une zone permanente
+    // (bordures, grenier...) avant le match. Les SR01..SR09 actuels ont des
+    // cibles valides : aucune ne doit fail.
+    if (!runner.validateAgainstPlayground(&robot.ia().iAbyPath())) {
+        res.failReason = "validateAgainstPlayground a echoue (cible en zone permanente ?)";
+        chrono.stop();
+        res.durationMs = chrono.getElapsedTimeInMilliSec();
+        return;
+    }
     bool completed = runner.run();
-    (void)completed;  // checkVerdict compare via trace
+    (void)completed;  // v2 : run() renvoie toujours true ; verifie via outcomes()
 
     chrono.stop();
     res.durationMs = chrono.getElapsedTimeInMilliSec();
@@ -281,6 +400,10 @@ void O_StrategyJsonRunnerTest::runScenario(SrResult& res)
     res.endY = p.y;
     res.endThetaDeg = p.theta * 180.0f / (float)M_PI;
     res.finalFlags = flags.all();
+    res.outcomeStatuses.clear();
+    for (const auto& o : runner.outcomes()) {
+        res.outcomeStatuses.push_back(o.status);
+    }
 
     // 7. Cleanup adv avant scenario suivant
     sensors.clearInjectedAdv();
@@ -308,6 +431,12 @@ void O_StrategyJsonRunnerTest::checkVerdict(SrResult& res)
         res.pass = false;
         return;
     }
+    if (res.outcomeStatuses != res.expectedOutcomeStatuses) {
+        res.failReason = "outcomes mismatch : attendu=[" + joinStatuses(res.expectedOutcomeStatuses)
+                       + "] reel=[" + joinStatuses(res.outcomeStatuses) + "]";
+        res.pass = false;
+        return;
+    }
     res.pass = true;
 }
 
@@ -319,6 +448,7 @@ void O_StrategyJsonRunnerTest::logScenario(const SrResult& res)
     logger().info() << "  [" << status << "] " << res.name
                     << " trace=[" << joinTrace(res.trace) << "]"
                     << " flags={" << joinFlags(res.finalFlags) << "}"
+                    << " outcomes=[" << joinStatuses(res.outcomeStatuses) << "]"
                     << " end=(" << (int)res.endX << "," << (int)res.endY << ")"
                     << " dur=" << (int)res.durationMs << "ms" << logs::end;
     if (!res.pass) {
@@ -480,6 +610,13 @@ std::string O_StrategyJsonRunnerTest::svgCell(const SrResult& sc, float xOff, fl
     section(py, "Flags reels :"); py += 16;
     line(py, "  {" + joinFlags(sc.finalFlags) + "}",
          sc.finalFlags == sc.expectedFlags ? "#228B22" : "#c0392b"); py += 22;
+
+    section(py, "Outcomes attendus :"); py += 16;
+    line(py, "  [" + joinStatuses(sc.expectedOutcomeStatuses) + "]", "#555"); py += 20;
+
+    section(py, "Outcomes reels :"); py += 16;
+    line(py, "  [" + joinStatuses(sc.outcomeStatuses) + "]",
+         sc.outcomeStatuses == sc.expectedOutcomeStatuses ? "#228B22" : "#c0392b"); py += 22;
 
     section(py, "Position finale :"); py += 16;
     char posbuf[64];

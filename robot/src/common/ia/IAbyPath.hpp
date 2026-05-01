@@ -69,6 +69,16 @@ public:
 
     void addPlayground(Playground * p);
 
+    /*!
+     * \brief Retourne true si (x,y) tombe dans une zone marquee permanente
+     *        (bordures, grenier, depart adverse). Utilise par
+     *        StrategyJsonRunner::validateAgainstPlayground() pour detecter,
+     *        au chargement de la strategie JSON, une cible inatteignable
+     *        avant que le match commence. Retourne false si p_ == NULL ou
+     *        si (x,y) hors de toute zone permanente.
+     */
+    bool pointInPermanentZone(float x, float y);
+
     void ia_clear();
     void ia_createZone(const char* name, float minX, float minY, float width, float height, float startX, float startY,
             float startAngleDeg);

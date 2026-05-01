@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1, "desc": "i1 OK", "priority": 100,
+    "tasks": [
+      { "type": "MOVEMENT", "subtype": "GO_TO", "position_x": 800, "position_y": 800 },
+      { "type": "MANIPULATION", "action_id": "trace_i1" }
+    ]
+  },
+  {
+    "id": 2, "desc": "i2 PATH_TO (1800,1000) cible dans zone DYNAMIQUE active -> A* chemin vide -> TRAJ_IMPOSSIBLE", "priority": 50,
+    "tasks": [
+      { "type": "MOVEMENT", "subtype": "PATH_TO", "position_x": 1800, "position_y": 1000 },
+      { "type": "MANIPULATION", "action_id": "trace_i2" }
+    ]
+  },
+  {
+    "id": 3, "desc": "i3 retour OK", "priority": 10,
+    "tasks": [
+      { "type": "MOVEMENT", "subtype": "GO_TO", "position_x": 400, "position_y": 400 },
+      { "type": "MANIPULATION", "action_id": "trace_i3" }
+    ]
+  }
+]

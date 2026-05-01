@@ -15,9 +15,9 @@
     ]
   },
   {
-    "id": 3, "desc": "i3 retour (non atteinte en Phase 1 : abort)", "priority": 10,
+    "id": 3, "desc": "i3 retour zone depart (joue apres skip de i2 en v2)", "priority": 10,
     "tasks": [
-      { "type": "MOVEMENT", "subtype": "GO_TO", "position_x": 300, "position_y": 1800 },
+      { "type": "MOVEMENT", "subtype": "GO_TO", "position_x": 300, "position_y": 300 },
       { "type": "MANIPULATION", "action_id": "trace_i3" }
     ]
   }

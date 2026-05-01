@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1, "desc": "i1 LINE -300 bloquee par adv arriere", "priority": 100,
+    "tasks": [
+      { "type": "MOVEMENT", "subtype": "LINE", "dist": -300, "desc": "recul 300mm" },
+      { "type": "MANIPULATION", "action_id": "trace_i1" }
+    ]
+  },
+  {
+    "id": 2, "desc": "i2 GO_TO ailleurs, libre car adv reste sur axe arriere initial", "priority": 50,
+    "tasks": [
+      { "type": "MOVEMENT", "subtype": "GO_TO", "position_x": 1500, "position_y": 800 },
+      { "type": "MANIPULATION", "action_id": "trace_i2" }
+    ]
+  }
+]
