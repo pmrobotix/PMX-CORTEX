@@ -157,6 +157,10 @@ TRAJ_STATE Navigator::executeWaypoints(const std::vector<Waypoint>& waypoints,
     bool isChain = (mode == CHAIN || mode == CHAIN_NONSTOP);
     bool isNonstop = (mode == CHAIN_NONSTOP);
 
+    // Convention : les waypoints sont en coords BLUE (cf. computePath).
+    // Asserv::* applique changeMatchX en interne -> NE PAS pre-mirrorer ici
+    // sous peine de double conversion en YELLOW.
+
     // ---- Mode CHAIN / CHAIN_NONSTOP : envoi groupe puis waitTraj ----
     if (isChain)
     {
@@ -164,10 +168,9 @@ TRAJ_STATE Navigator::executeWaypoints(const std::vector<Waypoint>& waypoints,
         if (currentIndex < waypoints.size())
         {
             const Waypoint& first = waypoints[currentIndex];
-            float x_match = robot_->changeMatchX(first.x);
             TRAJ_STATE ts = first.reverse
-                ? robot_->asserv().faceBackTo(x_match, first.y)
-                : robot_->asserv().faceTo(x_match, first.y);
+                ? robot_->asserv().faceBackTo(first.x, first.y)
+                : robot_->asserv().faceTo(first.x, first.y);
             if (ts != TRAJ_FINISHED)
             {
                 return ts;
@@ -180,21 +183,20 @@ TRAJ_STATE Navigator::executeWaypoints(const std::vector<Waypoint>& waypoints,
         {
             const Waypoint& wp = waypoints[i];
             bool isLast = (i == waypoints.size() - 1);
-            float x_match = robot_->changeMatchX(wp.x);
 
             if (wp.reverse)
             {
                 if (isNonstop && !isLast)
-                    robot_->asserv().goBackToChainSend(x_match, wp.y);
+                    robot_->asserv().goBackToChainSend(wp.x, wp.y);
                 else
-                    robot_->asserv().goBackToSend(x_match, wp.y);
+                    robot_->asserv().goBackToSend(wp.x, wp.y);
             }
             else
             {
                 if (isNonstop && !isLast)
-                    robot_->asserv().goToChainSend(x_match, wp.y);
+                    robot_->asserv().goToChainSend(wp.x, wp.y);
                 else
-                    robot_->asserv().goToSend(x_match, wp.y);
+                    robot_->asserv().goToSend(wp.x, wp.y);
             }
         }
 
@@ -218,12 +220,10 @@ TRAJ_STATE Navigator::executeWaypoints(const std::vector<Waypoint>& waypoints,
         const Waypoint& wp = waypoints[i];
         TRAJ_STATE ts;
 
-        float x_match = robot_->changeMatchX(wp.x);
-
         // Rotation vers le point
         ts = wp.reverse
-            ? robot_->asserv().faceBackTo(x_match, wp.y)
-            : robot_->asserv().faceTo(x_match, wp.y);
+            ? robot_->asserv().faceBackTo(wp.x, wp.y)
+            : robot_->asserv().faceTo(wp.x, wp.y);
         if (ts != TRAJ_FINISHED)
         {
             currentIndex = i;
@@ -233,9 +233,9 @@ TRAJ_STATE Navigator::executeWaypoints(const std::vector<Waypoint>& waypoints,
 
         // Deplacement
         if (wp.reverse)
-            ts = robot_->asserv().goBackTo(x_match, wp.y);
+            ts = robot_->asserv().goBackTo(wp.x, wp.y);
         else
-            ts = robot_->asserv().goTo(x_match, wp.y);
+            ts = robot_->asserv().goTo(wp.x, wp.y);
 
         robot_->svgPrintPosition(svgBotColor);
 
