@@ -56,6 +56,15 @@ struct RetryPolicy
     {
         return { 500000, 2, 2, 0, 0, false };
     }
+
+    //! Retry court pour le runner de match : 500ms entre essais, 2 tentatives.
+    //! Total max ~3-5s en cas d'obstacle persistant (vs ~6-8s avec standard).
+    //! Permet au runner de skipper rapidement une instruction bloquee et de
+    //! garder du temps pour les autres instructions / le retour zone fin.
+    static RetryPolicy matchShort()
+    {
+        return { 500000, 2, 2, 0, 0, false };
+    }
 };
 
 #endif

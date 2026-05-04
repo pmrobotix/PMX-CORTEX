@@ -43,6 +43,18 @@ TRAJ_STATE Navigator::executeWithRetry(std::function<TRAJ_STATE()> moveFunc,
 
     while (ts != TRAJ_FINISHED)
     {
+        // Deadline match (set par le runner) : abort si depassee. Evite de
+        // payer un retry + wait quand le retour zone fin doit demarrer.
+        if (robot_->matchAbortDeadlineSec() > 0.0f
+            && robot_->chrono().getElapsedTimeInSec() >= robot_->matchAbortDeadlineSec())
+        {
+            logger().warn() << "executeWithRetry: deadline match "
+                            << robot_->matchAbortDeadlineSec()
+                            << "s atteinte -> abort" << logs::end;
+            robot_->asserv().resetEmergencyOnTraj("Navigator deadline match");
+            return TRAJ_ERROR;
+        }
+
         ts = moveFunc();
 
         robot_->svgPrintPosition();
@@ -76,12 +88,13 @@ TRAJ_STATE Navigator::executeWithRetry(std::function<TRAJ_STATE()> moveFunc,
             logger().info() << "OBSTACLE essai " << obstacleCount
                             << "/" << policy.maxObstacleRetries << logs::end;
 
-            utils::sleep_for_micros(policy.waitTempoUs);
+            // Si c'etait le dernier essai, sortir sans payer le wait : on va
+            // remonter TRAJ_NEAR_OBSTACLE de toute facon.
+            if (obstacleCount >= policy.maxObstacleRetries)
+                break;
 
-            if (obstacleCount < policy.maxObstacleRetries)
-            {
-                robot_->asserv().resetEmergencyOnTraj("Navigator OBSTACLE retry");
-            }
+            utils::sleep_for_micros(policy.waitTempoUs);
+            robot_->asserv().resetEmergencyOnTraj("Navigator OBSTACLE retry");
 
             if (policy.reculObstacleMm > 0)
             {
@@ -92,9 +105,6 @@ TRAJ_STATE Navigator::executeWithRetry(std::function<TRAJ_STATE()> moveFunc,
                     robot_->asserv().resetEmergencyOnTraj("Navigator recul obstacle");
                 }
             }
-
-            if (obstacleCount >= policy.maxObstacleRetries)
-                break;
         }
 
         if (ts == TRAJ_COLLISION)
@@ -109,12 +119,11 @@ TRAJ_STATE Navigator::executeWithRetry(std::function<TRAJ_STATE()> moveFunc,
             logger().info() << "COLLISION essai " << collisionCount
                             << "/" << policy.maxCollisionRetries << logs::end;
 
-            utils::sleep_for_micros(policy.waitTempoUs);
+            if (collisionCount >= policy.maxCollisionRetries)
+                break;
 
-            if (collisionCount < policy.maxCollisionRetries)
-            {
-                robot_->asserv().resetEmergencyOnTraj("Navigator COLLISION retry");
-            }
+            utils::sleep_for_micros(policy.waitTempoUs);
+            robot_->asserv().resetEmergencyOnTraj("Navigator COLLISION retry");
 
             if (policy.reculCollisionMm > 0)
             {
@@ -125,9 +134,6 @@ TRAJ_STATE Navigator::executeWithRetry(std::function<TRAJ_STATE()> moveFunc,
                     robot_->asserv().resetEmergencyOnTraj("Navigator recul collision");
                 }
             }
-
-            if (collisionCount >= policy.maxCollisionRetries)
-                break;
         }
 
         robot_->resetDisplayTS();

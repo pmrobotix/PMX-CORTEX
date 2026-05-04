@@ -141,6 +141,14 @@ private:
     std::vector<StrategyInstruction> instructions_;
     std::vector<InstructionOutcome>  outcomes_;
     std::string path_;
+
+    // Deadline match calculee au load = max des min_match_sec des instructions.
+    // <0 = pas de deadline. Une fois la deadline depassee, executeInstruction
+    // abort entre 2 tasks (return TRAJ_ERROR) -> runner skip et passe a la
+    // suivante. L'instr identifiee par matchAbortDeadlineInstrId_ (= la plus
+    // tardive) n'est PAS abortee : elle est explicitement gatee a sa deadline.
+    float matchAbortDeadlineSec_     = -1.0f;
+    int   matchAbortDeadlineInstrId_ = -1;
 };
 
 #endif

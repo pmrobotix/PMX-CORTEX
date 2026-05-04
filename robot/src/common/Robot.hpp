@@ -161,6 +161,14 @@ protected:
 	float injectAdvY_       = 0.0f;
 	bool  injectAdvEnabled_ = false;
 
+	// --- Deadline match (set par StrategyJsonRunner au load) ---
+	// Si > 0, le Navigator et le runner abortent toute instruction en cours
+	// quand chrono >= matchAbortDeadlineSec_. Permet de garantir l'execution
+	// de la derniere instruction (retour zone) meme si une instr precedente
+	// est bloquee par un adv. Calcule comme = max des min_match_sec des
+	// instructions chargees (= l'instruction la plus tardive).
+	float matchAbortDeadlineSec_ = -1.0f;
+
 	// --- Init JSON (init<Name>.json, charge si /s passe) ---
 	// Defauts = hardcode historique de O_State_NewInit::setPos().
 	float initPoseX_         = 300.0f;
@@ -185,6 +193,11 @@ protected:
 	uint8_t pickup_P12_ = 0;
 	uint8_t pickup_P13_ = 0;
 	uint8_t pickup_P14_ = 0;
+
+	// DEBUG : override du wrapper push_elements_* via CLI /u <PnX> <val>.
+	// Vide par defaut. Si "P4_D" par ex, le runner remplace tout
+	// push_elements_P{N}_X de la strategie par push_elements_P4_D.
+	std::string pushElementsOverride_;
 	std::atomic<bool> testModeReq_{false};    ///< Flag "testMode a déclencher" (consumed par O_State_NewInit).
 	std::atomic<bool> setPosReq_{false};      ///< Flag "passer de CONFIG a ARMED" posé par une source.
 	std::atomic<bool> resetReq_{false};       ///< Flag "retour phase CONFIG" posé par une source.
@@ -282,6 +295,10 @@ public:
 	bool  injectAdvEnabled() const { return injectAdvEnabled_; }
 	float injectAdvX() const { return injectAdvX_; }
 	float injectAdvY() const { return injectAdvY_; }
+
+	// Deadline match : <0 = pas de deadline. Set par StrategyJsonRunner au load.
+	float matchAbortDeadlineSec() const { return matchAbortDeadlineSec_; }
+	void  setMatchAbortDeadlineSec(float s) { matchAbortDeadlineSec_ = s; }
 
 	// Pose initiale lue dans init<Name>.json (ou defaut hardcode 300/130/90 si pas de /s).
 	float initPoseX() const { return initPoseX_; }
@@ -635,6 +652,10 @@ public:
 	bool setPickupP12(uint8_t i) { if (phase_ >= PHASE_MATCH || i > 5) return false; pickup_P12_ = i; return true; }
 	bool setPickupP13(uint8_t i) { if (phase_ >= PHASE_MATCH || i > 5) return false; pickup_P13_ = i; return true; }
 	bool setPickupP14(uint8_t i) { if (phase_ >= PHASE_MATCH || i > 5) return false; pickup_P14_ = i; return true; }
+
+	// DEBUG : override push_elements_* (set via CLI /u). Vide = pas d'override.
+	const std::string& pushElementsOverride() const { return pushElementsOverride_; }
+	void setPushElementsOverride(const std::string& s) { pushElementsOverride_ = s; }
 
 	/*!
 	 * \brief Declenche un test meca (1..5). One-shot, reset apres consommation.

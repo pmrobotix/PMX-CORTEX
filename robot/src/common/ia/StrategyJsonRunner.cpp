@@ -26,6 +26,27 @@ bool StrategyJsonRunner::loadFromFile(const std::string& path)
     }
     logger().info() << "Loaded " << instructions_.size() << " instructions from " << path
                     << logs::end;
+
+    // Calcule la deadline match = max des min_match_sec. Permet aux instr
+    // bloquees de se faire abort des qu'on franchit le min_match_sec de la
+    // derniere instruction (ex: retour zone fin a 92s). Sans deadline (=
+    // aucune instruction n'a min_match_sec), on laisse < 0 = pas de check.
+    matchAbortDeadlineSec_ = -1.0f;
+    matchAbortDeadlineInstrId_ = -1;
+    for (const auto& i : instructions_) {
+        if (i.min_match_sec && *i.min_match_sec > matchAbortDeadlineSec_) {
+            matchAbortDeadlineSec_ = *i.min_match_sec;
+            matchAbortDeadlineInstrId_ = i.id;
+        }
+    }
+    if (robot_) {
+        robot_->setMatchAbortDeadlineSec(matchAbortDeadlineSec_);
+    }
+    if (matchAbortDeadlineSec_ > 0.0f) {
+        logger().info() << "match abort deadline = " << matchAbortDeadlineSec_
+                        << "s (instr id=" << matchAbortDeadlineInstrId_ << ")"
+                        << logs::end;
+    }
     return true;
 }
 
@@ -79,7 +100,16 @@ bool StrategyJsonRunner::run()
             }
         }
 
+        // Desactive la deadline dans le Robot pour l'instr tardive elle-meme
+        // (sinon le Navigator l'aborterait des le 1er retry vu que chrono >=
+        // deadline). Restoration apres l'instr pour le cas hypothetique d'une
+        // suite d'instructions tardives partageant la meme deadline.
+        const bool isLate = (instr.id == matchAbortDeadlineInstrId_);
+        if (isLate && robot_) robot_->setMatchAbortDeadlineSec(-1.0f);
+
         TRAJ_STATE ts = executeInstruction(instr);
+
+        if (isLate && robot_) robot_->setMatchAbortDeadlineSec(matchAbortDeadlineSec_);
         o.lastTs = ts;
         if (ts == TRAJ_FINISHED) {
             o.status = InstructionOutcome::Status::FINISHED;
@@ -178,6 +208,21 @@ TRAJ_STATE StrategyJsonRunner::executeInstruction(const StrategyInstruction& ins
     bool firstTask = true;
     bool prevChain = false;
     for (const auto& task : instr.tasks) {
+        // Deadline match : si chrono >= deadline et qu'on n'est PAS dans
+        // l'instr tardive elle-meme, on abort pour permettre au runner de
+        // jumper a l'instr tardive (typiquement le retour zone).
+        if (matchAbortDeadlineSec_ > 0.0f
+            && instr.id != matchAbortDeadlineInstrId_
+            && robot_->chrono().getElapsedTimeInSec() >= matchAbortDeadlineSec_)
+        {
+            logger().warn() << "[instr " << instr.id << "] deadline match "
+                            << matchAbortDeadlineSec_ << "s atteinte avant task "
+                            << task.type << "/" << task.subtype
+                            << " -> abort (jump vers instr tardive id="
+                            << matchAbortDeadlineInstrId_ << ")" << logs::end;
+            return TRAJ_ERROR;
+        }
+
         if (flags_ && task.needed_flag && !flags_->has(*task.needed_flag)) {
             logger().info() << "  task " << task.type << "/" << task.subtype
                             << " SKIP (needed_flag '" << *task.needed_flag << "' not set)"
@@ -259,27 +304,32 @@ TRAJ_STATE StrategyJsonRunner::executeTask(const StrategyTask& t)
     Navigator nav(robot_, iap_);
 
     if (t.type == "MOVEMENT") {
+        // RetryPolicy::matchShort : ~3-5s max avant skip (vs ~6-8s standard)
+        // pour garder du temps sur les autres instructions / le retour zone.
+        // push_elements_zone garde standard() : la pousse doit insister.
+        const RetryPolicy pol = RetryPolicy::matchShort();
+
         // --- Primitives ---
         if (t.subtype == "LINE" && t.dist) {
-            return nav.line(*t.dist);
+            return nav.line(*t.dist, pol);
         }
         if (t.subtype == "GO_TO" && t.position_x && t.position_y) {
-            return nav.goTo(*t.position_x, *t.position_y);
+            return nav.goTo(*t.position_x, *t.position_y, pol);
         }
         if (t.subtype == "GO_BACK_TO" && t.position_x && t.position_y) {
-            return nav.goBackTo(*t.position_x, *t.position_y);
+            return nav.goBackTo(*t.position_x, *t.position_y, pol);
         }
         if (t.subtype == "MOVE_FORWARD_TO" && t.position_x && t.position_y) {
-            return nav.moveForwardTo(*t.position_x, *t.position_y);
+            return nav.moveForwardTo(*t.position_x, *t.position_y, pol);
         }
         if (t.subtype == "MOVE_BACKWARD_TO" && t.position_x && t.position_y) {
-            return nav.moveBackwardTo(*t.position_x, *t.position_y);
+            return nav.moveBackwardTo(*t.position_x, *t.position_y, pol);
         }
         if (t.subtype == "PATH_TO" && t.position_x && t.position_y) {
-            return nav.pathTo(*t.position_x, *t.position_y);
+            return nav.pathTo(*t.position_x, *t.position_y, pol);
         }
         if (t.subtype == "PATH_BACK_TO" && t.position_x && t.position_y) {
-            return nav.pathBackTo(*t.position_x, *t.position_y);
+            return nav.pathBackTo(*t.position_x, *t.position_y, pol);
         }
         if (t.subtype == "FACE_TO" && t.position_x && t.position_y) {
             return nav.faceTo(*t.position_x, *t.position_y);
@@ -300,39 +350,39 @@ TRAJ_STATE StrategyJsonRunner::executeTask(const StrategyTask& t)
         // --- Composites (deplacement puis rotation, abort si deplacement echoue) ---
         if (t.subtype == "GO_TO_AND_ROTATE_ABS_DEG"
             && t.position_x && t.position_y && t.final_angle_deg) {
-            return nav.goToAndRotateAbsDeg(*t.position_x, *t.position_y, *t.final_angle_deg);
+            return nav.goToAndRotateAbsDeg(*t.position_x, *t.position_y, *t.final_angle_deg, pol);
         }
         if (t.subtype == "GO_TO_AND_FACE_TO"
             && t.position_x && t.position_y && t.face_x && t.face_y) {
-            return nav.goToAndFaceTo(*t.position_x, *t.position_y, *t.face_x, *t.face_y);
+            return nav.goToAndFaceTo(*t.position_x, *t.position_y, *t.face_x, *t.face_y, pol);
         }
         if (t.subtype == "GO_TO_AND_FACE_BACK_TO"
             && t.position_x && t.position_y && t.face_x && t.face_y) {
-            return nav.goToAndFaceBackTo(*t.position_x, *t.position_y, *t.face_x, *t.face_y);
+            return nav.goToAndFaceBackTo(*t.position_x, *t.position_y, *t.face_x, *t.face_y, pol);
         }
         if (t.subtype == "MOVE_FORWARD_TO_AND_ROTATE_ABS_DEG"
             && t.position_x && t.position_y && t.final_angle_deg) {
-            return nav.moveForwardToAndRotateAbsDeg(*t.position_x, *t.position_y, *t.final_angle_deg);
+            return nav.moveForwardToAndRotateAbsDeg(*t.position_x, *t.position_y, *t.final_angle_deg, pol);
         }
         if (t.subtype == "MOVE_FORWARD_TO_AND_ROTATE_REL_DEG"
             && t.position_x && t.position_y && t.rotate_rel_deg) {
-            return nav.moveForwardToAndRotateRelDeg(*t.position_x, *t.position_y, *t.rotate_rel_deg);
+            return nav.moveForwardToAndRotateRelDeg(*t.position_x, *t.position_y, *t.rotate_rel_deg, pol);
         }
         if (t.subtype == "MOVE_FORWARD_TO_AND_FACE_TO"
             && t.position_x && t.position_y && t.face_x && t.face_y) {
-            return nav.moveForwardToAndFaceTo(*t.position_x, *t.position_y, *t.face_x, *t.face_y);
+            return nav.moveForwardToAndFaceTo(*t.position_x, *t.position_y, *t.face_x, *t.face_y, pol);
         }
         if (t.subtype == "MOVE_FORWARD_TO_AND_FACE_BACK_TO"
             && t.position_x && t.position_y && t.face_x && t.face_y) {
-            return nav.moveForwardToAndFaceBackTo(*t.position_x, *t.position_y, *t.face_x, *t.face_y);
+            return nav.moveForwardToAndFaceBackTo(*t.position_x, *t.position_y, *t.face_x, *t.face_y, pol);
         }
         if (t.subtype == "PATH_TO_AND_ROTATE_ABS_DEG"
             && t.position_x && t.position_y && t.final_angle_deg) {
-            return nav.pathToAndRotateAbsDeg(*t.position_x, *t.position_y, *t.final_angle_deg);
+            return nav.pathToAndRotateAbsDeg(*t.position_x, *t.position_y, *t.final_angle_deg, pol);
         }
         if (t.subtype == "PATH_TO_AND_FACE_TO"
             && t.position_x && t.position_y && t.face_x && t.face_y) {
-            return nav.pathToAndFaceTo(*t.position_x, *t.position_y, *t.face_x, *t.face_y);
+            return nav.pathToAndFaceTo(*t.position_x, *t.position_y, *t.face_x, *t.face_y, pol);
         }
 
         logger().error() << "MOVEMENT subtype unsupported : " << t.subtype << logs::end;
@@ -363,17 +413,37 @@ TRAJ_STATE StrategyJsonRunner::executeTask(const StrategyTask& t)
         return TRAJ_FINISHED;
     }
     if (t.type == "MANIPULATION") {
-        const std::string& aid = t.action_id ? *t.action_id : std::string("?");
+        std::string aid = t.action_id ? *t.action_id : std::string("?");
         if (actions_ == nullptr) {
             logger().info() << "  [no ActionRegistry] MANIPULATION action_id=" << aid << logs::end;
             return TRAJ_FINISHED;
+        }
+        // DEBUG override (CLI /u Pn_X) : si le push_elements_P*_X de la
+        // strategie correspond a un override, on remplace l'aid.
+        if (robot_ && !robot_->pushElementsOverride().empty()
+            && aid.rfind("push_elements_P", 0) == 0) {
+            const std::string newAid = "push_elements_" + robot_->pushElementsOverride();
+            logger().info() << "  /u override: " << aid << " -> " << newAid << logs::end;
+            aid = newAid;
         }
         if (!actions_->has(aid)) {
             logger().error() << "  TODO MANIPULATION \"" << aid
                              << "\" dans StrategyActions2026.cpp." << logs::end;
             return TRAJ_FINISHED;
         }
-        bool ok = actions_->call(aid);
+        // Telemetrie duree : pas de vrai watchdog (manip synchrone bloquante),
+        // juste un warn si timeout JSON depasse. Permet de regler les valeurs.
+        const auto t0 = std::chrono::steady_clock::now();
+        const bool ok = actions_->call(aid);
+        const auto elapsedMs = std::chrono::duration_cast<std::chrono::milliseconds>(
+            std::chrono::steady_clock::now() - t0).count();
+        if (t.timeout_ms > 0 && elapsedMs > t.timeout_ms) {
+            logger().warn() << "  MANIPULATION " << aid << " duree=" << elapsedMs
+                            << "ms > timeout=" << t.timeout_ms << "ms" << logs::end;
+        } else {
+            logger().info() << "  MANIPULATION " << aid << " duree=" << elapsedMs << "ms"
+                            << logs::end;
+        }
         return ok ? TRAJ_FINISHED : TRAJ_ERROR;
     }
 

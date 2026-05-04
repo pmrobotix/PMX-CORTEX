@@ -1,46 +1,157 @@
 [
   {
     "id": 1,
-    "desc": "P1 en GM2",
+    "desc": "GM6 GO",
+    "priority": 100,
     "tasks": [
+      {
+        "type": "SPEED",
+        "subtype": "SET_SPEED",
+        "speed_percent": 40,
+        "desc": "cap PWM"
+      },
       {
         "type": "MOVEMENT",
         "subtype": "PATH_TO",
-        "position_x": 230,
-        "position_y": 680,
-        "desc": "PATH_TO (230,680)"
+        "position_x": 600,
+        "position_y": 800,
+        "desc": "PATH_TO (600,800)"
       },
       {
         "type": "MOVEMENT",
-        "subtype": "LINE",
-        "dist": 392,
-        "desc": "LINE dist=392"
+        "subtype": "PATH_TO",
+        "position_x": 1500,
+        "position_y": 900,
+        "desc": "PATH_TO (1500,900)"
       },
       {
         "type": "MOVEMENT",
-        "subtype": "LINE",
-        "dist": -160,
-        "desc": "LINE dist=-160"
+        "subtype": "PATH_TO",
+        "position_x": 1500,
+        "position_y": 1200,
+        "desc": "PATH_TO (1500,1200)"
       }
     ]
   },
   {
     "id": 2,
-    "desc": "ZC1 ATTENTE RETOUR ZONE",
+    "desc": "PM14",
+    "priority": 90,
     "tasks": [
       {
         "type": "MOVEMENT",
         "subtype": "PATH_TO",
-        "position_x": 800,
-        "position_y": 600,
-        "desc": "PATH_TO (800,600)"
+        "position_x": 1650,
+        "position_y": 1200,
+        "desc": "PATH_TO (1650,1200)"
+      },
+      {
+        "type": "MANIPULATION",
+        "action_id": "push_elements_P14_D",
+        "timeout": 10000,
+        "desc": "Pousse P14 (arrivee droite)"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "desc": "P4 GO",
+    "priority": 80,
+    "tasks": [
+      {
+        "type": "MOVEMENT",
+        "subtype": "PATH_TO",
+        "position_x": 1350,
+        "position_y": 1200,
+        "desc": "PATH_TO (1350,1200)"
+      },
+      {
+        "type": "MANIPULATION",
+        "action_id": "push_elements_P4_G",
+        "timeout": 10000,
+        "desc": "Pousse P4 (arrivee gauche)"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "desc": "P3 GO",
+    "priority": 70,
+    "tasks": [
+      {
+        "type": "MOVEMENT",
+        "subtype": "PATH_TO",
+        "position_x": 1400,
+        "position_y": 1800,
+        "desc": "PATH_TO (1400,1800)"
       },
       {
         "type": "MOVEMENT",
-        "subtype": "FACE_TO",
-        "position_x": 100,
-        "position_y": 600,
-        "desc": "FACE_TO (100,600)"
+        "subtype": "PATH_TO",
+        "position_x": 1300,
+        "position_y": 1800,
+        "desc": "PATH_TO (1300,1800)"
+      },
+      {
+        "type": "MANIPULATION",
+        "action_id": "push_elements_P3_D",
+        "timeout": 10000,
+        "desc": "Pousse P3 (arrivee droite)"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "desc": "P1 GO",
+    "priority": 50,
+    "tasks": [
+      {
+        "type": "SPEED",
+        "subtype": "SET_SPEED",
+        "speed_percent": 40,
+        "desc": "cap PWM"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "GO_TO",
+        "position_x": 1200,
+        "position_y": 850,
+        "desc": "GO_TO (1200,850)"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "GO_TO",
+        "position_x": 230,
+        "position_y": 1100,
+        "desc": "GO_TO (230,1100)"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "desc": "Retour ZONE (apres 88s)",
+    "priority": 1,
+    "min_match_sec": 88,
+    "tasks": [
+      {
+        "type": "SPEED",
+        "subtype": "SET_SPEED",
+        "speed_percent": 40,
+        "desc": "cap PWM"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "PATH_TO",
+        "position_x": 250,
+        "position_y": 400,
+        "desc": "PATH_TO (250,400) - contourne adv via A*"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "PATH_TO",
+        "position_x": 350,
+        "position_y": 250,
+        "desc": "PATH_TO (350,250) - contourne adv via A*"
       }
     ]
   }
