@@ -1240,7 +1240,7 @@ void tof_loop(int debug)
 #define DEBUG_SWIPE_LOG 1
 	{
 		static const int NB_ZONES = NumOfZonesPerSensor * NumOfSensors;
-		static const int SWIPE_THRESHOLD = 16;  // 16 zones = 8 LEDs vertes = 80° d'arc
+		static const int SWIPE_THRESHOLD = 12;  // 12 zones = 6 LEDs vertes = 60° d'arc
 		static const int MAX_CLUSTERS = 8;
 		static const int CENTER_TOL = 3;     // matching : ecart centre max (zones)
 		static const int DIST_TOL_MM = 50;          // matching : ecart distance max (5 cm)
