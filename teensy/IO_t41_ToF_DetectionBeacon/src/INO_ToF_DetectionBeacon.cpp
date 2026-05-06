@@ -25,6 +25,11 @@ void setup()
 	// Just to know which program is running on my Arduino
 	Serial.println(F("START " __FILE__));
 
+	// Validation frequence CPU au boot (defaut Teensy 4.1 = 600 MHz).
+	// Test 912 MHz fait : crash thermique a ~1 min en boitier ferme.
+	Serial.print("F_CPU=");        Serial.println(F_CPU);
+	Serial.print("F_CPU_ACTUAL="); Serial.println(F_CPU_ACTUAL);
+
 	// initialize the digital pin as an output for LEDS
 	pinMode(LED_BUILTIN, OUTPUT); // Green
 	pinMode(LED_BUILTIN + 1, OUTPUT); //Red

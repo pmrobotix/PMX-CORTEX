@@ -496,32 +496,20 @@ static void updateSetposButton() {
 	}
 }
 
-static uint32_t setpos_press_ms = 0;   ///< Timestamp du dernier appui sur SETPOS.
 static uint32_t actionReq_set_ms = 0;  ///< Timestamp quand actionReq a ete mis a 1.
 
-static void setpos_pressed_cb(lv_event_t *e) {
-	(void)e;
-	setpos_press_ms = millis();
-	Serial.printf("[SETPOS] PRESSED at %lu ms\n", setpos_press_ms);
-}
-
+// Anti-glitch XPT2046 : on utilise LV_EVENT_LONG_PRESSED (appui CONTINU >=
+// LV_INDEV_DEF_LONG_PRESS_TIME, par defaut 400 ms). Si le signal touch
+// "clignote" a cause du bruit, le timer interne LVGL reset -> les bursts EMI
+// courts ou intermittents ne declenchent plus actionReq.
 static void setpos_event_cb(lv_event_t *e) {
 	(void)e;
-	uint32_t elapsed = millis() - setpos_press_ms;
 	if (settings.matchState >= 3) {
 		if (lbl_setpos_handle) lv_label_set_text(lbl_setpos_handle, "MATCH!");
 		return;
 	}
 	if (settings.actionReq != 0) {
 		if (lbl_setpos_handle) lv_label_set_text(lbl_setpos_handle, "WAIT..");
-		return;
-	}
-	if (elapsed < 250) {
-		if (lbl_setpos_handle) {
-			char dbg[16];
-			snprintf(dbg, sizeof(dbg), "%lums", elapsed);
-			lv_label_set_text(lbl_setpos_handle, dbg);
-		}
 		return;
 	}
 	settings.actionReq = 1;
@@ -699,10 +687,8 @@ static void create_match_menu(void) {
 	lbl_setpos_handle = lv_label_create(btn_setpos_handle);
 	lv_obj_center(lbl_setpos_handle);
 	updateSetposButton();
-	lv_obj_add_event_cb(btn_setpos_handle, setpos_pressed_cb,
-			LV_EVENT_PRESSED, NULL);
 	lv_obj_add_event_cb(btn_setpos_handle, setpos_event_cb,
-			LV_EVENT_CLICKED, NULL);
+			LV_EVENT_LONG_PRESSED, NULL);
 
 	// --- Label + Ligne 2 (y=132/148) : strategie 1/2/3 ---
 	lv_obj_t *lbl_strat = lv_label_create(scr);

@@ -10,6 +10,7 @@
 #include <i2c_driver_wire.h>//
 //#include <Wire.h>
 #include "HystFilter.h"
+#include "Gestures.hpp"
 
 extern bool connected_t[NumOfZonesPerSensor * NumOfSensors];
 extern uint8_t status_t[NumOfZonesPerSensor * NumOfSensors];
@@ -239,6 +240,20 @@ void thread_display()
 					add_display_black_dist(); //affichage des leds vertes avec la main
 				}
 			}
+
+			// Flash gesture non-bloquant (LONG_HOLD/CONVERGENT/SWIPE/HEY).
+			// Override le rendu normal pendant g_flash.duration_ms via 2 lignes
+			// en haut (y=0/y=1), comme l'ancien flash_ua_gesture mais sans threads.delay.
+			if (g_flash.active) {
+				if (millis() - g_flash.start_ms >= g_flash.duration_ms) {
+					g_flash.active = false;
+				} else {
+					matrix->clear();
+					matrix->drawLine(0, 0, mw, 0, g_flash.color);
+					matrix->drawLine(0, 1, mw, 1, g_flash.color);
+				}
+			}
+
 			matrix->setBrightness(settings.ledLuminosity); // applique la luminosite LCD/I2C en temps reel
 			matrix->show();
 			threads.yield();
@@ -266,27 +281,27 @@ void thread_display()
 				threads.delay(500);
 			}
 
-			// Sortie du UA : on lit le gesture detecte par TofSensors
-			// et on declenche l'effet visuel associe.
-			// En mode match, SEUL le geste BILATERAL est actif (pour pouvoir
-			// sortir du mode match). Les autres gestes sont ignores.
-			int gesture = last_ua_gesture;
-			last_ua_gesture = UA_GESTURE_NONE; // consomme
+			// Gestes UA traites par gestures_evaluate() en fin de tof_loop()
+			// (main loop, meme thread que la production). Plus de consommation ici.
+			// Voir GESTURES_ARCHITECTURE.md pour le detail.
 
-			if (gesture == UA_GESTURE_BILATERAL) {
-				// Toggle mode match (active/desactive le K2000)
-				if (match_mode_actif == 0)
-					match_mode_actif = 1;
-				else
-					match_mode_actif = 0;
-			} else if (match_mode_actif == 0) {
-				// Autres gestes uniquement hors mode match
-				if (gesture == UA_GESTURE_CONVERGENT) {
-					flash_ua_gesture(matrix->Color(0, 255, 0), 1000);   // vert 1s
-				} else if (gesture == UA_GESTURE_LONG_HOLD) {
-					flash_ua_gesture(matrix->Color(255, 0, 0), 1500);   // rouge 1.5s
-				}
-			}
+			// Ancien code conserve commente le temps de valider le nouveau
+			// chemin sur le terrain. A supprimer apres tests OK.
+			// int gesture = last_ua_gesture;
+			// last_ua_gesture = UA_GESTURE_NONE; // consomme
+			//
+			// if (gesture == UA_GESTURE_BILATERAL) {
+			// 	if (match_mode_actif == 0)
+			// 		match_mode_actif = 1;
+			// 	else
+			// 		match_mode_actif = 0;
+			// } else if (match_mode_actif == 0) {
+			// 	if (gesture == UA_GESTURE_CONVERGENT) {
+			// 		flash_ua_gesture(matrix->Color(0, 255, 0), 1000);
+			// 	} else if (gesture == UA_GESTURE_LONG_HOLD) {
+			// 		flash_ua_gesture(matrix->Color(255, 0, 0), 1500);
+			// 	}
+			// }
 		}
 
 		// Hey!! (proximity_level == 2) desactive pour la competition.

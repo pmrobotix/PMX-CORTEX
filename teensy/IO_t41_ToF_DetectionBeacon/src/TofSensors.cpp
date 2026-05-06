@@ -15,6 +15,7 @@
 
 #include "INO_ToF_DetectionBeacon.h"
 #include "TofSensors.h"
+#include "Gestures.hpp"
 #include <i2c_register_slave.h>
 
 /// Pins XSHUT (shutdown) des 18 capteurs VL53L1X.
@@ -67,7 +68,6 @@ int nb_active_filtered_sensors_mode2;  ///< Compteur de zones actives mode 2 (de
 volatile int proximity_level;                ///< Niveau de proximite ToF : 0=loin/normal, 1=main couvre tout (drapeau UA), 2=tres proche (Hey!!). Calcule par tof_loop().
 volatile int last_ua_gesture = UA_GESTURE_NONE;  ///< Dernier gesture UA detecte (mode prod/convergence/long). Consomme par LedPanels.
 volatile int last_swipe_gesture = SWIPE_NONE;    ///< Dernier gesture swipe detecte (CW/CCW). Consomme par LedPanels.
-extern int match_mode_actif;
 int latency_thread_error = 0;          ///< Flag d'erreur de latence des threads (>90ms).
 int latency = 0;                       ///< Compteur pour reset du flag latency_thread_error apres 5 cycles OK.
 
@@ -930,7 +930,9 @@ void tof_loop(int debug)
 	//3.greenHandDistance
 	for (int n = 0; n < NumOfSensors * NumOfZonesPerSensor; n++)
 	{
-		if ((status_t[n] == RangeValid) & (SigPerSPAD_t[n] > 1000) & (NumSPADs_t[n] > 10)) //| (status_t[n] == SignalFail)| (status_t[n] == PhaseOutOfLimit))
+		// Seuil SigPerSPAD baisse de 1000 -> 500 pour detecter une main jusqu'a ~50 cm
+		// (au lieu de ~30 cm). Risque : leger bruit sur surfaces claires lointaines.
+		if ((status_t[n] == RangeValid) & (SigPerSPAD_t[n] > 500) & (NumSPADs_t[n] > 10)) //| (status_t[n] == SignalFail)| (status_t[n] == PhaseOutOfLimit))
 		{
 
 			greenHandDistance[n] = distance_t[n];
@@ -1183,10 +1185,12 @@ void tof_loop(int debug)
 			ua_start_ms = millis();
 			ua_seen_long = false;
 			ua_last_concentrated = false;
+			Serial.print("UA ENTER prev_level=");
+			Serial.println(ua_prev_proximity_level);
 		}
 		if (proximity_level == 1) {
-			// Pendant UA : check duree (>= 2s) et distribution front/back
-			if ((millis() - ua_start_ms) >= 2000) ua_seen_long = true;
+			// Pendant UA : check duree (>= 1.5s) et distribution front/back
+			if ((millis() - ua_start_ms) >= 1500) ua_seen_long = true;
 
 			int front_active = 0, back_active = 0;
 			for (int i = 0; i < 36; i++) {
@@ -1203,6 +1207,15 @@ void tof_loop(int debug)
 		}
 		if (proximity_level != 1 && ua_prev_proximity_level == 1) {
 			// Sortie UA : decide le gesture
+			uint32_t dur = millis() - ua_start_ms;
+			Serial.print("UA EXIT dur_ms=");
+			Serial.print(dur);
+			Serial.print(" seen_long=");
+			Serial.print(ua_seen_long);
+			Serial.print(" concentrated=");
+			Serial.print(ua_last_concentrated);
+			Serial.print(" new_level=");
+			Serial.println(proximity_level);
 			if (ua_seen_long)          last_ua_gesture = UA_GESTURE_LONG_HOLD;
 			else if (ua_last_concentrated) last_ua_gesture = UA_GESTURE_CONVERGENT;
 			else                       last_ua_gesture = UA_GESTURE_BILATERAL;
@@ -1224,10 +1237,10 @@ void tof_loop(int debug)
 	// - Seul un VRAI mouvement (cluster qui glisse) est detecte
 	//
 	// Pour activer les logs Serial de debug, mettre DEBUG_SWIPE_LOG a 1.
-#define DEBUG_SWIPE_LOG 0
+#define DEBUG_SWIPE_LOG 1
 	{
 		static const int NB_ZONES = NumOfZonesPerSensor * NumOfSensors;
-		static const int SWIPE_THRESHOLD = 12;  // 12 zones = 60°
+		static const int SWIPE_THRESHOLD = 16;  // 16 zones = 8 LEDs vertes = 80° d'arc
 		static const int MAX_CLUSTERS = 8;
 		static const int CENTER_TOL = 3;     // matching : ecart centre max (zones)
 		static const int DIST_TOL_MM = 50;          // matching : ecart distance max (5 cm)
@@ -1540,8 +1553,6 @@ void tof_loop(int debug)
 		latency_thread_error = 1;
 		Serial.println(">>>>100000!!!!!!!!!");
 		Serial.println();
-		match_mode_actif = 1;
-
 	} else
 	{
 		latency++;
@@ -1551,6 +1562,37 @@ void tof_loop(int debug)
 			latency = 0;
 		}
 	}
+
+	// PROF : rapport timing tof_loop sur 100 cycles, toujours actif (hors debug).
+	// Permet de mesurer la perf en match reel sans activer le debug verbeux.
+	{
+		static uint32_t prof_min   = 0xFFFFFFFFu;
+		static uint32_t prof_max   = 0;
+		static uint32_t prof_sum   = 0;
+		static uint16_t prof_count = 0;
+		uint32_t cycle_us = (uint32_t)(t_endprintDebug - t_start);
+		if (cycle_us < prof_min) prof_min = cycle_us;
+		if (cycle_us > prof_max) prof_max = cycle_us;
+		prof_sum += cycle_us;
+		prof_count++;
+		if (prof_count >= 100) {
+			Serial.print("PROF tof_loop us min=");
+			Serial.print(prof_min);
+			Serial.print(" max=");
+			Serial.print(prof_max);
+			Serial.print(" avg=");
+			Serial.println(prof_sum / prof_count);
+			prof_min = 0xFFFFFFFFu;
+			prof_max = 0;
+			prof_sum = 0;
+			prof_count = 0;
+		}
+	}
+
+	// Consommation des gestes detectes (BILATERAL/CONVERGENT/LONG_HOLD/SWIPE/HEY).
+	// Appel ici (main loop, meme thread que tof_loop) pour eviter race condition
+	// avec thread_display et profiter de la stack large du main loop.
+	gestures_evaluate();
 
 	elapsedT_us = 0;
 
