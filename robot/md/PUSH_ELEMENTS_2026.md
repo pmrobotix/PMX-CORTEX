@@ -312,168 +312,83 @@ positionnement aux tasks `MOVEMENT/FACE_TO` qui le precedent.
   strategie a oriente correctement le robot. Le sens de pousse decoule de
   l'orientation courante, pas d'un parametre de la manip.
 
-## Tests de validation simu (calibration distances)
+## Tests (O_PushElementsTest)
 
-Cette section liste les tests a executer en SIMU pour valider chaque
-constante (`D1..D4`, `D1_INV..D4_INV`) et chaque offset
-(`kZoneOffset_P4`, `kZoneOffset_P14`).
+Le test integré
+[O_PushElementsTest](../src/bot-test-opos6ul/O_PushElementsTest.cpp)
+(code mnemonique `pe`) couvre 2 modes complementaires.
 
-**Principe** : la fonction `push_elements_zone` logue
-`avance=Xmm (base=Y offset=Z)` au moment de la manip. Il suffit de regarder
-ce log pour verifier que le calcul est correct, sans avoir besoin que la
-pousse aboutisse physiquement (la geometrie de la table n'est pas en cause).
-
-### Option CLI `/u` etendue
-
-Format : **`/u <zone[_X]> <value>`** ou
-- `<zone>`  = `P1`..`P4` ou `P11`..`P14`
-- `_X` (optionnel) = `_B`, `_H`, `_D`, `_G` (force le wrapper a appeler)
-- `<value>` = `0..5` (idx config beacon)
-
-Sans `_X`, le wrapper utilise est celui defini dans le JSON. Avec `_X`, le
-runner remplace **tous** les `push_elements_P*_*` de la strategie par
-`push_elements_<zone>_<X>` (DEBUG, simu uniquement).
-
-### Setup commun
+### Mode 1 — Validation logique (sans args)
 
 ```bash
 cd /home/pmx/git/PMX-CORTEX/robot/build-simu-debug/bin
+./bot-opos6ul pe
 ```
 
-Aucune modification du JSON ni de rebuild necessaire entre les tests grace a
-l'override `/u Pn_X`.
+Itere sur ~42 cas et verifie la **mecanique de combinaison** (mapping
+`idx -> distDirecte/distInverse`, swap couleur `SWAP_COLOR_IDX`, flip
+suffixe horizontal en YELLOW, offsets `kZoneOffset_P4/P14`, garde-fous
+sur `dist <= 0` et idx invalide).
 
-### Test 1 — Validation `distDirecte` (sens DIRECTE)
+Les attendus sont **derives des constantes** via
+`push_elements_test_api::distDirecteAt(idx)` etc., donc le test reste
+vert quand on retouche `D1..D4` (la calibration physique se fait sur
+table reelle, cf section ci-dessous).
 
-Wrapper `_H` (vertical) ou `_G` (horizontal) = sens directe.
+Sortie : 5 groupes de cas, tableau OK/FAIL par ligne, recap final
+`=== Bilan : 42/42 PASS ===`.
+
+### Mode 2 — Poussage reel (3 args obligatoires)
 
 ```bash
-./bot-opos6ul m /k /s PMX0 /u P1_H 0 2>&1 | grep "avance="
-./bot-opos6ul m /k /s PMX0 /u P1_H 1 2>&1 | grep "avance="
-./bot-opos6ul m /k /s PMX0 /u P1_H 2 2>&1 | grep "avance="
-./bot-opos6ul m /k /s PMX0 /u P1_H 3 2>&1 | grep "avance="
-./bot-opos6ul m /k /s PMX0 /u P1_H 4 2>&1 | grep "avance="
-./bot-opos6ul m /k /s PMX0 /u P1_H 5 2>&1 | grep "avance="
+./bot-opos6ul pe <zone> <suffixe> <idx>
+./bot-opos6ul pe P14 D 3              # push_elements_P14_D, idx=3, BLEU
+./bot-opos6ul pe P1  H 0 /y           # push_elements_P1_H, idx=0, YELLOW
 ```
 
-| Commande | Sequence | Constante | Distance attendue |
-|---|---|---|---|
-| `/u P1_H 0` | BBYY (img#1) | `D1` | **250 mm** |
-| `/u P1_H 1` | YYBB (img#6) | `D4` | **50 mm**  |
-| `/u P1_H 2` | BYYB (img#3) | `D2` | **350 mm** |
-| `/u P1_H 3` | YBBY (img#4) | `D1` | **250 mm** |
-| `/u P1_H 4` | BYBY (img#2) | `D1` | **250 mm** |
-| `/u P1_H 5` | YBYB (img#5) | `D3` | **100 mm** |
+| Argument | Valeurs | Effet |
+|---|---|---|
+| `zone`   | `P1..P4` ou `P11..P14` | Zone ciblee |
+| `suffixe`| `B|H|D|G` | Determine `sensInverse` (`B`/`D` -> inverse, `H`/`G` -> directe) |
+| `idx`    | `0..5` | Force la valeur `pickup_P{N}` avant la manip (utile sans balise) |
 
-→ valide `D1`, `D2`, `D3`, `D4`.
+Le test appelle directement
+[`push_elements_zone()`](../src/bot-opos6ul/StrategyActions2026.cpp) :
+- log `avance=Xmm (base=Y offset=Z) puis recul=200mm` permet de valider
+  le calcul de distance ;
+- en YELLOW, log `idx=X sens=YYY (YELLOW post-swap)` montre l'effet du
+  swap couleur + flip suffixe ;
+- le robot avance puis recule physiquement (en simu : 0.5 m/s ;
+  sur table : capteurs front actifs, RetryPolicy::standard 2/2).
 
-### Test 2 — Validation `distInverse` (sens INVERSE)
+### Calibration sur table (D1..D4 et offsets)
 
-Wrapper `_B` (vertical) ou `_D` (horizontal) = sens inverse.
+Le test C++ ne peut pas valider les **valeurs absolues** de `D1..D4` ni
+des offsets : ce sont des distances physiques qui dependent du robot
+(geometrie, frottement, PWM). La procedure de reglage reste manuelle :
 
-```bash
-./bot-opos6ul m /k /s PMX0 /u P1_B 0 2>&1 | grep "avance="
-./bot-opos6ul m /k /s PMX0 /u P1_B 1 2>&1 | grep "avance="
-# ... idem 2, 3, 4, 5
-```
+1. Mettre 4 elements sur une zone reelle, en config connue.
+2. Selectionner cette config sur le LCD tactile balise.
+3. Lancer `./bot-opos6ul pe <zone> <suffixe> <idx>` sur le robot.
+4. Observer si tous les elements adverses sortent de la zone.
+5. Sinon, ajuster `D1..D4` ou `kZoneOffset_P{4,14}` dans
+   [StrategyActions2026.cpp](../src/bot-opos6ul/StrategyActions2026.cpp),
+   recompiler, redeployer.
+6. Iterer pour les 6 configs et les 2 couleurs.
 
-| Commande | Sequence | Constante | Distance attendue (placeholder) |
-|---|---|---|---|
-| `/u P1_B 0` | BBYY | `D1_INV` | **450 mm** |
-| `/u P1_B 1` | YYBB | `D4_INV` | **250 mm** |
-| `/u P1_B 2` | BYYB | `D2_INV` | **550 mm** |
-| `/u P1_B 3` | YBBY | `D1_INV` | **450 mm** |
-| `/u P1_B 4` | BYBY | `D1_INV` | **450 mm** |
-| `/u P1_B 5` | YBYB | `D3_INV` | **300 mm** |
-
-→ valide `D1_INV..D4_INV` (placeholders, a calibrer).
-
-### Test 3 — Validation `kZoneOffset_P4`
-
-```bash
-# Avec kZoneOffset_P4 = 0 (default) :
-./bot-opos6ul m /k /s PMX0 /u P4_G 0 2>&1 | grep "avance="
-# Attendu : avance=250mm (base=250 offset=0)
-```
-
-Modifier `kZoneOffset_P4` dans
-[StrategyActions2026.cpp](../src/bot-opos6ul/StrategyActions2026.cpp) (ex
-`-50.0f`), recompiler `bot-opos6ul`, relancer :
-```bash
-./bot-opos6ul m /k /s PMX0 /u P4_G 0 2>&1 | grep "avance="
-# Attendu : avance=200mm (base=250 offset=-50)
-```
-
-Garde-fou (offset trop negatif) : `kZoneOffset_P4 = -300.0f` + idx 1 (D4=50)
-→ `dist=50-300=-250 <= 0 → abort + log error`. Tester aussi avec `_D`
-(sens inverse) si besoin.
-
-→ valide `kZoneOffset_P4`.
-
-### Test 4 — Validation `kZoneOffset_P14`
-
-Identique Test 3 mais avec `/u P14_G <idx>`. Modifier `kZoneOffset_P14` dans
-le source, recompiler, relancer.
-
-→ valide `kZoneOffset_P14`.
-
-### Tester toutes les couleurs
-
-Ajouter `/y` a n'importe quelle commande pour passer en JAUNE. En YELLOW :
-- pour les zones horizontales (P3, P4, P13, P14), le suffixe `_D`/`_G` est
-  flippe automatiquement ;
-- l'index pickup est swap via `SWAP_COLOR_IDX[idx]` (paires (0,1)(2,3)(4,5))
-  pour conserver la semantique "pousser SA majorite".
-
-Verifier dans le log `push_elements_zone <zone> idx=X sens=YYY (YELLOW post-swap)`
-que la valeur d'idx loguee est bien `SWAP_COLOR_IDX[idx_original]` et que le
-sens correspond au flip attendu pour les horizontales.
-
-### Script bash optionnel (Tests 1+2 automatises)
-
-```bash
-cd /home/pmx/git/PMX-CORTEX/robot
-./sh/test_push_elements.sh
-```
-
-Sortie : tableau idx / sens / distance mesuree / OK ou FAIL (12 cas).
+Astuce : grace au `SWAP_COLOR_IDX` applique automatiquement en YELLOW,
+regler les 6 valeurs `D1..D4` (+ `D1_INV..D4_INV`) en BLEU regle
+simultanement les 2 couleurs. Une seule passe de calibration suffit.
 
 ## Test en simulation (sans balise)
 
-En SIMU la balise n'est pas branchee, donc `pickup_P{N}` reste a sa valeur par
-defaut (0 = BBYY). Pour tester les autres configs, l'option CLI **`/u <zone>
-<value>`** force la valeur d'une zone juste apres le parsing CLI :
+Sans balise, `pickup_P{N}` reste a 0 (BBYY). Le mode 2 du test
+[O_PushElementsTest](../src/bot-test-opos6ul/O_PushElementsTest.cpp)
+force la valeur souhaitee via son 3eme argument (idx 0..5) avant de
+lancer la manip — equivalent simu de la saisie balise.
 
-```bash
-./bot-opos6ul m /k /s PMX2 /u P1 5         # P1 = idx 5 (YBYB), BLEU -> D3
-./bot-opos6ul m /k /s PMX2 /u P14 2 /y     # P14 = idx 2 (BYYB), JAUNE -> D1
-```
-
-| Argument | Valeurs | Description |
-|---|---|---|
-| `zone` | `P1..P4` ou `P11..P14` | Zone visee (8 valeurs possibles) |
-| `value` | `0..5` | Config beacon (cf. table d'ordre balise plus haut) |
-
-Limitations :
-- 1 seule zone par run (option non repetable). Pour configurer plusieurs
-  zones, lancer plusieurs runs ou modifier la valeur dans le menu LCD2x16.
-- En PHASE_MATCH la modification est rejetee : l'option doit etre passee au
-  demarrage CLI, ce qui est le cas (parsing en PHASE_CONFIG).
-
-Combiner avec `/y` pour tester la table JAUNE (qui est l'inverse de la table
-BLEU pour le meme idx).
-
-## Reglage sur table
-
-1. Mettre le robot devant une zone reelle avec 4 elements en config connue.
-2. Selectionner la config sur le LCD tactile balise.
-3. Lancer une strategie qui appelle uniquement `push_elements_P{N}` (ou
-   utiliser un test fonctionnel dedie si cree).
-4. Observer si tous les elements adverses sortent de la zone — sinon ajuster
-   la valeur correspondante (D1..D4) dans `StrategyActions2026.cpp`.
-5. Recompiler / redeployer (cf [BUILD.md](BUILD.md)).
-6. Iterer pour les 6 configs et les 2 couleurs.
-
-Astuce : grace au `SWAP_COLOR_IDX` applique automatiquement en YELLOW, regler
-les 6 valeurs `D1..D4` (+ `D1_INV..D4_INV`) en BLEU regle simultanement les
-2 couleurs. Une seule passe de calibration suffit.
+L'ancienne option CLI `/u <zone> <value>` (utilisee depuis `m /k /s
+PMX*`) reste disponible dans
+[Robot.cpp](../src/common/Robot.cpp) pour les runs strategie complets,
+mais pour valider une zone isolee, **prefere `pe <zone> <suffixe>
+<idx>`** (plus direct, n'a pas besoin d'une strategie JSON).

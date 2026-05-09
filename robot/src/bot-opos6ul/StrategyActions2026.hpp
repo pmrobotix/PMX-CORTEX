@@ -1,6 +1,7 @@
 #ifndef BOT_OPOS6UL_STRATEGY_ACTIONS_2026_HPP_
 #define BOT_OPOS6UL_STRATEGY_ACTIONS_2026_HPP_
 
+#include <cstdint>
 #include <string>
 
 class ActionRegistry;
@@ -38,5 +39,60 @@ void registerStrategyActions2026(ActionRegistry& registry, OPOS6UL_RobotExtended
  * callbacks lies sont figes dans StrategyActions2026.cpp.
  */
 void setupActivitiesZone2026(OPOS6UL_RobotExtended& robot, const std::string& strategy);
+
+/*!
+ * \brief Manipulation push generique (avance pousse + recul de degagement).
+ *
+ * Logique : selon couleur, applique le swap idx (SWAP_COLOR_IDX) et le flip
+ * de suffixe horizontal (P3/P4/P13/P14 : sensInverse <-> non-inverse en YELLOW),
+ * lit dist dans distDirecte/distInverse, ajoute zoneOffset, puis avance la
+ * distance + recul D_RETREAT. Cf doc PUSH_ELEMENTS_2026.md.
+ *
+ * \return true si l'avance a abouti, false si abort avant pousse.
+ */
+bool push_elements_zone(uint8_t pickupIdx, const char* zoneName, bool sensInverse);
+
+/*!
+ * \brief API exposee pour O_PushElementsTest (pas pour usage strategie).
+ *
+ * Permet au test C++ de valider la logique de combinaison
+ * (mapping idx, swap couleur, flip suffixe horizontal, offsets P4/P14)
+ * sans dependre des valeurs de calibration D1..D4 (le test compare a
+ * distDirecteAt(idx) etc., donc reste vert quand on retouche la calibration).
+ */
+namespace push_elements_test_api {
+
+/// Symetrie couleur appliquee sur l'idx pickup en YELLOW : (0,1)(2,3)(4,5).
+extern const uint8_t SWAP_COLOR_IDX[6];
+
+/// Lit la table directe a l'index idx (0..5). Retourne <0 si idx invalide.
+float distDirecteAt(uint8_t idx);
+
+/// Lit la table inverse a l'index idx (0..5). Retourne <0 si idx invalide.
+float distInverseAt(uint8_t idx);
+
+/// Offset specifique de la zone (kZoneOffset_P4 / _P14). Retourne 0 sinon.
+float zoneOffsetFor(const char* zoneName);
+
+/// Constante D_RETREAT du recul de degagement post-pousse.
+float retreatMm();
+
+/*!
+ * \brief Calcul pur de la distance d'avance, sans bouger le robot.
+ *
+ * Reproduit exactement la logique de combinaison de push_elements_zone() :
+ *   yellow ? swap_idx + flip_horiz_suffix : passthrough
+ *   distDirecteAt or distInverseAt + zoneOffsetFor.
+ *
+ * \return distance en mm (>0) ou <0 sur erreur (idx invalide ou
+ *         dist resultante <= 0 apres offset).
+ */
+float computeDistance(uint8_t pickupIdx, const char* zoneName,
+                      bool sensInverse, bool yellow);
+
+/// True si la zone est horizontale (P3, P4, P13, P14) -> suffixe se flip en YELLOW.
+bool isHorizontalZone(const char* zoneName);
+
+} // namespace push_elements_test_api
 
 #endif

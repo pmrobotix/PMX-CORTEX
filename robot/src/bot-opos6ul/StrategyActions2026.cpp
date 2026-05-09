@@ -189,32 +189,13 @@ constexpr float D4_INV = 250.0f+decal;
 // Tables indexees sur l'ordre balise (idx 0..5) :
 //   0=BBYY  1=YYBB  2=BYYB  3=YBBY  4=BYBY  5=YBYB
 //
-// Mapping image utilisateur (1..6) -> balise (0..5) en commentaire de ligne,
-// pour faire le lien avec la doc de calibration :
-//   image #1 BBJJ -> balise 0 BBYY   image #4 JBBJ -> balise 3 YBBY
-//   image #2 BJBJ -> balise 4 BYBY   image #5 JBJB -> balise 5 YBYB
-//   image #3 BJJB -> balise 2 BYYB   image #6 JJBB -> balise 1 YYBB
-//
-// Convention : la strategie JSON est ecrite EN BLEU (cf commit 3a211c52). En
-// YELLOW, le miroir Asserv sur X transforme automatiquement les coordonnees
-// de trajectoire. Pour push_elements, 2 transformations equivalentes sont
-// appliquees ici dans push_elements_zone() :
-//   1) suffixe horizontal _D <-> _G (le robot arrive du cote oppose)
-//   2) idx pickup -> SWAP_COLOR_IDX[idx] (les paires (0,1)(2,3)(4,5) sont
-//      symetriques par swap couleur, donc la meme distance pousse SA majorite
-//      au lieu d'inverser)
-//
-// Resultat : 1 seule paire de tables (distDirecte/distInverse), s'applique
-// aux 2 couleurs apres transformation. Cf robot/md/PUSH_ELEMENTS_2026.md.
+// Convention : strategie JSON ecrite EN BLEU. En YELLOW, push_elements_zone()
+// applique 2 transformations via push_elements_test_api::computeDistance() :
+//   1) idx pickup -> SWAP_COLOR_IDX[idx] (paires symetriques 0<->1, 2<->3, 4<->5)
+//   2) suffixe horizontal _D<->_G (zones P3/P4/P13/P14)
+// Cf robot/md/PUSH_ELEMENTS_2026.md.
 
-// Swap des indices balise par symetrie couleur :
-//   0 BBYY <-> 1 YYBB  |  2 BYYB <-> 3 YBBY  |  4 BYBY <-> 5 YBYB
-// Utilise en YELLOW pour conserver la semantique "pousser sa propre majorite".
-static constexpr uint8_t SWAP_COLOR_IDX[6] = { 1, 0, 3, 2, 5, 4 };
-
-// Sens DIRECTE : robot avance dans le sens de lecture de la sequence balise
-// (haut->bas vertical, gauche->droite horizontal). On rencontre les elements
-// adverses en QUEUE de sequence et on les pousse hors de la zone.
+// Sens DIRECTE : robot avance dans le sens de lecture de la sequence balise.
 static constexpr float distDirecte[6] = {
     /* [0] BBYY = image#1 */ D1,
     /* [1] YYBB = image#6 */ D4,
@@ -224,9 +205,7 @@ static constexpr float distDirecte[6] = {
     /* [5] YBYB = image#5 */ D3,
 };
 
-// Sens INVERSE : robot avance dans le sens oppose. On rencontre les elements
-// adverses en TETE et on doit les pousser jusqu'a la sortie opposee, donc
-// distance plus longue. PLACEHOLDER - A CALIBRER SUR TABLE.
+// Sens INVERSE : robot avance dans le sens oppose, distance plus longue.
 static constexpr float distInverse[6] = {
     /* [0] BBYY = image#1 */ D1_INV,
     /* [1] YYBB = image#6 */ D4_INV,
@@ -236,67 +215,110 @@ static constexpr float distInverse[6] = {
     /* [5] YBYB = image#5 */ D3_INV,
 };
 
-// Retourne l'offset specifique a appliquer pour une zone donnee (0 si aucun).
-// Permet de gerer les zones dont la geometrie de prise/depose differe.
-static float zoneOffset(const char* zoneName)
+} // namespace (anonymous, fin partielle pour exposer le namespace public)
+
+// =============================================================================
+// API exposee push_elements_test_api : utilisee par O_PushElementsTest
+// =============================================================================
+namespace push_elements_test_api {
+
+const uint8_t SWAP_COLOR_IDX[6] = { 1, 0, 3, 2, 5, 4 };
+
+float distDirecteAt(uint8_t idx)
 {
+    return (idx < 6) ? distDirecte[idx] : -1.0f;
+}
+
+float distInverseAt(uint8_t idx)
+{
+    return (idx < 6) ? distInverse[idx] : -1.0f;
+}
+
+float zoneOffsetFor(const char* zoneName)
+{
+    if (zoneName == nullptr) return 0.0f;
     if (strcmp(zoneName, "P4")  == 0) return kZoneOffset_P4;
     if (strcmp(zoneName, "P14") == 0) return kZoneOffset_P14;
     return 0.0f;
 }
 
-/*!
- * \brief Pousse les elements de jeu devant le robot selon la config beacon.
- *
- * \param pickupIdx     config 0..5 lue via robot.pickupP{N}() (sync I2C balise).
- * \param zoneName      libelle "P1".."P14" pour le log.
- * \param sensInverse   true si le robot arrive du sens oppose a la lecture
- *                      balise (utilise distInverse au lieu de distDirecte).
- * \return true si l'avance de pousse a abouti, false si abort avant pousse.
- *
- * Sequence : avance dist (selon sens+config) puis recul D_RETREAT pour se
- * degager. Detection front center actif pendant la sequence (collision sur
- * element pousse), front lateral et back ignores. Vitesse forcee a 20%.
- *
- * Remarque : un echec sur le recul est non-bloquant (la pousse a deja eu lieu).
- */
-bool push_elements_zone(uint8_t pickupIdx, const char* zoneName, bool sensInverse)
+float retreatMm()
 {
-    OPOS6UL_RobotExtended& robot = OPOS6UL_RobotExtended::instance();
+    return D_RETREAT;
+}
 
-    if (pickupIdx > 5) {
-        logger().error() << __FUNCTION__ << " " << zoneName
-                         << " pickupIdx invalide (" << (int)pickupIdx << ") abort" << logs::end;
-        return false;
-    }
+bool isHorizontalZone(const char* zoneName)
+{
+    if (zoneName == nullptr) return false;
+    return (strcmp(zoneName, "P3")  == 0 || strcmp(zoneName, "P4")  == 0
+         || strcmp(zoneName, "P13") == 0 || strcmp(zoneName, "P14") == 0);
+}
 
-    // En YELLOW : suffixe horizontal _D<->_G a inverser (miroir Asserv) et
-    // idx swap couleur pour conserver la semantique "pousser sa majorite".
-    if (robot.isMatchColor()) {
-        const bool isHoriz = (strcmp(zoneName, "P3")  == 0 || strcmp(zoneName, "P4")  == 0
-                           || strcmp(zoneName, "P13") == 0 || strcmp(zoneName, "P14") == 0);
-        if (isHoriz) sensInverse = !sensInverse;
+float computeDistance(uint8_t pickupIdx, const char* zoneName,
+                      bool sensInverse, bool yellow)
+{
+    if (pickupIdx > 5) return -1.0f;
+
+    if (yellow) {
+        if (isHorizontalZone(zoneName)) sensInverse = !sensInverse;
         pickupIdx = SWAP_COLOR_IDX[pickupIdx];
     }
 
-    const char* sensLabel = sensInverse ? "INVERSE" : "DIRECTE";
-    logger().info() << __FUNCTION__ << " " << zoneName << " idx=" << (int)pickupIdx
-                    << " sens=" << sensLabel
-                    << (robot.isMatchColor() ? " (YELLOW post-swap)" : "") << logs::end;
-
     const float distBase = sensInverse ? distInverse[pickupIdx] : distDirecte[pickupIdx];
-    const float offset   = zoneOffset(zoneName);
+    const float offset   = zoneOffsetFor(zoneName);
     const float dist     = distBase + offset;
-    logger().info() << __FUNCTION__ << " " << zoneName << " avance=" << dist
-                    << "mm (base=" << distBase << " offset=" << offset
-                    << ") puis recul=" << D_RETREAT << "mm" << logs::end;
+    if (dist <= 0.0f) return -1.0f;
+    return dist;
+}
 
-    if (dist <= 0.0f) {
-        logger().error() << __FUNCTION__ << " " << zoneName
-                         << " distance avance <= 0 (base=" << distBase
-                         << " offset=" << offset << ") abort" << logs::end;
+} // namespace push_elements_test_api
+
+// =============================================================================
+// push_elements_zone : la manipulation runtime utilisee par les wrappers
+// (registerStrategyActions2026 -> push_elements_P*_*).
+// =============================================================================
+
+// Reprise de l'anonymous namespace pour les helpers locaux qui suivent.
+namespace {
+
+bool push_elements_zone_impl(uint8_t pickupIdx, const char* zoneName, bool sensInverse)
+{
+    OPOS6UL_RobotExtended& robot = OPOS6UL_RobotExtended::instance();
+    const bool yellow = robot.isMatchColor();
+
+    // Calcul pur de la distance via l'API exposee. Reproduit la logique de
+    // swap idx + flip suffixe horiz + offset, sans dependance asserv/sensors.
+    const float dist = push_elements_test_api::computeDistance(
+        pickupIdx, zoneName, sensInverse, yellow);
+
+    // Re-applique le swap sur idx/sensInverse pour le log (computeDistance
+    // les a appliques en interne mais ne les retourne pas).
+    uint8_t idxLog = pickupIdx;
+    bool    invLog = sensInverse;
+    if (yellow) {
+        if (push_elements_test_api::isHorizontalZone(zoneName)) invLog = !invLog;
+        if (idxLog <= 5) idxLog = push_elements_test_api::SWAP_COLOR_IDX[idxLog];
+    }
+
+    if (dist < 0.0f) {
+        logger().error() << "push_elements_zone " << zoneName
+                         << " idx=" << (int)pickupIdx
+                         << " sens=" << (sensInverse ? "INVERSE" : "DIRECTE")
+                         << (yellow ? " (YELLOW)" : "")
+                         << " -> dist invalide, abort" << logs::end;
         return false;
     }
+
+    const char* sensLabel = invLog ? "INVERSE" : "DIRECTE";
+    logger().info() << "push_elements_zone " << zoneName
+                    << " idx=" << (int)idxLog << " sens=" << sensLabel
+                    << (yellow ? " (YELLOW post-swap)" : "") << logs::end;
+
+    const float distBase = invLog ? distInverse[idxLog] : distDirecte[idxLog];
+    const float offset   = push_elements_test_api::zoneOffsetFor(zoneName);
+    logger().info() << "push_elements_zone " << zoneName << " avance=" << dist
+                    << "mm (base=" << distBase << " offset=" << offset
+                    << ") puis recul=" << D_RETREAT << "mm" << logs::end;
 
     // Sauvegarde du cap vitesse user (rest. apres manip pour ne pas laisser
     // 20% pour les tasks suivantes du JSON).
@@ -367,6 +389,13 @@ void setupZonesTableTest(OPOS6UL_RobotExtended& robot)
 // =============================================================================
 // API publique
 // =============================================================================
+
+// Thin wrapper public : delegue a push_elements_zone_impl (anonymous namespace).
+// Permet au test O_PushElementsTest d'invoquer la manip directement.
+bool push_elements_zone(uint8_t pickupIdx, const char* zoneName, bool sensInverse)
+{
+    return push_elements_zone_impl(pickupIdx, zoneName, sensInverse);
+}
 
 void setupActivitiesZone2026(OPOS6UL_RobotExtended& robot, const std::string& strategy)
 {

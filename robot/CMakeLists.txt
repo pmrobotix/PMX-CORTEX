@@ -243,6 +243,7 @@ if(DRIVER_LIB)
         src/bot-test-opos6ul/O_DetectionRetryForwardTest.cpp
         src/bot-test-opos6ul/O_DetectionRetryBackwardTest.cpp
         src/bot-test-opos6ul/O_StrategyJsonRunnerTest.cpp
+        src/bot-test-opos6ul/O_PushElementsTest.cpp
         src/bot-test-opos6ul/O_AsservXYRotateTest.cpp
         src/bot-test-opos6ul/O_AsservTest.cpp
         src/bot-test-opos6ul/O_AsservCalibrationTest.cpp
