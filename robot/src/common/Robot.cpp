@@ -162,6 +162,17 @@ void Robot::configureDefaultConsoleArgs() {
         cOpt.addArgument("y", "y table mm", "0");
         cArgs_.addOption(cOpt);
     }
+
+    {
+        // /u <zone> <value>  -> DEBUG : force la config pickup d'une zone, sans
+        // passer par la balise. Utile en SIMU pour tester les distances
+        // push_elements (D1..D4) selon la config beacon. zone = P1..P4 ou
+        // P11..P14, value = 0..5. Cf robot/md/PUSH_ELEMENTS_2026.md.
+        Arguments::Option cOpt('u', "DEBUG: force pickup_P{N} sans balise (1 zone)");
+        cOpt.addArgument("zone", "P1..P4 ou P11..P14", "");
+        cOpt.addArgument("value", "config 0..5", "0");
+        cArgs_.addOption(cOpt);
+    }
 }
 
 void Robot::loadInitJsonForCurrentStrategy()
@@ -291,6 +302,49 @@ void Robot::parseConsoleArgs(int argc, char** argv, bool stopWithErrors) {
         injectAdvX_ = std::atof(cArgs_['a']["x"].c_str());
         injectAdvY_ = std::atof(cArgs_['a']["y"].c_str());
         injectAdvEnabled_ = true;
+    }
+
+    // /u <zone[_X]> <value> : DEBUG force la config pickup d'une zone (test SIMU).
+    // Phase de parsing CLI = avant PHASE_MATCH, donc setPickupP* accepte.
+    //
+    // Format zone : "P{N}" ou "P{N}_X" avec X = B, H, D ou G.
+    // Le suffixe optionnel force le wrapper push_elements_P{N}_X via override
+    // (cf StrategyJsonRunner) - permet de tester un cote d'arrivee donne sans
+    // editer le JSON.
+    if (cArgs_['u']) {
+        const std::string zoneArg = cArgs_['u']["zone"];
+        const int value = std::atoi(cArgs_['u']["value"].c_str());
+
+        // Extraire la zone "P{N}" et le suffixe optionnel "_[BHGD]".
+        std::string zone = zoneArg;
+        std::string suffixOverride;
+        const auto pos = zoneArg.find('_');
+        if (pos != std::string::npos) {
+            zone = zoneArg.substr(0, pos);
+            suffixOverride = zoneArg;     // ex: "P4_D" garde la forme complete
+        }
+
+        bool ok = false;
+        if      (zone == "P1")  ok = setPickupP1(value);
+        else if (zone == "P2")  ok = setPickupP2(value);
+        else if (zone == "P3")  ok = setPickupP3(value);
+        else if (zone == "P4")  ok = setPickupP4(value);
+        else if (zone == "P11") ok = setPickupP11(value);
+        else if (zone == "P12") ok = setPickupP12(value);
+        else if (zone == "P13") ok = setPickupP13(value);
+        else if (zone == "P14") ok = setPickupP14(value);
+        if (!ok) {
+            std::cerr << "ERROR: /u zone='" << zone << "' value=" << value
+                      << " refuse (zone inconnue ou value > 5)." << std::endl;
+        } else {
+            logger().info() << "DEBUG /u: pickup " << zone << "=" << value
+                            << logs::end;
+            if (!suffixOverride.empty()) {
+                pushElementsOverride_ = suffixOverride;
+                logger().info() << "DEBUG /u: pushElementsOverride="
+                                << pushElementsOverride_ << logs::end;
+            }
+        }
     }
 
     // Reconfigure telemetry appender with command line args (/i ip /P port)

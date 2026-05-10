@@ -766,7 +766,9 @@ void AsservDriverSimu::doMotionLine(float dist_mm)
 		if (emergencyStop_ || abortCurrent_) return;
 
 		float current_speed = fabs(simuCurrentSpeed_);
-		if (current_speed < 1.0f) current_speed = fabs(simuMaxSpeed_);
+		// Garde-fou : seuil en m/s (simuMaxSpeed_ est en m/s, ex: 0.5 pour OPOS6UL).
+		// Si simuCurrentSpeed_ est ~0 (non initialise / setSpeed(0)), fallback sur la vitesse max.
+		if (current_speed < 0.001f) current_speed = fabs(simuMaxSpeed_);
 		float step = (increment_time_us / 1000.0f) * current_speed;
 		if (step < 0.01f) step = 1.0f;
 		if (step > total_distance - travelled) step = total_distance - travelled;
@@ -1072,14 +1074,14 @@ void AsservDriverSimu::motion_setLowSpeedBackward(bool enable, int percent)
 
 void AsservDriverSimu::motion_setMaxSpeed(bool enable, int percentD, int percentA)
 {
-
 	//TODO faire la vitesse pour tourner
-
-	logger().debug() << " motion_setLowSpeedForward !!!!!" << logs::end;
 	if (enable)
 		simuCurrentSpeed_ = simuMaxSpeed_ * (percentD) / 100.0;
 	else
 		simuCurrentSpeed_ = simuMaxSpeed_;
+	logger().info() << "motion_setMaxSpeed enable=" << enable << " percentD=" << percentD
+			<< " percentA=" << percentA << " -> simuCurrentSpeed_=" << simuCurrentSpeed_
+			<< " m/s (simuMaxSpeed_=" << simuMaxSpeed_ << ")" << logs::end;
 }
 
 //functions deprecated

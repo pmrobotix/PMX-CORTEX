@@ -293,6 +293,14 @@ public:
     void setMaxSpeed(bool enable, int speed_dist_percent=0, int speed_angle_percent=0);
 
     /*!
+     * \brief Etat courant du cap PWM user (cf setMaxSpeed). Permet a une
+     *        manipulation de sauvegarder/restaurer le cap utilisateur autour
+     *        d'une sequence qui le modifie temporairement.
+     */
+    bool getUserMaxSpeedActive()  const { return userMaxSpeedActive_; }
+    int  getUserMaxSpeedPercent() const { return userMaxSpeedPercent_; }
+
+    /*!
      * \brief Scale acc/dec 0-100% en amont du PID Nucleo (sans toucher
      *        au cap PWM moteur). Cmd CBOR 18 (set_speed_percent).
      *        A utiliser pour rouler en douceur sans risque de saturation
