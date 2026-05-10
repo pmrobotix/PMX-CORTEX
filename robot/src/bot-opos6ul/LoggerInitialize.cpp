@@ -67,6 +67,7 @@ void logs::LoggerFactory::initialize()
     add(logs::Level::INFO, "MenuBeaconLCDTouch", "console");
     add(logs::Level::INFO, "StrategyJsonParser", "console");
     add(logs::Level::INFO, "StrategyJsonRunner", "console");
+    add(logs::Level::INFO, "StrategyActions2026", "console");
     add(logs::Level::INFO, "ActionRegistry", "console");
     add(logs::Level::INFO, "FlagManager", "console");
     add(logs::Level::INFO, "O_State_WaitEndOfMatch", "console");
