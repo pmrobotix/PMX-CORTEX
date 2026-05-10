@@ -2,45 +2,96 @@
   {
     "id": 1,
     "desc": "P1 en GM2",
+    "priority": 100,
     "tasks": [
+      {
+        "type": "SPEED",
+        "subtype": "SET_SPEED",
+        "speed_percent": 40,
+        "desc": "cap PWM"
+      },
       {
         "type": "MOVEMENT",
         "subtype": "PATH_TO",
         "position_x": 230,
-        "position_y": 680,
-        "desc": "PATH_TO (230,680)"
+        "position_y": 600,
+        "desc": "PATH_TO (230,600)"
       },
-      {
-        "type": "MOVEMENT",
-        "subtype": "LINE",
-        "dist": 392,
-        "desc": "LINE dist=392"
-      },
-      {
-        "type": "MOVEMENT",
-        "subtype": "LINE",
-        "dist": -160,
-        "desc": "LINE dist=-160"
-      }
+      { "type": "MANIPULATION", "action_id": "push_elements_P1_B", "timeout": 10000 }
     ]
   },
   {
     "id": 2,
-    "desc": "ZC1 ATTENTE RETOUR ZONE",
+    "desc": "Milieu defense/poussee",
+    "priority": 90,
+    "tasks": [
+      {
+        "type": "SPEED",
+        "subtype": "SET_SPEED",
+        "speed_percent": 50,
+        "desc": "SET_SPEED 50"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "PATH_TO",
+        "position_x": 1500,
+        "position_y": 900,
+        "desc": "PATH_TO (1500,900)"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "FACE_TO",
+        "position_y": 900,
+        "desc": "FACE_TO adverse (0,900)",
+        "position_x": 0
+      },
+      {
+        "type": "WAIT",
+        "duration_ms": 5000,
+        "desc": "WAIT 5000ms"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "desc": "ZC1 position attente",
+    "priority": 50,
     "tasks": [
       {
         "type": "MOVEMENT",
         "subtype": "PATH_TO",
         "position_x": 800,
-        "position_y": 600,
-        "desc": "PATH_TO (800,600)"
+        "position_y": 660,
+        "desc": "PATH_TO (800,660)"
       },
       {
         "type": "MOVEMENT",
         "subtype": "FACE_TO",
-        "position_x": 100,
-        "position_y": 600,
-        "desc": "FACE_TO (100,600)"
+        "position_x": 300,
+        "position_y": 650,
+        "desc": "FACE_TO (300 650"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "desc": "Retour zone depart (apres 90s)",
+    "priority": 1,
+    "min_match_sec": 90,
+    "tasks": [
+      {
+        "type": "MOVEMENT",
+        "subtype": "GO_TO",
+        "position_x": 300,
+        "position_y": 650,
+        "desc": "GO_TO (300,650)"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "GO_TO",
+        "position_x": 300,
+        "position_y": 200,
+        "desc": "GO_TO (300,200)"
       }
     ]
   }

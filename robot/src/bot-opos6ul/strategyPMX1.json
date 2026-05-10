@@ -5,6 +5,12 @@
     "priority": 100,
     "tasks": [
       {
+        "type": "SPEED",
+        "subtype": "SET_SPEED",
+        "speed_percent": 40,
+        "desc": "cap PWM"
+      },
+      {
         "type": "MOVEMENT",
         "subtype": "PATH_TO",
         "position_x": 230,
@@ -14,7 +20,7 @@
       {
         "type": "SPEED",
         "subtype": "SET_SPEED",
-        "speed_percent": 40,
+        "speed_percent": 20,
         "desc": "cap PWM"
       },
       {
@@ -27,7 +33,7 @@
       {
         "type": "SPEED",
         "subtype": "SET_SPEED",
-        "speed_percent": 100,
+        "speed_percent": 60,
         "desc": "cap PWM"
       },
       {
@@ -60,9 +66,14 @@
       {
         "type": "MOVEMENT",
         "subtype": "FACE_TO",
-        "position_x": 3000,
         "position_y": 900,
-        "desc": "FACE_TO adverse (3000,900)"
+        "desc": "FACE_TO adverse (0,900)",
+        "position_x": 0
+      },
+      {
+        "type": "WAIT",
+        "duration_ms": 5000,
+        "desc": "WAIT 5000ms"
       }
     ]
   },
@@ -75,15 +86,15 @@
         "type": "MOVEMENT",
         "subtype": "PATH_TO",
         "position_x": 800,
-        "position_y": 650,
-        "desc": "PATH_TO (800,650)"
+        "position_y": 660,
+        "desc": "PATH_TO (800,660)"
       },
       {
         "type": "MOVEMENT",
-        "subtype": "FACE_BACK_TO",
+        "subtype": "FACE_TO",
         "position_x": 300,
-        "position_y": 600,
-        "desc": "FACE_BACK_TO (300,600)"
+        "position_y": 650,
+        "desc": "FACE_TO (300 650"
       }
     ]
   },
@@ -95,17 +106,17 @@
     "tasks": [
       {
         "type": "MOVEMENT",
-        "subtype": "GO_BACK_TO",
+        "subtype": "GO_TO",
         "position_x": 300,
-        "position_y": 600,
-        "desc": "GO_BACK_TO (300,600)"
+        "position_y": 650,
+        "desc": "GO_TO (300,650)"
       },
       {
         "type": "MOVEMENT",
-        "subtype": "GO_BACK_TO",
+        "subtype": "GO_TO",
         "position_x": 300,
-        "position_y": 300,
-        "desc": "GO_BACK_TO (300,300)"
+        "position_y": 200,
+        "desc": "GO_TO (300,200)"
       }
     ]
   }

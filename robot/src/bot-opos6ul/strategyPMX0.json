@@ -1,43 +1,50 @@
 [
   {
     "id": 1,
-    "desc": "Sortie zone de départ",
+    "desc": "P1 en GM2",
+    "priority": 100,
     "tasks": [
-      { "type": "ELEMENT", "subtype": "DELETE_ZONE", "item_id": "zone_start", "desc": "Libération zone départ" },
-      { "type": "MOVEMENT", "subtype": "GO_TO", "position_x": 500, "position_y": 500, "desc": "Sortie diagonale" }
+      {
+        "type": "SPEED",
+        "subtype": "SET_SPEED",
+        "speed_percent": 40,
+        "desc": "cap PWM"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "PATH_TO",
+        "position_x": 230,
+        "position_y": 600,
+        "desc": "PATH_TO (230,600)"
+      },
+      { "type": "MANIPULATION", "action_id": "push_elements_P1_B", "timeout": 10000 }
     ]
   },
   {
     "id": 2,
-    "desc": "Action 1 : prise simulée vers l'est",
+    "desc": "Milieu defense/poussee",
+    "priority": 90,
     "tasks": [
-      { "type": "MOVEMENT", "subtype": "FACE_TO", "position_x": 700, "position_y": 500, "desc": "Orientation vers la droite" },
-      { "type": "MANIPULATION", "action_id": "ouvrir_pinces", "timeout": 2000 },
-      { "type": "SPEED", "subtype": "SET_SPEED", "speed_percent": 50, "desc": "Vitesse lente" },
-      { "type": "MOVEMENT", "subtype": "LINE", "dist": 100, "desc": "Avance 100mm" },
-      { "type": "MANIPULATION", "action_id": "fermer_pinces", "timeout": 2000 },
-      { "type": "MOVEMENT", "subtype": "LINE", "dist": -100, "desc": "Recul 100mm" },
-      { "type": "SPEED", "subtype": "SET_SPEED", "speed_percent": 100 }
-    ]
-  },
-  {
-    "id": 3,
-    "desc": "Action 2 : prise simulée vers le nord",
-    "tasks": [
-      { "type": "MOVEMENT", "subtype": "FACE_TO", "position_x": 500, "position_y": 700, "desc": "Orientation vers le haut" },
-      { "type": "MANIPULATION", "action_id": "ouvrir_pinces", "timeout": 2000 },
-      { "type": "MOVEMENT", "subtype": "LINE", "dist": 150, "desc": "Avance 150mm" },
-      { "type": "MANIPULATION", "action_id": "fermer_pinces", "timeout": 2000 },
-      { "type": "WAIT", "duration_ms": 500 },
-      { "type": "MOVEMENT", "subtype": "LINE", "dist": -150, "desc": "Recul 150mm" }
-    ]
-  },
-  {
-    "id": 4,
-    "desc": "Retour zone de départ",
-    "tasks": [
-      { "type": "MOVEMENT", "subtype": "PATH_TO", "position_x": 300, "position_y": 300, "desc": "Retour (A*)" },
-      { "type": "ELEMENT", "subtype": "ADD_ZONE", "item_id": "zone_start", "desc": "Réactivation zone départ" }
+      {
+        "type": "SPEED",
+        "subtype": "SET_SPEED",
+        "speed_percent": 50,
+        "desc": "SET_SPEED 50"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "PATH_TO",
+        "position_x": 600,
+        "position_y": 600,
+        "desc": "PATH_TO (600,600)"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "FACE_TO",
+        "position_y": 900,
+        "desc": "FACE_TO adverse (0,900)",
+        "position_x": 0
+      }
     ]
   }
 ]
