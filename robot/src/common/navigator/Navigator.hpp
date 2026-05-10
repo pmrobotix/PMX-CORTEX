@@ -211,6 +211,31 @@ public:
     TRAJ_STATE pathToAndRotateRelDeg(float x, float y, float degRelative, RetryPolicy policy = RetryPolicy::standard());
     TRAJ_STATE pathToAndFaceTo(float x, float y, float fx, float fy, RetryPolicy policy = RetryPolicy::standard());
     TRAJ_STATE pathToAndFaceBackTo(float x, float y, float fx, float fy, RetryPolicy policy = RetryPolicy::standard());
+
+    // ========== COMBINAISONS MOUVEMENT ARRIERE + ROTATION FINALE ==========
+    // Symetriques des combos forward : 1er op = goBackTo / moveBackwardTo / pathBackTo,
+    // 2e op = rotation finale (identique au forward correspondant).
+
+    // ---- Combos driver-level (goBackTo) ----
+
+    TRAJ_STATE goBackToAndRotateAbsDeg(float x, float y, float thetaDeg, RetryPolicy policy = RetryPolicy::standard());
+    TRAJ_STATE goBackToAndRotateRelDeg(float x, float y, float degRelative, RetryPolicy policy = RetryPolicy::standard());
+    TRAJ_STATE goBackToAndFaceTo(float x, float y, float fx, float fy, RetryPolicy policy = RetryPolicy::standard());
+    TRAJ_STATE goBackToAndFaceBackTo(float x, float y, float fx, float fy, RetryPolicy policy = RetryPolicy::standard());
+
+    // ---- Combos composees (moveBackwardTo) ----
+
+    TRAJ_STATE moveBackwardToAndRotateAbsDeg(float x, float y, float thetaDeg, RetryPolicy policy = RetryPolicy::standard());
+    TRAJ_STATE moveBackwardToAndRotateRelDeg(float x, float y, float degRelative, RetryPolicy policy = RetryPolicy::standard());
+    TRAJ_STATE moveBackwardToAndFaceTo(float x, float y, float fx, float fy, RetryPolicy policy = RetryPolicy::standard());
+    TRAJ_STATE moveBackwardToAndFaceBackTo(float x, float y, float fx, float fy, RetryPolicy policy = RetryPolicy::standard());
+
+    // ---- Pathfinding combos arriere ----
+
+    TRAJ_STATE pathBackToAndRotateAbsDeg(float x, float y, float thetaDeg, RetryPolicy policy = RetryPolicy::standard());
+    TRAJ_STATE pathBackToAndRotateRelDeg(float x, float y, float degRelative, RetryPolicy policy = RetryPolicy::standard());
+    TRAJ_STATE pathBackToAndFaceTo(float x, float y, float fx, float fy, RetryPolicy policy = RetryPolicy::standard());
+    TRAJ_STATE pathBackToAndFaceBackTo(float x, float y, float fx, float fy, RetryPolicy policy = RetryPolicy::standard());
 };
 
 #endif

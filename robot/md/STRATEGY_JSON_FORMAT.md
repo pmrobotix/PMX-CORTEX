@@ -145,6 +145,18 @@ Enchaîne un déplacement suivi d'une rotation, **abort si le déplacement écho
 | `PATH_TO_AND_ROTATE_REL_DEG` | idem GO_TO_AND_ROTATE_REL_DEG | `pathToAndRotateRelDeg(...)` |
 | `PATH_TO_AND_FACE_TO` | idem GO_TO_AND_FACE_TO | `pathToAndFaceTo(...)` |
 | `PATH_TO_AND_FACE_BACK_TO` | idem GO_TO_AND_FACE_BACK_TO | `pathToAndFaceBackTo(...)` |
+| `GO_BACK_TO_AND_ROTATE_ABS_DEG` | `position_x`, `position_y`, `final_angle_deg` | `goBackToAndRotateAbsDeg(x,y,θ)` |
+| `GO_BACK_TO_AND_ROTATE_REL_DEG` | `position_x`, `position_y`, `rotate_rel_deg` | `goBackToAndRotateRelDeg(x,y,deg)` |
+| `GO_BACK_TO_AND_FACE_TO` | `position_x`, `position_y`, `face_x`, `face_y` | `goBackToAndFaceTo(x,y,fx,fy)` |
+| `GO_BACK_TO_AND_FACE_BACK_TO` | `position_x`, `position_y`, `face_x`, `face_y` | `goBackToAndFaceBackTo(x,y,fx,fy)` |
+| `MOVE_BACKWARD_TO_AND_ROTATE_ABS_DEG` | idem GO_BACK_TO_AND_ROTATE_ABS_DEG | `moveBackwardToAndRotateAbsDeg(...)` |
+| `MOVE_BACKWARD_TO_AND_ROTATE_REL_DEG` | idem GO_BACK_TO_AND_ROTATE_REL_DEG | `moveBackwardToAndRotateRelDeg(...)` |
+| `MOVE_BACKWARD_TO_AND_FACE_TO` | idem GO_BACK_TO_AND_FACE_TO | `moveBackwardToAndFaceTo(...)` |
+| `MOVE_BACKWARD_TO_AND_FACE_BACK_TO` | idem GO_BACK_TO_AND_FACE_BACK_TO | `moveBackwardToAndFaceBackTo(...)` |
+| `PATH_BACK_TO_AND_ROTATE_ABS_DEG` | idem GO_BACK_TO_AND_ROTATE_ABS_DEG | `pathBackToAndRotateAbsDeg(...)` |
+| `PATH_BACK_TO_AND_ROTATE_REL_DEG` | idem GO_BACK_TO_AND_ROTATE_REL_DEG | `pathBackToAndRotateRelDeg(...)` |
+| `PATH_BACK_TO_AND_FACE_TO` | idem GO_BACK_TO_AND_FACE_TO | `pathBackToAndFaceTo(...)` |
+| `PATH_BACK_TO_AND_FACE_BACK_TO` | idem GO_BACK_TO_AND_FACE_BACK_TO | `pathBackToAndFaceBackTo(...)` |
 
 ### 2.6 MANIPULATION
 

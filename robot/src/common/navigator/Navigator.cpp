@@ -673,3 +673,111 @@ TRAJ_STATE Navigator::pathToAndFaceBackTo(float x, float y, float fx, float fy, 
         return ts;
     return faceBackTo(fx, fy, policy);
 }
+
+// =============================================================================
+// Combinaisons mouvement arriere + rotation finale (driver-level)
+// =============================================================================
+
+TRAJ_STATE Navigator::goBackToAndRotateAbsDeg(float x, float y, float thetaDeg, RetryPolicy policy)
+{
+    TRAJ_STATE ts = goBackTo(x, y, policy);
+    if (ts != TRAJ_FINISHED)
+        return ts;
+    return rotateAbsDeg(thetaDeg, policy);
+}
+
+TRAJ_STATE Navigator::goBackToAndRotateRelDeg(float x, float y, float degRelative, RetryPolicy policy)
+{
+    TRAJ_STATE ts = goBackTo(x, y, policy);
+    if (ts != TRAJ_FINISHED)
+        return ts;
+    return rotateDeg(degRelative, policy);
+}
+
+TRAJ_STATE Navigator::goBackToAndFaceTo(float x, float y, float fx, float fy, RetryPolicy policy)
+{
+    TRAJ_STATE ts = goBackTo(x, y, policy);
+    if (ts != TRAJ_FINISHED)
+        return ts;
+    return faceTo(fx, fy, policy);
+}
+
+TRAJ_STATE Navigator::goBackToAndFaceBackTo(float x, float y, float fx, float fy, RetryPolicy policy)
+{
+    TRAJ_STATE ts = goBackTo(x, y, policy);
+    if (ts != TRAJ_FINISHED)
+        return ts;
+    return faceBackTo(fx, fy, policy);
+}
+
+// =============================================================================
+// Combinaisons composees arriere (moveBackwardTo) + rotation finale
+// =============================================================================
+
+TRAJ_STATE Navigator::moveBackwardToAndRotateAbsDeg(float x, float y, float thetaDeg, RetryPolicy policy)
+{
+    TRAJ_STATE ts = moveBackwardTo(x, y, policy);
+    if (ts != TRAJ_FINISHED)
+        return ts;
+    return rotateAbsDeg(thetaDeg, policy);
+}
+
+TRAJ_STATE Navigator::moveBackwardToAndRotateRelDeg(float x, float y, float degRelative, RetryPolicy policy)
+{
+    TRAJ_STATE ts = moveBackwardTo(x, y, policy);
+    if (ts != TRAJ_FINISHED)
+        return ts;
+    return rotateDeg(degRelative, policy);
+}
+
+TRAJ_STATE Navigator::moveBackwardToAndFaceTo(float x, float y, float fx, float fy, RetryPolicy policy)
+{
+    TRAJ_STATE ts = moveBackwardTo(x, y, policy);
+    if (ts != TRAJ_FINISHED)
+        return ts;
+    return faceTo(fx, fy, policy);
+}
+
+TRAJ_STATE Navigator::moveBackwardToAndFaceBackTo(float x, float y, float fx, float fy, RetryPolicy policy)
+{
+    TRAJ_STATE ts = moveBackwardTo(x, y, policy);
+    if (ts != TRAJ_FINISHED)
+        return ts;
+    return faceBackTo(fx, fy, policy);
+}
+
+// =============================================================================
+// Pathfinding combinaisons arriere
+// =============================================================================
+
+TRAJ_STATE Navigator::pathBackToAndRotateAbsDeg(float x, float y, float thetaDeg, RetryPolicy policy)
+{
+    TRAJ_STATE ts = pathBackTo(x, y, policy);
+    if (ts != TRAJ_FINISHED)
+        return ts;
+    return rotateAbsDeg(thetaDeg, policy);
+}
+
+TRAJ_STATE Navigator::pathBackToAndRotateRelDeg(float x, float y, float degRelative, RetryPolicy policy)
+{
+    TRAJ_STATE ts = pathBackTo(x, y, policy);
+    if (ts != TRAJ_FINISHED)
+        return ts;
+    return rotateDeg(degRelative, policy);
+}
+
+TRAJ_STATE Navigator::pathBackToAndFaceTo(float x, float y, float fx, float fy, RetryPolicy policy)
+{
+    TRAJ_STATE ts = pathBackTo(x, y, policy);
+    if (ts != TRAJ_FINISHED)
+        return ts;
+    return faceTo(fx, fy, policy);
+}
+
+TRAJ_STATE Navigator::pathBackToAndFaceBackTo(float x, float y, float fx, float fy, RetryPolicy policy)
+{
+    TRAJ_STATE ts = pathBackTo(x, y, policy);
+    if (ts != TRAJ_FINISHED)
+        return ts;
+    return faceBackTo(fx, fy, policy);
+}

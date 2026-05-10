@@ -278,7 +278,19 @@ TRAJ_STATE StrategyJsonRunner::executeInstruction(const StrategyInstruction& ins
             type = (*last.dist >= 0.0f) ? Asserv::FORWARD : Asserv::BACKWARD;
         } else if (last.subtype == "GO_TO" || last.subtype == "MOVE_FORWARD_TO") {
             type = Asserv::FORWARD;
-        } else if (last.subtype == "GO_BACK_TO" || last.subtype == "MOVE_BACKWARD_TO") {
+        } else if (last.subtype == "GO_BACK_TO" || last.subtype == "MOVE_BACKWARD_TO"
+                   || last.subtype == "GO_BACK_TO_AND_ROTATE_ABS_DEG"
+                   || last.subtype == "GO_BACK_TO_AND_ROTATE_REL_DEG"
+                   || last.subtype == "GO_BACK_TO_AND_FACE_TO"
+                   || last.subtype == "GO_BACK_TO_AND_FACE_BACK_TO"
+                   || last.subtype == "MOVE_BACKWARD_TO_AND_ROTATE_ABS_DEG"
+                   || last.subtype == "MOVE_BACKWARD_TO_AND_ROTATE_REL_DEG"
+                   || last.subtype == "MOVE_BACKWARD_TO_AND_FACE_TO"
+                   || last.subtype == "MOVE_BACKWARD_TO_AND_FACE_BACK_TO"
+                   || last.subtype == "PATH_BACK_TO_AND_ROTATE_ABS_DEG"
+                   || last.subtype == "PATH_BACK_TO_AND_ROTATE_REL_DEG"
+                   || last.subtype == "PATH_BACK_TO_AND_FACE_TO"
+                   || last.subtype == "PATH_BACK_TO_AND_FACE_BACK_TO") {
             type = Asserv::BACKWARD;
         }
         TRAJ_STATE ts = robot_->asserv().waitEndOfTrajWithDetection(type);
@@ -352,6 +364,10 @@ TRAJ_STATE StrategyJsonRunner::executeTask(const StrategyTask& t)
             && t.position_x && t.position_y && t.final_angle_deg) {
             return nav.goToAndRotateAbsDeg(*t.position_x, *t.position_y, *t.final_angle_deg, pol);
         }
+        if (t.subtype == "GO_TO_AND_ROTATE_REL_DEG"
+            && t.position_x && t.position_y && t.rotate_rel_deg) {
+            return nav.goToAndRotateRelDeg(*t.position_x, *t.position_y, *t.rotate_rel_deg, pol);
+        }
         if (t.subtype == "GO_TO_AND_FACE_TO"
             && t.position_x && t.position_y && t.face_x && t.face_y) {
             return nav.goToAndFaceTo(*t.position_x, *t.position_y, *t.face_x, *t.face_y, pol);
@@ -380,9 +396,67 @@ TRAJ_STATE StrategyJsonRunner::executeTask(const StrategyTask& t)
             && t.position_x && t.position_y && t.final_angle_deg) {
             return nav.pathToAndRotateAbsDeg(*t.position_x, *t.position_y, *t.final_angle_deg, pol);
         }
+        if (t.subtype == "PATH_TO_AND_ROTATE_REL_DEG"
+            && t.position_x && t.position_y && t.rotate_rel_deg) {
+            return nav.pathToAndRotateRelDeg(*t.position_x, *t.position_y, *t.rotate_rel_deg, pol);
+        }
         if (t.subtype == "PATH_TO_AND_FACE_TO"
             && t.position_x && t.position_y && t.face_x && t.face_y) {
             return nav.pathToAndFaceTo(*t.position_x, *t.position_y, *t.face_x, *t.face_y, pol);
+        }
+        if (t.subtype == "PATH_TO_AND_FACE_BACK_TO"
+            && t.position_x && t.position_y && t.face_x && t.face_y) {
+            return nav.pathToAndFaceBackTo(*t.position_x, *t.position_y, *t.face_x, *t.face_y, pol);
+        }
+
+        // --- Composites BACK (deplacement arriere puis rotation, abort si deplacement echoue) ---
+        if (t.subtype == "GO_BACK_TO_AND_ROTATE_ABS_DEG"
+            && t.position_x && t.position_y && t.final_angle_deg) {
+            return nav.goBackToAndRotateAbsDeg(*t.position_x, *t.position_y, *t.final_angle_deg, pol);
+        }
+        if (t.subtype == "GO_BACK_TO_AND_ROTATE_REL_DEG"
+            && t.position_x && t.position_y && t.rotate_rel_deg) {
+            return nav.goBackToAndRotateRelDeg(*t.position_x, *t.position_y, *t.rotate_rel_deg, pol);
+        }
+        if (t.subtype == "GO_BACK_TO_AND_FACE_TO"
+            && t.position_x && t.position_y && t.face_x && t.face_y) {
+            return nav.goBackToAndFaceTo(*t.position_x, *t.position_y, *t.face_x, *t.face_y, pol);
+        }
+        if (t.subtype == "GO_BACK_TO_AND_FACE_BACK_TO"
+            && t.position_x && t.position_y && t.face_x && t.face_y) {
+            return nav.goBackToAndFaceBackTo(*t.position_x, *t.position_y, *t.face_x, *t.face_y, pol);
+        }
+        if (t.subtype == "MOVE_BACKWARD_TO_AND_ROTATE_ABS_DEG"
+            && t.position_x && t.position_y && t.final_angle_deg) {
+            return nav.moveBackwardToAndRotateAbsDeg(*t.position_x, *t.position_y, *t.final_angle_deg, pol);
+        }
+        if (t.subtype == "MOVE_BACKWARD_TO_AND_ROTATE_REL_DEG"
+            && t.position_x && t.position_y && t.rotate_rel_deg) {
+            return nav.moveBackwardToAndRotateRelDeg(*t.position_x, *t.position_y, *t.rotate_rel_deg, pol);
+        }
+        if (t.subtype == "MOVE_BACKWARD_TO_AND_FACE_TO"
+            && t.position_x && t.position_y && t.face_x && t.face_y) {
+            return nav.moveBackwardToAndFaceTo(*t.position_x, *t.position_y, *t.face_x, *t.face_y, pol);
+        }
+        if (t.subtype == "MOVE_BACKWARD_TO_AND_FACE_BACK_TO"
+            && t.position_x && t.position_y && t.face_x && t.face_y) {
+            return nav.moveBackwardToAndFaceBackTo(*t.position_x, *t.position_y, *t.face_x, *t.face_y, pol);
+        }
+        if (t.subtype == "PATH_BACK_TO_AND_ROTATE_ABS_DEG"
+            && t.position_x && t.position_y && t.final_angle_deg) {
+            return nav.pathBackToAndRotateAbsDeg(*t.position_x, *t.position_y, *t.final_angle_deg, pol);
+        }
+        if (t.subtype == "PATH_BACK_TO_AND_ROTATE_REL_DEG"
+            && t.position_x && t.position_y && t.rotate_rel_deg) {
+            return nav.pathBackToAndRotateRelDeg(*t.position_x, *t.position_y, *t.rotate_rel_deg, pol);
+        }
+        if (t.subtype == "PATH_BACK_TO_AND_FACE_TO"
+            && t.position_x && t.position_y && t.face_x && t.face_y) {
+            return nav.pathBackToAndFaceTo(*t.position_x, *t.position_y, *t.face_x, *t.face_y, pol);
+        }
+        if (t.subtype == "PATH_BACK_TO_AND_FACE_BACK_TO"
+            && t.position_x && t.position_y && t.face_x && t.face_y) {
+            return nav.pathBackToAndFaceBackTo(*t.position_x, *t.position_y, *t.face_x, *t.face_y, pol);
         }
 
         logger().error() << "MOVEMENT subtype unsupported : " << t.subtype << logs::end;
