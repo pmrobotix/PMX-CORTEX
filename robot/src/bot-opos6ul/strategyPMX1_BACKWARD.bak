@@ -1,0 +1,123 @@
+[
+  {
+    "id": 1,
+    "desc": "P1 en GM2 (BACKWARD)",
+    "priority": 100,
+    "tasks": [
+      {
+        "type": "SPEED",
+        "subtype": "SET_SPEED",
+        "speed_percent": 40,
+        "desc": "cap PWM"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "PATH_BACK_TO",
+        "position_x": 230,
+        "position_y": 600,
+        "desc": "PATH_BACK_TO (230,600)"
+      },
+      {
+        "type": "SPEED",
+        "subtype": "SET_SPEED",
+        "speed_percent": 20,
+        "desc": "cap PWM"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "PATH_BACK_TO",
+        "position_x": 230,
+        "position_y": 1050,
+        "desc": "PATH_BACK_TO (230,1050)"
+      },
+      {
+        "type": "SPEED",
+        "subtype": "SET_SPEED",
+        "speed_percent": 60,
+        "desc": "cap PWM"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "FACE_BACK_TO",
+        "position_x": 225,
+        "position_y": 1500,
+        "desc": "FACE_BACK_TO (225,1500)"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "LINE",
+        "dist": -160,
+        "desc": "LINE dist=-160"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "desc": "Milieu defense/poussee (BACKWARD)",
+    "priority": 90,
+    "tasks": [
+      {
+        "type": "MOVEMENT",
+        "subtype": "MOVE_BACKWARD_TO",
+        "position_x": 1500,
+        "position_y": 900,
+        "desc": "MOVE_BACKWARD_TO (1500,900)"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "FACE_BACK_TO",
+        "position_x": 0,
+        "position_y": 900,
+        "desc": "FACE_BACK_TO adverse (0,900)"
+      },
+      {
+        "type": "WAIT",
+        "duration_ms": 5000,
+        "desc": "WAIT 5000ms"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "desc": "ZC1 position attente (BACKWARD)",
+    "priority": 50,
+    "tasks": [
+      {
+        "type": "MOVEMENT",
+        "subtype": "GO_BACK_TO",
+        "position_x": 800,
+        "position_y": 660,
+        "desc": "GO_BACK_TO (800,660)"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "FACE_BACK_TO",
+        "position_x": 300,
+        "position_y": 650,
+        "desc": "FACE_BACK_TO (300,650)"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "desc": "Retour zone depart apres 90s (BACKWARD)",
+    "priority": 1,
+    "min_match_sec": 90,
+    "tasks": [
+      {
+        "type": "MOVEMENT",
+        "subtype": "GO_BACK_TO",
+        "position_x": 300,
+        "position_y": 650,
+        "desc": "GO_BACK_TO (300,650)"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "GO_BACK_TO",
+        "position_x": 300,
+        "position_y": 200,
+        "desc": "GO_BACK_TO (300,200)"
+      }
+    ]
+  }
+]
