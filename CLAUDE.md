@@ -73,14 +73,75 @@ Chaque sous-dossier dans `pamis/` est un PAMI indépendant.
 
 ## Règles pour Claude Code
 
-- Toujours fournir un résumé des modifications avec explications avant de coder — Présenter ce qui va être changé, pourquoi, et dans quels fichiers.
+- **Avant toute action de code** : (a) résumer ce qui sera changé, pourquoi, dans quels fichiers ; (b) si la tâche touche >1 fichier → préparer un brief subagent et **demander confirmation avant délégation** ; (c) sinon, attendre validation avant édition directe.
 - Avant de coder, vérifier la cohérence avec l'architecture existante en consultant les fichiers de référence (voir ci-dessous). Si une modification impacte l'architecture, le signaler et attendre validation.
 - Toujours demander confirmation avant de modifier des fichiers existants
 - Ne jamais modifier la toolchain Armadeus ou le BSP Buildroot
 - Proposer des solutions simples et testables
 - Expliquer les choix d'architecture quand c'est pertinent
-- Pas d'hallucination : si tu ne connais pas un détail hardware, dis-le
 - Avant chaque commit demandé par l'utilisateur, proposer le message de commit avec un résumé des modifications et attendre sa validation avant de commiter
+
+## Anti-hallucination — règles strictes
+
+### Vérifier avant d'affirmer
+- Avant de mentionner un fichier, une fonction, un champ struct, une option CLI, un flag CMake : vérifier son existence (Read/Grep). Pas de noms "plausibles".
+- Avant de citer une signature, un type, une valeur de constante, un chemin : la lire dans le code, ne pas la deviner.
+- Avant de proposer une API d'une lib externe : vérifier la version utilisée (CMakeLists.txt, platformio.ini, submodules) et la doc/code de cette version exacte.
+- Pour tout détail hardware (registres, broches, timings, adresses I2C, datasheets) : citer la source ou marquer explicitement "à vérifier".
+- Les mémoires (auto memory) sont des snapshots datés : toujours vérifier qu'un fait mémorisé est encore vrai dans le code actuel avant de l'utiliser.
+
+### Formulations à bannir sans vérification préalable
+- "Je pense que…", "normalement…", "ça devrait…" → vérifier puis affirmer, sinon dire "je ne sais pas".
+- "X existe / fait Y" sans avoir lu X → dire "je vais vérifier" et le faire.
+- Inventer un nom de fonction/fichier/flag plausible → toujours grep avant de le citer.
+
+### Quand admettre l'incertitude
+- Préférer "je ne sais pas, je vérifie" à une affirmation plausible mais non contrôlée.
+- Si vérification impossible rapidement : marquer "[à confirmer]" dans la réponse.
+- Pour les conventions floues : citer le fichier de référence (`robot/md/…`) ou demander.
+
+## Pattern orchestrateur — Claude principal = architecte
+
+L'IA principale (cette conversation) reste **architecte** du projet PMX-CORTEX.
+Les tâches d'implémentation sont **déléguées à des subagents** (outil Agent) avec un contexte propre, non pollué par l'historique de conversation.
+
+### Confirmation obligatoire avant délégation
+**Avant CHAQUE délégation à un subagent, présenter à l'utilisateur :**
+1. L'objectif que recevra le subagent.
+2. Les fichiers de référence à lire et fichiers de code à toucher.
+3. Le format de retour attendu.
+
+**Attendre validation explicite** avant de lancer l'outil Agent. Pas d'exception, même pour une tâche "évidente".
+
+### Rôle de l'IA principale (ne jamais déléguer)
+- Vision d'ensemble : architecture, conventions, cohérence inter-modules (brain/teensy/pamis).
+- Planification : découpage des tâches, identification des fichiers impactés, effets de bord.
+- Brief des subagents : objectif borné, contexte, fichiers de référence à lire en priorité, conventions, format de retour attendu.
+- Review du retour subagent : valider la cohérence avec l'architecture, intégrer, corriger.
+- Décisions techniques structurantes et trade-offs.
+- Communication avec l'utilisateur : présentation, choix, confirmations, message de commit.
+
+### À déléguer systématiquement à un subagent
+- Implémentation d'une feature touchant **>1 fichier**.
+- Refactoring multi-fichiers (mécanique, transversal).
+- Recherche/exploration nécessitant >3 grep/find (`subagent_type: Explore`).
+- Debug d'un module bien isolé.
+- Audit (sécurité, perf, dead code, doublons).
+
+### À NE PAS déléguer
+- Petites éditions (1 seul fichier connu).
+- Décisions d'architecture, validation de cohérence globale.
+- Préparation et validation d'un message de commit.
+- Toute interaction directe avec l'utilisateur.
+
+### Brief type d'un subagent (toujours inclure)
+1. **Objectif** : précis et borné (ce qui doit être fait, pas plus).
+2. **Contexte** : pourquoi cette tâche, dans quelle initiative elle s'inscrit.
+3. **Lectures préalables** : fichiers `robot/md/*.md` pertinents + fichiers de code à lire en premier (chemins absolus).
+4. **Conventions** : pointer vers la section appropriée du CLAUDE.md (ex: liens absolus, style C++17, args CLI préfixe `/`).
+5. **Hors scope** : ce que le subagent ne doit PAS faire.
+6. **Format de retour** : court, factuel, avec chemins/lignes vérifiés (`file_path:line_number`).
+7. **Anti-hallucination** : rappeler la règle "vérifier avant d'affirmer".
 
 ## Liens cliquables dans le chat
 
@@ -105,6 +166,7 @@ Consulter ces fichiers avant toute modification pour vérifier la cohérence arc
 | `robot/md/ASSERV_BUG_GLITCH_I2C.md` | Bug glitch I2C asserv |
 | `robot/md/O_STATE_NEW_INIT.md` | Refactor O_State_Init multi-sources (shield LCD2x16 + LCD tactile balise) avec phase machine |
 | `robot/md/STRATEGY_DECISION_RUNNER.md` | Évolution runner : skip+continue au lieu d'abort, sémantique TRAJ_STATE, variables JSON pour homologation |
+| `robot/md/PUSH_ELEMENTS_2026.md` | Manipulation `push_elements_P{N}` : pousse les éléments selon config beacon LCD tactile, tables D1..D4 |
 | `robot/md/BUILD.md` | Instructions de build |
 | `robot/config/opos6ul/FLASH-OPOS6UL.md` | Procédure flash OPOS6UL |
 | `robot/config/opos6ul/CONFIG-STATUS.md` | Status configuration hardware |
