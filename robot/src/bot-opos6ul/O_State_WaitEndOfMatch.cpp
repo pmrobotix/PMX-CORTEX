@@ -28,7 +28,7 @@ IAutomateState* O_State_WaitEndOfMatch::execute(Robot&)
     robot.chrono().start();
 
     while (robot.chrono().getElapsedTimeInSec() <= 99) {
-
+        if (g_shutdownRequested.load(std::memory_order_relaxed)) break;
 
         std::this_thread::sleep_for(std::chrono::seconds(1));
 
@@ -101,29 +101,45 @@ IAutomateState* O_State_WaitEndOfMatch::execute(Robot&)
 
     robot.actions().ledBar().flashAll(LED_GREEN);
 
-    robot.actions().ledBar().k2mil(2, 50000, LED_GREEN);
-
+    // Animation K2000 en arriere-plan : le timer tourne dans le scheduler,
+    // le main thread reste libre pour scruter les boutons. Grand nb de
+    // cycles (1000) car on l'arrete explicitement avec stop() a la sortie.
+    robot.actions().ledBar().startTimerK2mil(1000, 50000, LED_GREEN, false);
 
     ButtonTouch b = BUTTON_NONE;
     while (1) {
-        b = robot.actions().buttonBar().checkOneOfAllPressed();
+        if (g_shutdownRequested.load(std::memory_order_relaxed)) {
+            logger().info() << "Shutdown requested (SIGINT)" << logs::end;
+            break;
+        }
 
+        b = robot.actions().buttonBar().checkOneOfAllPressed();
         if (b == BUTTON_BACK_KEY) {
             logger().info() << "BUTTON_BACK_KEY" << logs::end;
             break;
         }
         if (b == BUTTON_ENTER_KEY) {
-            logger().info() << "BUTTON_BACK_KEY" << logs::end;
+            logger().info() << "BUTTON_ENTER_KEY" << logs::end;
             break;
         }
 
-
-        std::this_thread::sleep_for(std::chrono::microseconds(1000));
-
+        std::this_thread::sleep_for(std::chrono::milliseconds(50));
     }
+
+    // Arret de l'animation K2000 avant cleanup final.
+    robot.actions().ledBar().stop();
 
     logger().info() << "O_State_WaitEndOfMatch executed " << robot.chrono().getElapsedTimeInSec() << " sec"
             << logs::end;
 
-    return NULL; //finish all state
+    // Sortie immediate du processus : flush des logs puis _exit().
+    // _exit() est async-signal-safe et ne lance pas les destructeurs (donc
+    // pas de double stopExtraActions ni de pthread_join bloquant sur le
+    // decisionMaker dans OPOS6UL_RobotExtended::begin()). Le cleanup
+    // critique (freeMotion, releaseAll, stopExtraActions, svgPrintEndOfFile)
+    // a deja ete realise plus haut, juste apres le timeout 99s.
+    logs::LoggerFactory::instance().stopLog();
+    _exit(0);
+
+    return NULL; //finish all state (jamais atteint apres _exit)
 }

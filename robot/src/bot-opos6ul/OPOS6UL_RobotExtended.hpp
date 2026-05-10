@@ -7,8 +7,14 @@
 #define OPOS6UL_ROBOTEXTENDED_HPP_
 
 //#include "interface/AAsservDriver.hpp"
+#include <atomic>
+
 #include "Robot.hpp"
 #include "log/LoggerFactory.hpp"
+
+// Flag positionne par le handler SIGINT (Ctrl+C). Lu par les boucles
+// d'attente du flux match pour permettre une sortie propre.
+extern std::atomic<bool> g_shutdownRequested;
 
 class O_State_DecisionMakerIA;
 class OPOS6UL_ActionsExtended;

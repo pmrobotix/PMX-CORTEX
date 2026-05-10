@@ -31,25 +31,28 @@
 #include "HardwareConfig.hpp"
 #include "thread/Thread.hpp"
 #include <sys/mman.h>
+#include <atomic>
 #include <cerrno>
 #include <csignal>
 #include <cstring>
 
 using namespace std;
 
-// Handler SIGINT (Ctrl+C) : ferme proprement les fichiers SVG, flush les logs, puis quitte.
+// Flag global d'arret. Defini ici, declare en extern dans OPOS6UL_RobotExtended.hpp.
+std::atomic<bool> g_shutdownRequested{false};
+
+// Handler SIGINT (Ctrl+C) : positionne uniquement le flag d'arret.
+//
+// Le handler est async-signal-safe : pas d'appel a stopExtraActions(),
+// svgPrintEndOfFile(), stopLog() ou exit() — toutes ces fonctions prennent
+// des mutex (logger, asserv, scheduler) et causent un deadlock si SIGINT
+// interrompt un thread qui tient deja l'un de ces mutex.
+//
+// Le cleanup et la sortie effective sont realises par les boucles d'attente
+// du flux match (ex. O_State_WaitEndOfMatch) qui scrutent g_shutdownRequested.
 static void sigintHandler(int)
 {
-    OPOS6UL_RobotExtended &robot = OPOS6UL_RobotExtended::instance();
-    // 1) Arreter les threads producteurs SVG (asserv CBOR + scheduler timers)
-    //    pour qu'aucun <circle> ne soit ecrit apres </svg>
-    robot.stopExtraActions();
-    // 2) Écrit </g></svg> dans le buffer du logger SVG
-    robot.svgPrintEndOfFile();
-    // 3) Flush les buffers mémoire vers les fichiers (SvgAppender) et ferme les logs
-    logs::LoggerFactory::instance().stopLog();
-    // 4) exit() appelle les destructeurs et flush les streams (contrairement à _exit)
-    exit(0);
+    g_shutdownRequested.store(true, std::memory_order_relaxed);
 }
 
 int main(int argc, char** argv)
