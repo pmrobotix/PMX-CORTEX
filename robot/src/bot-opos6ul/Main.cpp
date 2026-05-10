@@ -87,7 +87,7 @@ int main(int argc, char** argv)
     robot.getConsoleManager().add(new O_AsservLineRotateTest()); // 11. lr
     robot.getConsoleManager().add(new O_AsservWaypointTest());  // 12. wp
     robot.getConsoleManager().add(new O_NavigatorMovementTest()); // 13. nav
-    robot.getConsoleManager().add(new O_NavigatorBackTest());   // 14. nb
+    robot.getConsoleManager().add(new O_NavigatorBackTest());   // 14. navb
     robot.getConsoleManager().add(new O_DetectionForwardTest());       //     detf (forward)
     robot.getConsoleManager().add(new O_DetectionBackwardTest());      //     detb (backward)
     robot.getConsoleManager().add(new O_DetectionRetryForwardTest());  //     detrf (retry fwd)

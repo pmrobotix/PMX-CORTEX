@@ -77,6 +77,9 @@ float zoneOffsetFor(const char* zoneName);
 /// Constante D_RETREAT du recul de degagement post-pousse.
 float retreatMm();
 
+/// Constante D_BASE = distance de base de la pousse (mm), ajoutee a dist[idx].
+float dBaseMm();
+
 /*!
  * \brief Calcul pur de la distance d'avance, sans bouger le robot.
  *

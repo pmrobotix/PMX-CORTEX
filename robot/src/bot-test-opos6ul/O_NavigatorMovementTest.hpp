@@ -11,20 +11,22 @@
 #include "interface/AAsservDriver.hpp"
 
 /*!
- * \brief Test de non-regression de toutes les fonctions Navigator.
+ * \brief Test de non-regression de toutes les fonctions Navigator (forward).
  *
- * 8 boucles independantes, chacune revient a son point de depart.
+ * 10 boucles independantes, chacune revient a son point de depart.
  * On peut commenter/decommenter chaque boucle dans run() pour tester individuellement.
  * Pas de sensors, uniquement les moves.
  *
- * Boucle 1 : Mouvements directs (bleu)             — carre 100mm a (300,300)
- * Boucle 2 : Combinaisons (bleu)                   — carre 200mm a (300,500)
- * Boucle 3 : manualPath STOP (pas de trait)         — carre 200mm a (300,800)
- * Boucle 4 : manualPath CHAIN (vert continu)        — carre 300mm a (600,300)
- * Boucle 5 : manualPath CHAIN_NONSTOP (vert point.) — carre 400mm a (600,700)
- * Boucle 6 : Modes compare triangle                 — triangle a (1100,300)
- * Boucle 7 : Pathfinding (rouge)                    — a (1100,700)
- * Boucle 8 : Pathfinding evitement obstacle (rouge)  — a (1100,700)
+ * Boucle  1 : Mouvements directs (bleu)               — line, goTo, goBackTo, rotations, faceTo, faceBackTo
+ * Boucle  2 : Combinaisons goTo+ (bleu)               — goToAndRotateAbsDeg/RelDeg/FaceTo/FaceBackTo
+ * Boucle  3 : Combinaisons moveForwardTo+ (bleu)      — moveForwardToAndRotateAbsDeg/RelDeg/FaceTo/FaceBackTo
+ * Boucle  4 : manualPath STOP (pas de trait)           — carre 200mm
+ * Boucle  5 : manualPath CHAIN (vert continu)          — carre 300mm
+ * Boucle  6 : manualPath CHAIN_NONSTOP (vert point.)   — carre 400mm
+ * Boucle  7 : Modes compare triangle                   — STOP / CHAIN / CHAIN_NONSTOP
+ * Boucle  8 : Orbital turn                             — pivot gauche/droit avant et arriere
+ * Boucle  9 : Pathfinding (rouge)                      — pathTo + pathToAnd* (4 combos) + pathBackTo retour
+ * Boucle 10 : Pathfinding evitement obstacle (rouge)
  *
  *   ./bot-opos6ul nav
  */
@@ -49,15 +51,16 @@ private:
 
     // Boucles
     void loop1_DirectMoves();
-    void loop2_Combinations();
-    void loop3_ManualPathStop();
-    void loop4_ManualPathChain();
-    void loop5_ManualPathChainNonstop();
-    void loop6_ModesCompare();
-    void loop9_OrbitalTurn();
+    void loop2_GoToCombos();
+    void loop3_MoveForwardCombos();
+    void loop4_ManualPathStop();
+    void loop5_ManualPathChain();
+    void loop6_ManualPathChainNonstop();
+    void loop7_ModesCompare();
+    void loop8_OrbitalTurn();
     void initPlayground();
-    void loop7_Pathfinding();
-    void loop8_PathfindingAvoidObstacle();
+    void loop9_Pathfinding();
+    void loop10_PathfindingAvoidObstacle();
 
 public:
 
@@ -75,9 +78,9 @@ public:
     std::string usageHelp() const override
     {
         return
-            "        args: aucun (8 boucles autonomes lancees en sequence)\n"
+            "        args: aucun (10 boucles autonomes lancees en sequence)\n"
             "        opts: /M multiplier (simu : 0=instantane, 1.0=temps reel, defaut 2.0)\n"
-            "        ex:   nav        # lance les 8 boucles (carre, manualPath, pathfinding, ...)";
+            "        ex:   nav        # lance les 10 boucles (carre, manualPath, pathfinding, ...)";
     }
 
     virtual void run(int argc, char** argv);

@@ -28,27 +28,29 @@ manipulation lit cette config pour decider de la distance d'avance.
 
 ## Lien avec les briques existantes
 
-| Composant | Role | Reference |
-|---|---|---|
-| Menu LCD tactile balise | Saisie 6 configs par zone | [LCDScreen.cpp create_pickup_config](../../teensy/IO_t41_ToF_DetectionBeacon/src/LCDScreen.cpp) |
-| Spec UI beacon | Documentation complete | [MATCH_CONFIG_UI.md](../../teensy/IO_t41_ToF_DetectionBeacon/MATCH_CONFIG_UI.md) |
-| Transport I2C | `MatchSettingsData::pickup_P*` | [ASensorsDriver.hpp:82-110](../src/common/interface/ASensorsDriver.hpp#L82-L110) |
-| Adoption brain | `MenuBeaconLCDTouch::pollInputs` | [MenuBeaconLCDTouch.cpp](../src/common/menu/MenuBeaconLCDTouch.cpp) |
-| Stockage brain | `Robot::pickup_P{N}_` + getters | [Robot.hpp:180-187, 621-637](../src/common/Robot.hpp#L180-L187) |
-| Manipulation | `push_elements_zone` + 16 wrappers | [StrategyActions2026.cpp](../src/bot-opos6ul/StrategyActions2026.cpp) |
+
+| Composant               | Role                               | Reference                                                                                       |
+| ------------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------- |
+| Menu LCD tactile balise | Saisie 6 configs par zone          | [LCDScreen.cpp create_pickup_config](../../teensy/IO_t41_ToF_DetectionBeacon/src/LCDScreen.cpp) |
+| Spec UI beacon          | Documentation complete             | [MATCH_CONFIG_UI.md](../../teensy/IO_t41_ToF_DetectionBeacon/MATCH_CONFIG_UI.md)                |
+| Transport I2C           | `MatchSettingsData::pickup_P*`     | [ASensorsDriver.hpp:82-110](../src/common/interface/ASensorsDriver.hpp#L82-L110)                |
+| Adoption brain          | `MenuBeaconLCDTouch::pollInputs`   | [MenuBeaconLCDTouch.cpp](../src/common/menu/MenuBeaconLCDTouch.cpp)                             |
+| Stockage brain          | `Robot::pickup_P{N}_` + getters    | [Robot.hpp:180-187, 621-637](../src/common/Robot.hpp#L180-L187)                                 |
+| Manipulation            | `push_elements_zone` + 16 wrappers | [StrategyActions2026.cpp](../src/bot-opos6ul/StrategyActions2026.cpp)                           |
 
 ## Numerotation et ordre des configurations
 
 La balise expose 6 configurations par zone, indexees 0..5, dans cet ordre :
 
-| idx | sequence | description |
-|---|---|---|
-| 0 | BBYY | 2 bleus puis 2 jaunes (sens lecture balise) |
-| 1 | YYBB | 2 jaunes puis 2 bleus |
-| 2 | BYYB | bleu, jaune, jaune, bleu |
-| 3 | YBBY | jaune, bleu, bleu, jaune |
-| 4 | BYBY | alternance commencant par bleu |
-| 5 | YBYB | alternance commencant par jaune |
+
+| idx | sequence | description                                 |
+| ----- | ---------- | --------------------------------------------- |
+| 0   | BBYY     | 2 bleus puis 2 jaunes (sens lecture balise) |
+| 1   | YYBB     | 2 jaunes puis 2 bleus                       |
+| 2   | BYYB     | bleu, jaune, jaune, bleu                    |
+| 3   | YBBY     | jaune, bleu, bleu, jaune                    |
+| 4   | BYBY     | alternance commencant par bleu              |
+| 5   | YBYB     | alternance commencant par jaune             |
 
 **Convention couleur** : la strategie JSON est ecrite EN BLEU (cf commit
 3a211c52, JSON = coords BLUE, miroir Asserv applique en interne). En YELLOW,
@@ -73,60 +75,62 @@ static constexpr uint8_t SWAP_COLOR_IDX[6] = { 1, 0, 3, 2, 5, 4 };
 
 ### Constantes reglables (en haut de [StrategyActions2026.cpp](../src/bot-opos6ul/StrategyActions2026.cpp))
 
-| Constante | Valeur (mm) | Usage |
-|---|---|---|
-| `D_RETREAT` | 200 | recul de degagement apres la pousse |
-| `D1` | 250 | distance courante (1 element a pousser) |
-| `D2` | 350 | distance la plus longue (3 elements) |
-| `D3` | 100 | distance moyenne |
-| `D4` |  50 | distance la plus courte (0..1 element) |
-| `D1_INV`, `D2_INV`, `D3_INV`, `D4_INV` | 450, 550, 300, 250 | placeholder sens inverse |
 
-Modifier ces 4 (ou 8) constantes ajuste automatiquement les 2 tables.
+| Constante          | Valeur (mm) | Usage                                                      |
+| -------------------- | ------------- | ------------------------------------------------------------ |
+| `D_RETREAT`        | 200         | recul de degagement apres la pousse                        |
+| `D_BASE`           | 400         | distance de base de la pousse (commune a toutes les zones) |
+| `distDirecte[idx]` | -125 a +175 | ajustement signe par config (lu par wrappers`_H`/`_G`)     |
+| `distInverse[idx]` | -125 a +175 | ajustement signe par config (lu par wrappers`_B`/`_D`)     |
+| `kZoneOffset_P4`   | -50         | offset specifique P4  (D_BASE effectif: 350 mm)            |
+| `kZoneOffset_P14`  | -50         | offset specifique P14 (D_BASE effectif: 350 mm)            |
 
-### Mapping image utilisateur (1..6) ↔ ordre balise (0..5)
+Formule finale : `dist = D_BASE + distXxx[idx] + zoneOffset(zone)`.
 
-L'image initiale de calibration numerote les 6 placements de 1 a 6, dans un
-ordre different de celui de la balise LCD. Tableau de correspondance :
+### Visuel des configurations
 
-| Image # | Sequence | Distance image | idx balise | Sequence balise |
-|---|---|---|---|---|
-| 1 | BBJJ | **D1** | 0 | BBYY |
-| 2 | BJBJ | **D1** | 4 | BYBY |
-| 3 | BJJB | **D2** | 2 | BYYB |
-| 4 | JBBJ | **D1** | 3 | YBBY |
-| 5 | JBJB | **D3** | 5 | YBYB |
-| 6 | JJBB | **D4** | 1 | YYBB |
+![6 configurations idx balise et distances associees](
 
-(Note : "B" = Bleu, "J" = Jaune dans la numerotation image ; "B" = Bleu,
-"Y" = Yellow dans la balise — meme convention, juste une lettre differente.)
+![](assets/20260510_212026_image.png)
+
+)
+
+(Note : "B" = Bleu, "J" = Jaune dans l'image ; "B" = Bleu, "Y" = Yellow dans
+le code C++ — meme convention, juste une lettre differente.)
 
 ### Tables compilees (idx balise 0..5)
 
-| idx balise | sequence | distDirecte | distInverse |
-|---|---|---|---|
-| 0 | BBYY (img #1) | `D1` (250) | `D1_INV` (450) |
-| 1 | YYBB (img #6) | `D4` (50)  | `D4_INV` (250) |
-| 2 | BYYB (img #3) | `D2` (350) | `D2_INV` (550) |
-| 3 | YBBY (img #4) | `D1` (250) | `D1_INV` (450) |
-| 4 | BYBY (img #2) | `D1` (250) | `D1_INV` (450) |
-| 5 | YBYB (img #5) | `D3` (100) | `D3_INV` (300) |
+
+| idx balise | sequence | distDirecte | distInverse     |
+| ------------ | ---------- | ------------- | ----------------- |
+| 0          | BBYY     | `D0` (125)  | `D0_INV` (-125) |
+| 1          | YYBB     | `D4` (-125) | `D4_INV` (125)  |
+| 2          | BYYB     | `D2` (175)  | `D2_INV` (175)  |
+| 3          | YBBY     | `D1` (75)   | `D1_INV` (75)   |
+| 4          | BYBY     | `D1` (75)   | `D1_INV` (-75)  |
+| 5          | YBYB     | `D3` (-75)  | `D3_INV` (75)   |
 
 Code C++ correspondant :
+
 ```cpp
-constexpr float D1 = 250.0f, D2 = 350.0f, D3 = 100.0f, D4 = 50.0f;
-constexpr float D1_INV = 450.0f, D2_INV = 550.0f, D3_INV = 300.0f, D4_INV = 250.0f;
+// Distance de base commune (mm). P4/P14 ont un offset de -50 mm (effectif 350).
+constexpr float D_BASE = 400.0f;
 
-static constexpr float distDirecte[6] = { D1, D4, D2, D1, D1, D3 };
-static constexpr float distInverse[6] = { D1_INV, D4_INV, D2_INV, D1_INV, D1_INV, D3_INV };
+// Ajustements signes par configuration (mm) - PLACEHOLDER A CALIBRER.
+static constexpr float distDirecte[6] = {  125, -125,  175,  75,  75, -75 };
+static constexpr float distInverse[6] = { -125,  125,  175,  75, -75,  75 };
 
-const float dist = sensInverse ? distInverse[pickupIdx] : distDirecte[pickupIdx];
+const float distBase = sensInverse ? distInverse[pickupIdx] : distDirecte[pickupIdx];
+const float dist     = D_BASE + distBase + zoneOffsetFor(zoneName);
 ```
 
-**`distInverse` est un placeholder** : valeurs +200mm par rapport a directe,
-a calibrer sur table. Le principe : en sens inverse, on rencontre les
-elements adverses en TETE et il faut les pousser jusqu'a la sortie opposee
-(donc plus loin qu'en sens directe).
+**Calibration** : `D_BASE` est la distance de base de la pousse (commune a
+toutes les zones, sauf P4/P14 qui ont un offset de -50mm). Les tables
+`distDirecte` / `distInverse` apportent un ajustement signe par configuration
+(valeurs derivees du visuel des 6 placements). Garde-fou : si
+`D_BASE + distBase + offset <= 0`, la manip log une erreur et retourne `false`.
+Avec D_BASE=400 et amplitudes max ±175 (offsets inclus), on a toujours
+`dist >= 175 mm`.
 
 ## Sequence d'execution
 
@@ -159,12 +163,13 @@ Pour chaque zone, **2 wrappers** correspondant aux 2 cotes d'arrivee possibles
 du robot. Le suffixe `_B/_H/_D/_G` designe le **cote d'arrivee** du robot
 dans la zone (= d'ou il vient juste avant la pousse) :
 
-| Suffixe | Cote d'arrivee | Direction d'avance | Sens (vs lecture balise) | Table |
-|---|---|---|---|---|
-| `_B` | par le BAS  (Y=0, public)       | vers le HAUT (Y+)      | INVERSE | `distInverse` |
-| `_H` | par le HAUT (Y+, fond table)    | vers le BAS  (Y=0)     | DIRECTE | `distDirecte` |
-| `_D` | par la DROITE (X=3000, jaune)   | vers la GAUCHE (X=0)   | INVERSE | `distInverse` |
-| `_G` | par la GAUCHE (X=0, bleu)       | vers la DROITE (X=3000)| DIRECTE | `distDirecte` |
+
+| Suffixe | Cote d'arrivee                | Direction d'avance      | Sens (vs lecture balise) | Table         |
+| --------- | ------------------------------- | ------------------------- | -------------------------- | --------------- |
+| `_B`    | par le BAS  (Y=0, public)     | vers le HAUT (Y+)       | INVERSE                  | `distInverse` |
+| `_H`    | par le HAUT (Y+, fond table)  | vers le BAS  (Y=0)      | DIRECTE                  | `distDirecte` |
+| `_D`    | par la DROITE (X=3000, jaune) | vers la GAUCHE (X=0)    | INVERSE                  | `distInverse` |
+| `_G`    | par la GAUCHE (X=0, bleu)     | vers la DROITE (X=3000) | DIRECTE                  | `distDirecte` |
 
 **Pourquoi cette correspondance** : la lecture balise va haut→bas (vertical)
 ou gauche→droite (horizontal). Le sens DIRECTE = robot avance dans le sens
@@ -174,8 +179,9 @@ et `_G`. Les wrappers `_B` / `_D` (arrive par le cote FIN) lisent la sequence
 
 Liste des 16 wrappers :
 
-| Verticales (P1, P2, P11, P12) | Horizontales (P3, P4, P13, P14) |
-|---|---|
+
+| Verticales (P1, P2, P11, P12)                | Horizontales (P3, P4, P13, P14)              |
+| ---------------------------------------------- | ---------------------------------------------- |
 | `push_elements_P1_B`,  `push_elements_P1_H`  | `push_elements_P3_D`,  `push_elements_P3_G`  |
 | `push_elements_P2_B`,  `push_elements_P2_H`  | `push_elements_P4_D`,  `push_elements_P4_G`  |
 | `push_elements_P11_B`, `push_elements_P11_H` | `push_elements_P13_D`, `push_elements_P13_G` |
@@ -202,21 +208,24 @@ Vers X=3000 → `_G`. Vers X=0 → `_D`.
 Mapping ecran balise → table physique
 ([MATCH_CONFIG_UI.md](../../teensy/IO_t41_ToF_DetectionBeacon/MATCH_CONFIG_UI.md)) :
 
-| Sur l'ecran | Sur la table |
-|---|---|
-| HAUT     | ARRIERE (Y+ grand, fond de table) |
-| BAS      | AVANT   (Y=0, cote public)        |
-| GAUCHE   | X=0     (cote bleu, NID BLEU)     |
-| DROITE   | X=3000  (cote jaune, NID JAUNE)   |
+
+| Sur l'ecran | Sur la table                      |
+| ------------- | ----------------------------------- |
+| HAUT        | ARRIERE (Y+ grand, fond de table) |
+| BAS         | AVANT   (Y=0, cote public)        |
+| GAUCHE      | X=0     (cote bleu, NID BLEU)     |
+| DROITE      | X=3000  (cote jaune, NID JAUNE)   |
 
 Sens de lecture des sequences balise :
 
-| Zones | Orientation | Lecture sequence (1er → 4eme caractere) |
-|---|---|---|
-| P1, P2, P11, P12 | Verticale | **HAUT → BAS** ecran = ARRIERE → AVANT (Y+ → Y=0) |
-| P3, P4, P13, P14 | Horizontale | **GAUCHE → DROITE** ecran = X=0 → X=3000 |
+
+| Zones            | Orientation | Lecture sequence (1er → 4eme caractere)             |
+| ------------------ | ------------- | ------------------------------------------------------ |
+| P1, P2, P11, P12 | Verticale   | **HAUT → BAS** ecran = ARRIERE → AVANT (Y+ → Y=0) |
+| P3, P4, P13, P14 | Horizontale | **GAUCHE → DROITE** ecran = X=0 → X=3000           |
 
 **Transformation auto en YELLOW** (cf section "Convention couleur" plus haut) :
+
 - Suffixe horizontal `_D` <-> `_G` (verticales `_B`/`_H` inchangees)
 - Index pickup `idx -> SWAP_COLOR_IDX[idx]`
 
@@ -232,7 +241,7 @@ BBYY) :
 
 ```
 WRAPPER _H (arrive du haut = sens DIRECTE)        WRAPPER _B (arrive du bas = sens INVERSE)
-                                                                                  
+                                                                          
    ARRIERE [B] <- robot ici, arrive                  ARRIERE [B]
            [B]    et pousse vers le bas                      [B]
            [Y]    rencontre Y en QUEUE                       [Y]
@@ -242,6 +251,7 @@ WRAPPER _H (arrive du haut = sens DIRECTE)        WRAPPER _B (arrive du bas = se
 ```
 
 Donc :
+
 - `_H` ou `_G` (arrive du sens "lecture") → **sens DIRECTE** → `distDirecte` (court)
 - `_B` ou `_D` (arrive du sens "anti-lecture") → **sens INVERSE** → `distInverse` (long)
 
@@ -252,9 +262,10 @@ la table. En particulier, **P4 et P14** ont une distance differente des
 autres zones horizontales (P3, P13). On applique un offset specifique a ces
 2 zones, ajoute a la distance lue dans `distDirecte` ou `distInverse`.
 
-| Constante | Valeur (mm) | Usage |
-|---|---|---|
-| `kZoneOffset_P4`  | 0.0 (placeholder) | offset specifique pour P4 |
+
+| Constante         | Valeur (mm)       | Usage                      |
+| ------------------- | ------------------- | ---------------------------- |
+| `kZoneOffset_P4`  | 0.0 (placeholder) | offset specifique pour P4  |
 | `kZoneOffset_P14` | 0.0 (placeholder) | offset specifique pour P14 |
 
 L'offset s'ajoute apres le lookup dans la table :
@@ -282,6 +293,7 @@ Pour generaliser a plus de 2 zones, etendre `zoneOffset()` en ajoutant des
 
 Le champ `"timeout"` est utilise par le runner uniquement pour la telemetrie :
 le runner mesure la duree reelle de chaque MANIPULATION et logue
+
 - `info` avec la duree mesuree dans tous les cas ;
 - `warn` supplementaire si la duree depasse le `timeout_ms` declare.
 
@@ -346,20 +358,182 @@ Sortie : 5 groupes de cas, tableau OK/FAIL par ligne, recap final
 ./bot-opos6ul pe P1  H 0 /y           # push_elements_P1_H, idx=0, YELLOW
 ```
 
-| Argument | Valeurs | Effet |
-|---|---|---|
-| `zone`   | `P1..P4` ou `P11..P14` | Zone ciblee |
-| `suffixe`| `B|H|D|G` | Determine `sensInverse` (`B`/`D` -> inverse, `H`/`G` -> directe) |
-| `idx`    | `0..5` | Force la valeur `pickup_P{N}` avant la manip (utile sans balise) |
+
+| Argument  | Valeurs                | Effet                                                           |
+| ----------- | ------------------------ | ----------------------------------------------------------------- |
+| `zone`    | `P1..P4` ou `P11..P14` | Zone ciblee                                                     |
+| `suffixe` | `B                     | H                                                               |
+| `idx`     | `0..5`                 | Force la valeur`pickup_P{N}` avant la manip (utile sans balise) |
 
 Le test appelle directement
 [`push_elements_zone()`](../src/bot-opos6ul/StrategyActions2026.cpp) :
+
 - log `avance=Xmm (base=Y offset=Z) puis recul=200mm` permet de valider
   le calcul de distance ;
 - en YELLOW, log `idx=X sens=YYY (YELLOW post-swap)` montre l'effet du
   swap couleur + flip suffixe ;
 - le robot avance puis recule physiquement (en simu : 0.5 m/s ;
   sur table : capteurs front actifs, RetryPolicy::standard 2/2).
+
+### Suite de tests P1 (12 cas, BLEU)
+
+Balayage complet des 6 configs balise × 2 sens d'attaque sur la zone P1
+(verticale, X=200). Avant chaque pousse, la visu SVG affiche les 4 rectangles
+selon la convention balise (char[0] en HAUT, char[3] en BAS) ; le robot voit
+char[3] proche pour `_B` (vient du bas) et char[0] proche pour `_H` (vient du haut).
+
+**`_B` (robot du bas, cap=+90°) — table INVERSE :**
+
+```bash
+./bot-opos6ul pe P1 B 0 /+ 200 585 90    # BBYY INV -> 400-125 = 275mm  | vu robot : Y,Y,B,B (court)
+./bot-opos6ul pe P1 B 1 /+ 200 585 90    # YYBB INV -> 400+125 = 525mm  | vu robot : B,B,Y,Y (long)
+./bot-opos6ul pe P1 B 2 /+ 200 585 90    # BYYB INV -> 400+175 = 575mm  | vu robot : B,Y,Y,B
+./bot-opos6ul pe P1 B 3 /+ 200 585 90    # YBBY INV -> 400+ 75 = 475mm  | vu robot : Y,B,B,Y
+./bot-opos6ul pe P1 B 4 /+ 200 585 90    # BYBY INV -> 400- 75 = 325mm  | vu robot : Y,B,Y,B
+./bot-opos6ul pe P1 B 5 /+ 200 585 90    # YBYB INV -> 400+ 75 = 475mm  | vu robot : B,Y,B,Y
+```
+
+**`_H` (robot du haut, cap=-90°) — table DIRECTE :**
+
+```bash
+./bot-opos6ul pe P1 H 0 /+ 200 1800 -90  # BBYY DIR -> 400+125 = 525mm  | vu robot : B,B,Y,Y (long)
+./bot-opos6ul pe P1 H 1 /+ 200 1800 -90  # YYBB DIR -> 400-125 = 275mm  | vu robot : Y,Y,B,B (court)
+./bot-opos6ul pe P1 H 2 /+ 200 1800 -90  # BYYB DIR -> 400+175 = 575mm  | vu robot : B,Y,Y,B
+./bot-opos6ul pe P1 H 3 /+ 200 1800 -90  # YBBY DIR -> 400+ 75 = 475mm  | vu robot : Y,B,B,Y
+./bot-opos6ul pe P1 H 4 /+ 200 1800 -90  # BYBY DIR -> 400+ 75 = 475mm  | vu robot : B,Y,B,Y
+./bot-opos6ul pe P1 H 5 /+ 200 1800 -90  # YBYB DIR -> 400- 75 = 325mm  | vu robot : Y,B,Y,B
+```
+
+Note : le SVG est ecrase a chaque lancement (`build-simu-debug/bin/svgAPF.svg`).
+Copier le fichier entre 2 tests si comparaison cote a cote necessaire.
+
+**Points a verifier visuellement :**
+
+1. **Rectangles initiaux (pleins)** : couleurs respectent la convention balise
+   (char[0] cote Y+ / HAUT, char[3] cote Y- / BAS).
+2. **Rectangles finaux (pointilles)** : decales de `dist` mm dans le sens du cap
+   (vers Y+ pour `_B`, vers Y- pour `_H`).
+3. **Cote physique** : les jaunes adverses doivent **sortir** de la zone P1 ;
+   les bleus (la couleur) doivent **rester** dans la zone (ou en limite).
+
+### Suite de tests P1 (12 cas, YELLOW)
+
+Memes commandes que BLEU + option `/y`. Effets en YELLOW :
+
+- Position miroir X : `/+ 200 585 90 /y` -> robot place a `(3000-200, 585, 90) = (2800, 585, 90)`
+- Distance : `computeDistance` applique `SWAP_COLOR_IDX[idx]` -> table lue a l'index symetrique
+- Suffixe : zones verticales (P1) **non flippees** (le flip `_D <-> _G` ne concerne que les horizontales)
+- Affichage SVG : pas de swap (l'idx balise est utilise tel quel pour les couleurs)
+
+**`_B` (cap=+90°) — table INVERSE :**
+
+```bash
+./bot-opos6ul pe P1 B 0 /+ 200 585 90 /y    # BBYY YELLOW -> SWAP[0]=1 -> distInv[1]= 125 -> 525mm
+./bot-opos6ul pe P1 B 1 /+ 200 585 90 /y    # YYBB YELLOW -> SWAP[1]=0 -> distInv[0]=-125 -> 275mm
+./bot-opos6ul pe P1 B 2 /+ 200 585 90 /y    # BYYB YELLOW -> SWAP[2]=3 -> distInv[3]=  75 -> 475mm
+./bot-opos6ul pe P1 B 3 /+ 200 585 90 /y    # YBBY YELLOW -> SWAP[3]=2 -> distInv[2]= 175 -> 575mm
+./bot-opos6ul pe P1 B 4 /+ 200 585 90 /y    # BYBY YELLOW -> SWAP[4]=5 -> distInv[5]=  75 -> 475mm
+./bot-opos6ul pe P1 B 5 /+ 200 585 90 /y    # YBYB YELLOW -> SWAP[5]=4 -> distInv[4]= -75 -> 325mm
+```
+
+**`_H` (cap=-90°) — table DIRECTE :**
+
+```bash
+./bot-opos6ul pe P1 H 0 /+ 200 1800 -90 /y  # BBYY YELLOW -> SWAP[0]=1 -> distDir[1]=-125 -> 275mm
+./bot-opos6ul pe P1 H 1 /+ 200 1800 -90 /y  # YYBB YELLOW -> SWAP[1]=0 -> distDir[0]= 125 -> 525mm
+./bot-opos6ul pe P1 H 2 /+ 200 1800 -90 /y  # BYYB YELLOW -> SWAP[2]=3 -> distDir[3]=  75 -> 475mm
+./bot-opos6ul pe P1 H 3 /+ 200 1800 -90 /y  # YBBY YELLOW -> SWAP[3]=2 -> distDir[2]= 175 -> 575mm
+./bot-opos6ul pe P1 H 4 /+ 200 1800 -90 /y  # BYBY YELLOW -> SWAP[4]=5 -> distDir[5]= -75 -> 325mm
+./bot-opos6ul pe P1 H 5 /+ 200 1800 -90 /y  # YBYB YELLOW -> SWAP[5]=4 -> distDir[4]=  75 -> 475mm
+```
+
+**Verification YELLOW :**
+
+1. Robot positionne cote droit de la table (X ≈ 2800), pas a gauche.
+2. Le log `push_elements_zone P1 idx=X sens=YYY (YELLOW post-swap)` doit indiquer
+   l'idx apres swap dans le calcul, et donner la distance attendue.
+3. La symetrie par rapport au BLEU doit etre respectee : pour le meme idx balise,
+   le scenario physique YELLOW pousse les BLEUS adverses (au lieu des JAUNES en BLEU).
+
+### Autres zones verticales (P2, P11, P12)
+
+Geometrie **identique a P1** : memes valeurs `distDirecte`/`distInverse`, pas
+d'offset. Les commandes de test sont les memes que pour P1 en remplacant juste
+le nom de zone et en adaptant la position `/+` selon ou la zone se situe sur
+la table reelle :
+
+```bash
+./bot-opos6ul pe P2  B 0 /+ <x> <y_bas>  90    # distance identique a pe P1 B 0
+./bot-opos6ul pe P11 H 3 /+ <x> <y_haut> -90   # distance identique a pe P1 H 3
+# etc.
+```
+
+→ Inutile de re-calibrer ces zones : si la calibration P1 est bonne, ces 3 zones
+le sont aussi.
+
+### Suite de tests P3 (12 cas, BLEU) — zone horizontale
+
+Zones horizontales (P3, P4, P13, P14) : lecture balise **GAUCHE → DROITE**
+(`char[0]` cote X-, `char[3]` cote X+). Le robot pousse selon l'axe X :
+
+- **`_G`** : robot vient de GAUCHE (X-), cap=**0°**, table **DIRECTE**
+- **`_D`** : robot vient de DROITE (X+), cap=**180°**, table **INVERSE**
+
+Memes distances que P1 (pas d'offset pour P3 / P13).
+
+**`_G` (cap=0°) — table DIRECTE :**
+
+```bash
+./bot-opos6ul pe P3 G 0 /+ 875 1800 0    # BBYY DIR -> 525mm | vu robot : B,B,Y,Y (long)
+./bot-opos6ul pe P3 G 1 /+ 875 1800 0    # YYBB DIR -> 275mm | vu robot : Y,Y,B,B (court)
+./bot-opos6ul pe P3 G 2 /+ 875 1800 0    # BYYB DIR -> 575mm | vu robot : B,Y,Y,B
+./bot-opos6ul pe P3 G 3 /+ 875 1800 0    # YBBY DIR -> 475mm | vu robot : Y,B,B,Y
+./bot-opos6ul pe P3 G 4 /+ 875 1800 0    # BYBY DIR -> 475mm | vu robot : B,Y,B,Y
+./bot-opos6ul pe P3 G 5 /+ 875 1800 0    # YBYB DIR -> 325mm | vu robot : Y,B,Y,B
+```
+
+**`_D` (cap=180°) — table INVERSE :**
+
+```bash
+./bot-opos6ul pe P3 D 0 /+ 1315 1800 180  # BBYY INV -> 275mm | vu robot : Y,Y,B,B (court)
+./bot-opos6ul pe P3 D 1 /+ 1315 1800 180  # YYBB INV -> 525mm | vu robot : B,B,Y,Y (long)
+./bot-opos6ul pe P3 D 2 /+ 1315 1800 180  # BYYB INV -> 575mm | vu robot : B,Y,Y,B
+./bot-opos6ul pe P3 D 3 /+ 1315 1800 180  # YBBY INV -> 475mm | vu robot : Y,B,B,Y
+./bot-opos6ul pe P3 D 4 /+ 1315 1800 180  # BYBY INV -> 325mm | vu robot : Y,B,Y,B
+./bot-opos6ul pe P3 D 5 /+ 1315 1800 180  # YBYB INV -> 475mm | vu robot : B,Y,B,Y
+```
+
+Position robot a adapter : `<x_gauche>` = X juste a gauche de la zone (octogone
+face touche le bord X- des rects), `<x_droite>` = X juste a droite (octogone face
+touche le bord X+ des rects). `<y>` = Y centre de la zone.
+
+### Zones avec offset (P4, P14)
+
+Memes commandes que P3 / P13 mais distances **reduites de 50mm** :
+
+
+| idx | seq  | P4 / P14`_G` DIR | P4 / P14`_D` INV |
+| ----- | ------ | ------------------ | ------------------ |
+| 0   | BBYY | 475 (525-50)     | 225 (275-50)     |
+| 1   | YYBB | 225              | 475              |
+| 2   | BYYB | 525 (575-50)     | 525              |
+| 3   | YBBY | 425 (475-50)     | 425              |
+| 4   | BYBY | 425              | 275 (325-50)     |
+| 5   | YBYB | 275              | 425              |
+
+```bash
+./bot-opos6ul pe P4  G 0 /+ <x_gauche> <y_P4>  0    # BBYY DIR + offset_P4=-50 -> 475mm
+./bot-opos6ul pe P14 D 2 /+ <x_droite> <y_P14> 180  # BYYB INV + offset_P14=-50 -> 525mm
+# etc.
+```
+
+### P11, P12, P13, P14 et autres : note
+
+Les zones P11..P14 sont les versions cote YELLOW de P1..P4 (selon le plan de table).
+La balise distingue les configurations entre les 8 zones (`pickup_P1`..`pickup_P14`),
+mais la **mecanique de calcul de distance est identique** au sein des paires
+P1/P11, P2/P12, P3/P13, P4/P14 — meme table `distDirecte`/`distInverse`, meme
+offset (pour P4/P14). Inutile de re-calibrer.
 
 ### Calibration sur table (D1..D4 et offsets)
 
@@ -387,8 +561,6 @@ Sans balise, `pickup_P{N}` reste a 0 (BBYY). Le mode 2 du test
 force la valeur souhaitee via son 3eme argument (idx 0..5) avant de
 lancer la manip — equivalent simu de la saisie balise.
 
-L'ancienne option CLI `/u <zone> <value>` (utilisee depuis `m /k /s
-PMX*`) reste disponible dans
+L'ancienne option CLI `/u <zone> <value>` (utilisee depuis `m /k /s PMX*`) reste disponible dans
 [Robot.cpp](../src/common/Robot.cpp) pour les runs strategie complets,
-mais pour valider une zone isolee, **prefere `pe <zone> <suffixe>
-<idx>`** (plus direct, n'a pas besoin d'une strategie JSON).
+mais pour valider une zone isolee, **prefere `pe <zone> <suffixe> <idx>`** (plus direct, n'a pas besoin d'une strategie JSON).

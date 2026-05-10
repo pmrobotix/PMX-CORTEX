@@ -9,6 +9,7 @@
 
 #include <sys/types.h>
 #include <unistd.h>
+#include <cctype>
 #include <iterator>
 #include <utility>
 #include "../thread/Thread.hpp"
@@ -89,9 +90,12 @@ bool Arguments::parse(int argc, TCHAR *argv[], bool stopWithErrors)
         } else	// ...oder Argument
         {
             // Le seul marker option supporte dans ce projet est '/'. Un argument
-            // qui commence par '-' est forcement une faute de frappe : on stoppe
-            // avec un message explicite (suggestion de la forme correcte).
-            if (strArgument.size() >= 2 && strArgument[0] == '-') {
+            // qui commence par '-' SUIVI D'UNE LETTRE est forcement une faute de
+            // frappe (ex: -h au lieu de /h) : on stoppe avec un message explicite.
+            // En revanche '-<chiffre>' / '-.' sont des nombres negatifs valides
+            // (angles, coords, etc.) et doivent passer.
+            if (strArgument.size() >= 2 && strArgument[0] == '-'
+                && std::isalpha(static_cast<unsigned char>(strArgument[1]))) {
                 cerr << m_strCommandName << " error: Unknown argument " << strArgument
                      << ". Did you mean /" << strArgument.substr(1) << " ?" << endl;
                 usage();

@@ -158,61 +158,50 @@ bool push_prise_bas()
 // Distance de recul de degagement apres la pousse (mm).
 constexpr float D_RETREAT = 200.0f;
 
-// Offsets specifiques par zone (mm) - ajoutes a la distance calculee dans
-// la table. Valable pour les 2 sens (directe et inverse) et les 2 couleurs.
-//
-// PLACEHOLDER A CALIBRER : P4 et P14 ont une distance de prise/depose
-// differente des autres zones horizontales (P3, P13). Les offsets peuvent
-// etre NEGATIFS si la zone de prise/depose est plus proche que la moyenne
-// (moins de distance a parcourir). Garde-fou : si distBase + offset <= 0,
-// la manip log une erreur et abort (cf push_elements_zone).
+// Distance de base de la pousse (mm). La fonction push_elements_zone() avance
+// de D_BASE + dist_signed[idx] + zoneOffsetFor(zone).
+//   - D_BASE par defaut         : 400 mm
+//   - P4 et P14 (kZoneOffset)   : -50 mm -> effectif 350 mm
+constexpr float D_BASE = 400.0f;
+
+// Offsets specifiques par zone (mm), ajoutes au D_BASE pour les zones avec
+// une distance de prise/depose differente de la moyenne. Garde-fou : si
+// D_BASE + distBase + offset <= 0, la manip log une erreur et abort.
 constexpr float kZoneOffset_P4  = -50.0f;
 constexpr float kZoneOffset_P14 = -50.0f;
-
-// Constantes de distance reglables - cf doc image/utilisateur :
-//   D1 = courte (1 element pousse), D2 = longue (3 elements),
-//   D3 = moyenne, D4 = la plus courte (~0..1 element).
-// Sens DIRECTE (robot arrive du cote DEBUT de la sequence balise) :
-// `decal` = marge de securite globale ajoutee a toutes les distances (mm).
-constexpr float decal = 100.0f;
-constexpr float D1 = 250.0f+decal; // PLACEHOLDER - A CALIBRER SUR TABLE (distance de pousse + marge de securite pour s'assurer que les elements sont bien sortis de la zone). D1 = 250mm (1 element) + 250mm marge.
-constexpr float D2 = 350.0f+decal;
-constexpr float D3 = 100.0f+decal;
-constexpr float D4 =  50.0f+decal;
-// Sens INVERSE (robot arrive du cote FIN, doit traverser la zone) :
-//   PLACEHOLDER - A CALIBRER SUR TABLE.
-constexpr float D1_INV = 450.0f+decal;
-constexpr float D2_INV = 550.0f+decal;
-constexpr float D3_INV = 300.0f+decal;
-constexpr float D4_INV = 250.0f+decal;
 
 // Tables indexees sur l'ordre balise (idx 0..5) :
 //   0=BBYY  1=YYBB  2=BYYB  3=YBBY  4=BYBY  5=YBYB
 //
-// Convention : strategie JSON ecrite EN BLEU. En YELLOW, push_elements_zone()
-// applique 2 transformations via push_elements_test_api::computeDistance() :
+// Convention :
+//   distDirecte = utilisee par les wrappers _H/_G (robot arrive cote DEBUT lecture)
+//   distInverse = utilisee par les wrappers _B/_D (robot arrive cote FIN lecture)
+//
+// Convention couleur (strategie JSON ecrite EN BLEU). En YELLOW,
+// push_elements_zone() applique 2 transformations via
+// push_elements_test_api::computeDistance() :
 //   1) idx pickup -> SWAP_COLOR_IDX[idx] (paires symetriques 0<->1, 2<->3, 4<->5)
 //   2) suffixe horizontal _D<->_G (zones P3/P4/P13/P14)
 // Cf robot/md/PUSH_ELEMENTS_2026.md.
+//
+// Valeurs signees (mm) - PLACEHOLDER A CALIBRER sur table.
 
-// Sens DIRECTE : robot avance dans le sens de lecture de la sequence balise.
 static constexpr float distDirecte[6] = {
-    /* [0] BBYY = image#1 */ D1,
-    /* [1] YYBB = image#6 */ D4,
-    /* [2] BYYB = image#3 */ D2,
-    /* [3] YBBY = image#4 */ D1,
-    /* [4] BYBY = image#2 */ D1,
-    /* [5] YBYB = image#5 */ D3,
+    /* [0] BBYY */  125.0f,
+    /* [1] YYBB */ -125.0f,
+    /* [2] BYYB */  175.0f,
+    /* [3] YBBY */   75.0f,
+    /* [4] BYBY */   75.0f,
+    /* [5] YBYB */  -75.0f,
 };
 
-// Sens INVERSE : robot avance dans le sens oppose, distance plus longue.
 static constexpr float distInverse[6] = {
-    /* [0] BBYY = image#1 */ D1_INV,
-    /* [1] YYBB = image#6 */ D4_INV,
-    /* [2] BYYB = image#3 */ D2_INV,
-    /* [3] YBBY = image#4 */ D1_INV,
-    /* [4] BYBY = image#2 */ D1_INV,
-    /* [5] YBYB = image#5 */ D3_INV,
+    /* [0] BBYY */ -125.0f,
+    /* [1] YYBB */  125.0f,
+    /* [2] BYYB */  175.0f,
+    /* [3] YBBY */   75.0f,
+    /* [4] BYBY */  -75.0f,
+    /* [5] YBYB */   75.0f,
 };
 
 } // namespace (anonymous, fin partielle pour exposer le namespace public)
@@ -247,6 +236,11 @@ float retreatMm()
     return D_RETREAT;
 }
 
+float dBaseMm()
+{
+    return D_BASE;
+}
+
 bool isHorizontalZone(const char* zoneName)
 {
     if (zoneName == nullptr) return false;
@@ -266,7 +260,7 @@ float computeDistance(uint8_t pickupIdx, const char* zoneName,
 
     const float distBase = sensInverse ? distInverse[pickupIdx] : distDirecte[pickupIdx];
     const float offset   = zoneOffsetFor(zoneName);
-    const float dist     = distBase + offset;
+    const float dist     = D_BASE + distBase + offset;
     if (dist <= 0.0f) return -1.0f;
     return dist;
 }
@@ -317,7 +311,8 @@ bool push_elements_zone_impl(uint8_t pickupIdx, const char* zoneName, bool sensI
     const float distBase = invLog ? distInverse[idxLog] : distDirecte[idxLog];
     const float offset   = push_elements_test_api::zoneOffsetFor(zoneName);
     logger().info() << "push_elements_zone " << zoneName << " avance=" << dist
-                    << "mm (base=" << distBase << " offset=" << offset
+                    << "mm (D_BASE=" << D_BASE << " + dist[idx]=" << distBase
+                    << " + offset=" << offset
                     << ") puis recul=" << D_RETREAT << "mm" << logs::end;
 
     // Sauvegarde du cap vitesse user (rest. apres manip pour ne pas laisser

@@ -1,8 +1,8 @@
 /*!
  * \file
- * \brief Implementation du test de non-regression Navigator.
+ * \brief Implementation du test de non-regression Navigator (forward).
  *
- * 8 boucles independantes, chacune revient a son point de depart.
+ * 10 boucles independantes, chacune revient a son point de depart.
  * Chaque boucle a un point de depart configurable (sx, sy).
  * Tous les waypoints sont en offset relatif par rapport a ce depart.
  * Voir O_NavigatorMovementTest.hpp pour la description des boucles.
@@ -96,8 +96,8 @@ bool O_NavigatorMovementTest::checkAngle(float expectedDeg, float tolerance, con
 }
 
 // =============================================================================
-// Boucle 1 — Mouvements directs (bleu) — carre 100mm
-// line, goTo, goBackTo, rotations — retour au depart
+// Boucle 1 — Mouvements directs (bleu)
+// line, goTo, goBackTo, rotations, faceTo, faceBackTo — retour au depart
 // =============================================================================
 
 void O_NavigatorMovementTest::loop1_DirectMoves()
@@ -159,18 +159,18 @@ void O_NavigatorMovementTest::loop1_DirectMoves()
 }
 
 // =============================================================================
-// Boucle 2 — Combinaisons (bleu) — carre 200mm
-// goToAndRotateAbsDeg, goToAndRotateRelDeg, goToAndFaceTo — retour
+// Boucle 2 — Combinaisons goTo+ (bleu) — carre 200mm
+// goToAndRotateAbsDeg, goToAndRotateRelDeg, goToAndFaceTo, goToAndFaceBackTo
 // =============================================================================
 
-void O_NavigatorMovementTest::loop2_Combinations()
+void O_NavigatorMovementTest::loop2_GoToCombos()
 {
     float sx = 800, sy = 300, sa = 0; // <-- depart configurable (x, y, angle deg)
 
     OPOS6UL_RobotExtended &robot = OPOS6UL_RobotExtended::instance();
     Navigator nav(&robot);
 
-    logger().info() << "--- Boucle 2 : Combinaisons (bleu) --- (" << sx << "," << sy << ")" << logs::end;
+    logger().info() << "--- Boucle 2 : Combinaisons goTo+ (bleu) --- (" << sx << "," << sy << ")" << logs::end;
     resetPosition(sx, sy, sa);
     robot.svgPrintPosition();
 
@@ -179,24 +179,27 @@ void O_NavigatorMovementTest::loop2_Combinations()
     // goToAndRotateAbsDeg (+200,0, 90)
     ts = nav.goToAndRotateAbsDeg(sx + 200, sy, 90);
     checkResult(ts, TRAJ_FINISHED, "goToAndRotateAbsDeg(+200,0,90)");
-    checkPosition(sx + 200, sy, 5, "(+200,0)");
-    checkAngle(90, 2, "angle 90");
+    checkPosition(sx + 200, sy, 5, "goToAndRotateAbsDeg pos");
+    checkAngle(90, 2, "goToAndRotateAbsDeg angle 90");
 
-    // goToAndRotateRelDeg (+200,+200, -90) : angle = 90+(-90) = 0
+    // goToAndRotateRelDeg (+200,+200, -90)
     ts = nav.goToAndRotateRelDeg(sx + 200, sy + 200, -90);
     checkResult(ts, TRAJ_FINISHED, "goToAndRotateRelDeg(+200,+200,-90)");
-    checkPosition(sx + 200, sy + 200, 5, "(+200,+200)");
-    checkAngle(0, 2, "angle 0");
+    checkPosition(sx + 200, sy + 200, 5, "goToAndRotateRelDeg pos");
 
-    // goToAndFaceTo (0,+200, face vers depart) = -90deg
+    // goToAndFaceTo (0,+200, face vers depart) : depuis (sx, sy+200) face vers (sx, sy) = -90 deg
     ts = nav.goToAndFaceTo(sx, sy + 200, sx, sy);
     checkResult(ts, TRAJ_FINISHED, "goToAndFaceTo(0,+200, face depart)");
-    checkPosition(sx, sy + 200, 5, "(0,+200)");
-    checkAngle(-90, 2, "face depart = -90");
+    checkPosition(sx, sy + 200, 5, "goToAndFaceTo pos");
+    checkAngle(-90, 2, "goToAndFaceTo angle = -90");
 
-    // retour
-    ts = nav.goTo(sx, sy);
-    checkResult(ts, TRAJ_FINISHED, "retour depart");
+    // goToAndFaceBackTo (0,0, dos vers (+100,0)) : front en -X = 180 deg
+    ts = nav.goToAndFaceBackTo(sx, sy, sx + 100, sy);
+    checkResult(ts, TRAJ_FINISHED, "goToAndFaceBackTo(0,0, dos vers +100,0)");
+    checkPosition(sx, sy, 5, "goToAndFaceBackTo pos");
+    checkAngle(180, 2, "goToAndFaceBackTo angle = 180");
+
+    // retour angle initial
     nav.rotateAbsDeg(sa);
     checkPosition(sx, sy, 5, "boucle 2 retour pos");
     checkAngle(sa, 2, "boucle 2 retour angle");
@@ -204,17 +207,65 @@ void O_NavigatorMovementTest::loop2_Combinations()
 }
 
 // =============================================================================
-// Boucle 3 — manualPath STOP (robot vert, pas de trait) — carre 200mm
+// Boucle 3 — Combinaisons moveForwardTo+ (bleu) — carre 200mm
+// moveForwardToAndRotateAbsDeg/RelDeg/FaceTo/FaceBackTo
 // =============================================================================
 
-void O_NavigatorMovementTest::loop3_ManualPathStop()
+void O_NavigatorMovementTest::loop3_MoveForwardCombos()
+{
+    float sx = 800, sy = 1700, sa = 0; // <-- depart configurable (x, y, angle deg)
+
+    OPOS6UL_RobotExtended &robot = OPOS6UL_RobotExtended::instance();
+    Navigator nav(&robot);
+
+    logger().info() << "--- Boucle 3 : Combinaisons moveForwardTo+ (bleu) --- (" << sx << "," << sy << ")" << logs::end;
+    resetPosition(sx, sy, sa);
+    robot.svgPrintPosition();
+
+    TRAJ_STATE ts;
+
+    // moveForwardToAndRotateAbsDeg (+200,0,90)
+    ts = nav.moveForwardToAndRotateAbsDeg(sx + 200, sy, 90);
+    checkResult(ts, TRAJ_FINISHED, "moveForwardToAndRotateAbsDeg(+200,0,90)");
+    checkPosition(sx + 200, sy, 5, "moveForwardToAndRotateAbsDeg pos");
+    checkAngle(90, 2, "moveForwardToAndRotateAbsDeg angle 90");
+
+    // moveForwardToAndRotateRelDeg (+200,+200,-90)
+    ts = nav.moveForwardToAndRotateRelDeg(sx + 200, sy + 200, -90);
+    checkResult(ts, TRAJ_FINISHED, "moveForwardToAndRotateRelDeg(+200,+200,-90)");
+    checkPosition(sx + 200, sy + 200, 5, "moveForwardToAndRotateRelDeg pos");
+
+    // moveForwardToAndFaceTo (0,+200, face vers depart) = -90 deg
+    ts = nav.moveForwardToAndFaceTo(sx, sy + 200, sx, sy);
+    checkResult(ts, TRAJ_FINISHED, "moveForwardToAndFaceTo(0,+200, face depart)");
+    checkPosition(sx, sy + 200, 5, "moveForwardToAndFaceTo pos");
+    checkAngle(-90, 2, "moveForwardToAndFaceTo angle = -90");
+
+    // moveForwardToAndFaceBackTo (0,0, dos vers (+100,0)) : front en -X = 180 deg
+    ts = nav.moveForwardToAndFaceBackTo(sx, sy, sx + 100, sy);
+    checkResult(ts, TRAJ_FINISHED, "moveForwardToAndFaceBackTo(0,0, dos vers +100,0)");
+    checkPosition(sx, sy, 5, "moveForwardToAndFaceBackTo pos");
+    checkAngle(180, 2, "moveForwardToAndFaceBackTo angle = 180");
+
+    // retour angle initial
+    nav.rotateAbsDeg(sa);
+    checkPosition(sx, sy, 5, "boucle 3 retour pos");
+    checkAngle(sa, 2, "boucle 3 retour angle");
+    robot.svgPrintPosition(5);
+}
+
+// =============================================================================
+// Boucle 4 — manualPath STOP (robot vert, pas de trait) — carre 200mm
+// =============================================================================
+
+void O_NavigatorMovementTest::loop4_ManualPathStop()
 {
     float sx = 200, sy = 1200, sa = 0; // <-- depart configurable (x, y, angle deg)
 
     OPOS6UL_RobotExtended &robot = OPOS6UL_RobotExtended::instance();
     Navigator nav(&robot);
 
-    logger().info() << "--- Boucle 3 : manualPath STOP --- (" << sx << "," << sy << ")" << logs::end;
+    logger().info() << "--- Boucle 4 : manualPath STOP --- (" << sx << "," << sy << ")" << logs::end;
     resetPosition(sx, sy, sa);
     robot.svgPrintPosition();
 
@@ -228,23 +279,23 @@ void O_NavigatorMovementTest::loop3_ManualPathStop()
         RetryPolicy::noRetry(), STOP);
     checkResult(ts, TRAJ_FINISHED, "manualPath STOP carre 200mm");
     nav.rotateAbsDeg(sa);
-    checkPosition(sx, sy, 10, "boucle 3 retour pos");
-    checkAngle(sa, 2, "boucle 3 retour angle");
+    checkPosition(sx, sy, 10, "boucle 4 retour pos");
+    checkAngle(sa, 2, "boucle 4 retour angle");
     robot.svgPrintPosition(5);
 }
 
 // =============================================================================
-// Boucle 4 — manualPath CHAIN (vert continu) — carre 300mm
+// Boucle 5 — manualPath CHAIN (vert continu) — carre 300mm
 // =============================================================================
 
-void O_NavigatorMovementTest::loop4_ManualPathChain()
+void O_NavigatorMovementTest::loop5_ManualPathChain()
 {
     float sx = 800, sy = 1200, sa = 0; // <-- depart configurable (x, y, angle deg)
 
     OPOS6UL_RobotExtended &robot = OPOS6UL_RobotExtended::instance();
     Navigator nav(&robot);
 
-    logger().info() << "--- Boucle 4 : manualPath CHAIN (vert continu) --- (" << sx << "," << sy << ")" << logs::end;
+    logger().info() << "--- Boucle 5 : manualPath CHAIN (vert continu) --- (" << sx << "," << sy << ")" << logs::end;
     resetPosition(sx, sy, sa);
     robot.svgPrintPosition();
 
@@ -253,23 +304,23 @@ void O_NavigatorMovementTest::loop4_ManualPathChain()
         RetryPolicy::noRetry(), CHAIN);
     checkResult(ts, TRAJ_FINISHED, "manualPath CHAIN carre 300mm");
     nav.rotateAbsDeg(sa);
-    checkPosition(sx, sy, 10, "boucle 4 retour pos");
-    checkAngle(sa, 2, "boucle 4 retour angle");
+    checkPosition(sx, sy, 10, "boucle 5 retour pos");
+    checkAngle(sa, 2, "boucle 5 retour angle");
     robot.svgPrintPosition(5);
 }
 
 // =============================================================================
-// Boucle 5 — manualPath CHAIN_NONSTOP (vert pointille) — carre 400mm
+// Boucle 6 — manualPath CHAIN_NONSTOP (vert pointille) — carre 400mm
 // =============================================================================
 
-void O_NavigatorMovementTest::loop5_ManualPathChainNonstop()
+void O_NavigatorMovementTest::loop6_ManualPathChainNonstop()
 {
     float sx = 1500, sy = 300, sa = 0; // <-- depart configurable (x, y, angle deg)
 
     OPOS6UL_RobotExtended &robot = OPOS6UL_RobotExtended::instance();
     Navigator nav(&robot);
 
-    logger().info() << "--- Boucle 5 : manualPath CHAIN_NONSTOP (vert pointille) --- (" << sx << "," << sy << ")" << logs::end;
+    logger().info() << "--- Boucle 6 : manualPath CHAIN_NONSTOP (vert pointille) --- (" << sx << "," << sy << ")" << logs::end;
     resetPosition(sx, sy, sa);
     robot.svgPrintPosition();
 
@@ -278,23 +329,23 @@ void O_NavigatorMovementTest::loop5_ManualPathChainNonstop()
         RetryPolicy::noRetry(), CHAIN_NONSTOP);
     checkResult(ts, TRAJ_FINISHED, "manualPath CHAIN_NONSTOP carre 400mm");
     nav.rotateAbsDeg(sa);
-    checkPosition(sx, sy, 10, "boucle 5 retour pos");
-    checkAngle(sa, 2, "boucle 5 retour angle");
+    checkPosition(sx, sy, 10, "boucle 6 retour pos");
+    checkAngle(sa, 2, "boucle 6 retour angle");
     robot.svgPrintPosition(5);
 }
 
 // =============================================================================
-// Boucle 6 — Modes compare triangle 300mm
+// Boucle 7 — Modes compare triangle 300mm
 // =============================================================================
 
-void O_NavigatorMovementTest::loop6_ModesCompare()
+void O_NavigatorMovementTest::loop7_ModesCompare()
 {
     float sx = 2200, sy = 300, sa = 0; // <-- depart configurable (x, y, angle deg)
 
     OPOS6UL_RobotExtended &robot = OPOS6UL_RobotExtended::instance();
     Navigator nav(&robot);
 
-    logger().info() << "--- Boucle 6 : modes compare triangle --- (" << sx << "," << sy << ")" << logs::end;
+    logger().info() << "--- Boucle 7 : modes compare triangle --- (" << sx << "," << sy << ")" << logs::end;
 
     std::vector<Waypoint> tri = {{sx + 300, sy}, {sx + 150, sy + 260}, {sx, sy}};
 
@@ -330,18 +381,18 @@ void O_NavigatorMovementTest::loop6_ModesCompare()
 }
 
 // =============================================================================
-// Boucle 9 — Orbital turn (bleu) — pivot gauche et droit
-// Depart configurable — test 90deg droite avant, 90deg gauche avant, retour
+// Boucle 8 — Orbital turn (bleu) — pivot gauche et droit
+// test 90deg droite avant, 90deg gauche avant, 90deg droite arriere, 90deg gauche arriere
 // =============================================================================
 
-void O_NavigatorMovementTest::loop9_OrbitalTurn()
+void O_NavigatorMovementTest::loop8_OrbitalTurn()
 {
     float sx = 1500, sy = 1200, sa = 0; // <-- depart configurable (x, y, angle deg)
 
     OPOS6UL_RobotExtended &robot = OPOS6UL_RobotExtended::instance();
     Navigator nav(&robot);
 
-    logger().info() << "--- Boucle 9 : Orbital turn --- (" << sx << "," << sy << ")" << logs::end;
+    logger().info() << "--- Boucle 8 : Orbital turn --- (" << sx << "," << sy << ")" << logs::end;
     resetPosition(sx, sy, sa);
     robot.svgPrintPosition();
 
@@ -367,14 +418,14 @@ void O_NavigatorMovementTest::loop9_OrbitalTurn()
     ts = nav.goTo(sx, sy);
     checkResult(ts, TRAJ_FINISHED, "retour position");
     nav.rotateAbsDeg(sa);
-    checkPosition(sx, sy, 20, "boucle 9 retour pos");
-    checkAngle(sa, 2, "boucle 9 retour angle");
+    checkPosition(sx, sy, 20, "boucle 8 retour pos");
+    checkAngle(sa, 2, "boucle 8 retour angle");
 
     robot.svgPrintPosition(5);
 }
 
 // =============================================================================
-// Playground pour boucles 7 et 8
+// Playground pour boucles 9 et 10
 // =============================================================================
 
 static SymmetricalPlayground* playground_ = nullptr;
@@ -398,18 +449,18 @@ void O_NavigatorMovementTest::initPlayground()
 }
 
 // =============================================================================
-// Boucle 7 — Pathfinding (rouge)
-// pathTo, pathToAndRotate, pathBackTo — retour
+// Boucle 9 — Pathfinding (rouge)
+// pathTo, pathToAndRotateAbsDeg/RelDeg/FaceTo/FaceBackTo, pathBackTo retour
 // =============================================================================
 
-void O_NavigatorMovementTest::loop7_Pathfinding()
+void O_NavigatorMovementTest::loop9_Pathfinding()
 {
     float sx = 1500, sy = 1200, sa = 0; // <-- depart configurable (x, y, angle deg)
 
     OPOS6UL_RobotExtended &robot = OPOS6UL_RobotExtended::instance();
     Navigator nav(&robot, &robot.ia().iAbyPath());
 
-    logger().info() << "--- Boucle 7 : Pathfinding (rouge) --- (" << sx << "," << sy << ")" << logs::end;
+    logger().info() << "--- Boucle 9 : Pathfinding (rouge) --- (" << sx << "," << sy << ")" << logs::end;
     resetPosition(sx, sy, sa);
     robot.svgPrintPosition();
 
@@ -424,35 +475,52 @@ void O_NavigatorMovementTest::loop7_Pathfinding()
     ts = nav.pathToAndRotateAbsDeg(sx + 400, sy + 300, 0);
     checkResult(ts, TRAJ_FINISHED, "pathToAndRotateAbsDeg(+400,+300,0)");
     checkPosition(sx + 400, sy + 300, 15, "pathToAndRotateAbsDeg position");
-    checkAngle(0, 2, "angle 0");
+    checkAngle(0, 2, "pathToAndRotateAbsDeg angle 0");
+
+    // pathToAndRotateRelDeg : retour vers (sx, sy+300) puis rotation relative +90
+    ts = nav.pathToAndRotateRelDeg(sx, sy + 300, 90);
+    checkResult(ts, TRAJ_FINISHED, "pathToAndRotateRelDeg(0,+300,+90)");
+    checkPosition(sx, sy + 300, 15, "pathToAndRotateRelDeg position");
+
+    // pathToAndFaceTo : vers (sx, sy) face vers (sx+400, sy) = +X = 0 deg
+    ts = nav.pathToAndFaceTo(sx, sy, sx + 400, sy);
+    checkResult(ts, TRAJ_FINISHED, "pathToAndFaceTo(0,0, face +X)");
+    checkPosition(sx, sy, 15, "pathToAndFaceTo position");
+    checkAngle(0, 2, "pathToAndFaceTo angle = 0");
+
+    // pathToAndFaceBackTo : vers (sx, sy+300) dos vers (sx+100, sy+300) = front -X = 180 deg
+    ts = nav.pathToAndFaceBackTo(sx, sy + 300, sx + 100, sy + 300);
+    checkResult(ts, TRAJ_FINISHED, "pathToAndFaceBackTo(0,+300, dos +X)");
+    checkPosition(sx, sy + 300, 15, "pathToAndFaceBackTo position");
+    checkAngle(180, 2, "pathToAndFaceBackTo angle = 180");
 
     // pathBackTo retour
     ts = nav.pathBackTo(sx, sy);
     checkResult(ts, TRAJ_FINISHED, "pathBackTo retour");
     nav.rotateAbsDeg(sa);
-    checkPosition(sx, sy, 15, "boucle 7 retour pos");
-    checkAngle(sa, 2, "boucle 7 retour angle");
+    checkPosition(sx, sy, 15, "boucle 9 retour pos");
+    checkAngle(sa, 2, "boucle 9 retour angle");
 
     robot.svgPrintPosition(5);
 }
 
 // =============================================================================
-// Boucle 8 — Pathfinding evitement obstacle (rouge)
-// doit contourner l'obstacle a (1300,850)
+// Boucle 10 — Pathfinding evitement obstacle (rouge)
+// doit contourner l'obstacle a (1700,1400)
 // =============================================================================
 
-void O_NavigatorMovementTest::loop8_PathfindingAvoidObstacle()
+void O_NavigatorMovementTest::loop10_PathfindingAvoidObstacle()
 {
     float sx = 1500, sy = 1500, sa = 0; // <-- depart configurable (x, y, angle deg)
 
     OPOS6UL_RobotExtended &robot = OPOS6UL_RobotExtended::instance();
     Navigator nav(&robot, &robot.ia().iAbyPath());
 
-    logger().info() << "--- Boucle 8 : Pathfinding evitement obstacle --- (" << sx << "," << sy << ")" << logs::end;
+    logger().info() << "--- Boucle 10 : Pathfinding evitement obstacle --- (" << sx << "," << sy << ")" << logs::end;
     resetPosition(sx, sy, sa);
     robot.svgPrintPosition();
 
-    // pathTo +400,+300 : chemin passe pres de l'obstacle (1300,850)
+    // pathTo +400,+300 : chemin doit contourner l'obstacle (1700,1400)
     TRAJ_STATE ts = nav.pathTo(sx + 400, sy + 300);
     if (ts == TRAJ_IMPOSSIBLE)
     {
@@ -500,18 +568,19 @@ void O_NavigatorMovementTest::run(int argc, char** argv)
 
     // ==== Commenter/decommenter chaque boucle pour tester individuellement ====
 
-    loop1_DirectMoves();              // Mouvements directs (bleu) — carre 100mm
-    loop2_Combinations();             // Combinaisons (bleu) — carre 200mm
-    loop3_ManualPathStop();           // manualPath STOP — carre 200mm
-    loop4_ManualPathChain();          // manualPath CHAIN (vert continu) — carre 300mm
-    loop5_ManualPathChainNonstop();   // manualPath CHAIN_NONSTOP (vert pointille) — carre 400mm
-    loop6_ModesCompare();             // Modes compare triangle
-    loop9_OrbitalTurn();              // Orbital turn pivot gauche/droit
+    loop1_DirectMoves();              // Mouvements directs (bleu)
+    loop2_GoToCombos();               // Combinaisons goTo+ (bleu) — carre 200mm
+    loop3_MoveForwardCombos();        // Combinaisons moveForwardTo+ (bleu) — carre 200mm
+    loop4_ManualPathStop();           // manualPath STOP — carre 200mm
+    loop5_ManualPathChain();          // manualPath CHAIN — carre 300mm
+    loop6_ManualPathChainNonstop();   // manualPath CHAIN_NONSTOP — carre 400mm
+    loop7_ModesCompare();             // Modes compare triangle
+    loop8_OrbitalTurn();              // Orbital turn pivot gauche/droit
 
     initPlayground();
-    
-    loop7_Pathfinding();              // Pathfinding (rouge)
-    loop8_PathfindingAvoidObstacle(); // Pathfinding evitement obstacle
+
+    loop9_Pathfinding();               // Pathfinding (rouge) + 4 combos
+    loop10_PathfindingAvoidObstacle(); // Pathfinding evitement obstacle
 
     // ==== Resultats ====
     logger().info() << "===============================" << logs::end;

@@ -25,7 +25,9 @@ OPOS6UL_SvgWriterExtended::OPOS6UL_SvgWriterExtended(std::string botId) :
 
             << "<line x1=\"22\" y1=\"95\" x2=\"95\" y2=\"21\" stroke=\"slategray\" stroke-width=\"4\"/>"
             << "<line x1=\"21\" y1=\"205\" x2=\"95\" y2=\"279\" stroke=\"slategray\" stroke-width=\"4\"/>"
-            << "<line x1=\"205\" y1=\"22\" x2=\"205\" y2=\"279\" stroke=\"slategray\" stroke-width=\"4\"/>"
+            << "<line x1=\"265\" y1=\"70\" x2=\"265\" y2=\"230\" stroke=\"slategray\" stroke-width=\"4\"/>"
+            << "<line x1=\"205\" y1=\"21\" x2=\"265\" y2=\"70\" stroke=\"slategray\" stroke-width=\"4\"/>"
+            << "<line x1=\"205\" y1=\"279\" x2=\"265\" y2=\"230\" stroke=\"slategray\" stroke-width=\"4\"/>"
             << "</symbol>";
 
     symbol << "<symbol id=\"bot-OPOS6UL-RED\">"
@@ -36,7 +38,9 @@ OPOS6UL_SvgWriterExtended::OPOS6UL_SvgWriterExtended(std::string botId) :
             << "<line x1=\"23\" y1=\"95\" x2=\"23\" y2=\"205\" stroke=\"red\" stroke-width=\"2\"/>"
             << "<line x1=\"22\" y1=\"95\" x2=\"95\" y2=\"21\" stroke=\"red\" stroke-width=\"2\"/>"
             << "<line x1=\"21\" y1=\"205\" x2=\"95\" y2=\"279\" stroke=\"red\" stroke-width=\"2\"/>"
-            << "<line x1=\"205\" y1=\"22\" x2=\"205\" y2=\"279\" stroke=\"red\" stroke-width=\"2\"/>" << "</symbol>";
+            << "<line x1=\"265\" y1=\"70\" x2=\"265\" y2=\"230\" stroke=\"red\" stroke-width=\"2\"/>"
+            << "<line x1=\"205\" y1=\"21\" x2=\"265\" y2=\"70\" stroke=\"red\" stroke-width=\"2\"/>"
+            << "<line x1=\"205\" y1=\"279\" x2=\"265\" y2=\"230\" stroke=\"red\" stroke-width=\"2\"/>" << "</symbol>";
 
     symbol << "<symbol id=\"bot-OPOS6UL-ORANGE\">"
             << "<circle cx=\"150\" cy=\"150\" r=\"140\" fill=\"none\" stroke=\"orange\" stroke-dasharray=\"2,8\" />"
@@ -46,7 +50,9 @@ OPOS6UL_SvgWriterExtended::OPOS6UL_SvgWriterExtended(std::string botId) :
             << "<line x1=\"23\" y1=\"95\" x2=\"23\" y2=\"205\" stroke=\"orange\" stroke-width=\"2\"/>"
             << "<line x1=\"22\" y1=\"95\" x2=\"95\" y2=\"21\" stroke=\"orange\" stroke-width=\"2\"/>"
             << "<line x1=\"21\" y1=\"205\" x2=\"95\" y2=\"279\" stroke=\"orange\" stroke-width=\"2\"/>"
-            << "<line x1=\"205\" y1=\"22\" x2=\"205\" y2=\"279\" stroke=\"orange\" stroke-width=\"2\"/>" << "</symbol>";
+            << "<line x1=\"265\" y1=\"70\" x2=\"265\" y2=\"230\" stroke=\"orange\" stroke-width=\"2\"/>"
+            << "<line x1=\"205\" y1=\"21\" x2=\"265\" y2=\"70\" stroke=\"orange\" stroke-width=\"2\"/>"
+            << "<line x1=\"205\" y1=\"279\" x2=\"265\" y2=\"230\" stroke=\"orange\" stroke-width=\"2\"/>" << "</symbol>";
 
     symbol << "<symbol id=\"bot-OPOS6UL-GREEN\">"
             << "<circle cx=\"150\" cy=\"150\" r=\"140\" fill=\"none\" stroke=\"green\" stroke-dasharray=\"2,8\" />"
@@ -56,7 +62,9 @@ OPOS6UL_SvgWriterExtended::OPOS6UL_SvgWriterExtended(std::string botId) :
             << "<line x1=\"23\" y1=\"95\" x2=\"23\" y2=\"205\" stroke=\"green\" stroke-width=\"2\"/>"
             << "<line x1=\"22\" y1=\"95\" x2=\"95\" y2=\"21\" stroke=\"green\" stroke-width=\"2\"/>"
             << "<line x1=\"21\" y1=\"205\" x2=\"95\" y2=\"279\" stroke=\"green\" stroke-width=\"2\"/>"
-            << "<line x1=\"205\" y1=\"22\" x2=\"205\" y2=\"279\" stroke=\"green\" stroke-width=\"2\"/>" << "</symbol>";
+            << "<line x1=\"265\" y1=\"70\" x2=\"265\" y2=\"230\" stroke=\"green\" stroke-width=\"2\"/>"
+            << "<line x1=\"205\" y1=\"21\" x2=\"265\" y2=\"70\" stroke=\"green\" stroke-width=\"2\"/>"
+            << "<line x1=\"205\" y1=\"279\" x2=\"265\" y2=\"230\" stroke=\"green\" stroke-width=\"2\"/>" << "</symbol>";
 
     symbol << "<symbol id=\"bot-OPOS6UL-BLUE\">"
             << "<circle cx=\"150\" cy=\"150\" r=\"140\" fill=\"none\" stroke=\"blue\" stroke-dasharray=\"2,8\" />"
@@ -66,7 +74,9 @@ OPOS6UL_SvgWriterExtended::OPOS6UL_SvgWriterExtended(std::string botId) :
             << "<line x1=\"23\" y1=\"95\" x2=\"23\" y2=\"205\" stroke=\"blue\" stroke-width=\"2\"/>"
             << "<line x1=\"22\" y1=\"95\" x2=\"95\" y2=\"21\" stroke=\"blue\" stroke-width=\"2\"/>"
             << "<line x1=\"21\" y1=\"205\" x2=\"95\" y2=\"279\" stroke=\"blue\" stroke-width=\"2\"/>"
-            << "<line x1=\"205\" y1=\"22\" x2=\"205\" y2=\"279\" stroke=\"blue\" stroke-width=\"2\"/>" << "</symbol>";
+            << "<line x1=\"265\" y1=\"70\" x2=\"265\" y2=\"230\" stroke=\"blue\" stroke-width=\"2\"/>"
+            << "<line x1=\"205\" y1=\"21\" x2=\"265\" y2=\"70\" stroke=\"blue\" stroke-width=\"2\"/>"
+            << "<line x1=\"205\" y1=\"279\" x2=\"265\" y2=\"230\" stroke=\"blue\" stroke-width=\"2\"/>" << "</symbol>";
 
     symbol << "<symbol id=\"bot-OPOS6UL-BLACK\">"
             << "<circle cx=\"150\" cy=\"150\" r=\"140\" fill=\"none\" stroke=\"black\" stroke-dasharray=\"2,8\" />"
@@ -76,7 +86,9 @@ OPOS6UL_SvgWriterExtended::OPOS6UL_SvgWriterExtended(std::string botId) :
             << "<line x1=\"23\" y1=\"95\" x2=\"23\" y2=\"205\" stroke=\"black\" stroke-width=\"2\"/>"
             << "<line x1=\"22\" y1=\"95\" x2=\"95\" y2=\"21\" stroke=\"black\" stroke-width=\"2\"/>"
             << "<line x1=\"21\" y1=\"205\" x2=\"95\" y2=\"279\" stroke=\"black\" stroke-width=\"2\"/>"
-            << "<line x1=\"205\" y1=\"22\" x2=\"205\" y2=\"279\" stroke=\"black\" stroke-width=\"2\"/>" << "</symbol>";
+            << "<line x1=\"265\" y1=\"70\" x2=\"265\" y2=\"230\" stroke=\"black\" stroke-width=\"2\"/>"
+            << "<line x1=\"205\" y1=\"21\" x2=\"265\" y2=\"70\" stroke=\"black\" stroke-width=\"2\"/>"
+            << "<line x1=\"205\" y1=\"279\" x2=\"265\" y2=\"230\" stroke=\"black\" stroke-width=\"2\"/>" << "</symbol>";
     /*
      symbol << "<symbol id=\"bot-OPOS6UL-RED\">"
      << "<circle cx=\"150\" cy=\"150\" r=\"150\" fill=\"none\" stroke=\"red\" />"
