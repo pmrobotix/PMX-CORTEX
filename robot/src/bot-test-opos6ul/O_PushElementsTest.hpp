@@ -41,9 +41,13 @@ public:
     {
         return
             "        args: <zone> <suffixe> <idx>  (mode poussage reel) ou aucun (mode validation)\n"
-            "        ex:   /k pe                   # mode validation logique : ~30 cas, PASS/FAIL\n"
-            "        ex:   /k pe P14 D 3           # mode poussage reel : push_elements_P14_D idx=3\n"
-            "        ex:   /k pe P1 H 0 /y         # idem en YELLOW (passe /y au binaire)";
+            "        opts: /+ x y a (position initiale, defaut 200 600 90 = entree P1_B)\n"
+            "              /M simu speed mult (0=instantane, 1.0=temps reel, defaut 1.0)\n"
+            "        ex:   /k pe                                    # validation logique 42/42 PASS\n"
+            "        ex:   /k pe P1 B 0 /+ 200 600 90 /M 0.3        # P1 BBYY arrive du bas (simu)\n"
+            "        ex:   /k pe P1 H 0 /+ 200 1400 -90             # P1 BBYY arrive du haut\n"
+            "        ex:   /k pe P14 D 3 /+ 2700 800 180            # P14 horizontale (sens INV)\n"
+            "        ex:   /k pe P1 H 0 /y /+ 200 1400 -90          # idem en YELLOW (/y binaire)";
     }
 
     void configureConsoleArgs(int argc, char** argv) override;

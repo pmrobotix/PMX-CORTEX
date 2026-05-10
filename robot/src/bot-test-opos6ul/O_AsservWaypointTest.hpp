@@ -86,6 +86,7 @@ public:
             "        args: <x> <y> (jusqu'a 5 waypoints x2 y2 / x3 y3 / x4 y4 / x5 y5)\n"
             "        opts: /m 0=STOP|1=CHAIN|2=CHAIN_NONSTOP  /v vit%  /B 0|1 detect\n"
             "              /+ x y a (pos initiale)\n"
+            "              /M simu speed mult (0=instantane, 1.0=temps reel, defaut 1.0)\n"
             "        ex:   wp 750 250 /+ 250 250 0                                # 1 waypoint\n"
             "              wp 750 250 750 750 250 750 250 250 /m 0 /+ 250 250 0   # carre stop\n"
             "              wp 300 100 300 300 100 300 100 100 /m 2 /v 20 /+ 100 100 0  # ARM";

@@ -5,6 +5,7 @@
 
 #include "O_PushElementsTest.hpp"
 
+#include <cstdlib>
 #include <cstring>
 #include <cmath>
 #include <iomanip>
@@ -13,7 +14,10 @@
 #include <string>
 
 #include "OPOS6UL_RobotExtended.hpp"
+#include "OPOS6UL_AsservExtended.hpp"
+#include "OPOS6UL_ActionsExtended.hpp"
 #include "StrategyActions2026.hpp"
+#include "utils/Arguments.hpp"
 
 O_PushElementsTest::O_PushElementsTest()
     : FunctionalTest("PushElements", "Validation push_elements (logique + poussage reel)", "pe")
@@ -217,6 +221,23 @@ void O_PushElementsTest::runPushReel(const char* zone, const char* suffixe, int 
         return;
     }
 
+    // Position initiale via /+ coordx coordy coorda (defaut 200 600 90 = entree
+    // P1_B selon strategyPMX2). Permet de placer le robot avant la pousse pour
+    // visualiser le resultat dans le SVG (calibration des distances D1..D4 /
+    // decal).
+    Arguments args = robot.getArgs();
+    const float coordx     = std::atof(args['+']["coordx"].c_str());
+    const float coordy     = std::atof(args['+']["coordy"].c_str());
+    const float coorda_deg = std::atof(args['+']["coorda"].c_str());
+    logger().info() << "Position initiale x=" << coordx << " y=" << coordy
+                    << " a=" << coorda_deg << logs::end;
+
+    robot.asserv().setPositionAndColor(coordx, coordy, coorda_deg, robot.isMatchColor());
+    robot.asserv().startMotionTimerAndOdo(false);
+    robot.asserv().assistedHandling();
+    robot.svgPrintPosition();
+    robot.actions().start();
+
     // Force la valeur pickup_P{N} : utile en simu sans balise. La phase doit
     // etre < PHASE_MATCH (donc le test doit tourner avant tirette/start).
     if (!setPickupForZone(robot, zone, static_cast<uint8_t>(idx))) {
@@ -233,6 +254,7 @@ void O_PushElementsTest::runPushReel(const char* zone, const char* suffixe, int 
 
     const bool result = push_elements_zone(static_cast<uint8_t>(idx), zone, sensInverse);
     logger().info() << "push_elements_zone result=" << (result ? "true" : "false") << logs::end;
+    robot.svgPrintPosition();
 }
 
 void O_PushElementsTest::configureConsoleArgs(int argc, char** argv)
@@ -241,6 +263,19 @@ void O_PushElementsTest::configureConsoleArgs(int argc, char** argv)
     robot.getArgs().addArgument("zone", "zone P1..P14 (none -> mode validation)", "none");
     robot.getArgs().addArgument("suffixe", "suffixe B|H|D|G", "none");
     robot.getArgs().addArgument("idx", "idx 0..5", "-1");
+
+    Arguments::Option cOptMultiplier('M', "simu speed multiplier (0=instantane, 1.0=temps reel)");
+    cOptMultiplier.addArgument("multiplier", "multiplier", "1.0");
+    robot.getArgs().addOption(cOptMultiplier);
+
+    // Position initiale (defauts = entree zone P1_B selon strategyPMX2 :
+    // x=200 y=600 cap Y+, robot arrive du bas).
+    Arguments::Option cOptPos('+', "Coordinates x,y,a (position initiale avant push)");
+    cOptPos.addArgument("coordx", "coord x mm",      "200.0");
+    cOptPos.addArgument("coordy", "coord y mm",      "600.0");
+    cOptPos.addArgument("coorda", "coord teta deg",   "90.0");
+    robot.getArgs().addOption(cOptPos);
+
     robot.parseConsoleArgs(argc, argv);
 }
 
@@ -251,6 +286,10 @@ void O_PushElementsTest::run(int argc, char** argv)
 
     OPOS6UL_RobotExtended& robot = OPOS6UL_RobotExtended::instance();
     Arguments args = robot.getArgs();
+
+    const float multiplier = std::atof(args['M']["multiplier"].c_str());
+    robot.asserv().setSimuSpeedMultiplier(multiplier);
+    logger().info() << "simuSpeed=" << multiplier << logs::end;
 
     const std::string zone    = args["zone"];
     const std::string suffixe = args["suffixe"];

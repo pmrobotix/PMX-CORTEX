@@ -93,6 +93,7 @@ public:
             "              back  : 0=forward, 1=backward (inverse signe de d)\n"
             "        opts: /m 0=relatif|1=absolu  /p 0=asserv|1=Navigator  /v vit%  /B 0|1 detect\n"
             "              /r repetitions  /+ x y a (pos initiale)\n"
+            "              /M simu speed mult (0=instantane, 1.0=temps reel, defaut 1.0)\n"
             "        ex:   lr 0 30 0 0                 # avance 30mm pur (40% defaut)\n"
             "              lr 0 500 90 0 /+ 250 250 0  # LINE 500 puis ROT 90\n"
             "              lr 90 100 0 0 /+ 250 250 0  # ROT 90 puis LINE 100\n"

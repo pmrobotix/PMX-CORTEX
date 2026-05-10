@@ -88,6 +88,15 @@ bool Arguments::parse(int argc, TCHAR *argv[], bool stopWithErrors)
             }
         } else	// ...oder Argument
         {
+            // Le seul marker option supporte dans ce projet est '/'. Un argument
+            // qui commence par '-' est forcement une faute de frappe : on stoppe
+            // avec un message explicite (suggestion de la forme correcte).
+            if (strArgument.size() >= 2 && strArgument[0] == '-') {
+                cerr << m_strCommandName << " error: Unknown argument " << strArgument
+                     << ". Did you mean /" << strArgument.substr(1) << " ?" << endl;
+                usage();
+                return false;
+            }
             if (nArg >= m_vArguments.size()) {
                 //DO Nothing - let many arguments for further functional tests
 //                if (stopWithErrors) {
