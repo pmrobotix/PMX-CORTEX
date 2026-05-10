@@ -24,7 +24,7 @@ ROBOT_IP=$(resolve_ip "${1:?Usage: $0 <1|2|3|ip>}")
 ROBOT_USER="root"
 ROBOT_PASS="pmx"
 CTRL_SOCK="/tmp/ssh-pmx-$ROBOT_IP"
-SSH_OPTS="-o StrictHostKeyChecking=no -o ControlMaster=auto -o ControlPath=$CTRL_SOCK -o ControlPersist=yes"
+SSH_OPTS="-o StrictHostKeyChecking=no -o ControlMaster=auto -o ControlPath=$CTRL_SOCK -o ControlPersist=60"
 
 sshpass -p $ROBOT_PASS ssh -t $SSH_OPTS $ROBOT_USER@$ROBOT_IP \
     "date -s '$(date -u '+%Y-%m-%d %H:%M:%S')' > /dev/null 2>&1; cd /root/pmx; exec /bin/sh -l"

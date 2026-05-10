@@ -65,7 +65,7 @@ fi
 
 # Multiplexing SSH : une seule connexion reutilisee pour mkdir, scp, kill, run
 CTRL_SOCK="/tmp/ssh-pmx-$ROBOT_IP"
-SSH_OPTS="-o StrictHostKeyChecking=no -o ControlMaster=auto -o ControlPath=$CTRL_SOCK -o ControlPersist=yes"
+SSH_OPTS="-o StrictHostKeyChecking=no -o ControlMaster=auto -o ControlPath=$CTRL_SOCK -o ControlPersist=60"
 SSH_CMD="sshpass -p $ROBOT_PASS ssh $SSH_OPTS $ROBOT_USER@$ROBOT_IP"
 SCP_CMD="sshpass -p $ROBOT_PASS scp $SSH_OPTS"
 

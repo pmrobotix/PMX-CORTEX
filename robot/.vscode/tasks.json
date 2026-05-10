@@ -141,7 +141,7 @@
             // Terminal SSH interactif dans /root/pmx/
             "label": "ARM: Connect SSH",
             "type": "shell",
-            "command": "sshpass -p pmx ssh -t -o StrictHostKeyChecking=no root@${input:targetIP} \"date -s '$(date -u '+%Y-%m-%d %H:%M:%S')' > /dev/null 2>&1; cd /root/pmx; exec /bin/sh -l\"",
+            "command": "bash sh/ssh-connect.sh ${input:targetIP}",
             "options": {
                 "cwd": "${workspaceFolder}",
                 "statusbar": {
@@ -151,7 +151,7 @@
                 }
             },
             "problemMatcher": [],
-            "presentation": { "reveal": "always", "panel": "new", "focus": true, "close": true }
+            "presentation": { "reveal": "always", "panel": "new", "focus": true, "close": false }
         },
         {
             // Rapatrie les fichiers SVG generes sur la carte
