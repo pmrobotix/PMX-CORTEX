@@ -1,6 +1,7 @@
 #include "StrategyJsonRunner.hpp"
 
 #include <chrono>
+#include <cstdio>
 #include <thread>
 
 #include "asserv/Asserv.hpp"
@@ -499,6 +500,18 @@ TRAJ_STATE StrategyJsonRunner::executeTask(const StrategyTask& t)
             logger().error() << "  ELEMENT/" << t.subtype
                              << " : nom inconnu \"" << *t.item_id << "\"" << logs::end;
             return TRAJ_ERROR;
+        }
+        // Refresh svgIA.svg pour refleter l'etat courant des zones (couleur
+        // enabled/disabled). Ecriture atomique via fichier .tmp + rename.
+        iap_->toSVG();
+        // Snapshot numerote (option /g) : svgIA_001.svg, svgIA_002.svg, ...
+        // Compteur static : un seul runner par match, OK.
+        if (robot_ && robot_->svgZoneHistory()) {
+            static unsigned int snapshotCounter = 0;
+            ++snapshotCounter;
+            char buf[32];
+            std::snprintf(buf, sizeof(buf), "svgIA_%03u.svg", snapshotCounter);
+            iap_->toSVG(buf);
         }
         logger().info() << "  ELEMENT/" << t.subtype << " \"" << *t.item_id << "\"" << logs::end;
         return TRAJ_FINISHED;

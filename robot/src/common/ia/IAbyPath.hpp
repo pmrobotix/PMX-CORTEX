@@ -78,7 +78,16 @@ public:
     }
 
     void ia_start();
-    void toSVG();
+
+    /*!
+     * \brief Genere svgIA.svg (ou \a path) reflechissant l'etat courant des
+     *        zones du pathfinding. Distinction visuelle :
+     *          - zone enabled  -> fill Aqua (obstacle actif)
+     *          - zone disabled -> fill Silver (definie mais inactive)
+     *        Ecriture atomique : la string SVG est construite puis ecrite
+     *        dans "<path>.tmp" avant d'etre renommee vers \a path.
+     */
+    void toSVG(const std::string& path = "svgIA.svg");
 
     void addPlayground(Playground * p);
 

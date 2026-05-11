@@ -144,6 +144,11 @@ void Robot::configureDefaultConsoleArgs() {
 
     cArgs_.addOption('d', "Dry-run: after export zones, exit without starting the match");
 
+    // /g : a chaque ADD_ZONE/DELETE_ZONE du runner, sauvegarde un snapshot
+    // numerote svgIA_NNN.svg (en plus de l'overwrite atomique de svgIA.svg).
+    // Utile pour rejouer pas-a-pas l'evolution des zones d'un match.
+    cArgs_.addOption('g', "Save numbered svgIA_NNN.svg snapshots at each ADD_ZONE/DELETE_ZONE");
+
     {
         // /s <name>  -> charge strategy<name>.json (a cote de l'exe).
         // Ex: /s PMX0  -> strategyPMX0.json
@@ -246,6 +251,11 @@ void Robot::parseConsoleArgs(int argc, char** argv, bool stopWithErrors) {
     }
     if (cArgs_['d']) {
         exportZonesDryRun_ = true;
+    }
+
+    // /g : historique numerote svgIA_NNN.svg a chaque ADD_ZONE/DELETE_ZONE.
+    if (cArgs_['g']) {
+        svgZoneHistory_ = true;
     }
 
     // Strategy JSON runner + Init JSON. /s <name> est l'override CLI : il fixe

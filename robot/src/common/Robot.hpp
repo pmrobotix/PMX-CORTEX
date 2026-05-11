@@ -153,6 +153,11 @@ protected:
 	std::string exportZonesPath_;     ///< Chemin de sortie du table.json simulateur (vide = pas d'export)
 	bool exportZonesDryRun_ = false;  ///< Si true : exit apres export, sans demarrer le match
 
+	// --- /g : historique numerote des svgIA_NNN.svg a chaque ADD_ZONE/DELETE_ZONE ---
+	// Si true, le runner sauvegarde un snapshot numerote (svgIA_001.svg,
+	// svgIA_002.svg, ...) en plus de l'overwrite atomique de svgIA.svg.
+	bool svgZoneHistory_ = false;
+
 	// --- Strategy JSON runner (cf. StrategyJsonRunner) ---
 	std::string strategyJsonName_ = "PMX1";   ///< Nom de la strat (ex: "PMX0" -> strategyPMX0.json). Vide = fallback hardcode (legacy DEPRECATED).
 
@@ -284,6 +289,9 @@ public:
 
 	const std::string& exportZonesPath() const { return exportZonesPath_; }
 	bool exportZonesDryRun() const { return exportZonesDryRun_; }
+
+	/// /g : sauvegarde des snapshots svgIA_NNN.svg a chaque event pathfinding.
+	bool svgZoneHistory() const { return svgZoneHistory_; }
 
 	const std::string& strategyJsonName() const { return strategyJsonName_; }
 	/// Chemin complet : strategy<name>.json (resolu relatif au cwd = a cote de l'exe).

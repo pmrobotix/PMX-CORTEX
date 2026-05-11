@@ -18,7 +18,8 @@ void logs::LoggerFactory::initialize()
 
     add("console", new ConsoleAppender());
     add("svg", new SvgAppender("svgAPF.svg"));
-    add("svgia", new SvgAppender("svgIA.svg"));
+    // svgIA.svg est ecrit directement par IAbyPath::toSVG() (regen a chaque
+    // ADD_ZONE/DELETE_ZONE pour refleter l'etat courant des zones).
     add("svgsensors", new SvgAppender("svgSensors.svg"));
     add("memory", new MemoryAppender());
     //add("file", new FileAppender("logAPF.csv"));
@@ -36,7 +37,6 @@ void logs::LoggerFactory::initialize()
     add(logs::Level::INFO, "OPOS6UL_ActionsExtended", "console");
     //SVG
     add(logs::Level::INFO, "Svg4OPOS6UL_Robot", "svg");
-    add(logs::Level::INFO, "IAbyPath4OPOS6UL_Robot", "svgia");
     add(logs::Level::INFO, "Sensors4OPOS6UL_Robot", "svgsensors");
 
 
