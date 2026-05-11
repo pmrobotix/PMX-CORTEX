@@ -10,6 +10,27 @@
 #include "action/Sensors.hpp"
 #include "geometry/DetectionEvent.hpp"
 
+namespace {
+// Scope guard RAII : pose le flag isCurrentlyRotating_ a true a la
+// construction (uniquement si type == ROTATION), le remet a false a la
+// destruction. Garantit que le flag est nettoye sur tous les chemins
+// de retour (early returns TRAJ_*).
+struct RotationScope {
+    Asserv* pAsserv;
+    bool armed;
+    RotationScope(Asserv* p, Asserv::MovementType type)
+        : pAsserv(p), armed(type == Asserv::ROTATION)
+    {
+        if (armed) pAsserv->setRotatingFlag(true);
+    }
+    ~RotationScope() {
+        if (armed) pAsserv->setRotatingFlag(false);
+    }
+    RotationScope(const RotationScope&) = delete;
+    RotationScope& operator=(const RotationScope&) = delete;
+};
+}
+
 // Constructeur : instancie le driver d'asserv (ext ou interne) et initialise les paramètres par défaut.
 // Le type d'asserv par défaut est ASSERV_INT_ESIALR (asservissement interne ESIAL).
 Asserv::Asserv(std::string botId, Robot *robot)
@@ -455,6 +476,14 @@ TRAJ_STATE Asserv::sendCborMotionWithRetry(MovementType type, std::function<void
 
 TRAJ_STATE Asserv::waitEndOfTrajWithDetection(MovementType type)
 {
+	// Marque le flag isCurrentlyRotating_ pour les rotations pures
+	// (MovementType::ROTATION). Couvre les 2 chemins :
+	//   - ASSERV_EXT : appel via sendCborMotionWithRetry -> waitEndOfTrajWithDetection
+	//   - ASSERV_INT_ESIALR : appel direct (rotateRad/faceTo/faceBackTo)
+	// Sensors consulte isCurrentlyRotating() pour grayer les points adv
+	// dans le SVG pendant toute la duree de la rotation.
+	RotationScope rotGuard(this, type);
+
 	// Capture du cmd_id cible AU DEBUT (juste apres l'envoi de la commande
 	// par l'appelant motion_*). Tout ACK >= cette valeur signifie que la
 	// commande a ete consommee par la Nucleo.

@@ -1,6 +1,7 @@
 #ifndef COMMON_ASSERV_HPP_
 #define COMMON_ASSERV_HPP_
 
+#include <atomic>
 #include <cmath>
 #include <functional>
 #include <string>
@@ -34,8 +35,34 @@ private:
 
     bool emergencyStop_;
 
+    /*!
+     * \brief Flag publie quand le robot execute une rotation pure
+     *        (MovementType::ROTATION). Set au debut du send/wait, clear
+     *        en sortie. Atomique car lu depuis le SensorsThread.
+     *        Utilise par Sensors pour marquer la position adv detectee
+     *        comme "imprecise" dans le SVG : pendant une rotation, le
+     *        buffer d'historique du cap robot (~10 Hz) ne suit pas en
+     *        temps reel l'angle balise, ce qui decale fortement (400-600mm)
+     *        la position projetee.
+     */
+    std::atomic<bool> isCurrentlyRotating_{false};
+
 
 public:
+
+    /*!
+     * \brief Indique si l'asservissement execute actuellement une rotation
+     *        pure (MovementType::ROTATION). Utilise par Sensors pour marquer
+     *        les detections adv comme imprecises pendant une rotation.
+     */
+    bool isCurrentlyRotating() const { return isCurrentlyRotating_.load(); }
+
+    /*!
+     * \brief Setter utilise par la struct RAII RotationScope (Asserv.cpp).
+     *        Expose en public pour permettre l'acces depuis l'anonymous
+     *        namespace de l'unite de compilation Asserv.cpp.
+     */
+    void setRotatingFlag(bool b) { isCurrentlyRotating_.store(b); }
 
     /*!
      * \brief Type de mouvement en cours (pour waitEndOfTrajWithDetection).

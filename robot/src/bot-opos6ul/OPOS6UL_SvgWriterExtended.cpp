@@ -172,6 +172,12 @@ void OPOS6UL_SvgWriterExtended::writePosition_AdvPos(float x, float y, float x_p
                     << "<circle cx=\"" << x << "\" cy=\"" << -y << "\" r=\""<< r_adv+8 <<"\" fill=\"none\" stroke=\"black\" />"
                     << "<line x1=\"" << x_pos_mm << "\" y1=\"" << -y_pos_mm << "\" x2=\"" << x << "\" y2=\"" << -y
                     << "\" stroke=\"BLACK\" stroke-width=\"1\"/>" << logs::flush;
+        } else if (color == 6) {
+            // Rotation : position adv imprecise (compensation cap robot insuffisante)
+            *fLogBufferSensors
+                    << "<circle cx=\"" << x << "\" cy=\"" << -y << "\" r=\""<< r_adv <<"\" fill=\"none\" stroke=\"lightgray\" stroke-dasharray=\"4,4\" opacity=\"0.5\" />"
+                    << "<line x1=\"" << x_pos_mm << "\" y1=\"" << -y_pos_mm << "\" x2=\"" << x << "\" y2=\"" << -y
+                    << "\" stroke=\"lightgray\" stroke-dasharray=\"2,3\" opacity=\"0.5\"/>" << logs::flush;
         }
         this->unlock();
     }

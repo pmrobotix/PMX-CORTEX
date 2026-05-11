@@ -336,8 +336,14 @@ int Sensors::front(bool display)
 			if (inside_table)
 			{
 				//affichage gris (sans detection de seuils)
+				// Pendant une rotation pure : marquer "imprecis" (color=6) car le cap robot
+				// (buffer historique ~10Hz) ne suit pas l'angle balise -> erreur 400-600mm.
+				int svg_color = 0;
+				if (this->robot()->asserv().isCurrentlyRotating()) {
+					svg_color = 6;
+				}
 				this->robot()->svgw().writePosition_AdvPos(x_pos_adv_table, y_pos_adv_table, pos_robot_instantane.x,
-						pos_robot_instantane.y, 0);
+						pos_robot_instantane.y, svg_color);
 
 				//filtre is_in_front devant ou coté
 				//0  0  0
@@ -398,16 +404,22 @@ int Sensors::front(bool display)
 					if (display)
 						logger().debug() << level_filtered << " frontCenter xy= " << botpos.x << " " << botpos.y
 								<< logs::end;
-					if (x_pos_adv_table != -1 && y_pos_adv_table != -1)
+					if (x_pos_adv_table != -1 && y_pos_adv_table != -1) {
+						int svg_color = 1;
+						if (this->robot()->asserv().isCurrentlyRotating()) svg_color = 6;
 						this->robot()->svgw().writePosition_AdvPos(x_pos_adv_table, y_pos_adv_table,
-								pos_robot_instantane.x, pos_robot_instantane.y, 1);
+								pos_robot_instantane.x, pos_robot_instantane.y, svg_color);
+					}
 
 				} else if (level_filtered == 4)
 				{ //seuil de level 4 ARRET
 					level = 4;
-					if (x_pos_adv_table != -1 && y_pos_adv_table != -1)
+					if (x_pos_adv_table != -1 && y_pos_adv_table != -1) {
+						int svg_color = 2;
+						if (this->robot()->asserv().isCurrentlyRotating()) svg_color = 6;
 						this->robot()->svgw().writePosition_AdvPos(x_pos_adv_table, y_pos_adv_table,
-								pos_robot_instantane.x, pos_robot_instantane.y, 2);
+								pos_robot_instantane.x, pos_robot_instantane.y, svg_color);
+					}
 					if (display)
 						logger().debug() << level_filtered << " frontCenter xy= " << botpos.x << " " << botpos.y
 								<< logs::end;
@@ -546,8 +558,13 @@ int Sensors::back(bool display)
 			if (inside_table)
 			{
 				//affichage gris
+				// Pendant une rotation pure : marquer "imprecis" (color=6).
+				int svg_color = 0;
+				if (this->robot()->asserv().isCurrentlyRotating()) {
+					svg_color = 6;
+				}
 				this->robot()->svgw().writePosition_AdvPos(x_pos_adv_table, y_pos_adv_table, pos_robot_instantane.x,
-						pos_robot_instantane.y, 0);
+						pos_robot_instantane.y, svg_color);
 
 				//filtre is_in_front devant ou coté
 				//0  0  0
@@ -608,16 +625,22 @@ int Sensors::back(bool display)
 					if (display)
 						logger().debug() << level_filtered << " backCenter xy= " << botpos.x << " " << botpos.y
 								<< logs::end;
-					if (x_pos_adv_table != -1 && y_pos_adv_table != -1)
+					if (x_pos_adv_table != -1 && y_pos_adv_table != -1) {
+						int svg_color = 1;
+						if (this->robot()->asserv().isCurrentlyRotating()) svg_color = 6;
 						this->robot()->svgw().writePosition_AdvPos(x_pos_adv_table, y_pos_adv_table,
-								pos_robot_instantane.x, pos_robot_instantane.y, 1);
+								pos_robot_instantane.x, pos_robot_instantane.y, svg_color);
+					}
 
 				} else if (level_filtered == -4)
 				{ //seuil de level 4 ARRET
 					level = -4;
-					if (x_pos_adv_table != -1 && y_pos_adv_table != -1)
+					if (x_pos_adv_table != -1 && y_pos_adv_table != -1) {
+						int svg_color = 2;
+						if (this->robot()->asserv().isCurrentlyRotating()) svg_color = 6;
 						this->robot()->svgw().writePosition_AdvPos(x_pos_adv_table, y_pos_adv_table,
-								pos_robot_instantane.x, pos_robot_instantane.y, 2);
+								pos_robot_instantane.x, pos_robot_instantane.y, svg_color);
+					}
 					if (display)
 						logger().debug() << level_filtered << " backCenter xy= " << botpos.x << " " << botpos.y
 								<< logs::end;
