@@ -515,12 +515,7 @@ void setupActivitiesZone2026(OPOS6UL_RobotExtended& robot, const std::string& st
 
 void registerStrategyActions2026(ActionRegistry& registry, OPOS6UL_RobotExtended& robot)
 {
-    // --- Banderole (action de fin de match) ---
-    registry.registerAction("banderole",
-        [&robot]() { robot.actions().ax12_GO_banderole(); return true; });
-    registry.registerAction("banderole_init",
-        [&robot]() { robot.actions().ax12_init_banderole(); return true; });
-
+    
     // --- Bras lateraux ---
     registry.registerAction("bras_droit",
         [&robot]() { robot.actions().ax12_bras_droit(); return true; });
