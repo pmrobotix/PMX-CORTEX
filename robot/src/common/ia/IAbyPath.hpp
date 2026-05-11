@@ -64,6 +64,12 @@ private:
     // obstacle pathfinding par son nom.
     std::map<std::string, PlaygroundObjectID> namedObstacles_;
 
+    // Mapping nom string -> (id cote bleu, id cote jaune) pour les zones
+    // creees via add_rectangle_symmetrical. Le JSON utilise le nom "bleu"
+    // (ex: "zone_P1"), enableNamedObstacle choisit le bon id en fonction
+    // de la couleur de match courante (Robot::isMatchColor()).
+    std::map<std::string, std::pair<PlaygroundObjectID, PlaygroundObjectID>> symObstacles_;
+
 public:
     IAbyPath(Robot *robot);
 
@@ -116,10 +122,35 @@ public:
     void registerNamedObstacle(const std::string& name, PlaygroundObjectID id);
 
     /*!
+     * \brief Enregistre une paire d'obstacles symetriques (cote bleu, cote
+     *        jaune) sous un seul nom. La strategie JSON utilise toujours le
+     *        nom "bleu" ; enableNamedObstacle redirige automatiquement vers
+     *        l'id jaune si Robot::isMatchColor() retourne true (= JAUNE).
+     */
+    void registerSymmetricalObstacle(const std::string& name,
+                                     PlaygroundObjectID idBlue,
+                                     PlaygroundObjectID idYellow);
+
+    /*!
      * \brief Active ou desactive un obstacle pathfinding enregistre par nom.
+     *        Cherche d'abord dans les paires symetriques (et choisit l'id
+     *        selon la couleur match), puis dans les obstacles simples.
      * \return true si le nom est connu, false sinon (et aucun effet).
      */
     bool enableNamedObstacle(const std::string& name, bool enabled);
+
+    // Accesseurs lecture seule sur les maps de noms (utilises par
+    // ZoneJsonExporter pour afficher les noms reels dans table.json
+    // plutot que des ids techniques auto-generes).
+    const std::map<std::string, PlaygroundObjectID>& namedObstacles() const
+    {
+        return namedObstacles_;
+    }
+    const std::map<std::string, std::pair<PlaygroundObjectID, PlaygroundObjectID>>&
+    symObstacles() const
+    {
+        return symObstacles_;
+    }
 
 
 

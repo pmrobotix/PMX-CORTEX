@@ -58,6 +58,20 @@ bool ZoneJsonExporter::exportToFile(const std::string& path, Playground* pg, IAb
     out << "  \"color3000\": \"jaune\",\n";
     out << "  \"marge\": 0,\n";
 
+    // Index inverse id -> nom string pour afficher les vrais noms enregistres
+    // via IAbyPath::registerNamedObstacle / registerSymmetricalObstacle.
+    // Les paires symetriques recoivent un suffixe _B (bleu) / _Y (jaune) pour
+    // les distinguer dans le simu (le JSON de strategie utilise lui le nom
+    // logique sans suffixe : la redirection bleu/jaune se fait cote brain).
+    std::map<PlaygroundObjectID, std::string> idToName;
+    for (const auto& kv : ia->namedObstacles()) {
+        idToName[kv.second] = kv.first;
+    }
+    for (const auto& kv : ia->symObstacles()) {
+        idToName[kv.second.first]  = kv.first + "_B";
+        idToName[kv.second.second] = kv.first + "_Y";
+    }
+
     // forbiddenZones : obstacles du pathfinding
     out << "  \"forbiddenZones\": [\n";
     PathFinder* pf = pg->get_path_finder();
@@ -66,10 +80,14 @@ bool ZoneJsonExporter::exportToFile(const std::string& path, Playground* pg, IAb
         for (Zone* z : pf->zones) {
             if (z == nullptr || z->nodes_count == 0) continue;
             if (count > 0) out << ",\n";
+            auto itName = idToName.find(z->id);
+            const std::string zid = (itName != idToName.end())
+                ? itName->second
+                : (std::string("pg_zone_") + std::to_string(z->id));
             out << "    {"
-                << "\"id\":\"pg_zone_" << z->id << "\","
+                << "\"id\":\"" << zid << "\","
                 << "\"forme\":\"polygone\","
-                << "\"desc\":\"Playground obstacle " << z->id << "\","
+                << "\"desc\":\"" << zid << "\","
                 << "\"type\":\"all\","
                 << "\"active\":" << (z->enabled ? "true" : "false") << ","
                 ;

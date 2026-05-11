@@ -43,14 +43,37 @@ public:
     PlaygroundObjectID area_test_blocker;
 
     /*!
-     * \brief Zone POC pour ELEMENT/ADD_ZONE et ELEMENT/DELETE_ZONE depuis le
-     *        runner JSON. Carre 300x300 centre en (1000, 1000), enregistre
-     *        sous le nom "zone_test_1" via IAbyPath::registerNamedObstacle.
-     *        Desactivee au boot, activable via :
-     *          { "type": "ELEMENT", "subtype": "ADD_ZONE",
-     *            "item_id": "zone_test_1" }
+     * \brief Grenier : element fixe du jeu, centre sur l'axe X (x=1500),
+     *        enabled + permanent au boot. Rectangle centre (1500, 295),
+     *        1814 x 590. Le flag permanent empeche tout DELETE_ZONE JSON
+     *        de l'eteindre au match.
      */
-    PlaygroundObjectID area_zone_test_1;
+    PlaygroundObjectID area_zone_grenier;
+
+    /*!
+     * \brief Zones de prise P1..P4 : symetriques (id stocke = cote bleu).
+     *        enabled au boot, desactivables via JSON ELEMENT/DELETE_ZONE
+     *        item_id="zone_Pn" apres avoir pris. Le nom JSON reste "bleu"
+     *        en match jaune : IAbyPath redirige automatiquement vers l'id
+     *        miroir cote jaune.
+     */
+    PlaygroundObjectID area_zone_P1;  ///< centre bleu (175, 800),   450 x 500
+    PlaygroundObjectID area_zone_P2;  ///< centre bleu (175, 1600),  450 x 500
+    PlaygroundObjectID area_zone_P3;  ///< centre bleu (1100, 1825), 500 x 450
+    PlaygroundObjectID area_zone_P4;  ///< centre bleu (1150, 1200), 500 x 450
+
+    /*!
+     * \brief Zones de depose GM2..GM6 (id stocke = cote bleu pour GM2/3/4,
+     *        unique pour GM5/GM6 deja sur axe central x=1500).
+     *        disabled au boot, activables via JSON ELEMENT/ADD_ZONE
+     *        item_id="zone_GMn" apres avoir depose pour eviter que le
+     *        pathfinding repasse dessus.
+     */
+    PlaygroundObjectID area_zone_GM2;  ///< sym, centre bleu (175, 1200), 450 x 500
+    PlaygroundObjectID area_zone_GM3;  ///< sym, centre bleu (800, 1200), 500 x 450
+    PlaygroundObjectID area_zone_GM4;  ///< sym, centre bleu (700, 1825), 500 x 450
+    PlaygroundObjectID area_zone_GM5;  ///< unique, centre (1500, 1825), 500 x 450
+    PlaygroundObjectID area_zone_GM6;  ///< unique, centre (1500, 1200), 500 x 450
 
     PlaygroundObjectID area_B4;
     PlaygroundObjectID area_C4;

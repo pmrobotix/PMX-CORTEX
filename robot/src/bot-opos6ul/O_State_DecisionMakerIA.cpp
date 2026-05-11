@@ -53,6 +53,19 @@ void O_State_DecisionMakerIA::execute()
 	// (Navigator::pathTo / MOVEMENT/PATH_TO appelle playgroundFindPath).
 	robot.ia().initPlayground();
 
+	// Export zones simulateur (apres initPlayground, AVANT chrono.started() pour
+	// permettre l'export sans tirette en simu via : /e path=... /d).
+	if (!robot.exportZonesPath().empty()) {
+		ZoneJsonExporter::exportToFile(
+			robot.exportZonesPath(),
+			robot.ia().iAbyPath().playground(),
+			&robot.ia().iAbyPath());
+		if (robot.exportZonesDryRun()) {
+			logger().info() << "Dry-run: exit after export" << logs::end;
+			std::exit(0);
+		}
+	}
+
 	//wait for the start of the chrono !
 	while (!robot.chrono().started())
 	{

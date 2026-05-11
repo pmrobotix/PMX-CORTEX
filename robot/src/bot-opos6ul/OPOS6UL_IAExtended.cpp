@@ -17,7 +17,16 @@ OPOS6UL_IAExtended::OPOS6UL_IAExtended(std::string botId, Robot *robot) :
 //    opponent_3 = Playground::INVALID;
 //    opponent_4 = Playground::INVALID;
     area_test_blocker = Playground::INVALID;
-    area_zone_test_1 = Playground::INVALID;
+    area_zone_grenier = Playground::INVALID;
+    area_zone_P1 = Playground::INVALID;
+    area_zone_P2 = Playground::INVALID;
+    area_zone_P3 = Playground::INVALID;
+    area_zone_P4 = Playground::INVALID;
+    area_zone_GM2 = Playground::INVALID;
+    area_zone_GM3 = Playground::INVALID;
+    area_zone_GM4 = Playground::INVALID;
+    area_zone_GM5 = Playground::INVALID;
+    area_zone_GM6 = Playground::INVALID;
 
     area_B4 = Playground::INVALID;
     area_C4 = Playground::INVALID;
@@ -161,11 +170,68 @@ void OPOS6UL_IAExtended::initPlayground() {
     p_->add_rectangle_lower_left(this->area_test_blocker, 1750, 950, 100, 100, 0);
     p_->enable(this->area_test_blocker, false);
 
-    // POC zone nommee : carre 300x300 centre en (1000, 1000), desactive au boot.
-    // Activable via { "type": "ELEMENT", "subtype": "ADD_ZONE", "item_id": "zone_test_1" }.
-    p_->add_rectangle(this->area_zone_test_1, 1000, 1000, 300, 300, 0);
-    p_->enable(this->area_zone_test_1, false);
-    iap_.registerNamedObstacle("zone_test_1", this->area_zone_test_1);
+    // Grenier : element fixe du jeu, centre sur l'axe X du terrain (1500),
+    // enabled + permanent au boot. Taille 1814 x 590.
+    p_->add_rectangle(this->area_zone_grenier, 1500, 590 / 2, 1814, 590, 0);
+    p_->enable(this->area_zone_grenier, true);
+    p_->set_permanent(this->area_zone_grenier, true);
+    iap_.registerNamedObstacle("zone_grenier", this->area_zone_grenier);
+
+    // ----- Zones de prise (symetriques) : enabled au boot, desactivables -----
+    // Le JSON utilise le nom "bleu" ; en match jaune IAbyPath redirige
+    // automatiquement vers l'id miroir cote jaune.
+    PlaygroundObjectID id_P1_sym = Playground::INVALID;
+    p_->add_rectangle_symmetrical(this->area_zone_P1, id_P1_sym, 175, 800, 450, 500, 0);
+    p_->enable(this->area_zone_P1, true);
+    p_->enable(id_P1_sym, true);
+    iap_.registerSymmetricalObstacle("zone_P1", this->area_zone_P1, id_P1_sym);
+
+    PlaygroundObjectID id_P2_sym = Playground::INVALID;
+    p_->add_rectangle_symmetrical(this->area_zone_P2, id_P2_sym, 175, 1600, 450, 500, 0);
+    p_->enable(this->area_zone_P2, true);
+    p_->enable(id_P2_sym, true);
+    iap_.registerSymmetricalObstacle("zone_P2", this->area_zone_P2, id_P2_sym);
+
+    PlaygroundObjectID id_P3_sym = Playground::INVALID;
+    p_->add_rectangle_symmetrical(this->area_zone_P3, id_P3_sym, 1100, 1825, 500, 450, 0);
+    p_->enable(this->area_zone_P3, true);
+    p_->enable(id_P3_sym, true);
+    iap_.registerSymmetricalObstacle("zone_P3", this->area_zone_P3, id_P3_sym);
+
+    PlaygroundObjectID id_P4_sym = Playground::INVALID;
+    p_->add_rectangle_symmetrical(this->area_zone_P4, id_P4_sym, 1150, 1200, 500, 450, 0);
+    p_->enable(this->area_zone_P4, true);
+    p_->enable(id_P4_sym, true);
+    iap_.registerSymmetricalObstacle("zone_P4", this->area_zone_P4, id_P4_sym);
+
+    // ----- Zones de depose : disabled au boot, activables via JSON ADD_ZONE ---
+    // GM2/GM3/GM4 sont symetriques (id stocke = bleu, jaune capture en local).
+    PlaygroundObjectID id_GM2_sym = Playground::INVALID;
+    p_->add_rectangle_symmetrical(this->area_zone_GM2, id_GM2_sym, 175, 1200, 450, 500, 0);
+    p_->enable(this->area_zone_GM2, false);
+    p_->enable(id_GM2_sym, false);
+    iap_.registerSymmetricalObstacle("zone_GM2", this->area_zone_GM2, id_GM2_sym);
+
+    PlaygroundObjectID id_GM3_sym = Playground::INVALID;
+    p_->add_rectangle_symmetrical(this->area_zone_GM3, id_GM3_sym, 800, 1200, 500, 450, 0);
+    p_->enable(this->area_zone_GM3, false);
+    p_->enable(id_GM3_sym, false);
+    iap_.registerSymmetricalObstacle("zone_GM3", this->area_zone_GM3, id_GM3_sym);
+
+    PlaygroundObjectID id_GM4_sym = Playground::INVALID;
+    p_->add_rectangle_symmetrical(this->area_zone_GM4, id_GM4_sym, 700, 1825, 500, 450, 0);
+    p_->enable(this->area_zone_GM4, false);
+    p_->enable(id_GM4_sym, false);
+    iap_.registerSymmetricalObstacle("zone_GM4", this->area_zone_GM4, id_GM4_sym);
+
+    // GM5 et GM6 sur l'axe central x=1500 : pas de miroir, simple registerNamed.
+    p_->add_rectangle(this->area_zone_GM5, 1500, 1825, 500, 450, 0);
+    p_->enable(this->area_zone_GM5, false);
+    iap_.registerNamedObstacle("zone_GM5", this->area_zone_GM5);
+
+    p_->add_rectangle(this->area_zone_GM6, 1500, 1200, 500, 450, 0);
+    p_->enable(this->area_zone_GM6, false);
+    iap_.registerNamedObstacle("zone_GM6", this->area_zone_GM6);
 
     p_->compute_edges();
     iap_.addPlayground(p_);

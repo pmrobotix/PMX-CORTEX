@@ -61,11 +61,26 @@ void IAbyPath::registerNamedObstacle(const std::string& name, PlaygroundObjectID
 	namedObstacles_[name] = id;
 }
 
+void IAbyPath::registerSymmetricalObstacle(const std::string& name,
+                                           PlaygroundObjectID idBlue,
+                                           PlaygroundObjectID idYellow)
+{
+	symObstacles_[name] = std::make_pair(idBlue, idYellow);
+}
+
 bool IAbyPath::enableNamedObstacle(const std::string& name, bool enabled)
 {
+	if (p_ == NULL) return false;
+	auto its = symObstacles_.find(name);
+	if (its != symObstacles_.end()) {
+		// isMatchColor() retourne true en YELLOW -> id jaune, sinon id bleu.
+		const PlaygroundObjectID id = robot_->isMatchColor() ? its->second.second
+		                                                     : its->second.first;
+		p_->enable(id, enabled);
+		return true;
+	}
 	auto it = namedObstacles_.find(name);
 	if (it == namedObstacles_.end()) return false;
-	if (p_ == NULL) return false;
 	p_->enable(it->second, enabled);
 	return true;
 }
