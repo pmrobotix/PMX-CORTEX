@@ -160,16 +160,39 @@ Enchaîne un déplacement suivi d'une rotation, **abort si le déplacement écho
 
 ### 2.6 MANIPULATION
 
-Actionneurs (pinces, servos, pompes, etc.). **Pas de `subtype`.**
+Actionneurs (pinces, servos, pompes, etc.) ou séquences composites (mouvement +
+manipulation). **Pas de `subtype`.**
 
 ```json
-{ "type": "MANIPULATION", "action_id": "ouvrir_pinces", "timeout": 2000 }
+{ "type": "MANIPULATION", "action_id": "push_elements_P1_B", "timeout": 5000 }
 ```
 
 | Champ | Type | Obligatoire | Description |
 |---|---|---|---|
 | `action_id` | string | **oui** | Nom appelé via `ActionRegistry::call(action_id)` |
 | `timeout` | int | optionnel | Timeout max en ms (défaut -1) |
+
+#### `action_id` enregistrés pour 2026
+
+Source de vérité : [StrategyActions2026.cpp::registerStrategyActions2026()](../src/bot-opos6ul/StrategyActions2026.cpp).
+
+| Catégorie | `action_id` | Statut | Effet |
+|---|---|---|---|
+| Bras latéraux AX12 | `bras_droit`, `bras_droit_init` | ACTIF | Déploie / replie bras droit |
+| | `bras_gauche`, `bras_gauche_init` | ACTIF | Déploie / replie bras gauche |
+| Reset global | `init_all` | ACTIF | Reset tous les AX12 (`ax12_init()`) |
+| Banderole (legacy) | `banderole`, `banderole_init` | ACTIF (à supprimer) | Déploie / replie banderole — remplacée par `curseur` |
+| Curseur | `curseur` | **STUB** | Déploiera bon bras selon couleur + avance + replie. À finaliser (servos + calibration). |
+| Push elements (16) | `push_elements_P{1,2,11,12}_{B,H}` | ACTIF | Verticales : `_B`=arrive bas, `_H`=arrive haut |
+| | `push_elements_P{3,4,13,14}_{D,G}` | ACTIF | Horizontales : `_D`=arrive droite, `_G`=arrive gauche |
+| | (voir [PUSH_ELEMENTS_2026.md](PUSH_ELEMENTS_2026.md) pour le détail) | | |
+| Push prise basse | `push_prise_bas` | ACTIF (deprecated) | Ancienne séquence, remplacée par `push_elements_zone` |
+| Défense | `defense_if_needed` | **STUB** | À la fin d'une instruction push : si adv dans une zone, va au point de défense, attend 5s, rend la main. Plomberie `Asserv::adv_pos_centre_` à câbler (jamais set actuellement). |
+
+**Convention de placement dans le JSON** :
+- `defense_if_needed` : à insérer **à la fin de chaque instruction push** où une défense fait sens. No-op si adv hors zone, pas de risque à le mettre partout.
+- `curseur` : à appeler en fin de match (remplace l'usage `banderole`).
+- Aucun retour à la position pré-défense n'est géré : c'est le `PATH_TO` de la task suivante qui se charge du repositionnement (toutes les instructions push doivent commencer par un mouvement).
 
 ### 2.7 ELEMENT
 
