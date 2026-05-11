@@ -482,8 +482,25 @@ TRAJ_STATE StrategyJsonRunner::executeTask(const StrategyTask& t)
         return TRAJ_FINISHED;
     }
     if (t.type == "ELEMENT") {
-        logger().info() << "  [STUB Phase 2] ELEMENT/" << t.subtype
-                        << " item_id=" << (t.item_id ? *t.item_id : "?") << logs::end;
+        if (!t.item_id) {
+            logger().error() << "  ELEMENT/" << t.subtype << " sans item_id" << logs::end;
+            return TRAJ_ERROR;
+        }
+        if (t.subtype != "ADD_ZONE" && t.subtype != "DELETE_ZONE") {
+            logger().error() << "  ELEMENT subtype inconnu : " << t.subtype << logs::end;
+            return TRAJ_ERROR;
+        }
+        const bool active = (t.subtype == "ADD_ZONE");
+        if (iap_ == nullptr) {
+            logger().error() << "  ELEMENT/" << t.subtype << " : IAbyPath null" << logs::end;
+            return TRAJ_ERROR;
+        }
+        if (!iap_->enableNamedObstacle(*t.item_id, active)) {
+            logger().error() << "  ELEMENT/" << t.subtype
+                             << " : nom inconnu \"" << *t.item_id << "\"" << logs::end;
+            return TRAJ_ERROR;
+        }
+        logger().info() << "  ELEMENT/" << t.subtype << " \"" << *t.item_id << "\"" << logs::end;
         return TRAJ_FINISHED;
     }
     if (t.type == "MANIPULATION") {

@@ -42,6 +42,16 @@ public:
      */
     PlaygroundObjectID area_test_blocker;
 
+    /*!
+     * \brief Zone POC pour ELEMENT/ADD_ZONE et ELEMENT/DELETE_ZONE depuis le
+     *        runner JSON. Carre 300x300 centre en (1000, 1000), enregistre
+     *        sous le nom "zone_test_1" via IAbyPath::registerNamedObstacle.
+     *        Desactivee au boot, activable via :
+     *          { "type": "ELEMENT", "subtype": "ADD_ZONE",
+     *            "item_id": "zone_test_1" }
+     */
+    PlaygroundObjectID area_zone_test_1;
+
     PlaygroundObjectID area_B4;
     PlaygroundObjectID area_C4;
     PlaygroundObjectID area_B3;

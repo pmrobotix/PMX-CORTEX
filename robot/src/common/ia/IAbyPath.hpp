@@ -9,6 +9,7 @@
 #define COMMON_IA_IABYPATH_HPP_
 
 #include <pmr_playground.h>
+#include <map>
 #include <sstream>
 #include <string>
 
@@ -57,6 +58,12 @@ private:
     int _actions_count;
     ACTIONS* _actions[200];
 
+    // Mapping nom string -> PlaygroundObjectID, alimente au boot par
+    // OPOS6UL_IAExtended::initPlayground() pour permettre au runner JSON
+    // (ELEMENT/ADD_ZONE, ELEMENT/DELETE_ZONE) d'activer/desactiver un
+    // obstacle pathfinding par son nom.
+    std::map<std::string, PlaygroundObjectID> namedObstacles_;
+
 public:
     IAbyPath(Robot *robot);
 
@@ -100,6 +107,19 @@ public:
 
     void playgroundFindPath(FoundPath * & path, Point& start, Point& end);
     void enable(PlaygroundObjectID id, bool enable);
+
+    /*!
+     * \brief Enregistre un obstacle pathfinding sous un nom string, afin
+     *        de pouvoir l'activer/desactiver depuis une strategie JSON via
+     *        ELEMENT/ADD_ZONE et ELEMENT/DELETE_ZONE.
+     */
+    void registerNamedObstacle(const std::string& name, PlaygroundObjectID id);
+
+    /*!
+     * \brief Active ou desactive un obstacle pathfinding enregistre par nom.
+     * \return true si le nom est connu, false sinon (et aucun effet).
+     */
+    bool enableNamedObstacle(const std::string& name, bool enabled);
 
 
 

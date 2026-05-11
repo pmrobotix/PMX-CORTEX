@@ -17,6 +17,7 @@ OPOS6UL_IAExtended::OPOS6UL_IAExtended(std::string botId, Robot *robot) :
 //    opponent_3 = Playground::INVALID;
 //    opponent_4 = Playground::INVALID;
     area_test_blocker = Playground::INVALID;
+    area_zone_test_1 = Playground::INVALID;
 
     area_B4 = Playground::INVALID;
     area_C4 = Playground::INVALID;
@@ -159,6 +160,12 @@ void OPOS6UL_IAExtended::initPlayground() {
     // -> A* renvoie cost=0 -> outcome SK_IMPS).
     p_->add_rectangle_lower_left(this->area_test_blocker, 1750, 950, 100, 100, 0);
     p_->enable(this->area_test_blocker, false);
+
+    // POC zone nommee : carre 300x300 centre en (1000, 1000), desactive au boot.
+    // Activable via { "type": "ELEMENT", "subtype": "ADD_ZONE", "item_id": "zone_test_1" }.
+    p_->add_rectangle(this->area_zone_test_1, 1000, 1000, 300, 300, 0);
+    p_->enable(this->area_zone_test_1, false);
+    iap_.registerNamedObstacle("zone_test_1", this->area_zone_test_1);
 
     p_->compute_edges();
     iap_.addPlayground(p_);

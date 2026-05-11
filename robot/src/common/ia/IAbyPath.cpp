@@ -56,6 +56,20 @@ void IAbyPath::enable(PlaygroundObjectID id, bool enable)
 	//TODO afficher une croix sur le SVG si disable
 }
 
+void IAbyPath::registerNamedObstacle(const std::string& name, PlaygroundObjectID id)
+{
+	namedObstacles_[name] = id;
+}
+
+bool IAbyPath::enableNamedObstacle(const std::string& name, bool enabled)
+{
+	auto it = namedObstacles_.find(name);
+	if (it == namedObstacles_.end()) return false;
+	if (p_ == NULL) return false;
+	p_->enable(it->second, enabled);
+	return true;
+}
+
 void IAbyPath::toSVG()
 {
 	if (p_ == NULL)
