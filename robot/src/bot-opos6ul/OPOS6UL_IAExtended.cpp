@@ -171,19 +171,23 @@ void OPOS6UL_IAExtended::initPlayground() {
     p_->enable(this->area_test_blocker, false);
 
     // Grenier : element fixe du jeu, centre sur l'axe X du terrain (1500),
-    // enabled + permanent au boot. Taille 1814 x 590.
-    p_->add_rectangle(this->area_zone_grenier, 1500, 590 / 2, 1814, 590, 0);
+    // enabled + permanent au boot. Taille physique 1814 x 590, elargie de
+    // 130 mm cote gauche et cote droit (marge securite robot) -> 2074 x 590.
+    p_->add_rectangle(this->area_zone_grenier, 1500, 590 / 2, 1814 + 260, 590, 0);
     p_->enable(this->area_zone_grenier, true);
     p_->set_permanent(this->area_zone_grenier, true);
     iap_.registerNamedObstacle("zone_grenier", this->area_zone_grenier);
 
-    // ----- Zones de prise (symetriques) : enabled au boot, desactivables -----
+    // ----- Zones de prise (symetriques) -----
     // Le JSON utilise le nom "bleu" ; en match jaune IAbyPath redirige
     // automatiquement vers l'id miroir cote jaune.
+    // P1 (BLEU) / P11 (JAUNE) : zone de DEPART -> disabled au boot pour que le
+    // robot puisse sortir et que PATH_BACK_TO vers une cible dans la zone ne
+    // retourne pas TRAJ_IMPOSSIBLE. P2..P4 restent enabled au boot.
     PlaygroundObjectID id_P1_sym = Playground::INVALID;
     p_->add_rectangle_symmetrical(this->area_zone_P1, id_P1_sym, 175, 800, 450, 500, 0);
-    p_->enable(this->area_zone_P1, true);
-    p_->enable(id_P1_sym, true);
+    p_->enable(this->area_zone_P1, false);
+    p_->enable(id_P1_sym, false);
     iap_.registerSymmetricalObstacle("zone_P1", this->area_zone_P1, id_P1_sym);
 
     PlaygroundObjectID id_P2_sym = Playground::INVALID;

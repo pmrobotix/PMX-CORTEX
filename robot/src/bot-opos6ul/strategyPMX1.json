@@ -48,6 +48,12 @@
         "subtype": "LINE",
         "dist": -160,
         "desc": "LINE dist=-160"
+      },
+      {
+        "type": "ELEMENT",
+        "subtype": "ADD_ZONE",
+        "item_id": "zone_GM2",
+        "desc": "GM2 remplie apres push P1->GM2"
       }
     ]
   },
@@ -58,10 +64,10 @@
     "tasks": [
       {
         "type": "MOVEMENT",
-        "subtype": "MOVE_BACKWARD_TO",
+        "subtype": "PATH_BACK_TO",
         "position_x": 1500,
         "position_y": 900,
-        "desc": "MOVE_BACKWARD_TO (1500,900)"
+        "desc": "PATH_BACK_TO (1500,900)"
       },
       {
         "type": "MOVEMENT",
@@ -84,10 +90,10 @@
     "tasks": [
       {
         "type": "MOVEMENT",
-        "subtype": "GO_BACK_TO",
+        "subtype": "PATH_BACK_TO",
         "position_x": 800,
         "position_y": 660,
-        "desc": "GO_BACK_TO (800,660)"
+        "desc": "PATH_BACK_TO (800,660)"
       },
       {
         "type": "MOVEMENT",
@@ -106,17 +112,10 @@
     "tasks": [
       {
         "type": "MOVEMENT",
-        "subtype": "GO_BACK_TO",
-        "position_x": 300,
-        "position_y": 650,
-        "desc": "GO_BACK_TO (300,650)"
-      },
-      {
-        "type": "MOVEMENT",
-        "subtype": "GO_BACK_TO",
+        "subtype": "PATH_BACK_TO",
         "position_x": 300,
         "position_y": 200,
-        "desc": "GO_BACK_TO (300,200)"
+        "desc": "PATH_BACK_TO (300,200)"
       }
     ]
   }
