@@ -108,7 +108,7 @@
     "id": 4,
     "desc": "Retour zone depart apres 90s (BACKWARD)",
     "priority": 1,
-    "min_match_sec": 90,
+    "min_match_sec": 88,
     "tasks": [
       {
         "type": "MOVEMENT",
