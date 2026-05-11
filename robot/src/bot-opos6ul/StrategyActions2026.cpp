@@ -354,6 +354,115 @@ bool push_elements_zone_impl(uint8_t pickupIdx, const char* zoneName, bool sensI
 // Declaration des zones (ia_createZone + ia_addAction)
 // =============================================================================
 
+// =============================================================================
+// Curseur : deploie le bon bras selon couleur match, avance, replie les bras.
+// STUB - a finaliser avec servos (calibration distance + recul + cote bleu/jaune).
+// =============================================================================
+bool curseur_zone()
+{
+    OPOS6UL_RobotExtended& robot = OPOS6UL_RobotExtended::instance();
+    const bool yellow = robot.isMatchColor();
+    logger().info() << "curseur_zone STUB yellow=" << yellow << logs::end;
+
+    // TODO (a valider/calibrer demain) :
+    //  1) Sauvegarde vitesse user, passe a 20% (cf push_elements_zone_impl).
+    //  2) Ignore front center capteurs (la pousse curseur va toucher l'element).
+    //  3) Choix du bras selon couleur :
+    //       - BLEU   -> ax12_bras_droit() ou ax12_bras_gauche()  [a trancher]
+    //       - JAUNE  -> l'autre cote
+    //     keep=0 (maintien), eta=400ms.
+    //  4) nav.line(D_CURSEUR)  - placeholder D_CURSEUR = 400.0f (a calculer).
+    //  5) Recul ? nav.line(-D_RETREAT) optionnel.
+    //  6) Replie les DEUX bras : ax12_bras_droit_init() + ax12_bras_gauche_init().
+    //  7) Restore vitesse user.
+
+    return true;
+}
+
+// =============================================================================
+// Defense : si adv dans une zone d'attaque, va au point de defense correspondant,
+// attend 5s dos a l'adv, puis rend la main (PATH_TO de la task suivante s'occupe
+// du retour). No-op si adv hors zone ou non detecte.
+//
+// Coords ECRITES EN BLEU (convention single-color), miroir auto jaune :
+//   - X : `robot.changeMatchX(x_bleu)` (retourne x ou 3000-x)
+//   - Y : pas de miroir (symetrie X uniquement)
+//   - theta_def : 180 deg BLEU / 0 deg JAUNE (dos a l'adv)
+//
+// Zones d'attaque adv et points de defense (BLEU) :
+//   Zone 1 : adv dans rect [1700..2000] x [1300..1800]  -> Defense (1500, 1500)
+//   Zone 2 : adv dans rect [1700..2000] x [ 700..1100]  -> Defense (1500,  900)
+//
+// STUB - mouvement desactive tant que la plomberie adv position n'est pas finie.
+// Plomberie manquante : Asserv::adv_pos_centre_ n'est jamais set ; soit cabler
+// depuis Sensors (transform robot->table + setter), soit faire le transform a
+// la volee depuis sensors().getPositionsAdv() (repere ROBOT) dans cette action.
+// =============================================================================
+bool defense_if_needed()
+{
+    OPOS6UL_RobotExtended& robot = OPOS6UL_RobotExtended::instance();
+    const bool yellow = robot.isMatchColor();
+
+    // Coords BLEU (a calibrer/affiner demain si besoin)
+    constexpr float ZONE1_XMIN_B = 1700.0f, ZONE1_XMAX_B = 2000.0f;
+    constexpr float ZONE1_YMIN_B = 1300.0f, ZONE1_YMAX_B = 1800.0f;
+    constexpr float DEF1_X_B = 1500.0f,     DEF1_Y_B = 1500.0f;
+
+    constexpr float ZONE2_XMIN_B = 1700.0f, ZONE2_XMAX_B = 2000.0f;
+    constexpr float ZONE2_YMIN_B =  700.0f, ZONE2_YMAX_B = 1100.0f;
+    constexpr float DEF2_X_B = 1500.0f,     DEF2_Y_B =  900.0f;
+
+    // (void) pour silence warnings tant que le corps est un stub
+    (void) ZONE1_XMIN_B; (void) ZONE1_XMAX_B; (void) ZONE1_YMIN_B; (void) ZONE1_YMAX_B;
+    (void) DEF1_X_B;     (void) DEF1_Y_B;
+    (void) ZONE2_XMIN_B; (void) ZONE2_XMAX_B; (void) ZONE2_YMIN_B; (void) ZONE2_YMAX_B;
+    (void) DEF2_X_B;     (void) DEF2_Y_B;
+
+    // Position adv en repere TABLE (mm) - cf Asserv::pos_getAdvPosition()
+    // ATTENTION : adv_pos_centre_ n'est jamais set ailleurs (-100,-100 init), donc
+    // ce stub log juste la valeur ; aucune detection reelle tant que la plomberie
+    // n'est pas finie (cf bloc commentaire en tete de fonction).
+    ROBOTPOSITION adv = robot.asserv().pos_getAdvPosition();
+    logger().info() << "defense_if_needed STUB yellow=" << yellow
+                    << " adv=(" << adv.x << "," << adv.y << ")" << logs::end;
+
+    // TODO (a finaliser demain) :
+    //  1) Cabler adv position : option a) Sensors::onTimer remplit
+    //     asserv.adv_pos_centre_ via un setter + transform robot->table.
+    //     option b) ici, lire sensors().getPositionsAdv() (repere ROBOT) +
+    //     transformer avec pos courante du robot.
+    //
+    //  2) Si adv invalide (x<0 || y<0 ou flag absent) -> return true no-op.
+    //
+    //  3) Calcul des rectangles en repere REEL (apres miroir X) :
+    //       float z1xmin = std::min(robot.changeMatchX(ZONE1_XMIN_B),
+    //                               robot.changeMatchX(ZONE1_XMAX_B));
+    //       float z1xmax = std::max(... idem ...);
+    //       (Y inchange : ZONE1_YMIN_B / ZONE1_YMAX_B directement)
+    //     idem zone 2.
+    //
+    //  4) Test inclusion :
+    //       bool in_z1 = adv.x>=z1xmin && adv.x<=z1xmax && adv.y>=z1ymin && adv.y<=z1ymax;
+    //       bool in_z2 = ... ;
+    //
+    //  5) Si in_z1 ou in_z2 :
+    //       float def_x = robot.changeMatchX(in_z1 ? DEF1_X_B : DEF2_X_B);
+    //       float def_y =                    in_z1 ? DEF1_Y_B : DEF2_Y_B;
+    //       float theta_def_deg = yellow ? 0.0f : 180.0f;
+    //       Navigator nav(&robot, &robot.ia().iAbyPath());
+    //       nav.moveForwardToAndRotateAbsDeg(def_x, def_y, theta_def_deg);
+    //       utils::sleep_for_secs(5);
+    //     Sinon : no-op.
+    //
+    //  6) return true; (runner enchaine sur task suivante, PATH_TO gere le repli)
+    //
+    //  V2 (plus tard) : ajouter test vecteur d'approche pour eviter le detour
+    //  quand l'adv est immobile ou s'eloigne (cf option A double-echantillon
+    //  300ms + test vx selon couleur).
+
+    return true;
+}
+
 void setupZonesHomologation(OPOS6UL_RobotExtended& robot)
 {
     logger().info() << "setupActivitiesZone2026 : strategy=all (homologation)" << logs::end;
@@ -425,6 +534,14 @@ void registerStrategyActions2026(ActionRegistry& registry, OPOS6UL_RobotExtended
     // --- Reset global des AX12 ---
     registry.registerAction("init_all",
         [&robot]() { robot.actions().ax12_init(); return true; });
+
+    // --- Curseur (STUB - a finaliser demain avec servos + calibration) ---
+    registry.registerAction("curseur",
+        [](){ return curseur_zone(); });
+
+    // --- Defense (STUB - a finaliser demain avec rectangles zones + coords points) ---
+    registry.registerAction("defense_if_needed",
+        [](){ return defense_if_needed(); });
 
     // --- Sequences composites (deplacement + manipulation) ---
     // Les actions ci-dessous combinent mouvement + reglages capteurs + retry
