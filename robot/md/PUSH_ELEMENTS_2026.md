@@ -36,7 +36,8 @@ manipulation lit cette config pour decider de la distance d'avance.
 | Transport I2C           | `MatchSettingsData::pickup_P*`     | [ASensorsDriver.hpp:82-110](../src/common/interface/ASensorsDriver.hpp#L82-L110)                |
 | Adoption brain          | `MenuBeaconLCDTouch::pollInputs`   | [MenuBeaconLCDTouch.cpp](../src/common/menu/MenuBeaconLCDTouch.cpp)                             |
 | Stockage brain          | `Robot::pickup_P{N}_` + getters    | [Robot.hpp:180-187, 621-637](../src/common/Robot.hpp#L180-L187)                                 |
-| Manipulation            | `push_elements_zone` + 16 wrappers | [StrategyActions2026.cpp](../src/bot-opos6ul/StrategyActions2026.cpp)                           |
+| Manipulation            | `push_elements_zone` + 16 wrappers forward + 16 wrappers backward | [StrategyActions2026.cpp](../src/bot-opos6ul/StrategyActions2026.cpp)                           |
+| Viz SVG                 | `drawConfigAtPose` (auto en prod et en test) | [StrategyActions2026.cpp](../src/bot-opos6ul/StrategyActions2026.cpp) (namespace anonyme)       |
 
 ## Numerotation et ordre des configurations
 
@@ -134,22 +135,33 @@ Avec D_BASE=400 et amplitudes max ±175 (offsets inclus), on a toujours
 
 ## Sequence d'execution
 
-La fonction `push_elements_zone(pickupIdx, zoneName, sensInverse)` enchaine :
+La fonction `push_elements_zone(pickupIdx, zoneName, sensInverse, backward=false)` enchaine :
 
 1. Lecture `pickupIdx` (0..5).
 2. Validation `pickupIdx <= 5` (sinon abort, `return false`).
 3. Choix `dist` dans `distDirecte` ou `distInverse` selon `sensInverse`.
-4. **`setMaxSpeed(true, 20)`** : vitesse reduite pour avoir du couple et ne
+4. Si `backward=true` : `effectiveDist = dist + kBackwardPushAdjustmentMm`
+   (kBackwardPushAdjustmentMm = -25 mm, calibration empirique compensant
+   le sous-decalage rear-first). Sinon `effectiveDist = dist`.
+5. **`setMaxSpeed(true, 20)`** : vitesse reduite pour avoir du couple et ne
    pas balayer les elements en bord de zone.
-5. Configuration capteurs :
+6. Configuration capteurs :
    - **Front center actif** : on veut detecter la collision sur l'element
      pousse pour que le retry asserv reagisse correctement.
    - Front lateral + back : ignores pendant la sequence.
-6. `nav.line(+dist, policyPush)` : avance pour pousser.
+7. Viz SVG (auto) : `drawConfigAtPose(initX, initY, initT, idx, yellow,
+   extraForward=0, dashed=false, backward)` → 4 rects pleins a la pose initiale
+   (cote face de pousse : avant si forward, arriere si backward).
+8. `nav.line(signDir * effectiveDist, policyPush)` ou `signDir = backward ? -1 : +1`
+   (avance pour pousser : front-first en forward, rear-first en backward).
    - Si `ts != TRAJ_FINISHED` : reset emergency, log erreur, `return false`.
-7. `nav.line(-D_RETREAT, policyPush)` : recul de degagement.
-   - Echec non-bloquant : la pousse a deja eu lieu, on logue et on continue.
-8. `return true`.
+9. Viz SVG (auto) : `drawConfigAtPose(..., extraForward=effectiveDist, dashed=true, backward)`
+   → 4 rects pointilles a la pose finale (initiale + effectiveDist dans le sens
+   de pousse).
+10. `nav.line(-signDir * D_RETREAT, policyPush)` : recul de degagement (sens
+    oppose a la pousse → forward recule, backward avance).
+    - Echec non-bloquant : la pousse a deja eu lieu, on logue et on continue.
+11. `return true`.
 
 **RetryPolicy utilisee** : `RetryPolicy::standard()` — equivaut a
 `{ 2000000, 2, 2, 0, 0, false }`, soit 2 retries sur obstacle et 2 retries sur
@@ -186,6 +198,42 @@ Liste des 16 wrappers :
 | `push_elements_P2_B`,  `push_elements_P2_H`  | `push_elements_P4_D`,  `push_elements_P4_G`  |
 | `push_elements_P11_B`, `push_elements_P11_H` | `push_elements_P13_D`, `push_elements_P13_G` |
 | `push_elements_P12_B`, `push_elements_P12_H` | `push_elements_P14_D`, `push_elements_P14_G` |
+
+## Wrappers backward (16 actions rear-first) {#backward}
+
+Pour chaque wrapper forward, il existe une variante **rear-first** prefixee
+`push_back_elements_*`. Meme mapping zone × suffixe d'arrivee, meme calcul
+de `dist` (tables identiques), mais le robot pousse **avec sa face arriere**
+au lieu de sa face avant.
+
+Differences techniques avec la variante forward :
+
+| Aspect                          | Forward (`push_elements_*`)         | Backward (`push_back_elements_*`)         |
+| --------------------------------- | ------------------------------------- | ------------------------------------------- |
+| Face de pousse                  | Avant (`kRobotFrontOffset = 115mm`) | Arriere (`kRobotRearOffset = 130mm`)      |
+| Signe `nav.line(dist)`          | `+dist`                             | `-dist` (rear-first)                      |
+| Signe `nav.line(D_RETREAT)`     | `-D_RETREAT` (recul)                | `+D_RETREAT` (avance pour se degager)     |
+| Ajustement empirique sur `dist` | aucun                               | `-25mm` (`kBackwardPushAdjustmentMm`)     |
+| Viz SVG (4 rects)               | en avant du robot (kRobotFrontOffset) | en arriere du robot (kRobotRearOffset)    |
+| `faceTo` avant la manip         | face avant vers cubes               | face arriere vers cubes (= cap a 180° de la pousse) |
+
+**Quand utiliser le backward** : pour enchainer 2 zones sans demi-tour. Si le
+robot termine une instruction en se dirigeant vers Y- (front pointe vers Y-)
+et que la prochaine pousse doit se faire vers Y+, un wrapper backward evite
+le `faceTo` + rotation 180°. Gain de temps en match.
+
+**Important** : le `faceTo` precedent doit orienter la **face arriere** du
+robot vers les cubes (et non la face avant). C'est la responsabilite de la
+strategie, identique au cas forward (le wrapper ne fait pas de rotation).
+
+Liste des 16 wrappers backward :
+
+| Verticales (P1, P2, P11, P12)                          | Horizontales (P3, P4, P13, P14)                        |
+| -------------------------------------------------------- | -------------------------------------------------------- |
+| `push_back_elements_P1_B`,  `push_back_elements_P1_H`  | `push_back_elements_P3_D`,  `push_back_elements_P3_G`  |
+| `push_back_elements_P2_B`,  `push_back_elements_P2_H`  | `push_back_elements_P4_D`,  `push_back_elements_P4_G`  |
+| `push_back_elements_P11_B`, `push_back_elements_P11_H` | `push_back_elements_P13_D`, `push_back_elements_P13_G` |
+| `push_back_elements_P12_B`, `push_back_elements_P12_H` | `push_back_elements_P14_D`, `push_back_elements_P14_G` |
 
 ## Utilisation dans le JSON de strategie
 

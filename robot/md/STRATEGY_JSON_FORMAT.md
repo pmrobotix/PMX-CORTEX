@@ -186,6 +186,9 @@ Source de vérité : [StrategyActions2026.cpp::registerStrategyActions2026()](..
 | Push elements (16) | `push_elements_P{1,2,11,12}_{B,H}` | ACTIF | Verticales : `_B`=arrive bas, `_H`=arrive haut |
 | | `push_elements_P{3,4,13,14}_{D,G}` | ACTIF | Horizontales : `_D`=arrive droite, `_G`=arrive gauche |
 | | (voir [PUSH_ELEMENTS_2026.md](PUSH_ELEMENTS_2026.md) pour le détail) | | |
+| Push elements (16 back) | `push_back_elements_P{1,2,11,12}_{B,H}` | ACTIF | Variante rear-first des push verticales |
+| | `push_back_elements_P{3,4,13,14}_{D,G}` | ACTIF | Variante rear-first des push horizontales |
+| | (voir [PUSH_ELEMENTS_2026.md#backward](PUSH_ELEMENTS_2026.md#backward)) | | |
 | Push prise basse | `push_prise_bas` | ACTIF (deprecated) | Ancienne séquence, remplacée par `push_elements_zone` |
 | Défense | `defense_if_needed` | **STUB** | À la fin d'une instruction push : si adv dans une zone, va au point de défense, attend 5s, rend la main. Plomberie `Asserv::adv_pos_centre_` à câbler (jamais set actuellement). |
 
@@ -193,6 +196,14 @@ Source de vérité : [StrategyActions2026.cpp::registerStrategyActions2026()](..
 - `defense_if_needed` : à insérer **à la fin de chaque instruction push** où une défense fait sens. No-op si adv hors zone, pas de risque à le mettre partout.
 - `curseur` : à appeler en fin de match (remplace l'usage `banderole`).
 - Aucun retour à la position pré-défense n'est géré : c'est le `PATH_TO` de la task suivante qui se charge du repositionnement (toutes les instructions push doivent commencer par un mouvement).
+
+**Variantes `push_back_elements_*` (rear-first)** :
+- Mêmes paramètres (zone + côté d'arrivée) que les `push_elements_*` forward, mais pousse **en arrière** : `nav.line(-dist)` au lieu de `nav.line(+dist)`.
+- Offset géométrique différent : face arrière = 130mm du centre robot (vs 115mm cote avant).
+- Ajustement empirique **-25mm** appliqué à la distance brute (calibration utilisateur, compense le sous-décalage rear-first).
+- Direction de pousse logique = inverse du cap robot (les rects SVG sont placés derrière le robot, le mapping char0/char3 est inversé).
+- Le `faceTo` du robot avant la manipulation reste à la charge de la stratégie (idem forward) : il faut orienter le robot pour que **l'arrière** pointe vers la zone à pousser.
+- Utile pour enchaîner sans demi-tour : ex. fin de push forward → push backward suivant sans `FACE_TO` intermédiaire.
 
 ### 2.7 ELEMENT
 
