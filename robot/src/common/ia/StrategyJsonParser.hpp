@@ -46,6 +46,21 @@ struct StrategyTask
 };
 
 /*!
+ * \brief Rectangle BLEU (single-color) pour gate "adversaire dans zone".
+ *
+ * Coords en mm, repere BLEU (color0). Le miroir cote JAUNE est applique au
+ * runtime par le runner via Robot::changeMatchX() sur x_min/x_max (avec
+ * reclassification min/max apres mirror).
+ */
+struct AdvZoneRect
+{
+    float x_min = 0.0f;
+    float y_min = 0.0f;
+    float x_max = 0.0f;
+    float y_max = 0.0f;
+};
+
+/*!
  * \brief Bloc d'instructions : sequence de tasks avec metadonnees.
  */
 struct StrategyInstruction
@@ -68,6 +83,13 @@ struct StrategyInstruction
     // - max_match_sec : si t >= max_match_sec, l'instruction est SKIP avec log.
     std::optional<float> min_match_sec;
     std::optional<float> max_match_sec;
+
+    // Gate adversaire : si la position adv courante (Asserv::pos_getAdvPosition)
+    // est DANS ce rectangle BLEU, l'instruction est SKIP (SKIPPED_ADV_IN_ZONE).
+    // Si adv hors rectangle OU position invalide (x<0 || y<0, ex: init -100,-100),
+    // l'instruction est AUTORISEE (semantique safe : on ne perd pas de points
+    // sur capteur silencieux). Le miroir JAUNE est applique au runtime.
+    std::optional<AdvZoneRect> needed_adv_out_of_zone;
 };
 
 /*!

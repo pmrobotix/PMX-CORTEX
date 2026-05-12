@@ -18,6 +18,9 @@ public:
     void testMissingPriorityDefaultsToZero();
     void testFlagsFieldsParsed();
     void testLoadBadFileReturnsFalse();
+    void testNeededAdvOutOfZoneParsed();
+    void testTaskFieldsParsed();
+    void testInstructionTimeGatesParsed();
 };
 
 }

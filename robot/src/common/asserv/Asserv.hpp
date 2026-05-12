@@ -436,6 +436,20 @@ public:
     ROBOTPOSITION pos_getAdvPosition();
 
     /*!
+     * \brief Met a jour la position adversaire en repere TABLE (mm).
+     *
+     * Appele par Sensors apres projection beacon->table (cf. Sensors.cpp).
+     * Seuls x et y sont ecrits ; les autres champs de adv_pos_centre_ restent
+     * a leur valeur d'init (theta=0, asservStatus=0, queueSize=0, debug_nb=0).
+     *
+     * Pas de timeout sur la latence : la derniere position connue reste
+     * disponible jusqu'a la prochaine detection. Le gate strategie
+     * needed_adv_out_of_zone interprete x<0 || y<0 comme "invalide" et
+     * autorise alors l'instruction (semantique safe).
+     */
+    void setAdvPosCentre(float x_mm, float y_mm);
+
+    /*!
      * \brief Retourne la position courante du robot (depuis l'odométrie).
      *        Met aussi à jour la position partagée (sharedPosition) pour les capteurs.
      * \return Position (x, y, theta) du robot en mm/rad.

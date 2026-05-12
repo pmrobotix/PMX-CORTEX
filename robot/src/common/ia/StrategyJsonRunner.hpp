@@ -25,6 +25,7 @@ struct InstructionOutcome
         FINISHED,             ///< Toutes les tasks OK ; flags leves/effaces.
         SKIPPED_PRIORITY,     ///< instr.priority < 0 (desactivee).
         SKIPPED_NEEDED_FLAG,  ///< needed_flag absent.
+        SKIPPED_ADV_IN_ZONE,  ///< needed_adv_out_of_zone : adv dans le rectangle.
         SKIPPED_MAX_TIME,     ///< max_match_sec depasse (gate haut chrono).
         SKIPPED_OBSTACLE,     ///< TRAJ_NEAR_OBSTACLE (adv bloque, retries epuisses).
         SKIPPED_COLLISION,    ///< TRAJ_COLLISION (asserv bloquee).

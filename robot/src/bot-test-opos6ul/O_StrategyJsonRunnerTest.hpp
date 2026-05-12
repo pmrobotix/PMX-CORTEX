@@ -46,12 +46,20 @@ private:
 
     struct SrResult
     {
-        std::string name;            // SR01 .. SR06
+        std::string name;            // SR01 .. SR14
         std::string desc;
         std::string jsonFile;        // "strategySR01.json"
         float       startX, startY, startThetaDeg;
         bool        hasAdv = false;
         float       advX = 0, advY = 0;
+
+        // Extensions pour scenarios SR10..SR14 (needed_adv_out_of_zone) :
+        // matchColor (jaune declenche miroir X), injection directe adv_pos_centre
+        // via Asserv::setAdvPosCentre (bypass sensors), flags pre-leves.
+        bool        matchColor = false;
+        bool        hasAdvCentre = false;
+        float       advCentreX = -100.0f, advCentreY = -100.0f;
+        std::set<std::string> presetFlags;
 
         // Trace des MANIPULATION appelees (order d'invocation)
         std::vector<std::string> trace;

@@ -328,6 +328,14 @@ int Sensors::front(bool display)
 					<< " adv_table=(" << x_pos_adv_table << "," << y_pos_adv_table << ")"
 					<< " inside=" << inside_table << logs::end;
 
+			// Publication de la position adv en repere TABLE vers Asserv pour
+			// que la strategie (needed_adv_out_of_zone) puisse la lire via
+			// Asserv::pos_getAdvPosition(). Seulement si inside_table ET coords
+			// >= 0 (sinon on garde la derniere valeur valide / l'init -100,-100).
+			if (inside_table && x_pos_adv_table >= 0.0f && y_pos_adv_table >= 0.0f) {
+				this->robot()->asserv().setAdvPosCentre(x_pos_adv_table, y_pos_adv_table);
+			}
+
 			if (!obstacleZone_.removeOutsideTable())
 			{
 				inside_table = true;
@@ -550,6 +558,14 @@ int Sensors::back(bool display)
 			//filtre sur la table avec transformation de repere
 			inside_table = this->robot()->tableGeometry()->isPointInsideTable((int) x_pos_adv_table,
 					(int) y_pos_adv_table);
+
+			// Publication de la position adv en repere TABLE vers Asserv (idem
+			// branche front). Permet a la strategie (needed_adv_out_of_zone) de
+			// lire la derniere position connue via Asserv::pos_getAdvPosition().
+			if (inside_table && x_pos_adv_table >= 0.0f && y_pos_adv_table >= 0.0f) {
+				this->robot()->asserv().setAdvPosCentre(x_pos_adv_table, y_pos_adv_table);
+			}
+
 			if (!obstacleZone_.removeOutsideTable())
 			{
 				inside_table = true;

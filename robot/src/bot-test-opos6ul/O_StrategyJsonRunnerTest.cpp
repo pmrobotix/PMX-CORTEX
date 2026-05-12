@@ -52,6 +52,19 @@ struct ScenarioSpec
     // Outcomes attendus dans l'ordre chronologique d'evaluation par run().
     // Distingue v2 (skip+continue, vector complet) de v1 (abort, vector tronque).
     std::vector<InstructionOutcome::Status> expectedOutcomeStatuses;
+    // -------- Extensions optionnelles (default = neutre) --------
+    // matchColor=true (jaune) declenche le miroir X sur les coords strategie
+    // ET sur le rectangle needed_adv_out_of_zone. Defaut false = BLEU.
+    bool        matchColor = false;
+    // Injection DIRECTE de adv_pos_centre_ via Asserv::setAdvPosCentre (bypass
+    // sensors thread, pas de projection beacon->table). Utilise pour tester
+    // needed_adv_out_of_zone independamment de la chaine Sensors. Si hasAdvCentre
+    // est false, adv reste a son etat courant (set par hasAdv ou init -100,-100).
+    bool        hasAdvCentre = false;
+    float       advCentreX = -100.0f, advCentreY = -100.0f;
+    // Flags pre-leves AVANT runner.run() (utile pour tester combinaison
+    // needed_flag + needed_adv_out_of_zone sans avoir a chainer une i0).
+    std::set<std::string>    presetFlags;
 };
 
 const std::vector<ScenarioSpec> SCENARIOS = {
@@ -175,7 +188,91 @@ const std::vector<ScenarioSpec> SCENARIOS = {
             InstructionOutcome::Status::SKIPPED_IMPOSSIBLE, // i2 PATH_TO bordure
             InstructionOutcome::Status::FINISHED,           // i3 OK
         }
-    }
+    },
+    // -------------------------------------------------------------------------
+    // SR10..SR14 : needed_adv_out_of_zone (gate proactive adv-in-rect).
+    // Champs etendus (matchColor/hasAdvCentre/advCentreX/Y/presetFlags) en
+    // designated initializers pour clarte et pour ne pas casser SR01..SR09.
+    // -------------------------------------------------------------------------
+    {
+        "SR10", "AdvOutOfZone : adv hors rect -> instruction joue (i2 OK)",
+        "strategySR10.json",
+        300, 300, 0,
+        false, 0, 0,
+        {"trace_i1", "trace_i2"},
+        {},
+        {
+            InstructionOutcome::Status::FINISHED,  // i1 OK
+            InstructionOutcome::Status::FINISHED,  // i2 (rect ne matche pas) OK
+        },
+        /*matchColor*/ false,
+        /*hasAdvCentre*/ true, /*advCentreX*/ 500.0f, /*advCentreY*/ 500.0f,
+        /*presetFlags*/ {}
+    },
+    {
+        "SR11", "AdvInZone : adv dans rect -> instruction skip SK_AIZ",
+        "strategySR11.json",
+        300, 300, 0,
+        false, 0, 0,
+        {"trace_i1", "trace_i3"},       // i2 skip
+        {},
+        {
+            InstructionOutcome::Status::FINISHED,            // i1 OK
+            InstructionOutcome::Status::SKIPPED_ADV_IN_ZONE, // i2 skip
+            InstructionOutcome::Status::FINISHED,            // i3 OK
+        },
+        /*matchColor*/ false,
+        /*hasAdvCentre*/ true, /*advCentreX*/ 1800.0f, /*advCentreY*/ 900.0f,
+        /*presetFlags*/ {}
+    },
+    {
+        "SR12", "AdvInvalid : adv (-100,-100) -> instruction autorisee (semantique safe)",
+        "strategySR12.json",
+        300, 300, 0,
+        false, 0, 0,
+        {"trace_i1", "trace_i2"},
+        {},
+        {
+            InstructionOutcome::Status::FINISHED,  // i1 OK
+            InstructionOutcome::Status::FINISHED,  // i2 (adv invalide -> safe) OK
+        },
+        /*matchColor*/ false,
+        /*hasAdvCentre*/ false, /*advCentreX*/ 0.0f, /*advCentreY*/ 0.0f,
+        /*presetFlags*/ {}
+    },
+    {
+        "SR13", "YellowMirror : robot jaune, rect BLEU [1700..2000] -> reel [1000..1300], adv (1100,900) -> skip",
+        "strategySR13.json",
+        // start cote jaune (miroir de 300 = 2700) pour coherence ; theta=180 (face -X).
+        2700, 300, 180,
+        false, 0, 0,
+        {"trace_i1", "trace_i3"},       // i2 skip a cause adv-in-mirrored-zone
+        {},
+        {
+            InstructionOutcome::Status::FINISHED,
+            InstructionOutcome::Status::SKIPPED_ADV_IN_ZONE,
+            InstructionOutcome::Status::FINISHED,
+        },
+        /*matchColor*/ true,            // JAUNE -> miroir actif
+        /*hasAdvCentre*/ true, /*advCentreX*/ 1100.0f, /*advCentreY*/ 900.0f,
+        /*presetFlags*/ {}
+    },
+    {
+        "SR14", "ComboFlagAndAdv : needed_flag absent prime sur adv check (ordre des gates)",
+        "strategySR14.json",
+        300, 300, 0,
+        false, 0, 0,
+        {"trace_i1"},                   // i2 skip flag (pas SK_AIZ)
+        {},
+        {
+            InstructionOutcome::Status::FINISHED,             // i1 OK
+            InstructionOutcome::Status::SKIPPED_NEEDED_FLAG,  // i2 needed_flag absent (verifie AVANT adv-zone)
+        },
+        /*matchColor*/ false,
+        // adv DANS la zone mais needed_flag prend la main : SK_FLAG, pas SK_AIZ.
+        /*hasAdvCentre*/ true, /*advCentreX*/ 1800.0f, /*advCentreY*/ 900.0f,
+        /*presetFlags*/ {}              // pas de flag pre-leve -> i2 needed_flag=NEVER skip flag
+    },
 };
 
 // Helpers SVG : echapper du texte
@@ -220,6 +317,7 @@ const char* statusName(InstructionOutcome::Status s) {
         case St::FINISHED:            return "OK";
         case St::SKIPPED_PRIORITY:    return "SK_PRIO";
         case St::SKIPPED_NEEDED_FLAG: return "SK_FLAG";
+        case St::SKIPPED_ADV_IN_ZONE: return "SK_AIZ";
         case St::SKIPPED_MAX_TIME:    return "SK_TIME";
         case St::SKIPPED_OBSTACLE:    return "SK_OBST";
         case St::SKIPPED_COLLISION:   return "SK_COLL";
@@ -244,7 +342,7 @@ std::string joinStatuses(const std::vector<InstructionOutcome::Status>& v) {
 
 O_StrategyJsonRunnerTest::O_StrategyJsonRunnerTest()
     : FunctionalTest("StrategyJsonRunner",
-                     "Test integration StrategyJsonRunner (9 scenarios SR01..SR09).",
+                     "Test integration StrategyJsonRunner (14 scenarios SR01..SR14).",
                      "jrun")
 {
 }
@@ -288,6 +386,11 @@ void O_StrategyJsonRunnerTest::run(int /*argc*/, char** /*argv*/)
         r.hasAdv                   = spec.hasAdv;
         r.advX                     = spec.advX;
         r.advY                     = spec.advY;
+        r.matchColor               = spec.matchColor;
+        r.hasAdvCentre             = spec.hasAdvCentre;
+        r.advCentreX               = spec.advCentreX;
+        r.advCentreY               = spec.advCentreY;
+        r.presetFlags              = spec.presetFlags;
         r.expectedTrace            = spec.expectedTrace;
         r.expectedFlags            = spec.expectedFlags;
         r.expectedOutcomeStatuses  = spec.expectedOutcomeStatuses;
@@ -302,8 +405,11 @@ void O_StrategyJsonRunnerTest::run(int /*argc*/, char** /*argv*/)
         results.push_back(r);
     }
 
-    // Teardown : clear adv, robot stop
+    // Teardown : clear adv, robot stop. Reset adv_pos_centre et couleur match
+    // a leur etat neutre pour les eventuels tests suivants dans la suite.
     sensors.clearInjectedAdv();
+    robot.asserv().setAdvPosCentre(-100.0f, -100.0f);
+    robot.asserv().setMatchColorPosition(false);
     robot.freeMotion();
 
     int pass = 0;
@@ -326,16 +432,30 @@ void O_StrategyJsonRunnerTest::runScenario(SrResult& res)
 
     logger().info() << "------ " << res.name << " : " << res.desc << " ------" << logs::end;
 
-    // 1. Reset position + chrono match (necessaire pour max_match_sec dans SR08)
-    robot.asserv().setPositionAndColor(res.startX, res.startY, res.startThetaDeg, false);
+    // 1. Reset position + chrono match (necessaire pour max_match_sec dans SR08).
+    //    matchColor : SR13 force JAUNE pour tester le miroir X du rectangle
+    //    needed_adv_out_of_zone (et de la strategie elle-meme).
+    robot.asserv().setPositionAndColor(res.startX, res.startY, res.startThetaDeg, res.matchColor);
     robot.chrono().start();   // (re)demarre le chrono match a t=0 pour ce scenario
     utils::sleep_for_micros(150000);
 
-    // 2. Adv (inject ou clear)
+    // 2. Adv (inject ou clear).
     sensors.clearInjectedAdv();
     if (res.hasAdv) {
         sensors.setInjectedAdv(res.advX, res.advY);
         logger().info() << "  adv injecte (" << res.advX << "," << res.advY << ")" << logs::end;
+    }
+
+    // 2bis. Injection DIRECTE de adv_pos_centre_ pour les scenarios qui testent
+    //       needed_adv_out_of_zone independamment de la chaine sensors->beacon
+    //       (SR10..SR14). Si hasAdvCentre=false, on RESET a (-100,-100) pour
+    //       ne pas heriter d'un scenario precedent (utilise par SR12 'invalide').
+    if (res.hasAdvCentre) {
+        robot.asserv().setAdvPosCentre(res.advCentreX, res.advCentreY);
+        logger().info() << "  adv_pos_centre injecte (" << res.advCentreX << ","
+                        << res.advCentreY << ")" << logs::end;
+    } else {
+        robot.asserv().setAdvPosCentre(-100.0f, -100.0f);
     }
 
     // 2b. SR09 specifique : on active la zone "area_test_blocker" du
@@ -365,6 +485,11 @@ void O_StrategyJsonRunnerTest::runScenario(SrResult& res)
 
     // 4. FlagManager neuf pour chaque scenario
     FlagManager flags;
+    // Pre-leve les flags requis par le scenario (utile pour tester la
+    // combinaison needed_flag + needed_adv_out_of_zone sans i0 d'init).
+    for (const auto& f : res.presetFlags) {
+        flags.set(f);
+    }
 
     // 5. Runner
     StrategyJsonRunner runner(&robot, &robot.ia().iAbyPath(), &actions, &flags);
@@ -489,7 +614,7 @@ void O_StrategyJsonRunnerTest::writeSvg(const std::vector<SrResult>& all)
     for (const auto& r : all) if (r.pass) pass++;
 
     svg << "<text x='10' y='28' font-family='monospace' font-size='20' font-weight='bold'>"
-        << "StrategyJsonRunner Scenarios (6 SR)</text>\n";
+        << "StrategyJsonRunner Scenarios (" << all.size() << " SR)</text>\n";
     svg << "<text x='10' y='50' font-family='monospace' font-size='13' font-weight='bold' fill='"
         << (pass == (int)all.size() ? "#228B22" : "#DC143C") << "'>"
         << pass << " / " << all.size() << " PASS</text>\n";

@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1, "desc": "i1 OK", "priority": 100,
+    "tasks": [
+      { "type": "MOVEMENT", "subtype": "GO_TO", "position_x": 500, "position_y": 1500 },
+      { "type": "MANIPULATION", "action_id": "trace_i1" }
+    ]
+  },
+  {
+    "id": 2, "desc": "i2 needed_adv_out_of_zone rect [1700..2000]x[700..1100] - adv hors zone -> OK", "priority": 50,
+    "needed_adv_out_of_zone": { "x_min": 1700, "y_min": 700, "x_max": 2000, "y_max": 1100 },
+    "tasks": [
+      { "type": "MOVEMENT", "subtype": "GO_TO", "position_x": 800, "position_y": 1500 },
+      { "type": "MANIPULATION", "action_id": "trace_i2" }
+    ]
+  }
+]

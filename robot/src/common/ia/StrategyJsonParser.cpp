@@ -124,6 +124,26 @@ static StrategyInstruction parseInstruction(const json& j)
     instr.estimatedDurationSec = optField<float>(j, "estimatedDurationSec");
     instr.min_match_sec        = optField<float>(j, "min_match_sec");
     instr.max_match_sec        = optField<float>(j, "max_match_sec");
+
+    // needed_adv_out_of_zone : object {x_min, y_min, x_max, y_max}. Si manquant
+    // ou malforme -> ignore (instr non gatee). Coords BLEU, miroir auto au runtime.
+    auto naoz = j.find("needed_adv_out_of_zone");
+    if (naoz != j.end() && naoz->is_object()) {
+        AdvZoneRect rect;
+        rect.x_min = naoz->value("x_min", 0.0f);
+        rect.y_min = naoz->value("y_min", 0.0f);
+        rect.x_max = naoz->value("x_max", 0.0f);
+        rect.y_max = naoz->value("y_max", 0.0f);
+        if (rect.x_min > rect.x_max || rect.y_min > rect.y_max) {
+            logger().warn() << "needed_adv_out_of_zone (instr id=" << instr.id
+                            << ") : min > max (x:[" << rect.x_min << ".." << rect.x_max
+                            << "] y:[" << rect.y_min << ".." << rect.y_max
+                            << "]) -> ignore" << logs::end;
+        } else {
+            instr.needed_adv_out_of_zone = rect;
+        }
+    }
+
     auto tt = j.find("tasks");
     if (tt != j.end() && tt->is_array()) {
         for (const auto& t : *tt) instr.tasks.push_back(parseTask(t));

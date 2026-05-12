@@ -349,6 +349,15 @@ ROBOTPOSITION Asserv::pos_getAdvPosition()
 	return adv_pos_centre_;
 }
 
+void Asserv::setAdvPosCentre(float x_mm, float y_mm)
+{
+	// On ne touche qu'a x et y ; theta/asservStatus/queueSize/debug_nb restent
+	// a leur valeur d'init (0). Pas d'horodatage : la valeur reste latente
+	// jusqu'a la prochaine detection. Le gate runner gere l'invalide via x<0||y<0.
+	adv_pos_centre_.x = x_mm;
+	adv_pos_centre_.y = y_mm;
+}
+
 ROBOTPOSITION Asserv::pos_getPosition()
 {
 	// Source de verite unique : sharedPosition. Elle est alimentee par :

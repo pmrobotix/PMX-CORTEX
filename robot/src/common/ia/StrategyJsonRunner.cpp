@@ -88,6 +88,40 @@ bool StrategyJsonRunner::run()
                             << *instr.needed_flag << "' not set)" << logs::end;
             continue;
         }
+        // Gate adv-in-zone : skip si la position adv courante est dans le
+        // rectangle BLEU specifie (apres mirror cote JAUNE). Semantique safe :
+        // adv invalide (x<0 || y<0, init -100,-100) -> autorise l'instruction.
+        if (instr.needed_adv_out_of_zone && robot_) {
+            ROBOTPOSITION adv = robot_->asserv().pos_getAdvPosition();
+            if (adv.x >= 0.0f && adv.y >= 0.0f) {
+                const AdvZoneRect& r = *instr.needed_adv_out_of_zone;
+                // Miroir X via Robot::changeMatchX. En BLEU c'est l'identite ;
+                // en JAUNE x_min/x_max sont symetrises et leur ordre peut
+                // s'inverser -> on reclasse min/max apres mirror.
+                const float xA = robot_->changeMatchX(r.x_min);
+                const float xB = robot_->changeMatchX(r.x_max);
+                const float xMin = (xA < xB) ? xA : xB;
+                const float xMax = (xA < xB) ? xB : xA;
+                // Y pas de miroir (symetrie X uniquement).
+                const float yMin = r.y_min;
+                const float yMax = r.y_max;
+                const bool inside = (adv.x >= xMin && adv.x <= xMax
+                                  && adv.y >= yMin && adv.y <= yMax);
+                if (inside) {
+                    o.status = InstructionOutcome::Status::SKIPPED_ADV_IN_ZONE;
+                    outcomes_.push_back(o);
+                    logger().info() << "[instr " << instr.id << "] SKIP (adv ("
+                                    << adv.x << "," << adv.y
+                                    << ") dans rect REEL x:[" << xMin << ".." << xMax
+                                    << "] y:[" << yMin << ".." << yMax
+                                    << "] -- rect BLEU x:[" << r.x_min << ".." << r.x_max
+                                    << "] y:[" << r.y_min << ".." << r.y_max << "])"
+                                    << logs::end;
+                    continue;
+                }
+            }
+            // else : adv invalide (x<0 || y<0) -> autorise (semantique safe)
+        }
         // Gate haut chrono : si max_match_sec depasse, on skip.
         if (instr.max_match_sec) {
             float t = robot_->chrono().getElapsedTimeInSec();

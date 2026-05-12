@@ -566,10 +566,11 @@ bool curseur_zone()
 //   Zone 1 : adv dans rect [1700..2000] x [1300..1800]  -> Defense (1500, 1500)
 //   Zone 2 : adv dans rect [1700..2000] x [ 700..1100]  -> Defense (1500,  900)
 //
-// STUB - mouvement desactive tant que la plomberie adv position n'est pas finie.
-// Plomberie manquante : Asserv::adv_pos_centre_ n'est jamais set ; soit cabler
-// depuis Sensors (transform robot->table + setter), soit faire le transform a
-// la volee depuis sensors().getPositionsAdv() (repere ROBOT) dans cette action.
+// STUB - mouvement desactive tant que le corps de l'action n'est pas finalise.
+// Plomberie adv position : OK depuis l'extension needed_adv_out_of_zone (Sensors
+// publie adv_pos_centre_ via Asserv::setAdvPosCentre apres projection beacon->table).
+// pos_getAdvPosition() retourne donc une vraie position quand la balise detecte
+// (sinon (-100,-100) init = adv invalide, a traiter comme no-op).
 // =============================================================================
 bool defense_if_needed()
 {
@@ -591,10 +592,9 @@ bool defense_if_needed()
     (void) ZONE2_XMIN_B; (void) ZONE2_XMAX_B; (void) ZONE2_YMIN_B; (void) ZONE2_YMAX_B;
     (void) DEF2_X_B;     (void) DEF2_Y_B;
 
-    // Position adv en repere TABLE (mm) - cf Asserv::pos_getAdvPosition()
-    // ATTENTION : adv_pos_centre_ n'est jamais set ailleurs (-100,-100 init), donc
-    // ce stub log juste la valeur ; aucune detection reelle tant que la plomberie
-    // n'est pas finie (cf bloc commentaire en tete de fonction).
+    // Position adv en repere TABLE (mm) - cf Asserv::pos_getAdvPosition().
+    // Plomberie OK (cf Sensors::setAdvPosCentre apres projection beacon->table).
+    // (-100,-100) = pas encore de detection valide -> stub log+no-op a la finalisation.
     ROBOTPOSITION adv = robot.asserv().pos_getAdvPosition();
     logger().info() << "defense_if_needed STUB yellow=" << yellow
                     << " adv=(" << adv.x << "," << adv.y << ")" << logs::end;

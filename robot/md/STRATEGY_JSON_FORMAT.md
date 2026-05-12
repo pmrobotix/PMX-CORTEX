@@ -88,6 +88,7 @@ Array d'**instructions**. Chaque instruction contient une liste ordonnée de
 | `priority` | int/float | optionnel | Priorité (plus élevé = choisi en premier) |
 | `estimatedDurationSec` | float | optionnel | Durée estimée pour gestion du temps restant |
 | `needed_flag` | string | optionnel | Instruction skippée si ce flag n'est pas actif |
+| `needed_adv_out_of_zone` | object | optionnel | Instruction skippée si la position adversaire courante est **dans** le rectangle (voir §3.5) |
 | `action_flag` | string | optionnel | Flag levé après succès de l'instruction |
 | `clear_flags` | array<string> | optionnel | Flags à effacer après succès |
 
@@ -278,6 +279,48 @@ Certains flags sont levés par le runner :
 - `instruction_success_N` : flag levé quand l'instruction N réussit
 
 *(Détails d'implémentation à définir en Phase 2 runner C++.)*
+
+### 3.5 Conditions adversaire — `needed_adv_out_of_zone`
+
+Gate **proactive** au niveau instruction : skip si l'adversaire se trouve actuellement
+dans un rectangle donné. Complémentaire de `needed_flag` (flag binaire), permet d'écrire
+des plans B géographiques (« ne pas tenter l'attaque si l'adv occupe cette case »).
+
+```json
+{
+  "id": 5, "desc": "Push zone 2 si adv pas devant",
+  "needed_adv_out_of_zone": {
+    "x_min": 1700, "y_min": 700,
+    "x_max": 2000, "y_max": 1100
+  },
+  "tasks": [ /* ... */ ]
+}
+```
+
+**Sémantique** :
+
+| Cas | Comportement |
+|---|---|
+| adv dans rectangle | Instruction skippée → outcome `SKIPPED_ADV_IN_ZONE` |
+| adv hors rectangle | Instruction autorisée |
+| adv invalide (`x<0 \|\| y<0`, init `-100, -100`, pas de detection) | Instruction autorisée (sémantique **safe** : on ne perd pas de points sur capteur silencieux) |
+
+**Coordonnées BLEU** (convention single-color). Le runner applique le miroir
+côté JAUNE via `Robot::changeMatchX()` sur `x_min` et `x_max`, puis reclasse
+`min`/`max` après mirror (parce que le mirror peut inverser leur ordre).
+
+**Source de la position adv** : `Asserv::pos_getAdvPosition()`. La position est
+mise à jour par `Sensors` après chaque détection balise valide (projection
+beacon→table avec position robot au moment du sync I2C). Pas de timeout en v1 :
+la dernière position connue reste latente jusqu'à la prochaine détection.
+
+**Ordre d'évaluation des gates au niveau instruction** :
+1. `priority < 0` → `SKIPPED_PRIORITY`
+2. `needed_flag` absent → `SKIPPED_NEEDED_FLAG`
+3. `needed_adv_out_of_zone` (adv dans rect) → `SKIPPED_ADV_IN_ZONE`
+4. `max_match_sec` dépassé → `SKIPPED_MAX_TIME`
+5. `min_match_sec` (attente si t < cible)
+6. Exécution des tasks
 
 ---
 
