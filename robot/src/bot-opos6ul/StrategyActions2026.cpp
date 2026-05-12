@@ -14,7 +14,9 @@
 #include "StrategyActions2026.hpp"
 
 #include <chrono>
+#include <cmath>
 #include <cstring>
+#include <sstream>
 #include <thread>
 
 #include "action/Sensors.hpp"
@@ -23,6 +25,7 @@
 #include "ia/IAbyPath.hpp"
 #include "interface/AAsservDriver.hpp"
 #include "log/LoggerFactory.hpp"
+#include "log/SvgWriter.hpp"
 #include "navigator/Navigator.hpp"
 #include "navigator/RetryPolicy.hpp"
 #include "utils/Chronometer.hpp"
@@ -37,6 +40,142 @@ const logs::Logger& logger()
 {
     static const logs::Logger& instance = logs::LoggerFactory::logger("StrategyActions2026");
     return instance;
+}
+
+// =============================================================================
+// Visualisation SVG : 4 rectangles places relativement au robot
+// =============================================================================
+//
+// L'idx represente la lecture balise (= match mode) : independant de la position
+// du robot. Convention :
+//   - Verticales   : char[0] est en HAUT (Y+), char[3] en BAS (Y-)
+//   - Horizontales : char[0] est a GAUCHE (X-), char[3] a DROITE (X+)
+//
+// Suivant le cap du robot, char[0] est plus proche ou plus loin :
+//   - cap dans le sens lecture (Y- vertical, X+ horizontal) : char[0] proche
+//   - cap a contre-sens (Y+, X-)                            : char[3] proche
+
+// Dimensions d'un rectangle (mm).
+//   short = profondeur dans le sens de pousse (forward)
+//   long  = largeur perpendiculaire
+constexpr float kRectLong         = 150.0f;
+constexpr float kRectShort        =  50.0f;
+// Distance du centre robot a la face octogonale avant (mm).
+constexpr float kRobotFrontOffset = 115.0f;
+// Distance du centre robot a la face octogonale arriere (mm).
+// Utilise par push_elements_zone(backward=true) pour le placement des rects SVG.
+constexpr float kRobotRearOffset = 130.0f;
+// Ajustement empirique applique a la distance brute en mode backward (mm).
+// Calibration utilisateur : la pousse rear-first sous-decale legerement,
+// on retranche 25mm a la distance forward calculee pour compenser.
+constexpr float kBackwardPushAdjustmentMm = -25.0f;
+
+// Sequence des 4 couleurs par idx balise.
+//   0=BBYY 1=YYBB 2=BYYB 3=YBBY 4=BYBY 5=YBYB
+constexpr const char* kIdxToSequence[6] = {
+    "BBYY", "YYBB", "BYYB", "YBBY", "BYBY", "YBYB"
+};
+
+// Retourne true si char[0] doit etre cote robot (le plus proche).
+//   Vertical-dominant (|sin| > |cos|) : sin < 0 => cap Y-, dans sens lecture.
+//   Horizontal-dominant                : cos > 0 => cap X+, dans sens lecture.
+//
+// backward=true : la "direction de pousse" est l'inverse du cap robot, donc
+// on flippe cos/sin (equivalent a tester theta + pi).
+bool char0IsClosestToRobot(float theta_rad, bool backward = false)
+{
+    float c = std::cos(theta_rad);
+    float s = std::sin(theta_rad);
+    if (backward) { c = -c; s = -s; }
+    if (std::fabs(s) > std::fabs(c)) {
+        return s < 0.0f;          // vertical : lecture Y-
+    }
+    return c > 0.0f;              // horizontal : lecture X+
+}
+
+// Dessine la config (4 rectangles) devant le robot, a la pose donnee, decalee
+// en avant de `extraForward` mm (0 pour position initiale, `dist` pour finale).
+// dashed=false : fill plein. dashed=true : pointilles + transparence.
+//
+// backward=true : la "direction de pousse" est l'inverse du cap robot. Les
+// rects sont places derriere le robot (signDir = -1 sur fx/fy), avec un offset
+// initial kRobotRearOffset (130mm) au lieu de kRobotFrontOffset (115mm). Le
+// mapping char0/char3 (char0IsClosestToRobot) est aussi inverse via backward.
+void drawConfigAtPose(OPOS6UL_RobotExtended& robot,
+                      float poseX, float poseY, float poseTheta_rad,
+                      uint8_t idx, bool /*yellow*/,
+                      float extraForward, bool dashed,
+                      bool backward = false)
+{
+    if (idx > 5) return;
+
+    // L'idx vient de la balise = config physique fixe (char[0] au HAUT/GAUCHE,
+    // char[3] au BAS/DROITE). Pas de swap d'affichage selon couleur ou cap.
+    const char* seq = kIdxToSequence[idx];
+
+    // signDir : +1 si forward (push vers cap), -1 si backward (push oppose au cap).
+    // faceOffset : distance centre robot -> face dans la direction de pousse.
+    const float signDir    = backward ? -1.0f : +1.0f;
+    const float faceOffset = backward ? kRobotRearOffset : kRobotFrontOffset;
+
+    // Vecteurs unitaires : forward (sens pousse), left (perpendiculaire +90 deg).
+    const float fx = signDir * std::cos(poseTheta_rad);
+    const float fy = signDir * std::sin(poseTheta_rad);
+    const float lx = -fy;
+    const float ly =  fx;
+
+    // Demi-dimensions
+    const float hF = kRectShort / 2.0f;   // 25mm dans le sens forward
+    const float hL = kRectLong  / 2.0f;   // 75mm dans le sens perpendiculaire
+
+    const bool char0Closest = char0IsClosestToRobot(poseTheta_rad, backward);
+
+    for (int i = 0; i < 4; ++i) {
+        // i = position dans la pile depuis le robot (0 = proche, 3 = loin).
+        // L'indice de caractere dans la sequence depend du sens de lecture.
+        const int  charIdx = char0Closest ? i : (3 - i);
+        const char c       = seq[charIdx];
+
+        // Distance dans le sens de pousse du centre du rect[i] depuis le centre robot.
+        const float fwd = faceOffset + extraForward
+                        + static_cast<float>(i) * kRectShort + hF;
+
+        // Centre du rect[i] en coords monde.
+        const float cxW = poseX + fx * fwd;
+        const float cyW = poseY + fy * fwd;
+
+        // 4 coins (centre +/- hF*forward +/- hL*left) en coords monde.
+        const float p1x = cxW + hF*fx + hL*lx;   // avant-gauche
+        const float p1y = cyW + hF*fy + hL*ly;
+        const float p2x = cxW + hF*fx - hL*lx;   // avant-droite
+        const float p2y = cyW + hF*fy - hL*ly;
+        const float p3x = cxW - hF*fx - hL*lx;   // arriere-droite
+        const float p3y = cyW - hF*fy - hL*ly;
+        const float p4x = cxW - hF*fx + hL*lx;   // arriere-gauche
+        const float p4y = cyW - hF*fy + hL*ly;
+
+        const char* fillColor = (c == 'B' || c == 'b')
+            ? "#3060ff"   // bleu
+            : "#ffd700";  // jaune
+
+        // SVG : Y flippe (negation du Y monde).
+        std::ostringstream pts;
+        pts << p1x << "," << -p1y << " "
+            << p2x << "," << -p2y << " "
+            << p3x << "," << -p3y << " "
+            << p4x << "," << -p4y;
+
+        std::ostringstream ss;
+        ss << "<polygon points='" << pts.str() << "' fill='" << fillColor << "'"
+           << " stroke='black' stroke-width='1'"
+           << " fill-opacity='" << (dashed ? "0.35" : "0.7") << "'";
+        if (dashed) {
+            ss << " stroke-dasharray='6,3'";
+        }
+        ss << " />";
+
+        robot.svgw().logger().info() << ss.str() << logs::end;
+    }
 }
 
 // =============================================================================
@@ -275,7 +414,7 @@ float computeDistance(uint8_t pickupIdx, const char* zoneName,
 // Reprise de l'anonymous namespace pour les helpers locaux qui suivent.
 namespace {
 
-bool push_elements_zone_impl(uint8_t pickupIdx, const char* zoneName, bool sensInverse)
+bool push_elements_zone_impl(uint8_t pickupIdx, const char* zoneName, bool sensInverse, bool backward)
 {
     OPOS6UL_RobotExtended& robot = OPOS6UL_RobotExtended::instance();
     const bool yellow = robot.isMatchColor();
@@ -298,6 +437,7 @@ bool push_elements_zone_impl(uint8_t pickupIdx, const char* zoneName, bool sensI
         logger().error() << "push_elements_zone " << zoneName
                          << " idx=" << (int)pickupIdx
                          << " sens=" << (sensInverse ? "INVERSE" : "DIRECTE")
+                         << (backward ? " (BACKWARD)" : "")
                          << (yellow ? " (YELLOW)" : "")
                          << " -> dist invalide, abort" << logs::end;
         return false;
@@ -306,6 +446,7 @@ bool push_elements_zone_impl(uint8_t pickupIdx, const char* zoneName, bool sensI
     const char* sensLabel = invLog ? "INVERSE" : "DIRECTE";
     logger().info() << "push_elements_zone " << zoneName
                     << " idx=" << (int)idxLog << " sens=" << sensLabel
+                    << (backward ? " (BACKWARD)" : "")
                     << (yellow ? " (YELLOW post-swap)" : "") << logs::end;
 
     const float distBase = invLog ? distInverse[idxLog] : distDirecte[idxLog];
@@ -314,6 +455,26 @@ bool push_elements_zone_impl(uint8_t pickupIdx, const char* zoneName, bool sensI
                     << "mm (D_BASE=" << D_BASE << " + dist[idx]=" << distBase
                     << " + offset=" << offset
                     << ") puis recul=" << D_RETREAT << "mm" << logs::end;
+
+    // Ajustement empirique pour backward : on retranche kBackwardPushAdjustmentMm
+    // a la distance brute (typiquement -25mm). signDir = -1 inverse le sens du
+    // nav.line pour pousser arriere.
+    const float effectiveDist = backward
+        ? (dist + kBackwardPushAdjustmentMm)
+        : dist;
+    const float signDir = backward ? -1.0f : +1.0f;
+
+    if (backward) {
+        logger().info() << __FUNCTION__ << " BACKWARD : dist_brut=" << dist
+                        << " ajustement=" << kBackwardPushAdjustmentMm
+                        << " effective=" << effectiveDist << logs::end;
+    }
+
+    // Pose courante du robot avant la pousse - reference pour la visualisation
+    // des rects (devant le robot dans le sens du cap, idx = config balise).
+    const float initX = robot.asserv().pos_getX_mm();
+    const float initY = robot.asserv().pos_getY_mm();
+    const float initT = robot.asserv().pos_getTheta();
 
     // Sauvegarde du cap vitesse user (rest. apres manip pour ne pas laisser
     // 20% pour les tasks suivantes du JSON).
@@ -330,7 +491,13 @@ bool push_elements_zone_impl(uint8_t pickupIdx, const char* zoneName, bool sensI
     Navigator nav(&robot, &robot.ia().iAbyPath());
     RetryPolicy policyPush = RetryPolicy::standard();   // 2 retries obstacle/collision
 
-    TRAJ_STATE ts = nav.line(dist, policyPush);
+    // Visualisation SVG : 4 rects dans le sens de pousse a la position initiale.
+    // L'idx dessine = pickupIdx initial (config balise physique), independant du
+    // swap couleur applique pour la distance.
+    drawConfigAtPose(robot, initX, initY, initT, pickupIdx, yellow,
+                     /*extraForward=*/0.0f, /*dashed=*/false, /*backward=*/backward);
+
+    TRAJ_STATE ts = nav.line(signDir * effectiveDist, policyPush);
     if (ts != TRAJ_FINISHED) {
         logger().error() << __FUNCTION__ << " " << zoneName << " avance ts=" << ts << logs::end;
         robot.asserv().resetEmergencyOnTraj();
@@ -340,7 +507,13 @@ bool push_elements_zone_impl(uint8_t pickupIdx, const char* zoneName, bool sensI
     }
     robot.svgPrintPosition();
 
-    ts = nav.line(-D_RETREAT, policyPush);
+    // Visualisation SVG : 4 rects a la position finale = pose initiale + dist
+    // dans le sens de pousse (fill semi-transparent + stroke pointille).
+    drawConfigAtPose(robot, initX, initY, initT, pickupIdx, yellow,
+                     /*extraForward=*/effectiveDist, /*dashed=*/true, /*backward=*/backward);
+
+    // Recul de degagement : direction opposee au sens de pousse.
+    ts = nav.line(-signDir * D_RETREAT, policyPush);
     if (ts != TRAJ_FINISHED) {
         logger().error() << __FUNCTION__ << " " << zoneName << " recul ts=" << ts << logs::end;
         robot.asserv().resetEmergencyOnTraj();
@@ -496,9 +669,9 @@ void setupZonesTableTest(OPOS6UL_RobotExtended& robot)
 
 // Thin wrapper public : delegue a push_elements_zone_impl (anonymous namespace).
 // Permet au test O_PushElementsTest d'invoquer la manip directement.
-bool push_elements_zone(uint8_t pickupIdx, const char* zoneName, bool sensInverse)
+bool push_elements_zone(uint8_t pickupIdx, const char* zoneName, bool sensInverse, bool backward)
 {
-    return push_elements_zone_impl(pickupIdx, zoneName, sensInverse);
+    return push_elements_zone_impl(pickupIdx, zoneName, sensInverse, backward);
 }
 
 void setupActivitiesZone2026(OPOS6UL_RobotExtended& robot, const std::string& strategy)
@@ -594,6 +767,51 @@ void registerStrategyActions2026(ActionRegistry& registry, OPOS6UL_RobotExtended
         [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP14(), "P14", true);  });
     registry.registerAction("push_elements_P14_G",
         [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP14(), "P14", false); });
+
+    // --- Push elements BACKWARD : 16 entrees (variantes rear-first des 16 ci-dessus) ---
+    // Variante rear-first : nav.line(-dist) au lieu de nav.line(+dist), face
+    // arriere a 130mm du centre (vs 115mm avant), ajustement empirique -25mm
+    // sur la distance brute. Le faceTo initial du robot reste a la charge de
+    // la strategie (idem forward). Cf robot/md/PUSH_ELEMENTS_2026.md.
+    //
+    // Memes conventions de suffixe que forward (B/H pour verticales,
+    // D/G pour horizontales).
+
+    // Verticales backward (P1, P2, P11, P12)
+    registry.registerAction("push_back_elements_P1_B",
+        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP1(),  "P1",  true,  /*backward=*/true); });
+    registry.registerAction("push_back_elements_P1_H",
+        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP1(),  "P1",  false, /*backward=*/true); });
+    registry.registerAction("push_back_elements_P2_B",
+        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP2(),  "P2",  true,  /*backward=*/true); });
+    registry.registerAction("push_back_elements_P2_H",
+        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP2(),  "P2",  false, /*backward=*/true); });
+    registry.registerAction("push_back_elements_P11_B",
+        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP11(), "P11", true,  /*backward=*/true); });
+    registry.registerAction("push_back_elements_P11_H",
+        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP11(), "P11", false, /*backward=*/true); });
+    registry.registerAction("push_back_elements_P12_B",
+        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP12(), "P12", true,  /*backward=*/true); });
+    registry.registerAction("push_back_elements_P12_H",
+        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP12(), "P12", false, /*backward=*/true); });
+
+    // Horizontales backward (P3, P4, P13, P14)
+    registry.registerAction("push_back_elements_P3_D",
+        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP3(),  "P3",  true,  /*backward=*/true); });
+    registry.registerAction("push_back_elements_P3_G",
+        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP3(),  "P3",  false, /*backward=*/true); });
+    registry.registerAction("push_back_elements_P4_D",
+        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP4(),  "P4",  true,  /*backward=*/true); });
+    registry.registerAction("push_back_elements_P4_G",
+        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP4(),  "P4",  false, /*backward=*/true); });
+    registry.registerAction("push_back_elements_P13_D",
+        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP13(), "P13", true,  /*backward=*/true); });
+    registry.registerAction("push_back_elements_P13_G",
+        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP13(), "P13", false, /*backward=*/true); });
+    registry.registerAction("push_back_elements_P14_D",
+        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP14(), "P14", true,  /*backward=*/true); });
+    registry.registerAction("push_back_elements_P14_G",
+        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP14(), "P14", false, /*backward=*/true); });
 
 
 }

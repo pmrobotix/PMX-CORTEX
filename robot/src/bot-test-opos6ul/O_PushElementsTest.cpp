@@ -94,125 +94,6 @@ bool setPickupForZone(OPOS6UL_RobotExtended& robot, const char* zone, uint8_t id
     return false;
 }
 
-// =============================================================================
-// Visualisation SVG : 4 rectangles places relativement au robot
-// =============================================================================
-//
-// L'idx represente la lecture balise (= match mode) : independant de la position
-// du robot. Convention :
-//   - Verticales   : char[0] est en HAUT (Y+), char[3] en BAS (Y-)
-//   - Horizontales : char[0] est a GAUCHE (X-), char[3] a DROITE (X+)
-//
-// Suivant le cap du robot, char[0] est plus proche ou plus loin :
-//   - cap dans le sens lecture (Y- vertical, X+ horizontal) : char[0] proche
-//   - cap a contre-sens (Y+, X-)                            : char[3] proche
-//
-// Ainsi `pe P1 B 0` (idx=0 BBYY, cap=+90 = vient du bas) affiche YYBB du proche
-// au loin (le robot voit les Y devant lui, les B au fond), et utilise la table
-// distInverse (sensInverse=true). En `pe P1 H 0`, le robot voit BBYY du proche
-// au loin et utilise distDirecte (sensInverse=false). Identique au match.
-
-// Dimensions d'un rectangle (mm).
-//   short = profondeur dans le sens de pousse (forward)
-//   long  = largeur perpendiculaire
-constexpr float kRectLong         = 150.0f;
-constexpr float kRectShort        =  50.0f;
-// Distance du centre robot a la face octogonale avant (mm).
-constexpr float kRobotFrontOffset = 115.0f;
-
-// Sequence des 4 couleurs par idx balise.
-//   0=BBYY 1=YYBB 2=BYYB 3=YBBY 4=BYBY 5=YBYB
-constexpr const char* kIdxToSequence[6] = {
-    "BBYY", "YYBB", "BYYB", "YBBY", "BYBY", "YBYB"
-};
-
-// Retourne true si char[0] doit etre cote robot (le plus proche).
-//   Vertical-dominant (|sin| > |cos|) : sin < 0 => cap Y-, dans sens lecture.
-//   Horizontal-dominant                : cos > 0 => cap X+, dans sens lecture.
-bool char0IsClosestToRobot(float theta_rad)
-{
-    const float c = std::cos(theta_rad);
-    const float s = std::sin(theta_rad);
-    if (std::fabs(s) > std::fabs(c)) {
-        return s < 0.0f;          // vertical : lecture Y-
-    }
-    return c > 0.0f;              // horizontal : lecture X+
-}
-
-// Dessine la config (4 rectangles) devant le robot, a la pose donnee, decalee
-// en avant de `extraForward` mm (0 pour position initiale, `dist` pour finale).
-// dashed=false : fill plein. dashed=true : pointilles + transparence.
-void drawConfigAtPose(OPOS6UL_RobotExtended& robot,
-                      float poseX, float poseY, float poseTheta_rad,
-                      uint8_t idx, bool /*yellow*/,
-                      float extraForward, bool dashed)
-{
-    if (idx > 5) return;
-
-    // L'idx vient de la balise = config physique fixe (char[0] au HAUT/GAUCHE,
-    // char[3] au BAS/DROITE). Pas de swap d'affichage selon couleur ou cap.
-    const char* seq = kIdxToSequence[idx];
-
-    // Vecteurs unitaires : forward (sens cap), left (perpendiculaire +90 deg).
-    const float fx = std::cos(poseTheta_rad);
-    const float fy = std::sin(poseTheta_rad);
-    const float lx = -fy;
-    const float ly =  fx;
-
-    // Demi-dimensions
-    const float hF = kRectShort / 2.0f;   // 25mm dans le sens forward
-    const float hL = kRectLong  / 2.0f;   // 75mm dans le sens perpendiculaire
-
-    const bool char0Closest = char0IsClosestToRobot(poseTheta_rad);
-
-    for (int i = 0; i < 4; ++i) {
-        // i = position dans la pile depuis le robot (0 = proche, 3 = loin).
-        // L'indice de caractere dans la sequence depend du sens de lecture.
-        const int  charIdx = char0Closest ? i : (3 - i);
-        const char c       = seq[charIdx];
-
-        // Distance forward du centre du rect[i] depuis le centre robot.
-        const float fwd = kRobotFrontOffset + extraForward
-                        + static_cast<float>(i) * kRectShort + hF;
-
-        // Centre du rect[i] en coords monde.
-        const float cxW = poseX + fx * fwd;
-        const float cyW = poseY + fy * fwd;
-
-        // 4 coins (centre +/- hF*forward +/- hL*left) en coords monde.
-        const float p1x = cxW + hF*fx + hL*lx;   // avant-gauche
-        const float p1y = cyW + hF*fy + hL*ly;
-        const float p2x = cxW + hF*fx - hL*lx;   // avant-droite
-        const float p2y = cyW + hF*fy - hL*ly;
-        const float p3x = cxW - hF*fx - hL*lx;   // arriere-droite
-        const float p3y = cyW - hF*fy - hL*ly;
-        const float p4x = cxW - hF*fx + hL*lx;   // arriere-gauche
-        const float p4y = cyW - hF*fy + hL*ly;
-
-        const char* fillColor = (c == 'B' || c == 'b')
-            ? "#3060ff"   // bleu
-            : "#ffd700";  // jaune
-
-        // SVG : Y flippe (negation du Y monde).
-        std::ostringstream pts;
-        pts << p1x << "," << -p1y << " "
-            << p2x << "," << -p2y << " "
-            << p3x << "," << -p3y << " "
-            << p4x << "," << -p4y;
-
-        std::ostringstream ss;
-        ss << "<polygon points='" << pts.str() << "' fill='" << fillColor << "'"
-           << " stroke='black' stroke-width='1'"
-           << " fill-opacity='" << (dashed ? "0.35" : "0.7") << "'";
-        if (dashed) {
-            ss << " stroke-dasharray='6,3'";
-        }
-        ss << " />";
-
-        robot.svgw().logger().info() << ss.str() << logs::end;
-    }
-}
-
 } // namespace
 
 void O_PushElementsTest::runValidation()
@@ -368,35 +249,18 @@ void O_PushElementsTest::runPushReel(const char* zone, const char* suffixe, int 
                         << " -> push utilisera la valeur courante" << logs::end;
     }
 
-    // Pose courante du robot (apres setPositionAndColor) - reference pour la
-    // visualisation des rects (devant le robot dans le sens du cap).
-    const float initX = robot.asserv().pos_getX_mm();
-    const float initY = robot.asserv().pos_getY_mm();
-    const float initT = robot.asserv().pos_getTheta();
-    const bool  yellow = robot.isMatchColor();
-
-    // Visualisation SVG : 4 rects devant le robot a la position initiale.
-    drawConfigAtPose(robot, initX, initY, initT, static_cast<uint8_t>(idx), yellow,
-                     /*extraForward=*/0.0f, /*dashed=*/false);
-
+    // La visualisation SVG des 4 rects (avant/apres pousse) est faite en interne
+    // par push_elements_zone() (dans StrategyActions2026.cpp), pour qu'elle fire
+    // aussi quand la manip est invoquee depuis une strategie JSON.
     logger().info() << "[mode poussage reel] push_elements_" << zone << "_" << suffixe
                     << " idx=" << idx
                     << " sens=" << (sensInverse ? "INVERSE" : "DIRECTE")
-                    << " color=" << (yellow ? "YELLOW" : "BLUE")
+                    << " color=" << (robot.isMatchColor() ? "YELLOW" : "BLUE")
                     << logs::end;
 
     const bool result = push_elements_zone(static_cast<uint8_t>(idx), zone, sensInverse);
     logger().info() << "push_elements_zone result=" << (result ? "true" : "false") << logs::end;
     robot.svgPrintPosition();
-
-    // Visualisation SVG : 4 rects a la position finale = pose initiale + dist
-    // dans le sens du cap initial (fill semi-transparent + stroke pointille).
-    const float dist = push_elements_test_api::computeDistance(
-        static_cast<uint8_t>(idx), zone, sensInverse, yellow);
-    if (dist > 0.0f) {
-        drawConfigAtPose(robot, initX, initY, initT, static_cast<uint8_t>(idx), yellow,
-                         /*extraForward=*/dist, /*dashed=*/true);
-    }
 }
 
 void O_PushElementsTest::configureConsoleArgs(int argc, char** argv)

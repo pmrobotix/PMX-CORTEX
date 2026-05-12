@@ -48,9 +48,16 @@ void setupActivitiesZone2026(OPOS6UL_RobotExtended& robot, const std::string& st
  * lit dist dans distDirecte/distInverse, ajoute zoneOffset, puis avance la
  * distance + recul D_RETREAT. Cf doc PUSH_ELEMENTS_2026.md.
  *
+ * \param backward Si true, pousse rear-first (arriere) : nav.line(-dist) au
+ *                 lieu de nav.line(+dist), face arriere a 130mm du centre
+ *                 (vs 115mm cote avant), et ajustement empirique -25mm sur
+ *                 la distance brute pour calibration. Le faceTo initial du
+ *                 robot reste a la charge de la strategie (idem forward).
+ *                 Default false = comportement historique forward inchange.
+ *
  * \return true si l'avance a abouti, false si abort avant pousse.
  */
-bool push_elements_zone(uint8_t pickupIdx, const char* zoneName, bool sensInverse);
+bool push_elements_zone(uint8_t pickupIdx, const char* zoneName, bool sensInverse, bool backward = false);
 
 /*!
  * \brief API exposee pour O_PushElementsTest (pas pour usage strategie).
