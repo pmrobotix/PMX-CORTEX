@@ -25,29 +25,28 @@
       },
       {
         "type": "MOVEMENT",
-        "subtype": "PATH_BACK_TO",
-        "position_x": 230,
-        "position_y": 1050,
-        "desc": "PATH_BACK_TO (230,1050)"
-      },
-      {
-        "type": "SPEED",
-        "subtype": "SET_SPEED",
-        "speed_percent": 60,
-        "desc": "cap PWM"
-      },
-      {
-        "type": "MOVEMENT",
         "subtype": "FACE_BACK_TO",
         "position_x": 225,
         "position_y": 1500,
         "desc": "FACE_BACK_TO (225,1500)"
       },
       {
-        "type": "MOVEMENT",
-        "subtype": "LINE",
-        "dist": -160,
-        "desc": "LINE dist=-160"
+        "type": "MANIPULATION",
+        "action_id": "push_back_elements_P1_B",
+        "timeout": 5000,
+        "desc": "Push P1 -> GM2 rear-first"
+      },
+      {
+        "type": "ELEMENT",
+        "subtype": "ADD_ZONE",
+        "item_id": "zone_GM2",
+        "desc": "GM2 remplie apres push P1->GM2"
+      },
+      {
+        "type": "SPEED",
+        "subtype": "SET_SPEED",
+        "speed_percent": 40,
+        "desc": "cap PWM"
       }
     ]
   },
@@ -58,10 +57,10 @@
     "tasks": [
       {
         "type": "MOVEMENT",
-        "subtype": "MOVE_BACKWARD_TO",
+        "subtype": "PATH_BACK_TO",
         "position_x": 1500,
         "position_y": 900,
-        "desc": "MOVE_BACKWARD_TO (1500,900)"
+        "desc": "PATH_BACK_TO (1500,900)"
       },
       {
         "type": "MOVEMENT",
@@ -84,10 +83,10 @@
     "tasks": [
       {
         "type": "MOVEMENT",
-        "subtype": "GO_BACK_TO",
+        "subtype": "PATH_BACK_TO",
         "position_x": 800,
         "position_y": 660,
-        "desc": "GO_BACK_TO (800,660)"
+        "desc": "PATH_BACK_TO (800,660)"
       },
       {
         "type": "MOVEMENT",
@@ -102,21 +101,14 @@
     "id": 4,
     "desc": "Retour zone depart apres 90s (BACKWARD)",
     "priority": 1,
-    "min_match_sec": 90,
+    "min_match_sec": 88,
     "tasks": [
       {
         "type": "MOVEMENT",
-        "subtype": "GO_BACK_TO",
-        "position_x": 300,
-        "position_y": 650,
-        "desc": "GO_BACK_TO (300,650)"
-      },
-      {
-        "type": "MOVEMENT",
-        "subtype": "GO_BACK_TO",
+        "subtype": "PATH_BACK_TO",
         "position_x": 300,
         "position_y": 200,
-        "desc": "GO_BACK_TO (300,200)"
+        "desc": "PATH_BACK_TO (300,200)"
       }
     ]
   }

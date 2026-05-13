@@ -202,6 +202,23 @@
             "presentation": { "reveal": "always", "panel": "shared", "focus": true, "clear": true }
         },
         {
+            // Sync strategyPMX{0,1,2,3}.json depuis le simu vers bot-opos6ul
+            // Regle : on edite TOUJOURS dans simulator/resources/2026/, puis on clique ce bouton.
+            "label": "Strat: SIMU→BOT",
+            "type": "shell",
+            "command": "bash sh/sync-strategies.sh",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "statusbar": {
+                    "hide": false,
+                    "label": "$(arrow-right) Strat SIMU→BOT",
+                    "color": "#E5C07B"
+                }
+            },
+            "problemMatcher": [],
+            "presentation": { "reveal": "always", "panel": "shared", "focus": true, "clear": true }
+        },
+        {
             // Generation de la documentation Doxygen
             "label": "Doxygen: Generer la doc",
             "type": "shell",

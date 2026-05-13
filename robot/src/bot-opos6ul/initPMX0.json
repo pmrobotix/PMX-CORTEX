@@ -1,21 +1,7 @@
 {
-  "x": 230,
-  "y": 130,
+  "x": 300,
+  "y": 300,
   "theta": 90,
   "regX": 0,
-  "regY": 0,
-  "setpos_tasks": [
-    {
-      "type": "MOVEMENT",
-      "subtype": "LINE",
-      "dist": 80,
-      "desc": "Line 80"
-    },
-    {
-      "type": "MOVEMENT",
-      "subtype": "LINE",
-      "dist": 100,
-      "desc": "LINE dist=100"
-    }
-  ]
+  "regY": 0
 }

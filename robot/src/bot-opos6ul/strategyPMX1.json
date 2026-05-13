@@ -39,7 +39,7 @@
       {
         "type": "SPEED",
         "subtype": "SET_SPEED",
-        "speed_percent": 40,
+        "speed_percent": 30,
         "desc": "cap PWM"
       },
       {
@@ -119,7 +119,7 @@
         "subtype": "FACE_TO",
         "position_x": 300,
         "position_y": 650,
-        "desc": "FACE_TO (300 650"
+        "desc": "FACE_TO (300 650)"
       }
     ]
   },
