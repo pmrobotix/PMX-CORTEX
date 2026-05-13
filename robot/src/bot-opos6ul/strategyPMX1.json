@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "desc": "P1 en GM2 (BACKWARD)",
+    "desc": "P1 en GM2",
     "priority": 100,
     "tasks": [
       {
@@ -12,10 +12,10 @@
       },
       {
         "type": "MOVEMENT",
-        "subtype": "PATH_BACK_TO",
+        "subtype": "PATH_TO",
         "position_x": 230,
-        "position_y": 600,
-        "desc": "PATH_BACK_TO (230,600)"
+        "position_y": 500,
+        "desc": "PATH_TO (230,600)"
       },
       {
         "type": "SPEED",
@@ -24,91 +24,123 @@
         "desc": "cap PWM"
       },
       {
-        "type": "MOVEMENT",
-        "subtype": "FACE_BACK_TO",
-        "position_x": 225,
-        "position_y": 1500,
-        "desc": "FACE_BACK_TO (225,1500)"
-      },
-      {
         "type": "MANIPULATION",
-        "action_id": "push_back_elements_P1_B",
+        "action_id": "push_elements_P1_B",
         "timeout": 5000,
-        "desc": "Push P1 -> GM2 rear-first"
-      },
-      {
-        "type": "ELEMENT",
-        "subtype": "ADD_ZONE",
-        "item_id": "zone_GM2",
-        "desc": "GM2 remplie apres push P1->GM2"
-      },
-      {
-        "type": "SPEED",
-        "subtype": "SET_SPEED",
-        "speed_percent": 40,
-        "desc": "cap PWM"
+        "desc": "Push P1 -> GM2 front-first"
       }
     ]
   },
   {
     "id": 2,
-    "desc": "Milieu defense/poussee (BACKWARD)",
+    "desc": "Milieu P4 en GM3",
     "priority": 90,
     "tasks": [
       {
-        "type": "MOVEMENT",
-        "subtype": "PATH_BACK_TO",
-        "position_x": 1500,
-        "position_y": 900,
-        "desc": "PATH_BACK_TO (1500,900)"
+        "type": "SPEED",
+        "subtype": "SET_SPEED",
+        "speed_percent": 40,
+        "desc": "cap PWM"
       },
       {
         "type": "MOVEMENT",
-        "subtype": "FACE_BACK_TO",
-        "position_x": 0,
-        "position_y": 900,
-        "desc": "FACE_BACK_TO adverse (0,900)"
+        "subtype": "PATH_TO",
+        "position_x": 1450,
+        "position_y": 1200,
+        "desc": "PATH_TO (1450,1200)"
       },
       {
-        "type": "WAIT",
-        "duration_ms": 5000,
-        "desc": "WAIT 5000ms"
+        "type": "MOVEMENT",
+        "subtype": "FACE_TO",
+        "position_y": 1200,
+        "desc": "FACE_TO adverse (0,1200)",
+        "position_x": 0
+      },
+      {
+        "type": "MANIPULATION",
+        "action_id": "push_elements_P4_D",
+        "timeout": 15000,
+        "desc": "Push P4 en GM3 front-first"
       }
     ]
   },
   {
     "id": 3,
-    "desc": "ZC1 position attente (BACKWARD)",
-    "priority": 50,
+    "desc": "Milieu defense/poussee",
+    "priority": 60,
     "tasks": [
       {
-        "type": "MOVEMENT",
-        "subtype": "PATH_BACK_TO",
-        "position_x": 800,
-        "position_y": 660,
-        "desc": "PATH_BACK_TO (800,660)"
+        "type": "SPEED",
+        "subtype": "SET_SPEED",
+        "speed_percent": 40,
+        "desc": "cap PWM"
       },
       {
         "type": "MOVEMENT",
-        "subtype": "FACE_BACK_TO",
-        "position_x": 300,
-        "position_y": 650,
-        "desc": "FACE_BACK_TO (300,650)"
+        "subtype": "PATH_TO",
+        "position_x": 1200,
+        "position_y": 900,
+        "desc": "PATH_TO (1200,900)"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "FACE_TO",
+        "position_y": 900,
+        "desc": "FACE_TO adverse (0,900)",
+        "position_x": 0
+      },
+      {
+        "type": "WAIT",
+        "duration_ms": 2000,
+        "desc": "WAIT 2000ms"
       }
     ]
   },
   {
     "id": 4,
-    "desc": "Retour zone depart apres 90s (BACKWARD)",
+    "desc": "ZC1 position attente",
+    "priority": 50,
+    "tasks": [
+      {
+        "type": "SPEED",
+        "subtype": "SET_SPEED",
+        "speed_percent": 40,
+        "desc": "cap PWM"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "PATH_TO",
+        "position_x": 800,
+        "position_y": 660,
+        "desc": "PATH_TO (800,660)"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "FACE_TO",
+        "position_x": 300,
+        "position_y": 650,
+        "desc": "FACE_TO (300 650"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "desc": "Retour zone depart (apres 88s)",
     "priority": 1,
     "min_match_sec": 88,
     "tasks": [
       {
+        "type": "SPEED",
+        "subtype": "SET_SPEED",
+        "speed_percent": 60,
+        "desc": "cap PWM"
+      },
+      {
         "type": "MOVEMENT",
-        "subtype": "PATH_BACK_TO",
+        "subtype": "PATH_TO",
         "position_x": 300,
         "position_y": 200,
-        "desc": "PATH_BACK_TO (300,200)"
+        "desc": "GO_TO (300,200)"
       }
     ]
   }
