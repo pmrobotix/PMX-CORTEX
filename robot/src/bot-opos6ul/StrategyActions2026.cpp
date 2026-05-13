@@ -65,10 +65,26 @@ constexpr float kRobotFrontOffset = 115.0f;
 // Distance du centre robot a la face octogonale arriere (mm).
 // Utilise par push_elements_zone(backward=true) pour le placement des rects SVG.
 constexpr float kRobotRearOffset = 130.0f;
-// Ajustement empirique applique a la distance brute en mode backward (mm).
-// Calibration utilisateur : la pousse rear-first sous-decale legerement,
-// on retranche 25mm a la distance forward calculee pour compenser.
-constexpr float kBackwardPushAdjustmentMm = -25.0f;
+// Convention 2026 : le centre robot est place a 200mm de la face proche de
+// l'element 1, peu importe la direction de pousse (forward ou backward).
+// Choix derive : rayon de rotation effectif ~160mm (rayon SVG 140 + marge
+// protuberances 20) + 40mm de safety user = 200mm centre -> element 1.
+// Cette constante est utilisee par drawConfigAtPose pour placer la viz SVG
+// des 4 rects (independant de forward/backward : meme position physique).
+constexpr float kCubeClosestFromCenterMm = 200.0f;
+// Gap (mm) entre la face avant (115mm du centre) et l'element 1 = 200 - 115.
+// Utilise par push_elements_zone_impl pour calculer le push physique reel
+// (= robot_displacement - gap, car les 85mm initiaux sont traverses sans
+// contact avec les cubes). En backward, le gap est 70mm (= 200 - 130), mais
+// avec kBackwardPushAdjustmentMm = -15 sur effectiveDist, on retombe sur le
+// meme push physique = dist - kStartGapMm dans les deux modes.
+constexpr float kStartGapMm = kCubeClosestFromCenterMm - kRobotFrontOffset;  // 85
+// Ajustement geometrique applique a la distance brute en mode backward (mm).
+// Pas empirique : c'est exactement kRobotFrontOffset - kRobotRearOffset = -15.
+// En backward, la face arriere est 15mm plus eloignee du centre que la face
+// avant en forward, donc la face arriere est deja 15mm plus proche des
+// elements quand le robot est place au meme X/Y -> 15mm de moins a parcourir.
+constexpr float kBackwardPushAdjustmentMm = -15.0f;
 
 // Sequence des 4 couleurs par idx balise.
 //   0=BBYY 1=YYBB 2=BYYB 3=YBBY 4=BYBY 5=YBYB
@@ -114,9 +130,10 @@ void drawConfigAtPose(OPOS6UL_RobotExtended& robot,
     const char* seq = kIdxToSequence[idx];
 
     // signDir : +1 si forward (push vers cap), -1 si backward (push oppose au cap).
-    // faceOffset : distance centre robot -> face dans la direction de pousse.
-    const float signDir    = backward ? -1.0f : +1.0f;
-    const float faceOffset = backward ? kRobotRearOffset : kRobotFrontOffset;
+    // Pas besoin de faceOffset ici : la convention 2026 place l'element 1 a
+    // kCubeClosestFromCenterMm (200mm) du centre robot dans la direction de
+    // pousse, peu importe quelle face pousse (avant 115 ou arriere 130).
+    const float signDir = backward ? -1.0f : +1.0f;
 
     // Vecteurs unitaires : forward (sens pousse), left (perpendiculaire +90 deg).
     const float fx = signDir * std::cos(poseTheta_rad);
@@ -137,7 +154,11 @@ void drawConfigAtPose(OPOS6UL_RobotExtended& robot,
         const char c       = seq[charIdx];
 
         // Distance dans le sens de pousse du centre du rect[i] depuis le centre robot.
-        const float fwd = faceOffset + extraForward
+        // Convention 2026 : element 1 face proche a kCubeClosestFromCenterMm
+        // du centre dans la direction de pousse (independant forward/backward).
+        // Pour i=0 et extraForward=0 -> fwd = 200 + 25 = 225, donc centre rect 0
+        // a 225mm du centre robot, face proche a 200mm (= convention).
+        const float fwd = kCubeClosestFromCenterMm + extraForward
                         + static_cast<float>(i) * kRectShort + hF;
 
         // Centre du rect[i] en coords monde.
@@ -299,9 +320,14 @@ constexpr float D_RETREAT = 200.0f;
 
 // Distance de base de la pousse (mm). La fonction push_elements_zone() avance
 // de D_BASE + dist_signed[idx] + zoneOffsetFor(zone).
-//   - D_BASE par defaut         : 400 mm
-//   - P4 et P14 (kZoneOffset)   : -50 mm -> effectif 350 mm
-constexpr float D_BASE = 400.0f;
+//   - D_BASE par defaut         : 485 mm  (= ancien 400 calibre pour 0 gap
+//                                  + kStartGapMm = 85, traversee du gap face
+//                                  avant-element au placement convention 2026)
+//   - P4 et P14 (kZoneOffset)   : -50 mm -> effectif 435 mm
+// Convention 2026 : le centre robot est place a 200mm de l'element 1, donc
+// la face avant est a kStartGapMm = 85mm de l'element en forward. Le robot
+// doit traverser ce gap avant de toucher l'element, d'ou le +85 sur D_BASE.
+constexpr float D_BASE = 485.0f;
 
 // Offsets specifiques par zone (mm), ajoutes au D_BASE pour les zones avec
 // une distance de prise/depose differente de la moyenne. Garde-fou : si
@@ -456,9 +482,9 @@ bool push_elements_zone_impl(uint8_t pickupIdx, const char* zoneName, bool sensI
                     << " + offset=" << offset
                     << ") puis recul=" << D_RETREAT << "mm" << logs::end;
 
-    // Ajustement empirique pour backward : on retranche kBackwardPushAdjustmentMm
-    // a la distance brute (typiquement -25mm). signDir = -1 inverse le sens du
-    // nav.line pour pousser arriere.
+    // Ajustement geometrique pour backward : on retranche kBackwardPushAdjustmentMm
+    // a la distance brute (-15mm = kRobotFrontOffset - kRobotRearOffset).
+    // signDir = -1 inverse le sens du nav.line pour pousser arriere.
     const float effectiveDist = backward
         ? (dist + kBackwardPushAdjustmentMm)
         : dist;
@@ -507,10 +533,19 @@ bool push_elements_zone_impl(uint8_t pickupIdx, const char* zoneName, bool sensI
     }
     robot.svgPrintPosition();
 
-    // Visualisation SVG : 4 rects a la position finale = pose initiale + dist
-    // dans le sens de pousse (fill semi-transparent + stroke pointille).
+    // Visualisation SVG : 4 rects a la position finale (fill semi-transparent
+    // + stroke pointille). On utilise physicalPush = dist - kStartGapMm, soit
+    // le deplacement REEL des cubes (le robot bouge effectiveDist mm, mais les
+    // 85mm initiaux traversent le gap sans contact avec les cubes -> les cubes
+    // ne sont pousses que des derniers (dist - kStartGapMm) mm).
+    // En backward : dist - kStartGapMm = (effectiveDist - kBackwardPushAdjustmentMm) - kStartGapMm
+    //             = effectiveDist - (kStartGapMm + kBackwardPushAdjustmentMm)
+    //             = effectiveDist - 70 (= kCubeClosestFromCenterMm - kRobotRearOffset).
+    // Meme valeur dans les deux modes : le deplacement physique des cubes
+    // est independant de quelle face pousse.
+    const float physicalPush = dist - kStartGapMm;
     drawConfigAtPose(robot, initX, initY, initT, pickupIdx, yellow,
-                     /*extraForward=*/effectiveDist, /*dashed=*/true, /*backward=*/backward);
+                     /*extraForward=*/physicalPush, /*dashed=*/true, /*backward=*/backward);
 
     // Recul de degagement : direction opposee au sens de pousse.
     ts = nav.line(-signDir * D_RETREAT, policyPush);
@@ -580,11 +615,11 @@ bool defense_if_needed()
     // Coords BLEU (a calibrer/affiner demain si besoin)
     constexpr float ZONE1_XMIN_B = 1700.0f, ZONE1_XMAX_B = 2000.0f;
     constexpr float ZONE1_YMIN_B = 1300.0f, ZONE1_YMAX_B = 1800.0f;
-    constexpr float DEF1_X_B = 1500.0f,     DEF1_Y_B = 1500.0f;
+    constexpr float DEF1_X_B = 1400.0f,     DEF1_Y_B = 1500.0f;
 
     constexpr float ZONE2_XMIN_B = 1700.0f, ZONE2_XMAX_B = 2000.0f;
     constexpr float ZONE2_YMIN_B =  700.0f, ZONE2_YMAX_B = 1100.0f;
-    constexpr float DEF2_X_B = 1500.0f,     DEF2_Y_B =  900.0f;
+    constexpr float DEF2_X_B = 1400.0f,     DEF2_Y_B =  900.0f;
 
     // (void) pour silence warnings tant que le corps est un stub
     (void) ZONE1_XMIN_B; (void) ZONE1_XMAX_B; (void) ZONE1_YMIN_B; (void) ZONE1_YMAX_B;
@@ -770,9 +805,10 @@ void registerStrategyActions2026(ActionRegistry& registry, OPOS6UL_RobotExtended
 
     // --- Push elements BACKWARD : 16 entrees (variantes rear-first des 16 ci-dessus) ---
     // Variante rear-first : nav.line(-dist) au lieu de nav.line(+dist), face
-    // arriere a 130mm du centre (vs 115mm avant), ajustement empirique -25mm
-    // sur la distance brute. Le faceTo initial du robot reste a la charge de
-    // la strategie (idem forward). Cf robot/md/PUSH_ELEMENTS_2026.md.
+    // arriere a 130mm du centre (vs 115mm avant), ajustement geometrique -15mm
+    // (= kRobotFrontOffset - kRobotRearOffset) sur la distance brute. Le
+    // faceTo initial du robot reste a la charge de la strategie (idem forward).
+    // Cf robot/md/PUSH_ELEMENTS_2026.md.
     //
     // Memes conventions de suffixe que forward (B/H pour verticales,
     // D/G pour horizontales).

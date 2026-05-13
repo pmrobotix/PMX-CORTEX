@@ -77,14 +77,16 @@ static constexpr uint8_t SWAP_COLOR_IDX[6] = { 1, 0, 3, 2, 5, 4 };
 ### Constantes reglables (en haut de [StrategyActions2026.cpp](../src/bot-opos6ul/StrategyActions2026.cpp))
 
 
-| Constante          | Valeur (mm) | Usage                                                      |
-| -------------------- | ------------- | ------------------------------------------------------------ |
-| `D_RETREAT`        | 200         | recul de degagement apres la pousse                        |
-| `D_BASE`           | 400         | distance de base de la pousse (commune a toutes les zones) |
-| `distDirecte[idx]` | -125 a +175 | ajustement signe par config (lu par wrappers`_H`/`_G`)     |
-| `distInverse[idx]` | -125 a +175 | ajustement signe par config (lu par wrappers`_B`/`_D`)     |
-| `kZoneOffset_P4`   | -50         | offset specifique P4  (D_BASE effectif: 350 mm)            |
-| `kZoneOffset_P14`  | -50         | offset specifique P14 (D_BASE effectif: 350 mm)            |
+| Constante                   | Valeur (mm) | Usage                                                      |
+| ----------------------------- | ------------- | ------------------------------------------------------------ |
+| `D_RETREAT`                 | 200         | recul de degagement apres la pousse                        |
+| `D_BASE`                    | 485         | distance de base de la pousse (commune a toutes les zones) |
+| `kStartGapMm`               | 85          | gap face avant - element 1 au placement (convention 200mm centre - element) |
+| `distDirecte[idx]`          | -125 a +175 | ajustement signe par config (lu par wrappers`_H`/`_G`)     |
+| `distInverse[idx]`          | -125 a +175 | ajustement signe par config (lu par wrappers`_B`/`_D`)     |
+| `kZoneOffset_P4`            | -50         | offset specifique P4  (D_BASE effectif: 435 mm)            |
+| `kZoneOffset_P14`           | -50         | offset specifique P14 (D_BASE effectif: 435 mm)            |
+| `kBackwardPushAdjustmentMm` | -15         | ajustement geometrique backward (`kRobotFrontOffset - kRobotRearOffset`) |
 
 Formule finale : `dist = D_BASE + distXxx[idx] + zoneOffset(zone)`.
 
@@ -114,8 +116,11 @@ le code C++ — meme convention, juste une lettre differente.)
 Code C++ correspondant :
 
 ```cpp
-// Distance de base commune (mm). P4/P14 ont un offset de -50 mm (effectif 350).
-constexpr float D_BASE = 400.0f;
+// Distance de base commune (mm). Convention 2026 : centre robot a 200mm de
+// l'element 1, donc 85mm de gap face avant -> element a traverser avant
+// contact. D_BASE = ancien 400 (calibre pour 0 gap) + kStartGapMm (85) = 485.
+// P4/P14 ont un offset de -50 mm (effectif 435).
+constexpr float D_BASE = 485.0f;
 
 // Ajustements signes par configuration (mm) - PLACEHOLDER A CALIBRER.
 static constexpr float distDirecte[6] = {  125, -125,  175,  75,  75, -75 };
@@ -130,8 +135,8 @@ toutes les zones, sauf P4/P14 qui ont un offset de -50mm). Les tables
 `distDirecte` / `distInverse` apportent un ajustement signe par configuration
 (valeurs derivees du visuel des 6 placements). Garde-fou : si
 `D_BASE + distBase + offset <= 0`, la manip log une erreur et retourne `false`.
-Avec D_BASE=400 et amplitudes max ±175 (offsets inclus), on a toujours
-`dist >= 175 mm`.
+Avec D_BASE=485 et amplitudes max ±175 (offsets inclus), on a toujours
+`dist >= 260 mm`.
 
 ## Sequence d'execution
 
@@ -141,8 +146,10 @@ La fonction `push_elements_zone(pickupIdx, zoneName, sensInverse, backward=false
 2. Validation `pickupIdx <= 5` (sinon abort, `return false`).
 3. Choix `dist` dans `distDirecte` ou `distInverse` selon `sensInverse`.
 4. Si `backward=true` : `effectiveDist = dist + kBackwardPushAdjustmentMm`
-   (kBackwardPushAdjustmentMm = -25 mm, calibration empirique compensant
-   le sous-decalage rear-first). Sinon `effectiveDist = dist`.
+   (kBackwardPushAdjustmentMm = -15 mm, ajustement geometrique pur =
+   `kRobotFrontOffset - kRobotRearOffset`, compense le fait que la face
+   arriere est 15mm plus eloignee du centre que la face avant). Sinon
+   `effectiveDist = dist`.
 5. **`setMaxSpeed(true, 20)`** : vitesse reduite pour avoir du couple et ne
    pas balayer les elements en bord de zone.
 6. Configuration capteurs :
@@ -213,9 +220,49 @@ Differences techniques avec la variante forward :
 | Face de pousse                  | Avant (`kRobotFrontOffset = 115mm`) | Arriere (`kRobotRearOffset = 130mm`)      |
 | Signe `nav.line(dist)`          | `+dist`                             | `-dist` (rear-first)                      |
 | Signe `nav.line(D_RETREAT)`     | `-D_RETREAT` (recul)                | `+D_RETREAT` (avance pour se degager)     |
-| Ajustement empirique sur `dist` | aucun                               | `-25mm` (`kBackwardPushAdjustmentMm`)     |
+| Ajustement geometrique sur `dist` | aucun                             | `-15mm` (`kBackwardPushAdjustmentMm` = `kRobotFrontOffset - kRobotRearOffset`) |
 | Viz SVG (4 rects)               | en avant du robot (kRobotFrontOffset) | en arriere du robot (kRobotRearOffset)    |
 | `faceTo` avant la manip         | face avant vers cubes               | face arriere vers cubes (= cap a 180° de la pousse) |
+
+### Convention de placement 2026 {#convention-de-placement-2026}
+
+**Le centre robot doit etre place a 200mm de la face la plus proche de
+l'element 1**, peu importe la direction de pousse (forward ou backward).
+Cette convention rend le placement neutre : forward et backward partagent le
+meme X/Y, le choix se fait via `FACE_TO` (forward) ou `FACE_BACK_TO`
+(backward) avant la MANIPULATION push.
+
+#### Justification
+
+| Composante                            | Valeur | Source                              |
+| --------------------------------------- | -------- | ------------------------------------- |
+| Rayon SVG du robot (cercle pointille) | 140 mm | `OPOS6UL_SvgWriterExtended.cpp`     |
+| Marge protuberances / safety          | +20 mm | empirique                           |
+| **Cercle rotation effectif**          | 160 mm | rotation in-place sans collision    |
+| Safety supplementaire                 | +40 mm | confort, evite frottement           |
+| **Distance centre - element 1**        | 200 mm | placement final                     |
+
+#### Calculs derives
+
+- `kStartGapMm` = 200 - `kRobotFrontOffset` (115) = **85 mm** (gap face avant
+  - element 1 en forward)
+- En backward (rotation 180° au meme X/Y) : gap rear - element 1 = 200 - 130
+  = **70 mm**
+- Difference : 85 - 70 = **15 mm** = `kBackwardPushAdjustmentMm` (geometrique
+  pur, pas empirique)
+- `D_BASE` = ancien D_BASE (400 calibre pour 0 gap) + `kStartGapMm` (85) =
+  **485 mm**
+
+#### Aide-memoire JSON
+
+| Approche                  | Coordonnees centre robot          |
+| --------------------------- | ----------------------------------- |
+| P1, P2 par le bas (B)     | (x_zone, **y_element_1 - 200**)   |
+| P1, P2 par le haut (H)    | (x_zone, **y_element_1 + 200**)   |
+| P3, P4 par la gauche (G)  | (**x_element_1 - 200**, y_zone)   |
+| P3, P4 par la droite (D)  | (**x_element_1 + 200**, y_zone)   |
+
+Idem pour P11..P14 (cote jaune, miroir auto par Asserv).
 
 **Quand utiliser le backward** : pour enchainer 2 zones sans demi-tour. Si le
 robot termine une instruction en se dirigeant vers Y- (front pointe vers Y-)

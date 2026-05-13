@@ -200,11 +200,13 @@ Source de vérité : [StrategyActions2026.cpp::registerStrategyActions2026()](..
 
 **Variantes `push_back_elements_*` (rear-first)** :
 - Mêmes paramètres (zone + côté d'arrivée) que les `push_elements_*` forward, mais pousse **en arrière** : `nav.line(-dist)` au lieu de `nav.line(+dist)`.
-- Offset géométrique différent : face arrière = 130mm du centre robot (vs 115mm cote avant).
-- Ajustement empirique **-25mm** appliqué à la distance brute (calibration utilisateur, compense le sous-décalage rear-first).
+- Offset géométrique : face arrière = 130mm du centre robot (vs 115mm face avant).
+- Ajustement géométrique **-15mm** appliqué à la distance brute (= `kRobotFrontOffset - kRobotRearOffset`). Pas empirique : compense le fait que la face arrière est plus éloignée du centre, donc plus proche des cubes à placement équivalent.
 - Direction de pousse logique = inverse du cap robot (les rects SVG sont placés derrière le robot, le mapping char0/char3 est inversé).
 - Le `faceTo` du robot avant la manipulation reste à la charge de la stratégie (idem forward) : il faut orienter le robot pour que **l'arrière** pointe vers la zone à pousser.
 - Utile pour enchaîner sans demi-tour : ex. fin de push forward → push backward suivant sans `FACE_TO` intermédiaire.
+
+**Convention de placement 2026** (forward et backward identiques) : le centre robot doit être placé à **200mm de la face proche de l'élément 1**. Voir [PUSH_ELEMENTS_2026.md#convention-de-placement-2026](PUSH_ELEMENTS_2026.md) pour le détail géométrique et l'aide-mémoire des coordonnées JSON.
 
 ### 2.7 ELEMENT
 
