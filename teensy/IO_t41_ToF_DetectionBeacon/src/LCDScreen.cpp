@@ -464,9 +464,9 @@ static void testMode_timer_cb(lv_timer_t *timer) {
 }
 
 // --- Bouton SETPOS / RESET (partage toute la largeur de l'ecran avec btn_color) ---
-// matchState=0 (CONFIG) : libelle "SETPOS", vert, clic -> actionReq=1 (setPos)
-// matchState=1 (ARMED)  : libelle "METTRE TIR", rouge, clic -> actionReq=1 (reset)
-// matchState=2 (PRIMED) : libelle "WAIT TIR", rouge, clic -> actionReq=1 (reset)
+// matchState=0 (CONFIG) : libelle "SETPOS", vert, clic -> actionReq=0xA5 (setPos)
+// matchState=1 (ARMED)  : libelle "METTRE TIR", rouge, clic -> actionReq=0xA5 (reset)
+// matchState=2 (PRIMED) : libelle "WAIT TIR", rouge, clic -> actionReq=0xA5 (reset)
 // matchState>=3 (MATCH+): libelle "MATCH", gris (clic ignore)
 static lv_obj_t *btn_setpos_handle = nullptr;
 static lv_obj_t *lbl_setpos_handle = nullptr;
@@ -496,7 +496,7 @@ static void updateSetposButton() {
 	}
 }
 
-static uint32_t actionReq_set_ms = 0;  ///< Timestamp quand actionReq a ete mis a 1.
+static uint32_t actionReq_set_ms = 0;  ///< Timestamp quand actionReq a ete mis a 0xA5.
 
 // Anti-glitch XPT2046 : on utilise LV_EVENT_LONG_PRESSED (appui CONTINU >=
 // LV_INDEV_DEF_LONG_PRESS_TIME, par defaut 400 ms). Si le signal touch
@@ -512,7 +512,7 @@ static void setpos_event_cb(lv_event_t *e) {
 		if (lbl_setpos_handle) lv_label_set_text(lbl_setpos_handle, "WAIT..");
 		return;
 	}
-	settings.actionReq = 1;
+	settings.actionReq = ACTION_REQ_TRIGGER;
 	settings.seq_touch++;
 	actionReq_set_ms = millis();
 	if (lbl_setpos_handle) lv_label_set_text(lbl_setpos_handle, "OK!");
@@ -1242,7 +1242,7 @@ void screen_loop() {
 	// Timeout actionReq : si non consomme par l'OPOS6UL en 1s, reset a 0.
 	// Couvre le cas ou l'OPOS6UL n'est pas demarree.
 	if (settings.actionReq != 0 && (millis() - actionReq_set_ms > 1000)) {
-		settings.actionReq = 0;
+		settings.actionReq = ACTION_REQ_NONE;
 		updateSetposButton();
 	}
 

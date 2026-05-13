@@ -183,7 +183,7 @@ protected:
 
 	// --- O_State_NewInit : phase de match + config editable ---
 	MatchPhase phase_ = PHASE_CONFIG;
-	uint16_t   advDiameterMm_ = 400;          ///< Diamètre adversaire en MM (source de verite). Teensy protocol reste en cm via advDiameter().
+	uint16_t   advDiameterMm_ = 600;          ///< Diamètre adversaire en MM (source de verite). Teensy protocol reste en cm via advDiameter().
 	uint8_t    ledLuminosity_ = 10;           ///< Luminosité LED matrix 0..100, defaut Teensy-aligné.
 	uint8_t    testMode_      = 0;            ///< Test materiel 0=aucun, 1..5 (transitoire).
 

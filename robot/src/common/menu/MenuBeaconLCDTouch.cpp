@@ -6,16 +6,46 @@
  *
  * Ce plugin :
  *   - pollInputs : lit Settings via I2C, detecte les clics touch via seq_touch,
- *     applique les modifs dans Robot. Consomme actionReq (1=SETPOS/RESET).
+ *     applique les modifs dans Robot. Consomme actionReq (0xA5=SETPOS/RESET).
  *   - refreshDisplay : pousse Robot -> Settings vers Teensy (matchColor,
  *     strategy, advDiameter, ledLuminosity, matchState).
  */
 
 #include "MenuBeaconLCDTouch.hpp"
 
+#include <ios>
+
 #include "log/Logger.hpp"
 #include "action/Sensors.hpp"
 #include "Robot.hpp"
+
+namespace {
+
+// Detecte une lecture I2C corrompue (signature classique : "bus mort" -> tout
+// 0xFF). On compte les champs hors borne legitime. Si >= 2 champs corrompus,
+// on rejette le tick entier (pas d'adoption, pas de log d'erreur sur chaque
+// champ). seq_touch et actionReq ont leur propre verification ailleurs.
+static int countInvalidFields(const MatchSettingsData& s)
+{
+	int n = 0;
+	if (s.matchColor    > 1)   n++;        // 0 ou 1 seulement
+	if (s.strategy      > 3)   n++;        // 0..3 (0 = pas encore configure, tolere)
+	if (s.advDiameter   > 200) n++;        // bornage realiste
+	if (s.ledLuminosity > 100) n++;        // 0..100
+	if (s.testMode      > 9)   n++;        // 0..9
+	if (s.matchState    > 4)   n++;        // 0=CONFIG..4=END
+	if (s.pickup_P1     > 5)   n++;
+	if (s.pickup_P2     > 5)   n++;
+	if (s.pickup_P3     > 5)   n++;
+	if (s.pickup_P4     > 5)   n++;
+	if (s.pickup_P11    > 5)   n++;
+	if (s.pickup_P12    > 5)   n++;
+	if (s.pickup_P13    > 5)   n++;
+	if (s.pickup_P14    > 5)   n++;
+	return n;
+}
+
+}  // namespace
 
 MenuBeaconLCDTouch::MenuBeaconLCDTouch(Sensors& sensors) : sensors_(sensors)
 {
@@ -32,6 +62,20 @@ void MenuBeaconLCDTouch::pollInputs(Robot& robot)
 		alive_ = false;
 		return;
 	}
+
+	// Garde anti-glitch I2C : si plusieurs champs sont hors domaine, c'est une
+	// lecture corrompue (bus tire haut a 0xFF). On ignore le tick entier sans
+	// adopter quoi que ce soit. Le prochain syncFull devrait re-lire des valeurs
+	// correctes.
+	const int invalidCount = countInvalidFields(current);
+	if (invalidCount >= 2) {
+		logger().warn() << "[POLL] I2C glitch detected: " << invalidCount
+				<< " fields out of bounds, tick ignored (seq_touch="
+				<< (int)current.seq_touch << " actionReq=0x" << std::hex
+				<< (int)current.actionReq << std::dec << ")" << logs::end;
+		return;
+	}
+
 	if (!alive_) {
 		logger().info() << "[POLL] beacon back alive" << logs::end;
 	}
@@ -44,7 +88,7 @@ void MenuBeaconLCDTouch::pollInputs(Robot& robot)
 	// aux defaults Robot -> pas d'effet visible.
 	if (!shadowInit_) {
 		shadow_ = current;
-		shadow_.actionReq = 0;  // actionReq d'avant le boot OPOS6UL est stale, on l'ignore
+		shadow_.actionReq = ACTION_REQ_NONE;  // actionReq d'avant le boot OPOS6UL est stale, on l'ignore
 		lastSeqTouchSeen_ = current.seq_touch;
 		shadowInit_ = true;
 		logger().info() << "[POLL] first read shadow init: seq_touch=" << (int)current.seq_touch
@@ -80,10 +124,11 @@ void MenuBeaconLCDTouch::pollInputs(Robot& robot)
 		robot.setPickupP13(current.pickup_P13);
 		robot.setPickupP14(current.pickup_P14);
 
-		// Si actionReq etait a 1 au boot (stale), le consommer cote Teensy
-		if (current.actionReq != 0) {
-			sensors_.writeActionReq(0);
-			logger().info() << "[POLL] cleared stale actionReq=" << (int)current.actionReq << logs::end;
+		// Si actionReq etait non-NONE au boot (stale), le consommer cote Teensy
+		if (current.actionReq != ACTION_REQ_NONE) {
+			sensors_.writeActionReq(ACTION_REQ_NONE);
+			logger().info() << "[POLL] cleared stale actionReq=0x" << std::hex
+					<< (int)current.actionReq << std::dec << logs::end;
 		}
 
 		logger().info() << "[POLL] adopted Teensy values into Robot: color="
@@ -205,32 +250,41 @@ void MenuBeaconLCDTouch::pollInputs(Robot& robot)
 	}
 
 	// actionReq : bouton SETPOS / RESET (sens selon phase)
-	// Protection contre les lectures I2C corrompues : la Teensy fait toujours
-	// actionReq=1 ET seq_touch++ ensemble. Si actionReq=1 mais seq_touch n'avait
-	// pas change lors de la detection (prevSeqTouch), c'est un bit flip I2C.
-	if (current.actionReq != 0 && shadow_.actionReq == 0) {
+	// Cookie magique ACTION_REQ_TRIGGER (0xA5) au lieu de 1 : evite qu'un glitch
+	// I2C 0xFF (bus mort) ou bit-flip soit interprete comme un clic. La Teensy
+	// fait toujours actionReq=0xA5 ET seq_touch++ ensemble. Si on lit 0xA5 mais
+	// seq_touch n'a pas change, c'est un bit flip exact -> ignore.
+	if (current.actionReq == ACTION_REQ_TRIGGER && shadow_.actionReq != ACTION_REQ_TRIGGER) {
 		if (!seqChanged) {
-			logger().warn() << "[POLL] actionReq=1 but seq_touch unchanged ("
+			logger().warn() << "[POLL] actionReq=0x" << std::hex
+					<< (int)current.actionReq << std::dec
+					<< " but seq_touch unchanged ("
 					<< (int)current.seq_touch << ") -> I2C glitch, IGNORED" << logs::end;
 			shadow_.actionReq = current.actionReq;
 			return;
 		}
 		if (robot.phase() == PHASE_CONFIG) {
-			logger().info() << "[POLL] actionReq=1 in CONFIG -> requestSetPos" << logs::end;
+			logger().info() << "[POLL] actionReq=0x" << std::hex
+					<< (int)current.actionReq << std::dec
+					<< " in CONFIG -> requestSetPos" << logs::end;
 			robot.requestSetPos();
 		} else if (robot.phase() == PHASE_ARMED || robot.phase() == PHASE_PRIMED) {
-			logger().info() << "[POLL] actionReq=1 in phase=" << (int)robot.phase()
+			logger().info() << "[POLL] actionReq=0x" << std::hex
+					<< (int)current.actionReq << std::dec
+					<< " in phase=" << (int)robot.phase()
 					<< " -> requestReset" << logs::end;
 			robot.requestReset();
 		} else {
-			logger().warn() << "[POLL] actionReq=1 but phase=" << (int)robot.phase()
+			logger().warn() << "[POLL] actionReq=0x" << std::hex
+					<< (int)current.actionReq << std::dec
+					<< " but phase=" << (int)robot.phase()
 					<< " : IGNORED" << logs::end;
 		}
-		// Handshake : remettre a 0 cote Teensy
-		bool ok = sensors_.writeActionReq(0);
-		logger().info() << "[POLL] writeActionReq(0) ok=" << ok << logs::end;
+		// Handshake : remettre a NONE cote Teensy
+		bool ok = sensors_.writeActionReq(ACTION_REQ_NONE);
+		logger().info() << "[POLL] writeActionReq(NONE) ok=" << ok << logs::end;
 		if (ok) {
-			shadow_.actionReq = 0;
+			shadow_.actionReq = ACTION_REQ_NONE;
 		} else {
 			shadow_.actionReq = current.actionReq;
 		}

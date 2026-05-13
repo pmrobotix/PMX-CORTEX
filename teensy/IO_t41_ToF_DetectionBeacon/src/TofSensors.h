@@ -42,6 +42,13 @@
  * Voir teensy/IO_t41_ToF_DetectionBeacon/ARCHITECTURE_BEACON.md
  * section "Menu pre-match (LCD tactile)" pour l'architecture complete.
  */
+// Protocole I2C balise <-> OPOS6UL : valeur magique pour eviter qu'un glitch
+// 0xFF (bus mort, slave non ACK) ou un bit-flip isole soit interprete comme
+// un vrai clic du bouton SETPOS/RESET. Distance de Hamming = 4 vs 0xFF/0x00.
+// MUST match ACTION_REQ_TRIGGER cote OPOS6UL (ASensorsDriver.hpp).
+constexpr uint8_t ACTION_REQ_NONE    = 0x00;
+constexpr uint8_t ACTION_REQ_TRIGGER = 0xA5;
+
 struct Settings {
 	// === Bloc 1 : OPOS6UL -> Teensy (5 bytes) ===
 	int8_t  numOfBots     = 3;   ///< Reg 0. Nb max d'adv a detecter (W: OPOS6UL).
@@ -54,13 +61,13 @@ struct Settings {
 	uint8_t matchColor    = 0;   ///< Reg 5. Couleur equipe: 0=bleu, 1=jaune (W: LCD).
 	uint8_t strategy      = 0;   ///< Reg 6. N° strategie IA 1..3 (W: LCD).
 	uint8_t testMode      = 0;   ///< Reg 7. Test materiel: 0=aucun, 1..5=test dedie (W: LCD).
-	uint8_t advDiameter   = 40;  ///< Reg 8. Diametre adversaire en cm, defaut 40 (W: LCD).
+	uint8_t advDiameter   = 60;  ///< Reg 8. Diametre adversaire en cm, defaut 60 (W: LCD).
 	/// Reg 9. Bouton SETPOS/RESET clique sur le LCD tactile. Le callback LVGL
-	/// met actionReq=1 + seq_touch++. L'OPOS6UL interprete selon matchState :
-	/// CONFIG -> setPos ; ARMED|PRIMED -> reset. Puis OPOS6UL remet actionReq=0
-	/// pour "consommer" le trigger (handshake).
+	/// met actionReq=ACTION_REQ_TRIGGER (0xA5) + seq_touch++. L'OPOS6UL interprete
+	/// selon matchState : CONFIG -> setPos ; ARMED|PRIMED -> reset. Puis OPOS6UL
+	/// remet actionReq=ACTION_REQ_NONE pour "consommer" le trigger (handshake).
 	/// Voir robot/md/O_STATE_NEW_INIT.md section 6.
-	uint8_t actionReq     = 0;
+	uint8_t actionReq     = ACTION_REQ_NONE;
 
 	// Zones de prise (config pre-match). Index 0..5 dans le cycle canonique :
 	// 0=BBYY, 1=YYBB, 2=BYYB, 3=YBBY, 4=BYBY, 5=YBYB. Defaut 0=BBYY.

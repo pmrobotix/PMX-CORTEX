@@ -69,6 +69,13 @@ public:
 	}
 };
 
+// Protocole I2C balise <-> Teensy : valeur magique pour eviter qu'un glitch
+// 0xFF (bus mort, slave non ACK) ou un bit-flip isole soit interprete comme
+// un vrai clic du bouton SETPOS/RESET. Distance de Hamming = 4 vs 0xFF/0x00.
+// MUST match ACTION_REQ_TRIGGER cote Teensy (TofSensors.h).
+static constexpr uint8_t ACTION_REQ_NONE    = 0x00;
+static constexpr uint8_t ACTION_REQ_TRIGGER = 0xA5;
+
 /*!
  * \brief Miroir common des Settings expose par la balise Teensy (I2C 0x2D).
  *
@@ -92,8 +99,8 @@ struct MatchSettingsData
 	uint8_t strategy      = 0;
 	uint8_t testMode      = 0;
 	uint8_t advDiameter   = 40;
-	uint8_t actionReq     = 0;   // 1 = bouton SETPOS/RESET clique (sens selon matchState).
-	                             // OPOS6UL remet a 0 apres consommation.
+	uint8_t actionReq     = ACTION_REQ_NONE;   // ACTION_REQ_TRIGGER (0xA5) = bouton SETPOS/RESET clique
+	                                           // (sens selon matchState). OPOS6UL remet a NONE apres consommation.
 	// Zones de prise : index 0..5 dans cycle canonique
 	// (0=BBYY, 1=YYBB, 2=BYYB, 3=YBBY, 4=BYBY, 5=YBYB).
 	// Voir teensy/IO_t41_ToF_DetectionBeacon/MATCH_CONFIG_UI.md.

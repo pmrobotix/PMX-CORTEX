@@ -49,8 +49,10 @@ struct Settings
     uint8_t strategy      = 0;   // Reg 6. N° strategie IA 1..3 (W: LCD).
     uint8_t testMode      = 0;   // Reg 7. Test materiel: 0=aucun, 1..5 (W: LCD).
     uint8_t advDiameter   = 40;  // Reg 8. Diametre adversaire en cm (W: LCD).
-    uint8_t actionReq     = 0;   // Reg 9. 1 = bouton SETPOS/RESET clique (sens selon matchState).
-                                 // OPOS6UL remet a 0 apres consommation.
+    uint8_t actionReq     = 0;   // Reg 9. 0xA5 = bouton SETPOS/RESET clique (sens selon matchState).
+                                 // OPOS6UL remet a 0 apres consommation. Cookie magique
+                                 // (Hamming=4 vs 0x00/0xFF) pour rejeter glitches I2C.
+                                 // Voir ACTION_REQ_TRIGGER dans ASensorsDriver.hpp.
 
     // Zones de prise (config pre-match). Index 0..5 dans cycle canonique :
     // 0=BBYY, 1=YYBB, 2=BYYB, 3=YBBY, 4=BYBY, 5=YBYB. Defaut 0=BBYY.

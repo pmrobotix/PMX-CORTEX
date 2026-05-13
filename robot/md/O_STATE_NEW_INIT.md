@@ -309,18 +309,20 @@ Boucle O_State_NewInit (10ms) :
 
 **`pollInputs`** :
 1. Lit le bloc Settings cache via `Sensors::readMatchSettings()` (retourne `cached_settings_`, pas d'I2C).
-2. Si `seq_touch` a change depuis le dernier poll : nouveau clic touch detecte.
-3. Pour chaque champ different de `shadow_`, appelle le setter Robot approprie :
+2. **Garde anti-glitch I2C** : `countInvalidFields()` compte les champs hors bornes legitimes (matchColor>1, strategy>3, advDiameter>200, ledLuminosity>100, pickup_P*>5, testMode>9, matchState>4). Si >= 2 champs corrompus, c'est la signature d'un "bus mort" (lecture 0xFF en masse) ou d'un reboot Teensy en plein I2C. Tick entier ignore (return immediat, pas d'adoption, pas de log d'erreur par champ).
+3. Si `seq_touch` a change depuis le dernier poll : nouveau clic touch detecte.
+4. Pour chaque champ different de `shadow_`, appelle le setter Robot approprie :
    - `matchColor` -> `setMyColorChecked(PMXBLUE/PMXYELLOW)` (accepte en CONFIG uniquement)
    - `strategy` -> `setStrategyChecked("PMX1"/"PMX2"/"PMX3")`
    - `advDiameter` -> `setAdvDiameter(...)`
    - `ledLuminosity` -> `setLedLuminosity(...)`
    - `testMode` -> `triggerTestMode(...)` si != 0
-4. Si `actionReq == 1` (bouton SETPOS/RESET clique sur le touch) :
+5. Si `actionReq == ACTION_REQ_TRIGGER` (0xA5) (bouton SETPOS/RESET clique sur le touch) :
    - phase == CONFIG -> `robot.requestSetPos()`
    - phase == ARMED -> `robot.requestReset()`
-   - Ecrit `actionReq = 0` via `writeActionReq(0)` (marque pending, ecrit au prochain syncFull).
-5. Si regression de `seq_touch` : reboot Teensy detecte, reset du compteur local, pas d'adoption ce tick.
+   - Ecrit `actionReq = ACTION_REQ_NONE` (0x00) via `writeActionReq(ACTION_REQ_NONE)` (marque pending, ecrit au prochain syncFull).
+   - **Cookie magique 0xA5** : protege contre un glitch I2C qui retournerait 0xFF (= bus tire haut, slave non ACK) ou un bit-flip isole. Distance de Hamming = 4 vs 0xFF/0x00. Defini dans `TofSensors.h` cote Teensy et `ASensorsDriver.hpp` cote OPOS6UL (doivent rester identiques).
+6. Si regression de `seq_touch` : reboot Teensy detecte, reset du compteur local, pas d'adoption ce tick.
 
 **`refreshDisplay`** :
 1. Push Robot vers Settings Teensy via les `Sensors::writeXxx()` (marque pending, zero I2C) :
@@ -346,7 +348,7 @@ Boucle O_State_NewInit (10ms) :
 ### 6.4 Cote Teensy — etat actuel (fait)
 
 - `TofSensors.h` struct `Settings` : 11 bytes (5 bloc 1 + 5 bloc 2 + 1 seq_touch).
-- Champ `actionReq` (reg 9) ajoute au bloc 2 : le bouton SETPOS/RESET du LCD tactile ecrit `actionReq=1` + `seq_touch++`.
+- Champ `actionReq` (reg 9) ajoute au bloc 2 : le bouton SETPOS/RESET du LCD tactile ecrit `actionReq=ACTION_REQ_TRIGGER` (0xA5) + `seq_touch++`. Cookie magique 0xA5 au lieu de 1 pour qu'un glitch I2C (lecture 0xFF) ne soit pas interprete comme un vrai clic. Defini comme `constexpr` dans `TofSensors.h` (Teensy) et `ASensorsDriver.hpp` (OPOS6UL).
 - Champ `seq_touch` (reg 10) : incremente par CHAQUE callback LVGL qui modifie un champ du bloc 2 (matchColor, strategy, testMode, advDiameter, ledLuminosity, actionReq).
 - `static_assert(sizeof(Settings) == 11)` verrouille l'ABI I2C.
 - `LCDScreen.cpp` :
