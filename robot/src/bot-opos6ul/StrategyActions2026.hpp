@@ -103,6 +103,20 @@ float computeDistance(uint8_t pickupIdx, const char* zoneName,
 /// True si la zone est horizontale (P3, P4, P13, P14) -> suffixe se flip en YELLOW.
 bool isHorizontalZone(const char* zoneName);
 
+/*!
+ * \brief Resolution du pickup_P{N} adapte a la couleur match.
+ *
+ * En BLEU : retourne la valeur pickupP{N}() de la zone demandee.
+ * En YELLOW : retourne la valeur de la zone miroir physique
+ * (P1<->P11, P2<->P12, P3<->P13, P4<->P14), car le miroir Asserv place le
+ * robot sur la zone miroir de la table. C'est la 3eme transformation de la
+ * convention couleur (cf PUSH_ELEMENTS_2026.md), en plus du swap idx et du
+ * flip suffixe horizontal.
+ *
+ * \return idx 0..5 lu sur le robot pour la zone resolue, ou 0 si zone inconnue.
+ */
+uint8_t resolvePickupForZone(const char* zoneName, bool yellow);
+
 } // namespace push_elements_test_api
 
 #endif

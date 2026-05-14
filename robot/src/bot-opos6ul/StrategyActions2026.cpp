@@ -430,6 +430,23 @@ float computeDistance(uint8_t pickupIdx, const char* zoneName,
     return dist;
 }
 
+uint8_t resolvePickupForZone(const char* zoneName, bool yellow)
+{
+    if (zoneName == nullptr) return 0;
+    OPOS6UL_RobotExtended& robot = OPOS6UL_RobotExtended::instance();
+
+    if (strcmp(zoneName, "P1")  == 0) return yellow ? robot.pickupP11() : robot.pickupP1();
+    if (strcmp(zoneName, "P2")  == 0) return yellow ? robot.pickupP12() : robot.pickupP2();
+    if (strcmp(zoneName, "P3")  == 0) return yellow ? robot.pickupP13() : robot.pickupP3();
+    if (strcmp(zoneName, "P4")  == 0) return yellow ? robot.pickupP14() : robot.pickupP4();
+    if (strcmp(zoneName, "P11") == 0) return yellow ? robot.pickupP1()  : robot.pickupP11();
+    if (strcmp(zoneName, "P12") == 0) return yellow ? robot.pickupP2()  : robot.pickupP12();
+    if (strcmp(zoneName, "P13") == 0) return yellow ? robot.pickupP3()  : robot.pickupP13();
+    if (strcmp(zoneName, "P14") == 0) return yellow ? robot.pickupP4()  : robot.pickupP14();
+
+    return 0;
+}
+
 } // namespace push_elements_test_api
 
 // =============================================================================
@@ -439,6 +456,29 @@ float computeDistance(uint8_t pickupIdx, const char* zoneName,
 
 // Reprise de l'anonymous namespace pour les helpers locaux qui suivent.
 namespace {
+
+// Helper pour les lambdas wrappers : lit le pickup_P{N} adapte a la couleur
+// match courante du robot. Delegue au coeur logique expose dans le test API
+// (push_elements_test_api::resolvePickupForZone) pour que la regle de mapping
+// reste testable sans mocker isMatchColor.
+//
+// Convention couleur (strategie JSON ecrite EN BLEU) : en YELLOW, le miroir
+// Asserv place physiquement le robot sur la zone miroir de la table (P1<->P11,
+// P2<->P12, P3<->P13, P4<->P14). Le wrapper `push_elements_P{N}_*` doit donc
+// lire la config beacon de la zone miroir pour que la sequence physique
+// poussee soit bien celle de la zone reelle.
+//
+// La balise expose 8 configs independantes (pas de swap cote balise, cf
+// teensy/IO_t41_ToF_DetectionBeacon/MATCH_CONFIG_UI.md). C'est cote brain
+// qu'on aiguille selon la couleur.
+//
+// 3eme transformation de "Convention couleur" (cf PUSH_ELEMENTS_2026.md), en
+// plus du flip suffixe horizontal `_D` <-> `_G` et du `SWAP_COLOR_IDX[idx]`.
+uint8_t pickupForZone(const char* zoneName)
+{
+    const bool yellow = OPOS6UL_RobotExtended::instance().isMatchColor();
+    return push_elements_test_api::resolvePickupForZone(zoneName, yellow);
+}
 
 bool push_elements_zone_impl(uint8_t pickupIdx, const char* zoneName, bool sensInverse, bool backward)
 {
@@ -768,40 +808,41 @@ void registerStrategyActions2026(ActionRegistry& registry, OPOS6UL_RobotExtended
     // Cf robot/md/PUSH_ELEMENTS_2026.md.
 
     // Verticales (P1, P2, P11, P12) : _B = arrive du bas (INVERSE), _H = arrive du haut (DIRECTE)
+    // En YELLOW, pickupForZone() lit la zone miroir physique (P1<->P11, etc.).
     registry.registerAction("push_elements_P1_B",
-        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP1(),  "P1",  true);  });
+        [](){ return push_elements_zone(pickupForZone("P1"),  "P1",  true);  });
     registry.registerAction("push_elements_P1_H",
-        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP1(),  "P1",  false); });
+        [](){ return push_elements_zone(pickupForZone("P1"),  "P1",  false); });
     registry.registerAction("push_elements_P2_B",
-        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP2(),  "P2",  true);  });
+        [](){ return push_elements_zone(pickupForZone("P2"),  "P2",  true);  });
     registry.registerAction("push_elements_P2_H",
-        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP2(),  "P2",  false); });
+        [](){ return push_elements_zone(pickupForZone("P2"),  "P2",  false); });
     registry.registerAction("push_elements_P11_B",
-        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP11(), "P11", true);  });
+        [](){ return push_elements_zone(pickupForZone("P11"), "P11", true);  });
     registry.registerAction("push_elements_P11_H",
-        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP11(), "P11", false); });
+        [](){ return push_elements_zone(pickupForZone("P11"), "P11", false); });
     registry.registerAction("push_elements_P12_B",
-        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP12(), "P12", true);  });
+        [](){ return push_elements_zone(pickupForZone("P12"), "P12", true);  });
     registry.registerAction("push_elements_P12_H",
-        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP12(), "P12", false); });
+        [](){ return push_elements_zone(pickupForZone("P12"), "P12", false); });
 
     // Horizontales (P3, P4, P13, P14) : _D = arrive de droite (INVERSE), _G = arrive de gauche (DIRECTE)
     registry.registerAction("push_elements_P3_D",
-        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP3(),  "P3",  true);  });
+        [](){ return push_elements_zone(pickupForZone("P3"),  "P3",  true);  });
     registry.registerAction("push_elements_P3_G",
-        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP3(),  "P3",  false); });
+        [](){ return push_elements_zone(pickupForZone("P3"),  "P3",  false); });
     registry.registerAction("push_elements_P4_D",
-        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP4(),  "P4",  true);  });
+        [](){ return push_elements_zone(pickupForZone("P4"),  "P4",  true);  });
     registry.registerAction("push_elements_P4_G",
-        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP4(),  "P4",  false); });
+        [](){ return push_elements_zone(pickupForZone("P4"),  "P4",  false); });
     registry.registerAction("push_elements_P13_D",
-        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP13(), "P13", true);  });
+        [](){ return push_elements_zone(pickupForZone("P13"), "P13", true);  });
     registry.registerAction("push_elements_P13_G",
-        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP13(), "P13", false); });
+        [](){ return push_elements_zone(pickupForZone("P13"), "P13", false); });
     registry.registerAction("push_elements_P14_D",
-        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP14(), "P14", true);  });
+        [](){ return push_elements_zone(pickupForZone("P14"), "P14", true);  });
     registry.registerAction("push_elements_P14_G",
-        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP14(), "P14", false); });
+        [](){ return push_elements_zone(pickupForZone("P14"), "P14", false); });
 
     // --- Push elements BACKWARD : 16 entrees (variantes rear-first des 16 ci-dessus) ---
     // Variante rear-first : nav.line(-dist) au lieu de nav.line(+dist), face
@@ -813,41 +854,41 @@ void registerStrategyActions2026(ActionRegistry& registry, OPOS6UL_RobotExtended
     // Memes conventions de suffixe que forward (B/H pour verticales,
     // D/G pour horizontales).
 
-    // Verticales backward (P1, P2, P11, P12)
+    // Verticales backward (P1, P2, P11, P12) - meme regle de mapping pickup que forward.
     registry.registerAction("push_back_elements_P1_B",
-        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP1(),  "P1",  true,  /*backward=*/true); });
+        [](){ return push_elements_zone(pickupForZone("P1"),  "P1",  true,  /*backward=*/true); });
     registry.registerAction("push_back_elements_P1_H",
-        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP1(),  "P1",  false, /*backward=*/true); });
+        [](){ return push_elements_zone(pickupForZone("P1"),  "P1",  false, /*backward=*/true); });
     registry.registerAction("push_back_elements_P2_B",
-        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP2(),  "P2",  true,  /*backward=*/true); });
+        [](){ return push_elements_zone(pickupForZone("P2"),  "P2",  true,  /*backward=*/true); });
     registry.registerAction("push_back_elements_P2_H",
-        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP2(),  "P2",  false, /*backward=*/true); });
+        [](){ return push_elements_zone(pickupForZone("P2"),  "P2",  false, /*backward=*/true); });
     registry.registerAction("push_back_elements_P11_B",
-        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP11(), "P11", true,  /*backward=*/true); });
+        [](){ return push_elements_zone(pickupForZone("P11"), "P11", true,  /*backward=*/true); });
     registry.registerAction("push_back_elements_P11_H",
-        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP11(), "P11", false, /*backward=*/true); });
+        [](){ return push_elements_zone(pickupForZone("P11"), "P11", false, /*backward=*/true); });
     registry.registerAction("push_back_elements_P12_B",
-        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP12(), "P12", true,  /*backward=*/true); });
+        [](){ return push_elements_zone(pickupForZone("P12"), "P12", true,  /*backward=*/true); });
     registry.registerAction("push_back_elements_P12_H",
-        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP12(), "P12", false, /*backward=*/true); });
+        [](){ return push_elements_zone(pickupForZone("P12"), "P12", false, /*backward=*/true); });
 
     // Horizontales backward (P3, P4, P13, P14)
     registry.registerAction("push_back_elements_P3_D",
-        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP3(),  "P3",  true,  /*backward=*/true); });
+        [](){ return push_elements_zone(pickupForZone("P3"),  "P3",  true,  /*backward=*/true); });
     registry.registerAction("push_back_elements_P3_G",
-        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP3(),  "P3",  false, /*backward=*/true); });
+        [](){ return push_elements_zone(pickupForZone("P3"),  "P3",  false, /*backward=*/true); });
     registry.registerAction("push_back_elements_P4_D",
-        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP4(),  "P4",  true,  /*backward=*/true); });
+        [](){ return push_elements_zone(pickupForZone("P4"),  "P4",  true,  /*backward=*/true); });
     registry.registerAction("push_back_elements_P4_G",
-        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP4(),  "P4",  false, /*backward=*/true); });
+        [](){ return push_elements_zone(pickupForZone("P4"),  "P4",  false, /*backward=*/true); });
     registry.registerAction("push_back_elements_P13_D",
-        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP13(), "P13", true,  /*backward=*/true); });
+        [](){ return push_elements_zone(pickupForZone("P13"), "P13", true,  /*backward=*/true); });
     registry.registerAction("push_back_elements_P13_G",
-        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP13(), "P13", false, /*backward=*/true); });
+        [](){ return push_elements_zone(pickupForZone("P13"), "P13", false, /*backward=*/true); });
     registry.registerAction("push_back_elements_P14_D",
-        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP14(), "P14", true,  /*backward=*/true); });
+        [](){ return push_elements_zone(pickupForZone("P14"), "P14", true,  /*backward=*/true); });
     registry.registerAction("push_back_elements_P14_G",
-        [](){ return push_elements_zone(OPOS6UL_RobotExtended::instance().pickupP14(), "P14", false, /*backward=*/true); });
+        [](){ return push_elements_zone(pickupForZone("P14"), "P14", false, /*backward=*/true); });
 
 
 }

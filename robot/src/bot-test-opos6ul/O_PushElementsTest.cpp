@@ -190,9 +190,73 @@ void O_PushElementsTest::runValidation()
     }
 
     // -------------------------------------------------------------------------
-    // Groupe 5 : garde-fous (idx invalide -> -1).
+    // Groupe 5 : mapping P{N} <-> P{N+10} en YELLOW (3eme transformation couleur).
+    // En YELLOW le miroir Asserv place le robot sur la zone miroir physique :
+    // push_elements_P1_* doit lire pickupP11() (pas pickupP1()), etc.
+    // resolvePickupForZone est appele par les wrappers via pickupForZone() en
+    // utilisant isMatchColor() du robot. Ici on injecte le booleen pour tester
+    // les 2 couleurs sans toucher au robot.
     // -------------------------------------------------------------------------
-    std::cout << "\n[Groupe 5] Garde-fous" << std::endl;
+    std::cout << "\n[Groupe 5] Mapping P{N}<->P{N+10} en YELLOW (resolvePickupForZone)"
+              << std::endl;
+    {
+        OPOS6UL_RobotExtended& robot = OPOS6UL_RobotExtended::instance();
+        struct Pair { const char* low; const char* high; uint8_t vLow; uint8_t vHigh; };
+        const Pair pairs[] = {
+            { "P1",  "P11", 2, 4 },
+            { "P2",  "P12", 1, 3 },
+            { "P3",  "P13", 0, 5 },
+            { "P4",  "P14", 3, 2 },
+        };
+        for (const auto& p : pairs) {
+            // Set 2 valeurs differentes pour les 2 zones du couple.
+            const bool okLow  = setPickupForZone(robot, p.low,  p.vLow);
+            const bool okHigh = setPickupForZone(robot, p.high, p.vHigh);
+            if (!okLow || !okHigh) {
+                // Phase >= MATCH ou autre refus : on cast a -1 pour visualiser
+                // l'echec dans le tableau au lieu de skipper silencieusement.
+                stats.check("setPickupForZone failed (phase>=MATCH ?)",
+                            -1.0f, 0.0f);
+                continue;
+            }
+
+            // BLEU : passthrough -> resolve(low)=vLow, resolve(high)=vHigh.
+            {
+                std::ostringstream lbl;
+                lbl << p.low  << " BLUE   -> pickup" << p.low;
+                stats.check(lbl.str().c_str(),
+                            static_cast<float>(resolvePickupForZone(p.low, false)),
+                            static_cast<float>(p.vLow));
+            }
+            {
+                std::ostringstream lbl;
+                lbl << p.high << " BLUE   -> pickup" << p.high;
+                stats.check(lbl.str().c_str(),
+                            static_cast<float>(resolvePickupForZone(p.high, false)),
+                            static_cast<float>(p.vHigh));
+            }
+            // YELLOW : swap zone miroir -> resolve(low)=vHigh, resolve(high)=vLow.
+            {
+                std::ostringstream lbl;
+                lbl << p.low  << " YELLOW -> pickup" << p.high << " (swap miroir)";
+                stats.check(lbl.str().c_str(),
+                            static_cast<float>(resolvePickupForZone(p.low, true)),
+                            static_cast<float>(p.vHigh));
+            }
+            {
+                std::ostringstream lbl;
+                lbl << p.high << " YELLOW -> pickup" << p.low  << " (swap miroir)";
+                stats.check(lbl.str().c_str(),
+                            static_cast<float>(resolvePickupForZone(p.high, true)),
+                            static_cast<float>(p.vLow));
+            }
+        }
+    }
+
+    // -------------------------------------------------------------------------
+    // Groupe 6 : garde-fous (idx invalide -> -1).
+    // -------------------------------------------------------------------------
+    std::cout << "\n[Groupe 6] Garde-fous" << std::endl;
     stats.check("idx=99 P1 BLUE -> erreur (-1)",
                 computeDistance(99, "P1", false, false), -1.0f);
     stats.check("idx=6 P1 BLUE -> erreur (-1)",

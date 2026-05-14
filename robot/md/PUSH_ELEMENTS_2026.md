@@ -55,8 +55,8 @@ La balise expose 6 configurations par zone, indexees 0..5, dans cet ordre :
 
 **Convention couleur** : la strategie JSON est ecrite EN BLEU (cf commit
 3a211c52, JSON = coords BLUE, miroir Asserv applique en interne). En YELLOW,
-`push_elements_zone` applique automatiquement 2 transformations equivalentes
-au miroir physique :
+`push_elements_zone` (+ son wrapper `pickupForZone`) applique automatiquement
+3 transformations equivalentes au miroir physique :
 
 1. **Suffixe horizontal `_D` <-> `_G`** : le miroir Asserv sur X fait que le
    robot arrive du cote oppose pour les zones horizontales (P3, P4, P13, P14).
@@ -66,6 +66,13 @@ au miroir physique :
    En YELLOW, lire la valeur a l'index symetrique pousse SA propre majorite
    exactement comme le BLEU pousse la sienne, **avec UNE SEULE table de
    distances** au lieu de 2.
+3. **Zone pickup `P{N} <-> P{N+10}`** : en YELLOW, le miroir Asserv place
+   physiquement le robot sur la zone miroir de la table. Donc le wrapper
+   `push_elements_P1_*` lit `pickupP11()` (config beacon de la zone P11
+   reellement traitee) au lieu de `pickupP1()`. Idem P2/P12, P3/P13, P4/P14,
+   et leurs symetriques. La balise expose 8 configs independantes (pas de
+   swap cote balise, cf MATCH_CONFIG_UI.md) ; c'est cote brain qu'on aiguille
+   selon `isMatchColor()` via `push_elements_test_api::resolvePickupForZone`.
 
 ```cpp
 static constexpr uint8_t SWAP_COLOR_IDX[6] = { 1, 0, 3, 2, 5, 4 };
@@ -323,6 +330,10 @@ Sens de lecture des sequences balise :
 
 - Suffixe horizontal `_D` <-> `_G` (verticales `_B`/`_H` inchangees)
 - Index pickup `idx -> SWAP_COLOR_IDX[idx]`
+- Zone pickup `P{N} <-> P{N+10}` : `push_elements_P1_*` lit `pickupP11()` en
+  YELLOW (le robot opere physiquement sur la zone miroir), idem P2/P12,
+  P3/P13, P4/P14 et symetriques. Effectue par `pickupForZone()` /
+  `push_elements_test_api::resolvePickupForZone()`.
 
 Une seule paire de tables (`distDirecte`/`distInverse`) suffit pour les 2
 couleurs grace a cette symetrie.
