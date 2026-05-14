@@ -129,15 +129,14 @@ OPOS6UL_ActionsExtended::OPOS6UL_ActionsExtended(std::string botId, Robot *robot
 	sensors_.addConfigFront(false, true, false);
 	sensors_.addConfigBack(false, true, false);
 
-	int rayon_adv = 200;
-	//int rayon_adv = 160;
-	//int rayon_adv = 300;
-	//rayon robot + espace elements + rayon adv
-	//threshold_LR_mm = 140+40+150
-	sensors_.addThresholdFront(450, 140 + 240 + 40 + rayon_adv, 450);
-	sensors_.addThresholdFrontVeryClosed(200, 140 + 80 + 40 + rayon_adv, 200); //40 = patch cho
+	// Seuils centraux = BASES uniquement (rayon robot + marge elements).
+	// Le rayon_adv (advDiameterMm/2) est ajoute dynamiquement dans Sensors.cpp
+	// au moment de l'appel a filtre_levelInFront/Back, pour que le diametre
+	// configure via le menu LCD balise soit pris en compte sans rebuild.
+	sensors_.addThresholdFront(450, 140 + 240 + 40, 450);            // 420 + advR
+	sensors_.addThresholdFrontVeryClosed(200, 140 + 80 + 40, 200);   // 260 + advR (40 = patch cho)
 
-	sensors_.addThresholdBack(0, 140 + 240 + rayon_adv, 0);
-	sensors_.addThresholdBackVeryClosed(200, 140 + 80 + rayon_adv, 200);
+	sensors_.addThresholdBack(0, 140 + 240, 0);                      // 380 + advR
+	sensors_.addThresholdBackVeryClosed(200, 140 + 80, 200);         // 220 + advR
 
 }

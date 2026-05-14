@@ -324,6 +324,7 @@ static void back_to_menu_cb(lv_event_t *e);
 
 static void updateColorButton(lv_obj_t *btn) {
 	lv_obj_t *label = lv_obj_get_child(btn, 0);
+	if (!label) return;
 	if (settings.matchColor == 0) {
 		lv_obj_set_style_bg_color(btn, lv_color_make(0, 80, 200), 0);
 		lv_obj_set_style_text_color(label, lv_color_white(), 0);
@@ -423,6 +424,7 @@ static void updateStrategyButtons(void) {
 		lv_obj_set_style_bg_color(strategy_btns[i],
 				sel ? strategy_color_selected : strategy_color_unselected, 0);
 		lv_obj_t *label = lv_obj_get_child(strategy_btns[i], 0);
+		if (!label) continue;
 		lv_obj_set_style_text_color(label, sel ? lv_color_black() : lv_color_white(), 0);
 	}
 }
@@ -452,6 +454,7 @@ static void testMode_reset_all_grey(void) {
 		if (testMode_btns[i] == nullptr) continue;
 		lv_obj_set_style_bg_color(testMode_btns[i], strategy_color_unselected, 0);
 		lv_obj_t *lbl = lv_obj_get_child(testMode_btns[i], 0);
+		if (!lbl) continue;
 		lv_obj_set_style_text_color(lbl, lv_color_white(), 0);
 	}
 }
@@ -545,16 +548,16 @@ static void zones_event_cb(lv_event_t *e) {
 	(void)e;
 	// Bouton desactive apres setPos (matchState>=1) : on ignore tout clic.
 	if (settings.matchState >= 1) return;
-	lv_obj_clean(lv_scr_act());
 	invalidate_menu_handles();
+	lv_obj_clean(lv_scr_act());
 	create_pickup_config();
 	lcd_screen_state = 3;
 }
 
 static void back_to_menu_cb(lv_event_t *e) {
 	(void)e;
-	lv_obj_clean(lv_scr_act());
 	invalidate_pickup_handles();
+	lv_obj_clean(lv_scr_act());
 	create_match_menu();
 	lcd_screen_state = 0;
 }
@@ -1119,9 +1122,9 @@ static void create_pickup_config(void) {
  * Ecran match : logo PMX plein ecran + score en haut a droite (font 16).
  */
 static void show_match_screen(void) {
-	lv_obj_clean(lv_scr_act());
 	invalidate_menu_handles();
 	invalidate_pickup_handles();
+	lv_obj_clean(lv_scr_act());
 
 	lv_obj_set_style_bg_color(lv_scr_act(), lv_color_make(30, 27, 59), 0);
 
@@ -1143,9 +1146,9 @@ static void show_match_screen(void) {
  * Ecran fin de match : favicon centré en haut + score en gros en bas (font 48).
  */
 static void show_endmatch_screen(void) {
-	lv_obj_clean(lv_scr_act());
 	invalidate_menu_handles();
 	invalidate_pickup_handles();
+	lv_obj_clean(lv_scr_act());
 
 	lv_obj_set_style_bg_color(lv_scr_act(), lv_color_make(30, 27, 59), 0);
 
@@ -1211,9 +1214,9 @@ void screen_loop() {
 	// quitte la config zones uniquement via le bouton MENU (ou matchState>=3).
 	if (settings.matchState == 0 && lcd_screen_state != 0 && lcd_screen_state != 3) {
 		// OPOS6UL redemarré ou reset -> retour au menu
-		lv_obj_clean(lv_scr_act());
 		invalidate_menu_handles();
 		invalidate_pickup_handles();
+		lv_obj_clean(lv_scr_act());
 		create_match_menu();
 		lcd_screen_state = 0;
 	}

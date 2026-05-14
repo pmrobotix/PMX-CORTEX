@@ -14,22 +14,33 @@
         "type": "MOVEMENT",
         "subtype": "PATH_TO",
         "position_x": 230,
-        "position_y": 600,
+        "position_y": 500,
         "desc": "PATH_TO (230,600)"
       },
-      { "type": "MANIPULATION", "action_id": "push_elements_P1_B", "timeout": 10000 }
+      {
+        "type": "SPEED",
+        "subtype": "SET_SPEED",
+        "speed_percent": 20,
+        "desc": "cap PWM"
+      },
+      {
+        "type": "MANIPULATION",
+        "action_id": "push_elements_P1_B",
+        "timeout": 8000,
+        "desc": "Push P1 -> GM2 front-first"
+      }
     ]
   },
   {
     "id": 2,
-    "desc": "Milieu defense/poussee",
-    "priority": 90,
+    "desc": "GM6 GO",
+    "prioriy": 100,
     "tasks": [
       {
         "type": "SPEED",
         "subtype": "SET_SPEED",
-        "speed_percent": 50,
-        "desc": "SET_SPEED 50"
+        "speed_percent": 70,
+        "desc": "SPEED 70%"
       },
       {
         "type": "MOVEMENT",
@@ -40,58 +51,213 @@
       },
       {
         "type": "MOVEMENT",
-        "subtype": "FACE_TO",
-        "position_y": 900,
-        "desc": "FACE_TO adverse (0,900)",
-        "position_x": 0
-      },
-      {
-        "type": "WAIT",
-        "duration_ms": 5000,
-        "desc": "WAIT 5000ms"
+        "subtype": "PATH_TO",
+        "position_x": 1500,
+        "position_y": 1200,
+        "desc": "PATH_TO (1500,1200)"
       }
     ]
   },
   {
     "id": 3,
-    "desc": "ZC1 position attente",
-    "priority": 50,
+    "desc": "P14 G en GM13 back",
+    "priority": 90,
     "tasks": [
       {
+        "type": "SPEED",
+        "subtype": "SET_SPEED",
+        "speed_percent": 40,
+        "desc": "SPEED 40%"
+      },
+      {
+        "type": "ELEMENT",
+        "subtype": "DELETE_ZONE",
+        "item_id": "zone_P14",
+        "desc": "DELETE_ZONE P14"
+      },
+      {
         "type": "MOVEMENT",
-        "subtype": "PATH_TO",
-        "position_x": 800,
-        "position_y": 660,
-        "desc": "PATH_TO (800,660)"
+        "subtype": "PATH_BACK_TO",
+        "position_x": 1550,
+        "position_y": 1200,
+        "desc": "PATH_BACK_TO (1550,1200)"
       },
       {
         "type": "MOVEMENT",
         "subtype": "FACE_TO",
-        "position_x": 300,
-        "position_y": 650,
-        "desc": "FACE_TO (300 650"
+        "position_x": 0,
+        "position_y": 1200,
+        "desc": "FACE_TO (0,1200) - face avant vers zone bleu, face arriere vers cubes"
+      },
+      {
+        "type": "MANIPULATION",
+        "action_id": "push_back_elements_P14_G",
+        "timeout": 8000,
+        "desc": "MANIPULATION push_back_elements_P14_G"
+      },
+      {
+        "type": "ELEMENT",
+        "subtype": "ADD_ZONE",
+        "item_id": "zone_GM13",
+        "desc": "ADD_ZONE GM13"
+      }
+    ],
+    "needed_adv_out_of_zone": {
+      "x_min": 1600,
+      "y_min": 700,
+      "x_max": 2300,
+      "y_max": 1700
+    }
+  },
+  {
+    "id": 4,
+    "desc": "P4 G en GM3",
+    "priority": 80,
+    "tasks": [
+      {
+        "type": "SPEED",
+        "subtype": "SET_SPEED",
+        "speed_percent": 50,
+        "desc": "SPEED 50%"
+      },
+      {
+        "type": "ELEMENT",
+        "subtype": "DELETE_ZONE",
+        "item_id": "zone_P4",
+        "desc": "DELETE_ZONE P4"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "PATH_TO",
+        "position_x": 1450,
+        "position_y": 1200,
+        "desc": "PATH_TO (1450,1200)"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "FACE_TO",
+        "position_x": 0,
+        "position_y": 1200,
+        "desc": "FACE_TO (0,1200) - face avant vers zone bleu (cubes en X-)"
+      },
+      {
+        "type": "MANIPULATION",
+        "action_id": "push_elements_P4_D",
+        "timeout": 8000,
+        "desc": "MANIPULATION push_elements_P4_D"
+      },
+      {
+        "type": "ELEMENT",
+        "subtype": "ADD_ZONE",
+        "item_id": "zone_GM3",
+        "desc": "ADD_ZONE GM3"
       }
     ]
   },
   {
-    "id": 4,
-    "desc": "Retour zone depart (apres 90s)",
-    "priority": 1,
-    "min_match_sec": 90,
+    "id": 5,
+    "desc": "P3 D en GM4",
+    "priority": 70,
     "tasks": [
       {
-        "type": "MOVEMENT",
-        "subtype": "GO_TO",
-        "position_x": 300,
-        "position_y": 650,
-        "desc": "GO_TO (300,650)"
+        "type": "SPEED",
+        "subtype": "SET_SPEED",
+        "speed_percent": 40,
+        "desc": "SPEED 40%"
+      },
+      {
+        "type": "ELEMENT",
+        "subtype": "DELETE_ZONE",
+        "item_id": "zone_P3",
+        "desc": "DELETE_ZONE P3"
       },
       {
         "type": "MOVEMENT",
-        "subtype": "GO_TO",
+        "subtype": "PATH_TO",
+        "position_x": 1400,
+        "position_y": 1800,
+        "desc": "PATH_TO (1400,1800)"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "FACE_TO",
+        "position_x": 0,
+        "position_y": 1800,
+        "desc": "FACE_TO (0,1800) - face avant vers zone bleu (cubes en X-)"
+      },
+      {
+        "type": "MANIPULATION",
+        "action_id": "push_elements_P3_D",
+        "timeout": 8000,
+        "desc": "MANIPULATION push_elements_P3_D"
+      },
+      {
+        "type": "ELEMENT",
+        "subtype": "ADD_ZONE",
+        "item_id": "zone_GM4",
+        "desc": "ADD_ZONE GM4"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "desc": "pousser GM1 GM11",
+    "priority": 60,
+    "tasks": [
+      {
+        "type": "SPEED",
+        "subtype": "SET_SPEED",
+        "speed_percent": 40,
+        "desc": "SPEED 40%"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "PATH_TO",
+        "position_x": 900,
+        "position_y": 650,
+        "desc": "PATH_TO (900,650)"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "PATH_TO",
+        "position_x": 1550,
+        "position_y": 650,
+        "desc": "PATH_TO (1550,650)"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "PATH_BACK_TO",
+        "position_x": 1000,
+        "position_y": 650,
+        "desc": "PATH_BACK_TO (1000,650)"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "desc": "Retour ZONE (apres 88s)",
+    "priority": 1,
+    "min_match_sec": 88,
+    "tasks": [
+      {
+        "type": "SPEED",
+        "subtype": "SET_SPEED",
+        "speed_percent": 30,
+        "desc": "SPEED 30%"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "PATH_TO",
         "position_x": 300,
-        "position_y": 200,
-        "desc": "GO_TO (300,200)"
+        "position_y": 400,
+        "desc": "PATH_TO (300,400) - contourne adv via A*"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "PATH_TO",
+        "position_x": 350,
+        "position_y": 250,
+        "desc": "PATH_TO (350,250) - contourne adv via A*"
       }
     ]
   }

@@ -366,15 +366,15 @@ int Sensors::front(bool display)
 				// rayon robot + marge laterale + rayon adv, en mm.
 				// advDiameter est editable en match (menu balise), robotDiameterMm
 				// est constante PMX. Marge 20mm pour tolerance mesure beacon.
-				const int thresholdLR = robot()->robotDiameterMm() / 2
-						+ 20
-						+ robot()->advDiameterMm() / 2;
+				const int advR = robot()->advDiameterMm() / 2;
+				const int thresholdLR = robot()->robotDiameterMm() / 2 + 20 + advR;
 
-
-
-
-				level_filtered = this->filtre_levelInFront(thresholdLR, obstacleZone_.frontCenterThreshold(),
-						obstacleZone_.frontCenterVeryClosedThreshold(), botpos.d, botpos.x, botpos.y, botpos.theta_deg);
+				// Seuils centraux longitudinaux = base (config init) + rayon adv dynamique.
+				// Permet au menu LCD balise de modifier la distance d'arret en match.
+				level_filtered = this->filtre_levelInFront(thresholdLR,
+						obstacleZone_.frontCenterThreshold() + advR,
+						obstacleZone_.frontCenterVeryClosedThreshold() + advR,
+						botpos.d, botpos.x, botpos.y, botpos.theta_deg);
 				logger().debug() << __FUNCTION__ << " " << nb << " nbbots=" << botpos.nbDetectedBots
 						<< " level_filtered= " << level_filtered << logs::end;
 
@@ -594,16 +594,15 @@ int Sensors::back(bool display)
 				// rayon robot + marge laterale + rayon adv, en mm.
 				// advDiameter est editable en match (menu balise), robotDiameterMm
 				// est constante PMX. Marge 20mm pour tolerance mesure beacon.
-				const int thresholdLR = robot()->robotDiameterMm() / 2
-						+ 20
-						+ robot()->advDiameterMm() / 2;
+				const int advR = robot()->advDiameterMm() / 2;
+				const int thresholdLR = robot()->robotDiameterMm() / 2 + 20 + advR;
 
-
-
-
-
-				level_filtered = this->filtre_levelInBack(thresholdLR, obstacleZone_.backCenterThreshold(),
-						obstacleZone_.backCenterVeryClosedThreshold(), botpos.d, botpos.x, botpos.y, botpos.theta_deg);
+				// Seuils centraux longitudinaux = base (config init) + rayon adv dynamique.
+				// Permet au menu LCD balise de modifier la distance d'arret en match.
+				level_filtered = this->filtre_levelInBack(thresholdLR,
+						obstacleZone_.backCenterThreshold() + advR,
+						obstacleZone_.backCenterVeryClosedThreshold() + advR,
+						botpos.d, botpos.x, botpos.y, botpos.theta_deg);
 //				logger().error() << __FUNCTION__ << " BACKWARD___ " << nb << " nbbots=" << botpos.nbDetectedBots
 //						<< " level_filtered= " << level_filtered << logs::end;
 

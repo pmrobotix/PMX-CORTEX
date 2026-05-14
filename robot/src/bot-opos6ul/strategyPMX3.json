@@ -7,8 +7,8 @@
       {
         "type": "SPEED",
         "subtype": "SET_SPEED",
-        "speed_percent": 40,
-        "desc": "cap PWM"
+        "speed_percent": 70,
+        "desc": "SPEED 70%"
       },
       {
         "type": "MOVEMENT",
@@ -35,29 +35,65 @@
   },
   {
     "id": 2,
-    "desc": "PM14",
+    "desc": "P14 G en GM13 back",
     "priority": 90,
     "tasks": [
       {
+        "type": "SPEED",
+        "subtype": "SET_SPEED",
+        "speed_percent": 40,
+        "desc": "SPEED 40%"
+      },
+      {
+        "type": "ELEMENT",
+        "subtype": "DELETE_ZONE",
+        "item_id": "zone_P14",
+        "desc": "DELETE_ZONE P14"
+      },
+      {
         "type": "MOVEMENT",
-        "subtype": "PATH_TO",
-        "position_x": 1650,
+        "subtype": "PATH_BACK_TO",
+        "position_x": 1550,
         "position_y": 1200,
-        "desc": "PATH_TO (1650,1200)"
+        "desc": "PATH_BACK_TO (1550,1200)"
       },
       {
         "type": "MANIPULATION",
-        "action_id": "push_elements_P14_D",
-        "timeout": 10000,
-        "desc": "Pousse P14 (arrivee droite)"
+        "action_id": "push_back_elements_P14_G",
+        "timeout": 4000,
+        "desc": "MANIPULATION push_back_elements_P14_G"
+      },
+      {
+        "type": "ELEMENT",
+        "subtype": "ADD_ZONE",
+        "item_id": "zone_GM13",
+        "desc": "ADD_ZONE GM13"
       }
-    ]
+    ],
+    "needed_adv_out_of_zone": {
+      "x_min": 1600,
+      "y_min": 700,
+      "x_max": 2300,
+      "y_max": 1700
+    }
   },
   {
     "id": 3,
-    "desc": "P4 GO",
+    "desc": "P4 G en GM3",
     "priority": 80,
     "tasks": [
+      {
+        "type": "SPEED",
+        "subtype": "SET_SPEED",
+        "speed_percent": 50,
+        "desc": "SPEED 50%"
+      },
+      {
+        "type": "ELEMENT",
+        "subtype": "DELETE_ZONE",
+        "item_id": "zone_P4",
+        "desc": "DELETE_ZONE P4"
+      },
       {
         "type": "MOVEMENT",
         "subtype": "PATH_TO",
@@ -67,17 +103,78 @@
       },
       {
         "type": "MANIPULATION",
-        "action_id": "push_elements_P4_G",
-        "timeout": 10000,
-        "desc": "Pousse P4 (arrivee gauche)"
+        "action_id": "push_elements_P4_D",
+        "timeout": 2000,
+        "desc": "MANIPULATION push_elements_P4_D"
+      },
+      {
+        "type": "ELEMENT",
+        "subtype": "ADD_ZONE",
+        "item_id": "zone_GM3",
+        "desc": "ADD_ZONE GM3"
       }
     ]
   },
   {
+    "id": 7,
+    "desc": "P13 D en GM14",
+    "tasks": [
+      {
+        "type": "SPEED",
+        "subtype": "SET_SPEED",
+        "speed_percent": 40,
+        "desc": "SPEED 40%"
+      },
+      {
+        "type": "ELEMENT",
+        "subtype": "DELETE_ZONE",
+        "item_id": "zone_P13",
+        "desc": "DELETE_ZONE 13"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "PATH_BACK_TO",
+        "position_x": 1600,
+        "position_y": 1800,
+        "desc": "PATH_BACK_TO (1600,1800)"
+      },
+      {
+        "type": "MANIPULATION",
+        "action_id": "push_elements_P13_G",
+        "timeout": 3000,
+        "desc": "MANIPULATION push_elements_P13_G"
+      },
+      {
+        "type": "ELEMENT",
+        "subtype": "ADD_ZONE",
+        "item_id": "zone_GM14",
+        "desc": "ADD_ZONE GM14"
+      }
+    ],
+    "needed_adv_out_of_zone": {
+      "x_min": 1600,
+      "y_min": 1300,
+      "x_max": 2700,
+      "y_max": 1900
+    }
+  },
+  {
     "id": 4,
-    "desc": "P3 GO",
+    "desc": "P3 D en P3",
     "priority": 70,
     "tasks": [
+      {
+        "type": "SPEED",
+        "subtype": "SET_SPEED",
+        "speed_percent": 40,
+        "desc": "SPEED 40%"
+      },
+      {
+        "type": "ELEMENT",
+        "subtype": "DELETE_ZONE",
+        "item_id": "zone_P3",
+        "desc": "DELETE_ZONE P3"
+      },
       {
         "type": "MOVEMENT",
         "subtype": "PATH_TO",
@@ -86,17 +183,49 @@
         "desc": "PATH_TO (1400,1800)"
       },
       {
-        "type": "MOVEMENT",
-        "subtype": "PATH_TO",
-        "position_x": 1300,
-        "position_y": 1800,
-        "desc": "PATH_TO (1300,1800)"
-      },
-      {
         "type": "MANIPULATION",
         "action_id": "push_elements_P3_D",
-        "timeout": 10000,
-        "desc": "Pousse P3 (arrivee droite)"
+        "timeout": 2000,
+        "desc": "MANIPULATION push_elements_P3_D"
+      },
+      {
+        "type": "ELEMENT",
+        "subtype": "ADD_ZONE",
+        "item_id": "zone_GM4",
+        "desc": "ADD_ZONE GM4"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "desc": "pousser GM1 GM11",
+    "tasks": [
+      {
+        "type": "SPEED",
+        "subtype": "SET_SPEED",
+        "speed_percent": 40,
+        "desc": "SPEED 40%"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "PATH_TO",
+        "position_x": 900,
+        "position_y": 650,
+        "desc": "PATH_TO (900,650)"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "PATH_TO",
+        "position_x": 1550,
+        "position_y": 650,
+        "desc": "PATH_TO (1550,650)"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "PATH_BACK_TO",
+        "position_x": 1100,
+        "position_y": 850,
+        "desc": "PATH_BACK_TO (1100,850)"
       }
     ]
   },
@@ -108,22 +237,28 @@
       {
         "type": "SPEED",
         "subtype": "SET_SPEED",
-        "speed_percent": 40,
-        "desc": "cap PWM"
+        "speed_percent": 50,
+        "desc": "SPEED 50%"
+      },
+      {
+        "type": "ELEMENT",
+        "subtype": "DELETE_ZONE",
+        "item_id": "zone_P1",
+        "desc": "DELETE_ZONE P1"
       },
       {
         "type": "MOVEMENT",
-        "subtype": "GO_TO",
-        "position_x": 1200,
-        "position_y": 850,
-        "desc": "GO_TO (1200,850)"
-      },
-      {
-        "type": "MOVEMENT",
-        "subtype": "GO_TO",
-        "position_x": 230,
+        "subtype": "PATH_TO",
+        "position_x": 200,
         "position_y": 1100,
-        "desc": "GO_TO (230,1100)"
+        "desc": "PATH_TO (200,1100)"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "FACE_TO",
+        "position_x": 300,
+        "position_y": 400,
+        "desc": "FACE_TO (300,400)"
       }
     ]
   },
@@ -136,15 +271,15 @@
       {
         "type": "SPEED",
         "subtype": "SET_SPEED",
-        "speed_percent": 40,
-        "desc": "cap PWM"
+        "speed_percent": 30,
+        "desc": "SPEED 30%"
       },
       {
         "type": "MOVEMENT",
         "subtype": "PATH_TO",
-        "position_x": 250,
+        "position_x": 300,
         "position_y": 400,
-        "desc": "PATH_TO (250,400) - contourne adv via A*"
+        "desc": "PATH_TO (300,400) - contourne adv via A*"
       },
       {
         "type": "MOVEMENT",
