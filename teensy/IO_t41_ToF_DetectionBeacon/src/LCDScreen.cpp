@@ -532,10 +532,12 @@ static void updateColorButtonLock() {
 	}
 }
 
-// --- Visibilite du bouton ZONES selon la phase (lock en ARMED+) ---
+// --- Visibilite du bouton ZONES selon la phase (lock en MATCH+) ---
+// Les pickup zones restent editables en CONFIG/ARMED/PRIMED : tant que la
+// tirette n'est pas retiree, l'operateur peut ajuster la config zones.
 static void updateZonesButtonLock(void) {
 	if (!btn_zones_handle) return;
-	if (settings.matchState >= 1) {
+	if (settings.matchState >= 3) {
 		lv_obj_add_state(btn_zones_handle, LV_STATE_DISABLED);
 	} else {
 		lv_obj_clear_state(btn_zones_handle, LV_STATE_DISABLED);
@@ -546,8 +548,9 @@ static void updateZonesButtonLock(void) {
 
 static void zones_event_cb(lv_event_t *e) {
 	(void)e;
-	// Bouton desactive apres setPos (matchState>=1) : on ignore tout clic.
-	if (settings.matchState >= 1) return;
+	// Bouton desactive uniquement en MATCH+ (matchState>=3) : la config
+	// zones reste accessible en CONFIG/ARMED/PRIMED.
+	if (settings.matchState >= 3) return;
 	invalidate_menu_handles();
 	lv_obj_clean(lv_scr_act());
 	create_pickup_config();
@@ -1301,7 +1304,8 @@ void screen_loop() {
 
 		// matchState change (OPOS6UL a fait setPos ou reset) :
 		// - bouton SETPOS/RESET change de libelle/couleur
-		// - boutons couleur et ZONES verrouilles visuellement en ARMED+
+		// - bouton couleur verrouille visuellement en ARMED+
+		// - bouton ZONES verrouille uniquement en MATCH+ (editable en PRIMED)
 		if (settings.matchState != last_matchState) {
 			updateSetposButton();
 			updateColorButtonLock();
