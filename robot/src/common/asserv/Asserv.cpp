@@ -230,8 +230,8 @@ void Asserv::setSpeed(int percent)
 	// Implementation : choix a ajuster selon les tests.
 	// Default : applique les 2 mecanismes (cap PWM + scale acc/dec).
 	// Pour tester un seul, commenter l'autre.
-	setMaxSpeed(true, percent, percent);
-	//setAccDecPercent(percent);
+	//setMaxSpeed(true, percent, percent);
+	setAccDecPercent(percent);
 }
 
 void Asserv::applySpeedSnapshotDirect(bool maxSpeedActive, int maxSpeedPct, int accDecPct)

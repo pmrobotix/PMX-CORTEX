@@ -221,7 +221,7 @@ bool end_of_match_top()
     ROBOTPOSITION zone;
 
     robot.lastAction(true);
-    robot.asserv().setMaxSpeed(true, 40);
+    robot.asserv().setMaxSpeed(true, 100);
     robot.actions().sensors().setIgnoreFrontNearObstacle(true, false, true);
     robot.actions().sensors().setIgnoreBackNearObstacle(true, true, true);
 
@@ -279,7 +279,7 @@ bool push_prise_bas()
     TRAJ_STATE ts = TRAJ_IDLE;
     ROBOTPOSITION zone;
 
-    robot.asserv().setMaxSpeed(true, 40);
+    robot.asserv().setMaxSpeed(true, 100);
     robot.actions().sensors().setIgnoreFrontNearObstacle(true, true, true);
     robot.actions().sensors().setIgnoreBackNearObstacle(true, true, true);
     logger().info() << __FUNCTION__ << " start push_prise_bas x=" << zone.x << " y=" << zone.y << logs::end;
@@ -549,7 +549,7 @@ bool push_elements_zone_impl(uint8_t pickupIdx, const char* zoneName, bool sensI
     auto restoreSpeed = [&] { robot.asserv().setMaxSpeed(prevSpeedActive, prevSpeedPct); };
 
     // Vitesse reduite pour la pousse (couple max, eviter de balayer les pieces).
-    robot.asserv().setMaxSpeed(true, 20);
+    //robot.asserv().setMaxSpeed(true, 20);
     // Front center actif (collision sur element pousse), front lateral + back ignores.
     robot.actions().sensors().setIgnoreFrontNearObstacle(true, false, true);
     robot.actions().sensors().setIgnoreBackNearObstacle(true, false, true);

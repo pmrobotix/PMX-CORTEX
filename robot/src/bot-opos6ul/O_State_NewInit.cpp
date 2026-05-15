@@ -383,7 +383,7 @@ void O_State_NewInit::setPos()
 
 	robot.actions().ax12_init();
 
-	robot.asserv().setSpeed(20);
+	robot.asserv().setSpeed(100);
 
 	if (useJsonInit) {
 		// Mode /s : pre-tirette pilote par setpos_tasks du JSON init.

@@ -7,7 +7,7 @@
       {
         "type": "SPEED",
         "subtype": "SET_SPEED",
-        "speed_percent": 40,
+        "speed_percent": 100,
         "desc": "cap PWM"
       },
       {
@@ -20,7 +20,7 @@
       {
         "type": "SPEED",
         "subtype": "SET_SPEED",
-        "speed_percent": 20,
+        "speed_percent": 100,
         "desc": "cap PWM"
       },
       {
@@ -39,7 +39,7 @@
       {
         "type": "SPEED",
         "subtype": "SET_SPEED",
-        "speed_percent": 70,
+        "speed_percent": 100,
         "desc": "SPEED 70%"
       },
       {
@@ -66,7 +66,7 @@
       {
         "type": "SPEED",
         "subtype": "SET_SPEED",
-        "speed_percent": 40,
+        "speed_percent": 100,
         "desc": "SPEED 40%"
       },
       {
@@ -117,7 +117,7 @@
       {
         "type": "SPEED",
         "subtype": "SET_SPEED",
-        "speed_percent": 50,
+        "speed_percent": 100,
         "desc": "SPEED 50%"
       },
       {
@@ -162,7 +162,7 @@
       {
         "type": "SPEED",
         "subtype": "SET_SPEED",
-        "speed_percent": 40,
+        "speed_percent": 100,
         "desc": "SPEED 40%"
       },
       {
@@ -207,7 +207,7 @@
       {
         "type": "SPEED",
         "subtype": "SET_SPEED",
-        "speed_percent": 40,
+        "speed_percent": 100,
         "desc": "SPEED 40%"
       },
       {
@@ -242,7 +242,7 @@
       {
         "type": "SPEED",
         "subtype": "SET_SPEED",
-        "speed_percent": 30,
+        "speed_percent": 100,
         "desc": "SPEED 30%"
       },
       {
