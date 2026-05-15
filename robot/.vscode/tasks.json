@@ -202,6 +202,23 @@
             "presentation": { "reveal": "always", "panel": "shared", "focus": true, "clear": true }
         },
         {
+            // Build incrémental PlotJuggler + plugin asserv_stream, puis lance
+            // PlotJuggler bundle avec le plugin chargé via --plugin_folders.
+            "label": "PlotJuggler",
+            "type": "shell",
+            "command": "cmake --build /home/pmx/git/plotjuggler_asservstream_plugin/PlotJuggler/build -j$(nproc) && cmake --build /home/pmx/git/plotjuggler_asservstream_plugin/asserv_stream_plugin/build -j$(nproc) && echo '🤖 Lancement PlotJuggler...' && setsid -f /home/pmx/git/plotjuggler_asservstream_plugin/PlotJuggler/build/bin/plotjuggler --plugin_folders /home/pmx/git/plotjuggler_asservstream_plugin/asserv_stream_plugin/build </dev/null >/dev/null 2>&1",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "statusbar": {
+                    "hide": false,
+                    "label": "$(graph) PlotJuggler",
+                    "color": "#C678DD"
+                }
+            },
+            "problemMatcher": [],
+            "presentation": { "reveal": "always", "panel": "shared", "focus": false }
+        },
+        {
             // Sync strategyPMX{0,1,2,3}.json depuis le simu vers bot-opos6ul
             // Regle : on edite TOUJOURS dans simulator/resources/2026/, puis on clique ce bouton.
             "label": "Strat: SIMU→BOT",
