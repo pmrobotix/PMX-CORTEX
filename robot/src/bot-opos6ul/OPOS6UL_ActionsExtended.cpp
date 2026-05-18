@@ -133,10 +133,10 @@ OPOS6UL_ActionsExtended::OPOS6UL_ActionsExtended(std::string botId, Robot *robot
 	// Le rayon_adv (advDiameterMm/2) est ajoute dynamiquement dans Sensors.cpp
 	// au moment de l'appel a filtre_levelInFront/Back, pour que le diametre
 	// configure via le menu LCD balise soit pris en compte sans rebuild.
-	sensors_.addThresholdFront(450, 140 + 240 + 40, 450);            // 420 + advR
-	sensors_.addThresholdFrontVeryClosed(200, 140 + 80 + 40, 200);   // 260 + advR (40 = patch cho)
+	sensors_.addThresholdFront(450, 140 + 240 + 40 + 80, 450);            // 420 + advR
+	sensors_.addThresholdFrontVeryClosed(200, 140 + 80 + 40 + 100, 200);   // 260 + advR (40 = patch cho)
 
-	sensors_.addThresholdBack(0, 140 + 240, 0);                      // 380 + advR
-	sensors_.addThresholdBackVeryClosed(200, 140 + 80, 200);         // 220 + advR
+	sensors_.addThresholdBack(0, 140 + 240 + 40 + 80, 0);                      // 380 + advR
+	sensors_.addThresholdBackVeryClosed(200, 140 + 80 + 40 + 100, 200);         // 220 + advR
 
 }
