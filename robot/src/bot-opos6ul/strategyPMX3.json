@@ -7,8 +7,8 @@
       {
         "type": "SPEED",
         "subtype": "SET_SPEED",
-        "speed_percent": 70,
-        "desc": "SPEED 70%"
+        "speed_percent": 100,
+        "desc": "SPEED 100%"
       },
       {
         "type": "MOVEMENT",
@@ -41,8 +41,8 @@
       {
         "type": "SPEED",
         "subtype": "SET_SPEED",
-        "speed_percent": 40,
-        "desc": "SPEED 40%"
+        "speed_percent": 100,
+        "desc": "SPEED 100%"
       },
       {
         "type": "ELEMENT",
@@ -55,12 +55,19 @@
         "subtype": "PATH_BACK_TO",
         "position_x": 1550,
         "position_y": 1200,
-        "desc": "PATH_BACK_TO (1550,1200)"
+        "desc": "PATH_BACK_TO (1550,1200) (patch 2cm de moins ne fct pas ??)"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "FACE_TO",
+        "position_x": 0,
+        "position_y": 1200,
+        "desc": "FACE_TO (0,1200) - face avant vers zone bleu, face arriere vers cubes"
       },
       {
         "type": "MANIPULATION",
         "action_id": "push_back_elements_P14_G",
-        "timeout": 4000,
+        "timeout": 8000,
         "desc": "MANIPULATION push_back_elements_P14_G"
       },
       {
@@ -85,8 +92,8 @@
       {
         "type": "SPEED",
         "subtype": "SET_SPEED",
-        "speed_percent": 50,
-        "desc": "SPEED 50%"
+        "speed_percent": 100,
+        "desc": "SPEED 100%"
       },
       {
         "type": "ELEMENT",
@@ -97,14 +104,21 @@
       {
         "type": "MOVEMENT",
         "subtype": "PATH_TO",
-        "position_x": 1350,
+        "position_x": 1450,
         "position_y": 1200,
-        "desc": "PATH_TO (1350,1200)"
+        "desc": "PATH_TO (1450,1200)"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "FACE_TO",
+        "position_x": 0,
+        "position_y": 1200,
+        "desc": "FACE_TO (0,1200) - face avant vers zone bleu (cubes en X-)"
       },
       {
         "type": "MANIPULATION",
         "action_id": "push_elements_P4_D",
-        "timeout": 2000,
+        "timeout": 8000,
         "desc": "MANIPULATION push_elements_P4_D"
       },
       {
@@ -117,32 +131,40 @@
   },
   {
     "id": 7,
-    "desc": "P13 D en GM14",
+    "desc": "P13 G en GM14",
+    "priority": 70,
     "tasks": [
       {
         "type": "SPEED",
         "subtype": "SET_SPEED",
-        "speed_percent": 40,
-        "desc": "SPEED 40%"
+        "speed_percent": 100,
+        "desc": "SPEED 100%"
       },
       {
         "type": "ELEMENT",
         "subtype": "DELETE_ZONE",
         "item_id": "zone_P13",
-        "desc": "DELETE_ZONE 13"
+        "desc": "DELETE_ZONE P13"
       },
       {
         "type": "MOVEMENT",
-        "subtype": "PATH_BACK_TO",
+        "subtype": "PATH_TO",
         "position_x": 1600,
-        "position_y": 1800,
-        "desc": "PATH_BACK_TO (1600,1800)"
+        "position_y": 1700,
+        "desc": "PATH_TO (1600,1700)"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "FACE_TO",
+        "position_x": 0,
+        "position_y": 1700,
+        "desc": "FACE_TO (0,1700) - face avant vers zone bleu (cubes en X-)"
       },
       {
         "type": "MANIPULATION",
-        "action_id": "push_elements_P13_G",
-        "timeout": 3000,
-        "desc": "MANIPULATION push_elements_P13_G"
+        "action_id": "push_back_elements_P13_G",
+        "timeout": 8000,
+        "desc": "MANIPULATION push_back_elements_P13_G"
       },
       {
         "type": "ELEMENT",
@@ -152,22 +174,22 @@
       }
     ],
     "needed_adv_out_of_zone": {
-      "x_min": 1600,
-      "y_min": 1300,
-      "x_max": 2700,
-      "y_max": 1900
+      "x_min": 2125,
+      "y_min": 1610,
+      "x_max": 2497,
+      "y_max": 1930
     }
   },
   {
     "id": 4,
-    "desc": "P3 D en P3",
+    "desc": "P3 D en GM4",
     "priority": 70,
     "tasks": [
       {
         "type": "SPEED",
         "subtype": "SET_SPEED",
-        "speed_percent": 40,
-        "desc": "SPEED 40%"
+        "speed_percent": 100,
+        "desc": "SPEED 100%"
       },
       {
         "type": "ELEMENT",
@@ -179,14 +201,45 @@
         "type": "MOVEMENT",
         "subtype": "PATH_TO",
         "position_x": 1400,
+        "position_y": 1790,
+        "desc": "PATH_TO (1400,1790)"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "FACE_TO",
+        "position_x": 0,
         "position_y": 1800,
-        "desc": "PATH_TO (1400,1800)"
+        "desc": "FACE_TO (0,1800) - face avant vers zone bleu (cubes en X-)"
+      },
+      {
+        "type": "MANIPULATION",
+        "action_id": "bras_droit",
+        "timeout": 2000,
+        "desc": "MANIPULATION bras_droit"
+      },
+      {
+        "type": "MANIPULATION",
+        "action_id": "bras_gauche",
+        "timeout": 2000,
+        "desc": "MANIPULATION bras_gauche"
       },
       {
         "type": "MANIPULATION",
         "action_id": "push_elements_P3_D",
-        "timeout": 2000,
+        "timeout": 8000,
         "desc": "MANIPULATION push_elements_P3_D"
+      },
+      {
+        "type": "MANIPULATION",
+        "action_id": "bras_droit_init",
+        "timeout": 2000,
+        "desc": "MANIPULATION bras_droit_init"
+      },
+      {
+        "type": "MANIPULATION",
+        "action_id": "bras_gauche_init",
+        "timeout": 2000,
+        "desc": "MANIPULATION bras_gauche_init"
       },
       {
         "type": "ELEMENT",
@@ -203,8 +256,8 @@
       {
         "type": "SPEED",
         "subtype": "SET_SPEED",
-        "speed_percent": 40,
-        "desc": "SPEED 40%"
+        "speed_percent": 100,
+        "desc": "SPEED 100%"
       },
       {
         "type": "MOVEMENT",
@@ -237,8 +290,8 @@
       {
         "type": "SPEED",
         "subtype": "SET_SPEED",
-        "speed_percent": 50,
-        "desc": "SPEED 50%"
+        "speed_percent": 100,
+        "desc": "SPEED 100%"
       },
       {
         "type": "ELEMENT",
@@ -248,10 +301,10 @@
       },
       {
         "type": "MOVEMENT",
-        "subtype": "PATH_TO",
+        "subtype": "PATH_BACK_TO",
         "position_x": 200,
         "position_y": 1100,
-        "desc": "PATH_TO (200,1100)"
+        "desc": "PATH_BACK_TO (200,1100)"
       },
       {
         "type": "MOVEMENT",
@@ -271,22 +324,35 @@
       {
         "type": "SPEED",
         "subtype": "SET_SPEED",
-        "speed_percent": 30,
-        "desc": "SPEED 30%"
-      },
-      {
-        "type": "MOVEMENT",
-        "subtype": "PATH_TO",
-        "position_x": 300,
-        "position_y": 400,
-        "desc": "PATH_TO (300,400) - contourne adv via A*"
+        "speed_percent": 100,
+        "desc": "SPEED 100%"
       },
       {
         "type": "MOVEMENT",
         "subtype": "PATH_TO",
         "position_x": 350,
-        "position_y": 250,
-        "desc": "PATH_TO (350,250) - contourne adv via A*"
+        "position_y": 400,
+        "desc": "PATH_TO (350,400) - contourne adv via A*"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "FACE_TO",
+        "position_x": 300,
+        "position_y": 700,
+        "desc": "FACE_TO (300,700)"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "FACE_TO",
+        "position_x": 0,
+        "position_y": 100,
+        "desc": "FACE_TO (0,100)"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "LINE",
+        "dist": 200,
+        "desc": "LINE dist=200"
       }
     ]
   }

@@ -8,7 +8,7 @@
         "type": "SPEED",
         "subtype": "SET_SPEED",
         "speed_percent": 100,
-        "desc": "cap PWM"
+        "desc": "SPEED 100%"
       },
       {
         "type": "MOVEMENT",
@@ -21,7 +21,7 @@
         "type": "SPEED",
         "subtype": "SET_SPEED",
         "speed_percent": 100,
-        "desc": "cap PWM"
+        "desc": "SPEED 100%"
       },
       {
         "type": "MANIPULATION",
@@ -40,7 +40,7 @@
         "type": "SPEED",
         "subtype": "SET_SPEED",
         "speed_percent": 100,
-        "desc": "SPEED 70%"
+        "desc": "SPEED 100%"
       },
       {
         "type": "MOVEMENT",
@@ -67,7 +67,7 @@
         "type": "SPEED",
         "subtype": "SET_SPEED",
         "speed_percent": 100,
-        "desc": "SPEED 40%"
+        "desc": "SPEED 100%"
       },
       {
         "type": "ELEMENT",
@@ -80,7 +80,7 @@
         "subtype": "PATH_BACK_TO",
         "position_x": 1550,
         "position_y": 1200,
-        "desc": "PATH_BACK_TO (1550,1200)"
+        "desc": "PATH_BACK_TO (1550,1200) (patch 2cm de moins ne fct pas ??)"
       },
       {
         "type": "MOVEMENT",
@@ -118,7 +118,7 @@
         "type": "SPEED",
         "subtype": "SET_SPEED",
         "speed_percent": 100,
-        "desc": "SPEED 50%"
+        "desc": "SPEED 100%"
       },
       {
         "type": "ELEMENT",
@@ -156,6 +156,57 @@
   },
   {
     "id": 5,
+    "desc": "P13 G en GM14",
+    "priority": 70,
+    "tasks": [
+      {
+        "type": "SPEED",
+        "subtype": "SET_SPEED",
+        "speed_percent": 100,
+        "desc": "SPEED 100%"
+      },
+      {
+        "type": "ELEMENT",
+        "subtype": "DELETE_ZONE",
+        "item_id": "zone_P13",
+        "desc": "DELETE_ZONE P13"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "PATH_TO",
+        "position_x": 1600,
+        "position_y": 1700,
+        "desc": "PATH_TO (1600,1700)"
+      },
+      {
+        "type": "MOVEMENT",
+        "subtype": "FACE_TO",
+        "position_x": 0,
+        "position_y": 1700,
+        "desc": "FACE_TO (0,1700) - face avant vers zone bleu (cubes en X-)"
+      },
+      {
+        "type": "MANIPULATION",
+        "action_id": "push_back_elements_P13_G",
+        "timeout": 8000,
+        "desc": "MANIPULATION push_back_elements_P13_G"
+      },
+      {
+        "type": "ELEMENT",
+        "subtype": "ADD_ZONE",
+        "item_id": "zone_GM14",
+        "desc": "ADD_ZONE GM14"
+      }
+    ],
+    "needed_adv_out_of_zone": {
+      "x_min": 2125,
+      "y_min": 1610,
+      "x_max": 2497,
+      "y_max": 1930
+    }
+  },
+  {
+    "id": 7,
     "desc": "P3 D en GM4",
     "priority": 70,
     "tasks": [
@@ -163,7 +214,7 @@
         "type": "SPEED",
         "subtype": "SET_SPEED",
         "speed_percent": 100,
-        "desc": "SPEED 40%"
+        "desc": "SPEED 100%"
       },
       {
         "type": "ELEMENT",
@@ -175,8 +226,8 @@
         "type": "MOVEMENT",
         "subtype": "PATH_TO",
         "position_x": 1400,
-        "position_y": 1800,
-        "desc": "PATH_TO (1400,1800)"
+        "position_y": 1790,
+        "desc": "PATH_TO (1400,1790)"
       },
       {
         "type": "MOVEMENT",
@@ -187,9 +238,33 @@
       },
       {
         "type": "MANIPULATION",
+        "action_id": "bras_droit",
+        "timeout": 2000,
+        "desc": "MANIPULATION bras_droit"
+      },
+      {
+        "type": "MANIPULATION",
+        "action_id": "bras_gauche",
+        "timeout": 2000,
+        "desc": "MANIPULATION bras_gauche"
+      },
+      {
+        "type": "MANIPULATION",
         "action_id": "push_elements_P3_D",
         "timeout": 8000,
         "desc": "MANIPULATION push_elements_P3_D"
+      },
+      {
+        "type": "MANIPULATION",
+        "action_id": "bras_droit_init",
+        "timeout": 2000,
+        "desc": "MANIPULATION bras_droit_init"
+      },
+      {
+        "type": "MANIPULATION",
+        "action_id": "bras_gauche_init",
+        "timeout": 2000,
+        "desc": "MANIPULATION bras_gauche_init"
       },
       {
         "type": "ELEMENT",
@@ -208,42 +283,42 @@
         "type": "SPEED",
         "subtype": "SET_SPEED",
         "speed_percent": 100,
-        "desc": "SPEED 40%"
+        "desc": "SPEED 100%"
       },
       {
         "type": "MOVEMENT",
         "subtype": "PATH_TO",
         "position_x": 900,
-        "position_y": 650,
+        "position_y": 690,
         "desc": "PATH_TO (900,650)"
       },
       {
         "type": "MOVEMENT",
         "subtype": "PATH_TO",
         "position_x": 1550,
-        "position_y": 650,
+        "position_y": 690,
         "desc": "PATH_TO (1550,650)"
       },
       {
         "type": "MOVEMENT",
         "subtype": "PATH_BACK_TO",
         "position_x": 1000,
-        "position_y": 650,
+        "position_y": 690,
         "desc": "PATH_BACK_TO (1000,650)"
       }
     ]
   },
   {
     "id": 10,
-    "desc": "Retour ZONE (apres 88s)",
+    "desc": "Retour ZONE (apres 90s)",
     "priority": 1,
-    "min_match_sec": 88,
+    "min_match_sec": 90,
     "tasks": [
       {
         "type": "SPEED",
         "subtype": "SET_SPEED",
         "speed_percent": 100,
-        "desc": "SPEED 30%"
+        "desc": "SPEED 100%"
       },
       {
         "type": "MOVEMENT",

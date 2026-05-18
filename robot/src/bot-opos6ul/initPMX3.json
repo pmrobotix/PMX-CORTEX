@@ -1,5 +1,5 @@
 {
-  "x": 250,
+  "x": 230,
   "y": 130,
   "theta": 90,
   "regX": 0,
@@ -15,14 +15,7 @@
       "type": "MOVEMENT",
       "subtype": "LINE",
       "dist": 80,
-      "desc": "LINE dist=100"
-    },
-    {
-      "type": "MOVEMENT",
-      "subtype": "FACE_TO",
-      "position_x": 600,
-      "position_y": 800,
-      "desc": "FACE_TO (600,800)"
+      "desc": "LINE dist=80"
     }
   ]
 }
