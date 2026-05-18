@@ -94,6 +94,45 @@ bool setPickupForZone(OPOS6UL_RobotExtended& robot, const char* zone, uint8_t id
     return false;
 }
 
+// Replique le mapping miroir physique P{N}<->P{N+10} (cf mirrorZone() dans
+// StrategyActions2026.cpp, non expose hors du fichier). Retourne zone inchangee
+// si aucun mapping.
+const char* mirrorZoneTest(const char* zone)
+{
+    if (zone == nullptr) return zone;
+    if (std::strcmp(zone, "P1")  == 0) return "P11";
+    if (std::strcmp(zone, "P2")  == 0) return "P12";
+    if (std::strcmp(zone, "P3")  == 0) return "P13";
+    if (std::strcmp(zone, "P4")  == 0) return "P14";
+    if (std::strcmp(zone, "P11") == 0) return "P1";
+    if (std::strcmp(zone, "P12") == 0) return "P2";
+    if (std::strcmp(zone, "P13") == 0) return "P3";
+    if (std::strcmp(zone, "P14") == 0) return "P4";
+    return zone;
+}
+
+// Calcule l'attendu de computeDistance() en repliquant la logique :
+// swap idx + flip suffixe horizontal en YELLOW, override par zone physique
+// (sur idx post-swap), puis D_BASE + dist[idx] + zoneOffset.
+float expectedDistance(uint8_t idx, const char* zone, bool sensInverse, bool yellow)
+{
+    using namespace push_elements_test_api;
+    uint8_t     postIdx  = idx;
+    bool        inv      = sensInverse;
+    if (yellow) {
+        if (isHorizontalZone(zone)) inv = !inv;
+        postIdx = SWAP_COLOR_IDX[idx];
+    }
+    const char* physZone = yellow ? mirrorZoneTest(zone) : zone;
+    const float ov       = distOverrideFor(physZone, postIdx);
+    // kNoOverride = 1e9f cote StrategyActions2026.cpp ; on teste la sentinelle
+    // avec un seuil large (toute distance reelle est tres inferieure a 1e8).
+    const bool  hasOv    = (ov < 1.0e8f);
+    const float distBase = hasOv ? ov
+                                 : (inv ? distInverseAt(postIdx) : distDirecteAt(postIdx));
+    return dBaseMm() + distBase + zoneOffsetFor(zone);
+}
+
 } // namespace
 
 void O_PushElementsTest::runValidation()
@@ -143,50 +182,103 @@ void O_PushElementsTest::runValidation()
     // -------------------------------------------------------------------------
     // Groupe 3 : YELLOW + zone HORIZONTALE -> flip suffixe + swap idx.
     // P3 sans offset. Input sensInverse=false -> apres flip = true -> distInverse.
+    // En YELLOW, physZone = mirrorZone("P3") = "P13" : l'override -175 de P13
+    // s'applique a P3 YELLOW idx -> SWAP[idx]==2. expectedDistance() en tient
+    // compte (les attendus restent verts apres l'ajout de l'override).
     // -------------------------------------------------------------------------
     std::cout << "\n[Groupe 3] YELLOW horizontale P3 (flip suffixe + swap idx)" << std::endl;
     for (uint8_t k = 0; k < 6; ++k) {
-        // Input directe -> flip horiz -> inverse -> B + distInverseAt(SWAP[k])
-        const float exp = B + distInverseAt(SWAP_COLOR_IDX[k]);
+        // Input directe -> flip horiz -> inverse ; override sur physZone "P13".
         stats.check(label("P3", false, true, k).c_str(),
-                    computeDistance(k, "P3", false, true), exp);
+                    computeDistance(k, "P3", false, true),
+                    expectedDistance(k, "P3", false, true));
     }
     for (uint8_t k = 0; k < 6; ++k) {
-        // Input inverse -> flip horiz -> directe -> B + distDirecteAt(SWAP[k])
-        const float exp = B + distDirecteAt(SWAP_COLOR_IDX[k]);
+        // Input inverse -> flip horiz -> directe ; override sur physZone "P13".
         stats.check(label("P3", true, true, k).c_str(),
-                    computeDistance(k, "P3", true, true), exp);
+                    computeDistance(k, "P3", true, true),
+                    expectedDistance(k, "P3", true, true));
     }
 
     // -------------------------------------------------------------------------
-    // Groupe 4 : Offsets P4 et P14.
-    // P4 BLEU directe : B + distDirecteAt(k) + zoneOffset_P4.
-    // P14 YELLOW directe : flip horiz -> inverse -> B + distInverseAt(SWAP[k]) + offset_P14.
+    // Groupe 4 : Offsets P4 et P14 + override de dist[idx].
+    // Les attendus sont derives par expectedDistance() qui replique la logique
+    // de computeDistance (swap idx, flip suffixe horizontal, override par zone
+    // physique, offset). P4/P14 ont un override -175 @ idx 2 (post-swap).
     // -------------------------------------------------------------------------
-    std::cout << "\n[Groupe 4] Offsets P4 / P14" << std::endl;
+    std::cout << "\n[Groupe 4] Offsets P4 / P14 + override dist[idx]" << std::endl;
     {
+        // k=0 : pas d'override (kNoOverride @ idx 0) -> table partagee.
         const uint8_t k = 0;
-        const float expP4 = B + distDirecteAt(k) + zoneOffsetFor("P4");
         stats.check(label("P4", false, false, k).c_str(),
-                    computeDistance(k, "P4", false, false), expP4);
+                    computeDistance(k, "P4", false, false),
+                    expectedDistance(k, "P4", false, false));
     }
     {
-        const uint8_t k = 2;  // BYYB (table la plus longue) pour eviter dist<=0
-        const float expP4 = B + distInverseAt(k) + zoneOffsetFor("P4");
-        stats.check(label("P4", true, false, k).c_str(),
-                    computeDistance(k, "P4", true, false), expP4);
-    }
-    {
-        const uint8_t k = 0;
-        const float expP14 = B + distInverseAt(SWAP_COLOR_IDX[k]) + zoneOffsetFor("P14");
-        stats.check(label("P14", false, true, k).c_str(),
-                    computeDistance(k, "P14", false, true), expP14);
-    }
-    {
+        // k=2 : OVERRIDE -175 actif (P4 idx 2). distInverse[2] ignoree.
         const uint8_t k = 2;
-        const float expP14 = B + distDirecteAt(SWAP_COLOR_IDX[k]) + zoneOffsetFor("P14");
+        stats.check(label("P4", true, false, k).c_str(),
+                    computeDistance(k, "P4", true, false),
+                    expectedDistance(k, "P4", true, false));
+    }
+    {
+        // P14 YELLOW : physZone = mirrorZone("P14") = "P4". k=0 -> pas d'override.
+        const uint8_t k = 0;
+        stats.check(label("P14", false, true, k).c_str(),
+                    computeDistance(k, "P14", false, true),
+                    expectedDistance(k, "P14", false, true));
+    }
+    {
+        // P14 YELLOW : SWAP[k=3]=2 -> physZone "P4" idx 2 -> OVERRIDE -175 actif.
+        const uint8_t k = 3;
         stats.check(label("P14", true, true, k).c_str(),
-                    computeDistance(k, "P14", true, true), expP14);
+                    computeDistance(k, "P14", true, true),
+                    expectedDistance(k, "P14", true, true));
+    }
+
+    // -------------------------------------------------------------------------
+    // Groupe 4b : override de zone "P inversee" P13 + miroir YELLOW.
+    // P13 a un override -175 @ idx 2. Verifie en particulier le comportement
+    // yellow : wrapper "P13" en yellow -> physiquement P3 -> PAS d'override ;
+    // wrapper "P3" en yellow -> physiquement P13 -> override -175.
+    // -------------------------------------------------------------------------
+    std::cout << "\n[Groupe 4b] Override P13 + miroir YELLOW (P3<->P13)" << std::endl;
+    {
+        // P13 BLEU directe, idx 2 -> override -175 (zone physique P13).
+        const uint8_t k = 2;
+        stats.check(label("P13", false, false, k).c_str(),
+                    computeDistance(k, "P13", false, false),
+                    expectedDistance(k, "P13", false, false));
+    }
+    {
+        // P13 BLEU directe, idx 0 -> pas d'override -> table partagee.
+        const uint8_t k = 0;
+        stats.check(label("P13", false, false, k).c_str(),
+                    computeDistance(k, "P13", false, false),
+                    expectedDistance(k, "P13", false, false));
+    }
+    {
+        // P13 YELLOW : physZone = mirrorZone("P13") = "P3" -> PAS d'override
+        // meme sur l'idx post-swap. SWAP[k=3]=2 mais P3 n'est pas dans la table.
+        const uint8_t k = 3;
+        stats.check(label("P13", false, true, k).c_str(),
+                    computeDistance(k, "P13", false, true),
+                    expectedDistance(k, "P13", false, true));
+    }
+    {
+        // P3 YELLOW : physZone = mirrorZone("P3") = "P13". SWAP[k=3]=2 ->
+        // P13 idx 2 -> OVERRIDE -175 actif (miroir yellow).
+        const uint8_t k = 3;
+        stats.check(label("P3", false, true, k).c_str(),
+                    computeDistance(k, "P3", false, true),
+                    expectedDistance(k, "P3", false, true));
+    }
+    {
+        // P3 BLEU : physZone = "P3" -> jamais d'override (P3 absent de la table).
+        const uint8_t k = 2;
+        stats.check(label("P3", false, false, k).c_str(),
+                    computeDistance(k, "P3", false, false),
+                    expectedDistance(k, "P3", false, false));
     }
 
     // -------------------------------------------------------------------------

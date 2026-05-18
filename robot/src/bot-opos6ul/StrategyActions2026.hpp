@@ -81,6 +81,19 @@ float distInverseAt(uint8_t idx);
 /// Offset specifique de la zone (kZoneOffset_P4 / _P14). Retourne 0 sinon.
 float zoneOffsetFor(const char* zoneName);
 
+/*!
+ * \brief Override du terme dist[idx] par zone PHYSIQUE + config.
+ *
+ * Cherche zoneName dans la table kZoneDistOverride. Si une cellule est definie
+ * pour la config idx (0..5), retourne sa valeur (elle remplace distDirecte/
+ * distInverse[idx]) ; sinon retourne la sentinelle kNoOverride (= 1e9).
+ * zoneName == nullptr ou idx > 5 -> kNoOverride.
+ *
+ * L'idx attendu est l'idx POST-swap (meme indexation que distDirecte/Inverse).
+ * Cf robot/md/PUSH_ELEMENTS_2026.md.
+ */
+float distOverrideFor(const char* zoneName, uint8_t idx);
+
 /// Constante D_RETREAT du recul de degagement post-pousse.
 float retreatMm();
 

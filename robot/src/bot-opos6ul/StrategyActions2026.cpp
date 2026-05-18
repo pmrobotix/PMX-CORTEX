@@ -369,6 +369,60 @@ static constexpr float distInverse[6] = {
     /* [5] YBYB */   75.0f,
 };
 
+// Sentinelle "pas d'override" : valeur volontairement aberrante (1e9 mm) qui
+// ne peut jamais etre une distance reelle. Une cellule de kZoneDistOverride
+// egale a kNoOverride signifie "utiliser la table partagee distDirecte/Inverse".
+constexpr float kNoOverride = 1e9f;
+
+// Table d'override de distance par ZONE PHYSIQUE + config (idx 0..5).
+//
+// Probleme resolu : distDirecte/distInverse sont PARTAGEES entre toutes les
+// zones. Certaines zones ("P inversees" : P4, P13, P14) ont besoin d'une
+// valeur dist[idx] propre qui ne peut pas passer par la table partagee sans
+// affecter P1/P3. Cette table permet de SURCHARGER le terme dist[idx] pour une
+// zone et une config donnees, sans toucher distDirecte/distInverse.
+//
+// Indexation : l'idx est l'idx POST-SWAP (meme idx que distDirecte/distInverse).
+// La cellule idx 2 couvre donc BLEU `/u ALL 2` ET JAUNE `/u ALL 3`
+// (SWAP_COLOR_IDX[3]=2). C'est voulu.
+//
+// Miroir YELLOW : computeDistance() resout la zone physique via mirrorZone()
+// avant le lookup. En YELLOW le wrapper `push_elements_P3_*` opere physiquement
+// sur P13 (override applique) et `push_elements_P13_*` opere sur P3 (pas
+// d'override). Cf robot/md/PUSH_ELEMENTS_2026.md.
+//
+// Quand une cellule != kNoOverride, sa valeur REMPLACE le terme dist[idx].
+struct ZoneDistOverride
+{
+    const char* zone;     // zone physique (P1..P4, P11..P14)
+    float       dist[6];  // override par config idx 0..5 ; kNoOverride = aucun
+};
+
+// CALIBRATION : seule la valeur -175 @ idx 2 est calibree sur table reelle.
+// Les autres cellules restent a kNoOverride (a calibrer si besoin).
+static constexpr ZoneDistOverride kZoneDistOverride[] = {
+    { "P4",  { kNoOverride, kNoOverride, -175.0f, kNoOverride, kNoOverride, kNoOverride } },
+    { "P13", { kNoOverride, kNoOverride, -175.0f, kNoOverride, kNoOverride, kNoOverride } },
+    { "P14", { kNoOverride, kNoOverride, -175.0f, kNoOverride, kNoOverride, kNoOverride } },
+};
+
+// Mappe une zone vers sa zone miroir physique : P1<->P11, P2<->P12, P3<->P13,
+// P4<->P14. Retourne zoneName inchange si aucun mapping (ou nullptr).
+// Modele : le if/else de resolvePickupForZone (meme couplage de zones).
+const char* mirrorZone(const char* zoneName)
+{
+    if (zoneName == nullptr) return zoneName;
+    if (strcmp(zoneName, "P1")  == 0) return "P11";
+    if (strcmp(zoneName, "P2")  == 0) return "P12";
+    if (strcmp(zoneName, "P3")  == 0) return "P13";
+    if (strcmp(zoneName, "P4")  == 0) return "P14";
+    if (strcmp(zoneName, "P11") == 0) return "P1";
+    if (strcmp(zoneName, "P12") == 0) return "P2";
+    if (strcmp(zoneName, "P13") == 0) return "P3";
+    if (strcmp(zoneName, "P14") == 0) return "P4";
+    return zoneName;
+}
+
 } // namespace (anonymous, fin partielle pour exposer le namespace public)
 
 // =============================================================================
@@ -394,6 +448,15 @@ float zoneOffsetFor(const char* zoneName)
     if (strcmp(zoneName, "P4")  == 0) return kZoneOffset_P4;
     if (strcmp(zoneName, "P14") == 0) return kZoneOffset_P14;
     return 0.0f;
+}
+
+float distOverrideFor(const char* zoneName, uint8_t idx)
+{
+    if (zoneName == nullptr || idx > 5) return kNoOverride;
+    for (const auto& entry : kZoneDistOverride) {
+        if (strcmp(zoneName, entry.zone) == 0) return entry.dist[idx];
+    }
+    return kNoOverride;
 }
 
 float retreatMm()
@@ -423,7 +486,18 @@ float computeDistance(uint8_t pickupIdx, const char* zoneName,
         pickupIdx = SWAP_COLOR_IDX[pickupIdx];
     }
 
-    const float distBase = sensInverse ? distInverse[pickupIdx] : distDirecte[pickupIdx];
+    // Zone physique reellement traitee : en YELLOW le miroir Asserv place le
+    // robot sur la zone miroir de la table (cf mirrorZone / resolvePickupForZone).
+    // L'override de distance est keye par zone PHYSIQUE.
+    const char* physZone = yellow ? mirrorZone(zoneName) : zoneName;
+
+    // Override de dist[idx] (idx POST-swap). Si une cellule de kZoneDistOverride
+    // est definie pour cette zone physique + config, elle remplace le terme
+    // distDirecte/distInverse ; sinon on retombe sur la table partagee.
+    const float ov       = distOverrideFor(physZone, pickupIdx);
+    const float distBase = (ov != kNoOverride)
+                         ? ov
+                         : (sensInverse ? distInverse[pickupIdx] : distDirecte[pickupIdx]);
     const float offset   = zoneOffsetFor(zoneName);
     const float dist     = D_BASE + distBase + offset;
     if (dist <= 0.0f) return -1.0f;
@@ -515,10 +589,19 @@ bool push_elements_zone_impl(uint8_t pickupIdx, const char* zoneName, bool sensI
                     << (backward ? " (BACKWARD)" : "")
                     << (yellow ? " (YELLOW post-swap)" : "") << logs::end;
 
-    const float distBase = invLog ? distInverse[idxLog] : distDirecte[idxLog];
-    const float offset   = push_elements_test_api::zoneOffsetFor(zoneName);
+    // Recompute du terme dist[idx] pour le log, en appliquant l'override sur
+    // la zone PHYSIQUE (miroir si yellow) avec l'idx post-swap idxLog, pour
+    // rester coherent avec computeDistance().
+    const char* physZoneLog = yellow ? mirrorZone(zoneName) : zoneName;
+    const float ovLog       = push_elements_test_api::distOverrideFor(physZoneLog, idxLog);
+    const bool  hasOverride = (ovLog != kNoOverride);
+    const float distBase    = hasOverride
+                            ? ovLog
+                            : (invLog ? distInverse[idxLog] : distDirecte[idxLog]);
+    const float offset      = push_elements_test_api::zoneOffsetFor(zoneName);
     logger().info() << "push_elements_zone " << zoneName << " avance=" << dist
                     << "mm (D_BASE=" << D_BASE << " + dist[idx]=" << distBase
+                    << (hasOverride ? " (override)" : "")
                     << " + offset=" << offset
                     << ") puis recul=" << D_RETREAT << "mm" << logs::end;
 

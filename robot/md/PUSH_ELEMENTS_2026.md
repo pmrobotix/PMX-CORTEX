@@ -95,7 +95,11 @@ static constexpr uint8_t SWAP_COLOR_IDX[6] = { 1, 0, 3, 2, 5, 4 };
 | `kZoneOffset_P14`           | -50         | offset specifique P14 (D_BASE effectif: 435 mm)            |
 | `kBackwardPushAdjustmentMm` | -15         | ajustement geometrique backward (`kRobotFrontOffset - kRobotRearOffset`) |
 
-Formule finale : `dist = D_BASE + distXxx[idx] + zoneOffset(zone)`.
+Formule finale : `dist = D_BASE + (override(zone,idx) ?? distXxx[idx]) + zoneOffset(zone)`.
+
+(`override(zone,idx) ?? distXxx[idx]` = la valeur d'override si elle est
+definie pour cette zone+config, sinon la table partagee — cf section
+"Table d'override de distance par zone" plus bas.)
 
 ### Visuel des configurations
 
@@ -144,6 +148,89 @@ toutes les zones, sauf P4/P14 qui ont un offset de -50mm). Les tables
 `D_BASE + distBase + offset <= 0`, la manip log une erreur et retourne `false`.
 Avec D_BASE=485 et amplitudes max ±175 (offsets inclus), on a toujours
 `dist >= 260 mm`.
+
+## Table d'override de distance par zone
+
+### Probleme
+
+Les tables `distDirecte` / `distInverse` sont **partagees** entre toutes les
+zones (une seule paire de 6 valeurs pour les 8 zones). Certaines zones
+("P inversees" : **P4, P13, P14**) ont besoin d'une valeur `dist[idx]` propre
+qui ne peut pas passer par la table partagee sans casser P1/P3 qui partagent
+le meme index.
+
+### Solution : `kZoneDistOverride`
+
+Une table d'override **keyee par zone physique + config** (idx 0..5) permet de
+**remplacer** le terme `dist[idx]` (la valeur lue dans `distDirecte`/
+`distInverse`) pour une zone et une config donnees, sans toucher la table
+partagee :
+
+```cpp
+constexpr float kNoOverride = 1e9f;  // sentinelle "pas d'override"
+
+struct ZoneDistOverride { const char* zone; float dist[6]; };
+
+static constexpr ZoneDistOverride kZoneDistOverride[] = {
+    { "P4",  { kNoOverride, kNoOverride, -175.0f, kNoOverride, kNoOverride, kNoOverride } },
+    { "P13", { kNoOverride, kNoOverride, -175.0f, kNoOverride, kNoOverride, kNoOverride } },
+    { "P14", { kNoOverride, kNoOverride, -175.0f, kNoOverride, kNoOverride, kNoOverride } },
+};
+```
+
+Quand une cellule vaut `kNoOverride`, la table partagee `distDirecte`/
+`distInverse` est utilisee normalement. Quand elle vaut autre chose, sa valeur
+**remplace** le terme `dist[idx]`.
+
+**Calibration** : seule la valeur `-175 @ idx 2` est calibree sur table reelle.
+Les autres cellules restent a `kNoOverride` (a calibrer si besoin).
+
+### Indexation : idx POST-swap
+
+L'override est indexe sur l'**idx post-swap** — le meme index que
+`distDirecte`/`distInverse` apres application de `SWAP_COLOR_IDX` en YELLOW.
+Consequence : la cellule `idx 2` couvre **BLEU `/u ALL 2`** ET
+**JAUNE `/u ALL 3`** (`SWAP_COLOR_IDX[3] = 2`). C'est voulu : une seule cellule
+calibre les deux couleurs, comme pour les tables partagees.
+
+### Miroir YELLOW
+
+En YELLOW, le miroir Asserv place physiquement le robot sur la zone miroir de
+la table (`P1<->P11`, `P2<->P12`, `P3<->P13`, `P4<->P14`). `computeDistance()`
+resout donc la **zone physique** via `mirrorZone()` avant le lookup d'override :
+
+```cpp
+const char* physZone = yellow ? mirrorZone(zoneName) : zoneName;
+const float ov       = distOverrideFor(physZone, pickupIdx /* post-swap */);
+```
+
+Concretement :
+
+- wrapper `push_elements_P3_*` en YELLOW -> physiquement **P13** -> override
+  `-175` applique ;
+- wrapper `push_elements_P13_*` en YELLOW -> physiquement **P3** -> **pas**
+  d'override (P3 n'est pas dans `kZoneDistOverride`).
+
+### Fonction `distOverrideFor()`
+
+Exposee dans `push_elements_test_api` (cf StrategyActions2026.hpp) :
+
+```cpp
+float distOverrideFor(const char* zoneName, uint8_t idx);
+```
+
+Cherche `zoneName` dans `kZoneDistOverride` ; retourne la cellule `dist[idx]`
+si trouvee et `idx <= 5`, sinon `kNoOverride`. `zoneName == nullptr` ou
+`idx > 5` -> `kNoOverride`.
+
+### Formule finale (avec override)
+
+```
+dist = D_BASE + (distOverrideFor(physZone, idx) ?? distXxx[idx]) + zoneOffset(zone)
+```
+
+ou `physZone = yellow ? mirrorZone(zoneName) : zoneName` et `idx` est l'index
+post-swap. `zoneOffset` reste applique sur `zoneName` (zone logique), inchange.
 
 ## Sequence d'execution
 
