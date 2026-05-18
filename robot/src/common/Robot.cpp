@@ -171,10 +171,11 @@ void Robot::configureDefaultConsoleArgs() {
     {
         // /u <zone> <value>  -> DEBUG : force la config pickup d'une zone, sans
         // passer par la balise. Utile en SIMU pour tester les distances
-        // push_elements (D1..D4) selon la config beacon. zone = P1..P4 ou
-        // P11..P14, value = 0..5. Cf robot/md/PUSH_ELEMENTS_2026.md.
-        Arguments::Option cOpt('u', "DEBUG: force pickup_P{N} sans balise (1 zone)");
-        cOpt.addArgument("zone", "P1..P4 ou P11..P14", "");
+        // push_elements (D1..D4) selon la config beacon. zone = P1..P4,
+        // P11..P14 ou ALL (les 8 zones d'un coup), value = 0..5.
+        // Cf robot/md/PUSH_ELEMENTS_2026.md.
+        Arguments::Option cOpt('u', "DEBUG: force pickup_P{N} sans balise (1 zone ou ALL)");
+        cOpt.addArgument("zone", "P1..P4, P11..P14 ou ALL", "");
         cOpt.addArgument("value", "config 0..5", "0");
         cArgs_.addOption(cOpt);
     }
@@ -314,45 +315,106 @@ void Robot::parseConsoleArgs(int argc, char** argv, bool stopWithErrors) {
         injectAdvEnabled_ = true;
     }
 
-    // /u <zone[_X]> <value> : DEBUG force la config pickup d'une zone (test SIMU).
+    // /u <zone[_X]> <value> : DEBUG force la config pickup (test SIMU).
     // Phase de parsing CLI = avant PHASE_MATCH, donc setPickupP* accepte.
     //
-    // Format zone : "P{N}" ou "P{N}_X" avec X = B, H, D ou G.
-    // Le suffixe optionnel force le wrapper push_elements_P{N}_X via override
-    // (cf StrategyJsonRunner) - permet de tester un cote d'arrivee donne sans
-    // editer le JSON.
+    // 3 formats pour l'argument zone :
+    // - "P{N}" ou "P{N}_X" (X = B/H/D/G) : une seule zone. Le suffixe optionnel
+    //   force le wrapper push_elements_P{N}_X via pushElementsOverride_ (cf
+    //   StrategyJsonRunner) - teste un cote d'arrivee donne sans editer le JSON.
+    // - "ALL" : force les 8 zones (P1..P4 / P11..P14) a la meme config <value>.
+    // - liste "P1=0,P2=3,..." : pose chaque zone listee a sa valeur ; les zones
+    //   absentes restent au defaut compile (BBYY). <value> ignore dans ce cas.
+    //   Permet de rejouer un scenario de match precis en SIMU.
     if (cArgs_['u']) {
         const std::string zoneArg = cArgs_['u']["zone"];
         const int value = std::atoi(cArgs_['u']["value"].c_str());
 
-        // Extraire la zone "P{N}" et le suffixe optionnel "_[BHGD]".
-        std::string zone = zoneArg;
-        std::string suffixOverride;
-        const auto pos = zoneArg.find('_');
-        if (pos != std::string::npos) {
-            zone = zoneArg.substr(0, pos);
-            suffixOverride = zoneArg;     // ex: "P4_D" garde la forme complete
-        }
+        // Pose la config d'une zone nommee. Renvoie false si zone inconnue ou
+        // value > 5 (setPickupP* refuse hors plage / hors phase CLI).
+        auto applyPickup = [this](const std::string& z, int v) -> bool {
+            if      (z == "P1")  return setPickupP1(v);
+            else if (z == "P2")  return setPickupP2(v);
+            else if (z == "P3")  return setPickupP3(v);
+            else if (z == "P4")  return setPickupP4(v);
+            else if (z == "P11") return setPickupP11(v);
+            else if (z == "P12") return setPickupP12(v);
+            else if (z == "P13") return setPickupP13(v);
+            else if (z == "P14") return setPickupP14(v);
+            return false;
+        };
 
-        bool ok = false;
-        if      (zone == "P1")  ok = setPickupP1(value);
-        else if (zone == "P2")  ok = setPickupP2(value);
-        else if (zone == "P3")  ok = setPickupP3(value);
-        else if (zone == "P4")  ok = setPickupP4(value);
-        else if (zone == "P11") ok = setPickupP11(value);
-        else if (zone == "P12") ok = setPickupP12(value);
-        else if (zone == "P13") ok = setPickupP13(value);
-        else if (zone == "P14") ok = setPickupP14(value);
-        if (!ok) {
-            std::cerr << "ERROR: /u zone='" << zone << "' value=" << value
-                      << " refuse (zone inconnue ou value > 5)." << std::endl;
+        if (zoneArg == "ALL") {
+            // Force les 8 zones a la meme config (rejoue un match SIMU avec une
+            // combinaison unique). value > 5 -> toutes refusees.
+            const char* kAllZones[8] = { "P1", "P2", "P3", "P4",
+                                         "P11", "P12", "P13", "P14" };
+            bool ok = true;
+            for (const char* z : kAllZones) ok = applyPickup(z, value) && ok;
+            if (!ok) {
+                std::cerr << "ERROR: /u zone='ALL' value=" << value
+                          << " refuse (value > 5)." << std::endl;
+            } else {
+                logger().info() << "DEBUG /u: pickup ALL zones=" << value
+                                << logs::end;
+            }
+        } else if (zoneArg.find('=') != std::string::npos) {
+            // Liste "P1=0,P2=3,..." : chaque zone listee est posee, les zones
+            // absentes restent au defaut compile (BBYY). Pas de suffixe ici.
+            bool allOk = true;
+            std::string applied;
+            size_t start = 0;
+            for (;;) {
+                const size_t comma = zoneArg.find(',', start);
+                const std::string tok = zoneArg.substr(
+                    start, comma == std::string::npos ? std::string::npos : comma - start);
+                if (!tok.empty()) {
+                    const size_t eq = tok.find('=');
+                    if (eq == std::string::npos) {
+                        std::cerr << "ERROR: /u token '" << tok
+                                  << "' sans '=' (attendu zone=value)." << std::endl;
+                        allOk = false;
+                    } else {
+                        const std::string z = tok.substr(0, eq);
+                        const int v = std::atoi(tok.substr(eq + 1).c_str());
+                        if (!applyPickup(z, v)) {
+                            std::cerr << "ERROR: /u '" << z << "=" << v
+                                      << "' refuse (zone inconnue ou value > 5)." << std::endl;
+                            allOk = false;
+                        } else {
+                            if (!applied.empty()) applied += ' ';
+                            applied += z + "=" + std::to_string(v);
+                        }
+                    }
+                }
+                if (comma == std::string::npos) break;
+                start = comma + 1;
+            }
+            if (allOk) {
+                logger().info() << "DEBUG /u: pickup liste { " << applied
+                                << " } (zones absentes -> defaut BBYY)" << logs::end;
+            }
         } else {
-            logger().info() << "DEBUG /u: pickup " << zone << "=" << value
-                            << logs::end;
-            if (!suffixOverride.empty()) {
-                pushElementsOverride_ = suffixOverride;
-                logger().info() << "DEBUG /u: pushElementsOverride="
-                                << pushElementsOverride_ << logs::end;
+            // Zone unique "P{N}" + suffixe optionnel "_[BHGD]".
+            std::string zone = zoneArg;
+            std::string suffixOverride;
+            const auto pos = zoneArg.find('_');
+            if (pos != std::string::npos) {
+                zone = zoneArg.substr(0, pos);
+                suffixOverride = zoneArg;     // ex: "P4_D" garde la forme complete
+            }
+
+            if (!applyPickup(zone, value)) {
+                std::cerr << "ERROR: /u zone='" << zone << "' value=" << value
+                          << " refuse (zone inconnue ou value > 5)." << std::endl;
+            } else {
+                logger().info() << "DEBUG /u: pickup " << zone << "=" << value
+                                << logs::end;
+                if (!suffixOverride.empty()) {
+                    pushElementsOverride_ = suffixOverride;
+                    logger().info() << "DEBUG /u: pushElementsOverride="
+                                    << pushElementsOverride_ << logs::end;
+                }
             }
         }
     }
