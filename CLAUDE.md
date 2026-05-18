@@ -167,6 +167,7 @@ Consulter ces fichiers avant toute modification pour vérifier la cohérence arc
 | `robot/md/O_STATE_NEW_INIT.md` | Refactor O_State_Init multi-sources (shield LCD2x16 + LCD tactile balise) avec phase machine |
 | `robot/md/STRATEGY_DECISION_RUNNER.md` | Évolution runner : skip+continue au lieu d'abort, sémantique TRAJ_STATE, variables JSON pour homologation |
 | `robot/md/PUSH_ELEMENTS_2026.md` | Manipulation `push_elements_P{N}` : pousse les éléments selon config beacon LCD tactile, tables D1..D4 |
+| `robot/md/DEFENSE_IF_NEEDED.md` | Action `defense_if_needed` : zones d'attaque adv + points de défense, convention coords BLEU/miroir X, plan d'activation du STUB |
 | `robot/md/BUILD.md` | Instructions de build |
 | `robot/config/opos6ul/FLASH-OPOS6UL.md` | Procédure flash OPOS6UL |
 | `robot/config/opos6ul/CONFIG-STATUS.md` | Status configuration hardware |

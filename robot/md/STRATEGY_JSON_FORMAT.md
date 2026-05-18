@@ -191,7 +191,7 @@ Source de vérité : [StrategyActions2026.cpp::registerStrategyActions2026()](..
 | | `push_back_elements_P{3,4,13,14}_{D,G}` | ACTIF | Variante rear-first des push horizontales |
 | | (voir [PUSH_ELEMENTS_2026.md#backward](PUSH_ELEMENTS_2026.md#backward)) | | |
 | Push prise basse | `push_prise_bas` | ACTIF (deprecated) | Ancienne séquence, remplacée par `push_elements_zone` |
-| Défense | `defense_if_needed` | **STUB** | À la fin d'une instruction push : si adv dans une zone, va au point de défense, attend 5s, rend la main. Plomberie `Asserv::adv_pos_centre_` à câbler (jamais set actuellement). |
+| Défense | `defense_if_needed` | **STUB** | À la fin d'une instruction push : si adv dans une zone, va au point de défense, attend 5s, rend la main. Détails complets : [DEFENSE_IF_NEEDED.md](DEFENSE_IF_NEEDED.md). |
 
 **Convention de placement dans le JSON** :
 - `defense_if_needed` : à insérer **à la fin de chaque instruction push** où une défense fait sens. No-op si adv hors zone, pas de risque à le mettre partout.
